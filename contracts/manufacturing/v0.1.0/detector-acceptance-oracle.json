@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "haiec.manufacturing.detector-acceptance-oracle/0.1",
+  "semanticPack": {
+    "packId": "haiec.manufacturing.semantic",
+    "version": "0.1.0"
+  },
+  "oracleType": "PUBLIC_DESIGN_REFERENCE_NOT_BLIND_C2",
+  "harnessOutcomeVocabulary": [
+    "MATCH",
+    "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+    "INSUFFICIENT_SOURCE",
+    "CONTRADICTED"
+  ],
+  "translationRequired": "Map to current HAIEC canonical finding/coverage/contradiction states; never register these harness names as production verdict enum",
+  "cases": [
+    {
+      "caseId": "MFG-AUTH-001-POSITIVE",
+      "ruleId": "MFG-AUTH-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "ACTION_EXECUTED",
+        "MES_EFFECT_PROVEN"
+      ],
+      "expectedClaimIfMatch": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-AUTH-001-HARD_NEGATIVE",
+      "ruleId": "MFG-AUTH-001",
+      "expectedHarnessStatus": "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "ACTION_EXECUTED",
+        "MES_EFFECT_PROVEN"
+      ],
+      "expectedClaimIfMatch": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "expectedEvidenceTreatment": "NO_MATCH_ONLY_WITH_COMPLETE_QUALIFIED_COVERAGE"
+    },
+    {
+      "caseId": "MFG-AUTH-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-AUTH-001",
+      "expectedHarnessStatus": "INSUFFICIENT_SOURCE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "ACTION_EXECUTED",
+        "MES_EFFECT_PROVEN"
+      ],
+      "expectedClaimIfMatch": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "expectedEvidenceTreatment": "PRESERVE_UNKNOWN"
+    },
+    {
+      "caseId": "MFG-AUTH-001-CONTRADICTION",
+      "ruleId": "MFG-AUTH-001",
+      "expectedHarnessStatus": "CONTRADICTED",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "ACTION_EXECUTED",
+        "MES_EFFECT_PROVEN"
+      ],
+      "expectedClaimIfMatch": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "expectedEvidenceTreatment": "EXPOSE_CONFLICT_NOT_SILENT_PASS"
+    },
+    {
+      "caseId": "MFG-AUTH-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-AUTH-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "ACTION_EXECUTED",
+        "MES_EFFECT_PROVEN"
+      ],
+      "expectedClaimIfMatch": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-EFF-001-POSITIVE",
+      "ruleId": "MFG-EFF-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_LINE_STOPPED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_TARGET_DIVERGENCE",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-EFF-001-HARD_NEGATIVE",
+      "ruleId": "MFG-EFF-001",
+      "expectedHarnessStatus": "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_LINE_STOPPED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_TARGET_DIVERGENCE",
+      "expectedEvidenceTreatment": "NO_MATCH_ONLY_WITH_COMPLETE_QUALIFIED_COVERAGE"
+    },
+    {
+      "caseId": "MFG-EFF-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-EFF-001",
+      "expectedHarnessStatus": "INSUFFICIENT_SOURCE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_LINE_STOPPED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_TARGET_DIVERGENCE",
+      "expectedEvidenceTreatment": "PRESERVE_UNKNOWN"
+    },
+    {
+      "caseId": "MFG-EFF-001-CONTRADICTION",
+      "ruleId": "MFG-EFF-001",
+      "expectedHarnessStatus": "CONTRADICTED",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_LINE_STOPPED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_TARGET_DIVERGENCE",
+      "expectedEvidenceTreatment": "EXPOSE_CONFLICT_NOT_SILENT_PASS"
+    },
+    {
+      "caseId": "MFG-EFF-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-EFF-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_LINE_STOPPED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_TARGET_DIVERGENCE",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-EFF-002-POSITIVE",
+      "ruleId": "MFG-EFF-002",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "NO_MUTATION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-EFF-002-HARD_NEGATIVE",
+      "ruleId": "MFG-EFF-002",
+      "expectedHarnessStatus": "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "NO_MUTATION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "expectedEvidenceTreatment": "NO_MATCH_ONLY_WITH_COMPLETE_QUALIFIED_COVERAGE"
+    },
+    {
+      "caseId": "MFG-EFF-002-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-EFF-002",
+      "expectedHarnessStatus": "INSUFFICIENT_SOURCE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "NO_MUTATION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "expectedEvidenceTreatment": "PRESERVE_UNKNOWN"
+    },
+    {
+      "caseId": "MFG-EFF-002-CONTRADICTION",
+      "ruleId": "MFG-EFF-002",
+      "expectedHarnessStatus": "CONTRADICTED",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "NO_MUTATION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "expectedEvidenceTreatment": "EXPOSE_CONFLICT_NOT_SILENT_PASS"
+    },
+    {
+      "caseId": "MFG-EFF-002-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-EFF-002",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "NO_MUTATION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-QMS-001-POSITIVE",
+      "ruleId": "MFG-QMS-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "PLANT_CERTIFIED",
+        "PHYSICAL_BYPASS_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-QMS-001-HARD_NEGATIVE",
+      "ruleId": "MFG-QMS-001",
+      "expectedHarnessStatus": "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "PLANT_CERTIFIED",
+        "PHYSICAL_BYPASS_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "expectedEvidenceTreatment": "NO_MATCH_ONLY_WITH_COMPLETE_QUALIFIED_COVERAGE"
+    },
+    {
+      "caseId": "MFG-QMS-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-QMS-001",
+      "expectedHarnessStatus": "INSUFFICIENT_SOURCE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "PLANT_CERTIFIED",
+        "PHYSICAL_BYPASS_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "expectedEvidenceTreatment": "PRESERVE_UNKNOWN"
+    },
+    {
+      "caseId": "MFG-QMS-001-CONTRADICTION",
+      "ruleId": "MFG-QMS-001",
+      "expectedHarnessStatus": "CONTRADICTED",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "PLANT_CERTIFIED",
+        "PHYSICAL_BYPASS_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "expectedEvidenceTreatment": "EXPOSE_CONFLICT_NOT_SILENT_PASS"
+    },
+    {
+      "caseId": "MFG-QMS-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-QMS-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "PLANT_CERTIFIED",
+        "PHYSICAL_BYPASS_PREVENTED"
+      ],
+      "expectedClaimIfMatch": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-OBS-001-POSITIVE",
+      "ruleId": "MFG-OBS-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "expectedClaimIfMatch": "PRODUCER_COVERAGE_GAP",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    },
+    {
+      "caseId": "MFG-OBS-001-HARD_NEGATIVE",
+      "ruleId": "MFG-OBS-001",
+      "expectedHarnessStatus": "NO_MATCH_WITH_ADEQUATE_COVERAGE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "expectedClaimIfMatch": "PRODUCER_COVERAGE_GAP",
+      "expectedEvidenceTreatment": "NO_MATCH_ONLY_WITH_COMPLETE_QUALIFIED_COVERAGE"
+    },
+    {
+      "caseId": "MFG-OBS-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-OBS-001",
+      "expectedHarnessStatus": "INSUFFICIENT_SOURCE",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "expectedClaimIfMatch": "PRODUCER_COVERAGE_GAP",
+      "expectedEvidenceTreatment": "PRESERVE_UNKNOWN"
+    },
+    {
+      "caseId": "MFG-OBS-001-CONTRADICTION",
+      "ruleId": "MFG-OBS-001",
+      "expectedHarnessStatus": "CONTRADICTED",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "expectedClaimIfMatch": "PRODUCER_COVERAGE_GAP",
+      "expectedEvidenceTreatment": "EXPOSE_CONFLICT_NOT_SILENT_PASS"
+    },
+    {
+      "caseId": "MFG-OBS-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-OBS-001",
+      "expectedHarnessStatus": "MATCH",
+      "requiredSourceBoundary": "ASSERT_QUALIFICATION_FROM_SERVER_TRUSTED_SOURCE_BINDER",
+      "forbiddenConclusions": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "expectedClaimIfMatch": "PRODUCER_COVERAGE_GAP",
+      "expectedEvidenceTreatment": "EXACT_SOURCE_AND_VERSION"
+    }
+  ],
+  "productionAcceptance": {
+    "status": "NOT_RUN",
+    "requiredBeforePass": [
+      "Actual registered HAIEC detector producer with source class and qualified intake",
+      "Independent unexposed C2 manufacturer, separate generator and oracle",
+      "Frozen semantic/source/rule digests",
+      "Organization/role isolation and provenance",
+      "Persisted evaluation and MCP report evidence ID"
+    ],
+    "allowFixtureOracleInProduction": false
+  },
+  "limitations": [
+    "Case inputs are synthetic publicly visible design examples, NOT independent blinded test results",
+    "Golden oracle is separated from acceptance inputs; tests only verify specification integrity until canonical HAIEC detector adapter executes"
+  ]
+}
