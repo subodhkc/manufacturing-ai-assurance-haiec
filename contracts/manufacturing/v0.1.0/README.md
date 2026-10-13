@@ -59,6 +59,26 @@ Future example input to comparator (schema, not a passing fixture):
 
 An **offline comparison match is not proof** the file came from HAIEC. The acceptance owner must independently verify the authenticated organization and exact evaluation receipt, source producer identity, effective policy/permissions, frozen source/semantic pack SHA, and role-gated MCP/read API. The tool cannot independently authenticate a file.
 
+
+## R-B/D/E/F/G/H implementation handoffs (research-to-development, additive)
+
+The original `semantic-pack.json` and `detector-acceptance-*.json` bytes remain untouched; these six independent sibling specs are added under the same proposed v0.1.0 contract family. All are **design contracts**, not executed HAIEC manufacturing engine capabilities.
+
+| Source research | Machine-readable contract | Developer handoff |
+|---|---|---|
+| R-B: seven workflows / nine effects | [operation-effect-contract.json](operation-effect-contract.json) | [R-B1 witness acceptance](https://docs.google.com/document/d/1x2_8ZZtHwNlrpaNL1gH2Wwr6wbOHZBkHlPwByhm2Kxs/edit) |
+| R-D: OT trust boundary | [trust-boundary-acceptance.json](trust-boundary-acceptance.json) | [R-D1 security acceptance](https://docs.google.com/document/d/1kLr4jv--rfHoDKPOfp_f_eUmaOK5qQvXY2zvkiZMuhI/edit) |
+| R-E: source class onboarding | [source-qualification-matrix.json](source-qualification-matrix.json) | [R-E1 source qualification](https://docs.google.com/document/d/1ycHRuI39ZKQuULZ0oau4ZX9XDBLVEUiv_m65t8osWoE/edit) |
+| R-F: C0/C1/C2 benchmark | [independent-benchmark-protocol.json](independent-benchmark-protocol.json) | [R-F1 blind benchmark](https://docs.google.com/document/d/1xQEkeXxQMaIRcf36aAEcGZHPHA-tN36ZBqlk2GB-YMc/edit) |
+| R-G: UCP/control maturity | [control-maturity-crosswalk.json](control-maturity-crosswalk.json) | [R-G1 control applicability](https://docs.google.com/document/d/1RcNEGBAXjbT6zxmx-a6PwN8C1tXWp_v-9cTRbnONGmw/edit) |
+| R-H: judge/full product release | [product-release-acceptance.json](product-release-acceptance.json) | [R-H1 parity + release](https://docs.google.com/document/d/1PknOpgkLeG-6CmJhaI04FtHtIbJhgo_jzmWCgVrkr4M/edit) |
+
+Focused `npm test` verifies contract structure, nine systems, 27 states, seven trust zones, 40 planned hard negatives, canonical catalog truth and ten dashboard view gates. **It does not run manufacturing detectors, a C2 blind benchmark, a UCP TestSpec or live HAIEC evaluation.**
+
+To version-pin the additional six exact JSON files, compute SHA-256 over committed bytes (e.g. `sha256sum contracts/manufacturing/v0.1.0/{operation-effect-contract,trust-boundary-acceptance,source-qualification-matrix,independent-benchmark-protocol,control-maturity-crosswalk,product-release-acceptance}.json` on systems supporting shell brace expansion). The existing `--digests` comparator prints only the original four core artifacts, unchanged. A later semantic pack activation must explicitly freeze an inventory listing **all** accepted file digests; adding sibling specs does not auto-activate them.
+
+**Release truth:** six research-to-development handoffs delivered, private HAIEC Main not modified, no genuine manufacturing findings or customer OT effect verified.
+
 ## HAIEC implementation targets (not included here)
 
 1. Inspect frozen private Main `lib/evidence/adapters/intake-profiles.ts`, Foundry source contract, canonical source binder and `lib/ai-security/detection-evidence-batch.ts`. Define adapters for exact manufacturing source claims and rejected/unknown coverage.
