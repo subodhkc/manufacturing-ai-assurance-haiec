@@ -1,0 +1,559 @@
+{
+  "schemaVersion": "haiec.manufacturing.operation-effect-contract/0.1",
+  "version": "0.1.0",
+  "status": "PROPOSED_NOT_IMPLEMENTED_OR_CANONICALLY_ASSESSED",
+  "source": "R-B v1.0 (2026-10-13)",
+  "dependsOn": "haiec.manufacturing.semantic v0.1.0",
+  "coreInvariant": "A recommendation, a broker allow, native acceptance, committed business state and physical outcome are different facts.",
+  "workflowIds": [
+    "WF-QUALITY",
+    "WF-PLAN",
+    "WF-PROCURE",
+    "WF-MAINT",
+    "WF-SUPQUAL",
+    "WF-DYNO",
+    "WF-WAREHOUSE"
+  ],
+  "stageVocabulary": [
+    "REQUESTED",
+    "POLICY_AUTHORIZED",
+    "EFFECTIVE_GRANT",
+    "CODE_REACHABLE",
+    "DISPATCHED",
+    "NATIVE_ACCEPTED",
+    "NATIVE_COMMITTED",
+    "TARGET_READBACK",
+    "EFFECT_ESTABLISHED",
+    "CONTRADICTED",
+    "UNKNOWN"
+  ],
+  "canonicalSourceJoin": [
+    "organizationId",
+    "aiSystemId",
+    "siteId",
+    "principalId",
+    "operationId",
+    "sourceNamespace",
+    "transactionId",
+    "resourceKey",
+    "sourceEventTime",
+    "sourceVersion"
+  ],
+  "stageEvidence": {
+    "REQUESTED": [
+      "sourceQualifiedRequest",
+      "boundAgentInstance",
+      "exactTargetAndOperation"
+    ],
+    "POLICY_AUTHORIZED": [
+      "approvedPolicyDigest",
+      "effectiveWindow",
+      "exactDelegation"
+    ],
+    "EFFECTIVE_GRANT": [
+      "registeredNativeIamProducer",
+      "boundPrincipal",
+      "effectivePermissionAtTime"
+    ],
+    "CODE_REACHABLE": [
+      "approvedPinnedSource",
+      "callableWriteReachability"
+    ],
+    "DISPATCHED": [
+      "registeredGateway",
+      "boundActionAndTx"
+    ],
+    "NATIVE_ACCEPTED": [
+      "nativeAckNotEffect"
+    ],
+    "NATIVE_COMMITTED": [
+      "nativeBusinessTransaction"
+    ],
+    "TARGET_READBACK": [
+      "independentTargetProducer",
+      "sameTxAndResource",
+      "beforeAfterState"
+    ],
+    "EFFECT_ESTABLISHED": [
+      "sourceQualifiedNativeCommitAndIndependentReadback",
+      "noUnresolvedContradictions"
+    ]
+  },
+  "systems": [
+    {
+      "systemId": "SYS-217",
+      "workflowId": "WF-QUALITY",
+      "siteId": "PLANT-A",
+      "name": "Torque Quality Assurance",
+      "nativeApplication": "MES",
+      "requestedAction": "HOLD_QUALITY",
+      "sampleTarget": "WO-217-4802",
+      "witnessClaim": "MES_QUALITY_HOLD",
+      "facet": "qualityHold",
+      "approver": "Quality Supervisor; Plant Quality Manager",
+      "policyConstraint": "quality_hold_release",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-217-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-217-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-217-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-340",
+      "workflowId": "WF-QUALITY",
+      "siteId": "PLANT-A",
+      "name": "Vision Inspection AI",
+      "nativeApplication": "VISION/QMS",
+      "requestedAction": "INSPECT_AND_PROPOSE_DISPOSITION",
+      "sampleTarget": "LOT-2026-4508",
+      "witnessClaim": "QMS_DISPOSITION_ONLY_IF_COMMITTED",
+      "facet": "qualityDisposition",
+      "approver": "Quality Engineer",
+      "policyConstraint": "model_validation_context",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-340-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-340-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-340-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-FC1",
+      "workflowId": "WF-PLAN",
+      "siteId": "SUPPLY",
+      "name": "Demand Forecast & S&OP",
+      "nativeApplication": "APS",
+      "requestedAction": "COMMIT_PLAN_REVISION",
+      "sampleTarget": "MPS-WK42",
+      "witnessClaim": "APS_PUBLISHED_PLAN",
+      "facet": "releasedSchedule",
+      "approver": "Planner/S&OP",
+      "policyConstraint": "frozen_horizon",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-FC1-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-FC1-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-FC1-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-PO12",
+      "workflowId": "WF-PROCURE",
+      "siteId": "SUPPLY",
+      "name": "Autonomous Replenishment",
+      "nativeApplication": "ERP",
+      "requestedAction": "CREATE_PURCHASE_ORDER",
+      "sampleTarget": "REQ-2026-8842",
+      "witnessClaim": "ERP_NATIVE_PO",
+      "facet": "purchaseOrder",
+      "approver": "Buyer",
+      "policyConstraint": "purchase_threshold",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-PO12-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-PO12-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-PO12-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-MNT88",
+      "workflowId": "WF-MAINT",
+      "siteId": "PLANT-B",
+      "name": "Predictive Maintenance AI",
+      "nativeApplication": "CMMS",
+      "requestedAction": "CREATE_WORK_REQUEST",
+      "sampleTarget": "WO-88-2210",
+      "witnessClaim": "CMMS_TICKET_ONLY",
+      "facet": "workOrderStatus",
+      "approver": "Maintenance Supervisor / OT owner",
+      "policyConstraint": "maintenance_window",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-MNT88-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-MNT88-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-MNT88-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-SUP12",
+      "workflowId": "WF-SUPQUAL",
+      "siteId": "PLANT-C",
+      "name": "Supplier Quality Risk AI",
+      "nativeApplication": "QMS",
+      "requestedAction": "DISPOSITION_RECEIVING_LOT",
+      "sampleTarget": "SI-2026-3301",
+      "witnessClaim": "QMS_NATIVE_DISPOSITION",
+      "facet": "incomingLotDisposition",
+      "approver": "Supplier Quality Engineer",
+      "policyConstraint": "supplier_part_site_revision_ppap",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-SUP12-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-SUP12-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-SUP12-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-SCH5",
+      "workflowId": "WF-PLAN",
+      "siteId": "PLANT-A",
+      "name": "Autonomous Line Scheduling",
+      "nativeApplication": "APS",
+      "requestedAction": "WRITE_PRODUCTION_SCHEDULE",
+      "sampleTarget": "SCH-WK42",
+      "witnessClaim": "APS_NATIVE_PLAN_COMMIT",
+      "facet": "productionSequence",
+      "approver": "Production Planner",
+      "policyConstraint": "planner_approval",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-SCH5-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-SCH5-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-SCH5-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-DYN412",
+      "workflowId": "WF-DYNO",
+      "siteId": "PLANT-A",
+      "name": "Dynamometer Tuning AI",
+      "nativeApplication": "TEST_CONTROLLER",
+      "requestedAction": "WRITE_SETPOINT",
+      "sampleTarget": "TEST-412/authorized-param-1",
+      "witnessClaim": "NATIVE_CONTROLLER_SETPOINT_ONLY",
+      "facet": "controllerSetpoint",
+      "approver": "Test Engineering / OT",
+      "policyConstraint": "three_delegated_of_nineteen_declared",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-DYN412-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-DYN412-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-DYN412-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-WH15",
+      "workflowId": "WF-WAREHOUSE",
+      "siteId": "DC-15",
+      "name": "Warehouse Fulfillment AI",
+      "nativeApplication": "WMS/QMS",
+      "requestedAction": "CONFIRM_SHIPMENT",
+      "sampleTarget": "LOT-2026-4510",
+      "witnessClaim": "WMS_SHIPMENT_COMMIT",
+      "facet": "shipmentStatus",
+      "approver": "Warehouse Supervisor",
+      "policyConstraint": "quality_hold_at_ship_time",
+      "recordClass": "SYNTHETIC_SOURCE_CONTRACT_ONLY",
+      "nativeEffectRequires": [
+        "qualified source registration",
+        "exact org/site/target/transaction",
+        "approved policy and principal where relevant",
+        "native before-after state with continuity"
+      ],
+      "notEquivalent": [
+        "recommendation != native commit",
+        "gateway ACCEPT != native readback",
+        "case ID != HAIEC verdict"
+      ],
+      "threeStateCases": [
+        {
+          "caseId": "SYS-WH15-EXPECTED_BASELINE",
+          "state": "EXPECTED_BASELINE",
+          "requiredObservedEffect": "WITHIN_APPROVED_EFFECT_ENVELOPE_ONLY_WHEN_EVIDENCE_COMPLETE",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-WH15-EVIDENCE_DEGRADED",
+          "state": "EVIDENCE_DEGRADED",
+          "requiredObservedEffect": "UNKNOWN_DUE_TO_MISSING_WITNESS",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        },
+        {
+          "caseId": "SYS-WH15-WRONG_TARGET",
+          "state": "WRONG_TARGET",
+          "requiredObservedEffect": "EXACT_TARGET_MISMATCH_WITH_QUALIFIED_NATIVE_READBACK",
+          "syntheticExpectationsNotHAIECVerdicts": true
+        }
+      ]
+    }
+  ],
+  "systemSpecificLimits": {
+    "SYS-217": "3 engines automatic protective hold; 40 exact Quality Supervisor approval; 51 escalate to Plant Quality Manager, not blanket denied. Release needs separate quality disposition.",
+    "SYS-340": "Model score/defect prevalence not QMS disposition or measured classifier performance.",
+    "SYS-FC1": "Planner review and frozen production horizon; child agent authority cannot expand without delegation.",
+    "SYS-PO12": "Reference threshold $15,000 is fictional; currency, supplier, amount, item, target and approver all bind.",
+    "SYS-MNT88": "CMMS work request not maintenance execution, repair or return-to-service proof.",
+    "SYS-SUP12": "PPAP/supplier-part-site-revision effective approval and current QMS lot state required.",
+    "SYS-SCH5": "Optimized plan not APS-native schedule commit; MES execution separate.",
+    "SYS-DYN412": "19 exposed setpoints vs 3 delegated fixture scope; no public PLC/OT write.",
+    "SYS-WH15": "QMS hold at shipment time + native WMS shipment confirmation exact lot."
+  },
+  "mandatoryTests": [
+    {
+      "caseId": "B-01",
+      "description": "same lot name across sites must not join",
+      "outcome": "IDENTITY_UNRESOLVED"
+    },
+    {
+      "caseId": "B-02",
+      "description": "gateway accepted but no native transaction",
+      "outcome": "EFFECT_UNKNOWN"
+    },
+    {
+      "caseId": "B-03",
+      "description": "rejected release plus missing native readback",
+      "outcome": "NO_PREVENTION_PROOF"
+    },
+    {
+      "caseId": "B-04",
+      "description": "committed native tx wrong work order",
+      "outcome": "EXACT_TARGET_MISMATCH_IF_QUALIFIED"
+    },
+    {
+      "caseId": "B-05",
+      "description": "async native acceptance without readback before deadline",
+      "outcome": "PENDING_NOT_ESTABLISHED"
+    },
+    {
+      "caseId": "B-06",
+      "description": "QMS held material exact time blocks WMS shipment authorization",
+      "outcome": "CROSS_SYSTEM_QUALIFIED_PRECONDITION"
+    },
+    {
+      "caseId": "B-07",
+      "description": "MNT ticket before-after but no technician execution",
+      "outcome": "WORK_REQUEST_ONLY"
+    },
+    {
+      "caseId": "B-08",
+      "description": "vision model detects potential defect without QMS change",
+      "outcome": "MODEL_OBSERVATION_ONLY"
+    },
+    {
+      "caseId": "B-09",
+      "description": "APS publish without MES ack",
+      "outcome": "APS_EFFECT_ONLY"
+    }
+  ],
+  "coverageGate": {
+    "expectedSystemCount": 9,
+    "expectedStateCases": 27,
+    "sourceQualifiedHAIECEvaluationsRequired": true,
+    "actualCountVerified": 0,
+    "HTMLParityRequired": true
+  },
+  "references": [
+    "R-B v1.0 Google Doc",
+    "Manufacturing FRD v1.4 / SRD v1.3",
+    "https://reference.opcfoundation.org/specs/OPC-10031-4/full"
+  ]
+}
