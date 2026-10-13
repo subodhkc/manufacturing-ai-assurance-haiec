@@ -1,6 +1,6 @@
 # HAIEC Manufacturing AI Assurance — Fixture-First Reference
 
-**Fictional manufacturer · synthetic source records · independently authored expected outcomes · judge-facing interactive UX**
+**Fictional manufacturer · source-only input world isolated from expected outcomes · judge-facing reference UX**
 
 This repository is the independent manufacturing data and UX reference for the **Example Manufacturing Company**. It provides nine AI systems, sixteen agent roles, seven manufacturing workflows, a 45-entry control catalog, twelve scenario definitions and 27 three-condition test fixtures (39 scenario cases total), nine baseline findings and sixteen agent report examples.
 
@@ -12,9 +12,11 @@ The purpose is to test **what HAIEC can discover and establish from connected ev
 npm run verify
 ```
 
-`npm run export:haiec-candidates` writes separately labeled candidate-only structured records for a future HAIEC ingestion acceptance test.
+**Oracle independence / source-of-truth boundary:** \`npm run source:world > source-world.json\` emits 27 raw, source-only fictional cases covering all nine systems, with 153 event records. \`npm run export:haiec-candidates\` exports **unqualified** candidates from that independent producer, never from \`golden-scenarios.json\`, \`expected-findings.cjs\`, example findings or reports. The exporter-generated \`data/generated/haiec-ingest-candidates.json\` is deliberately not committed. \`npm run test:oracle\` proves that changing the oracle cannot alter either the produced world or exported candidates. Neither run is a real HAIEC evaluation.
 
-`npm run generate` regenerates `data/generated/*.json`. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
+**Legacy artifact distinction:** \`npm run generate\` still regenerates the historical *reference/presentation artifacts*, including oracle-authored expected findings, golden storyboards, and illustrative reports. They are **not admissible source inputs** to a HAIEC integration and must not be fed into evidence intake. In this slice, input/oracle independence is implemented at the *acceptance data boundary*; the older presentation generator has not been rewritten into a wholly oracle-free producer.
+
+`npm run generate` regenerates the tracked **illustrative** reference artifacts only. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. It is static and still renders its embedded v7.2 data; tying it to generated source events and genuine HAIEC evaluations is a **separate implementation step**, not silently represented as complete.
 
@@ -31,7 +33,7 @@ Run `npm run demo:station217 > station217-replay.json` for a deterministic 3/40/
 | `workflows.json` | All seven manufacturing workflows, including separate Supplier Quality and Warehouse |
 | `controls.json` | Full 45 catalog entries and truthful catalog/implementation distinction |
 | `findings.json` | Nine **expected findings** with source qualification gaps and prohibited conclusions |
-| `golden-scenarios.json` | 27 controlled expected/degraded/wrong-target synthetic input/event cases |
+| `golden-scenarios.json` | 27 **oracle-authored illustrative storyboards**, not accepted source evidence; use `npm run source:world` for independent raw cases |
 | `decision-scenarios.json` | The 10 existing UI cases and two expanded incoming-QMS/WMS cases |
 | `behavior-baselines.json` | 16 reproducible token baselines and advisory-only anomaly examples |
 | `agent-reports.json` | 16 agent-specific **illustrative** reports, not HAIEC-issued assessment receipts |
