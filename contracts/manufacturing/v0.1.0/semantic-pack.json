@@ -1,0 +1,728 @@
+{
+  "schemaVersion": "haiec.manufacturing.semantic-pack/0.1",
+  "packId": "haiec.manufacturing.semantic",
+  "version": "0.1.0",
+  "releaseDate": "2026-10-13",
+  "lifecycle": "PROPOSED_PUBLIC_CONTRACT_NOT_ACTIVE_HAIEC_ENGINE",
+  "producerQualification": "UNQUALIFIED_BY_DEFAULT",
+  "sourceDocumentIds": [
+    "R-A v1.0",
+    "R-C v1.0"
+  ],
+  "references": {
+    "researchA": "https://docs.google.com/document/d/1tsyu4YtZt1E9B1vETHoeuRpRCeFQHc6gZF4_zNECHMU/edit",
+    "researchC": "https://docs.google.com/document/d/1db6jg3jkNUVOZomB5B0VqmNnwk_N-2SpVrqND_KuCwI/edit",
+    "standardsPublic": [
+      "https://www.isa.org/standards-and-publications/isa-standards/isa-95-standard",
+      "https://reference.opcfoundation.org/specs/OPC-10030/full",
+      "https://reference.opcfoundation.org/specs/OPC-10031-4/full"
+    ],
+    "haiecBaselineSha": "548edfa3f809fac738dd1c8ba5b2846b897011bf",
+    "manufacturingBaselineSha": "5329d95afb7fa8fe9dc61ea99b07195f5525117b"
+  },
+  "applicability": {
+    "industries": [
+      "discrete_manufacturing",
+      "process_manufacturing",
+      "hybrid_manufacturing"
+    ],
+    "physicalEquipmentActuation": "NOT_SUPPORTED_BY_THIS_PACK"
+  },
+  "compatibility": {
+    "ISA-95-Part1": "ANSI/ISA-95.00.01-2025 as identified in research R-A; conceptual crosswalk only",
+    "OPC-10030": "Public ISA-95 companion model v1.00; do not assume current ISA-95 Part1 object equivalence",
+    "OPC-10031-4": "Version-specific Job Control namespaces; v1/v2 must not be conflated",
+    "licensedStandardsTextIncluded": false
+  },
+  "identityContract": {
+    "requiredFields": [
+      "organizationId",
+      "sourceNamespace",
+      "externalType",
+      "externalId",
+      "sourceRef",
+      "qualificationState"
+    ],
+    "optionalFields": [
+      "revision",
+      "siteId",
+      "validFrom",
+      "validTo",
+      "producerId",
+      "sourceTime",
+      "receivedTime"
+    ],
+    "resourceKeyShape": [
+      "organizationId",
+      "sourceNamespace",
+      "externalType",
+      "externalId",
+      "siteId?",
+      "revision?"
+    ],
+    "transactionJoin": [
+      "organizationId",
+      "sourceNamespace",
+      "nativeTransactionId",
+      "exactResourceKey",
+      "principalBinding"
+    ],
+    "constraints": [
+      "No global tenantless resource ids",
+      "No display-name/clock-proximity joins",
+      "SupplierPartApproval keys supplier+part+site+revision+effective interval",
+      "MaterialLot keys site+part+revision+native lot ID",
+      "OPC UA requires server identity+namespaceURI+NodeId and user-specific permission checks",
+      "Source time and receive time are separate",
+      "Unrecognized unit/currency/alias rejects conversion"
+    ]
+  },
+  "entityTypes": [
+    {
+      "name": "Enterprise",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Site",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Area",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "WorkCenter",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "WorkUnit",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Station",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "EquipmentRole",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "PhysicalAsset",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Controller",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Part",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "PartRevision",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "MaterialLot",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Sublot",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Serial",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Supplier",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "SupplierPartApproval",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "WorkOrder",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "JobOrder",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "ManufacturingOperation",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "ProcessSegment",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Recipe",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "InspectionPlan",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "TestProcedure",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Principal",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "AgentDefinition",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "AgentInstance",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Tool",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "MCPTool",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "APIEndpoint",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "BusinessApplication",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "PolicyEnvelope",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Delegation",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "ApprovalRecord",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "NativeTransaction",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "StateObservation",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "Collector",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    },
+    {
+      "name": "ProductionWindow",
+      "admission": "QUALIFIED_SOURCE_REQUIRED_FOR_ESTABLISHED_RELATION"
+    }
+  ],
+  "relationTypes": [
+    {
+      "name": "CONTAINS",
+      "group": "hierarchy",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "ASSIGNED_TO",
+      "group": "hierarchy",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "HAS_MATERIAL",
+      "group": "hierarchy",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "QUALIFIED_FOR",
+      "group": "hierarchy",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "REQUESTS",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "POLICY_AUTHORIZES",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "EFFECTIVELY_GRANTS",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "DELEGATES",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "MAY_INVOKE",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "CODE_REACHES",
+      "group": "authority",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "OBSERVED_DISPATCH",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "ACCEPTED_BY",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "COMMITTED_BY",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "READBACK_OF",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "CHANGED_STATE",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "MEASURES",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    },
+    {
+      "name": "DEPENDS_ON",
+      "group": "runtime",
+      "admission": "REGISTERED_PRODUCER_AND_EXACT_SOURCE_REF_REQUIRED",
+      "missing": "UNKNOWN_NOT_NEGATIVE_PROOF"
+    }
+  ],
+  "verbs": [
+    "READ",
+    "ANALYZE",
+    "RECOMMEND",
+    "DRAFT",
+    "REQUEST",
+    "APPROVE",
+    "REJECT",
+    "HOLD",
+    "RELEASE",
+    "DISPOSITION",
+    "COMMIT",
+    "SCHEDULE",
+    "PICK",
+    "PACK",
+    "SHIP",
+    "WRITE_SETPOINT",
+    "START",
+    "STOP",
+    "RESET",
+    "NOTIFY"
+  ],
+  "effectClasses": [
+    "informational",
+    "quality_hold",
+    "quality_release",
+    "lot_disposition",
+    "purchase_order_commit",
+    "schedule_release",
+    "inventory_movement",
+    "shipment_confirmation",
+    "work_request_record",
+    "controller_setpoint_change",
+    "equipment_run_state_change"
+  ],
+  "sourceRoleRequirements": {
+    "PINNED_STATIC_CAPABILITY": [
+      "approvedPinnedSourceBytes",
+      "exactCallableOperation",
+      "receiverAndResourceMapping",
+      "codeReachabilityGraph"
+    ],
+    "APPROVED_POLICY": [
+      "authenticatedPolicyIssuer",
+      "versionedPolicyDigest",
+      "effectiveInterval",
+      "exactResourceScope"
+    ],
+    "EFFECTIVE_GRANT": [
+      "qualifiedNativeIamOrSessionPermissions",
+      "principalBinding",
+      "effectiveInterval"
+    ],
+    "OBSERVED_DISPATCH": [
+      "boundAgentPrincipal",
+      "nativeTransactionId",
+      "exactTargetAndOperation",
+      "sourceTime"
+    ],
+    "NATIVE_TARGET_READBACK": [
+      "independentlyRegisteredTargetProducer",
+      "nativeTransactionId",
+      "exactTargetAndFacet",
+      "beforeAfterState",
+      "freshnessAndCoverage"
+    ],
+    "COLLECTOR_CONTINUITY": [
+      "registeredCollector",
+      "expectedCadence",
+      "effectiveContract",
+      "sourceHealthWindow"
+    ]
+  },
+  "sourceProfileCandidates": [
+    {
+      "name": "manufacturing_action_event_v1",
+      "claims": [
+        "REQUESTED",
+        "OBSERVED_DISPATCH"
+      ],
+      "notEstablished": [
+        "EFFECTIVE_GRANT",
+        "APPLIED_EFFECT"
+      ]
+    },
+    {
+      "name": "manufacturing_mes_qms_state_v1",
+      "claims": [
+        "CANDIDATE_NATIVE_TARGET_READBACK"
+      ],
+      "notEstablished": [
+        "AUTHORIZATION",
+        "AI_CAUSATION"
+      ]
+    },
+    {
+      "name": "manufacturing_policy_iam_v1",
+      "claims": [
+        "CANDIDATE_APPROVED_POLICY",
+        "CANDIDATE_EFFECTIVE_GRANT"
+      ],
+      "notEstablished": [
+        "EXECUTION",
+        "EFFECT"
+      ]
+    },
+    {
+      "name": "manufacturing_vision_observation_v1",
+      "claims": [
+        "MODEL_OBSERVATION"
+      ],
+      "notEstablished": [
+        "APPROVAL",
+        "LOT_DISPOSITION"
+      ]
+    }
+  ],
+  "nativeMappings": [
+    {
+      "systemId": "SYS-217",
+      "workflowId": "torque_quality",
+      "application": "MES",
+      "nativeOperation": "mes.work_order.update",
+      "sampleTarget": "WO-217-4802",
+      "proposedCanonicalVerb": "HOLD",
+      "proposedEffectClass": "quality_hold_or_release",
+      "resourceFacet": "qualityHold",
+      "requiredWitnessSourceRoles": [
+        "MES_NATIVE_TRANSACTION",
+        "MES_NATIVE_TARGET_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "mes.work_order.update alone cannot distinguish protective HOLD from unauthorized RELEASE; require versioned action facet and independently qualified status"
+      ]
+    },
+    {
+      "systemId": "SYS-340",
+      "workflowId": "vision_inspection",
+      "application": "VISION",
+      "nativeOperation": "vision.inspect",
+      "sampleTarget": "LOT-2026-4508",
+      "proposedCanonicalVerb": "ANALYZE",
+      "proposedEffectClass": "inspection_observation",
+      "resourceFacet": "defectCandidate",
+      "requiredWitnessSourceRoles": [
+        "VISION_MODEL_OBSERVATION",
+        "QMS_NATIVE_DISPOSITION_IF_EFFECT_CLAIM"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "vision.inspect is an observation; QMS disposition is a separate transaction, not implied"
+      ]
+    },
+    {
+      "systemId": "SYS-FC1",
+      "workflowId": "forecast_planning",
+      "application": "APS",
+      "nativeOperation": "aps.schedule.commit",
+      "sampleTarget": "MPS-WK42",
+      "proposedCanonicalVerb": "COMMIT",
+      "proposedEffectClass": "schedule_release",
+      "resourceFacet": "releasedSchedule",
+      "requiredWitnessSourceRoles": [
+        "APS_NATIVE_TRANSACTION",
+        "APS_PLAN_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "Native operation spelling is a fictional source candidate, not proof of code capability or effect"
+      ]
+    },
+    {
+      "systemId": "SYS-PO12",
+      "workflowId": "replenishment",
+      "application": "ERP",
+      "nativeOperation": "erp.purchase_order.create",
+      "sampleTarget": "REQ-2026-8842",
+      "proposedCanonicalVerb": "COMMIT",
+      "proposedEffectClass": "purchase_order_commit",
+      "resourceFacet": "purchaseOrder",
+      "requiredWitnessSourceRoles": [
+        "ERP_NATIVE_PO_TRANSACTION",
+        "ERP_ORDER_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "Native operation spelling is a fictional source candidate, not proof of code capability or effect"
+      ]
+    },
+    {
+      "systemId": "SYS-MNT88",
+      "workflowId": "predictive_maintenance",
+      "application": "CMMS",
+      "nativeOperation": "cmms.work_request.create",
+      "sampleTarget": "WO-88-2210",
+      "proposedCanonicalVerb": "REQUEST",
+      "proposedEffectClass": "work_request_record",
+      "resourceFacet": "workOrderStatus",
+      "requiredWitnessSourceRoles": [
+        "CMMS_NATIVE_TRANSACTION",
+        "CMMS_REQUEST_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "CMMS ticket creation is not repair completion or safe machine state"
+      ]
+    },
+    {
+      "systemId": "SYS-SUP12",
+      "workflowId": "supplier_quality",
+      "application": "QMS",
+      "nativeOperation": "qms.incoming_lot.disposition",
+      "sampleTarget": "SI-2026-3301",
+      "proposedCanonicalVerb": "DISPOSITION",
+      "proposedEffectClass": "incoming_lot_disposition",
+      "resourceFacet": "incomingLotDisposition",
+      "requiredWitnessSourceRoles": [
+        "QMS_NATIVE_TRANSACTION",
+        "SUPPLIER_APPROVAL_RECORD",
+        "QMS_LOT_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "Native operation spelling is a fictional source candidate, not proof of code capability or effect"
+      ]
+    },
+    {
+      "systemId": "SYS-SCH5",
+      "workflowId": "line_scheduling",
+      "application": "APS",
+      "nativeOperation": "aps.schedule.write",
+      "sampleTarget": "SCH-WK42",
+      "proposedCanonicalVerb": "SCHEDULE",
+      "proposedEffectClass": "schedule_write",
+      "resourceFacet": "productionSequence",
+      "requiredWitnessSourceRoles": [
+        "APS_NATIVE_TRANSACTION",
+        "APS_PLAN_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "Native operation spelling is a fictional source candidate, not proof of code capability or effect"
+      ]
+    },
+    {
+      "systemId": "SYS-DYN412",
+      "workflowId": "dyno_tuning",
+      "application": "TEST_CONTROLLER",
+      "nativeOperation": "test_controller.setpoint.write",
+      "sampleTarget": "TEST-412/authorized-param-1",
+      "proposedCanonicalVerb": "WRITE_SETPOINT",
+      "proposedEffectClass": "controller_setpoint_change",
+      "resourceFacet": "controllerSetpoint",
+      "requiredWitnessSourceRoles": [
+        "PINNED_CONTROLLER_SOURCE",
+        "TEST_CONTROLLER_NATIVE_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "19 accessible vs 3 delegated parameters cannot be inferred from method name"
+      ]
+    },
+    {
+      "systemId": "SYS-WH15",
+      "workflowId": "warehouse",
+      "application": "WMS",
+      "nativeOperation": "wms.shipment.confirm",
+      "sampleTarget": "LOT-2026-4510",
+      "proposedCanonicalVerb": "SHIP",
+      "proposedEffectClass": "shipment_confirmation",
+      "resourceFacet": "shipmentStatus",
+      "requiredWitnessSourceRoles": [
+        "QMS_LOT_HOLD_RECORD",
+        "WMS_NATIVE_SHIPMENT_TRANSACTION",
+        "WMS_SHIPMENT_READBACK"
+      ],
+      "identityPolicy": "EXACT_TYPED_RESOURCE_AND_SOURCE_BINDING",
+      "aliasStatus": "DESCRIPTIVE_SAMPLE_NOT_APPROVED_ALIAS",
+      "executableMapping": false,
+      "qualifications": [
+        "Native operation spelling is a fictional source candidate, not proof of code capability or effect"
+      ]
+    }
+  ],
+  "sourceBoundary": {
+    "acceptationProcess": [
+      "VALIDATE",
+      "QUALIFY_PRODUCER",
+      "PIN_SOURCE_BYTES_AND_VERSION",
+      "NORMALIZE_EXACT_OPERATION_RESOURCE",
+      "CORRELATE_TRANSACTION",
+      "EVALUATE_WITH_COVERAGE",
+      "PERSIST_WITH_SOURCE_PROVENANCE"
+    ],
+    "defaultState": "UNQUALIFIED_CANDIDATE",
+    "cannotBePromotedByUploader": [
+      "authorityRole",
+      "role",
+      "claimedSourceRole",
+      "observedEffect",
+      "verifiedCodeCapable",
+      "policyApproved"
+    ],
+    "prohibitedInference": [
+      "POLICY_DECLARED_EQUALS_EFFECTIVELY_GRANTED",
+      "TOOL_NAME_EQUALS_CODE_REACHABLE",
+      "HTTP_ACCEPTED_EQUALS_BUSINESS_EFFECT",
+      "SOURCE_SILENCE_EQUALS_NO_ACTION",
+      "AI_HYPOTHESIS_EQUALS_FINDING",
+      "GATE_DENIED_EQUALS_PLANT_PREVENTED"
+    ]
+  },
+  "ontologyNegatives": [
+    {
+      "caseId": "A01",
+      "scenario": "same station display text in different sites",
+      "requiredHarnessBehavior": "IDENTITY_UNRESOLVED"
+    },
+    {
+      "caseId": "A02",
+      "scenario": "identical local lot ID across tenants",
+      "requiredHarnessBehavior": "CROSS_TENANT_JOIN_REJECTED"
+    },
+    {
+      "caseId": "A03",
+      "scenario": "EquipmentRole vs PhysicalAsset serial mismatch",
+      "requiredHarnessBehavior": "TYPE_JOIN_REJECTED"
+    },
+    {
+      "caseId": "A04",
+      "scenario": "OPC NamespaceIndex differs; namespace URI+NodeId stable",
+      "requiredHarnessBehavior": "REQUIRES_URI_NODEID_IDENTITY"
+    },
+    {
+      "caseId": "A05",
+      "scenario": "JobOrder ACK absent JobResponse",
+      "requiredHarnessBehavior": "EFFECT_NOT_ESTABLISHED"
+    },
+    {
+      "caseId": "A06",
+      "scenario": "approved policy but no effective MES IAM",
+      "requiredHarnessBehavior": "EFFECTIVE_GRANT_UNKNOWN"
+    },
+    {
+      "caseId": "A07",
+      "scenario": "read_torque_curve cited for MES write reachability",
+      "requiredHarnessBehavior": "CODE_CAPABILITY_NOT_VERIFIED"
+    },
+    {
+      "caseId": "A08",
+      "scenario": "25 Nm and 25 lb-ft without approved conversion",
+      "requiredHarnessBehavior": "UNIT_UNRESOLVED"
+    },
+    {
+      "caseId": "A09",
+      "scenario": "supplier approval revision 03 vs part revision 04",
+      "requiredHarnessBehavior": "APPROVAL_NOT_APPLICABLE"
+    },
+    {
+      "caseId": "A10",
+      "scenario": "same timestamp but different native transaction IDs",
+      "requiredHarnessBehavior": "TRANSACTION_JOIN_REJECTED"
+    }
+  ],
+  "releaseGates": [
+    "C0_SCHEMA_VALIDATION",
+    "C1_NINE_SYSTEM_COVERAGE",
+    "C2_INDEPENDENT_UNSEEN_VENDOR",
+    "HAIEC_QUALIFIED_SOURCE_BINDER",
+    "PERSISTED_EVALUATION_RECEIPT",
+    "MCP_AND_HTML_PARITY"
+  ],
+  "limitations": [
+    "This file is a reviewed research-derived public proposed semantic contract, not an active HAIEC semantic registry",
+    "Only 2026 public standards descriptions were used; no licensed normative clauses are included",
+    "Mappings cannot establish policy authority, source reachability or effect without canonical HAIEC source qualification"
+  ]
+}
