@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "haiec.manufacturing.product-release-acceptance/0.1",
+  "version": "0.1.0",
+  "source": "R-H v1.0 + original v2.3 plan",
+  "status": "PROPOSED_PRODUCT_RELEASE_CONTRACT_NOT_ACHIEVED",
+  "productScope": {
+    "systems": 9,
+    "workflows": 7,
+    "coreScenarioStates": 27,
+    "interactiveDecisionExamples": 12,
+    "controlCatalogReferences": 45
+  },
+  "ownership": {
+    "privateHAIEC": [
+      "source registry and producer trust",
+      "semantic pack approval",
+      "detector runner",
+      "DAI/U5/UCP",
+      "evaluation snapshots and MCP auth/read"
+    ],
+    "publicManufacturing": [
+      "independent synthetic world",
+      "second-vendor public-safe inputs",
+      "simulator and target ledger",
+      "nine-system dashboard",
+      "offline parity comparator"
+    ]
+  },
+  "viewAcceptance": [
+    {
+      "viewId": "command_center",
+      "requiredBackendBasis": "estate inventory, source health, executed vs unknown",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "ai_estate",
+      "requiredBackendBasis": "nine AI systems, scoped agents and native application connections",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "system_detail",
+      "requiredBackendBasis": "per-system policy/capability/evidence graph, source provenance",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "workflows_authority",
+      "requiredBackendBasis": "seven workflows; approved versus effective and code capability",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "decision_lab",
+      "requiredBackendBasis": "live/synthetic broker decisions with distinct provenance labels",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "controls_studio",
+      "requiredBackendBasis": "45 reference controls, implementation maturity and eligible UCP receipts",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "monitoring",
+      "requiredBackendBasis": "advisory source continuity, anomaly and qualified alerts",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "reports_evidence",
+      "requiredBackendBasis": "persisted HAIEC evaluation, source/evidence links and limitations",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "provenance",
+      "requiredBackendBasis": "immutable source/semantic/rule/eval digests, qualified producers",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    },
+    {
+      "viewId": "connections",
+      "requiredBackendBasis": "connector readiness, permissions, source binder/health and consent",
+      "noServerEvidence": "NOT_EVALUATED_WITH_SOURCE_REASON",
+      "rawHardcodedFindingAllowed": false,
+      "minimumProvenance": [
+        "sourceDigest",
+        "qualifiedProducerOrDeclaredFixture",
+        "semanticPackDigest",
+        "evaluationIdIfEvaluated",
+        "limitations"
+      ],
+      "acceptanceStatus": "NOT_VERIFIED"
+    }
+  ],
+  "releaseGates": [
+    {
+      "gateId": "G0",
+      "title": "Read-only HAIEC baseline inventory and scoped scan",
+      "requiredProof": [
+        "exact HAIEC Main SHA",
+        "supported source inventory",
+        "known unknowns",
+        "no unrelated customer secrets"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G1",
+      "title": "Versioned semantics and server-qualified source admission",
+      "requiredProof": [
+        "pack/source SHA pins",
+        "producer role spoof rejection",
+        "typed aliases and identity joins"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G2",
+      "title": "Five canonical manufacturing executable detectors",
+      "requiredProof": [
+        "25 public spec cases",
+        "independent source negatives",
+        "unfamiliar vendor confirmed after freeze"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G3",
+      "title": "All nine domain native-emulator event contracts",
+      "requiredProof": [
+        "27 three-state cases",
+        "nine domain-specific readbacks",
+        "no physical hardware claims"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G4",
+      "title": "Genuine HAIEC isolation/evaluation and UCP where eligible",
+      "requiredProof": [
+        "auth tenant-source bind",
+        "persisted evaluationId/receipt",
+        "MCP readback role scope",
+        "NOT_ASSESSED propagated"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G5",
+      "title": "HTML-to-engine 27 case parity and nine system cards",
+      "requiredProof": [
+        "all view origins bound",
+        "zero silent hardcoded verdicts",
+        "mismatch visible with evidence refs"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G6",
+      "title": "HackFW competition release reliability",
+      "requiredProof": [
+        "fresh clone/CI",
+        "offline fallback correctly marked",
+        "judge walk-through provenance",
+        "security/privacy checks"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": true,
+      "mandatoryForFullProduct": true
+    },
+    {
+      "gateId": "G7",
+      "title": "Commercial customer POC",
+      "requiredProof": [
+        "customer source consent",
+        "read-only pilot",
+        "buyer outcome measured",
+        "OT safety approval before actuation"
+      ],
+      "state": "NOT_VERIFIED",
+      "mandatoryForCompetition": false,
+      "mandatoryForFullProduct": true
+    }
+  ],
+  "parity": {
+    "caseCount": 27,
+    "systemCount": 9,
+    "sourceStates": [
+      "EXPECTED_BASELINE",
+      "EVIDENCE_DEGRADED",
+      "WRONG_TARGET"
+    ],
+    "readModelRequired": [
+      "organizationId",
+      "aiSystemId",
+      "caseId",
+      "sourceDigest",
+      "sourceRunId",
+      "semanticPackDigest",
+      "detectionRuleVersion",
+      "policyVersion",
+      "evaluationIdIfQualified",
+      "canonicalEvidenceRefs",
+      "observedEffects",
+      "sourceLimitations",
+      "expectedOracleRefSeparate",
+      "differenceClass"
+    ],
+    "comparisonResultVocabulary": [
+      "MATCH",
+      "DIFF_FOUND",
+      "NOT_VERIFIED",
+      "INSUFFICIENT_EVIDENCE",
+      "NOT_APPLICABLE"
+    ],
+    "positiveCriteria": "No HTML verdict/data point represented as genuine HAIEC without persisted matching qualified evaluation.",
+    "unknownCriteria": "Without authenticated eval/source output, show fixture-only or NOT_EVALUATED, never synthesize a PASS.",
+    "referenceMatrix": "https://drive.google.com/file/d/1Mm7SCr5fCBdQsQA6-jzfR_c4Nd4FF2_U/view"
+  },
+  "personas": [
+    [
+      "Plant Quality Manager",
+      "review/release conditions, quality hold provenance"
+    ],
+    [
+      "IT/OT Security",
+      "principal identity and effective rights, no safety interlock confusion"
+    ],
+    [
+      "Manufacturing Engineering",
+      "setpoint/change control, source integration cost"
+    ],
+    [
+      "AI Governance/Compliance",
+      "auditable unknowns and qualified controls"
+    ],
+    [
+      "Operations Finance",
+      "measured cost exposure and evidence effort; no fictional ROI"
+    ]
+  ],
+  "measurementDefinitions": [
+    [
+      "detector_precision",
+      "TP / (TP + FP) on independently qualified cases; unknowns separate"
+    ],
+    [
+      "detector_recall",
+      "TP / independently expected covered positives"
+    ],
+    [
+      "native_effect_coverage",
+      "qualified same-target transaction readbacks / eligible native effects"
+    ],
+    [
+      "html_engine_parity",
+      "matched qualified source-bound rows / applicable executed cases, unmet rows explicit"
+    ],
+    [
+      "vision_false_accept",
+      "actual defects predicted acceptable / all independently labeled actual defects"
+    ],
+    [
+      "vision_false_reject",
+      "acceptable parts predicted defects / all independently labeled acceptable parts"
+    ],
+    [
+      "onboarding_time",
+      "consented first source upload to persisted authorized assessment; publish environment and sample"
+    ],
+    [
+      "synthetic_broker_disallowed_dispatch_rate",
+      "rejected unauthorized requests / fixture unauthorized tested; cannot extrapolate to real plant"
+    ]
+  ],
+  "judgePath": [
+    [
+      "00:00",
+      "Command Center with nine fictional system cards"
+    ],
+    [
+      "00:20",
+      "Station 217 action evidence/proposed containment"
+    ],
+    [
+      "00:55",
+      "3/40/51-engine policy delegation"
+    ],
+    [
+      "01:30",
+      "synthetic gateway decision vs native target ledger, and real HAIEC report only if exists"
+    ],
+    [
+      "02:10",
+      "27-case parity and unfamiliar source with explicit unknown"
+    ],
+    [
+      "02:40",
+      "broader product/source POC scope and accurate CTA"
+    ]
+  ],
+  "customerValidation": {
+    "status": "NOT_INTERVIEWED_IN_THIS_WORK",
+    "targetInterviews": 3,
+    "questions": [
+      "MES/QMS/WMS/APS/CMMS versions",
+      "quality release policy and approvals",
+      "native independent readback availability",
+      "principal binding method",
+      "false positive operational tolerance",
+      "read-only collection permission",
+      "evidence package requirements",
+      "pilot buying condition"
+    ]
+  },
+  "claimsProhibited": [
+    "SYNTHETIC_GATEWAY_EQUALS_FACTORY_PROTECTION",
+    "CONTROL_REFERENCE_EQUALS_EXECUTED_PASS",
+    "ALERT_EQUALS_EFFECT",
+    "FULL_NINE_SYSTEMS_COMPLETE_FROM_STATIC_HTML",
+    "UNFAMILIAR_VENDOR_DETECTOR_PASS_WITHOUT_BLIND_C2",
+    "CUSTOMER_ROI_FROM_FICTIONAL_FACTORY"
+  ],
+  "sourceTruth": "Versioned specification only. No live HAIEC manufacturing scans or customer ROI measured in this contract."
+}

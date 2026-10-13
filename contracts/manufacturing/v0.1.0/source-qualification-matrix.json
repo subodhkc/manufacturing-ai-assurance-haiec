@@ -1,0 +1,351 @@
+{
+  "schemaVersion": "haiec.manufacturing.source-qualification-matrix/0.1",
+  "version": "0.1.0",
+  "source": "R-E v1.0",
+  "status": "PROPOSED_ADAPTER_REQUIREMENTS_NOT_REGISTERED",
+  "haiecBaseline": {
+    "foundry": "OPENAPI_3_JSON only in reviewed candidate-manifest-compiler",
+    "intake": "generic/api_transaction/policy/otel/scenario_run/digital_twin registered; no typed manufacturing profile",
+    "identity": "server-controlled tenant source binder needed"
+  },
+  "commonAdmissionRequired": [
+    "authenticatedOrganizationAndSystem",
+    "registeredProducerId",
+    "typedVersionedSchema",
+    "sourceByteDigest",
+    "issuerAndClaimScope",
+    "originalEventTimeAndReceiveTime",
+    "exactResourceAndTransaction",
+    "sourceHealthAndCoverage",
+    "redactionAndRetention",
+    "idempotencyKey"
+  ],
+  "sourceClasses": [
+    {
+      "id": "STATIC_API_MCP_MANIFEST",
+      "priority": 1,
+      "proposedProfile": "OPENAPI_3_JSON_PINNED",
+      "purpose": "Pinned OpenAPI, reviewed MCP interface and callable source code",
+      "eligibleClaims": [
+        "CODE_CAPABILITY_CANDIDATE"
+      ],
+      "neverProveWithoutOtherSources": [
+        "EFFECTIVE_GRANT",
+        "NATIVE_EFFECT"
+      ],
+      "qualificationGate": "APPROVED_SOURCE_NOT_QUALIFIED_CODE",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "MES_QMS_NATIVE_TRANSACTION",
+      "priority": 2,
+      "proposedProfile": "manufacturing_mes_qms_state_v1",
+      "purpose": "Native commit and independent readback with exact transaction, lot/order/site",
+      "eligibleClaims": [
+        "NATIVE_COMMIT",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "neverProveWithoutOtherSources": [
+        "AI_CAUSATION_WITHOUT_PRINCIPAL",
+        "QUALITY_APPROVAL_WITHOUT_QMS_POLICY"
+      ],
+      "qualificationGate": "REQUIRES_REGISTERED_TARGET_PRODUCER",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "POLICY_NATIVE_IAM",
+      "priority": 3,
+      "proposedProfile": "manufacturing_policy_iam_v1",
+      "purpose": "Approved delegation vs authenticated effective access grant",
+      "eligibleClaims": [
+        "POLICY_AUTHORIZED",
+        "EFFECTIVELY_GRANTED"
+      ],
+      "neverProveWithoutOtherSources": [
+        "OBSERVED_ACTION",
+        "EFFECT"
+      ],
+      "qualificationGate": "TWO_DISTINCT_QUALIFIED_PRODUCER_CLASSES",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "GATEWAY_AGENT_OTEL",
+      "priority": 4,
+      "proposedProfile": "manufacturing_action_event_v1",
+      "purpose": "Authenticated action request/broker and OTLP traces",
+      "eligibleClaims": [
+        "REQUESTED",
+        "DISPATCHED",
+        "NATIVE_ACCEPTED"
+      ],
+      "neverProveWithoutOtherSources": [
+        "NATIVE_EFFECT"
+      ],
+      "qualificationGate": "HTTP_200_NOT_COMMITTED_EFFECT",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "ERP_APS_WMS_CMMS",
+      "priority": 5,
+      "proposedProfile": "manufacturing_business_transaction_v1",
+      "purpose": "Native PO/plan/shipment/work-request transaction and later readback",
+      "eligibleClaims": [
+        "BUSINESS_COMMIT_IF_QUALIFIED"
+      ],
+      "neverProveWithoutOtherSources": [
+        "PHYSICAL_REPAIR",
+        "EQUIPMENT_SAFE_STATE"
+      ],
+      "qualificationGate": "TRANSACTION_PER_APPLICATION_REQUIRED",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "OPC_UA",
+      "priority": 6,
+      "proposedProfile": "opcua_observation_candidate_v1",
+      "purpose": "Server/endpoint identity, namespace URI, NodeId, session/user-specific permissions",
+      "eligibleClaims": [
+        "EQUIPMENT_OBSERVATION",
+        "CANDIDATE_GRANT_WITH_AUTHENTICATED_SESSION"
+      ],
+      "neverProveWithoutOtherSources": [
+        "UNIVERSAL_EFFECT_ATTRIBUTION"
+      ],
+      "qualificationGate": "VERSIONED_JOB_CONTROL_NAMESPACE_AND_IDENTITY",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "MTCONNECT",
+      "priority": 7,
+      "proposedProfile": "mtconnect_observation_candidate_v1",
+      "purpose": "Equipment sample/event/condition measurements",
+      "eligibleClaims": [
+        "EQUIPMENT_CONDITION_OBSERVATION"
+      ],
+      "neverProveWithoutOtherSources": [
+        "POLICY_APPROVAL",
+        "ACTOR_ACTION"
+      ],
+      "qualificationGate": "DEVICE_NOT_APPROVER",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "SPARKPLUG_B",
+      "priority": 8,
+      "proposedProfile": "sparkplug_observation_candidate_v1",
+      "purpose": "MQTT namespace/device lifecycle births/deaths/sequence",
+      "eligibleClaims": [
+        "DEVICE_TELEMETRY_AND_SOURCE_CONTINUITY"
+      ],
+      "neverProveWithoutOtherSources": [
+        "APPLIED_BUSINESS_TRANSACTION"
+      ],
+      "qualificationGate": "TOPIC_NOT_EFFECT",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    },
+    {
+      "id": "B2MML",
+      "priority": 9,
+      "proposedProfile": "b2mml_xml_candidate_v1",
+      "purpose": "Licensed/verified XML manufacturing integration exchange",
+      "eligibleClaims": [
+        "BUSINESS_EXCHANGE_CANDIDATE"
+      ],
+      "neverProveWithoutOtherSources": [
+        "ESTABLISHED_NORMATIVE_CONFORMANCE"
+      ],
+      "qualificationGate": "JSON_PORT_NOT_VALIDATED",
+      "implementationStatus": "NOT_ESTABLISHED_FOR_MANUFACTURING"
+    }
+  ],
+  "proposedProfiles": {
+    "manufacturing_action_event_v1": {
+      "required": [
+        "sourceId",
+        "producerId",
+        "organizationId",
+        "aiSystemId",
+        "principalRef",
+        "agentInstanceRef",
+        "operationRef",
+        "requestId",
+        "resourceRef",
+        "sourceEventTime",
+        "receivedTime",
+        "payloadDigest",
+        "claimType"
+      ],
+      "optional": [
+        "transactionId",
+        "policyDigest",
+        "actionId",
+        "runId"
+      ],
+      "rejectIf": [
+        "missingExactOrgSystem",
+        "missingPrincipal",
+        "unqualifiedSourceRoleForClaim"
+      ]
+    },
+    "manufacturing_mes_qms_state_v1": {
+      "required": [
+        "sourceId",
+        "producerId",
+        "transactionId",
+        "siteId",
+        "resourceRef",
+        "nativeVersion",
+        "observedAt",
+        "sourceEventTime",
+        "receivedTime",
+        "before",
+        "after",
+        "claimType"
+      ],
+      "optional": [
+        "partRevision",
+        "workOrderId",
+        "lotId",
+        "unit"
+      ],
+      "rejectIf": [
+        "missingTransactionId",
+        "targetMismatch",
+        "unqualifiedNativeProducer"
+      ]
+    },
+    "manufacturing_policy_iam_v1": {
+      "required": [
+        "producerId",
+        "principalId",
+        "operationScope",
+        "targetScope",
+        "effectiveFrom",
+        "effectiveTo",
+        "claimType"
+      ],
+      "optional": [
+        "approvedPolicyId",
+        "effectiveGrantId",
+        "approverRef",
+        "roles"
+      ],
+      "rejectIf": [
+        "unqualifiedApprovalSource",
+        "missingEffectiveWindow"
+      ]
+    },
+    "manufacturing_vision_observation_v1": {
+      "required": [
+        "sourceId",
+        "imageDigest",
+        "modelVersion",
+        "partRevision",
+        "recipeVersion",
+        "measurement",
+        "unit",
+        "observedAt"
+      ],
+      "optional": [
+        "camera",
+        "labeledOutcome",
+        "validatedContextId"
+      ],
+      "rejectIf": [
+        "incomparableUnitWithoutConversion"
+      ]
+    }
+  },
+  "comparisonChecks": [
+    {
+      "caseId": "E-01",
+      "inputSituation": "same operation new vendor field names with pinned map",
+      "requiredBehavior": "EXACT_SAME_CANONICAL_OPERATION_ONLY_AFTER_MAPPING",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-02",
+      "inputSituation": "duplicate tx IDs at different sites",
+      "requiredBehavior": "REJECT_CROSS_SOURCE_JOIN",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-03",
+      "inputSituation": "missing lot part revision on supplier release",
+      "requiredBehavior": "INCOMPLETE_SCOPE",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-04",
+      "inputSituation": "OTel HTTP 200 with no native commit",
+      "requiredBehavior": "NO_EFFECT_PROVEN",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-05",
+      "inputSituation": "OPC UA AccessLevel write, UserAccessLevel deny",
+      "requiredBehavior": "NO_EFFECTIVE_GRANT",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-06",
+      "inputSituation": "Sparkplug offline state",
+      "requiredBehavior": "TELEMETRY_DEGRADED_NOT_SUCCESS",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-07",
+      "inputSituation": "MTConnect alarm without maintenance transaction",
+      "requiredBehavior": "CONDITION_ONLY",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-08",
+      "inputSituation": "B2MML unvalidated JSON conversion",
+      "requiredBehavior": "REJECT_SCHEMA_UNTRUSTED",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-09",
+      "inputSituation": "future-dated recipe version",
+      "requiredBehavior": "QUARANTINE_CLOCK_SKEW",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-10",
+      "inputSituation": "unapproved updated OpenAPI sourceHash",
+      "requiredBehavior": "REJECT_SOURCE_VERSION",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-11",
+      "inputSituation": "caller supplies sourceRole SERVICE_NATIVE_RECORD",
+      "requiredBehavior": "STRIP_AND_SERVER_QUALIFY",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "caseId": "E-12",
+      "inputSituation": "client declared CODE_CAPABLE read-only tool",
+      "requiredBehavior": "CODE_CAPABILITY_NOT_ESTABLISHED",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "vendorPortability": "Define a reviewed alias map per source family/version, not hardcode the nine fixture system names. Vendor onboarding requires source identity and authorization configuration; no zero-configuration safety/authority claims.",
+  "platformOwnership": "HAIEC private canonical intake, source binder and evidence normalization; public repo publishes fictional samples only; no separate evaluation engine.",
+  "externalReferences": [
+    "https://reference.opcfoundation.org/specs/OPC-10030/full",
+    "https://reference.opcfoundation.org/specs/OPC-10031-4/full",
+    "https://model.mtconnect.org/Version2.2/ObservationInformationModel/",
+    "https://sparkplug.eclipse.org/specification/version/3.0/",
+    "https://github.com/MESAInternational/B2MML-BatchML"
+  ],
+  "exitCriteria": [
+    "source+claim roles register/qualify server side",
+    "all comparison checks reviewed",
+    "two vendor shapes normalized without literal system ID matching",
+    "invalid/unknown source preserves NOT_ASSESSED",
+    "same data+version deterministic normalization",
+    "sourceRefs retained in genuine persisted evaluation"
+  ],
+  "evaluated": false
+}
