@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "haiec.manufacturing.detector-acceptance-spec/0.1",
+  "suiteId": "mfg-p0-5-rules",
+  "version": "0.1.0",
+  "date": "2026-10-13",
+  "state": "SPECIFICATION_ONLY_NO_CANONICAL_HAIEC_RULES_REGISTERED",
+  "haiecRunnerContract": {
+    "file": "lib/ai-security/detection-runner.ts",
+    "baselineSha": "548edfa3f809fac738dd1c8ba5b2846b897011bf",
+    "states": [
+      "EXECUTABLE",
+      "REGISTER_ONLY",
+      "NOT_SUPPLIED"
+    ],
+    "warning": "MFG rules are NOT yet registered. Source classes STATIC/RUNTIME/TELEMETRY are proposed and must match actual runner/producer wiring; no alternate verdict authority."
+  },
+  "semanticPackRef": {
+    "packId": "haiec.manufacturing.semantic",
+    "version": "0.1.0",
+    "path": "semantic-pack.json"
+  },
+  "requirements": {
+    "metadata": [
+      "organizationId",
+      "tenantId",
+      "aiSystemId",
+      "asOf",
+      "semanticPackVersion",
+      "qualifiedProducerScope",
+      "sourceVersion",
+      "sourceRefs",
+      "policyDigest",
+      "transactionIdWhenRelevant"
+    ],
+    "pipeline": [
+      "SCHEMA_VALIDATE",
+      "PRODUCER_QUALIFY",
+      "EXACT_ENTITY_OPERATION_MAP",
+      "SCOPE_AND_COVERAGE_CHECK",
+      "DETERMINISTIC_RULE",
+      "CANONICAL_FINDING_OR_INSUFFICIENT",
+      "PERSIST_AND_REPORT"
+    ],
+    "neverConflate": [
+      "DETECTOR_MATCH_AND_U5_VERDICT",
+      "CATALOGED_CONTROL_AND_UCP_TEST_RESULT",
+      "DECLARED_POLICY_AND_EFFECTIVE_GRANT",
+      "GATEWAY_ACCEPTED_AND_NATIVE_COMMIT",
+      "MISSING_WITNESS_AND_PROVEN_NO_EFFECT"
+    ],
+    "mutatingOperationAllowed": false
+  },
+  "ruleDefinitions": [
+    {
+      "ruleId": "MFG-AUTH-001",
+      "title": "WRITE_REACHABILITY_EXCEEDS_DELEGATION",
+      "evidenceClassProposal": "STATIC",
+      "sourceClaims": [
+        "PINNED_STATIC_CAPABILITY",
+        "APPROVED_POLICY"
+      ],
+      "guard": "verified callable write path AND signed source-pinned approved scoped delegation; unknown IAM must remain separate",
+      "predicate": "codeReachableWrite AND scopeExcludedByValidApprovedDelegation",
+      "trueClaim": "CODE_REACHABILITY_AUTHORITY_GAP_ONLY",
+      "neverClaim": [
+        "ACTION_EXECUTED",
+        "EFFECT_APPLIED"
+      ],
+      "negative": "read-only endpoint or declared tool name must not prove code reachability",
+      "lifecycle": "PROPOSED_NOT_REGISTERED",
+      "acceptanceVariants": [
+        "POSITIVE",
+        "HARD_NEGATIVE",
+        "INSUFFICIENT_SOURCE",
+        "CONTRADICTION",
+        "FOREIGN_VENDOR_SAME_SEMANTICS"
+      ],
+      "mustHave": [
+        "PINNED_STATIC_CAPABILITY",
+        "APPROVED_POLICY"
+      ]
+    },
+    {
+      "ruleId": "MFG-EFF-001",
+      "title": "EXACT_TARGET_DIVERGENCE",
+      "evidenceClassProposal": "RUNTIME",
+      "sourceClaims": [
+        "APPROVED_POLICY",
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "guard": "exact tenant/source/transaction/actor/resource identity AND independently qualified native commit/readback",
+      "predicate": "committedAndBoundSameTx AND readbackNativeTarget != approvedTarget",
+      "trueClaim": "QUALIFIED_TARGET_DIVERGENCE",
+      "neverClaim": [
+        "MALICIOUS_INTENT",
+        "PHYSICAL_SAFETY_INTERVENTION"
+      ],
+      "negative": "timestamp-only join or gateway event cannot establish observed effect",
+      "lifecycle": "PROPOSED_NOT_REGISTERED",
+      "acceptanceVariants": [
+        "POSITIVE",
+        "HARD_NEGATIVE",
+        "INSUFFICIENT_SOURCE",
+        "CONTRADICTION",
+        "FOREIGN_VENDOR_SAME_SEMANTICS"
+      ],
+      "mustHave": [
+        "APPROVED_POLICY",
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ]
+    },
+    {
+      "ruleId": "MFG-EFF-002",
+      "title": "MISSING_CONSEQUENCE_WITNESS",
+      "evidenceClassProposal": "RUNTIME",
+      "sourceClaims": [
+        "OBSERVED_DISPATCH",
+        "COLLECTOR_CONTINUITY",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "guard": "collector configured/healthy throughout qualified postcondition window and deadline passed",
+      "predicate": "expectedNativeWitness AND healthyCoveredWindow AND deadlinePassed AND noExactTxReadback",
+      "trueClaim": "EXPECTED_WITNESS_MISSING_WITH_VERIFIED_COVERAGE",
+      "neverClaim": [
+        "NO_ACTION_OCCURRED",
+        "EFFECT_PREVENTED"
+      ],
+      "negative": "offline or unconfigured collector yields insufficient source, not missing-witness breach",
+      "lifecycle": "PROPOSED_NOT_REGISTERED",
+      "acceptanceVariants": [
+        "POSITIVE",
+        "HARD_NEGATIVE",
+        "INSUFFICIENT_SOURCE",
+        "CONTRADICTION",
+        "FOREIGN_VENDOR_SAME_SEMANTICS"
+      ],
+      "mustHave": [
+        "OBSERVED_DISPATCH",
+        "COLLECTOR_CONTINUITY",
+        "NATIVE_TARGET_READBACK"
+      ]
+    },
+    {
+      "ruleId": "MFG-QMS-001",
+      "title": "UNAUTHORIZED_QUALITY_HOLD_RELEASE",
+      "evidenceClassProposal": "RUNTIME",
+      "sourceClaims": [
+        "APPROVED_POLICY",
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "guard": "exact QMS lot site/part/revision/actor/policy effective window AND qualified authoritative approval roster sufficiently complete",
+      "predicate": "nativeReleaseCommitted AND completeQualifiedAuthoritySource AND actorExactReleaseAuthorizationAbsent",
+      "trueClaim": "QUALIFIED_QMS_RELEASE_WITHOUT_REQUIRED_AUTHORITY",
+      "neverClaim": [
+        "PLANT_PROTECTED",
+        "HOLD_FAILED_TO_PREVENT_REPAIR"
+      ],
+      "negative": "unqualified policy absence cannot prove unauthorized release",
+      "lifecycle": "PROPOSED_NOT_REGISTERED",
+      "acceptanceVariants": [
+        "POSITIVE",
+        "HARD_NEGATIVE",
+        "INSUFFICIENT_SOURCE",
+        "CONTRADICTION",
+        "FOREIGN_VENDOR_SAME_SEMANTICS"
+      ],
+      "mustHave": [
+        "APPROVED_POLICY",
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ]
+    },
+    {
+      "ruleId": "MFG-OBS-001",
+      "title": "SOURCE_CONTINUITY_LOSS",
+      "evidenceClassProposal": "TELEMETRY",
+      "sourceClaims": [
+        "COLLECTOR_CONTINUITY"
+      ],
+      "guard": "registered source with effective stable cadence, historical coverage and verified clock basis",
+      "predicate": "contractActive AND exceededHeartbeatTolerance AND notInQualifiedMaintenanceWindow",
+      "trueClaim": "PRODUCER_COVERAGE_GAP",
+      "neverClaim": [
+        "TAMPERING",
+        "NO_ACTION_OCCURRED"
+      ],
+      "negative": "source not configured or approved maintenance gap does not constitute unexpected loss",
+      "lifecycle": "PROPOSED_NOT_REGISTERED",
+      "acceptanceVariants": [
+        "POSITIVE",
+        "HARD_NEGATIVE",
+        "INSUFFICIENT_SOURCE",
+        "CONTRADICTION",
+        "FOREIGN_VENDOR_SAME_SEMANTICS"
+      ],
+      "mustHave": [
+        "COLLECTOR_CONTINUITY"
+      ]
+    }
+  ],
+  "registerOnlyBacklog": [
+    "MFG-AUTH-002",
+    "MFG-APR-001",
+    "MFG-WMS-001",
+    "MFG-APS-001",
+    "MFG-DYNO-001",
+    "MFG-BHV-001",
+    "MFG-BHV-002"
+  ],
+  "acceptanceSets": [
+    {
+      "set": "C0",
+      "purpose": "contract and source-admission unit vectors",
+      "expectedMinimumCases": 25,
+      "status": "PUBLIC_CASE_DEFINITION_CREATED"
+    },
+    {
+      "set": "C1",
+      "purpose": "nine-system corpus, source-only independent producer + expected oracle",
+      "expectedMinimumCases": 27,
+      "status": "INPUT_WORLD_EXISTS_NOT_EVALUATED"
+    },
+    {
+      "set": "C2",
+      "purpose": "sealed independent foreign-vendor benchmark unseen by detector developers",
+      "expectedMinimumCases": 10,
+      "status": "NOT_CREATED_OR_EXECUTED"
+    }
+  ],
+  "artifacts": [
+    "detector-acceptance-inputs.json",
+    "detector-acceptance-oracle.json"
+  ],
+  "gateCriteria": [
+    "All five canonical HAIEC producers registered as executable only after qualified source coverage",
+    "Each 5-variant rule suite passes using evaluated canonical results, with source/lineage",
+    "Unknown/contradiction never promoted to clean/violation without qualified requirements",
+    "One unfamiliar vendor source with different IDs and pinned mapping; public portability vectors do NOT count as blind C2",
+    "Strict byte-identical replay on exact pack/source/policy versions",
+    "No report or MCP manufacturing claim without persisted evaluation and tenant-scoped receipt",
+    "All nine manufacturing workflows covered in C1 and visible with honest limitations"
+  ]
+}
