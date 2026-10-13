@@ -20,6 +20,11 @@ npm run verify
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. It is static and still renders its embedded v7.2 data; tying it to generated source events and genuine HAIEC evaluations is a **separate implementation step**, not silently represented as complete.
 
+
+## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)
+
+[Versioned semantic contract and executable acceptance **specification**](contracts/manufacturing/v0.1.0/README.md) cover all nine systems, evidence-qualified typed identity, 5 P0 rule predicates and 25 oracle-separated public test cases. Run `npm test` for **spec integrity** or `node scripts/compare-manufacturing-detector-results.cjs --digests` to print exact SHA-256 identities. **Actual HAIEC detector execution, source qualification, blind C2 acceptance and persisted evaluation remain NOT_VERIFIED.** The offline comparator intentionally fails closed without a separately authenticated canonical HAIEC evaluation output.
+
 ## Station 217: executable synthetic action control (new)
 
 Run `npm run demo:station217 > station217-replay.json` for a deterministic 3/40/51-engine hold, denied release, wrong-target and missing-witness replay. This new CLI fixture has a fail-closed local policy broker, distinct private MES target ledger and independent assertions. It is **not wired into v7.2 HTML**, not a customer/HAIEC evaluation, and not safe as a public action API without authenticated server mediation. See [Station 217 acceptance and remaining integration gates](docs/STATION217-ACCEPTANCE.md).
