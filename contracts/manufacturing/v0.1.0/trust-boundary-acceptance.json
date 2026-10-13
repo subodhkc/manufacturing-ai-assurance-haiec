@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "haiec.manufacturing.trust-boundaries/0.1",
+  "version": "0.1.0",
+  "source": "R-D v1.0",
+  "lifecycle": "SECURITY_ACCEPTANCE_SPEC_ONLY",
+  "scope": "READ_AND_ASSESS_DEFAULT; NO_REMOTE_INDUSTRIAL_ACTUATION",
+  "canonicalOwner": "HAIEC private tenant auth/source binder/assurance; customer OT system owns physical safety and interlocks",
+  "zones": [
+    {
+      "id": "Z0",
+      "className": "UNTRUSTED_INPUT",
+      "components": "ChatGPT/browser/user files/supplier PDFs",
+      "requiredBoundary": "No source authority, no policy approval or target evidence"
+    },
+    {
+      "id": "Z1",
+      "className": "AUTHENTICATED_HAIEC_ENTRY",
+      "components": "OAuth/MCP/API + explicit user consent",
+      "requiredBoundary": "Derive tenant/system from server claims, not caller"
+    },
+    {
+      "id": "Z2",
+      "className": "QUALIFIED_SOURCE_PRODUCER",
+      "components": "Producer registry, source schema, issuer role",
+      "requiredBoundary": "Claims scoped to signed source class and effective coverage"
+    },
+    {
+      "id": "Z3",
+      "className": "CANONICAL_ASSURANCE",
+      "components": "Evidence normalization, detection, DAI/U5/UCP/receipt",
+      "requiredBoundary": "Evaluation only; no industrial actuation"
+    },
+    {
+      "id": "Z4",
+      "className": "CUSTOMER_ACTION_BROKER_OR_SIMULATOR",
+      "components": "Policy-gated exact write request",
+      "requiredBoundary": "Customer-controlled mediation; simulation not live plant"
+    },
+    {
+      "id": "Z5",
+      "className": "TARGET_BUSINESS_SYSTEM",
+      "components": "MES/QMS/ERP/WMS/APS/CMMS native record",
+      "requiredBoundary": "Independent transaction-bound effect witness"
+    },
+    {
+      "id": "Z6",
+      "className": "PRESENTATION_AND_EXPORT",
+      "components": "Dashboard, HTML report, MCP readback",
+      "requiredBoundary": "No user interface authority or hidden generated proof"
+    }
+  ],
+  "threatCases": [
+    {
+      "id": "D-01",
+      "attack": "supplier PDF prompt injection grants release",
+      "boundary": "Z0->Z2",
+      "control": "treat content as untrusted, require independent policy issuer",
+      "expectedHarnessBehavior": "NOT_AUTHORIZED",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-02",
+      "attack": "client claims SERVICE_NATIVE_RECORD authorityRole",
+      "boundary": "Z1->Z2",
+      "control": "server-side qualified source-role allowlist",
+      "expectedHarnessBehavior": "UNQUALIFIED_CANDIDATE",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-03",
+      "attack": "foreign tenant source ID or lot ID reuse",
+      "boundary": "Z1->Z3",
+      "control": "tenant+sourceNamespace+site exact identity",
+      "expectedHarnessBehavior": "REJECT_CROSS_TENANT_JOIN",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-04",
+      "attack": "replay signed supervisor approval",
+      "boundary": "Z4",
+      "control": "nonce, expiry, target/action/policy digest, one-use",
+      "expectedHarnessBehavior": "DENY_REPLAY",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-05",
+      "attack": "policy approved for other target or quantity",
+      "boundary": "Z4",
+      "control": "exact envelope at time-of-use",
+      "expectedHarnessBehavior": "DENY_SCOPE_MISMATCH",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-06",
+      "attack": "generic OPC AccessLevel mistaken for user effective grant",
+      "boundary": "Z2",
+      "control": "session/actor-specific permission proof",
+      "expectedHarnessBehavior": "EFFECTIVE_GRANT_UNKNOWN",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-07",
+      "attack": "gateway says allow but native wrong-lot commit",
+      "boundary": "Z4->Z5",
+      "control": "independent native transaction + target readback",
+      "expectedHarnessBehavior": "TARGET_DIVERGENCE_IF_QUALIFIED",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-08",
+      "attack": "gateway denied; native collector offline",
+      "boundary": "Z4->Z5",
+      "control": "deny ≠ absence of external write",
+      "expectedHarnessBehavior": "EFFECT_UNKNOWN",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-09",
+      "attack": "two judge sessions share in-memory ledger",
+      "boundary": "Z4",
+      "control": "tenant+run keyed durable isolation and concurrency guard",
+      "expectedHarnessBehavior": "REJECT_COLLISION",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-10",
+      "attack": "browser sends PLC setpoint command",
+      "boundary": "Z1->Z5",
+      "control": "no public OT actuation route",
+      "expectedHarnessBehavior": "DENY_ACTUATION",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-11",
+      "attack": "manifest or policy digest silently mutated",
+      "boundary": "Z2->Z3",
+      "control": "version/digest lock and immutable evaluation lineage",
+      "expectedHarnessBehavior": "REJECT_STALE_VERSION",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-12",
+      "attack": "unbounded website fetch/SSRF/internal metadata URL",
+      "boundary": "Z0->Z1",
+      "control": "URL allowlist, network egress isolation, download bounds",
+      "expectedHarnessBehavior": "REJECT_UNTRUSTED_SOURCE",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-13",
+      "attack": "late source event with forged timestamps",
+      "boundary": "Z2",
+      "control": "source vs received time, ordering and source-health",
+      "expectedHarnessBehavior": "QUARANTINE_OR_UNKNOWN",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-14",
+      "attack": "raw customer secret in synthetic logs",
+      "boundary": "Z1->Z3",
+      "control": "redact secrets, restricted trace storage, scope and retention",
+      "expectedHarnessBehavior": "REJECT_OR_REDACT",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-15",
+      "attack": "missing native receipt claimed as physical prevention",
+      "boundary": "Z5->Z6",
+      "control": "report limitations and qualified coverage gate",
+      "expectedHarnessBehavior": "REPORT_UNKNOWN",
+      "implementedInProduct": "NOT_VERIFIED"
+    },
+    {
+      "id": "D-16",
+      "attack": "user approves preview A but server applies changed B",
+      "boundary": "Z1->Z4",
+      "control": "commit binding to exact preview digest and replay nonce",
+      "expectedHarnessBehavior": "DENY_PREVIEW_MISMATCH",
+      "implementedInProduct": "NOT_VERIFIED"
+    }
+  ],
+  "simulatedBrokerRequirements": [
+    "Authenticated server principal cannot be client impersonated",
+    "Bind exact operation, target, site, facet, units, magnitude, approved policy digest, expiry and approval nonce at dispatch",
+    "Strict tenant+run scoped durable target ledger, optimistic concurrency or transaction isolation",
+    "Immutable audit events plus independent downstream readback",
+    "No real customer factory PLC/SCADA/network operations",
+    "Separate customer-owned OT safety approvals before any future actuation"
+  ],
+  "sourceAdmissibility": [
+    "Server-verified producer identity not supplied authorityRole",
+    "Native record role limited to registered source claim classes",
+    "Reject ambiguous tenant/site/lot/tx binding",
+    "Deny export of credentials and secrets",
+    "Missing receipt not physical prevention claim"
+  ],
+  "releaseConditions": [
+    "All D-01..D-16 essential hard negatives pass in appropriate trusted engine/harness",
+    "No browser-direct plant write API",
+    "Tenant cross-scope read/write rejection",
+    "Authorization, replay and idempotent retry checks",
+    "Source admission unknown states preserved",
+    "No industrial safety certification claim"
+  ],
+  "standardsContext": {
+    "NIST-800-82": "Rev.3 final; Rev.4 Initial Public Draft dated 2026-09-21 is NOT final",
+    "ISA-IEC-62443": "Industrial cybersecurity lifecycle context only",
+    "MITRE-ICS": "threat taxonomy, not malicious-intent proof"
+  },
+  "publicReferences": [
+    "https://csrc.nist.gov/pubs/sp/800/82/r3/final",
+    "https://csrc.nist.gov/pubs/sp/800/82/r4/ipd",
+    "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards",
+    "https://attack.mitre.org/"
+  ],
+  "evaluated": false
+}
