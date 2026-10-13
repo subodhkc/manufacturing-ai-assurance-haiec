@@ -43,7 +43,8 @@ class Station217Run {
     if(!/^[a-zA-Z0-9_-]{3,80}$/.test(runId))throw new Error('INVALID_RUN_ID');
     if(!Number.isFinite(Date.parse(now)))throw new Error('INVALID_CLOCK');
     if(!['NONE','WRONG_TARGET','MISSING_READBACK'].includes(fault))throw new Error('INVALID_FAULT');
-    this.runId=runId;this.now=now;this.fault=fault;
+    Object.defineProperties(this,{runId:{value:runId,enumerable:true},now:{value:now,enumerable:true},fault:{value:fault,enumerable:true}});
+    Object.freeze(this);
   }
   get policy(){return clone({...POLICY,digest:POLICY_DIGEST});}
   get events(){return clone(this.#events);}
