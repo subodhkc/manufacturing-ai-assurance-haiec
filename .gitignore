@@ -6,3 +6,6 @@ node_modules/
 .DS_Store
 coverage/
 .tmp/
+
+# Source-world intake candidates are generated per authorized test run; never tracked as evaluation evidence.
+data/generated/haiec-ingest-candidates.json
