@@ -10,8 +10,9 @@
   "scripts": {
     "generate": "node packages/fixtures/src/generate.cjs",
     "check:fixtures": "node packages/fixtures/src/generate.cjs --check",
-    "test": "node --test packages/fixtures/tests/*.test.cjs",
+    "test": "node --test packages/fixtures/tests/*.test.cjs packages/station217/tests/*.test.cjs",
     "verify": "npm run generate && npm test && npm run check:fixtures",
-    "export:haiec-candidates": "node packages/fixtures/src/export-haiec-candidates.cjs"
+    "export:haiec-candidates": "node packages/fixtures/src/export-haiec-candidates.cjs",
+    "demo:station217": "node packages/station217/src/replay.cjs"
   }
 }

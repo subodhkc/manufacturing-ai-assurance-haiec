@@ -18,6 +18,10 @@ npm run verify
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. It is static and still renders its embedded v7.2 data; tying it to generated source events and genuine HAIEC evaluations is a **separate implementation step**, not silently represented as complete.
 
+## Station 217: executable synthetic action control (new)
+
+Run `npm run demo:station217 > station217-replay.json` for a deterministic 3/40/51-engine hold, denied release, wrong-target and missing-witness replay. This new CLI fixture has a fail-closed local policy broker, distinct private MES target ledger and independent assertions. It is **not wired into v7.2 HTML**, not a customer/HAIEC evaluation, and not safe as a public action API without authenticated server mediation. See [Station 217 acceptance and remaining integration gates](docs/STATION217-ACCEPTANCE.md).
+
 ## Evidence and results
 
 | File | Contents |
