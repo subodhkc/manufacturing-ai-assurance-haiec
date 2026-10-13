@@ -13,6 +13,8 @@
     "test": "node --test packages/fixtures/tests/*.test.cjs packages/station217/tests/*.test.cjs",
     "verify": "npm run generate && npm test && npm run check:fixtures",
     "export:haiec-candidates": "node packages/fixtures/src/export-haiec-candidates.cjs",
-    "demo:station217": "node packages/station217/src/replay.cjs"
+    "demo:station217": "node packages/station217/src/replay.cjs",
+    "source:world": "node packages/fixtures/src/source-world.cjs",
+    "test:oracle": "node --test packages/fixtures/tests/source-world-independence.test.cjs"
   }
 }
