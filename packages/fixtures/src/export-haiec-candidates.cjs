@@ -6,7 +6,9 @@
  */
 const {buildSourceWorld}=require('./source-world.cjs');
 const stamp='2026-10-13T00:00:00.000Z';
-const {stable}=require('./generate.cjs');
+const sort=x=>Array.isArray(x)?x.map(sort):x&&typeof x==='object'
+  ?Object.fromEntries(Object.entries(x).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>[k,sort(v)])):x;
+const stable=x=>JSON.stringify(sort(x),null,2)+'\n';
 
 function candidates() {
   const records=[];
