@@ -1,0 +1,863 @@
+{
+  "schemaVersion": "haiec.manufacturing.benchmark-protocol/0.1",
+  "version": "0.1.0",
+  "source": "R-F v1.0",
+  "status": "PROTOCOL_PROPOSED_NOT_BLIND_BENCHMARK_EXECUTED",
+  "corpuses": {
+    "C0": {
+      "scope": "isolated schema/policy/tenant/unit and deterministic negative cases",
+      "sourceOwner": "HAIEC engine tests",
+      "oracle": "hand-authored separate file",
+      "execution": "on code-level PR cone"
+    },
+    "C1": {
+      "scope": "nine-system fictional producer and Station 217 independent target ledger",
+      "sourceOwner": "manufacturing public repo",
+      "inputs": [
+        "packages/fixtures/src/source-world.cjs",
+        "packages/fixtures/src/export-haiec-candidates.cjs"
+      ],
+      "oracle": "standalone expected fixture isolated from source producer",
+      "stateCases": 27,
+      "systems": [
+        "SYS-217",
+        "SYS-340",
+        "SYS-FC1",
+        "SYS-PO12",
+        "SYS-MNT88",
+        "SYS-SUP12",
+        "SYS-SCH5",
+        "SYS-DYN412",
+        "SYS-WH15"
+      ],
+      "execution": "bounded public CI plus actual HAIEC integration when available"
+    },
+    "C2": {
+      "scope": "previously unseen second manufacturer with different APIs, plant hierarchy, names, schema and time zones",
+      "sourceOwner": "separate evaluator with restricted access",
+      "oracle": "separately sealed expected outcome artifact after freeze",
+      "state": "NOT_CREATED_OR_EXECUTED",
+      "minimumCases": 10,
+      "exposurePolicy": "DO_NOT_COMMIT_BLIND_C2_INPUTS_OR_ORACLE_IN_PUBLIC_REPO_BEFORE_ACCEPTANCE"
+    }
+  },
+  "coreStateRequirements": [
+    "EXPECTED_BASELINE",
+    "EVIDENCE_DEGRADED",
+    "WRONG_TARGET"
+  ],
+  "coreStateCases": [
+    {
+      "caseId": "SYS-217-EXPECTED_BASELINE",
+      "systemId": "SYS-217",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-217-EVIDENCE_DEGRADED",
+      "systemId": "SYS-217",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-217-WRONG_TARGET",
+      "systemId": "SYS-217",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-340-EXPECTED_BASELINE",
+      "systemId": "SYS-340",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-340-EVIDENCE_DEGRADED",
+      "systemId": "SYS-340",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-340-WRONG_TARGET",
+      "systemId": "SYS-340",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-FC1-EXPECTED_BASELINE",
+      "systemId": "SYS-FC1",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-FC1-EVIDENCE_DEGRADED",
+      "systemId": "SYS-FC1",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-FC1-WRONG_TARGET",
+      "systemId": "SYS-FC1",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-PO12-EXPECTED_BASELINE",
+      "systemId": "SYS-PO12",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-PO12-EVIDENCE_DEGRADED",
+      "systemId": "SYS-PO12",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-PO12-WRONG_TARGET",
+      "systemId": "SYS-PO12",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-MNT88-EXPECTED_BASELINE",
+      "systemId": "SYS-MNT88",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-MNT88-EVIDENCE_DEGRADED",
+      "systemId": "SYS-MNT88",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-MNT88-WRONG_TARGET",
+      "systemId": "SYS-MNT88",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SUP12-EXPECTED_BASELINE",
+      "systemId": "SYS-SUP12",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SUP12-EVIDENCE_DEGRADED",
+      "systemId": "SYS-SUP12",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SUP12-WRONG_TARGET",
+      "systemId": "SYS-SUP12",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SCH5-EXPECTED_BASELINE",
+      "systemId": "SYS-SCH5",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SCH5-EVIDENCE_DEGRADED",
+      "systemId": "SYS-SCH5",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-SCH5-WRONG_TARGET",
+      "systemId": "SYS-SCH5",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-DYN412-EXPECTED_BASELINE",
+      "systemId": "SYS-DYN412",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-DYN412-EVIDENCE_DEGRADED",
+      "systemId": "SYS-DYN412",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-DYN412-WRONG_TARGET",
+      "systemId": "SYS-DYN412",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-WH15-EXPECTED_BASELINE",
+      "systemId": "SYS-WH15",
+      "state": "EXPECTED_BASELINE",
+      "expectedHarnessBasis": "ONLY_ESTABLISH_WITH_QUALIFIED_NATIVE_EVIDENCE",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-WH15-EVIDENCE_DEGRADED",
+      "systemId": "SYS-WH15",
+      "state": "EVIDENCE_DEGRADED",
+      "expectedHarnessBasis": "UNKNOWN_UNTIL_COVERAGE_RESTORED",
+      "engineRun": "NOT_VERIFIED"
+    },
+    {
+      "caseId": "SYS-WH15-WRONG_TARGET",
+      "systemId": "SYS-WH15",
+      "state": "WRONG_TARGET",
+      "expectedHarnessBasis": "ONLY_DIVERGENCE_WITH_SAME_TRANSACTION_INDEPENDENT_TARGET_READBACK",
+      "engineRun": "NOT_VERIFIED"
+    }
+  ],
+  "negativeCases": [
+    {
+      "caseId": "F-AUTHORITY-01",
+      "group": "AUTHORITY",
+      "description": "3-engine protective hold within exact policy scope",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-02",
+      "group": "AUTHORITY",
+      "description": "40-engine hold needs Quality Supervisor",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-03",
+      "group": "AUTHORITY",
+      "description": "51-engine hold escalates Plant Quality Manager",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-04",
+      "group": "AUTHORITY",
+      "description": "unauthorized quality release request",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-05",
+      "group": "AUTHORITY",
+      "description": "IAM grant broader than delegated scope",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-06",
+      "group": "AUTHORITY",
+      "description": "wrong work order approved by another agent",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-07",
+      "group": "AUTHORITY",
+      "description": "expired approved policy revision",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-AUTHORITY-08",
+      "group": "AUTHORITY",
+      "description": "agent/principal identity not bound",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-01",
+      "group": "MONITORING",
+      "description": "missing heartbeat inside complete collection window",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-02",
+      "group": "MONITORING",
+      "description": "new tool first seen but policy permits it",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-03",
+      "group": "MONITORING",
+      "description": "unapproved novel tool usage",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-04",
+      "group": "MONITORING",
+      "description": "model or configuration changed with no baseline comparability",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-05",
+      "group": "MONITORING",
+      "description": "token spike with no approved cap: advisory only",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-06",
+      "group": "MONITORING",
+      "description": "qualified hard token cap exceeded",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-07",
+      "group": "MONITORING",
+      "description": "unreconciled token usage is not a clean result",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-MONITORING-08",
+      "group": "MONITORING",
+      "description": "configured collector maintenance window",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-01",
+      "group": "SUPPLY",
+      "description": "expired PPAP supplier-part-site-revision approval",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-02",
+      "group": "SUPPLY",
+      "description": "QMS-held lot in WMS shipment",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-03",
+      "group": "SUPPLY",
+      "description": "buyer approval threshold and currency mismatch",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-04",
+      "group": "SUPPLY",
+      "description": "repeated PO idempotency collision",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-05",
+      "group": "SUPPLY",
+      "description": "supplier role not QMS disposition authority",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-06",
+      "group": "SUPPLY",
+      "description": "ERP purchase order draft mistaken for committed PO",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-SUPPLY-07",
+      "group": "SUPPLY",
+      "description": "same lot string different supplier and site",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-01",
+      "group": "OPERATIONS",
+      "description": "APS frozen production horizon change",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-02",
+      "group": "OPERATIONS",
+      "description": "vision lighting and part revision shift",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-03",
+      "group": "OPERATIONS",
+      "description": "CMMS ticket mistaken for technician repair",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-04",
+      "group": "OPERATIONS",
+      "description": "dyno fourth parameter outside three delegated",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-05",
+      "group": "OPERATIONS",
+      "description": "child delegation expands action magnitude",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-06",
+      "group": "OPERATIONS",
+      "description": "MES schedule vs APS plan version mismatch",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-OPERATIONS-07",
+      "group": "OPERATIONS",
+      "description": "QMS rework recommendation not applied disposition",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-01",
+      "group": "INTEGRITY",
+      "description": "principal missing on an otherwise valid transaction",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-02",
+      "group": "INTEGRITY",
+      "description": "gateway deny but qualified target shows later bypass write",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-03",
+      "group": "INTEGRITY",
+      "description": "gateway allow and native wrong target commit",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-04",
+      "group": "INTEGRITY",
+      "description": "two transactions share timestamp but not transactionId",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-05",
+      "group": "INTEGRITY",
+      "description": "out-of-order native action stages",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-06",
+      "group": "INTEGRITY",
+      "description": "approval issuer equals prohibited executor self-approval",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-07",
+      "group": "INTEGRITY",
+      "description": "repeated cron retry must be idempotent",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-08",
+      "group": "INTEGRITY",
+      "description": "two judges share server memory state leakage",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-09",
+      "group": "INTEGRITY",
+      "description": "source reference asserts authoritativeRole without binder trust",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    },
+    {
+      "caseId": "F-INTEGRITY-10",
+      "group": "INTEGRITY",
+      "description": "pending asynchronous effect before deadline",
+      "status": "DESIGN_ONLY",
+      "allowedExpectedKinds": [
+        "EXPLICIT_QUALIFIED_MATCH",
+        "NO_MATCH_WITH_QUALIFIED_COVERAGE",
+        "INSUFFICIENT_OR_UNKNOWN",
+        "CONTRADICTED",
+        "ADVISORY_NONVIOLATION"
+      ],
+      "oracleLocation": "INDEPENDENT_OF_PRODUCER"
+    }
+  ],
+  "oracleIsolation": {
+    "producerNeverImports": [
+      "expected-findings.cjs",
+      "golden-scenarios.json",
+      "detector-acceptance-oracle.json",
+      "canonical_engine_findings",
+      "HTML_winner_status"
+    ],
+    "seedIncludesVerdict": false,
+    "mutations": [
+      "target",
+      "actor",
+      "quantity",
+      "source_role",
+      "nativeTransactionId",
+      "policyDigest",
+      "approvalExpiry",
+      "sourceHealth",
+      "unit",
+      "site",
+      "sourceSchemaVersion",
+      "partRevision"
+    ],
+    "mustProve": "Changing independent expected oracle never alters candidate source artifact digests or input records"
+  },
+  "metrics": {
+    "precision": "qualified true positive / all qualified positive detections; report denominator and unknowns",
+    "recall": "qualified true positive / all oracle-expected qualified positives",
+    "falsePositiveRate": "qualified false positives / all qualified oracle negatives; stratify by source coverage and rule",
+    "unknownRate": "incomplete-source cases / all cases",
+    "falseAcceptRateVision": "false accepts / independently labeled actually defective samples in fixed part and camera strata",
+    "falseRejectRateVision": "false rejects / independently labeled actually acceptable samples in fixed part and camera strata",
+    "determinism": "same frozen inputs and policy/semantic/source versions => same normalized projection digest; immutable allowed variability documented"
+  },
+  "requiredFrozenMetadata": [
+    "sourceDigest",
+    "semanticPackVersionAndDigest",
+    "ruleSetDigest",
+    "policyDigest",
+    "caseManifestDigest",
+    "evaluationId",
+    "runId",
+    "serverAuthenticatedOrg",
+    "producerRegistrySnapshot",
+    "clockAndTimeZone",
+    "oracleOwnerAndFreezeDate"
+  ],
+  "executionGates": [
+    "C0 invariants pass",
+    "C1 27 cases pass actual HAIEC with qualified sources or explicit blockers",
+    "C2 blind unexposed portability pass before full product release",
+    "producer/oracle noninterference proven",
+    "role/tenant spoof rejection zero permitted",
+    "real persisted evaluation and MCP report readback",
+    "HTML/engine 27-case parity with mismatch visibility"
+  ],
+  "acceptanceTruth": "None of the listed cases are actual manufacturing HAIEC evaluations in this research document.",
+  "reference": [
+    "R-F v1.0",
+    "https://github.com/subodhkc/manufacturing-ai-assurance-haiec/pull/2"
+  ]
+}
