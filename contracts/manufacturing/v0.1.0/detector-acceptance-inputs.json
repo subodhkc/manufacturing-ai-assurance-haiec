@@ -1,0 +1,824 @@
+{
+  "schemaVersion": "haiec.manufacturing.detector-inputs/0.1",
+  "version": "0.1.0",
+  "purpose": "PUBLIC_QUALIFICATION_ASSUMPTIONS_NOT_REAL_VERIFIED_SOURCE",
+  "assertionFieldsProhibited": true,
+  "inputs": [
+    {
+      "caseId": "MFG-AUTH-001-POSITIVE",
+      "ruleId": "MFG-AUTH-001",
+      "variant": "POSITIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "code": {
+          "approvedPinnedSource": true,
+          "callable": true,
+          "write": true,
+          "operation": "mes.work_order.update",
+          "resource": "WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "delegation": {
+          "qualified": true,
+          "valid": true,
+          "allowedOperations": [
+            "read_torque_curve",
+            "recommend_containment"
+          ],
+          "scope": [
+            "WO-217-4802"
+          ]
+        },
+        "iam": {
+          "qualified": false,
+          "status": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "caseId": "MFG-AUTH-001-HARD_NEGATIVE",
+      "ruleId": "MFG-AUTH-001",
+      "variant": "HARD_NEGATIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "code": {
+          "approvedPinnedSource": true,
+          "callable": true,
+          "write": false,
+          "nativeName": "write_torque_analysis",
+          "operation": "read_torque_curve",
+          "resource": "WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "delegation": {
+          "qualified": true,
+          "valid": true,
+          "allowedOperations": [
+            "read_torque_curve"
+          ],
+          "scope": [
+            "WO-217-4802"
+          ]
+        }
+      }
+    },
+    {
+      "caseId": "MFG-AUTH-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-AUTH-001",
+      "variant": "INSUFFICIENT_SOURCE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "code": {
+          "approvedPinnedSource": false,
+          "callable": true,
+          "write": true,
+          "operation": "mes.work_order.update",
+          "resource": "WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "delegation": {
+          "qualified": false,
+          "valid": false,
+          "allowedOperations": []
+        }
+      }
+    },
+    {
+      "caseId": "MFG-AUTH-001-CONTRADICTION",
+      "ruleId": "MFG-AUTH-001",
+      "variant": "CONTRADICTION",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "code": {
+          "approvedPinnedSource": true,
+          "callable": true,
+          "write": true,
+          "operation": "mes.work_order.update",
+          "resource": "WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "delegation": {
+          "qualified": true,
+          "valid": true,
+          "issuerConflict": true,
+          "conflictingAllowedOperations": [
+            [
+              "read_torque_curve"
+            ],
+            [
+              "mes.work_order.update"
+            ]
+          ],
+          "scope": [
+            "WO-217-4802"
+          ]
+        }
+      }
+    },
+    {
+      "caseId": "MFG-AUTH-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-AUTH-001",
+      "variant": "FOREIGN_VENDOR_SAME_SEMANTICS",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "VENDOR-B-QA",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "code": {
+          "approvedPinnedSource": true,
+          "callable": true,
+          "write": true,
+          "method": "POST",
+          "operation": "vendor.b_quality_hold_commit",
+          "resource": "VENDOR-B:PLANT-N:ORDER-X9",
+          "principal": "agent-b",
+          "verifiedMapping": "quality_hold_write_v0.1.0"
+        },
+        "delegation": {
+          "qualified": true,
+          "valid": true,
+          "allowedOperations": [
+            "image.inspect",
+            "recommend"
+          ],
+          "scope": [
+            "VENDOR-B:PLANT-N:ORDER-X9"
+          ]
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-001-POSITIVE",
+      "ruleId": "MFG-EFF-001",
+      "variant": "POSITIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "approval": {
+          "qualified": true,
+          "operation": "HOLD",
+          "target": "PLANT-A/WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "commit": {
+          "qualified": true,
+          "tx": "MES-TX-11",
+          "actor": "qa-agent",
+          "target": "PLANT-A/WO-217-4803",
+          "sourceNamespace": "mes.plantA"
+        },
+        "readback": {
+          "qualified": true,
+          "tx": "MES-TX-11",
+          "target": "PLANT-A/WO-217-4803",
+          "sourceNamespace": "mes.plantA",
+          "changed": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-001-HARD_NEGATIVE",
+      "ruleId": "MFG-EFF-001",
+      "variant": "HARD_NEGATIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "approval": {
+          "qualified": true,
+          "operation": "HOLD",
+          "target": "PLANT-A/WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "commit": {
+          "qualified": true,
+          "tx": "MES-TX-12",
+          "actor": "qa-agent",
+          "target": "PLANT-A/WO-217-4802",
+          "sourceNamespace": "mes.plantA"
+        },
+        "readback": {
+          "qualified": true,
+          "tx": "MES-TX-12",
+          "target": "PLANT-A/WO-217-4802",
+          "sourceNamespace": "mes.plantA",
+          "changed": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-EFF-001",
+      "variant": "INSUFFICIENT_SOURCE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "approval": {
+          "qualified": true,
+          "target": "PLANT-A/WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "commit": {
+          "qualified": false,
+          "tx": "MES-TX-13",
+          "actor": "qa-agent",
+          "target": "PLANT-A/WO-217-4803"
+        },
+        "readback": null
+      }
+    },
+    {
+      "caseId": "MFG-EFF-001-CONTRADICTION",
+      "ruleId": "MFG-EFF-001",
+      "variant": "CONTRADICTION",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "approval": {
+          "qualified": true,
+          "target": "PLANT-A/WO-217-4802",
+          "principal": "qa-agent"
+        },
+        "commit": {
+          "qualified": true,
+          "tx": "MES-TX-14",
+          "actor": "qa-agent",
+          "target": "PLANT-A/WO-217-4802",
+          "sourceNamespace": "mes.plantA"
+        },
+        "readback": {
+          "qualified": true,
+          "tx": "MES-TX-14",
+          "target": "PLANT-A/WO-217-4803",
+          "sourceNamespace": "mes.plantA",
+          "changed": true
+        },
+        "otherReadback": {
+          "qualified": true,
+          "tx": "MES-TX-14",
+          "target": "PLANT-A/WO-217-4802",
+          "sourceNamespace": "mes.plantA",
+          "changed": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-EFF-001",
+      "variant": "FOREIGN_VENDOR_SAME_SEMANTICS",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "VENDOR-B-QA",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "approval": {
+          "qualified": true,
+          "operation": "QUALITY_HOLD",
+          "target": "PLANT-N/ORD-X9",
+          "principal": "agent-b"
+        },
+        "commit": {
+          "qualified": true,
+          "tx": "QB-009",
+          "actor": "agent-b",
+          "target": "PLANT-N/ORD-Y0",
+          "sourceNamespace": "vendorB.mes"
+        },
+        "readback": {
+          "qualified": true,
+          "tx": "QB-009",
+          "target": "PLANT-N/ORD-Y0",
+          "sourceNamespace": "vendorB.mes",
+          "changed": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-002-POSITIVE",
+      "ruleId": "MFG-EFF-002",
+      "variant": "POSITIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "dispatch": {
+          "qualified": true,
+          "tx": "MES-TX-20",
+          "resource": "PLANT-A/WO-217-4802",
+          "expectedWitness": "MES_STATE"
+        },
+        "collector": {
+          "registered": true,
+          "healthy": true,
+          "qualifiedCoverage": true,
+          "deadlinePassed": true,
+          "cadenceSeconds": 30
+        },
+        "readback": null
+      }
+    },
+    {
+      "caseId": "MFG-EFF-002-HARD_NEGATIVE",
+      "ruleId": "MFG-EFF-002",
+      "variant": "HARD_NEGATIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "dispatch": {
+          "qualified": true,
+          "tx": "MES-TX-21",
+          "resource": "PLANT-A/WO-217-4802",
+          "expectedWitness": "MES_STATE"
+        },
+        "collector": {
+          "registered": true,
+          "healthy": true,
+          "qualifiedCoverage": true,
+          "deadlinePassed": true,
+          "cadenceSeconds": 30
+        },
+        "readback": {
+          "qualified": true,
+          "tx": "MES-TX-21",
+          "resource": "PLANT-A/WO-217-4802"
+        }
+      }
+    },
+    {
+      "caseId": "MFG-EFF-002-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-EFF-002",
+      "variant": "INSUFFICIENT_SOURCE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "dispatch": {
+          "qualified": true,
+          "tx": "MES-TX-22",
+          "resource": "PLANT-A/WO-217-4802",
+          "expectedWitness": "MES_STATE"
+        },
+        "collector": {
+          "registered": true,
+          "healthy": false,
+          "qualifiedCoverage": false,
+          "deadlinePassed": true
+        },
+        "readback": null
+      }
+    },
+    {
+      "caseId": "MFG-EFF-002-CONTRADICTION",
+      "ruleId": "MFG-EFF-002",
+      "variant": "CONTRADICTION",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "dispatch": {
+          "qualified": true,
+          "tx": "MES-TX-23",
+          "resource": "PLANT-A/WO-217-4802",
+          "expectedWitness": "MES_STATE"
+        },
+        "collector": {
+          "registered": true,
+          "healthy": true,
+          "qualifiedCoverage": true,
+          "deadlinePassed": true,
+          "otherQualifiedHealth": "SOURCE_DOWN"
+        },
+        "readback": null
+      }
+    },
+    {
+      "caseId": "MFG-EFF-002-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-EFF-002",
+      "variant": "FOREIGN_VENDOR_SAME_SEMANTICS",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "VENDOR-B-QA",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "dispatch": {
+          "qualified": true,
+          "tx": "B-TRAN-88",
+          "resource": "PLANT-N/ORD-X9",
+          "expectedWitness": "QUALITY_HOLD_STATE"
+        },
+        "collector": {
+          "registered": true,
+          "healthy": true,
+          "qualifiedCoverage": true,
+          "deadlinePassed": true,
+          "cadenceSeconds": 15
+        },
+        "readback": null
+      }
+    },
+    {
+      "caseId": "MFG-QMS-001-POSITIVE",
+      "ruleId": "MFG-QMS-001",
+      "variant": "POSITIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-SUP12",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "commit": {
+          "qualified": true,
+          "tx": "QMS-RELEASE-1",
+          "operation": "RELEASE",
+          "lot": "PLANT-C/SI-2026-3301/REV-04",
+          "actor": "auto-agent",
+          "status": "COMMITTED"
+        },
+        "policy": {
+          "qualified": true,
+          "completeScope": true,
+          "sourceVersion": "policy-1",
+          "authorizedActors": [
+            "quality-manager"
+          ],
+          "site": "PLANT-C",
+          "partRevision": "REV-04",
+          "effective": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-QMS-001-HARD_NEGATIVE",
+      "ruleId": "MFG-QMS-001",
+      "variant": "HARD_NEGATIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-SUP12",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "commit": {
+          "qualified": true,
+          "tx": "QMS-RELEASE-2",
+          "operation": "RELEASE",
+          "lot": "PLANT-C/SI-2026-3301/REV-04",
+          "actor": "quality-manager",
+          "status": "COMMITTED"
+        },
+        "policy": {
+          "qualified": true,
+          "completeScope": true,
+          "sourceVersion": "policy-1",
+          "authorizedActors": [
+            "quality-manager"
+          ],
+          "site": "PLANT-C",
+          "partRevision": "REV-04",
+          "effective": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-QMS-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-QMS-001",
+      "variant": "INSUFFICIENT_SOURCE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-SUP12",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "commit": {
+          "qualified": true,
+          "tx": "QMS-RELEASE-3",
+          "operation": "RELEASE",
+          "lot": "PLANT-C/SI-2026-3301/REV-04",
+          "actor": "auto-agent",
+          "status": "COMMITTED"
+        },
+        "policy": {
+          "qualified": false,
+          "completeScope": false,
+          "effective": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "caseId": "MFG-QMS-001-CONTRADICTION",
+      "ruleId": "MFG-QMS-001",
+      "variant": "CONTRADICTION",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-SUP12",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "commit": {
+          "qualified": true,
+          "tx": "QMS-RELEASE-4",
+          "operation": "RELEASE",
+          "lot": "PLANT-C/SI-2026-3301/REV-04",
+          "actor": "auto-agent",
+          "status": "COMMITTED"
+        },
+        "policy": {
+          "qualified": true,
+          "completeScope": true,
+          "sourceVersion": "policy-1",
+          "authorizedActors": [
+            "quality-manager"
+          ],
+          "effective": true,
+          "qualifiedConflictingApproval": {
+            "actor": "auto-agent",
+            "policyDigest": "other-effective-policy"
+          }
+        }
+      }
+    },
+    {
+      "caseId": "MFG-QMS-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-QMS-001",
+      "variant": "FOREIGN_VENDOR_SAME_SEMANTICS",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "VENDOR-B-QA",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "commit": {
+          "qualified": true,
+          "tx": "VB-QMS-1",
+          "operation": "vendorB.unhold",
+          "canonicalMapping": "quality_release",
+          "lot": "PLANT-N/LOT-Q/REV-C",
+          "actor": "robot-b",
+          "status": "COMMITTED"
+        },
+        "policy": {
+          "qualified": true,
+          "completeScope": true,
+          "authorizedActors": [
+            "quality-signer"
+          ],
+          "site": "PLANT-N",
+          "partRevision": "REV-C",
+          "effective": true
+        }
+      }
+    },
+    {
+      "caseId": "MFG-OBS-001-POSITIVE",
+      "ruleId": "MFG-OBS-001",
+      "variant": "POSITIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "collector": {
+          "registered": true,
+          "qualified": true,
+          "effective": true,
+          "expectedCadenceSeconds": 15,
+          "toleranceSeconds": 30,
+          "lastHeartbeatAt": "2026-10-13T11:58:00Z",
+          "checkedAt": "2026-10-13T12:00:00Z",
+          "historicallyStable": true,
+          "maintenance": false
+        }
+      }
+    },
+    {
+      "caseId": "MFG-OBS-001-HARD_NEGATIVE",
+      "ruleId": "MFG-OBS-001",
+      "variant": "HARD_NEGATIVE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "collector": {
+          "registered": true,
+          "qualified": true,
+          "effective": true,
+          "expectedCadenceSeconds": 15,
+          "toleranceSeconds": 30,
+          "lastHeartbeatAt": "2026-10-13T11:59:50Z",
+          "checkedAt": "2026-10-13T12:00:00Z",
+          "historicallyStable": true,
+          "maintenance": false
+        }
+      }
+    },
+    {
+      "caseId": "MFG-OBS-001-INSUFFICIENT_SOURCE",
+      "ruleId": "MFG-OBS-001",
+      "variant": "INSUFFICIENT_SOURCE",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "collector": {
+          "registered": false,
+          "qualified": false,
+          "effective": false,
+          "lastHeartbeatAt": null,
+          "checkedAt": "2026-10-13T12:00:00Z",
+          "historicallyStable": false
+        }
+      }
+    },
+    {
+      "caseId": "MFG-OBS-001-CONTRADICTION",
+      "ruleId": "MFG-OBS-001",
+      "variant": "CONTRADICTION",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "SYS-217",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "collector": {
+          "registered": true,
+          "qualified": true,
+          "effective": true,
+          "expectedCadenceSeconds": 15,
+          "toleranceSeconds": 30,
+          "lastHeartbeatAt": "2026-10-13T11:58:00Z",
+          "checkedAt": "2026-10-13T12:00:00Z",
+          "historicallyStable": true,
+          "maintenance": false,
+          "otherQualifiedHeartbeatAt": "2026-10-13T11:59:58Z"
+        }
+      }
+    },
+    {
+      "caseId": "MFG-OBS-001-FOREIGN_VENDOR_SAME_SEMANTICS",
+      "ruleId": "MFG-OBS-001",
+      "variant": "FOREIGN_VENDOR_SAME_SEMANTICS",
+      "sourceOrigin": "SYNTHETIC_ACCEPTANCE_INPUT_ONLY",
+      "context": {
+        "organizationId": "ORG-MFG-LAB",
+        "tenantId": "TENANT-MFG-TEST",
+        "aiSystemId": "VENDOR-B-QA",
+        "asOf": "2026-10-13T12:00:00Z",
+        "semanticPackVersion": "0.1.0",
+        "qualifiedProducerScope": "FIXTURE_TRUST_SIMULATION_ONLY"
+      },
+      "facts": {
+        "collector": {
+          "registered": true,
+          "qualified": true,
+          "effective": true,
+          "sourceIdentity": "vendorB.station.77",
+          "expectedCadenceSeconds": 10,
+          "toleranceSeconds": 20,
+          "lastHeartbeatAt": "2026-10-13T11:58:00Z",
+          "checkedAt": "2026-10-13T12:00:00Z",
+          "historicallyStable": true,
+          "maintenance": false
+        }
+      }
+    }
+  ]
+}
