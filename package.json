@@ -1,0 +1,17 @@
+{
+  "name": "manufacturing-ai-assurance-haiec",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Deterministic synthetic manufacturing AI action evidence and independent oracle fixtures",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "generate": "node packages/fixtures/src/generate.cjs",
+    "check:fixtures": "node packages/fixtures/src/generate.cjs --check",
+    "test": "node --test packages/fixtures/tests/*.test.cjs",
+    "verify": "npm run generate && npm test && npm run check:fixtures",
+    "export:haiec-candidates": "node packages/fixtures/src/export-haiec-candidates.cjs"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "counts": {
+    "agentReports": 16,
+    "agentRoles": 16,
+    "controls": 45,
+    "expandedScenarios": 12,
+    "goldenStates": 27,
+    "interactiveScenarios": 10,
+    "referenceFindings": 9,
+    "sourceEntries": 37,
+    "systems": 9,
+    "workflows": 7
+  },
+  "digests": {
+    "agent-reports.json": "sha256:10f0a51e792d0a31a5980a061f13d1fe85f16103b732c93218efa897460c3ba9",
+    "agents.json": "sha256:ebfa16a722f67358014084f8eb8b96d2c39f1663b064a91b605d48866cfab4bb",
+    "behavior-baselines.json": "sha256:ad60831031f23f935301566890165498bd9d69abcbbe21404dbda07b084f8d8f",
+    "controls.json": "sha256:eb87265ac7244af0d2244a821b6bcabe5867d78158e49f6038424b044de692f9",
+    "decision-scenarios.json": "sha256:7175aed659b5376defb7b5170dced9f41531b7fa4085491870c872982fe3416a",
+    "estate.json": "sha256:ff8bcfa12a9d9ff6d18af10f13195670a741908ed753d1e9a7c2102da456a814",
+    "findings.json": "sha256:63b7131ff96966466a609d45cd826a9f7daf8563bc70bf83d11befc210fcae1b",
+    "golden-scenarios.json": "sha256:43e3a5add8d7de6e4bc560ef974d0f7f552d36dbf949a3638c7b629ac4206b59",
+    "monitoring.json": "sha256:9d7d0700c3e6db1fd47df3c84ee6428bc517e494a5dcbe989cad1ea4f692f1b4",
+    "workflows.json": "sha256:2df8774b9a8f4c35b0df631e9d3aed7da34003d219561c2eec3089ab57acd19a"
+  },
+  "fixtureOnly": true,
+  "generatedAt": "2026-10-13T00:00:00.000Z",
+  "limitations": [
+    "SYNTHETIC_KNOWN_OUTCOMES_NOT_CANONICAL_HAIEC_VERDICTS",
+    "EXPECTED_MANIFEST_INDEPENDENT_FROM_HAIEC_ENGINES",
+    "NO_REAL_FACTORY_CONNECTION",
+    "NO_REAL_DELIVERY_OR_EXECUTION"
+  ],
+  "schemaVersion": "manufacturing-fixture-manifest-v1",
+  "seedBasis": "sha256-of-stable-entity-and-sequence"
+}

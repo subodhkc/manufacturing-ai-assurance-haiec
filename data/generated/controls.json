@@ -1,0 +1,456 @@
+{
+  "controls": [
+    {
+      "example": "Inherited MES_WRITE service grant on a recommend-only agent",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-SUP12",
+        "SYS-DYN412"
+      ],
+      "id": "A01",
+      "lifecycle": "CATALOGED",
+      "name": "Excessive effective authority"
+    },
+    {
+      "example": "Reachable work-order update not in the delegation",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-MNT88",
+        "SYS-SCH5",
+        "SYS-DYN412"
+      ],
+      "id": "A02",
+      "lifecycle": "CATALOGED",
+      "name": "Undeclared executable capability"
+    },
+    {
+      "example": "Agent may recommend but not release",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-FC1",
+        "SYS-PO12",
+        "SYS-SUP12",
+        "SYS-DYN412",
+        "SYS-WH15"
+      ],
+      "id": "A03",
+      "lifecycle": "CATALOGED",
+      "name": "Delegated Action Integrity"
+    },
+    {
+      "example": "Shared MES principal without actor binding",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-WH15"
+      ],
+      "id": "A05",
+      "lifecycle": "CATALOGED",
+      "name": "Agent and principal identity continuity"
+    },
+    {
+      "example": "Quality Supervisor authorizes expanded containment",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-PO12",
+        "SYS-SUP12"
+      ],
+      "id": "A06",
+      "lifecycle": "CATALOGED",
+      "name": "Human mediation integrity"
+    },
+    {
+      "example": "Vision agent delegates to quality broker",
+      "family": "Authority",
+      "fixtureAssignedTo": [
+        "SYS-340",
+        "SYS-WH15"
+      ],
+      "id": "A08",
+      "lifecycle": "CATALOGED",
+      "name": "Cross-agent delegation propagation"
+    },
+    {
+      "example": "Correlate containment authorization with MES readback",
+      "family": "Runtime",
+      "fixtureAssignedTo": [
+        "SYS-WH15"
+      ],
+      "id": "R01",
+      "lifecycle": "CATALOGED",
+      "name": "Action lifecycle and effect traceability"
+    },
+    {
+      "example": "Containment authority scales with affected quantity",
+      "family": "Runtime",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-FC1",
+        "SYS-PO12",
+        "SYS-DYN412"
+      ],
+      "id": "R02",
+      "lifecycle": "CATALOGED",
+      "name": "Consequential effect envelope"
+    },
+    {
+      "example": "Record a blocked release attempt",
+      "family": "Runtime",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-SUP12",
+        "SYS-SCH5",
+        "SYS-DYN412",
+        "SYS-WH15"
+      ],
+      "id": "R03",
+      "lifecycle": "CATALOGED",
+      "name": "Runtime guardrail enforcement evidence"
+    },
+    {
+      "example": "Pause agent dispatcher and witness denial",
+      "family": "Runtime",
+      "fixtureAssignedTo": [
+        "SYS-SCH5"
+      ],
+      "id": "R04",
+      "lifecycle": "CATALOGED",
+      "name": "Emergency intervention effectiveness"
+    },
+    {
+      "example": "Monitor action gateway and MES events",
+      "family": "Runtime",
+      "fixtureAssignedTo": [
+        "SYS-340",
+        "SYS-MNT88"
+      ],
+      "id": "R07",
+      "lifecycle": "CATALOGED",
+      "name": "Continuous runtime monitoring"
+    },
+    {
+      "example": "Owner and source required before production onboarding",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "G01",
+      "lifecycle": "CATALOGED",
+      "name": "AI estate inventory completeness"
+    },
+    {
+      "example": "Require approved use-case scope",
+      "family": "Governance",
+      "fixtureAssignedTo": [
+        "SYS-SCH5"
+      ],
+      "id": "G03",
+      "lifecycle": "CATALOGED",
+      "name": "AI acceptable use and approval"
+    },
+    {
+      "example": "Require vendor source and approval declaration",
+      "family": "Governance",
+      "fixtureAssignedTo": [
+        "SYS-PO12",
+        "SYS-SUP12"
+      ],
+      "id": "G06",
+      "lifecycle": "CATALOGED",
+      "name": "Third-party AI and vendor assurance"
+    },
+    {
+      "example": "Re-evaluate when agent or MES role changes",
+      "family": "Governance",
+      "fixtureAssignedTo": [
+        "SYS-340",
+        "SYS-FC1",
+        "SYS-MNT88"
+      ],
+      "id": "G07",
+      "lifecycle": "CATALOGED",
+      "name": "Change and lifecycle governance"
+    },
+    {
+      "example": "Unsupported quality recommendation",
+      "family": "LLM safety",
+      "fixtureAssignedTo": [
+        "SYS-340",
+        "SYS-FC1",
+        "SYS-SUP12"
+      ],
+      "id": "L03",
+      "lifecycle": "CATALOGED",
+      "name": "Hallucination risk and grounding"
+    },
+    {
+      "example": "Source-qualify action witness",
+      "family": "Evidence",
+      "fixtureAssignedTo": [
+        "SYS-217",
+        "SYS-FC1",
+        "SYS-SUP12",
+        "SYS-WH15"
+      ],
+      "id": "E01",
+      "lifecycle": "CATALOGED",
+      "name": "Evidence integrity and provenance"
+    },
+    {
+      "example": "Flag a disconnected station gateway",
+      "family": "Evidence",
+      "fixtureAssignedTo": [
+        "SYS-340",
+        "SYS-SUP12",
+        "SYS-SCH5"
+      ],
+      "id": "E02",
+      "lifecycle": "CATALOGED",
+      "name": "Event stream coverage and continuity"
+    },
+    {
+      "example": "Correlate MES grant and action actor",
+      "family": "Evidence",
+      "fixtureAssignedTo": [
+        "SYS-MNT88",
+        "SYS-WH15"
+      ],
+      "id": "E03",
+      "lifecycle": "CATALOGED",
+      "name": "Source authority and plane correlation"
+    },
+    {
+      "example": "Detect excessive agent spend over a workflow",
+      "family": "Specialized",
+      "fixtureAssignedTo": [
+        "SYS-PO12"
+      ],
+      "id": "C16",
+      "lifecycle": "CATALOGED",
+      "name": "Whole-run token expenditure cap"
+    },
+    {
+      "example": "Restrict exposed MES write tools",
+      "family": "Security",
+      "fixtureAssignedTo": [
+        "SYS-PO12"
+      ],
+      "id": "S03",
+      "lifecycle": "CATALOGED",
+      "name": "MCP and tool exposure"
+    },
+    {
+      "example": "Expected vs recorded consequential events",
+      "family": "Specialized",
+      "fixtureAssignedTo": [],
+      "id": "C7",
+      "lifecycle": "CATALOGED",
+      "name": "Audit trail completeness"
+    },
+    {
+      "example": "Workflow duration outside approved band",
+      "family": "Specialized",
+      "fixtureAssignedTo": [],
+      "id": "C9",
+      "lifecycle": "CATALOGED",
+      "name": "Duration anomaly threshold"
+    },
+    {
+      "example": "Named plant and quality owner",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "G02",
+      "lifecycle": "CATALOGED",
+      "name": "Accountable ownership"
+    },
+    {
+      "example": "Quality escape and throughput impact",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "G04",
+      "lifecycle": "CATALOGED",
+      "name": "Risk and impact assessment"
+    },
+    {
+      "example": "Framework and customer applicability",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "G05",
+      "lifecycle": "CATALOGED",
+      "name": "Regulatory obligations"
+    },
+    {
+      "example": "MES, ERP and maintenance tool mediation",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S01",
+      "lifecycle": "CATALOGED",
+      "name": "Privileged tool authorization"
+    },
+    {
+      "example": "Cross-plant and cross-customer segregation",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S02",
+      "lifecycle": "CATALOGED",
+      "name": "Multi-tenant isolation"
+    },
+    {
+      "example": "Service tokens and inherited privileges",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S04",
+      "lifecycle": "CATALOGED",
+      "name": "Secrets and credential management"
+    },
+    {
+      "example": "Untrusted instruction in supplier note",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S05",
+      "lifecycle": "CATALOGED",
+      "name": "Prompt and input trust"
+    },
+    {
+      "example": "Restricted drawings and control plans",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S06",
+      "lifecycle": "CATALOGED",
+      "name": "RAG retrieval boundaries"
+    },
+    {
+      "example": "Signed build and production deployment",
+      "family": "Security",
+      "fixtureAssignedTo": [],
+      "id": "S07",
+      "lifecycle": "CATALOGED",
+      "name": "Secure software provenance"
+    },
+    {
+      "example": "Attempted quality-hold release outside scope",
+      "family": "Authority",
+      "fixtureAssignedTo": [],
+      "id": "A04",
+      "lifecycle": "CATALOGED",
+      "name": "Observed action outside policy"
+    },
+    {
+      "example": "Unused PO commit privilege",
+      "family": "Authority",
+      "fixtureAssignedTo": [],
+      "id": "A07",
+      "lifecycle": "CATALOGED",
+      "name": "Least privilege and unused grants"
+    },
+    {
+      "example": "Resume equipment action only after review",
+      "family": "Runtime",
+      "fixtureAssignedTo": [],
+      "id": "R05",
+      "lifecycle": "CATALOGED",
+      "name": "Recovery and resumption authorization"
+    },
+    {
+      "example": "Escalation, containment and CAPA",
+      "family": "Runtime",
+      "fixtureAssignedTo": [],
+      "id": "R06",
+      "lifecycle": "CATALOGED",
+      "name": "AI incident response and recovery"
+    },
+    {
+      "example": "Malicious text in purchasing notes",
+      "family": "LLM safety",
+      "fixtureAssignedTo": [],
+      "id": "L01",
+      "lifecycle": "CATALOGED",
+      "name": "Prompt-injection resistance"
+    },
+    {
+      "example": "Supplier contracts and cost data",
+      "family": "LLM safety",
+      "fixtureAssignedTo": [],
+      "id": "L02",
+      "lifecycle": "CATALOGED",
+      "name": "Sensitive output leakage"
+    },
+    {
+      "example": "Unsafe quality disposition recommendation",
+      "family": "LLM safety",
+      "fixtureAssignedTo": [],
+      "id": "L04",
+      "lifecycle": "CATALOGED",
+      "name": "Unsafe output and content"
+    },
+    {
+      "example": "PO payload validates against schema",
+      "family": "LLM safety",
+      "fixtureAssignedTo": [],
+      "id": "L05",
+      "lifecycle": "CATALOGED",
+      "name": "Structured output consistency"
+    },
+    {
+      "example": "MES write differs from signed policy decision",
+      "family": "Evidence",
+      "fixtureAssignedTo": [],
+      "id": "E04",
+      "lifecycle": "CATALOGED",
+      "name": "Evidence contradiction"
+    },
+    {
+      "example": "Recompute a decision from frozen inputs",
+      "family": "Evidence",
+      "fixtureAssignedTo": [],
+      "id": "E05",
+      "lifecycle": "CATALOGED",
+      "name": "Deterministic replay"
+    },
+    {
+      "example": "Supplier and workforce screening fairness",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "P01",
+      "lifecycle": "CATALOGED",
+      "name": "Bias and fairness"
+    },
+    {
+      "example": "Operator-readable reason for blocked action",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "P02",
+      "lifecycle": "CATALOGED",
+      "name": "Transparency and explanations"
+    },
+    {
+      "example": "Model version and inspection dataset provenance",
+      "family": "Governance",
+      "fixtureAssignedTo": [],
+      "id": "P03",
+      "lifecycle": "CATALOGED",
+      "name": "Training and data lineage"
+    }
+  ],
+  "implementedVisibilityProfiles": [
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06",
+    "A08",
+    "E01",
+    "E03",
+    "E05",
+    "R02",
+    "R03"
+  ],
+  "schemaVersion": "manufacturing-control-catalog-v1",
+  "specializedTestIds": [
+    "C7",
+    "C9",
+    "C16"
+  ],
+  "totalCataloged": 45
+}

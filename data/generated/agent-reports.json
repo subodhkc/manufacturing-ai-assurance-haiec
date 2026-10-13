@@ -1,0 +1,2571 @@
+{
+  "fixtureOnly": true,
+  "reports": [
+    {
+      "agentId": "SYS-217-AGENT-1",
+      "aiSystemId": "SYS-217",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read torque traces",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Recommend containment",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Write MES work order",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Release contained engines",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Trigger line stop",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read torque-angle records and propose quality containment; quantity beyond 5 requires Quality Supervisor; above 50 escalates to Plant Quality Manager."
+      },
+      "controlEntries": [
+        {
+          "id": "A01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-217-01",
+          "limitations": "No independently witnessed unauthorized hold release or MES change is established by this finding.",
+          "title": "Torque-monitor tool path can write MES work orders beyond recommendation-only delegation"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Torque-monitor tool path can write MES work orders beyond recommendation-only delegation",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-91facf2e3bd82a73",
+        "expectedAlert": "High: quality hold beyond approved quantity; Critical: unauthorized release",
+        "sourceCadence": "Continuous action-gate evaluation; historian freshness 30 s"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-217-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "mes.work_order.update",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-217-SRC-1",
+          "SYS-217-SRC-2",
+          "SYS-217-SRC-3",
+          "SYS-217-SRC-4",
+          "SYS-217-SRC-5"
+        ],
+        "targets": [
+          "LOT-2026-4401"
+        ]
+      },
+      "snapshotId": "fixture-bad11b2c59a5",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 5,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-340-AGENT-1",
+      "aiSystemId": "SYS-340",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read image batches",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Score defect probability",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Route to quality review",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Auto-release parts",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Identify porosity candidates under validated model, recipe, camera and part-variant conditions; route suspect parts to a quality owner."
+      },
+      "controlEntries": [
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A08",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-340-01",
+          "limitations": "A change in observed defect prevalence alone does not prove model drift or a quality escape.",
+          "title": "Inspection part variant and lighting change require validation evidence"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Inspection part variant and lighting change require validation evidence",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-3e3483fdb41ddf40",
+        "expectedAlert": "False-accept review; new variant / lighting change",
+        "sourceCadence": "Per inspection; per batch quality review; shift-level drift"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-340-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "vision.inspect",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-340-SRC-1",
+          "SYS-340-SRC-2",
+          "SYS-340-SRC-3",
+          "SYS-340-SRC-4"
+        ],
+        "targets": [
+          "LOT-2026-4508",
+          "LOT-2026-4509"
+        ]
+      },
+      "snapshotId": "fixture-faa9c18477e7",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-340-AGENT-2",
+      "aiSystemId": "SYS-340",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read image batches",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Score defect probability",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Route to quality review",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Auto-release parts",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Identify porosity candidates under validated model, recipe, camera and part-variant conditions; route suspect parts to a quality owner."
+      },
+      "controlEntries": [
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A08",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-340-01",
+          "limitations": "A change in observed defect prevalence alone does not prove model drift or a quality escape.",
+          "title": "Inspection part variant and lighting change require validation evidence"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Inspection part variant and lighting change require validation evidence",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-3fcd140c9a6e8216",
+        "expectedAlert": "False-accept review; new variant / lighting change",
+        "sourceCadence": "Per inspection; per batch quality review; shift-level drift"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-340-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "vision.inspect",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-340-SRC-1",
+          "SYS-340-SRC-2",
+          "SYS-340-SRC-3",
+          "SYS-340-SRC-4"
+        ],
+        "targets": [
+          "LOT-2026-4508",
+          "LOT-2026-4509"
+        ]
+      },
+      "snapshotId": "fixture-b731b4abb073",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-1",
+      "aiSystemId": "SYS-FC1",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read sales orders",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Generate demand forecast",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose master schedule",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Commit schedule to APS",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Generate a demand forecast and propose, but do not commit, master production schedule changes during a frozen horizon."
+      },
+      "controlEntries": [
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-FC1-01",
+          "limitations": "A proposed plan is not an applied APS or ERP scheduling change.",
+          "title": "A forecast-based schedule revision crosses the frozen production-planning window"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "A forecast-based schedule revision crosses the frozen production-planning window",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-8bbed4910ea22c7c",
+        "expectedAlert": "Frozen-horizon change / material volume swing",
+        "sourceCadence": "Per forecast and scheduling action; hourly change watch"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-FC1-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "aps.schedule.commit",
+        "site": "SUPPLY",
+        "sourceIds": [
+          "SYS-FC1-SRC-1",
+          "SYS-FC1-SRC-2",
+          "SYS-FC1-SRC-3",
+          "SYS-FC1-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-5bb4779009f4",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-2",
+      "aiSystemId": "SYS-FC1",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read sales orders",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Generate demand forecast",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose master schedule",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Commit schedule to APS",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Generate a demand forecast and propose, but do not commit, master production schedule changes during a frozen horizon."
+      },
+      "controlEntries": [
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-FC1-01",
+          "limitations": "A proposed plan is not an applied APS or ERP scheduling change.",
+          "title": "A forecast-based schedule revision crosses the frozen production-planning window"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "A forecast-based schedule revision crosses the frozen production-planning window",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-1d1f96036be90a63",
+        "expectedAlert": "Frozen-horizon change / material volume swing",
+        "sourceCadence": "Per forecast and scheduling action; hourly change watch"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-FC1-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "aps.schedule.commit",
+        "site": "SUPPLY",
+        "sourceIds": [
+          "SYS-FC1-SRC-1",
+          "SYS-FC1-SRC-2",
+          "SYS-FC1-SRC-3",
+          "SYS-FC1-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-48654cb3f61a",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-1",
+      "aiSystemId": "SYS-PO12",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read inventory levels",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read vendor master",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose purchase order",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Create committed PO",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read inventory and vendor data; propose purchase orders within eligible part, approved vendor and amount limits."
+      },
+      "controlEntries": [
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "C16",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "S03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-PO12-01",
+          "limitations": "A proposed order, post-run token overage or callable ERP endpoint is not proof of a committed purchase.",
+          "title": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "ADVISORY_CONSUMPTION_ANOMALY",
+        "behaviorReference": "baseline-7db8678eb1dfd8cf",
+        "expectedAlert": "Purchase cap, supplier bypass, duplicate order, token-cap breach",
+        "sourceCadence": "Action-time PO checks; 15 min inventory; per-run token accounting"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-PO12-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "erp.purchase_order.create",
+        "site": "SUPPLY",
+        "sourceIds": [
+          "SYS-PO12-SRC-1",
+          "SYS-PO12-SRC-2",
+          "SYS-PO12-SRC-3",
+          "SYS-PO12-SRC-4",
+          "SYS-PO12-SRC-5"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-8d0e782489b6",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 5,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-2",
+      "aiSystemId": "SYS-PO12",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read inventory levels",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read vendor master",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose purchase order",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Create committed PO",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read inventory and vendor data; propose purchase orders within eligible part, approved vendor and amount limits."
+      },
+      "controlEntries": [
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "C16",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "S03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-PO12-01",
+          "limitations": "A proposed order, post-run token overage or callable ERP endpoint is not proof of a committed purchase.",
+          "title": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "ADVISORY_CONSUMPTION_ANOMALY",
+        "behaviorReference": "baseline-8723656b72809b1e",
+        "expectedAlert": "Purchase cap, supplier bypass, duplicate order, token-cap breach",
+        "sourceCadence": "Action-time PO checks; 15 min inventory; per-run token accounting"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-PO12-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "erp.purchase_order.create",
+        "site": "SUPPLY",
+        "sourceIds": [
+          "SYS-PO12-SRC-1",
+          "SYS-PO12-SRC-2",
+          "SYS-PO12-SRC-3",
+          "SYS-PO12-SRC-4",
+          "SYS-PO12-SRC-5"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-13280425f829",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 5,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-3",
+      "aiSystemId": "SYS-PO12",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read inventory levels",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read vendor master",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose purchase order",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Create committed PO",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read inventory and vendor data; propose purchase orders within eligible part, approved vendor and amount limits."
+      },
+      "controlEntries": [
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "C16",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "S03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-PO12-01",
+          "limitations": "A proposed order, post-run token overage or callable ERP endpoint is not proof of a committed purchase.",
+          "title": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "ADVISORY_CONSUMPTION_ANOMALY",
+        "behaviorReference": "baseline-8affeab72c12975a",
+        "expectedAlert": "Purchase cap, supplier bypass, duplicate order, token-cap breach",
+        "sourceCadence": "Action-time PO checks; 15 min inventory; per-run token accounting"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-PO12-AGENT-3",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "erp.purchase_order.create",
+        "site": "SUPPLY",
+        "sourceIds": [
+          "SYS-PO12-SRC-1",
+          "SYS-PO12-SRC-2",
+          "SYS-PO12-SRC-3",
+          "SYS-PO12-SRC-4",
+          "SYS-PO12-SRC-5"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-64d366d05080",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 5,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-MNT88-AGENT-1",
+      "aiSystemId": "SYS-MNT88",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read vibration data",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Estimate condition",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose CMMS ticket",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Stop equipment",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Dispatch maintenance crew",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Evaluate vibration/temperature measurements, recommend maintenance and request a CMMS case."
+      },
+      "controlEntries": [
+        {
+          "id": "A02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G07",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-MNT88-01",
+          "limitations": "Creating a CMMS ticket is not evidence that work was performed or that a machine restarted safely.",
+          "title": "Maintenance recommendation and physical equipment intervention require different authorization"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Maintenance recommendation and physical equipment intervention require different authorization",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "ADVISORY_CONSUMPTION_ANOMALY",
+        "behaviorReference": "baseline-b779f7c7c80ede2e",
+        "expectedAlert": "Critical bearing condition; attempted maintenance dispatch outside window",
+        "sourceCadence": "10-second telemetry; action-time CMMS authorization"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-MNT88-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "cmms.work_request.create",
+        "site": "PLANT-B",
+        "sourceIds": [
+          "SYS-MNT88-SRC-1",
+          "SYS-MNT88-SRC-2",
+          "SYS-MNT88-SRC-3"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-e8b59d1ff0cb",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 3,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-MAINT"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-1",
+      "aiSystemId": "SYS-SUP12",
+      "authority": {
+        "authorizationState": "MISSING",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read supplier quality",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Recommend vendor",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Request supplier change",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Approve new supplier",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Recommend supplier-quality review of incoming lots; final receiving/QMS disposition belongs to authorized Supplier Quality Engineering."
+      },
+      "controlEntries": [
+        {
+          "id": "G06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-SUP12-01",
+          "limitations": "No source-qualified disposition or unauthorized receiving release has been established.",
+          "title": "Incoming casting lot cannot be released without valid supplier-part-site qualification"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Incoming casting lot cannot be released without valid supplier-part-site qualification",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-19510496296dc586",
+        "expectedAlert": "Expired PPAP, unapproved source substitution",
+        "sourceCadence": "Per vendor selection; daily validity verification"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-SUP12-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "qms.incoming_lot.disposition",
+        "site": "PLANT-C",
+        "sourceIds": [
+          "SYS-SUP12-SRC-1",
+          "SYS-SUP12-SRC-2",
+          "SYS-SUP12-SRC-3",
+          "SYS-SUP12-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-cf6bb8bcd8d6",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-SUPQUAL"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-2",
+      "aiSystemId": "SYS-SUP12",
+      "authority": {
+        "authorizationState": "MISSING",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read supplier quality",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Recommend vendor",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Request supplier change",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "NOT_ESTABLISHED",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "NONE_DECLARED",
+            "observed": "NOT_OBSERVED",
+            "operation": "Approve new supplier",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Recommend supplier-quality review of incoming lots; final receiving/QMS disposition belongs to authorized Supplier Quality Engineering."
+      },
+      "controlEntries": [
+        {
+          "id": "G06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "L03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A06",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-SUP12-01",
+          "limitations": "No source-qualified disposition or unauthorized receiving release has been established.",
+          "title": "Incoming casting lot cannot be released without valid supplier-part-site qualification"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Incoming casting lot cannot be released without valid supplier-part-site qualification",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-fa58452ef6793c2e",
+        "expectedAlert": "Expired PPAP, unapproved source substitution",
+        "sourceCadence": "Per vendor selection; daily validity verification"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-SUP12-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "qms.incoming_lot.disposition",
+        "site": "PLANT-C",
+        "sourceIds": [
+          "SYS-SUP12-SRC-1",
+          "SYS-SUP12-SRC-2",
+          "SYS-SUP12-SRC-3",
+          "SYS-SUP12-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-398edb36d07e",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-SUPQUAL"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-1",
+      "aiSystemId": "SYS-SCH5",
+      "authority": {
+        "authorizationState": "MISSING",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read work orders",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Optimize sequence",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Write schedule to APS",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Propose feasible finite-capacity sequence, while committed production schedule changes require authorized planner release."
+      },
+      "controlEntries": [
+        {
+          "id": "A02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R04",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-SCH5-01",
+          "limitations": "No claim that an unauthorized schedule was actually released in production.",
+          "title": "Schedule-writing path lacks qualified mediation and application-effect evidence"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Schedule-writing path lacks qualified mediation and application-effect evidence",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-b4a2456fa4ba4cc1",
+        "expectedAlert": "Unmediated schedule write; infeasible sequence; override",
+        "sourceCadence": "Per schedule release; 15-min capacity watch"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-SCH5-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "aps.schedule.write",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-SCH5-SRC-1",
+          "SYS-SCH5-SRC-2",
+          "SYS-SCH5-SRC-3",
+          "SYS-SCH5-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-5574bf4bc3d8",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-2",
+      "aiSystemId": "SYS-SCH5",
+      "authority": {
+        "authorizationState": "MISSING",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read work orders",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Optimize sequence",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Write schedule to APS",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Propose feasible finite-capacity sequence, while committed production schedule changes require authorized planner release."
+      },
+      "controlEntries": [
+        {
+          "id": "A02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "G03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R04",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-SCH5-01",
+          "limitations": "No claim that an unauthorized schedule was actually released in production.",
+          "title": "Schedule-writing path lacks qualified mediation and application-effect evidence"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Schedule-writing path lacks qualified mediation and application-effect evidence",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-81b90f7adb17ec67",
+        "expectedAlert": "Unmediated schedule write; infeasible sequence; override",
+        "sourceCadence": "Per schedule release; 15-min capacity watch"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-SCH5-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "aps.schedule.write",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-SCH5-SRC-1",
+          "SYS-SCH5-SRC-2",
+          "SYS-SCH5-SRC-3",
+          "SYS-SCH5-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-792dfed21ac3",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-DYN412-AGENT-1",
+      "aiSystemId": "SYS-DYN412",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read dyno metrics",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Recommend tune (3 params)",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Write 16 other params",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read test metrics and propose permitted bounded tuning parameters during an approved test phase."
+      },
+      "controlEntries": [
+        {
+          "id": "A01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R02",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "BROADER",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-DYN412-01",
+          "limitations": "A source-reachable parameter does not prove the agent issued a command or changed a controller.",
+          "title": "Test stand exposes nineteen writable parameters but only three are delegated"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Test stand exposes nineteen writable parameters but only three are delegated",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-45adf14cfccebb95",
+        "expectedAlert": "Attempted write to 16 nondelegated parameters",
+        "sourceCadence": "Per request; immediate setpoint readback"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-DYN412-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "test_controller.setpoint.write",
+        "site": "PLANT-A",
+        "sourceIds": [
+          "SYS-DYN412-SRC-1",
+          "SYS-DYN412-SRC-2",
+          "SYS-DYN412-SRC-3",
+          "SYS-DYN412-SRC-4"
+        ],
+        "targets": [
+          "—"
+        ]
+      },
+      "snapshotId": "fixture-313a0be0b9e6",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-DYNO"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-1",
+      "aiSystemId": "SYS-WH15",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read bin inventory",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose picks",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Request replenishment",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Adjust stock levels",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read bin inventory, propose pick tasks and replenishment; shipment of quality-held material requires QMS release and a bound WMS actor."
+      },
+      "controlEntries": [
+        {
+          "id": "A05",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A08",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-WH15-01",
+          "limitations": "An exposed picking path is not proof that held goods were shipped.",
+          "title": "Shared warehouse identity and missing hold check expose quality-held inventory"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Shared warehouse identity and missing hold check expose quality-held inventory",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-7d661ebbc2932be9",
+        "expectedAlert": "Pick/shipment from held lot; shared principal used",
+        "sourceCadence": "Per pick; 5-min inventory; event-driven quality holds"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-WH15-AGENT-1",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "wms.shipment.confirm",
+        "site": "DC-15",
+        "sourceIds": [
+          "SYS-WH15-SRC-1",
+          "SYS-WH15-SRC-2",
+          "SYS-WH15-SRC-3",
+          "SYS-WH15-SRC-4"
+        ],
+        "targets": [
+          "LOT-2026-4510"
+        ]
+      },
+      "snapshotId": "fixture-a273c8fb8a37",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-WAREHOUSE"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-2",
+      "aiSystemId": "SYS-WH15",
+      "authority": {
+        "authorizationState": "PARTIAL",
+        "capabilities": [
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Read bin inventory",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Propose picks",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "WITHIN_DECLARED_SCOPE",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "EXERCISED_FIXTURE",
+            "operation": "Request replenishment",
+            "sourceOfTruth": "synthetic source manifest"
+          },
+          {
+            "codeCapable": "DECLARED_REACHABLE",
+            "delegated": "OUTSIDE_OR_UNKNOWN",
+            "effectivelyGranted": "DECLARED_GRANT",
+            "observed": "NOT_OBSERVED",
+            "operation": "Adjust stock levels",
+            "sourceOfTruth": "synthetic source manifest"
+          }
+        ],
+        "delegation": "Read bin inventory, propose pick tasks and replenishment; shipment of quality-held material requires QMS release and a bound WMS actor."
+      },
+      "controlEntries": [
+        {
+          "id": "A05",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A08",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "A03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "R03",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        },
+        {
+          "id": "E01",
+          "status": "CATALOG_REFERENCE_NOT_EVALUATED"
+        }
+      ],
+      "DAI": {
+        "conclusion": "NOT_HAIEC_EVALUATED",
+        "dimensions": [
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "OPERATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "TARGET",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "SCOPE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "MAGNITUDE",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DURATION",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "APPROVAL",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "DATA_CLASS",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "ENVIRONMENT",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          },
+          {
+            "comparison": "UNKNOWN",
+            "dimension": "GEOGRAPHY",
+            "reason": "Synthetic inputs only; canonical HAIEC DAI required"
+          }
+        ]
+      },
+      "findingReferences": [
+        {
+          "findingId": "MF-WH15-01",
+          "limitations": "An exposed picking path is not proof that held goods were shipped.",
+          "title": "Shared warehouse identity and missing hold check expose quality-held inventory"
+        }
+      ],
+      "generatedAt": "2026-10-13T00:00:00.000Z",
+      "headline": "Shared warehouse identity and missing hold check expose quality-held inventory",
+      "issuer": "SYNTHETIC_FIXTURE_GENERATOR_NOT_HAIEC",
+      "limitations": [
+        "REPORT_FIXTURE_ONLY",
+        "NO_U5_OR_U6_ASSURANCE_OUTPUT",
+        "NO_CUSTOMER_TELEMETRY_CONNECTED"
+      ],
+      "monitoring": {
+        "behaviorFlag": "NO_THRESHOLD_FLAG",
+        "behaviorReference": "baseline-b68650e3f853c508",
+        "expectedAlert": "Pick/shipment from held lot; shared principal used",
+        "sourceCadence": "Per pick; 5-min inventory; event-driven quality holds"
+      },
+      "reportId": "SYN-AGENT-RPT-SYS-WH15-AGENT-2",
+      "reportType": "ILLUSTRATIVE_AGENT_AUDIT",
+      "scope": {
+        "operation": "wms.shipment.confirm",
+        "site": "DC-15",
+        "sourceIds": [
+          "SYS-WH15-SRC-1",
+          "SYS-WH15-SRC-2",
+          "SYS-WH15-SRC-3",
+          "SYS-WH15-SRC-4"
+        ],
+        "targets": [
+          "LOT-2026-4510"
+        ]
+      },
+      "snapshotId": "fixture-d0e5318bb8a8",
+      "sourceCoverage": {
+        "connected": 0,
+        "declared": 4,
+        "liveEvidenceCount": 0
+      },
+      "workflowId": "WF-WAREHOUSE"
+    }
+  ],
+  "schemaVersion": "manufacturing-agent-report-fixture-v1"
+}

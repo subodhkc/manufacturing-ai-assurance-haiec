@@ -1,0 +1,307 @@
+{
+  "schemaVersion": "manufacturing-workflow-v1",
+  "workflows": [
+    {
+      "agents": [
+        "Torque Monitor",
+        "Vision Inspector",
+        "Quality Reviewer"
+      ],
+      "consequence": "Torque and vision evidence may recommend containment. Production release, material disposition, and shipment release require separate, documented Quality authority.",
+      "controls": [
+        "A02",
+        "A03",
+        "A06",
+        "R02",
+        "R03"
+      ],
+      "domain": "Manufacturing quality",
+      "id": "WF-QUALITY",
+      "steps": [
+        [
+          "Signal",
+          "Torque curve / vision batch"
+        ],
+        [
+          "AI assessment",
+          "Classify anomaly"
+        ],
+        [
+          "Recommendation",
+          "Containment intent"
+        ],
+        [
+          "Authority gate",
+          "Human approval + effect bound"
+        ],
+        [
+          "MES / QMS",
+          "Work-order hold or review"
+        ],
+        [
+          "Evidence",
+          "Receipt + readback"
+        ]
+      ],
+      "title": "Quality detection → controlled containment"
+    },
+    {
+      "agents": [
+        "Inventory Monitor",
+        "Sourcing Agent",
+        "PO Assistant"
+      ],
+      "consequence": "An ordering agent may propose spend but cannot commit an unapproved supplier, duplicate order or value above its buyer-delegation limit.",
+      "controls": [
+        "A03",
+        "A08",
+        "A06",
+        "R02",
+        "C16"
+      ],
+      "domain": "Procurement & replenishment",
+      "id": "WF-PROCURE",
+      "steps": [
+        [
+          "ERP inventory",
+          "On-hand / reorder point"
+        ],
+        [
+          "Inventory agent",
+          "Propose replenishment"
+        ],
+        [
+          "Supplier agent",
+          "Approve-listed vendor"
+        ],
+        [
+          "Budget gate",
+          "PO value + SoD"
+        ],
+        [
+          "ERP procurement",
+          "PO creation if approved"
+        ],
+        [
+          "Evidence",
+          "PO ID + vendor confirmation"
+        ]
+      ],
+      "title": "Material shortage → sourcing → purchase-order commitment"
+    },
+    {
+      "agents": [
+        "Demand Forecaster",
+        "Capacity Planner",
+        "Order Sequencer",
+        "Route Optimizer"
+      ],
+      "consequence": "A forecast is advisory; releases into the frozen master-schedule horizon must pass capacity, material and planner approval before committing APS/MES.",
+      "controls": [
+        "A03",
+        "A08",
+        "G07",
+        "R02",
+        "E03"
+      ],
+      "domain": "Demand planning & scheduling",
+      "id": "WF-PLAN",
+      "steps": [
+        [
+          "Demand feeds",
+          "Orders + seasonality"
+        ],
+        [
+          "Forecast AI",
+          "Predict SKU demand"
+        ],
+        [
+          "Capacity AI",
+          "Check available capacity"
+        ],
+        [
+          "Plan control",
+          "Change envelope + planner"
+        ],
+        [
+          "APS / MES",
+          "Release proposed schedule"
+        ],
+        [
+          "Evidence",
+          "Versioned plan + approval"
+        ]
+      ],
+      "title": "Forecast → capacity → production plan"
+    },
+    {
+      "agents": [
+        "Spindle Health Analyst"
+      ],
+      "consequence": "Predicting a spindle issue, opening a CMMS ticket, completing repair, and restarting a machine are four different states and authorities.",
+      "controls": [
+        "A02",
+        "R07",
+        "E02"
+      ],
+      "domain": "Plant reliability",
+      "id": "WF-MAINT",
+      "steps": [
+        [
+          "Sensors",
+          "Timestamped machine condition"
+        ],
+        [
+          "Condition AI",
+          "Anomaly and evidence limit"
+        ],
+        [
+          "Recommendation",
+          "CMMS notification / work request"
+        ],
+        [
+          "Planning & safety",
+          "Approved outage and isolation procedure"
+        ],
+        [
+          "CMMS execution",
+          "Scheduled → in progress → work complete"
+        ],
+        [
+          "Return to service",
+          "Authorized restart and equipment-state witness"
+        ]
+      ],
+      "title": "Condition monitoring → maintenance action"
+    },
+    {
+      "agents": [
+        "Dyno Tuning Agent"
+      ],
+      "consequence": "A recommendation must not change a controller parameter without signed scope, authorized test phase, calibrated instrumentation and independent command/readback evidence.",
+      "controls": [
+        "A01",
+        "A02",
+        "A03",
+        "R02"
+      ],
+      "domain": "Test Engineering & validation",
+      "id": "WF-DYNO",
+      "steps": [
+        [
+          "Test stand",
+          "Dyno measurements"
+        ],
+        [
+          "AI analysis",
+          "Tuning recommendation"
+        ],
+        [
+          "Bounded control",
+          "Permitted parameter set"
+        ],
+        [
+          "Approval",
+          "Test engineering decision"
+        ],
+        [
+          "Controller",
+          "Authorized test command"
+        ],
+        [
+          "Evidence",
+          "Readback + trace"
+        ]
+      ],
+      "title": "Test recommendation → bounded setpoint"
+    },
+    {
+      "agents": [
+        "Supplier Risk Analyst",
+        "Vendor Recommender"
+      ],
+      "consequence": "A supplier approval is part-number, site, revision and time specific. Recommending a supplier is not permission to disposition a nonconforming lot.",
+      "controls": [
+        "G06",
+        "A01",
+        "A03",
+        "A06",
+        "R03",
+        "E01"
+      ],
+      "domain": "Supplier Quality / Incoming Inspection",
+      "id": "WF-SUPQUAL",
+      "steps": [
+        [
+          "Supplier records",
+          "Part/site revision, PPAP & certificate"
+        ],
+        [
+          "Incoming inspection",
+          "Lot / serial, sample and NC"
+        ],
+        [
+          "AI recommendation",
+          "Supplier and lot risk interpretation"
+        ],
+        [
+          "Quality authority",
+          "SQE/MRB approved disposition"
+        ],
+        [
+          "QMS / receiving",
+          "Quarantine, accept, return or controlled deviation"
+        ],
+        [
+          "Evidence",
+          "Approval, lot status and QMS readback"
+        ]
+      ],
+      "title": "Incoming inspection → supplier qualification → material disposition"
+    },
+    {
+      "agents": [
+        "Pick Optimizer",
+        "Replenishment Agent"
+      ],
+      "consequence": "A pick suggestion is not proof that quarantined inventory can ship. Quality disposition and actor identity must be checked at the WMS transaction boundary.",
+      "controls": [
+        "A03",
+        "A05",
+        "A08",
+        "R01",
+        "R03",
+        "E03"
+      ],
+      "domain": "Warehouse & Outbound Logistics",
+      "id": "WF-WAREHOUSE",
+      "steps": [
+        [
+          "WMS / QMS",
+          "Lot, location, pick wave & hold flag"
+        ],
+        [
+          "Pick recommendation",
+          "Bin/serial selection"
+        ],
+        [
+          "Authorization",
+          "Scoped inventory movement and actor"
+        ],
+        [
+          "Shipment gate",
+          "Confirm quality release and hold status"
+        ],
+        [
+          "WMS / carrier",
+          "Pick / move / pack / ship if eligible"
+        ],
+        [
+          "Readback",
+          "Inventory change and shipment acknowledgement"
+        ]
+      ],
+      "title": "WMS pick → quality hold check → shipment confirmation"
+    }
+  ]
+}

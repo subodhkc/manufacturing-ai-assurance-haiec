@@ -1,0 +1,382 @@
+{
+  "baseline": [
+    {
+      "agentId": "SYS-217-AGENT-1",
+      "aiSystemId": "SYS-217",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-91facf2e3bd82a73",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1311,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [
+        "mes_workorder_client"
+      ],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1238,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 1.059,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-340-AGENT-1",
+      "aiSystemId": "SYS-340",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-3e3483fdb41ddf40",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 2536,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1268,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 2,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-340-AGENT-2",
+      "aiSystemId": "SYS-340",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-3fcd140c9a6e8216",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 2556,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1278,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 2,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-QUALITY"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-1",
+      "aiSystemId": "SYS-FC1",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-8bbed4910ea22c7c",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1033,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1254,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.824,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-2",
+      "aiSystemId": "SYS-FC1",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-1d1f96036be90a63",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1029,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1272,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.809,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-1",
+      "aiSystemId": "SYS-PO12",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-7db8678eb1dfd8cf",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "ADVISORY_CONSUMPTION_ANOMALY",
+      "latestTokens": 6360,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1272,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 5,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-2",
+      "aiSystemId": "SYS-PO12",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-8723656b72809b1e",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "ADVISORY_CONSUMPTION_ANOMALY",
+      "latestTokens": 6395,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1279,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 5,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-3",
+      "aiSystemId": "SYS-PO12",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-8affeab72c12975a",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "ADVISORY_CONSUMPTION_ANOMALY",
+      "latestTokens": 5970,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1194,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 5,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PROCURE"
+    },
+    {
+      "agentId": "SYS-MNT88-AGENT-1",
+      "aiSystemId": "SYS-MNT88",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-b779f7c7c80ede2e",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "ADVISORY_CONSUMPTION_ANOMALY",
+      "latestTokens": 3813,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1271,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 3,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-MAINT"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-1",
+      "aiSystemId": "SYS-SUP12",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-19510496296dc586",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 891,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1256,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.709,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-SUPQUAL"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-2",
+      "aiSystemId": "SYS-SUP12",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-fa58452ef6793c2e",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 929,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1288,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.721,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-SUPQUAL"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-1",
+      "aiSystemId": "SYS-SCH5",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-b4a2456fa4ba4cc1",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1060,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1260,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.841,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-2",
+      "aiSystemId": "SYS-SCH5",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-81b90f7adb17ec67",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1441,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1233,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 1.169,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-PLAN"
+    },
+    {
+      "agentId": "SYS-DYN412-AGENT-1",
+      "aiSystemId": "SYS-DYN412",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-45adf14cfccebb95",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1408,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [
+        "nondelegated_setpoint_write"
+      ],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1281,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 1.099,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-DYNO"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-1",
+      "aiSystemId": "SYS-WH15",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-7d661ebbc2932be9",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 1398,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [
+        "wms_shipment_confirm"
+      ],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1192,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 1.173,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-WAREHOUSE"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-2",
+      "aiSystemId": "SYS-WH15",
+      "authorizationConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "baselineId": "baseline-b68650e3f853c508",
+      "baselineState": "BASELINE_ESTABLISHED_FIXTURE",
+      "comparisonClass": "NO_THRESHOLD_FLAG",
+      "latestTokens": 976,
+      "metric": "tokens_per_run",
+      "modelContext": "synthetic-2026-10-reference",
+      "novelToolObservations": [
+        "wms_shipment_confirm"
+      ],
+      "observationWindow": "2026-10-01/2026-10-13",
+      "p95Tokens": 1268,
+      "qualification": [
+        "VERSIONED_HISTORY",
+        "HISTORICALLY_NORMAL_NOT_AUTHORIZED",
+        "BASELINE_ANOMALY_NOT_SECURITY_VIOLATION"
+      ],
+      "ratioToP95": 0.77,
+      "referenceWindow": "2026-09-01/2026-09-30",
+      "sampleCount": 30,
+      "taskCohort": "WF-WAREHOUSE"
+    }
+  ],
+  "fixtureOnly": true,
+  "schemaVersion": "manufacturing-behavior-baseline-v1"
+}

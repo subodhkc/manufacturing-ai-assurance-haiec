@@ -1,0 +1,1652 @@
+{
+  "fictional": true,
+  "generatedAt": "2026-10-13T00:00:00.000Z",
+  "organization": {
+    "aiProgram": {
+      "agentRoles": 16,
+      "agents": 16,
+      "dataSources": 37,
+      "launched": "2024",
+      "monthlyInferenceSpend": 44100,
+      "systemsBlocked": 2,
+      "systemsLive": 4,
+      "systemsPoc": 5,
+      "useCases": [
+        "Quality containment and inspection",
+        "Demand forecasting and S&OP",
+        "Autonomous replenishment and procurement",
+        "Predictive maintenance and reliability",
+        "Supplier quality and incoming inspection",
+        "Warehouse picking and replenishment",
+        "Test-stand calibration",
+        "Line scheduling and sequencing"
+      ]
+    },
+    "customers": [
+      "Class 8 truck OEMs",
+      "Industrial engine builders",
+      "Marine propulsion OEMs",
+      "Military vehicle programs"
+    ],
+    "employees": 2400,
+    "founded": 1978,
+    "hq": "Fort Worth, Texas",
+    "industry": "Heavy-duty diesel engine components",
+    "name": "Example Manufacturing Company",
+    "narrative": "Example Manufacturing Company is a Tier 1 supplier of heavy-duty diesel engine components. It operates three manufacturing plants, a distribution center, and a centralized supply chain organization across the Dallas–Fort Worth metroplex. Since 2024, Example Manufacturing has deployed AI systems across quality, inspection, planning, procurement and maintenance. Some systems are in production, several are stuck in POC, and two are blocked from promotion. This workspace is Example Manufacturing's AI assurance command center.",
+    "products": [
+      "Cylinder heads",
+      "Engine blocks",
+      "Crankshafts",
+      "Connecting rods",
+      "Turbo housings"
+    ],
+    "revenue": "$1.4B",
+    "shortName": "Example Manufacturing",
+    "sites": [
+      {
+        "city": "Fort Worth, TX",
+        "headcount": 980,
+        "id": "PLANT-A",
+        "lines": [
+          "Engine Line 2",
+          "Engine Line 3"
+        ],
+        "name": "Plant A · Final Assembly"
+      },
+      {
+        "city": "Arlington, TX",
+        "headcount": 720,
+        "id": "PLANT-B",
+        "lines": [
+          "CNC Cell 4",
+          "CNC Cell 5"
+        ],
+        "name": "Plant B · Component Machining"
+      },
+      {
+        "city": "Mansfield, TX",
+        "headcount": 410,
+        "id": "PLANT-C",
+        "lines": [
+          "Casting Bay 1",
+          "Casting Bay 2"
+        ],
+        "name": "Plant C · Casting & Foundry"
+      },
+      {
+        "city": "Grand Prairie, TX",
+        "headcount": 180,
+        "id": "DC-15",
+        "lines": [
+          "Outbound"
+        ],
+        "name": "Distribution Center 15"
+      },
+      {
+        "city": "Fort Worth, TX",
+        "headcount": 110,
+        "id": "SUPPLY",
+        "lines": [
+          "Central Planning",
+          "Procurement"
+        ],
+        "name": "Supply Chain Operations"
+      }
+    ]
+  },
+  "schemaVersion": "manufacturing-estate-v1",
+  "systems": [
+    {
+      "affectedLots": [
+        "LOT-2026-4401"
+      ],
+      "affectedSerials": "SN 41002–41041",
+      "agents": [
+        "Torque Monitor"
+      ],
+      "aiType": "Tool-using agent",
+      "area": "Final Assembly",
+      "businessOwner": "Director of Quality",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read torque traces"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Recommend containment"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Write MES work order"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Release contained engines"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Trigger line stop"
+        }
+      ],
+      "caseIds": [
+        "HOLD",
+        "RELEASE",
+        "MES"
+      ],
+      "class": "POC",
+      "constellation": [
+        {
+          "id": "torque-monitor",
+          "label": "Torque Monitor",
+          "type": "agent",
+          "x": 180,
+          "y": 120
+        },
+        {
+          "id": "dc-nutrunner",
+          "label": "DC Nutrunner",
+          "type": "source",
+          "x": 60,
+          "y": 120
+        },
+        {
+          "id": "aveva-pi",
+          "label": "AVEVA PI",
+          "type": "source",
+          "x": 60,
+          "y": 200
+        },
+        {
+          "id": "mes",
+          "label": "SAP ME",
+          "type": "system",
+          "x": 300,
+          "y": 120
+        },
+        {
+          "id": "qms",
+          "label": "QMS",
+          "type": "system",
+          "x": 300,
+          "y": 200
+        },
+        {
+          "id": "quality-sup",
+          "label": "Quality Supervisor",
+          "type": "human",
+          "x": 420,
+          "y": 160
+        }
+      ],
+      "controls": [
+        "A01",
+        "A02",
+        "A03",
+        "A06",
+        "R02",
+        "R03",
+        "E01"
+      ],
+      "criticality": "Safety critical · fastener integrity",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Reads torque-angle traces, classifies fastening anomalies, and recommends quality containment. Direct MES release or hold-write actions are outside its delegation; containment above a scoped limit requires Quality Supervisor approval.",
+      "findingIds": [
+        "MF-217-01"
+      ],
+      "id": "SYS-217",
+      "inference": {
+        "avgLatencyMs": 420,
+        "monthlyCost": 6200,
+        "monthlyTokens": 1840000,
+        "runs30d": 12400
+      },
+      "line": "Engine Line 2",
+      "monitoring": {
+        "alert": "High: quality hold beyond approved quantity; Critical: unauthorized release",
+        "cadence": "Continuous action-gate evaluation; historian freshness 30 s",
+        "escalationOwner": "Quality Supervisor / MRB",
+        "responseWindow": "Within 15 min for review",
+        "targetProof": "Work-order hold state, quantity, serial range and QMS case"
+      },
+      "name": "Torque Quality Assurance",
+      "owner": "Quality Engineering",
+      "product": "4-cyl diesel engine · variant DD4",
+      "productionStage": "PILOT",
+      "reason": "Inherited MES write scope permits work-order release, which is not delegated",
+      "service": "MES / QMS",
+      "site": "PLANT-A",
+      "source": "github: meridian/torque-qa",
+      "sourceCommit": "a4f2c81",
+      "sourceMonitoring": [
+        {
+          "cadence": "Every fastening event",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "OPC UA / tool export",
+          "purpose": "Equipment OT data",
+          "source": "DC nutrunners / torque-angle",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-217-SRC-1"
+        },
+        {
+          "cadence": "Every 30 s",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Historian tag samples",
+          "purpose": "Process telemetry",
+          "source": "AVEVA PI / historian",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-217-SRC-2"
+        },
+        {
+          "cadence": "On action + readback",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "MES API transaction",
+          "purpose": "Authoritative MES target",
+          "source": "SAP ME work orders",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-217-SRC-3"
+        },
+        {
+          "cadence": "On case transition",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "QMS event + disposition",
+          "purpose": "Release authority",
+          "source": "Quality hold ledger",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-217-SRC-4"
+        },
+        {
+          "cadence": "Every 60 min / on change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "IAM grant snapshot",
+          "purpose": "Effective-grant qualification",
+          "source": "Microsoft Entra service role",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-217-SRC-5"
+        }
+      ],
+      "stage": "POC · Under review",
+      "station": "STN-217",
+      "status": "REVIEW",
+      "sub": "Head-bolt torque-angle · Station 217",
+      "tools": [
+        "read_torque_curve",
+        "recommend_containment",
+        "mes_workorder_client"
+      ],
+      "workflow": "WF-QUALITY",
+      "workOrders": [
+        "WO-217-4802",
+        "WO-217-4803"
+      ]
+    },
+    {
+      "affectedLots": [
+        "LOT-2026-4508",
+        "LOT-2026-4509"
+      ],
+      "affectedSerials": "SN 51010–51287",
+      "agents": [
+        "Vision Inspector",
+        "Quality Reviewer"
+      ],
+      "aiType": "Multi-agent workflow",
+      "area": "Finishing",
+      "businessOwner": "Director of Quality",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read image batches"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Score defect probability"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Route to quality review"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Auto-release parts"
+        }
+      ],
+      "caseIds": [
+        "VISION"
+      ],
+      "class": "LIVE",
+      "constellation": [
+        {
+          "id": "vision-inspector",
+          "label": "Vision Inspector",
+          "type": "agent",
+          "x": 180,
+          "y": 100
+        },
+        {
+          "id": "quality-reviewer",
+          "label": "Quality Reviewer",
+          "type": "agent",
+          "x": 180,
+          "y": 180
+        },
+        {
+          "id": "edge-cameras",
+          "label": "Edge Cameras",
+          "type": "source",
+          "x": 60,
+          "y": 100
+        },
+        {
+          "id": "lighting-ctrl",
+          "label": "Lighting Control",
+          "type": "source",
+          "x": 60,
+          "y": 180
+        },
+        {
+          "id": "qms",
+          "label": "QMS",
+          "type": "system",
+          "x": 320,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "L03",
+        "E02",
+        "R07",
+        "G07",
+        "A08"
+      ],
+      "criticality": "Safety critical · casting integrity",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Model identifies casting porosity candidates; a measured rise in defect prevalence is not itself proof of model drift. Qualification compares validated part variants, lighting, false-accept/false-reject tests and quality disposition authority.",
+      "findingIds": [
+        "MF-340-01"
+      ],
+      "id": "SYS-340",
+      "inference": {
+        "avgLatencyMs": 180,
+        "monthlyCost": 12800,
+        "monthlyTokens": 3420000,
+        "runs30d": 28700
+      },
+      "line": "Engine Line 3",
+      "monitoring": {
+        "alert": "False-accept review; new variant / lighting change",
+        "cadence": "Per inspection; per batch quality review; shift-level drift",
+        "escalationOwner": "Inspection Engineer / Quality Manager",
+        "responseWindow": "On change and per shift",
+        "targetProof": "Inspection sample, model version, line conditions, NC disposition"
+      },
+      "name": "Vision Inspection AI",
+      "owner": "Inspection Operations",
+      "product": "4-cyl and 6-cyl head variants",
+      "productionStage": "PRODUCTION",
+      "reason": "Fixture requires inspection validation after part/lighting change; prevalence change and model error must be measured separately",
+      "service": "QMS / Vision edge",
+      "site": "PLANT-A",
+      "source": "vision-edge: line-3",
+      "sourceCommit": "b18e0e4",
+      "sourceMonitoring": [
+        {
+          "cadence": "Per inspected unit",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Edge image / inference metadata",
+          "purpose": "Inspection inference",
+          "source": "Industrial vision cameras",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-340-SRC-1"
+        },
+        {
+          "cadence": "On change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "PLC / equipment setting",
+          "purpose": "Context + drift",
+          "source": "Lighting and recipe config",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-340-SRC-2"
+        },
+        {
+          "cadence": "On disposition",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Case and disposition event",
+          "purpose": "Quality outcome",
+          "source": "QMS nonconformance records",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-340-SRC-3"
+        },
+        {
+          "cadence": "On deployment",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Model digest + test report",
+          "purpose": "Model provenance",
+          "source": "Model registry / validation set",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-340-SRC-4"
+        }
+      ],
+      "stage": "Live · Monitored",
+      "station": "STN-340",
+      "status": "MONITOR",
+      "sub": "Cylinder head surface porosity · Station 340",
+      "tools": [
+        "read_image_batch",
+        "score_defect",
+        "quality_rework_case"
+      ],
+      "workflow": "WF-QUALITY",
+      "workOrders": [
+        "WO-340-9110",
+        "WO-340-9111",
+        "WO-340-9112"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Demand Forecaster",
+        "Capacity Planner"
+      ],
+      "aiType": "Decision-support AI + orchestration",
+      "area": "Planning",
+      "businessOwner": "VP Supply Chain",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read sales orders"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Generate demand forecast"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Propose master schedule"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Commit schedule to APS"
+        }
+      ],
+      "caseIds": [
+        "FORECAST",
+        "DELEGATE"
+      ],
+      "class": "LIVE",
+      "constellation": [
+        {
+          "id": "forecaster",
+          "label": "Demand Forecaster",
+          "type": "agent",
+          "x": 180,
+          "y": 100
+        },
+        {
+          "id": "capacity",
+          "label": "Capacity Planner",
+          "type": "agent",
+          "x": 180,
+          "y": 180
+        },
+        {
+          "id": "erp",
+          "label": "SAP ERP",
+          "type": "system",
+          "x": 340,
+          "y": 100
+        },
+        {
+          "id": "aps",
+          "label": "Kinaxis APS",
+          "type": "system",
+          "x": 340,
+          "y": 180
+        },
+        {
+          "id": "sales",
+          "label": "Sales Orders",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "R02",
+        "A03",
+        "G07",
+        "L03",
+        "E01"
+      ],
+      "criticality": "Commercial · committed supply",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Forecasts demand and proposes master production schedule revisions. Changes inside a frozen planning horizon require planner review before release to ERP or APS. Schedule adherence, forecast bias, capacity feasibility, materials constraints and the frozen planning horizon are distinct checkpoints.",
+      "findingIds": [
+        "MF-FC1-01"
+      ],
+      "id": "SYS-FC1",
+      "inference": {
+        "avgLatencyMs": 890,
+        "monthlyCost": 3400,
+        "monthlyTokens": 680000,
+        "runs30d": 420
+      },
+      "line": "Central Planning",
+      "monitoring": {
+        "alert": "Frozen-horizon change / material volume swing",
+        "cadence": "Per forecast and scheduling action; hourly change watch",
+        "escalationOwner": "S&OP Planner / Supply Chain Director",
+        "responseWindow": "Before MPS release",
+        "targetProof": "Released plan version and planner authorization"
+      },
+      "name": "Demand Forecast & S&OP",
+      "owner": "Supply Chain Planning",
+      "product": "SKU families across 4 product lines",
+      "productionStage": "PRODUCTION",
+      "reason": "Proposed forecast revision exceeds approved planning band",
+      "service": "ERP / APS",
+      "site": "SUPPLY",
+      "source": "aps: planning-sim",
+      "sourceCommit": "c9d77f1",
+      "sourceMonitoring": [
+        {
+          "cadence": "Every 15 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Sales-order change data",
+          "purpose": "Demand evidence",
+          "source": "ERP customer orders",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-FC1-SRC-1"
+        },
+        {
+          "cadence": "Every 30 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Planning API snapshot",
+          "purpose": "Capacity constraints",
+          "source": "APS capacity and routings",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-FC1-SRC-2"
+        },
+        {
+          "cadence": "Each run",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Version + feature inputs",
+          "purpose": "Model lineage",
+          "source": "Forecast model registry",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-FC1-SRC-3"
+        },
+        {
+          "cadence": "On change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "APS/ERP commit response",
+          "purpose": "Effect witness",
+          "source": "Schedule release ledger",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-FC1-SRC-4"
+        }
+      ],
+      "stage": "Live · Review needed",
+      "station": "PLN-01",
+      "status": "REVIEW",
+      "sub": "SKU-family rolling demand · Central planning",
+      "tools": [
+        "get_sales_orders",
+        "forecast_demand",
+        "propose_master_schedule"
+      ],
+      "workflow": "WF-PLAN",
+      "workOrders": [
+        "MPS-WK42",
+        "MPS-WK43"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Inventory Monitor",
+        "Sourcing Agent",
+        "PO Assistant"
+      ],
+      "aiType": "Multi-agent workflow",
+      "area": "Ordering",
+      "businessOwner": "VP Procurement",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read inventory levels"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read vendor master"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Propose purchase order"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Create committed PO"
+        }
+      ],
+      "caseIds": [
+        "PO",
+        "SPEND"
+      ],
+      "class": "LIVE",
+      "constellation": [
+        {
+          "id": "inv-mon",
+          "label": "Inventory Monitor",
+          "type": "agent",
+          "x": 120,
+          "y": 80
+        },
+        {
+          "id": "sourcing",
+          "label": "Sourcing Agent",
+          "type": "agent",
+          "x": 120,
+          "y": 160
+        },
+        {
+          "id": "po-asst",
+          "label": "PO Assistant",
+          "type": "agent",
+          "x": 120,
+          "y": 240
+        },
+        {
+          "id": "erp",
+          "label": "SAP ERP",
+          "type": "system",
+          "x": 320,
+          "y": 160
+        },
+        {
+          "id": "vendor",
+          "label": "Vendor Master",
+          "type": "source",
+          "x": 520,
+          "y": 160
+        }
+      ],
+      "controls": [
+        "A03",
+        "A06",
+        "R02",
+        "C16",
+        "S03",
+        "G06"
+      ],
+      "criticality": "Financial · supplier commitment",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Checks stock, proposes supplier purchase orders and reconciles price, delivery window and approved-vendor scope. Direct PO commit above the review threshold requires a buyer.",
+      "findingIds": [
+        "MF-PO12-01"
+      ],
+      "id": "SYS-PO12",
+      "inference": {
+        "avgLatencyMs": 620,
+        "monthlyCost": 8600,
+        "monthlyTokens": 2140000,
+        "runs30d": 1820
+      },
+      "line": "Procurement",
+      "monitoring": {
+        "alert": "Purchase cap, supplier bypass, duplicate order, token-cap breach",
+        "cadence": "Action-time PO checks; 15 min inventory; per-run token accounting",
+        "escalationOwner": "Authorized Buyer / Procurement Manager",
+        "responseWindow": "Before purchase-order commitment",
+        "targetProof": "Purchase order ID, price/quantity, supplier and buyer approval"
+      },
+      "name": "Autonomous Replenishment",
+      "owner": "Procurement Operations",
+      "product": "Component materials across 12 suppliers",
+      "productionStage": "PRODUCTION",
+      "reason": "Purchase ceiling, vendor whitelist and delegated role boundaries configured",
+      "service": "ERP / Supplier master",
+      "site": "SUPPLY",
+      "source": "erp: procurement-sim",
+      "sourceCommit": "d1f8b02",
+      "sourceMonitoring": [
+        {
+          "cadence": "Every 15 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Inventory API",
+          "purpose": "Replenishment signal",
+          "source": "ERP inventory / reorder points",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-PO12-SRC-1"
+        },
+        {
+          "cadence": "Daily + on change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Approved vendor + terms",
+          "purpose": "Purchasing eligibility",
+          "source": "Supplier master / contracts",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-PO12-SRC-2"
+        },
+        {
+          "cadence": "Per attempted order",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Commit API + PO number",
+          "purpose": "Financial effect",
+          "source": "ERP purchase-order endpoint",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-PO12-SRC-3"
+        },
+        {
+          "cadence": "Per workflow run",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Reconciled tokens per run",
+          "purpose": "Spend evidence",
+          "source": "Model gateway / LogSense",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-PO12-SRC-4"
+        },
+        {
+          "cadence": "Per review",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Human decision + actor",
+          "purpose": "Authorized delegation",
+          "source": "Buyer approval service",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-PO12-SRC-5"
+        }
+      ],
+      "stage": "Live · Monitored",
+      "station": "PRC-01",
+      "status": "MONITOR",
+      "sub": "Parts ordering · Procurement",
+      "tools": [
+        "get_inventory",
+        "get_vendor_master",
+        "propose_purchase_order",
+        "create_po"
+      ],
+      "workflow": "WF-PROCURE",
+      "workOrders": [
+        "REQ-2026-8842"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Spindle Health Analyst"
+      ],
+      "aiType": "Predictive AI",
+      "area": "Machining",
+      "businessOwner": "Director of Operations",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read vibration data"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Estimate condition"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Propose CMMS ticket"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Stop equipment"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Dispatch maintenance crew"
+        }
+      ],
+      "caseIds": [
+        "MAINT"
+      ],
+      "class": "POC",
+      "constellation": [
+        {
+          "id": "spindle-analyst",
+          "label": "Spindle Analyst",
+          "type": "agent",
+          "x": 180,
+          "y": 140
+        },
+        {
+          "id": "vibration",
+          "label": "Vibration Sensors",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        },
+        {
+          "id": "cmms",
+          "label": "Maximo CMMS",
+          "type": "system",
+          "x": 340,
+          "y": 140
+        },
+        {
+          "id": "maint-owner",
+          "label": "Maintenance Owner",
+          "type": "human",
+          "x": 460,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "A02",
+        "R07",
+        "G07",
+        "E03"
+      ],
+      "criticality": "Availability · throughput",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Identifies vibration anomalies and proposes CMMS maintenance tickets. It cannot stop equipment or dispatch work without an authorized maintenance window and CMMS approval. CMMS case accepted, scheduled, repaired, verified and returned to service are distinct source-owned states.",
+      "findingIds": [
+        "MF-MNT88-01"
+      ],
+      "id": "SYS-MNT88",
+      "inference": {
+        "avgLatencyMs": 340,
+        "monthlyCost": 2900,
+        "monthlyTokens": 890000,
+        "runs30d": 4200
+      },
+      "line": "CNC Cell 4",
+      "monitoring": {
+        "alert": "Critical bearing condition; attempted maintenance dispatch outside window",
+        "cadence": "10-second telemetry; action-time CMMS authorization",
+        "escalationOwner": "Maintenance Planner / Reliability Engineer",
+        "responseWindow": "Within maintenance response plan",
+        "targetProof": "CMMS ticket ID, approved window and execution closure"
+      },
+      "name": "Predictive Maintenance AI",
+      "owner": "Maintenance Engineering",
+      "product": "Machined blocks, heads and covers",
+      "productionStage": "PILOT",
+      "reason": "Ready for scoped POC decision; CMMS write mediation still needs customer proof",
+      "service": "CMMS / OTLP",
+      "site": "PLANT-B",
+      "source": "otel: equipment-sim",
+      "sourceCommit": "e7a2d10",
+      "sourceMonitoring": [
+        {
+          "cadence": "Every 10 s",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "OTLP or historian time series",
+          "purpose": "Equipment condition",
+          "source": "Vibration / temperature sensors",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-MNT88-SRC-1"
+        },
+        {
+          "cadence": "On ticket state",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Maintenance work-order API",
+          "purpose": "Work management",
+          "source": "Maximo CMMS",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-MNT88-SRC-2"
+        },
+        {
+          "cadence": "Every 30 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Approved maintenance window",
+          "purpose": "Operational impact",
+          "source": "Production schedule",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-MNT88-SRC-3"
+        }
+      ],
+      "stage": "POC · Candidate",
+      "station": "STN-88",
+      "status": "CANDIDATE",
+      "sub": "CNC spindle health · Station 88",
+      "tools": [
+        "read_vibration",
+        "estimate_condition",
+        "propose_cmms_ticket"
+      ],
+      "workflow": "WF-MAINT",
+      "workOrders": [
+        "WO-88-2210"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Supplier Risk Analyst",
+        "Vendor Recommender"
+      ],
+      "aiType": "Decision-support AI",
+      "area": "Incoming quality / SQE",
+      "businessOwner": "Director of Quality",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read supplier quality"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Recommend vendor"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Request supplier change"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": false,
+          "name": "Approve new supplier"
+        }
+      ],
+      "caseIds": [
+        "SUPPLIER",
+        "INCOMING_QC"
+      ],
+      "class": "POC",
+      "constellation": [
+        {
+          "id": "risk-analyst",
+          "label": "Risk Analyst",
+          "type": "agent",
+          "x": 180,
+          "y": 100
+        },
+        {
+          "id": "vendor-rec",
+          "label": "Vendor Recommender",
+          "type": "agent",
+          "x": 180,
+          "y": 180
+        },
+        {
+          "id": "supplier-master",
+          "label": "Supplier Master",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        },
+        {
+          "id": "ppap",
+          "label": "PPAP Records",
+          "type": "source",
+          "x": 340,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "G06",
+        "A01",
+        "A03",
+        "L03",
+        "E02",
+        "A06",
+        "R03",
+        "E01"
+      ],
+      "criticality": "Quality critical · PPAP/approval status",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Reviews casting, fastener and seal approval evidence at receipt. Evaluates supplier/part/site-specific qualification, PPAP expiry, controlled deviations and material disposition. The supplier quality gate is separate from a purchasing decision.",
+      "findingIds": [
+        "MF-SUP12-01"
+      ],
+      "id": "SYS-SUP12",
+      "inference": {
+        "avgLatencyMs": 780,
+        "monthlyCost": 1800,
+        "monthlyTokens": 420000,
+        "runs30d": 280
+      },
+      "line": "Incoming Inspection & Supplier Quality",
+      "monitoring": {
+        "alert": "Expired PPAP, unapproved source substitution",
+        "cadence": "Per vendor selection; daily validity verification",
+        "escalationOwner": "Supplier Quality Engineer / Purchasing",
+        "responseWindow": "Before supplier/part approval",
+        "targetProof": "Qualified supplier-part status and approved sourcing change"
+      },
+      "name": "Supplier Quality Risk AI",
+      "owner": "Supplier Quality",
+      "product": "Castings, fasteners, seals",
+      "productionStage": "PILOT",
+      "reason": "Supplier/part approval evidence expired; quality release cannot be established from vendor-recommendation data",
+      "service": "QMS / Supplier master / incoming inspection",
+      "site": "PLANT-C",
+      "source": "erp: supplier-fixture",
+      "sourceCommit": "f3c44a9",
+      "sourceMonitoring": [
+        {
+          "cadence": "Daily",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Vendor approval / block",
+          "purpose": "Source-of-truth qualification",
+          "source": "Supplier master",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SUP12-SRC-1"
+        },
+        {
+          "cadence": "Daily + change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "QMS supplier approval",
+          "purpose": "Part qualification",
+          "source": "PPAP status and expiry",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SUP12-SRC-2"
+        },
+        {
+          "cadence": "Per receipt",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "QMS NC/lot records",
+          "purpose": "Quality consequence",
+          "source": "Incoming inspection records",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SUP12-SRC-3"
+        },
+        {
+          "cadence": "On action",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Vendor-change proposal",
+          "purpose": "Commit boundary",
+          "source": "ERP sourcing request",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SUP12-SRC-4"
+        }
+      ],
+      "stage": "POC · Blocked",
+      "station": "SUP-QC",
+      "status": "BLOCK",
+      "sub": "Incoming materials · Supplier gate",
+      "tools": [
+        "read_supplier_quality",
+        "recommend_vendor",
+        "request_supplier_change"
+      ],
+      "workflow": "WF-SUPQUAL",
+      "workOrders": [
+        "SI-2026-3301"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Order Sequencer",
+        "Route Optimizer"
+      ],
+      "aiType": "Multi-agent workflow",
+      "area": "Scheduling",
+      "businessOwner": "Plant Manager",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read work orders"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Optimize sequence"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Write schedule to APS"
+        }
+      ],
+      "caseIds": [],
+      "class": "POC",
+      "constellation": [
+        {
+          "id": "sequencer",
+          "label": "Order Sequencer",
+          "type": "agent",
+          "x": 180,
+          "y": 100
+        },
+        {
+          "id": "route-opt",
+          "label": "Route Optimizer",
+          "type": "agent",
+          "x": 180,
+          "y": 180
+        },
+        {
+          "id": "aps",
+          "label": "Kinaxis APS",
+          "type": "system",
+          "x": 340,
+          "y": 100
+        },
+        {
+          "id": "mes",
+          "label": "SAP ME",
+          "type": "system",
+          "x": 340,
+          "y": 180
+        },
+        {
+          "id": "wo",
+          "label": "Work Orders",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "A02",
+        "R03",
+        "E02",
+        "G03",
+        "R04"
+      ],
+      "criticality": "Production · capacity commitment",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Reorders work-order sequencing. The original pilot failed the evidence and bypass-path gate because a schedule-write path was unmediated.",
+      "findingIds": [
+        "MF-SCH5-01"
+      ],
+      "id": "SYS-SCH5",
+      "inference": {
+        "avgLatencyMs": 1240,
+        "monthlyCost": 2200,
+        "monthlyTokens": 540000,
+        "runs30d": 380
+      },
+      "line": "Engine Line 2",
+      "monitoring": {
+        "alert": "Unmediated schedule write; infeasible sequence; override",
+        "cadence": "Per schedule release; 15-min capacity watch",
+        "escalationOwner": "Production Planner / Plant Manager",
+        "responseWindow": "Before production schedule release",
+        "targetProof": "Versioned released sequence, planner sign-off and MES readback"
+      },
+      "name": "Autonomous Line Scheduling",
+      "owner": "Manufacturing Engineering",
+      "product": "Mixed variants across 2 lines",
+      "productionStage": "PILOT",
+      "reason": "Unmediated schedule-write path; no authoritative dispatch or effect witness",
+      "service": "APS / MES",
+      "site": "PLANT-A",
+      "source": "github: meridian/scheduler",
+      "sourceCommit": "22b19c0",
+      "sourceMonitoring": [
+        {
+          "cadence": "Every 15 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Planned order sequence",
+          "purpose": "Feasibility",
+          "source": "APS finite-capacity plan",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SCH5-SRC-1"
+        },
+        {
+          "cadence": "Per release",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Released production schedule",
+          "purpose": "Committed production effect",
+          "source": "MES dispatch state",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SCH5-SRC-2"
+        },
+        {
+          "cadence": "On change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Product/route changes",
+          "purpose": "Change binding",
+          "source": "Engineering change orders",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SCH5-SRC-3"
+        },
+        {
+          "cadence": "Hourly",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Effective scheduler grant",
+          "purpose": "Authority",
+          "source": "IAM schedule-write role",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-SCH5-SRC-4"
+        }
+      ],
+      "stage": "POC · Failed gate",
+      "station": "SCH-01",
+      "status": "BLOCK",
+      "sub": "Shift/variant sequencing · Engine Line 2",
+      "tools": [
+        "read_work_orders",
+        "optimize_sequence",
+        "write_schedule"
+      ],
+      "workflow": "WF-PLAN",
+      "workOrders": [
+        "SCH-WK42",
+        "SCH-WK43"
+      ]
+    },
+    {
+      "affectedLots": [
+        "—"
+      ],
+      "affectedSerials": "—",
+      "agents": [
+        "Dyno Tuning Agent"
+      ],
+      "aiType": "Tool-using agent",
+      "area": "Test Engineering",
+      "businessOwner": "Director of Test",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read dyno metrics"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Recommend tune (3 params)"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Write 16 other params"
+        }
+      ],
+      "caseIds": [],
+      "class": "LIVE",
+      "constellation": [
+        {
+          "id": "dyno-agent",
+          "label": "Dyno Tuning Agent",
+          "type": "agent",
+          "x": 180,
+          "y": 140
+        },
+        {
+          "id": "test-ctrl",
+          "label": "Test Controller",
+          "type": "system",
+          "x": 340,
+          "y": 140
+        },
+        {
+          "id": "test-eng",
+          "label": "Test Engineering",
+          "type": "human",
+          "x": 460,
+          "y": 80
+        },
+        {
+          "id": "dyno-data",
+          "label": "Dyno Metrics",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "A01",
+        "A02",
+        "A03",
+        "R02",
+        "R03"
+      ],
+      "criticality": "Production test · parameter integrity",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Recommends bounded engine-test parameters in Test Cell 412. AI can request values for three delegated parameters, while source-reachable code exposes additional writable parameters. Actuation requires a test-engineering gateway and readback.",
+      "findingIds": [
+        "MF-DYN412-01"
+      ],
+      "id": "SYS-DYN412",
+      "inference": {
+        "avgLatencyMs": 560,
+        "monthlyCost": 4800,
+        "monthlyTokens": 1120000,
+        "runs30d": 3400
+      },
+      "line": "Powertrain Test & Validation",
+      "monitoring": {
+        "alert": "Attempted write to 16 nondelegated parameters",
+        "cadence": "Per request; immediate setpoint readback",
+        "escalationOwner": "Test Engineer / Test Manager",
+        "responseWindow": "Before any setpoint write",
+        "targetProof": "Exact setpoint, test recipe, control ack and measured readback"
+      },
+      "name": "Dynamometer Tuning AI",
+      "owner": "Test Engineering",
+      "product": "Production test-stand runs",
+      "productionStage": "PRODUCTION",
+      "reason": "Delegated parameter set (3) narrower than code-capable set (19); mediation at dispatch not yet verified",
+      "service": "Test controller / calibration records / QMS",
+      "site": "PLANT-A",
+      "source": "teststand: dyno-fixture",
+      "sourceCommit": "4e51d8b",
+      "sourceMonitoring": [
+        {
+          "cadence": "Each test cycle",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Parameter readback + constraints",
+          "purpose": "Test-stand authority",
+          "source": "Dynamometer controller",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-DYN412-SRC-1"
+        },
+        {
+          "cadence": "On recipe change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Approved parameter schema",
+          "purpose": "Permitted envelope",
+          "source": "Test recipe / limit set",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-DYN412-SRC-2"
+        },
+        {
+          "cadence": "Per change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Authorized setpoint decision",
+          "purpose": "Human decision",
+          "source": "Test engineering approval",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-DYN412-SRC-3"
+        },
+        {
+          "cadence": "After write",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Applied setpoint telemetry",
+          "purpose": "Independent effect witness",
+          "source": "Control-system logs",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-DYN412-SRC-4"
+        }
+      ],
+      "stage": "Live · Review needed",
+      "station": "TEST-412",
+      "status": "REVIEW",
+      "sub": "Engine dyno parameter authority · Test Cell 412",
+      "tools": [
+        "read_dyno_metrics",
+        "recommend_tune",
+        "propose_setpoint"
+      ],
+      "workflow": "WF-DYNO",
+      "workOrders": [
+        "DYN-412-3302"
+      ]
+    },
+    {
+      "affectedLots": [
+        "LOT-2026-4510"
+      ],
+      "affectedSerials": "Pick-tote and shipment scope",
+      "agents": [
+        "Pick Optimizer",
+        "Replenishment Agent"
+      ],
+      "aiType": "Multi-agent workflow",
+      "area": "Warehouse",
+      "businessOwner": "Director of Logistics",
+      "capabilities": [
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Read bin inventory"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Propose picks"
+        },
+        {
+          "delegated": true,
+          "exercised": true,
+          "granted": true,
+          "name": "Request replenishment"
+        },
+        {
+          "delegated": false,
+          "exercised": false,
+          "granted": true,
+          "name": "Adjust stock levels"
+        }
+      ],
+      "caseIds": [
+        "WMS_HELD_SHIPMENT"
+      ],
+      "class": "POC",
+      "constellation": [
+        {
+          "id": "pick-opt",
+          "label": "Pick Optimizer",
+          "type": "agent",
+          "x": 180,
+          "y": 100
+        },
+        {
+          "id": "replen",
+          "label": "Replenishment Agent",
+          "type": "agent",
+          "x": 180,
+          "y": 180
+        },
+        {
+          "id": "wms",
+          "label": "WMS",
+          "type": "system",
+          "x": 340,
+          "y": 140
+        },
+        {
+          "id": "bins",
+          "label": "Bin Inventory",
+          "type": "source",
+          "x": 60,
+          "y": 140
+        }
+      ],
+      "controls": [
+        "A05",
+        "A08",
+        "E03",
+        "R01",
+        "A03",
+        "R03",
+        "E01"
+      ],
+      "criticality": "Quality-held material · shipment risk",
+      "dataOrigin": "SYNTHETIC_REFERENCE",
+      "desc": "Reconciles lot/serial quality status with location, pick task and shipment eligibility. Receiving, inventory movements, picking and ship confirmation are distinct actions; a shared warehouse identity prevents exact attribution.",
+      "findingIds": [
+        "MF-WH15-01"
+      ],
+      "id": "SYS-WH15",
+      "inference": {
+        "avgLatencyMs": 290,
+        "monthlyCost": 1400,
+        "monthlyTokens": 340000,
+        "runs30d": 8900
+      },
+      "line": "Outbound",
+      "monitoring": {
+        "alert": "Pick/shipment from held lot; shared principal used",
+        "cadence": "Per pick; 5-min inventory; event-driven quality holds",
+        "escalationOwner": "Warehouse Quality Lead / Logistics Supervisor",
+        "responseWindow": "Before pick confirmation / shipment",
+        "targetProof": "Pick ticket, lot hold result and shipping confirmation"
+      },
+      "name": "Warehouse Fulfillment AI",
+      "owner": "Logistics Operations",
+      "product": "Finished-goods and service parts",
+      "productionStage": "PILOT",
+      "reason": "Shared service principal; picking logic has no qualified quality-hold check",
+      "service": "WMS / inventory status / QMS / shipping",
+      "site": "DC-15",
+      "source": "wms: warehouse-fixture",
+      "sourceCommit": "8b22014",
+      "sourceMonitoring": [
+        {
+          "cadence": "Per pick",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Pick execution event",
+          "purpose": "Movement request",
+          "source": "WMS bin locations / picks",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-WH15-SRC-1"
+        },
+        {
+          "cadence": "On status change",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Blocked lots and serials",
+          "purpose": "Disposition authority",
+          "source": "Quality hold ledger",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-WH15-SRC-2"
+        },
+        {
+          "cadence": "Every 5 min",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "Inventory API",
+          "purpose": "Stock state",
+          "source": "ERP inventory availability",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-WH15-SRC-3"
+        },
+        {
+          "cadence": "Hourly",
+          "connection": "SIMULATED_NOT_CONNECTED",
+          "expectedContinuity": "NOT_MEASURED",
+          "format": "IAM service account",
+          "purpose": "Actor continuity",
+          "source": "Fulfillment principal / role",
+          "sourceAuthority": "DECLARED_FIXTURE",
+          "sourceId": "SYS-WH15-SRC-4"
+        }
+      ],
+      "stage": "POC · In assessment",
+      "station": "DC-15",
+      "status": "REVIEW",
+      "sub": "Picking and replenishment · DC 15",
+      "tools": [
+        "read_bins",
+        "propose_picks",
+        "request_replenishment"
+      ],
+      "workflow": "WF-WAREHOUSE",
+      "workOrders": [
+        "PICK-15-8820",
+        "PICK-15-8821"
+      ]
+    }
+  ]
+}

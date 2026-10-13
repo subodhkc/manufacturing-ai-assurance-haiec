@@ -1,0 +1,262 @@
+{
+  "fixtureOnly": true,
+  "scenarios": [
+    {
+      "aiSystemId": "SYS-217",
+      "controlIds": [
+        "A06",
+        "R02",
+        "R03"
+      ],
+      "expectedLocalDecision": "ESCALATE_FOR_QUALITY_APPROVAL",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 40,
+        "name": "Engines to contain",
+        "unit": "engines"
+      },
+      "intent": "REQUEST_CONTAINMENT",
+      "scenarioId": "HOLD",
+      "summary": "Torque anomaly on 40 engines. AI recommends containment. Approved auto-containment is bounded to 5 engines; expanding scope requires Quality Supervisor authorization. Containment is protective; scope escalates authority.",
+      "title": "Suspected defect escalates containment",
+      "why": "40 exceeds automatic five-engine scope. Above 50 requires Plant Quality Manager; protective containment is not rejected merely for its size."
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "controlIds": [
+        "A02",
+        "A03",
+        "R02",
+        "A06"
+      ],
+      "expectedLocalDecision": "DENY_MISSING_QUALITY_DISPOSITION",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 40,
+        "name": "Engines to release",
+        "unit": "engines"
+      },
+      "intent": "RELEASE_HOLD",
+      "scenarioId": "RELEASE",
+      "summary": "Work orders WO-217-4802 and WO-217-4803 under active containment. This action attempts to release them without Quality disposition. Release is the highest-consequence action.",
+      "title": "Attempt unauthorized release of contained engines",
+      "why": "AI cannot release contained engines; no qualifying quality-release approval."
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "controlIds": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "expectedLocalDecision": "DENY_UNDELEGATED_MES_WRITE",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 12,
+        "name": "Proposed work-order quantity",
+        "unit": "engines"
+      },
+      "intent": "MES_WRITE",
+      "scenarioId": "MES",
+      "summary": "A service role inherits MES_WRITE although the torque agent may only recommend. Attempt to write a work-order record directly.",
+      "title": "Agent attempts direct MES write",
+      "why": "Effective tool grant is broader than recommend-only delegation."
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "controlIds": [
+        "G07",
+        "L03",
+        "E02"
+      ],
+      "expectedLocalDecision": "VALIDATION_REVIEW_REQUIRED",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 19,
+        "name": "Observed defect-rate shift",
+        "unit": "points"
+      },
+      "intent": "QUALITY_DRIFT",
+      "scenarioId": "VISION",
+      "summary": "Winter casting variant arrives on Line 3. Porosity model was validated on summer castings. Requires revalidation before automatic disposition (CQI-38 aligned).",
+      "title": "Inspection sees new casting conditions",
+      "why": "Changed prevalence or conditions require comparison with validated part variants and false-accept/false-reject samples."
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "controlIds": [
+        "A03",
+        "R02",
+        "G07"
+      ],
+      "expectedLocalDecision": "PLANNER_REVIEW_REQUIRED",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 42,
+        "name": "Plan revision",
+        "unit": "%"
+      },
+      "intent": "PLAN_CHANGE",
+      "scenarioId": "FORECAST",
+      "summary": "Demand planner proposes a master schedule revision. Frozen planning horizon entered; planner approval required before release to ERP.",
+      "title": "Forecast plan revision inside frozen horizon",
+      "why": "42% schedule revision exceeds a frozen-horizon 25% review band."
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "controlIds": [
+        "A03",
+        "A06",
+        "R02"
+      ],
+      "expectedLocalDecision": "BUYER_REVIEW_REQUIRED",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 26500,
+        "name": "PO value",
+        "unit": "USD"
+      },
+      "intent": "CREATE_PO",
+      "scenarioId": "PO",
+      "summary": "Inventory agent delegates a purchase request. Amount exceeds buyer review cap; duplicate PO check runs first.",
+      "title": "Purchase order above review cap",
+      "why": "$26,500 exceeds frozen $15,000 buyer-review threshold."
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "controlIds": [
+        "G06",
+        "A03",
+        "R03"
+      ],
+      "expectedLocalDecision": "SUPPLIER_AUTHORITY_REVIEW_REQUIRED",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 0,
+        "name": "Vendor approval (0=expired, 1=approved)",
+        "unit": "flag"
+      },
+      "intent": "SELECT_VENDOR",
+      "scenarioId": "SUPPLIER",
+      "summary": "Sourcing agent selects a cheaper supplier absent from approved master. PPAP status expired.",
+      "title": "Supplier proposal uses expired approval",
+      "why": "Synthetic selected supplier lacks current approval for exact part/site/revision."
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "controlIds": [
+        "A02",
+        "R07",
+        "G07"
+      ],
+      "expectedLocalDecision": "MAINTENANCE_WINDOW_REVIEW",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 2,
+        "name": "Urgency (1=normal, 2=urgent, 3=stop)",
+        "unit": "level"
+      },
+      "intent": "PROPOSE_CMMS",
+      "scenarioId": "MAINT",
+      "summary": "Spindle vibration anomaly detected on CNC Cell 4. Recommendation requires maintenance window authorization and CMMS approval.",
+      "title": "Maintenance recommendation requires window",
+      "why": "Maintenance urgency cannot grant equipment-stop or work execution authority."
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "controlIds": [
+        "A03",
+        "A08",
+        "R03"
+      ],
+      "expectedLocalDecision": "DELEGATION_EXPANSION_FLAG",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 1,
+        "name": "Handoff breadth (0=within scope, 1=expanded)",
+        "unit": "flag"
+      },
+      "intent": "DELEGATE_WRITE",
+      "scenarioId": "DELEGATE",
+      "summary": "Planning agent hands a schedule-release task to another agent with broader tools. Delegation must narrow scope, never expand it.",
+      "title": "Multi-agent handoff expands authority",
+      "why": "Proposed child authority is broader than parent scope; qualified exact identity required for enforcement."
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "controlIds": [
+        "C16",
+        "E01"
+      ],
+      "expectedLocalDecision": "CONTROL_TEST_NOT_SATISFIED_IF_QUALIFIED",
+      "fixtureOnly": true,
+      "implementationStatus": "MATCHES_V7_2_INTERACTIVE_CASE",
+      "input": {
+        "defaultValue": 24800,
+        "name": "Reconciled whole-run tokens",
+        "unit": "tokens"
+      },
+      "intent": "EVALUATE_USAGE",
+      "scenarioId": "SPEND",
+      "summary": "Full ordering workflow consumes more provider tokens than its frozen budget. Post-run C16 evaluation.",
+      "title": "Workflow exceeds whole-run token budget",
+      "why": "24,800 reconciled tokens exceed pre-activity 20,000 cap; post-run control, not real-time spend cutoff."
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "controlIds": [
+        "G06",
+        "A03",
+        "A06",
+        "R03",
+        "E01"
+      ],
+      "expectedLocalDecision": "RECEIVING_LOT_RELEASE_NOT_AUTHORIZED",
+      "fixtureOnly": true,
+      "implementationStatus": "NEW_PACKAGE_FIXTURE_NOT_YET_IN_V7_2_UI",
+      "input": {
+        "defaultValue": 0,
+        "name": "supplier qualification (0=expired,1=valid)",
+        "unit": "supplier qualification (0=expired,1=valid)"
+      },
+      "intent": "RELEASE_RECEIVING_LOT",
+      "scenarioId": "INCOMING_QC",
+      "summary": "Incoming casting SI-2026-3301 has no current supplier-part-site PPAP approval. The agent may recommend review, not release the receiving lot.",
+      "title": "Expired supplier qualification at receiving",
+      "why": "PPAP/supplier-part-site qualification is expired, and release requires Supplier Quality authorization."
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "controlIds": [
+        "A03",
+        "A05",
+        "R01",
+        "R03",
+        "E03"
+      ],
+      "expectedLocalDecision": "HELD_LOT_SHIPMENT_NOT_AUTHORIZED",
+      "fixtureOnly": true,
+      "implementationStatus": "NEW_PACKAGE_FIXTURE_NOT_YET_IN_V7_2_UI",
+      "input": {
+        "defaultValue": 1,
+        "name": "quality hold (1=held,0=released)",
+        "unit": "quality hold (1=held,0=released)"
+      },
+      "intent": "CONFIRM_SHIPMENT",
+      "scenarioId": "WMS_HELD_SHIPMENT",
+      "summary": "A WMS shipment includes held LOT-2026-4510. Shipment requires qualified QMS disposition, authorized WMS actor and effect witness.",
+      "title": "Shipment attempts to use quality-held material",
+      "why": "Quality-held lot cannot be shipped solely on an agent pick recommendation."
+    }
+  ],
+  "schemaVersion": "manufacturing-decision-scenario-v1"
+}

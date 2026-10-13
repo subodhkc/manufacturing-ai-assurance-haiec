@@ -1,0 +1,4011 @@
+{
+  "fixtureOnly": true,
+  "scenarios": [
+    {
+      "actualTarget": "WO-217-4802",
+      "aiSystemId": "SYS-217",
+      "caseId": "SYS-217-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-c2495e9518e22057",
+          "payload": {
+            "action": "request_containment",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-217-4802"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 1,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-dc5f762466c5d756",
+          "payload": {
+            "approvedTarget": "WO-217-4802",
+            "operation": "mes.work_order.update",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 2,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-55c2ec3dcf13ea92",
+          "payload": {
+            "operation": "mes.work_order.update",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_torque_curve"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 3,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a7f160bbef0e9468",
+          "payload": {
+            "actualTarget": "WO-217-4802",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 4,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4cd375592360aa0c",
+          "payload": {
+            "actualTarget": "WO-217-4802",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 5,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-3beea954c2bb4995",
+          "payload": {
+            "actualTarget": "WO-217-4802",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "qualityHold"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-217",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 6,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "WO-217-4802",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "mes.work_order.update",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Torque Quality Assurance — expected baseline",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-217",
+      "caseId": "SYS-217-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-b31111db28bce68b",
+          "payload": {
+            "action": "request_containment",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-217-4802"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 1,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-87193cb64bc3af7a",
+          "payload": {
+            "approvedTarget": "WO-217-4802",
+            "operation": "mes.work_order.update",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 2,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9ee14aecfeb9b453",
+          "payload": {
+            "operation": "mes.work_order.update",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_torque_curve"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 3,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-296a4f84018229af",
+          "payload": {
+            "actualTarget": "WO-217-4802",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 4,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-e5efa9b7aed2f117",
+          "payload": {
+            "actualTarget": "WO-217-4802",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-217",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 5,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "WO-217-4802",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "mes.work_order.update",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Torque Quality Assurance — evidence degraded",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": "WO-217-4803",
+      "aiSystemId": "SYS-217",
+      "caseId": "SYS-217-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-31ab96b3427852c8",
+          "payload": {
+            "action": "request_containment",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-217-4802"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 1,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a3e97f79b9d66ae8",
+          "payload": {
+            "approvedTarget": "WO-217-4802",
+            "operation": "mes.work_order.update",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 2,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-32a595edcd745e3f",
+          "payload": {
+            "operation": "mes.work_order.update",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_torque_curve"
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 3,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-eff41c0aa85cc5c9",
+          "payload": {
+            "actualTarget": "WO-217-4803",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 4,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-717d256712a7fbff",
+          "payload": {
+            "actualTarget": "WO-217-4803",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 5,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-217",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-3bb8b4bfb804dcfa",
+          "payload": {
+            "actualTarget": "WO-217-4803",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "qualityHold"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-217-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-217",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-217",
+          "sequence": 6,
+          "sourceSystem": "MES / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "WO-217-4802",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "mes.work_order.update",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Torque Quality Assurance — wrong target",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": "LOT-2026-4508",
+      "aiSystemId": "SYS-340",
+      "caseId": "SYS-340-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-fa8eec93e40fbfde",
+          "payload": {
+            "action": "flag_inspection_candidate",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4508"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 1,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ee4eee54053a97dd",
+          "payload": {
+            "approvedTarget": "LOT-2026-4508",
+            "operation": "vision.inspect",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 2,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f346290fa14444ad",
+          "payload": {
+            "operation": "vision.inspect",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_image_batch"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 3,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-42885b07cef6be2a",
+          "payload": {
+            "actualTarget": "LOT-2026-4508",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 4,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-e2b2fd6659390c4a",
+          "payload": {
+            "actualTarget": "LOT-2026-4508",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 5,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-0c850b2d3de52ad8",
+          "payload": {
+            "actualTarget": "LOT-2026-4508",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "qualityDisposition"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-340",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 6,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "LOT-2026-4508",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "vision.inspect",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Vision Inspection AI — expected baseline",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-340",
+      "caseId": "SYS-340-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-e72ae368313a4390",
+          "payload": {
+            "action": "flag_inspection_candidate",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4508"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 1,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-18d53c64cac9b4ed",
+          "payload": {
+            "approvedTarget": "LOT-2026-4508",
+            "operation": "vision.inspect",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 2,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-182cb1c350cbcaa2",
+          "payload": {
+            "operation": "vision.inspect",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_image_batch"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 3,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-aff91c4622dd0140",
+          "payload": {
+            "actualTarget": "LOT-2026-4508",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 4,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-8167eb082ff3929b",
+          "payload": {
+            "actualTarget": "LOT-2026-4508",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-340",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 5,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "LOT-2026-4508",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "vision.inspect",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Vision Inspection AI — evidence degraded",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": "LOT-2026-4509",
+      "aiSystemId": "SYS-340",
+      "caseId": "SYS-340-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4a981956224e2478",
+          "payload": {
+            "action": "flag_inspection_candidate",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4508"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 1,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-8936da01d8b022ce",
+          "payload": {
+            "approvedTarget": "LOT-2026-4508",
+            "operation": "vision.inspect",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 2,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ed772db97fa11cc0",
+          "payload": {
+            "operation": "vision.inspect",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_image_batch"
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 3,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-dceef7f1d6284016",
+          "payload": {
+            "actualTarget": "LOT-2026-4509",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 4,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1ad8c31651bab6f5",
+          "payload": {
+            "actualTarget": "LOT-2026-4509",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 5,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-340",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6cc480abb84cded3",
+          "payload": {
+            "actualTarget": "LOT-2026-4509",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "qualityDisposition"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-340-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-340",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-340",
+          "sequence": 6,
+          "sourceSystem": "QMS / Vision edge",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "LOT-2026-4508",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "vision.inspect",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Vision Inspection AI — wrong target",
+      "workflowId": "WF-QUALITY"
+    },
+    {
+      "actualTarget": "MPS-WK42",
+      "aiSystemId": "SYS-FC1",
+      "caseId": "SYS-FC1-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ec4ca794fb6c73af",
+          "payload": {
+            "action": "propose_master_schedule",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "target": "MPS-WK42"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 1,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-db899e5d46dd013f",
+          "payload": {
+            "approvedTarget": "MPS-WK42",
+            "operation": "aps.schedule.commit",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 2,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-90b756a2680c245e",
+          "payload": {
+            "operation": "aps.schedule.commit",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_sales_orders"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 3,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-52125b19a8b24fb2",
+          "payload": {
+            "actualTarget": "MPS-WK42",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 4,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4eb9ed38ffc6a7d2",
+          "payload": {
+            "actualTarget": "MPS-WK42",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 5,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7adb3fc2a5a4bf32",
+          "payload": {
+            "actualTarget": "MPS-WK42",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "releasedSchedule"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-FC1",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 6,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "MPS-WK42",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.commit",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Demand Forecast & S&OP — expected baseline",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-FC1",
+      "caseId": "SYS-FC1-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4f5c134765368583",
+          "payload": {
+            "action": "propose_master_schedule",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "target": "MPS-WK42"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 1,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-d33e867838a6a910",
+          "payload": {
+            "approvedTarget": "MPS-WK42",
+            "operation": "aps.schedule.commit",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 2,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-055ad8f363fce9fa",
+          "payload": {
+            "operation": "aps.schedule.commit",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_sales_orders"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 3,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4289aca7b02d2786",
+          "payload": {
+            "actualTarget": "MPS-WK42",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 4,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-fff0beb5559af4d8",
+          "payload": {
+            "actualTarget": "MPS-WK42",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-FC1",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 5,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "MPS-WK42",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.commit",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Demand Forecast & S&OP — evidence degraded",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": "MPS-WK43",
+      "aiSystemId": "SYS-FC1",
+      "caseId": "SYS-FC1-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-55fa1fa689fce2cf",
+          "payload": {
+            "action": "propose_master_schedule",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "target": "MPS-WK42"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 1,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-eee538db732dea95",
+          "payload": {
+            "approvedTarget": "MPS-WK42",
+            "operation": "aps.schedule.commit",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 2,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-8e22a22db75b7b55",
+          "payload": {
+            "operation": "aps.schedule.commit",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_sales_orders"
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 3,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-d77d3cb4f0ee0f06",
+          "payload": {
+            "actualTarget": "MPS-WK43",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 4,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-c8441816655a9ab3",
+          "payload": {
+            "actualTarget": "MPS-WK43",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 5,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-FC1",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-b0ac51e217a8faba",
+          "payload": {
+            "actualTarget": "MPS-WK43",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "releasedSchedule"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-fc1-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-FC1",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-fc1",
+          "sequence": 6,
+          "sourceSystem": "ERP / APS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "MPS-WK42",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.commit",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Demand Forecast & S&OP — wrong target",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": "REQ-2026-8842",
+      "aiSystemId": "SYS-PO12",
+      "caseId": "SYS-PO12-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-2fb1f5818782a3fb",
+          "payload": {
+            "action": "propose_purchase_order",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "target": "REQ-2026-8842"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 1,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-de4a15386be0949d",
+          "payload": {
+            "approvedTarget": "REQ-2026-8842",
+            "operation": "erp.purchase_order.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 2,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ca49c8bf98f4cdda",
+          "payload": {
+            "operation": "erp.purchase_order.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_inventory"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 3,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7121ca8a4e02f484",
+          "payload": {
+            "actualTarget": "REQ-2026-8842",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 4,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7f901fabf8714318",
+          "payload": {
+            "actualTarget": "REQ-2026-8842",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 5,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1ae1ff3681a3ae51",
+          "payload": {
+            "actualTarget": "REQ-2026-8842",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "purchaseOrder"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-PO12",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 6,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "REQ-2026-8842",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "erp.purchase_order.create",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Replenishment — expected baseline",
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-PO12",
+      "caseId": "SYS-PO12-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9a3debf53032e94f",
+          "payload": {
+            "action": "propose_purchase_order",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "target": "REQ-2026-8842"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 1,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-600ffe68897f1b6f",
+          "payload": {
+            "approvedTarget": "REQ-2026-8842",
+            "operation": "erp.purchase_order.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 2,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a18079b3564edab7",
+          "payload": {
+            "operation": "erp.purchase_order.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_inventory"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 3,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-fbc1604d743d5f03",
+          "payload": {
+            "actualTarget": "REQ-2026-8842",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 4,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-aaa38bb5dca41cd8",
+          "payload": {
+            "actualTarget": "REQ-2026-8842",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-PO12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 5,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "REQ-2026-8842",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "erp.purchase_order.create",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Replenishment — evidence degraded",
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "actualTarget": "REQ-2026-8843",
+      "aiSystemId": "SYS-PO12",
+      "caseId": "SYS-PO12-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6bc88117b3cdffe1",
+          "payload": {
+            "action": "propose_purchase_order",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "target": "REQ-2026-8842"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 1,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4f40e438b22107d2",
+          "payload": {
+            "approvedTarget": "REQ-2026-8842",
+            "operation": "erp.purchase_order.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 2,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-eb3731342b575bcb",
+          "payload": {
+            "operation": "erp.purchase_order.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "get_inventory"
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 3,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6a65f2b8e228ee5c",
+          "payload": {
+            "actualTarget": "REQ-2026-8843",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 4,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ba9e0b6a3f0be771",
+          "payload": {
+            "actualTarget": "REQ-2026-8843",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 5,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-PO12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-8823c4347b1027d0",
+          "payload": {
+            "actualTarget": "REQ-2026-8843",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "purchaseOrder"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-po12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-PO12",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-po12",
+          "sequence": 6,
+          "sourceSystem": "ERP / Supplier master",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "REQ-2026-8842",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "erp.purchase_order.create",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Replenishment — wrong target",
+      "workflowId": "WF-PROCURE"
+    },
+    {
+      "actualTarget": "WO-88-2210",
+      "aiSystemId": "SYS-MNT88",
+      "caseId": "SYS-MNT88-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f7c63804aa27b0bd",
+          "payload": {
+            "action": "propose_cmms_work",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-88-2210"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 1,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-51603a69dff62f51",
+          "payload": {
+            "approvedTarget": "WO-88-2210",
+            "operation": "cmms.work_request.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 2,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-5b76b275e36c43a1",
+          "payload": {
+            "operation": "cmms.work_request.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_vibration"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 3,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7b7e86ff682b7621",
+          "payload": {
+            "actualTarget": "WO-88-2210",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 4,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-334aa973236a8c6c",
+          "payload": {
+            "actualTarget": "WO-88-2210",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 5,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-cf06c371c2c63ae0",
+          "payload": {
+            "actualTarget": "WO-88-2210",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "workOrderStatus"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-MNT88",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 6,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "WO-88-2210",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "cmms.work_request.create",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Predictive Maintenance AI — expected baseline",
+      "workflowId": "WF-MAINT"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-MNT88",
+      "caseId": "SYS-MNT88-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1ebbb58b5dfaeb4b",
+          "payload": {
+            "action": "propose_cmms_work",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-88-2210"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 1,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6317fd5a9d0b5bc1",
+          "payload": {
+            "approvedTarget": "WO-88-2210",
+            "operation": "cmms.work_request.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 2,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-5750561758b726b4",
+          "payload": {
+            "operation": "cmms.work_request.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_vibration"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 3,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a982f503483216cb",
+          "payload": {
+            "actualTarget": "WO-88-2210",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 4,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4cbb7b64ad8cf0ff",
+          "payload": {
+            "actualTarget": "WO-88-2210",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-MNT88",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 5,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "WO-88-2210",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "cmms.work_request.create",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Predictive Maintenance AI — evidence degraded",
+      "workflowId": "WF-MAINT"
+    },
+    {
+      "actualTarget": "WO-88-2211",
+      "aiSystemId": "SYS-MNT88",
+      "caseId": "SYS-MNT88-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-0cddf687728b22cf",
+          "payload": {
+            "action": "propose_cmms_work",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "target": "WO-88-2210"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 1,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a3d7c97f051d5693",
+          "payload": {
+            "approvedTarget": "WO-88-2210",
+            "operation": "cmms.work_request.create",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 2,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-0a525a03d3c6027a",
+          "payload": {
+            "operation": "cmms.work_request.create",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_vibration"
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 3,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-c22b389d510e6f26",
+          "payload": {
+            "actualTarget": "WO-88-2211",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 4,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-30f1f888adc26f96",
+          "payload": {
+            "actualTarget": "WO-88-2211",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 5,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-MNT88",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-2dfac2cac2367678",
+          "payload": {
+            "actualTarget": "WO-88-2211",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "workOrderStatus"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-mnt88-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-MNT88",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-mnt88",
+          "sequence": 6,
+          "sourceSystem": "CMMS / OTLP",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "WO-88-2210",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "cmms.work_request.create",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Predictive Maintenance AI — wrong target",
+      "workflowId": "WF-MAINT"
+    },
+    {
+      "actualTarget": "SI-2026-3301",
+      "aiSystemId": "SYS-SUP12",
+      "caseId": "SYS-SUP12-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4267b9141577a798",
+          "payload": {
+            "action": "recommend_supplier_quality_review",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "target": "SI-2026-3301"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 1,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-178ffe5761036fa4",
+          "payload": {
+            "approvedTarget": "SI-2026-3301",
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 2,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-46953d410ed10cd3",
+          "payload": {
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_supplier_quality"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 3,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a8cb6da1b3f55d71",
+          "payload": {
+            "actualTarget": "SI-2026-3301",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 4,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-89cf936912e08b10",
+          "payload": {
+            "actualTarget": "SI-2026-3301",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 5,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-59a2e8fd778305e5",
+          "payload": {
+            "actualTarget": "SI-2026-3301",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "incomingLotDisposition"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SUP12",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 6,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "SI-2026-3301",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "qms.incoming_lot.disposition",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Supplier Quality Risk AI — expected baseline",
+      "workflowId": "WF-SUPQUAL"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-SUP12",
+      "caseId": "SYS-SUP12-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-651a0160495f8a47",
+          "payload": {
+            "action": "recommend_supplier_quality_review",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "target": "SI-2026-3301"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 1,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-113028dc3b81c253",
+          "payload": {
+            "approvedTarget": "SI-2026-3301",
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 2,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-d409f11750b302b1",
+          "payload": {
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_supplier_quality"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 3,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f86a040ecffbbc60",
+          "payload": {
+            "actualTarget": "SI-2026-3301",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 4,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-2ff963080744424d",
+          "payload": {
+            "actualTarget": "SI-2026-3301",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SUP12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 5,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "SI-2026-3301",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "qms.incoming_lot.disposition",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Supplier Quality Risk AI — evidence degraded",
+      "workflowId": "WF-SUPQUAL"
+    },
+    {
+      "actualTarget": "SI-2026-3302",
+      "aiSystemId": "SYS-SUP12",
+      "caseId": "SYS-SUP12-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-877fc04ebe9aaf79",
+          "payload": {
+            "action": "recommend_supplier_quality_review",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "target": "SI-2026-3301"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 1,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-5a991735a288ea57",
+          "payload": {
+            "approvedTarget": "SI-2026-3301",
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 2,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9ee3091447fcaf08",
+          "payload": {
+            "operation": "qms.incoming_lot.disposition",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_supplier_quality"
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 3,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-626ab887a3f364cd",
+          "payload": {
+            "actualTarget": "SI-2026-3302",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 4,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-210977b32e8e968c",
+          "payload": {
+            "actualTarget": "SI-2026-3302",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 5,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SUP12",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-81faf04b04d6e0b1",
+          "payload": {
+            "actualTarget": "SI-2026-3302",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "incomingLotDisposition"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sup12-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SUP12",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sup12",
+          "sequence": 6,
+          "sourceSystem": "QMS / Supplier master / incoming inspection",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "SI-2026-3301",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "qms.incoming_lot.disposition",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Supplier Quality Risk AI — wrong target",
+      "workflowId": "WF-SUPQUAL"
+    },
+    {
+      "actualTarget": "SCH-WK42",
+      "aiSystemId": "SYS-SCH5",
+      "caseId": "SYS-SCH5-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-28a9ef4f73e288d8",
+          "payload": {
+            "action": "propose_schedule_sequence",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "target": "SCH-WK42"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 1,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f3b16d159d5f4b70",
+          "payload": {
+            "approvedTarget": "SCH-WK42",
+            "operation": "aps.schedule.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 2,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-d9093b4924ed8993",
+          "payload": {
+            "operation": "aps.schedule.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_work_orders"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 3,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-d7da3ed3bbdc7e22",
+          "payload": {
+            "actualTarget": "SCH-WK42",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 4,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-2e1bce26ecb8afb3",
+          "payload": {
+            "actualTarget": "SCH-WK42",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 5,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-3bd469954478de10",
+          "payload": {
+            "actualTarget": "SCH-WK42",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "productionSequence"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-SCH5",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 6,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "SCH-WK42",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.write",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Line Scheduling — expected baseline",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-SCH5",
+      "caseId": "SYS-SCH5-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-931c6e62944331a4",
+          "payload": {
+            "action": "propose_schedule_sequence",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "target": "SCH-WK42"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 1,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-da4ebab94be3fbbe",
+          "payload": {
+            "approvedTarget": "SCH-WK42",
+            "operation": "aps.schedule.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 2,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a7f0daf4082e064b",
+          "payload": {
+            "operation": "aps.schedule.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_work_orders"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 3,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-216c2794af040e72",
+          "payload": {
+            "actualTarget": "SCH-WK42",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 4,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-fd486093a0f212da",
+          "payload": {
+            "actualTarget": "SCH-WK42",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-SCH5",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 5,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "SCH-WK42",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.write",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Line Scheduling — evidence degraded",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": "SCH-WK43",
+      "aiSystemId": "SYS-SCH5",
+      "caseId": "SYS-SCH5-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-067763b75e194a5d",
+          "payload": {
+            "action": "propose_schedule_sequence",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "target": "SCH-WK42"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 1,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9b41ee3c63ded2e5",
+          "payload": {
+            "approvedTarget": "SCH-WK42",
+            "operation": "aps.schedule.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 2,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ebf2db0fc659c899",
+          "payload": {
+            "operation": "aps.schedule.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_work_orders"
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 3,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f2ca0d9676ef5680",
+          "payload": {
+            "actualTarget": "SCH-WK43",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 4,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-55384942ac480c73",
+          "payload": {
+            "actualTarget": "SCH-WK43",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 5,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-SCH5",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-8f8e19d0657b5f16",
+          "payload": {
+            "actualTarget": "SCH-WK43",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "productionSequence"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-sch5-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-SCH5",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-sch5",
+          "sequence": 6,
+          "sourceSystem": "APS / MES",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "SCH-WK42",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "aps.schedule.write",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Autonomous Line Scheduling — wrong target",
+      "workflowId": "WF-PLAN"
+    },
+    {
+      "actualTarget": "TEST-412/authorized-param-1",
+      "aiSystemId": "SYS-DYN412",
+      "caseId": "SYS-DYN412-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-53722daec9206c56",
+          "payload": {
+            "action": "recommend_tuning",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "target": "TEST-412/authorized-param-1"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 1,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-2ef50f23aefb8e5e",
+          "payload": {
+            "approvedTarget": "TEST-412/authorized-param-1",
+            "operation": "test_controller.setpoint.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 2,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6cce07ca8708b85d",
+          "payload": {
+            "operation": "test_controller.setpoint.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_dyno_metrics"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 3,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4223901385a13878",
+          "payload": {
+            "actualTarget": "TEST-412/authorized-param-1",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 4,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-00ecf7567756e3c9",
+          "payload": {
+            "actualTarget": "TEST-412/authorized-param-1",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 5,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-b98bd8fb680007c0",
+          "payload": {
+            "actualTarget": "TEST-412/authorized-param-1",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "controllerSetpoint"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-DYN412",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 6,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "TEST-412/authorized-param-1",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "test_controller.setpoint.write",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Dynamometer Tuning AI — expected baseline",
+      "workflowId": "WF-DYNO"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-DYN412",
+      "caseId": "SYS-DYN412-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a81f8d3aefc3fa0f",
+          "payload": {
+            "action": "recommend_tuning",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "target": "TEST-412/authorized-param-1"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 1,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-09e5a6489359ed95",
+          "payload": {
+            "approvedTarget": "TEST-412/authorized-param-1",
+            "operation": "test_controller.setpoint.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 2,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7a16ebea8848077d",
+          "payload": {
+            "operation": "test_controller.setpoint.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_dyno_metrics"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 3,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-ccc286b1c77ca9ab",
+          "payload": {
+            "actualTarget": "TEST-412/authorized-param-1",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 4,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-77336fc4658f18fc",
+          "payload": {
+            "actualTarget": "TEST-412/authorized-param-1",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-DYN412",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 5,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "TEST-412/authorized-param-1",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "test_controller.setpoint.write",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Dynamometer Tuning AI — evidence degraded",
+      "workflowId": "WF-DYNO"
+    },
+    {
+      "actualTarget": "TEST-412/undelegated-param-4",
+      "aiSystemId": "SYS-DYN412",
+      "caseId": "SYS-DYN412-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6486a45915969ca0",
+          "payload": {
+            "action": "recommend_tuning",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "target": "TEST-412/authorized-param-1"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 1,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-175aa122ee60eeeb",
+          "payload": {
+            "approvedTarget": "TEST-412/authorized-param-1",
+            "operation": "test_controller.setpoint.write",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 2,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-69996245785c9ff9",
+          "payload": {
+            "operation": "test_controller.setpoint.write",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_dyno_metrics"
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 3,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-6e217074692c92f9",
+          "payload": {
+            "actualTarget": "TEST-412/undelegated-param-4",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 4,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-cbf2f186860efeb5",
+          "payload": {
+            "actualTarget": "TEST-412/undelegated-param-4",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 5,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-DYN412",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1c509bcf9322becf",
+          "payload": {
+            "actualTarget": "TEST-412/undelegated-param-4",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "controllerSetpoint"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-dyn412-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-DYN412",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-dyn412",
+          "sequence": 6,
+          "sourceSystem": "Test controller / calibration records / QMS",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "TEST-412/authorized-param-1",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "test_controller.setpoint.write",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Dynamometer Tuning AI — wrong target",
+      "workflowId": "WF-DYNO"
+    },
+    {
+      "actualTarget": "LOT-2026-4510",
+      "aiSystemId": "SYS-WH15",
+      "caseId": "SYS-WH15-EXPECTED_BASELINE",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9e692c44518682d9",
+          "payload": {
+            "action": "propose_pick",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4510"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 1,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-58c28b97c8c3cd4f",
+          "payload": {
+            "approvedTarget": "LOT-2026-4510",
+            "operation": "wms.shipment.confirm",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 2,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-7b4458c90835be69",
+          "payload": {
+            "operation": "wms.shipment.confirm",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_bins"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 3,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-4c88490ebb7f7f89",
+          "payload": {
+            "actualTarget": "LOT-2026-4510",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 4,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1895798a9ab212df",
+          "payload": {
+            "actualTarget": "LOT-2026-4510",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 5,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-b0abf672ecde9642",
+          "payload": {
+            "actualTarget": "LOT-2026-4510",
+            "change": {
+              "after": "EXPECTED",
+              "before": "PREVIOUS",
+              "field": "shipmentStatus"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "EXPECTED_BASELINE",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 1,
+            "scopeSystem": "SYS-WH15",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 6,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "ESTABLISHED_WITHIN_FIXTURE",
+      "expectedTarget": "LOT-2026-4510",
+      "firstDivergence": null,
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "wms.shipment.confirm",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EXPECTED_BASELINE",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "ESTABLISHED",
+        "evidenceClosure": "ESTABLISHED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Warehouse Fulfillment AI — expected baseline",
+      "workflowId": "WF-WAREHOUSE"
+    },
+    {
+      "actualTarget": null,
+      "aiSystemId": "SYS-WH15",
+      "caseId": "SYS-WH15-EVIDENCE_DEGRADED",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-776b552f08bb4c5c",
+          "payload": {
+            "action": "propose_pick",
+            "phase": "REQUESTED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4510"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 1,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-131009d187a8fa67",
+          "payload": {
+            "approvedTarget": "LOT-2026-4510",
+            "operation": "wms.shipment.confirm",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 2,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-000ab0069eb8a6fe",
+          "payload": {
+            "operation": "wms.shipment.confirm",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_bins"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 3,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-36a5a95e2de0fc75",
+          "payload": {
+            "actualTarget": "LOT-2026-4510",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Reference expected action",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 4,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-fb2aa61f00fc8d05",
+          "payload": {
+            "actualTarget": "LOT-2026-4510",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "EVIDENCE_DEGRADED",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 2,
+            "scopeSystem": "SYS-WH15",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 5,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "CONSEQUENCE_UNKNOWN",
+      "expectedTarget": "LOT-2026-4510",
+      "firstDivergence": "CONSEQUENCE_EVIDENCE_GAP",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "wms.shipment.confirm",
+      "requiredEvidence": [
+        "QUALIFIED_DOWNSTREAM_TARGET_STATE"
+      ],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "UNKNOWN",
+        "evidenceClosure": "PARTIAL",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "PARTIAL",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Warehouse Fulfillment AI — evidence degraded",
+      "workflowId": "WF-WAREHOUSE"
+    },
+    {
+      "actualTarget": "LOT-2026-4511",
+      "aiSystemId": "SYS-WH15",
+      "caseId": "SYS-WH15-WRONG_TARGET",
+      "evidence": [
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-f0aa37f5e35c6674",
+          "payload": {
+            "action": "propose_pick",
+            "phase": "REQUESTED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "target": "LOT-2026-4510"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 1,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a4b427759396fc96",
+          "payload": {
+            "approvedTarget": "LOT-2026-4510",
+            "operation": "wms.shipment.confirm",
+            "phase": "POLICY_DECLARED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 2,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-467213414afa5a4a",
+          "payload": {
+            "operation": "wms.shipment.confirm",
+            "phase": "CODE_CAPABLE",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false,
+            "tool": "read_bins"
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 3,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-9506973e66790227",
+          "payload": {
+            "actualTarget": "LOT-2026-4511",
+            "decision": "ALLOW_FIXTURE",
+            "phase": "GATE_DECISION",
+            "reason": "Tool target differs from intended bound target",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 4,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-1d9abca03f354ac7",
+          "payload": {
+            "actualTarget": "LOT-2026-4511",
+            "phase": "ACTION_APPLIED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "source": "synthetic-action-broker",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 5,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        },
+        {
+          "aiSystemId": "SYS-WH15",
+          "claimBoundary": "Fixture source record; must be independently qualified by canonical HAIEC ingestion before a real assessment.",
+          "declaredAt": "2026-10-13T00:00:00.000Z",
+          "evidenceId": "syn-a1f3e2e63a9f8473",
+          "payload": {
+            "actualTarget": "LOT-2026-4511",
+            "change": {
+              "after": "CHANGED_WRONG_TARGET",
+              "before": "PREVIOUS",
+              "field": "shipmentStatus"
+            },
+            "phase": "EFFECT_CONFIRMED",
+            "scenarioLevel": "WRONG_TARGET",
+            "scenarioRunId": "syn-mfg-sys-wh15-001",
+            "scenarioSequence": 3,
+            "scopeSystem": "SYS-WH15",
+            "source": "synthetic-independent-target-ledger",
+            "sourceQualifiedByHaiec": false
+          },
+          "producerRunId": "synthetic-sys-wh15",
+          "sequence": 6,
+          "sourceSystem": "WMS / inventory status / QMS / shipping",
+          "sourceType": "SYNTHETIC_FIXTURE"
+        }
+      ],
+      "expectedComparison": "EXACT_TARGET_DIVERGENCE",
+      "expectedTarget": "LOT-2026-4510",
+      "firstDivergence": "OPERATION_TARGET_MISMATCH",
+      "fixtureOrigin": "SYNTHETIC",
+      "notEvidenceOf": [
+        "PRODUCTION_OPERATION",
+        "REAL_HAIEC_EVALUATION",
+        "MALICIOUS_INTENT"
+      ],
+      "operation": "wms.shipment.confirm",
+      "requiredEvidence": [],
+      "rootCause": "NOT_ESTABLISHED",
+      "scenarioState": "WRONG_TARGET",
+      "sixPartEvidence": {
+        "authority": "ESTABLISHED",
+        "consequence": "CONTRADICTED",
+        "evidenceClosure": "CONTRADICTED",
+        "intentRequest": "ESTABLISHED",
+        "operationState": "ESTABLISHED",
+        "reachability": "ESTABLISHED"
+      },
+      "title": "Warehouse Fulfillment AI — wrong target",
+      "workflowId": "WF-WAREHOUSE"
+    }
+  ],
+  "schemaVersion": "manufacturing-golden-scenario-v1"
+}

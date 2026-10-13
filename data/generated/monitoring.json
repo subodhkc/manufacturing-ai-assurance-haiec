@@ -1,0 +1,476 @@
+{
+  "asOf": "2026-10-13T00:00:00.000Z",
+  "behavior": [
+    {
+      "agentId": "SYS-217-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-340-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-340-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "ADVISORY_CONSUMPTION_ANOMALY"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "ADVISORY_CONSUMPTION_ANOMALY"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-3",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "ADVISORY_CONSUMPTION_ANOMALY"
+    },
+    {
+      "agentId": "SYS-MNT88-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "ADVISORY_CONSUMPTION_ANOMALY"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-SCH5-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-DYN412-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-1",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-2",
+      "authorityConclusion": "NOT_ASSESSED_FROM_BASELINE",
+      "flag": "NO_THRESHOLD_FLAG"
+    }
+  ],
+  "events": [
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-217",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Torque-monitor tool path can write MES work orders beyond recommendation-only delegation",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-001",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "CAPABILITY_BEYOND_DELEGATION",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-340",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Inspection part variant and lighting change require validation evidence",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-002",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "MODEL_VALIDATION_CONTEXT_CHANGE",
+      "severity": "MEDIUM",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-FC1",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "A forecast-based schedule revision crosses the frozen production-planning window",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-003",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "FROZEN_HORIZON_REVIEW",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-PO12",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Purchase-order proposal exceeds buyer-review amount and requires qualified approval",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-004",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "PURCHASING_REVIEW_BOUNDARY",
+      "severity": "MEDIUM",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-MNT88",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Maintenance recommendation and physical equipment intervention require different authorization",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-005",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "MAINTENANCE_AUTHORITY_GAP",
+      "severity": "MEDIUM",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-SUP12",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Incoming casting lot cannot be released without valid supplier-part-site qualification",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-006",
+      "investigationState": "MISSING",
+      "notified": false,
+      "ruleClass": "SUPPLIER_QUALIFICATION_GAP",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-SCH5",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Schedule-writing path lacks qualified mediation and application-effect evidence",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-007",
+      "investigationState": "MISSING",
+      "notified": false,
+      "ruleClass": "PILOT_PROMOTION_BLOCKED",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-DYN412",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Test stand exposes nineteen writable parameters but only three are delegated",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-008",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "CAPABILITY_BREADTH_MISMATCH",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    },
+    {
+      "actionApplied": false,
+      "aiSystemId": "SYS-WH15",
+      "alertType": "DEMONSTRATION_EXAMPLE",
+      "delivered": false,
+      "description": "Shared warehouse identity and missing hold check expose quality-held inventory",
+      "effectVerified": false,
+      "eventId": "DEMO-ALERT-009",
+      "investigationState": "PARTIAL",
+      "notified": false,
+      "ruleClass": "SHIPMENT_HOLD_CONTROL_GAP",
+      "severity": "HIGH",
+      "source": "synthetic expected-finding manifest"
+    }
+  ],
+  "schemaVersion": "manufacturing-monitoring-v1",
+  "sourceHealth": [
+    {
+      "aiSystemId": "SYS-217",
+      "expectedCadence": "Every fastening event",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-217-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "expectedCadence": "Every 30 s",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-217-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "expectedCadence": "On action + readback",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-217-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "expectedCadence": "On case transition",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-217-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "expectedCadence": "Every 60 min / on change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-217-SRC-5",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "expectedCadence": "Per inspected unit",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-340-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "expectedCadence": "On change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-340-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "expectedCadence": "On disposition",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-340-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "expectedCadence": "On deployment",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-340-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "expectedCadence": "Every 15 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-FC1-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "expectedCadence": "Every 30 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-FC1-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "expectedCadence": "Each run",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-FC1-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "expectedCadence": "On change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-FC1-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "expectedCadence": "Every 15 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-PO12-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "expectedCadence": "Daily + on change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-PO12-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "expectedCadence": "Per attempted order",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-PO12-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "expectedCadence": "Per workflow run",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-PO12-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "expectedCadence": "Per review",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-PO12-SRC-5",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "expectedCadence": "Every 10 s",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-MNT88-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "expectedCadence": "On ticket state",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-MNT88-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "expectedCadence": "Every 30 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-MNT88-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "expectedCadence": "Daily",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SUP12-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "expectedCadence": "Daily + change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SUP12-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "expectedCadence": "Per receipt",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SUP12-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "expectedCadence": "On action",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SUP12-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "expectedCadence": "Every 15 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SCH5-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "expectedCadence": "Per release",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SCH5-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "expectedCadence": "On change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SCH5-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "expectedCadence": "Hourly",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-SCH5-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "expectedCadence": "Each test cycle",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-DYN412-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "expectedCadence": "On recipe change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-DYN412-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "expectedCadence": "Per change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-DYN412-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "expectedCadence": "After write",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-DYN412-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "expectedCadence": "Per pick",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-WH15-SRC-1",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "expectedCadence": "On status change",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-WH15-SRC-2",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "expectedCadence": "Every 5 min",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-WH15-SRC-3",
+      "status": "SIMULATED_NOT_CONNECTED"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "expectedCadence": "Hourly",
+      "lastLiveEvent": null,
+      "sourceId": "SYS-WH15-SRC-4",
+      "status": "SIMULATED_NOT_CONNECTED"
+    }
+  ],
+  "sourceStatus": "NO_LIVE_CONNECTORS"
+}

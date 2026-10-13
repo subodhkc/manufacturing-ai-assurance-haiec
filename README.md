@@ -1,9 +1,54 @@
-# HAIEC Manufacturing AI Assurance
+# HAIEC Manufacturing AI Assurance — Fixture-First Reference
 
-**Synthetic manufacturing evidence and judge experience — not a live plant integration.**
+**Fictional manufacturer · synthetic source records · independently authored expected outcomes · judge-facing interactive UX**
 
-This repository holds the reproducible fixtures, independent expected outcomes, tests, and judge-facing dashboard for the fictional **Example Manufacturing Company**. The source of assurance truth remains the HAIEC canonical evidence, DAI, authority, runtime-drift, and reporting engines; this project does not create a parallel verdict service.
+This repository is the independent manufacturing data and UX reference for the **Example Manufacturing Company**. It provides nine AI systems, sixteen agent roles, seven manufacturing workflows, a 45-entry control catalog, twelve scenario definitions and 27 three-condition test fixtures (39 scenario cases total), nine baseline findings and sixteen agent report examples.
 
-The fixture package will cover nine AI systems, sixteen agent roles, seven manufacturing workflows, 45 catalog entries and scenario families including expected baseline, evidence-degraded and wrong-target conditions.
+The purpose is to test **what HAIEC can discover and establish from connected evidence**, including additional source, authority, approval and effect data that customers may choose to provide. This project does not create an alternative HAIEC assurance engine.
 
-See the next commit for the complete fixture generator, golden scenarios, generated reports and tests.
+## Local start (Node.js 22+; no dependencies)
+
+```bash
+npm run verify
+```
+
+`npm run export:haiec-candidates` writes separately labeled candidate-only structured records for a future HAIEC ingestion acceptance test.
+
+`npm run generate` regenerates `data/generated/*.json`. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
+
+Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. It is static and still renders its embedded v7.2 data; tying it to generated source events and genuine HAIEC evaluations is a **separate implementation step**, not silently represented as complete.
+
+## Evidence and results
+
+| File | Contents |
+|---|---|
+| `data/generated/estate.json` | Fictional manufacturer, nine systems, 37 scoped evidence-feed entries, accountabilities and AI spending |
+| `agents.json` | All 16 agent roles, individually scoped tool capabilities, monitoring and control references |
+| `workflows.json` | All seven manufacturing workflows, including separate Supplier Quality and Warehouse |
+| `controls.json` | Full 45 catalog entries and truthful catalog/implementation distinction |
+| `findings.json` | Nine **expected findings** with source qualification gaps and prohibited conclusions |
+| `golden-scenarios.json` | 27 controlled expected/degraded/wrong-target synthetic input/event cases |
+| `decision-scenarios.json` | The 10 existing UI cases and two expanded incoming-QMS/WMS cases |
+| `behavior-baselines.json` | 16 reproducible token baselines and advisory-only anomaly examples |
+| `agent-reports.json` | 16 agent-specific **illustrative** reports, not HAIEC-issued assessment receipts |
+| `monitoring.json` | 9 example alerts, 37 source-freshness expectations, and advisory baseline signals |
+| `manifest.json` | Stable counts and sha256 output identities |
+
+## Domain corrections incorporated
+
+- Protective torque containment **escalates with quantity**; quality-held product release requires distinct Quality authority.
+- Supplier Quality is distinct from procurement; receiving lot release depends on supplier-part-site/revision, PPAP and QMS.
+- Warehouse picks and shipments are not purchase orders. Shipment of quality-held lots requires QMS release and WMS actor attribution.
+- Vision defect prevalence is not identical to false-accept/false-reject model drift.
+- Predictive maintenance recommendation, CMMS acceptance, work execution and return to service are separate phases.
+- Dyno system is Test Engineering; 19 code-accessible setpoints versus three delegated parameters are an **exposure**, not proof of an applied command.
+- Schedule pilot remains blocked when write mediation and MES/APS effect witness are not established.
+- The estate's nine recorded monthly inference costs sum to **$44,100**, replacing an older contradictory $48,200 label.
+
+## Non-negotiable assurance boundaries
+
+`CAPABILITY != EFFECT` · `PERMISSION != DELEGATION` · `ALERT != PREVENTION` · `UNKNOWN != PASS` · `BASELINE_NOVELTY != POLICY_VIOLATION` · `SCENARIO_LABEL != HAIEC_VERDICT`.
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/HAIEC-INTEGRATION-HANDOFF.md`](docs/HAIEC-INTEGRATION-HANDOFF.md).
+
+This repository does **not** contain customer data, customer credentials, executable plant commands, auto-deploy to HAIEC Main, active email delivery, or cron-scheduled writes.
