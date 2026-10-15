@@ -2049,7 +2049,7 @@ function render(){
   const pausedCount = Object.values(STATE.paused).filter(Boolean).length;
   const badge = $('statusBadge');
   if(pausedCount > 0){ badge.textContent = '◉ ' + pausedCount + ' paused'; badge.className = 'badge warn tip'; badge.dataset.tip = pausedCount + ' agent(s) paused by dispatch control'; }
-  else { badge.textContent = '● Demo agents active'; badge.className = 'badge go tip'; badge.dataset.tip = 'All demo agents active. Not connected to factory systems.'; }
+  else { badge.textContent = '● Simulation active'; badge.className = 'badge go tip'; badge.dataset.tip = 'Browser-local simulated agents. Not connected to factory systems or HAIEC runtime.'; }
   // Reveal animations
   requestAnimationFrame(() => {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
@@ -3450,7 +3450,7 @@ render();
       raw.replaceWith(details);details.append(summary,raw);
     }
   }
-  const b=document.getElementById('statusBadge');if(b){const paused=Object.values(STATE.paused).filter(Boolean).length;b.textContent=paused?`${paused} local agent(s) paused`:'Demo agents active';b.title='Browser-only simulated agent dispatch status. Not connected to any factory.';b.setAttribute('aria-label',b.title);b.dataset.tip=b.title;}
+  const b=document.getElementById('statusBadge');if(b){const paused=Object.values(STATE.paused).filter(Boolean).length;b.textContent=paused?`${paused} simulated agent(s) paused`:'Simulation active';b.title='Browser-only simulated agent dispatch status. Not connected to any factory.';b.setAttribute('aria-label',b.title);b.dataset.tip=b.title;}
   const run=document.querySelector('.topactions [data-act="run-demo"]');if(run){run.textContent='Run guided example';run.title='Step-by-step 40-engine containment exercise; no factory writes.';}
   const tour=document.querySelector('.topactions [data-act="tour"]');if(tour){tour.textContent='Guided product tour';tour.title='Interactive walkthrough with explanations on every step';}
   const mark=document.querySelector('.topactions .badge.info');if(mark&&/Demo|Fictional/.test(mark.textContent)){mark.textContent='Fictional manufacturer · synthetic data';mark.title='No customer, plant, production system or report is connected to this offline HTML.';}
