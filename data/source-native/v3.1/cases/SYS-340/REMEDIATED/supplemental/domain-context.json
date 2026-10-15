@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-340",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-340-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-340-remediated",
+  "operation": "qms.quality_disposition.write",
+  "scenarioMode": "REMEDIATED",
+  "resource": "LOT-2026-4508",
+  "observedResource": "LOT-2026-4508",
+  "unit": "defect_score",
+  "scenarioContext": {
+    "camera": "CAM-AL3-2",
+    "model": "vision-casting-syn-r2",
+    "part": "CYL-HEAD",
+    "partRevision": "REV-C",
+    "recipe": "VISION-LIGHT-A",
+    "lightingChange": "LIGHT-B",
+    "independentLabelsPresent": true
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-340/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-340",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-QUALITY",
+    "imageCount": 24,
+    "independentLabelSource": "SIMULATED_HELDOUT_FIXTURE",
+    "validationContextChange": "LIGHTING_B"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

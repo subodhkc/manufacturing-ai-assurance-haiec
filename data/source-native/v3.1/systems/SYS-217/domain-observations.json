@@ -1,0 +1,851 @@
+{
+  "schemaVersion": "manufacturing-domain-measurements-v3.1",
+  "aiSystemId": "SYS-217",
+  "synthetic": true,
+  "sourceRole": "UNQUALIFIED_SENSORY_CONTEXT",
+  "testLabelsNotEngineVerdicts": true,
+  "unit": "Nm",
+  "sourceSystem": "LAB_TORQUE_ANGLE",
+  "fixtures": [
+    {
+      "sampleId": "SYS-217-v31-01",
+      "observedAt": "2026-10-14T06:00:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 128.5,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-02",
+      "observedAt": "2026-10-14T06:02:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 125.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-03",
+      "observedAt": "2026-10-14T06:04:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 127.1,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-04",
+      "observedAt": "2026-10-14T06:06:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 128.5,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-05",
+      "observedAt": "2026-10-14T06:08:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 129.9,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-06",
+      "observedAt": "2026-10-14T06:10:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 131.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-07",
+      "observedAt": "2026-10-14T06:12:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 132.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-08",
+      "observedAt": "2026-10-14T06:14:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 124.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-09",
+      "observedAt": "2026-10-14T06:16:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 125.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-10",
+      "observedAt": "2026-10-14T06:18:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 131.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-11",
+      "observedAt": "2026-10-14T06:20:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 128.5,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-12",
+      "observedAt": "2026-10-14T06:22:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 129.9,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-13",
+      "observedAt": "2026-10-14T06:24:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 131.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-14",
+      "observedAt": "2026-10-14T06:26:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 132.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-15",
+      "observedAt": "2026-10-14T06:28:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 124.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-16",
+      "observedAt": "2026-10-14T06:30:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 125.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-17",
+      "observedAt": "2026-10-14T06:32:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 127.1,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-18",
+      "observedAt": "2026-10-14T06:34:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 128.5,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-19",
+      "observedAt": "2026-10-14T06:36:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 134.1,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-20",
+      "observedAt": "2026-10-14T06:38:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 131.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-21",
+      "observedAt": "2026-10-14T06:40:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 132.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-22",
+      "observedAt": "2026-10-14T06:42:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 124.3,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-23",
+      "observedAt": "2026-10-14T06:44:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 125.7,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-217-v31-24",
+      "observedAt": "2026-10-14T06:46:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_TORQUE_ANGLE",
+      "modelVersion": "synthetic-torque_angle-1.1",
+      "modality": "TORQUE_ANGLE",
+      "measurement": {
+        "value": 127.1,
+        "unit": "Nm"
+      },
+      "qualifyingContext": {
+        "station": "STN-217",
+        "tool": "DC_NUTRUNNER_7",
+        "calibration": "CAL-SYN-217-R4",
+        "serialFrom": "SN-41002",
+        "serialTo": "SN-41041",
+        "qualityAuthority": "QUALITY_SUPERVISOR",
+        "containmentLimits": [
+          {
+            "quantity": 3,
+            "route": "AUTO_HOLD_IF_APPROVED"
+          },
+          {
+            "quantity": 40,
+            "route": "QUALITY_SUPERVISOR_REVIEW"
+          },
+          {
+            "quantity": 51,
+            "route": "PLANT_QUALITY_MANAGER_REVIEW"
+          }
+        ]
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    }
+  ]
+}

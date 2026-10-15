@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-rejected-attempt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-remediated",
+  "actor": "synthetic-agent/SYS-DYN412",
+  "attemptId": "txn-syn-mfg-v3-sys-dyn412-remediated-blocked",
+  "attemptedOperation": "test_controller.setpoint.write",
+  "attemptedResource": "TEST-412/undelegated-param-4",
+  "approvedResource": "TEST-412/authorized-param-1",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-DYN412",
+  "policyDigest": "sha256:eadb246a1bece10b7852d66ce64725173328a0c5b87d5c7d60f82c10ec228c41",
+  "eventTime": "2026-10-14T15:30:01.600Z",
+  "decision": "SIMULATED_DENY",
+  "gatewayDispatchMade": false,
+  "noCustomerActuation": true
+}

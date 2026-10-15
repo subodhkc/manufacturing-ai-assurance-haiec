@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "actorPrincipal": "synthetic-agent/SYS-DYN412",
+  "agentDefinitionIds": [
+    "SYS-DYN412-AGENT-1"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-DYN412",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:5004c954100172f8b11d722ce26ce6925ce4adccb52476ff63575dc9993739a3",
+  "toolName": "propose_setpoint",
+  "operation": "test_controller.setpoint.write",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

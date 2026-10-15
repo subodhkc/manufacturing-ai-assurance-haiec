@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SCH5",
+  "actorPrincipal": "synthetic-agent/SYS-SCH5",
+  "agentDefinitionIds": [
+    "SYS-SCH5-AGENT-1",
+    "SYS-SCH5-AGENT-2"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-SCH5",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:b47873c4950644732add1ce72d625f633c2b992fa7570e798f75581aeb69f12e",
+  "toolName": "write_schedule",
+  "operation": "aps.schedule.write",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": {
+    "parentAgentId": "SYS-SCH5-AGENT-1",
+    "childAgentId": "SYS-SCH5-AGENT-2",
+    "parentAllowed": [
+      "READ",
+      "RECOMMEND",
+      "DRAFT"
+    ],
+    "childAttempted": [
+      "COMMIT",
+      "SCHEDULE"
+    ],
+    "delegationGrant": "NOT_EVIDENCED"
+  }
+}

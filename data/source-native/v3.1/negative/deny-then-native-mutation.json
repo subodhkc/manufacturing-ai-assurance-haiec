@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "manufacturing-deny-then-observe-mutation-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "scenarioRunId": "syn-negative-deny-after-effect",
+  "operation": "wms.shipment.confirm",
+  "target": "LOT-2026-4510",
+  "deny": {
+    "eventTime": "2026-10-14T13:00:00.000Z",
+    "decision": "SIMULATED_DENY"
+  },
+  "targetReadback": {
+    "transactionId": "syn-tx-deny-then-mutation",
+    "eventTime": "2026-10-14T13:00:05.000Z",
+    "changed": true,
+    "shipmentStatus": "CONFIRMED"
+  },
+  "interpretation": "INVESTIGATE_CONFLICT_NOT_PROOF_OF_PREVENTION"
+}

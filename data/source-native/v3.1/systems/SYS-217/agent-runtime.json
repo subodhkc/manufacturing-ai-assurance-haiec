@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "actorPrincipal": "synthetic-agent/SYS-217",
+  "agentDefinitionIds": [
+    "SYS-217-AGENT-1"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-217",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:52a5cec26c34cac36f093458372c14e5c5673d6ee31de10b22f906afd4332a74",
+  "toolName": "mes_workorder_client",
+  "operation": "mes.work_order.update",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

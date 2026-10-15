@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-217-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-217-remediated",
+  "operation": "mes.work_order.update",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-217",
+  "policyDigest": "sha256:adce0a7bacaf6c68adecd1bbe782896d440a4269e773bcfd63b0242c7d597931",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-217-remediated-blocked",
+  "authorizedResource": "WO-217-4802",
+  "dispatchedResource": "WO-217-4802",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-217-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T08:30:01.600Z",
+      "target": "WO-217-4803"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T08:30:03.400Z",
+      "target": "WO-217-4803"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T08:30:04.000Z",
+      "target": "WO-217-4802"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T08:30:05.200Z",
+      "target": "WO-217-4802"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-340",
+  "actorPrincipal": "synthetic-agent/SYS-340",
+  "agentDefinitionIds": [
+    "SYS-340-AGENT-1",
+    "SYS-340-AGENT-2"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-340",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:a0d685aa246c3427d0ff3c2e80627ce8057a3b998892149d99b4affabd002d1a",
+  "toolName": "quality_rework_case",
+  "operation": "qms.quality_disposition.write",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

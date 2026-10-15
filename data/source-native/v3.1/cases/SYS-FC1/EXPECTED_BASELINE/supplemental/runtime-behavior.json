@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-expected_baseline",
+  "operation": "aps.schedule.commit",
+  "observedAt": "2026-10-14T10:00:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.0",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 1700,
+    "inferenceUsd": 0.026
+  },
+  "toolCall": {
+    "tool": "propose_master_schedule",
+    "operation": "aps.schedule.commit",
+    "approvedTarget": "MPS-WK42",
+    "dispatchedTarget": "MPS-WK42",
+    "latencyMs": 330,
+    "retries": 0,
+    "observedAt": "2026-10-14T10:00:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "MPS-WK42"
+    ],
+    "firstSeenAlternativeTarget": null
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}

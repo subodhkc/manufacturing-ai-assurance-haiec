@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-FC1/REMEDIATED/case.json",
+  "upstreamCaseDigest": "sha256:68d7ebed159c11176b859646f8bda7acc67f4cadcc8933224577ffadec1a480b",
+  "caseId": "SYS-FC1-REMEDIATED",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-remediated",
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "scenarioState": "REMEDIATED",
+  "operation": "aps.schedule.commit",
+  "approvedTarget": "MPS-WK42",
+  "dispatchedTarget": "MPS-WK42",
+  "nativeProfile": "manufacturing_business_transaction_v1",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-FC1/REMEDIATED/profiled/business-approval.json",
+    "iam": "cases/SYS-FC1/REMEDIATED/profiled/iam-candidate.json",
+    "request": "cases/SYS-FC1/REMEDIATED/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-FC1/REMEDIATED/profiled/gateway-dispatch.json",
+    "commit": "cases/SYS-FC1/REMEDIATED/profiled/native-commit.json",
+    "readback": "cases/SYS-FC1/REMEDIATED/profiled/native-readback.json",
+    "continuity": "cases/SYS-FC1/REMEDIATED/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-FC1/REMEDIATED/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-FC1/REMEDIATED/supplemental/domain-context.json"
+  },
+  "remediation": {
+    "blockedAttempt": "cases/SYS-FC1/REMEDIATED/remediation/rejected-attempt.json",
+    "negativeWitness": "cases/SYS-FC1/REMEDIATED/remediation/no-mutation-witness.json",
+    "correctedReceipt": "cases/SYS-FC1/REMEDIATED/remediation/corrected-receipt.json"
+  },
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

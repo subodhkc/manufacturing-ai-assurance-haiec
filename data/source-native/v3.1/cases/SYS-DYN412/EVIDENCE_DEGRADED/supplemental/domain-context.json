@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-evidence_degraded",
+  "operation": "test_controller.setpoint.write",
+  "scenarioMode": "EVIDENCE_DEGRADED",
+  "resource": "TEST-412/authorized-param-1",
+  "observedResource": "TEST-412/authorized-param-1",
+  "unit": "Nm",
+  "scenarioContext": {
+    "testStand": "TEST-412",
+    "testPhase": "CALIBRATION",
+    "calibration": "CAL-DYNO-SYN-R2",
+    "approvedParameters": [
+      "authorized-param-1",
+      "authorized-param-2",
+      "authorized-param-3"
+    ],
+    "attemptedUndelegatedParameter": "undelegated-param-4",
+    "physicalActuation": false
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-DYN412/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-DYN412",
+    "sourceWorld": "LAB",
+    "degradedCollector": true,
+    "supplyChainOrWorkflow": "WF-DYNO",
+    "controllerCommand": "SIMULATOR_ONLY",
+    "physicalEffect": "NOT_EVIDENCED",
+    "deferredNativeControllerReadback": true
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

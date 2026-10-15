@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-remediated",
+  "operation": "aps.schedule.commit",
+  "scenarioMode": "REMEDIATED",
+  "resource": "MPS-WK42",
+  "observedResource": "MPS-WK42",
+  "unit": "units_week",
+  "scenarioContext": {
+    "planningHorizon": "MPS-WK42",
+    "forecastVersion": "FCAST-R7",
+    "frozen": true,
+    "parentAgent": "SYS-FC1-AGENT-1",
+    "childAgent": "SYS-FC1-AGENT-2",
+    "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-FC1/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-FC1",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-PLAN"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

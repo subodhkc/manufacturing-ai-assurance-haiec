@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-DYN412/EXPECTED_BASELINE/case.json",
+  "upstreamCaseDigest": "sha256:a8c88dbafdc1f85767d5694e0f93d20a305ced12904554647d97b652d10f25ab",
+  "caseId": "SYS-DYN412-EXPECTED_BASELINE",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-expected_baseline",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioState": "EXPECTED_BASELINE",
+  "operation": "test_controller.setpoint.write",
+  "approvedTarget": "TEST-412/authorized-param-1",
+  "dispatchedTarget": "TEST-412/authorized-param-1",
+  "nativeProfile": "DEFERRED_CONTROLLER_NATIVE_EFFECT",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/business-approval.json",
+    "iam": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/iam-candidate.json",
+    "request": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+    "commit": null,
+    "readback": null,
+    "continuity": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-DYN412/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-DYN412/EXPECTED_BASELINE/supplemental/domain-context.json"
+  },
+  "remediation": null,
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

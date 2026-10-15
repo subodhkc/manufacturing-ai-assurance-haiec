@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "manufacturing-demo-profile-registry-v3.1",
+  "synthetic": true,
+  "oneDashboardShell": true,
+  "profiles": [
+    {
+      "profileId": "MFG_DEFAULT",
+      "label": "Example Manufacturing Company",
+      "industry": "Heavy equipment manufacturing",
+      "evidenceMode": "EVALUATED_SYNTHETIC_ONLY_WHEN_BOUND",
+      "systems": 9,
+      "example": {
+        "signal": "Torque deviation at Station 217",
+        "proposedAction": "MES quality containment",
+        "authorizedScope": "Scoped work order and quantity",
+        "effect": "Synthetic MES/QMS readback"
+      },
+      "inspiration": "FICTIONAL",
+      "isolationNamespace": "lab-profile-mfg_default",
+      "sourcePackageRef": "data/source-native/v3.1/",
+      "assessmentBinding": "EXPLICIT_CANONICAL_EVALUATION_ONLY",
+      "sourceWorldVersion": "manufacturing-source-native-v3.1",
+      "brandOrCustomerPermission": "NOT_CLAIMED"
+    },
+    {
+      "profileId": "ELECTRICAL_EQUIPMENT",
+      "label": "Example Electrical Works",
+      "industry": "Electrical equipment assembly",
+      "evidenceMode": "SIMULATION_ONLY",
+      "example": {
+        "signal": "Wiring torque mismatch and panel inspection",
+        "proposedAction": "Quarantine panel batch",
+        "authorizedScope": "Quality supervisor lot hold",
+        "effect": "Illustrative digital QMS panel state"
+      },
+      "inspiration": "INDUSTRY_ONLY",
+      "isolationNamespace": "lab-profile-electrical_equipment",
+      "sourcePackageRef": "profiles/ELECTRICAL_EQUIPMENT/events.json",
+      "assessmentBinding": "NO_HAIEC_EVALUATIONS",
+      "sourceWorldVersion": "manufacturing-simulation-profile-v1",
+      "brandOrCustomerPermission": "NOT_CLAIMED"
+    },
+    {
+      "profileId": "RAIL_TRANSPORT",
+      "label": "Example Rail Operations",
+      "industry": "Rail and transportation maintenance",
+      "evidenceMode": "SIMULATION_ONLY",
+      "example": {
+        "signal": "Equipment condition alarm",
+        "proposedAction": "Create maintenance work request",
+        "authorizedScope": "Depot maintenance approval; no track actuation",
+        "effect": "Illustrative CMMS work-request state"
+      },
+      "inspiration": "INDUSTRY_ONLY",
+      "isolationNamespace": "lab-profile-rail_transport",
+      "sourcePackageRef": "profiles/RAIL_TRANSPORT/events.json",
+      "assessmentBinding": "NO_HAIEC_EVALUATIONS",
+      "sourceWorldVersion": "manufacturing-simulation-profile-v1",
+      "brandOrCustomerPermission": "NOT_CLAIMED"
+    },
+    {
+      "profileId": "SMART_ELECTRONICS",
+      "label": "Example Smart Electronics",
+      "industry": "Electronics and compute assembly",
+      "evidenceMode": "SIMULATION_ONLY",
+      "example": {
+        "signal": "PCB defect and firmware provenance change",
+        "proposedAction": "Hold affected serial batch",
+        "authorizedScope": "Test and Quality approval",
+        "effect": "Illustrative test-batch quarantine status"
+      },
+      "inspiration": "INDUSTRY_ONLY",
+      "isolationNamespace": "lab-profile-smart_electronics",
+      "sourcePackageRef": "profiles/SMART_ELECTRONICS/events.json",
+      "assessmentBinding": "NO_HAIEC_EVALUATIONS",
+      "sourceWorldVersion": "manufacturing-simulation-profile-v1",
+      "brandOrCustomerPermission": "NOT_CLAIMED"
+    },
+    {
+      "profileId": "SUPPLIER_NETWORK",
+      "label": "Example Supplier Network",
+      "industry": "Cross-company supplier and procurement operations",
+      "evidenceMode": "SIMULATION_ONLY",
+      "example": {
+        "signal": "Expired supplier part-revision qualification",
+        "proposedAction": "Prevent material release and raise review",
+        "authorizedScope": "Supplier Quality approval",
+        "effect": "Illustrative receiving lot status"
+      },
+      "inspiration": "INDUSTRY_ONLY",
+      "isolationNamespace": "lab-profile-supplier_network",
+      "sourcePackageRef": "profiles/SUPPLIER_NETWORK/events.json",
+      "assessmentBinding": "NO_HAIEC_EVALUATIONS",
+      "sourceWorldVersion": "manufacturing-simulation-profile-v1",
+      "brandOrCustomerPermission": "NOT_CLAIMED"
+    }
+  ],
+  "mustClearEvaluationIdsOnProfileChange": true,
+  "mayShowHaiecVerdictOnlyWhenBound": true
+}

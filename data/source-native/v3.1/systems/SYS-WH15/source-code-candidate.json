@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-wh15-code",
+  "producerId": "lab-sys-wh15-code",
+  "operationRef": "wms.shipment.confirm",
+  "resourceRef": "LOT-2026-4510",
+  "sourceHash": "sha256:286a39bdf7b0468fa11de42e89aa8ac4cee1794dbadd41c3178c453098dc6f3a",
+  "toolName": "request_replenishment",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-WH15/code/agent-handler.js",
+  "openApiSourceHash": "sha256:1a73d1544efa03763b49fc74e946976ec305575e81839e0c2e13bfca67e7f076",
+  "siteId": "DC-15",
+  "aiSystemId": "SYS-WH15",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

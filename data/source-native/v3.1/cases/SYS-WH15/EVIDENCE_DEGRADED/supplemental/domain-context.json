@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "siteId": "DC-15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-evidence_degraded",
+  "operation": "wms.shipment.confirm",
+  "scenarioMode": "EVIDENCE_DEGRADED",
+  "resource": "LOT-2026-4510",
+  "observedResource": "LOT-2026-4510",
+  "unit": "available_units",
+  "scenarioContext": {
+    "warehouse": "DC-15",
+    "lot": "LOT-2026-4510",
+    "qualityStatus": "HELD",
+    "wmsWave": "PICK-WAVE-15-092",
+    "carrierAck": "NOT_EVIDENCED",
+    "qualityReleaseApproval": "NOT_PRESENT"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-WH15/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-WH15",
+    "sourceWorld": "LAB",
+    "degradedCollector": true,
+    "supplyChainOrWorkflow": "WF-WAREHOUSE",
+    "qmsQualityHold": "HELD",
+    "shipmentCommit": "SIMULATED_GATEWAY_CANDIDATE"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

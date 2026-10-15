@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-po12-code",
+  "producerId": "lab-sys-po12-code",
+  "operationRef": "erp.purchase_order.create",
+  "resourceRef": "REQ-2026-8842",
+  "sourceHash": "sha256:3c3631f16b87fa2965c90ef5bdc62a9a16869395d23fea6f199ed1f369e08d2d",
+  "toolName": "create_po",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-PO12/code/agent-handler.js",
+  "openApiSourceHash": "sha256:e9590400a4c4e11644a59d7a5a556097dd8f05882d268daaea709f67f65644a2",
+  "siteId": "SUPPLY",
+  "aiSystemId": "SYS-PO12",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

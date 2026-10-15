@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-industry-simulated-flow-v1",
+  "profileId": "RAIL_TRANSPORT",
+  "synthetic": true,
+  "simulationOnly": true,
+  "haiecEvaluationId": null,
+  "organizationId": "FICTIONAL_ONLY",
+  "runId": "syn-industry-rail_transport-case-01",
+  "operator": "FICTIONAL_ENTERPRISE_OPERATOR",
+  "businessContext": "Rail and transportation maintenance",
+  "events": [
+    {
+      "step": "SOURCE_SIGNAL",
+      "eventId": "syn-industry-rail_transport-case-01-source",
+      "recordedAt": "2026-10-14T09:00:00.000Z",
+      "detail": "Equipment condition alarm"
+    },
+    {
+      "step": "AGENT_PROPOSAL",
+      "eventId": "syn-industry-rail_transport-case-01-proposal",
+      "recordedAt": "2026-10-14T09:01:00.000Z",
+      "detail": "Create maintenance work request"
+    },
+    {
+      "step": "SIMULATED_REVIEW",
+      "eventId": "syn-industry-rail_transport-case-01-review",
+      "recordedAt": "2026-10-14T09:02:00.000Z",
+      "detail": "Depot maintenance approval; no track actuation"
+    },
+    {
+      "step": "SIMULATED_TARGET_STATUS",
+      "eventId": "syn-industry-rail_transport-case-01-status",
+      "recordedAt": "2026-10-14T09:03:00.000Z",
+      "detail": "Illustrative CMMS work-request state"
+    }
+  ],
+  "reports": [],
+  "dataOrigin": "SYNTHETIC_SIMULATION_NOT_HAIEC_EVALUATION"
+}

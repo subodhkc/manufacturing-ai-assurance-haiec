@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "POLICY_AUTHORIZED",
+  "producerId": "lab-sys-340-business-approval",
+  "principalId": "synthetic-agent/SYS-340",
+  "operationScope": [
+    "qms.quality_disposition.write"
+  ],
+  "targetScope": [
+    "LOT-2026-4508"
+  ],
+  "effectiveFrom": "2026-10-14T09:09:00.000Z",
+  "effectiveTo": "2026-10-14T09:20:00.000Z",
+  "sourceId": "lab-sys-340-business-approval",
+  "aiSystemId": "SYS-340",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-340-evidence_degraded",
+  "sourceEventTime": "2026-10-14T09:10:00.800Z",
+  "receivedTime": "2026-10-14T09:10:01.100Z",
+  "approvedPolicyId": "LAB-CANDIDATE-v3.1-SYS-340",
+  "approverRef": "synthetic-quality-manager",
+  "completeScope": false,
+  "valid": true,
+  "effective": false,
+  "authorizedActors": [
+    "synthetic-agent/SYS-340"
+  ],
+  "policyDigest": "sha256:25cc8c79ecb389523155c7caa45ae87fcd537e8c66ecd0e68b28832649dce8e1",
+  "approvalStatus": "SIMULATED_APPROVAL_CANDIDATE_NOT_HAIEC_APPROVED",
+  "sourceCustody": "FICTIONAL_BUSINESS_APPROVAL",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

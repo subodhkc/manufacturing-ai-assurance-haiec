@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-rejected-attempt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated",
+  "actor": "synthetic-agent/SYS-FC1",
+  "attemptId": "txn-syn-mfg-v3-sys-fc1-remediated-blocked",
+  "attemptedOperation": "aps.schedule.commit",
+  "attemptedResource": "MPS-WK43",
+  "approvedResource": "MPS-WK42",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-FC1",
+  "policyDigest": "sha256:39c3ccf5298b9c8aa58329378c64502319e5b51b128ce4414046e04cf2e0d9b4",
+  "eventTime": "2026-10-14T10:30:01.600Z",
+  "decision": "SIMULATED_DENY",
+  "gatewayDispatchMade": false,
+  "noCustomerActuation": true
+}

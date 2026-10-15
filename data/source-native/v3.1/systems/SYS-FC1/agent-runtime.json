@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "actorPrincipal": "synthetic-agent/SYS-FC1",
+  "agentDefinitionIds": [
+    "SYS-FC1-AGENT-1",
+    "SYS-FC1-AGENT-2"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-FC1",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:e02976f337d1155e3c9265c60553bb9d6c9badc12679e37cc09cf442b623d014",
+  "toolName": "propose_master_schedule",
+  "operation": "aps.schedule.commit",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": {
+    "parentAgentId": "SYS-FC1-AGENT-1",
+    "childAgentId": "SYS-FC1-AGENT-2",
+    "parentAllowed": [
+      "READ",
+      "RECOMMEND",
+      "DRAFT"
+    ],
+    "childAttempted": [
+      "COMMIT",
+      "SCHEDULE"
+    ],
+    "delegationGrant": "NOT_EVIDENCED"
+  }
+}

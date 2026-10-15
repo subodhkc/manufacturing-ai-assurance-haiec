@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "manufacturing-domain-case-context-v3.1",
+  "aiSystemId": "SYS-340",
+  "synthetic": true,
+  "domain": "CASTING_VISION",
+  "operation": "qms.quality_disposition.write",
+  "siteId": "PLANT-A",
+  "workflowId": "WF-QUALITY",
+  "agentIds": [
+    "SYS-340-AGENT-1",
+    "SYS-340-AGENT-2"
+  ],
+  "tool": "quality_rework_case",
+  "authorizedTarget": "LOT-2026-4508",
+  "divertedTarget": "LOT-2026-4509",
+  "consequence": {
+    "property": "qualityDisposition",
+    "prior": "PENDING_INSPECTION",
+    "proposed": "QUARANTINED",
+    "unit": "part",
+    "quantity": 20
+  },
+  "thresholds": {
+    "defectScore": 0.55
+  },
+  "sourceContext": {
+    "camera": "CAM-AL3-2",
+    "model": "vision-casting-syn-r2",
+    "part": "CYL-HEAD",
+    "partRevision": "REV-C",
+    "recipe": "VISION-LIGHT-A",
+    "lightingChange": "LIGHT-B",
+    "independentLabelsPresent": true
+  },
+  "upstreamCode": {
+    "path": "data/source-native/v3/systems/SYS-340/code/agent-handler.js",
+    "digest": "sha256:ac8c9befe8e94b4eb727b244f785269a12be8fd6abaa1fba0825a4198b50eb34"
+  },
+  "upstreamOpenApi": {
+    "path": "data/source-native/v3/systems/SYS-340/code/openapi.json",
+    "digest": "sha256:a0d685aa246c3427d0ff3c2e80627ce8057a3b998892149d99b4affabd002d1a"
+  },
+  "assessed": false
+}

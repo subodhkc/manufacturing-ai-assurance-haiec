@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-rejected-attempt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-340",
+  "scenarioRunId": "syn-mfg-v3-sys-340-remediated",
+  "actor": "synthetic-agent/SYS-340",
+  "attemptId": "txn-syn-mfg-v3-sys-340-remediated-blocked",
+  "attemptedOperation": "qms.quality_disposition.write",
+  "attemptedResource": "LOT-2026-4509",
+  "approvedResource": "LOT-2026-4508",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-340",
+  "policyDigest": "sha256:25cc8c79ecb389523155c7caa45ae87fcd537e8c66ecd0e68b28832649dce8e1",
+  "eventTime": "2026-10-14T09:30:01.600Z",
+  "decision": "SIMULATED_DENY",
+  "gatewayDispatchMade": false,
+  "noCustomerActuation": true
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-DYN412/WRONG_TARGET/case.json",
+  "upstreamCaseDigest": "sha256:76ed296865fb13dedb82ccaa1c8837c3308829b48d959290acfe22004abc974d",
+  "caseId": "SYS-DYN412-WRONG_TARGET",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-wrong_target",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioState": "WRONG_TARGET",
+  "operation": "test_controller.setpoint.write",
+  "approvedTarget": "TEST-412/authorized-param-1",
+  "dispatchedTarget": "TEST-412/undelegated-param-4",
+  "nativeProfile": "DEFERRED_CONTROLLER_NATIVE_EFFECT",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-DYN412/WRONG_TARGET/profiled/business-approval.json",
+    "iam": "cases/SYS-DYN412/WRONG_TARGET/profiled/iam-candidate.json",
+    "request": "cases/SYS-DYN412/WRONG_TARGET/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-DYN412/WRONG_TARGET/profiled/gateway-dispatch.json",
+    "commit": null,
+    "readback": null,
+    "continuity": "cases/SYS-DYN412/WRONG_TARGET/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-DYN412/WRONG_TARGET/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-DYN412/WRONG_TARGET/supplemental/domain-context.json"
+  },
+  "remediation": null,
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

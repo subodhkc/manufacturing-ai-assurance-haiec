@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "POLICY_AUTHORIZED",
+  "producerId": "lab-sys-fc1-business-approval",
+  "principalId": "synthetic-agent/SYS-FC1",
+  "operationScope": [
+    "aps.schedule.commit"
+  ],
+  "targetScope": [
+    "MPS-WK42"
+  ],
+  "effectiveFrom": "2026-10-14T10:09:00.000Z",
+  "effectiveTo": "2026-10-14T10:20:00.000Z",
+  "sourceId": "lab-sys-fc1-business-approval",
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-evidence_degraded",
+  "sourceEventTime": "2026-10-14T10:10:00.800Z",
+  "receivedTime": "2026-10-14T10:10:01.100Z",
+  "approvedPolicyId": "LAB-CANDIDATE-v3.1-SYS-FC1",
+  "approverRef": "synthetic-demand-planning-manager",
+  "completeScope": false,
+  "valid": true,
+  "effective": false,
+  "authorizedActors": [
+    "synthetic-agent/SYS-FC1"
+  ],
+  "policyDigest": "sha256:39c3ccf5298b9c8aa58329378c64502319e5b51b128ce4414046e04cf2e0d9b4",
+  "approvalStatus": "SIMULATED_APPROVAL_CANDIDATE_NOT_HAIEC_APPROVED",
+  "sourceCustody": "FICTIONAL_BUSINESS_APPROVAL",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

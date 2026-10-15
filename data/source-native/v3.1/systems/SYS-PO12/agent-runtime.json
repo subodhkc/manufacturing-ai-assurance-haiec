@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "actorPrincipal": "synthetic-agent/SYS-PO12",
+  "agentDefinitionIds": [
+    "SYS-PO12-AGENT-1",
+    "SYS-PO12-AGENT-2",
+    "SYS-PO12-AGENT-3"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-PO12",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:e9590400a4c4e11644a59d7a5a556097dd8f05882d268daaea709f67f65644a2",
+  "toolName": "create_po",
+  "operation": "erp.purchase_order.create",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

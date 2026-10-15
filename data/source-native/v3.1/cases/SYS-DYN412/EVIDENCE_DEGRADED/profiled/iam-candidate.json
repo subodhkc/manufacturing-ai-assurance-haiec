@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "EFFECTIVELY_GRANTED",
+  "producerId": "lab-sys-dyn412-iam-candidate",
+  "principalId": "synthetic-agent/SYS-DYN412",
+  "operationScope": [
+    "test_controller.setpoint.write"
+  ],
+  "targetScope": [
+    "TEST-412/authorized-param-1",
+    "TEST-412/undelegated-param-4"
+  ],
+  "effectiveFrom": "2026-10-14T15:09:00.000Z",
+  "effectiveTo": "2026-10-14T15:20:00.000Z",
+  "sourceId": "lab-sys-dyn412-iam-candidate",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-evidence_degraded",
+  "sourceEventTime": "2026-10-14T15:10:00.900Z",
+  "receivedTime": "2026-10-14T15:10:01.200Z",
+  "effective": false,
+  "completeScope": false,
+  "status": "CANDIDATE_POLICY_NOT_VERIFIED",
+  "missingProviderLayers": [
+    "PERMISSION_BOUNDARY",
+    "SCP",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY"
+  ],
+  "sourceCustody": "FAKE_IAM_POLICY_SOURCE",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

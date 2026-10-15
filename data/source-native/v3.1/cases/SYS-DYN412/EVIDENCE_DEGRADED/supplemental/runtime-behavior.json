@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-evidence_degraded",
+  "operation": "test_controller.setpoint.write",
+  "observedAt": "2026-10-14T15:10:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.0",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 2900,
+    "inferenceUsd": 0.026
+  },
+  "toolCall": {
+    "tool": "propose_setpoint",
+    "operation": "test_controller.setpoint.write",
+    "approvedTarget": "TEST-412/authorized-param-1",
+    "dispatchedTarget": "TEST-412/authorized-param-1",
+    "latencyMs": 330,
+    "retries": 4,
+    "observedAt": "2026-10-14T15:10:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "TEST-412/authorized-param-1"
+    ],
+    "firstSeenAlternativeTarget": null
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}

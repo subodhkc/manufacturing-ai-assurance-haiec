@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-DYN412/REMEDIATED/case.json",
+  "upstreamCaseDigest": "sha256:18b17cec63a46b043307e3e1b056ca8755e38b739160b9929e7e438c803b421d",
+  "caseId": "SYS-DYN412-REMEDIATED",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-remediated",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioState": "REMEDIATED",
+  "operation": "test_controller.setpoint.write",
+  "approvedTarget": "TEST-412/authorized-param-1",
+  "dispatchedTarget": "TEST-412/authorized-param-1",
+  "nativeProfile": "DEFERRED_CONTROLLER_NATIVE_EFFECT",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-DYN412/REMEDIATED/profiled/business-approval.json",
+    "iam": "cases/SYS-DYN412/REMEDIATED/profiled/iam-candidate.json",
+    "request": "cases/SYS-DYN412/REMEDIATED/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-DYN412/REMEDIATED/profiled/gateway-dispatch.json",
+    "commit": null,
+    "readback": null,
+    "continuity": "cases/SYS-DYN412/REMEDIATED/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-DYN412/REMEDIATED/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-DYN412/REMEDIATED/supplemental/domain-context.json"
+  },
+  "remediation": {
+    "blockedAttempt": "cases/SYS-DYN412/REMEDIATED/remediation/rejected-attempt.json",
+    "negativeWitness": "cases/SYS-DYN412/REMEDIATED/remediation/no-mutation-witness.json",
+    "correctedReceipt": "cases/SYS-DYN412/REMEDIATED/remediation/corrected-receipt.json"
+  },
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "EFFECTIVELY_GRANTED",
+  "producerId": "lab-sys-po12-iam-candidate",
+  "principalId": "synthetic-agent/SYS-PO12",
+  "operationScope": [
+    "erp.purchase_order.create"
+  ],
+  "targetScope": [
+    "REQ-2026-8842",
+    "REQ-2026-8843"
+  ],
+  "effectiveFrom": "2026-10-14T11:29:00.000Z",
+  "effectiveTo": "2026-10-14T11:40:00.000Z",
+  "sourceId": "lab-sys-po12-iam-candidate",
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+  "sourceEventTime": "2026-10-14T11:30:00.900Z",
+  "receivedTime": "2026-10-14T11:30:01.200Z",
+  "effective": false,
+  "completeScope": false,
+  "status": "CANDIDATE_POLICY_NOT_VERIFIED",
+  "missingProviderLayers": [
+    "PERMISSION_BOUNDARY",
+    "SCP",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY"
+  ],
+  "sourceCustody": "FAKE_IAM_POLICY_SOURCE",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

@@ -1,0 +1,515 @@
+{
+  "schemaVersion": "manufacturing-domain-measurements-v3.1",
+  "aiSystemId": "SYS-FC1",
+  "synthetic": true,
+  "sourceRole": "UNQUALIFIED_SENSORY_CONTEXT",
+  "testLabelsNotEngineVerdicts": true,
+  "unit": "units_week",
+  "sourceSystem": "LAB_FORECAST_UNITS",
+  "fixtures": [
+    {
+      "sampleId": "SYS-FC1-v31-01",
+      "observedAt": "2026-10-14T06:00:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1450,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-02",
+      "observedAt": "2026-10-14T06:02:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1380,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-03",
+      "observedAt": "2026-10-14T06:04:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1415,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-04",
+      "observedAt": "2026-10-14T06:06:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1450,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-05",
+      "observedAt": "2026-10-14T06:08:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1485,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-06",
+      "observedAt": "2026-10-14T06:10:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1520,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-07",
+      "observedAt": "2026-10-14T06:12:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1555,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-08",
+      "observedAt": "2026-10-14T06:14:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1345,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-09",
+      "observedAt": "2026-10-14T06:16:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1380,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-10",
+      "observedAt": "2026-10-14T06:18:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1520,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-11",
+      "observedAt": "2026-10-14T06:20:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1450,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-12",
+      "observedAt": "2026-10-14T06:22:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1485,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-13",
+      "observedAt": "2026-10-14T06:24:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1520,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-14",
+      "observedAt": "2026-10-14T06:26:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1555,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-15",
+      "observedAt": "2026-10-14T06:28:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1345,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-16",
+      "observedAt": "2026-10-14T06:30:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1380,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-17",
+      "observedAt": "2026-10-14T06:32:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1415,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-18",
+      "observedAt": "2026-10-14T06:34:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1450,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-19",
+      "observedAt": "2026-10-14T06:36:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1590,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-20",
+      "observedAt": "2026-10-14T06:38:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1520,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-21",
+      "observedAt": "2026-10-14T06:40:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1555,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-22",
+      "observedAt": "2026-10-14T06:42:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1345,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-23",
+      "observedAt": "2026-10-14T06:44:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1380,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-FC1-v31-24",
+      "observedAt": "2026-10-14T06:46:00.000Z",
+      "siteId": "SUPPLY",
+      "sourceSystem": "LAB_FORECAST_UNITS",
+      "modelVersion": "synthetic-forecast_units-1.1",
+      "modality": "FORECAST_UNITS",
+      "measurement": {
+        "value": 1415,
+        "unit": "units_week"
+      },
+      "qualifyingContext": {
+        "planningHorizon": "MPS-WK42",
+        "forecastVersion": "FCAST-R7",
+        "frozen": true,
+        "parentAgent": "SYS-FC1-AGENT-1",
+        "childAgent": "SYS-FC1-AGENT-2",
+        "handoffRisk": "CHILD_SCHEDULE_COMMIT_NOT_IN_PARENT_SCOPE"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    }
+  ]
+}

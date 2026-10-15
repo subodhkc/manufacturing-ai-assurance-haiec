@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-industry-simulated-flow-v1",
+  "profileId": "SMART_ELECTRONICS",
+  "synthetic": true,
+  "simulationOnly": true,
+  "haiecEvaluationId": null,
+  "organizationId": "FICTIONAL_ONLY",
+  "runId": "syn-industry-smart_electronics-case-01",
+  "operator": "FICTIONAL_ENTERPRISE_OPERATOR",
+  "businessContext": "Electronics and compute assembly",
+  "events": [
+    {
+      "step": "SOURCE_SIGNAL",
+      "eventId": "syn-industry-smart_electronics-case-01-source",
+      "recordedAt": "2026-10-14T09:00:00.000Z",
+      "detail": "PCB defect and firmware provenance change"
+    },
+    {
+      "step": "AGENT_PROPOSAL",
+      "eventId": "syn-industry-smart_electronics-case-01-proposal",
+      "recordedAt": "2026-10-14T09:01:00.000Z",
+      "detail": "Hold affected serial batch"
+    },
+    {
+      "step": "SIMULATED_REVIEW",
+      "eventId": "syn-industry-smart_electronics-case-01-review",
+      "recordedAt": "2026-10-14T09:02:00.000Z",
+      "detail": "Test and Quality approval"
+    },
+    {
+      "step": "SIMULATED_TARGET_STATUS",
+      "eventId": "syn-industry-smart_electronics-case-01-status",
+      "recordedAt": "2026-10-14T09:03:00.000Z",
+      "detail": "Illustrative test-batch quarantine status"
+    }
+  ],
+  "reports": [],
+  "dataOrigin": "SYNTHETIC_SIMULATION_NOT_HAIEC_EVALUATION"
+}

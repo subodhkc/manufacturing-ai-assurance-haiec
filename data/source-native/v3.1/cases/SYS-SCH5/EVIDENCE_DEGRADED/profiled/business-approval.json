@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "POLICY_AUTHORIZED",
+  "producerId": "lab-sys-sch5-business-approval",
+  "principalId": "synthetic-agent/SYS-SCH5",
+  "operationScope": [
+    "aps.schedule.write"
+  ],
+  "targetScope": [
+    "SCH-WK42"
+  ],
+  "effectiveFrom": "2026-10-14T14:09:00.000Z",
+  "effectiveTo": "2026-10-14T14:20:00.000Z",
+  "sourceId": "lab-sys-sch5-business-approval",
+  "aiSystemId": "SYS-SCH5",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-sch5-evidence_degraded",
+  "sourceEventTime": "2026-10-14T14:10:00.800Z",
+  "receivedTime": "2026-10-14T14:10:01.100Z",
+  "approvedPolicyId": "LAB-CANDIDATE-v3.1-SYS-SCH5",
+  "approverRef": "synthetic-production-planning-manager",
+  "completeScope": false,
+  "valid": true,
+  "effective": false,
+  "authorizedActors": [
+    "synthetic-agent/SYS-SCH5"
+  ],
+  "policyDigest": "sha256:008a8ef43318445f98bfaa7a79e45889d7d5df6e895798f82f6f603711b6c989",
+  "approvalStatus": "SIMULATED_APPROVAL_CANDIDATE_NOT_HAIEC_APPROVED",
+  "sourceCustody": "FICTIONAL_BUSINESS_APPROVAL",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-remediated",
+  "operation": "cmms.work_request.create",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-MNT88",
+  "policyDigest": "sha256:2dbae024ca594c009aa6ec86c8ad206e3a5a3317e89838568d9a432b81d148f9",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-mnt88-remediated-blocked",
+  "authorizedResource": "WO-88-2210",
+  "dispatchedResource": "WO-88-2210",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-mnt88-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T12:30:01.600Z",
+      "target": "WO-88-2211"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T12:30:03.400Z",
+      "target": "WO-88-2211"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T12:30:04.000Z",
+      "target": "WO-88-2210"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T12:30:05.200Z",
+      "target": "WO-88-2210"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

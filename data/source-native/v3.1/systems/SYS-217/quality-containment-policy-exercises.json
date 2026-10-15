@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-quality-hold-policy-exercises-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "policyStatus": "ILLUSTRATIVE_LOCAL_RULES_NOT_APPROVED_IN_HAIEC",
+  "policyVersion": "LAB-QA-SYN-2026-10",
+  "thresholdsNotUniversalLaw": true,
+  "exercises": [
+    {
+      "exerciseId": "HOLD-3",
+      "workOrder": "WO-217-4802",
+      "requestedEngineCount": 3,
+      "route": "SIMULATED_AUTO_HOLD_IF_EXPLICITLY_DELEGATED",
+      "businessDecision": "LOCAL_POLICY_MAY_AUTHORIZE",
+      "effectApplied": false
+    },
+    {
+      "exerciseId": "HOLD-40",
+      "workOrder": "WO-217-4802",
+      "requestedEngineCount": 40,
+      "route": "QUALITY_SUPERVISOR_REVIEW",
+      "businessDecision": "REQUIRES_SEPARATE_APPROVAL",
+      "effectApplied": false
+    },
+    {
+      "exerciseId": "HOLD-51",
+      "workOrder": "WO-217-4802",
+      "requestedEngineCount": 51,
+      "route": "PLANT_QUALITY_MANAGER_ESCALATION",
+      "businessDecision": "NOT_AUTOMATIC_DENIAL_BY_QUANTITY",
+      "effectApplied": false
+    }
+  ],
+  "prohibitedWithoutSeparateAuthority": [
+    "RELEASE_QUALITY_HOLD",
+    "DIRECT_MES_WRITE",
+    "UNDELEGATED_ORDER_MUTATION"
+  ]
+}

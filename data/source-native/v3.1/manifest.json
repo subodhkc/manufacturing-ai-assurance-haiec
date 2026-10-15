@@ -1,0 +1,2179 @@
+{
+  "schemaVersion": "manufacturing-enhanced-evidence-manifest-v3.1",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "synthetic": true,
+  "generatedAt": "2026-10-15T08:00:00.000Z",
+  "upstream": {
+    "world": "manufacturing-source-native-v3",
+    "manifestDigest": "sha256:5441326a520e9eabc8b177b31d88e304427be9dec662e9e6c631f7f8ec0d0fef",
+    "mainCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db"
+  },
+  "systems": 9,
+  "scenarioRuns": 36,
+  "scenarioStates": [
+    "EXPECTED_BASELINE",
+    "EVIDENCE_DEGRADED",
+    "WRONG_TARGET",
+    "REMEDIATED"
+  ],
+  "domainObservations": 216,
+  "negativeInputs": 14,
+  "simulationProfiles": 4,
+  "artifactCount": 430,
+  "entries": [
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:671b4f45602a10dfc570f3e83aaaa1da9abeff08af90089a5b0603f504e27bef",
+      "bytes": 2155
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:42d023f5138be9ee4deddf0a5203b055e509ad49279bddc41aeb39717f79b2ae",
+      "bytes": 1194
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:66cdd4bdc80a63f719796107306006ca4cd83db447c00fc729cad9c3cef8f1fa",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:f03831a2185b274e69559776dd465fc73f648ae5aa4f09a156a692d019310ebe",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:4b4370c0933a03d02f7d52406d80c082811ffbcae3c43ebf0bd5befe7a6e6231",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:e7e6fae59216b8aa2c019a503f34703ba03334c99a1186bae3584bd267864229",
+      "bytes": 1019
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:20ec16b9b0e33ec1a0abcc766c5a47bcd4bb5a150a4325f48b1ba8f82e744109",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:1e8625f0940599175dd9f4bb6ee67c1e58906270c300738aa3151e5ca89b7a40",
+      "bytes": 1214
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:a525331acda608fbb162a590f8b33686b3a96946f78bab3da59ac5517b7fd52b",
+      "bytes": 1044
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:aace9c9b6390a3e6672165a78b828291836a49cc58513c3aa94a203c22e90572",
+      "bytes": 2214
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:81178b18e86402c7b9691ce9e1631da39f7fffc15f0bc58734c7796be5302fc2",
+      "bytes": 1194
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:e9af1283bb5b70428dc920574e18d1ac6ce0d0da39bee4b113736f19bc5e1c67",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:06a2d0c6a111e2de389b3683b77188b4840791cde2052be02b63604b1e3e4fd2",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:29ed4ef9c13f89ea154751c54780244af17f260fb357ca2eab8e8834a5f21b6a",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:fe8d91cf66b8758bd962c52efe35137b3cef00b21b9f61592c8467f9c8c12b44",
+      "bytes": 1019
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:ad5a3878d41af5e62efc968fcbaff2f6c6af706c9635d5ba3e151ba75d0e804e",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:a82059572759d88b87829f4d0822c4f16964fadc5ec4ea8e4d3e62809e145912",
+      "bytes": 1045
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:df3d714eb7aba9b3a2d062d49b3f42e9bf3867720f4a6459f68a13e9e59883a4",
+      "bytes": 1215
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:1e25e60fd2b70f2a5c924782c248cb09527e5fdc8c3c9fe17d911792bed473f5",
+      "bytes": 1044
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/index.json",
+      "sha256": "sha256:2edc6843d7f5af460425c2bd74b4f488833d69ea405f5d5fdac26849455c6516",
+      "bytes": 2375
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:8f64bdd677c7e5ea4bfdb8e998fbaefdeea201fa67591a23742ae80c72976abf",
+      "bytes": 1187
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:b85cbe6bc6751f93b75775c848591b1d35eb5585d515482dd11d654fdf4e6105",
+      "bytes": 859
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:323ecf763f4133083565136e81d0e99ba60c6c838792b96eb968e9a00225246f",
+      "bytes": 1012
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:787ca0a807fd7c8b85227ffe138fdbadd2199f85505d604fa5262c46e6fc4fb7",
+      "bytes": 1009
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:ac6cb781ddb46a214458e0d580c3be3ae7399236625b51f2e37b902414a1c7c8",
+      "bytes": 1012
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:22208d3812c63583a3cb32eab7b1928c6e5a348759051584d31aa45be7977bde",
+      "bytes": 1022
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:08b7d67053d48fa47be27b80403ed1b70ec2a587cf2f158417330488fe1ef3fe",
+      "bytes": 1017
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:cbb708b5c4f1dfaa3100b57ffe2975e174c5a6005b56c52de44ef6d632c35295",
+      "bytes": 1212
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:e4d11083313393d26d7b20d54c4d80bfa8348bd84b72e28bc29a37300f2ae2cd",
+      "bytes": 589
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:42925e1cbf69c93466d1981805490370139fc4a6a38912d6a622896297d4a67c",
+      "bytes": 660
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:496eeb43b95944fc33d288a7a22ccf71c751a7b59e881a8714f4439435bca0c0",
+      "bytes": 1194
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:aa3f0ff566b08423b9b271b25193e8a453d7940ae7acc873f116de3726e653aa",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/index.json",
+      "sha256": "sha256:e4f22a17e1c26c67293de192f3278b9f24cf64c598e5a71b838d434372a5aa42",
+      "bytes": 2144
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:ecb3ecf040cdbb7584e54c78974b25a6681c90ab56161ca1fdd54d47b616ef9d",
+      "bytes": 1189
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:cd0f019764cf46a3390b80610c32fb678efc5dedd6103d2391332374588b97f1",
+      "bytes": 861
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:2291bddceddc2d3a08f23527080aecaca753e8c769c8383d0261e16baa046324",
+      "bytes": 1018
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:9d0ff9fc8b371df6ced3421de11e4f8042e415f9d7389d977464391658853fe0",
+      "bytes": 1015
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:b8c28ea69baee4fdf77b3a356f3bece022c5d8b1426dbe0d5c56e60f552b14e3",
+      "bytes": 1014
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:39290a1857e45501e66ab67034f77f887799885105a6ade50dbcddf99e6d0566",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:bac0af5aa62d5b4cf5c454868ccbf677b4a9c42f28cf6809705d5f2f85aea745",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:ded3329dfae924e8c7adb1540289319cd7959c9c23e32eb4f918893189ceba00",
+      "bytes": 1200
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:fa567f7cc135e5b97e83628502fe41fed338a73dfe8799a4cc1559e45a8c5c75",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:de58571f48ec0de9bdb5066bdd529e4079b3a7f5d48db79f0ba666c4f62fcb55",
+      "bytes": 2167
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:91ac24d8c1fbe537ffbcfcb2fb6313ad2c29e130abf94bead7b0cac96e6e85cc",
+      "bytes": 1198
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:8d28d0a25500458a0ff54b1d219be2281b3bc54cc587356c451431ff001af007",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:eb36927aa1b3c0106fda92bc80059eb02567ca7662017aad863e2a45f9c61c3c",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:6c31f318d8d8411f084f02ca9b2073ceb15c46bba85c1a426dcb26d4cd80e8a0",
+      "bytes": 1040
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:30888be3e9e8974c45d323db891661ccea36653d1ad1d95612d901a28eaf68d5",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:6844785ade35076fd67cee8d301f7ed3f45a1f69afff4736d4226a2fcd0ad9d8",
+      "bytes": 1082
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:f81d1b7af0c61b2f93e89cbabe361ab8f53b343f750d06e2de75263632175c6e",
+      "bytes": 1097
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:206592560db508aa793bded8ee93c88f70933588a5654046f30673d7a722d82d",
+      "bytes": 1065
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:c86460094257ac1b5421bb6da01db6576677b65a02a08e282d038f5b626b784f",
+      "bytes": 2226
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:ac16775a04976b41c1d3cbfaae2341112c82cd11bd46ccc12534ce949d9fc688",
+      "bytes": 1198
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:43d29e7b8e78bdd59489e43c09165310be88aa80c0aa7ed86d664defeb025f8c",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:11045231f684dafd2d1d71931c31eb9ed56ab6f24696c37902ffa7114778acf5",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:111ab87be206127ba1e02385483d5b1a970c6d1dd0423daa464e8899a7886411",
+      "bytes": 1040
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:2c4fa8c62bc61538750c44d6c09e3e3f5317265c00aaf3a5115f6383cbd82fa5",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:fc75e9412c4f26e901598ab0bae1294f6aa018da8cdad5e037779f0f4de7254d",
+      "bytes": 1082
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:922e90e85a975ce7364ded2c05219129c67b4286b23a2c23dd1df6034e680560",
+      "bytes": 1077
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:e20dd276822ce6b25d859fcaa8058596b8658a9c6da39d028c2368708eb3dcea",
+      "bytes": 1098
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:20bd1058452e5a493b30c75c0ed522c762ef10cff6f349f8364df174ed4c56d1",
+      "bytes": 1065
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/index.json",
+      "sha256": "sha256:85242eb1784ef0ae8289bf8341eb7e35fb01cf098cfeb689016371782dccccfd",
+      "bytes": 2387
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:678f6a057a5a24b8d976769b092851bad4feca25e0d85bf7af0c95addd7d30d0",
+      "bytes": 1191
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:a1d053f93ab21a9c10e5f48230124723067f95541f581e0e0edf07dcba35f449",
+      "bytes": 859
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:2a5b12f89daf35e17cf78db6aa0e256fbcc775fc7ab4a7edaab6cd7a95bfa5be",
+      "bytes": 1022
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:b9b550845eb25b4ac63d1548b84fbb482a19e6522f944615fc71833b9b2ec2c5",
+      "bytes": 1019
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:403b4b7340a5a85d774ffe6cdb818e1f9e0f2df0c3eca1c176fab68fee9d88ee",
+      "bytes": 1024
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:4849f21f0acc4237266dc7c869ab414814641438da4b35d5077d45d318c236ff",
+      "bytes": 1054
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:e2bb7d964ab5aec8ff52552fa8e37b6ba7ac65fe5b47b8e29c2c40cdc2c2b286",
+      "bytes": 1049
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:e832ae5db5c7e8b3aa08f5a440b4e9ab24fed073ed02e3cff14f965b916f0f61",
+      "bytes": 1232
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:500d99a26add6b3f1757f1ea0a729083c136f0d25f0673fe9844f1b9c19a9cd9",
+      "bytes": 621
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:a4f7339b175f7e83c4df2823977c86f01734391a1d41b7ac87cdbc2f57bb20a1",
+      "bytes": 672
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:8d4ed957b13baaf4740f44f88328ac8459836fde1864c8d3bdbfd1b156395ffb",
+      "bytes": 1077
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:bb4794ebc731f09029ec9938bc24fcb2ff6592324ef37b254abddea2357716ba",
+      "bytes": 1051
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/index.json",
+      "sha256": "sha256:2bff33df9356f4c2955a96eb15ac13eb747a451e5f2ede5b6680b21e72ec90e0",
+      "bytes": 2156
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:335c51ce7604bf28b123bc57b5080b0b2f0392720cb71a2038456a9f1a2c3650",
+      "bytes": 1193
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:6a0ec1b9d64611e7a2a17dc0a95a6c5d1176dcadb7ff4653e887ba61583e4210",
+      "bytes": 861
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:bb59083455f605db196cfe01a4ba636565b46bf6ec98a973026f0da82f530abb",
+      "bytes": 1028
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:86e79a35ced52500670599badadd1a7b466203a1aac5176343ab00c1b54aa298",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:27ffcddb0dd04e5d981515c7f7f604cc99c261c91a9313d3b8f666facce9dca4",
+      "bytes": 1026
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:74aa2545d1fabdb328c9d0ec25bdedebb71570480c3c6bff934f7a9e01b8f0e9",
+      "bytes": 1062
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:9e347b5abce594d84476537798238a4bf3f947af9107bfc305fff1f77d6a5811",
+      "bytes": 1057
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:f86ee451a3866dd1fcd1f025b1f973bf9b45030996a1284851568bfb41d8bfc6",
+      "bytes": 1083
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:2eeca2108ca13b9899f7c6fe7c124e4abb248a8c3dae6d6175764bc48623ce91",
+      "bytes": 1066
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:7ef4d80386a5a91a11c0c998a8c8daf19d6138523ee02a946088d1163dce1225",
+      "bytes": 2178
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:839f008c762abe48f65e6e032d135092ff9212bb28ff04324bbef303bf3eaace",
+      "bytes": 1243
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:9a8a9d33062d85ff2c2b17db7f070563107af4774e990776c94c6244320d4960",
+      "bytes": 881
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:bdc9d8c445e5bef1d478ea27849fc037dbd1c839d5ebd3b8eab42bcdb7156abc",
+      "bytes": 1082
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:3ac0015bb2fe5b5e200f6cba3341c1cbe5c253cb27d11fd655a02b754f90922f",
+      "bytes": 1079
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:663cbc806af1061f5837bdd555324bc7d26036331340e2083d79a09fd3236c67",
+      "bytes": 1076
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:44a4e265a8413e3f5a06dd4a493ce11b392509ee045250fe39bfd7b0b9b2ee32",
+      "bytes": 1218
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:26aace9d54489065dfc53ca0af69fe6db974c893ddebf9698e847c1021b80e64",
+      "bytes": 1115
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:381df9d6341369b1c249260dfa6f4792108f1bc4bef9a581726b63c4f5b3c05e",
+      "bytes": 2178
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:2ca0d2002fd0e0b1a2b9c8bccd6e77a8df2531afb0e3c7470856ae37ba5cf9fb",
+      "bytes": 1243
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:ea0686ff677b30ae5878dab3c03537e3d1411312fbd6a9c0925a6ffba4f93f79",
+      "bytes": 881
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:f1a139c15b2a84c5dcd86cb7a7b4c8c589969ac49b61fb16cd89e683f70c9612",
+      "bytes": 1082
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:b212d633bb1aa243c8c24cc7eab371e624e7ea0d8497507474a43d6287897ccb",
+      "bytes": 1079
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:683c609fc7c659c23a1374c4840d0d865549627a403d1273ce7583d9f849e305",
+      "bytes": 1076
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:c8f641d4036e84580b97aa3e6eb49f7f498d0f380937b7a7d832be46c866ae0a",
+      "bytes": 1219
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:1b86cf9cbbb77c37524f65e2764e246b70355ed6fca354407d2b3c099dace22f",
+      "bytes": 1115
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/index.json",
+      "sha256": "sha256:4062ea56d653f004a62e559463cd133084362854a65d92609663d9e3eacb45bd",
+      "bytes": 2362
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:ea2299dd217977ed02f120b060b27874377aa9d5edcff7dad301923ca6be9195",
+      "bytes": 1236
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:25a954d043bc5ebc7feefd371143bbcd2f018c618e6c7a4899d8814b2463f45c",
+      "bytes": 874
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:6def2e35f6fa1cf096e46f3c3033eff6b339c010443819b79e87c751787b8fd5",
+      "bytes": 1061
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:32a1fe6c4a40edd3db2c09a5512a8dcd23a3d4b00c2ce2187068193aea5d1815",
+      "bytes": 1058
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:fc26dd607c451bbf00c47a562a16187886dc391982572df4a27882c0796ed5fd",
+      "bytes": 1069
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:d3ec4a0bc85fbaa66a9b7442bd8bf467a21303c1e1fc1c10c1ea04424e3880da",
+      "bytes": 1337
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:165292f32a6a9ee1dddc6f158dd0ea66316abf6b2ab534803e9de44fbc46e6b9",
+      "bytes": 612
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:73e876d043b687615b3da50d31360a1af5c2e10da2b30b931ce130e6c33665ba",
+      "bytes": 717
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:bd17d22740061fd082e27647ba9fe0691fe6cb4e4e291326c9e4fe625474b31e",
+      "bytes": 1198
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:227f03d24d45a09d2a1ba578e423affbd1bca0ffc2d4dfed33861e4915470080",
+      "bytes": 1101
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/index.json",
+      "sha256": "sha256:dde6904830bb8f497142488cca0a4602c9adc64f8a15e1b5b1ddb6a83e52489b",
+      "bytes": 2119
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:0d245b1f83f6cf86f57bf3ec3c9f37ea1e5f5279f5c54d8cd22e4f7e09485449",
+      "bytes": 1238
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:b954efadbe21aac29d6a88f1b6bfbd78327308aae3602d1e2cae9a163704bcac",
+      "bytes": 876
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:71ec9ab50c0a2ff4c842f8ab069d516eddf9df938f4695bb6af4cd531507aa75",
+      "bytes": 1068
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:432a17cae869177678588c71f59765562d2abfbc002043a2e681743dc908f7e2",
+      "bytes": 1064
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:6ece6c5ec777ca67a1a25215f0ce693aa927cd6699e54d583568a708ea845bef",
+      "bytes": 1071
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:2138f8d9f2115fe07f4e7622f0513d848e2a858b8a8f5b0219c1d1251934ed01",
+      "bytes": 1205
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:e1febe7c3942fdbb0cfb4c5df44a58221487fb463466ff5cf97de4ef67ceb78a",
+      "bytes": 1132
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:96e7087342cec0af2ae954d123039477bd1f43217b3fa9b360a8434c5e79ec1f",
+      "bytes": 2153
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:e6f9bbd52e0359c6db42f0ae410312e73cdabab22f3a0b8fbf36625f9738bac0",
+      "bytes": 1190
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:7465bbcb1940aaea9b74fc12753e74857783318ac318e5b61b5f7ca97967b591",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:3bfee1afefd886075fadb4055de6886ac42811c1d5674716e1725c642d258ccb",
+      "bytes": 1027
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:696d367bcc2d55b73f2393f547e9b774c99718c262f2aa9b09abaa30f6ebf945",
+      "bytes": 1024
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:63240ef27c062f88781476f10aab5f5f158786838a963962d3aa5a052d8f1dda",
+      "bytes": 1010
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:062da527aaa6e44f7acc334e460623014bf99fe8aec5f479902aa71c5d3cdbb6",
+      "bytes": 1064
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:80f0c686f4924161bb47764f6a46f624a8e4113d5143c04062cc115bcdde582f",
+      "bytes": 953
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:f92275be1ba7f41bee0041aa6c8427ff7f331b99fbbf4153071005e63a4a3f4f",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:c2cd773a5fb91a7daed9fdf38e14e355ad904ba77e5eed4469cbaa7c247d5778",
+      "bytes": 2212
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:5e879beb465366d95fe628d1e533d2f179d2d4720c1e1291a8da49f7ac07b479",
+      "bytes": 1190
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:289d0ec1f1bbb2f0551e2a54e193f4d9fdc22c01fe3d175401e0e4f769f122d0",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:7bc74aa18dc4eee07dbacdabef0b0ea1c5be4dbad640b1635f840e81f4a63edc",
+      "bytes": 1027
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:532c01521403969a4ad8839128b7330bc9983de6d0e36f4316b5c43e92a6883c",
+      "bytes": 1024
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:87c9d64cced6c5bf2c8e5cfac7205c8ef00226a9ef47284f8ea456678f75edb2",
+      "bytes": 1010
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:e57f24d27de289419adee4693651a46ef5c7e4beb125935df345094729332493",
+      "bytes": 1064
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:140fc0853114f41f5a50e2090b00f34ef844cfe78f4cf89313a9a2ca25e837ae",
+      "bytes": 1044
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:91aa2781bbeda2e92b84d107949ffe1bb7ffaeb2821bd3462489e9c5e0a734d9",
+      "bytes": 954
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:9b4039665cade19ee57a3c65e0cc6646c8307ea15ba6a9fb98fab996b7939c5d",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/index.json",
+      "sha256": "sha256:633504b3ebafc0fdc477bdbffef4204bff499ff6e3d7068fe885f1c4da12f684",
+      "bytes": 2373
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:ec0704afb430b75fd6a0c46b1acbbfc48502c8c4ad13a061ae06ccb13ca57933",
+      "bytes": 1183
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:c27af4009858094cf7abb875560e910a3afbac76a7adf90dfb53b14e51984e96",
+      "bytes": 859
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:445fcc0b0c1215e3842489d90fcf0ec2fecc45a8f3330cb20aa3f381f6a13412",
+      "bytes": 1006
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:9780ffff83cb04f770676ef4e0b62d9df33acfb91fd06f7cc5cdcc984920f580",
+      "bytes": 1003
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:c0a50257f1c0fb70ed02457bd4175bfa31a617971d5f86209f0a9e3e1c5b59c2",
+      "bytes": 1003
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:03ed86f329add214906ab7ff91d5dd67f35a0f537f3f447a21613d06e852101b",
+      "bytes": 1036
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:a1ed365d9907692bd27638a27022a864325462292f9809a53b67b3b7f07df78a",
+      "bytes": 1016
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:33794d31cef2329b2020b6fc11ac00810639e4b17f92d11325d2d57d92a28997",
+      "bytes": 1191
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:4d65dfba2fb24d613656141f1dea3182cf09574d6c72877e0c30b453032d4780",
+      "bytes": 585
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:56b0f5812bc2da9ebc2060a1a39bc9d38d42a6e1d325f9d3cb0d88638fd8649c",
+      "bytes": 652
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:b9e85675c311b8c90ecae8298d262d341c9eca72fcc7cf12f8648c2f40cfceed",
+      "bytes": 933
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:fc3689fd0456865b93c6b4988419779813727ee1315701d850d71036315cb9e5",
+      "bytes": 1019
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/index.json",
+      "sha256": "sha256:df4076f06b51d9799a7830c8203bd952cafb54dbece5ec9559a48897cfdfc07d",
+      "bytes": 2142
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:cc28133b520b08771358a3282bf5b8a9fe97194e0b177c867cf9d55fa6ac1655",
+      "bytes": 1185
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:b704fb0eb5317d9694ab060e3ef2c401e6c51e3a4f1514828d85674da93d6aab",
+      "bytes": 861
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:96bb19c74122b74bace9754bf0cd76350fab8d76630d7fe3e56d702d01418217",
+      "bytes": 1012
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:5ea010875e282e4af405ad785501650c8ed4a24e15c6075907ef20f5be344111",
+      "bytes": 1009
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:4bbc0b0d0517b9883f58d7af5e6d605c985cba718e7c8640f6a466121e7ae76f",
+      "bytes": 1005
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:ee2d1da56cd362343fdb59c982c05fd057213b4b475bb2c29092188222547beb",
+      "bytes": 1044
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:7dd72bb65b7e5a5ae591fb81319d6fa5adfd32438073fae5138dfe9636a82ba3",
+      "bytes": 1024
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:16b4b37e54df9e01a8f099dfcd3c45b40d771dcb5c48d7b43e2b8790c4116874",
+      "bytes": 939
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:6f1c38e2ecc663b7f6b8fc081aa705976e3e76bd32f55013b7a92d1db01cf234",
+      "bytes": 1029
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:21198c2e2c1d874d3935fc36b4ac4ea0b5d210ab004e415f333f616969a64171",
+      "bytes": 2189
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:67196e4ab0da948111906ccc95460cb9229d901f042a29771cd86916d38b36e9",
+      "bytes": 1211
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:366eb9bba881e475631ace1d059b1d33852ced485fc368b2ee9807639affde2c",
+      "bytes": 876
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:7edafbf97691db0bf430bf6b57e082151f1212042f8df2690a80860e553f2af6",
+      "bytes": 1051
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:96fe1b5a3afd141281d02456ce5a6ff82a13abdf94ebe139a69b7ffe099bcb6e",
+      "bytes": 1048
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:2e84aa43f2d49dc672c240d379d2144499876499b5085481003a12bafb3004fd",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:b5efe2c96f6851fb934b58780250223dfef1632b3e9443a64234fc2075aec9a7",
+      "bytes": 1119
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:58b23d2aac2eafa9a3206f330138782ac79c5cb29a4af46a1fa4f24190f2e684",
+      "bytes": 1110
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:c3590ca2580babfcb7f79d7cb237dba8dc096aeb22a11afd05699f94850ad668",
+      "bytes": 1052
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:eea0cecb9cb276b946ff10d29fa321e050358603c0d7be3058359920647ad588",
+      "bytes": 2250
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:9b5cf2806b178173fcd419867ab493f7b1c8a1841e5e946c79599ac4e9f9cdde",
+      "bytes": 1211
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:ca180fabca74a0dad7fa0520db52daa76eab4452fbd7454f23a70cad5d144c56",
+      "bytes": 876
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:6aa31fd7be4259a85f78c07f2e4c789b3422bc93cee48f3d7f24383bd138a35e",
+      "bytes": 1051
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:464ebf23b0efda8ff3781191ebb3fb06d0d03f35d6fa98212d7d2245aa4dfffb",
+      "bytes": 1048
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:55dcbb9ddfe122dd84c41aa793ba3fbb8f3ac0ec4a600fd6783bf9587fe80304",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:3236b0a4555fd5a88f8a779880153a53764fcfdf177e9b8b22ba9c20e1a7eede",
+      "bytes": 1119
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:59502b0b416653542f1c679c55b1440ac09e12b1f7ebbefec5415417342001fe",
+      "bytes": 1099
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:6d556bacd375c075d32e052b6cf5a8945056dffe27bcc7bf8bf2e660ec198db2",
+      "bytes": 1111
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:8dbfae3fcc33866dca1ac34be9db93cd267c19ab9171b4607225a830e39794bb",
+      "bytes": 1052
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/index.json",
+      "sha256": "sha256:78e71d814926d5485506b22cb12d7ca819aee8aad112a5677601240eb480e4f6",
+      "bytes": 2417
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:0a3ebc75cf36b3c63a70b9adbe84993446178b4506f117b56853e8c6ed39a1a7",
+      "bytes": 1204
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:ea0273d006c1409498c8ebdaa7ecd18589a2b40e38029a2df32296fd6eb1b872",
+      "bytes": 869
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:18c5de3586e6729c0e430eba539b1f9c2b748335a9b40ddac7035b08f3f886a3",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:8b6d759c51a40776b0f41dcf5c3d7c6518f71efe5c4db3a44f93a1e731245269",
+      "bytes": 1027
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:bdcef281264662c9826caaac417baa4c5d9f1c08c2cf3655b6581ae1d9d9abd7",
+      "bytes": 1023
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:505c3d9b8bc02019bd8c4487d44444d8708cf19da81c969be39bf5d1121623c5",
+      "bytes": 1091
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:4376d7dd2eb0c979ea14aee770980b190220b47cf8e35eff814116909f91df46",
+      "bytes": 1071
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:644e87a077299cf801fa827deaacda14ae40c9496fcb80c07939f59cc515e1d6",
+      "bytes": 1221
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:72501758d45a3514aabb21d89ef31208527a5fc67ce41a341f517d5efffe6fa3",
+      "bytes": 610
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:9cdfff545d06ae85b64a0a0902e7c1394794619c90389793b5288b630d03c7d7",
+      "bytes": 671
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:dafcab00a51f4d14640ac4c45328758ed9cb92519ef64e0ce60d783551bdbe5c",
+      "bytes": 1090
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:61addf7618769a5cfd8cecc33e2028b5f5013221cb0c3ec6c138a4a0601fd9e8",
+      "bytes": 1038
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/index.json",
+      "sha256": "sha256:92bac333ed0d48390f4896ec9d1b33e8420b8d30af9629725da306dd3ae9107a",
+      "bytes": 2180
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:5c87331c7c22f791fa5342e5a3dae62eac99e1057f4d64dfe5aadbc0586660c1",
+      "bytes": 1206
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:619b3605aa926a6e255fec9028685c6d00e9165ecd8ae38675567b44fe0d5dc5",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:d7d8120d6b2e6fe19dae3b62b9febb00a6c63d9734d6191a907dc4b4b01ab593",
+      "bytes": 1036
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:79f5eb4dcc9f1ad51a2a14a7d5fdf735762c3ab3993fbcfb3e88820b4f22ba0b",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:280df585ea45b93c382eec80a4dcf8ce02f16b062fec5b028543d76db7102bf1",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:5ebd9530f5c728dc46e83d215216afdc85a13c49e97161d5e3deadf300d1484f",
+      "bytes": 1099
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:717e25c60da8e84aa061d3c81445132c5580e3c908d0850dc65fc0c6a7ca8981",
+      "bytes": 1079
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:72cb85c6d49ec29982fa32333aa76370f7df6fd0a80a4cfc5a6db76f9f81a592",
+      "bytes": 1096
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:5434ccf787f29ee2702ab12907b8a04538932880c2f6c93f64e96e8b47e0e997",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:51aeb0e6d5e0226ebf52dbf63be99b6eb1901ec6a4a116003a48490783f46e4e",
+      "bytes": 2182
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:c36e3bb1e06198b856cfcc86b3d4a2155e8ed9d22e361e011c6b348314ad5045",
+      "bytes": 1204
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:99f1bff8dddcadc98f76b9e8fca8f7cba9235dc84123708eb77a0fc7a48eb7fd",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:361a6bc654115bd99f8cc5fcdeb33a6aec6b77236530424bfd2a37d54d7116db",
+      "bytes": 1046
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:dd840c79faee349f5f6234d31a344819fc0f8364fcbdd270f37d7ffca90fab8e",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:b6b331cc44e19b6b31c7bdba16db1791be6824d379fdb4504f09f10fff5c0fd7",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:2e056419c227df6980cca5c8084d12e415ddfca277ebd1ed034ac550bfafcddd",
+      "bytes": 1093
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:bf0b06c00153fbaedc553b09e6d879c121fc6c617f792538faa76cdb7e7dd2a9",
+      "bytes": 1126
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:d2430e68c3546b6c6fbe674a9290d4afa3528716e0eafd7a302fe21e219a0ffb",
+      "bytes": 1049
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:2224d984c2cc5acee5c6a38e4c2d596d8ad62b534e3914aa889d8e932a76a77e",
+      "bytes": 2242
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:e5a8a983a99420f6dafe25abb6d5f090a78646890e52d40f851c0e8ceb7633a4",
+      "bytes": 1204
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:dbcbcaf26e5b711b9dd43da49008c6df895c3f1d577ad64cdd9bb4d3979fe4c3",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:7a814a78e5aee76a46338b1ede398ecc5eafa5b1e9a52432e763c368b4013cef",
+      "bytes": 1046
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:b7a1900b4571dd0b801f41d9de3ab79375f927ed33a3c77d0b7f2fd603d56649",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:7f8a751381904712a7d01dc6552c3f0cd3d262d62eb04023ac874f76b10746f3",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:05e25a558f09f6a33d911d5dd7c437bbd6aefc8ddf9028785718387a1b682f2f",
+      "bytes": 1093
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:2be433deb467f151cff3cbd531a96b3a453319071ee66f82112a9f1abebddf34",
+      "bytes": 1073
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:40b27eb249c1ac3e8168fd02b34415640055a2ef9e23327857b7f1e12c627234",
+      "bytes": 1127
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:d0e438ab3b05432a26d5d159d5f68c5a910520851a8e97baf0b8e1eef9f3be71",
+      "bytes": 1049
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/index.json",
+      "sha256": "sha256:4e2cdcc69f233339bea9df0f6e6b63db30dbb30e7ec2d1345f651e7ed4483ac8",
+      "bytes": 2406
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:45e1d319fe180f4de430632fb8ac5eecc6ccab8c7b6fd26ebefc68b2c351c99e",
+      "bytes": 1197
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:c87532cd50a73ca23e32d381c9df129ae35c2d821b161130e16c14905966a790",
+      "bytes": 864
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:0be8eb5b2ea9e5d4f8650bc859a2fe9cfd861458b29e8744322538a375975762",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:29f5303d95368fd70b081aeae839bd636dbf4dd91153bb582f01a7faa611cc86",
+      "bytes": 1022
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:91a1f1e05326263af8a6c4a617d5a06f86f7bc1da99811c4dc5a11a7e20c42c3",
+      "bytes": 1024
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:4ab7cf2e0856a094a7a8ab4eeeae60fec05554ff363f8e752d6633b99efa2e02",
+      "bytes": 1065
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:2d4c6d5ea1e167a3eb3cee7db1e52c40b0a028f727c510cd7a92ea2d710aeb99",
+      "bytes": 1045
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:a2bbb6e83891596e2eba434d84011021726053e9fbd1e99d8deb30e4df24037a",
+      "bytes": 1233
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:8a345000e9b77daab7383d73873857224ae29d0d6c3361d920fe2158e8931209",
+      "bytes": 596
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:8d897857c66475c0cf7d707dd6716b62b0ec700fa32a22f5da1aca88473fe054",
+      "bytes": 673
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:c2f6436e9ce19aee08f8bd9a096cddda8017671b695bd950d8ca7b60dcedb404",
+      "bytes": 1106
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:49d957f8e35937d8b7285719d1ec01ca607bfe5dfdeac082b903591874d454bb",
+      "bytes": 1035
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/index.json",
+      "sha256": "sha256:8c8284673509b8e88c1e2a301b9d9551d5426f5bc75e9de3196547168d7c0ce2",
+      "bytes": 2172
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:4989c1938b8c4fd35fbcde2c3863fdbc47136a9cb4f26d94cbaab9c441e5edf9",
+      "bytes": 1199
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:9b417cce6d6b7b1df1d6f25ce8e0ac7950899ab90e64cc754c50785c7b21cb8d",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:ec4e4a88e52a059b40f703898214bf7f2e84ab9a225d2402d7f19f5c92ee90b8",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:6ff489d47a51b0eb029065e51886c868ea7e30e44361c6f29f1f18c882059a2a",
+      "bytes": 1028
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:af5e2f69157ce93968df932a506831ba2320f74a3e6a4a3847516c219651b91b",
+      "bytes": 1026
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:73775b3847d91bacac754180fadb1dbe9a5280b20c34150589dd7d599f693701",
+      "bytes": 1073
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:f8198e3aefe896c32b476172ac82804f4a2499e708a32a55effa88314979a424",
+      "bytes": 1053
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:54fb203249a4b25ff9ccf11e8fde926eea3c49de33ac751a738ddfd9da7ba2bd",
+      "bytes": 1112
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:d8e62ef35faedaa6434fc84b880f39d0b260cab2fabc851834a0f9d207d9e1e4",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:f2731b066057600df0c5428b4de2ee69af15745844ae5a957e9e24168f18e2f8",
+      "bytes": 2166
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:f659973c9f9e34f69b0e6e980bd2bc6c84e3660b133a3e12743ccc310330a63e",
+      "bytes": 1201
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:a2cfdc992112b5aebc3194297cac2caff1b1cd9b24ed0e529d560fc66b0dfc35",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:6ce41e48824a9f365af361ffd063070b0c11b73cbb5ef1c5b04f9606a3b2791b",
+      "bytes": 1035
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:b3a17fd2df73b87b8a8a1a24affd536e7435ecc04e041a28c7b4e00fc711bb2a",
+      "bytes": 1032
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:1cbb71bca95f5af969a12efe0048ed46b2a3cc7ed9211ddd9ed2bf72bb2bba95",
+      "bytes": 1015
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:2c9a0df88ea87c06c5cb86acc6020ef1fd6c4e36f56aa225da4d9e920d592afb",
+      "bytes": 1083
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:70b636f3adad77a2cab81216cd2f8732559429c47fb08490540ec5fcbb7a83b9",
+      "bytes": 966
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:c0ddf815718a02a50f8e9f7539c36acf3a3b2d26164e7fc854a7242d3a8d18d2",
+      "bytes": 1026
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:07b39f504c7674fc1b3c6c6eb3aaaeeac03da70d38915e652226ec226260f78f",
+      "bytes": 2226
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:f34a10d8643e2b0bcabcd19898a9e71842958441892a6a353ba197a17c30ba1c",
+      "bytes": 1201
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:c95f1a42b97df1b6e84b6e137b20a881417b9a8c1d66f50b566237e6d4760351",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:20d560cb774610e921e70ce9bd574279de2c2c314900cebb2185c4729a566d55",
+      "bytes": 1035
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:6385e19674d0773f808c238b7213fa0bf09bd07d7b7a5401d47d00ad4dab111c",
+      "bytes": 1032
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:9f5a234dcf49cb82eaa64e034cb326ce8b822b45e7f23a4cb57858c90836137c",
+      "bytes": 1015
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:0ea41ff66ace208df7aaba7d24b23db0da8a4fec59c98c0e7fa3ea320694ebc7",
+      "bytes": 1083
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:cdf260c6690f9fe217fdddb7e48141fc0497448edfe0b9bf60d2bdd13ef1965c",
+      "bytes": 1063
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:ef8893d31a45f6b9725abd88968fb08dbd7f6dc1e8187e8935a050fb5f60e46f",
+      "bytes": 967
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:f25a095d38f6fe486fb94c843fa1068efa4d45bb0a67d717d3d4548117617714",
+      "bytes": 1026
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/index.json",
+      "sha256": "sha256:5970733597c4ced2b43469c317fe3319c19be985a02ff113d3ec671971df5e0f",
+      "bytes": 2390
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:91574d685e0850aa0120d867c4d71c5233637feaab81930b052c50aa2bcd24fa",
+      "bytes": 1194
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:8279d51dee653c4d435f9cd767be5da0e63724366d9b1db042dfb6927c60c150",
+      "bytes": 864
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:947127c47f37e4af1fd8637b5be489dcfd62f4dada64b8146a32d5b68bfa4c60",
+      "bytes": 1014
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:c386a639eb672548c3cdedeee3855097bca31516f494e05243f83ca4868403a5",
+      "bytes": 1011
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:8b55e660991128488c160f2cda824ea057c42f251cd0e875a61591ea655fd8cc",
+      "bytes": 1008
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:e9ee397913e1a6ce1cac699431064600540e4a9ffc7d29eb65cfe03e903873aa",
+      "bytes": 1055
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:12f94317adf6df0341926f9bbaef914e49447ef3a5645300da2d316346aaffe8",
+      "bytes": 1035
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:7187659286d828fc9c2f8bca1f0ab39b980ac7b21172fe3078001854b299ff11",
+      "bytes": 1197
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:0bb930bc09ac5146d570d79bf7b163ffb729de37ee6b09a127ea41840690eff2",
+      "bytes": 594
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:2c5d5edd8a49b7e1532d0ea97cf21e8656836a80439f857bccdb0c333b5c2b76",
+      "bytes": 656
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:0192859407956185cce02ab4e7fc009568179cbecd6243749e477e2f20e3732c",
+      "bytes": 946
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:4cb36c5f92e2761507bf7504b33557eabe4dcbb29a4ff36ef7061bae24ecee34",
+      "bytes": 1012
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/index.json",
+      "sha256": "sha256:b54e7100db4da8a94a72d5b813f7c0cc017e68d3664f57bc48bac91e37fbac92",
+      "bytes": 2156
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:47f5d2e034eded10e758e7bc40c37ff235357aa906ff9a9bfae5c3d79d8e3069",
+      "bytes": 1196
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:0fbb1c2d747780dcf28b6cfca845074dea337694c75902c4aa2580a6ee2a75c2",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:201704273dddf906de494bacd6f2c29b3811fce0d2ed99e37b478c819cc2d29b",
+      "bytes": 1020
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:9e61925b618bfff57c169d69fec16430af6625a266c74e49fa00eaa219dd3c87",
+      "bytes": 1017
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:0e26a6cd0b8c9cadb0188159d819c4afdc084a746286b8dc0390fa3b05bb0b78",
+      "bytes": 1010
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:da0b5c6008e95ac4b1608bfddecdc764d99306270df9c7487c027eaf65538765",
+      "bytes": 1063
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:7dd55192fc86cb519e9db8e9f389153fb7b3544ee744e115d897f3b1220afb6b",
+      "bytes": 1043
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:4db9e9df871727d6b6f8bdfd9019db4286d4bd8e94a637e308f1b8901a45191e",
+      "bytes": 952
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:279a390da465d9fe2757c9306df9a9374c18cdb855e12a38c410c2498be67494",
+      "bytes": 1022
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:6862f82726fab2b440de8329b01b5939e4251bd7f23d9cf1dee98f45ae62b9cc",
+      "bytes": 2190
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:5ab4cff48d8cc276af5f8350ecd7a2149d930862fdeed293ff20c73a0af3e0a6",
+      "bytes": 1220
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:0a335829662914cde259635bbcf80bd9903e492a838162485034dda787823b3d",
+      "bytes": 876
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:57135a22e3cf6ba37f10dc2636f8c12f3ee330804a2c47bf5568a9b84ac4b8f3",
+      "bytes": 1057
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:c98406c71029e3c0d235360b0147f629390befa2636c664d1d280b6f99629015",
+      "bytes": 1054
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:2a60c4f79a078823d8756dbf182f0cdab1331fefe9a599b2e447fab11afd6172",
+      "bytes": 1038
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:9fed2d39a49dc279ba5465b26203ff4bebd7441b5cf32ab6a2c5e0752669f8fc",
+      "bytes": 1085
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:cee19c1a6b110fe7e9662fe22bfc917567226e287a30194ed701fa99eb4c4cfb",
+      "bytes": 1155
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:75ba54f0e6f651713bbfe4ec11f8f55354f85960db690403015e580684415e71",
+      "bytes": 1070
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:65bcb808a9c0f3c77432dc6ff2b67b6dadb31b3210ed3d0558331159e0239786",
+      "bytes": 2251
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:14a57278021baf61a8374696bff2bf841f04bc0e3132e1e745986f3c14b877d6",
+      "bytes": 1220
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:5715bc37f382c4efae23d80f75d8d1c734fa7e0a7e11adb0bcd7cc6e2ab20d1f",
+      "bytes": 876
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:7ad11dee127529d30d30211b4ba1291c90decb661f8930291c2765d8c0a83da1",
+      "bytes": 1057
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:526081c227306de51929fca8e1f314a39435ea0106b7fdb9b98202c756c5e69d",
+      "bytes": 1054
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:2cb9f73ff286373dd3ab1faa6785b9b0a2b1e9ec0cd805ad8220f657681c21e1",
+      "bytes": 1038
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:86518b6aa097331625603e8fea56e54e43b174619b6e370164a51ba58df960db",
+      "bytes": 1085
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:b1d0d92fe348e34979d53f346e0fe2bbaf5f1509b5370454051ebc59b0bc0630",
+      "bytes": 1080
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:f1338ea5b1d18c36a8a4f4562afa98a510d2132051f0b4cecff35f87c4cc7758",
+      "bytes": 1156
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:efd2ec7c680903feb8a197e0e98f49c815e10d601ca09351d298cd58db1faa9d",
+      "bytes": 1070
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/index.json",
+      "sha256": "sha256:a88616132b3b6942aa672ba2ce69749a1d0b52ace1b34d9f13bccc10bbc09d4d",
+      "bytes": 2418
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:91253b86b390f6ad79fa7132418b0e6dac89215fb5882c085b0b22fd54ef0df0",
+      "bytes": 1213
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:cd4906fcea88cf7a2031366c20d766facbfdef115066c013fb2f79cac274dbc7",
+      "bytes": 869
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:060e95b568c131734eb1500378a8ac4ffb2964739b080870ad27c48e126bba6d",
+      "bytes": 1036
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:fa27d6ba6e3f27dbe5709b734067af94a9f304807634143514227c2e2eff9fcf",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:a1244707ce92e97c0671a42f5b42ca270809b47393e3b5f025622bd8038a8573",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:5eb5248442a2abe9d3502c2c02ca54e6842ff17ec3343565c5252296d0d9da0e",
+      "bytes": 1057
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:90de4e377f4682872ca8831fe93a76cc246f4b214d453c5ab6471313418df51d",
+      "bytes": 1052
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:9bb0e1d4214138c963461f5c59000149c5cc250080663e1ec1c3eea8a55b224b",
+      "bytes": 1237
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:b7868f5b85d595b361df7384b8133be80c642d031bb4e2747389fea447129ed9",
+      "bytes": 608
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:bbb3a3fad3cf1c7c9dcc8981210a2b640f1554a8e307e3a748529746609b86cd",
+      "bytes": 679
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:f93d2de40de9adba4e66c4207647e835fcf062fed98ba0b79a2a1255771239eb",
+      "bytes": 1135
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:becbc1256f5800294f657263abae82980de67a4990a76d1cd7ecf77b05b35ef7",
+      "bytes": 1056
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/index.json",
+      "sha256": "sha256:675bab56a102515e2b2867de0154beae268a9468a17df785143ef213baa85665",
+      "bytes": 2181
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:1b06b2c7efbf57f877c5e3c79eea99332b5c69150dcc60648228135b8c3beed9",
+      "bytes": 1215
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:f1090781fc5faff89cd64ecac0a01a2c877a972b334b3731bf54bb7faba2496b",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:36165a660f72b0d2dd59de678eb7dd7268d4767eb66547e06b809a9550582635",
+      "bytes": 1042
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:83bf935c3c5ba08a7fc90b0b6c9b170f0107f87f495fc26751030c99199cb6af",
+      "bytes": 1039
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:72f0271cd2805c98fd960b3bd7481eab63968f14f1748f52f7396d2e2a0bd28f",
+      "bytes": 1033
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:0f28b09757288d0c3b15b27b3b5f53d0ee29e7e48acc919e5a3208f6e0b9b418",
+      "bytes": 1065
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:0e6759539e8b59a3d3afafe0122d56eb1b2226d81ee125a3add9ffc7b5a052ae",
+      "bytes": 1060
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:9717dd6df84be03ca6dd04e0792b1c1c4056b45bbc979f8b249d1b8cdb6b5a51",
+      "bytes": 1141
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:9795faa85724d30c2b5ff3622dd205330dea4774400b4b567888b0b68aad99f7",
+      "bytes": 1070
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/index.json",
+      "sha256": "sha256:19db6810b93fd806660f3f6b539049037f363789711e2fc267286a37494d630a",
+      "bytes": 2176
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/business-approval.json",
+      "sha256": "sha256:82a0400414fb450e164451b38763162f298da1a343ab869def763b4e0740c446",
+      "bytes": 1210
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+      "sha256": "sha256:4d1481809bc8c3bdfade04b8590da0dce76f53c3d46cc65121626139a0f081e5",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:86a527d213942b690b565ab887a335bfc51b895698e774460fdcf849f7b2a1ec",
+      "bytes": 1040
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+      "sha256": "sha256:fd6bd89e6078a8b8754762b1bbffe09815be5d37ac32c956671fc3654032a60c",
+      "bytes": 1037
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+      "sha256": "sha256:0bfe2642b2e4a2fb06f2d60baef28bb5670879c73db0aad10aad4462bd8ca319",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/profiled/native-commit.json",
+      "sha256": "sha256:be859a95b62768611eaa56f639561fc0cafd156f8cbf2ebf236f82980863cef7",
+      "bytes": 1092
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/supplemental/domain-context.json",
+      "sha256": "sha256:c702042a910db5a39319952ccab4888142b98697cb985c6b6251d3a4b6039c43",
+      "bytes": 1030
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:37705ced7afd246dffcae990032f5bdb080d5cdedc038226912b3044fddd3042",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/index.json",
+      "sha256": "sha256:964630b214240c8786e6edc149158b1f194cf29f89f5a4f1e45f51831c86d850",
+      "bytes": 2236
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/business-approval.json",
+      "sha256": "sha256:29349183789dc24769e8bd7d0b64168351813b41abed1fec946331548f7496ff",
+      "bytes": 1210
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/collector-continuity.json",
+      "sha256": "sha256:f23295d0f8c5798dcaf97e8b0b13ffed1280f58ebe5d865d785ba4abeb34e599",
+      "bytes": 871
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/gateway-dispatch.json",
+      "sha256": "sha256:d7d2fe1b255df67c5e252e2eb42ef7518788313d9559f9e2f1accb522cd0cd8d",
+      "bytes": 1040
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/gateway-request.json",
+      "sha256": "sha256:84ac2aeadb628c6b67450171be3a688a10b11accaecea931cc93383144492a54",
+      "bytes": 1037
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/iam-candidate.json",
+      "sha256": "sha256:80eb438cd369d8db740be05f5e1e11da5e08c85964334f5ff2e2553abc2b97d5",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/native-commit.json",
+      "sha256": "sha256:941d5c8f5d9e75a60869ebadabf6cca7994065c8bed9bf82cbea51fa6967060c",
+      "bytes": 1092
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/profiled/native-readback.json",
+      "sha256": "sha256:6f8b67f17290a6635cdb40868010bcf3decd966aab7bdedc449a5eebc1443bdf",
+      "bytes": 1072
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/supplemental/domain-context.json",
+      "sha256": "sha256:5a86e61d6860bbfd536bcc790853a57402be45720a0104f7f63e127f07996c4d",
+      "bytes": 1031
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/supplemental/runtime-behavior.json",
+      "sha256": "sha256:48a5e2b7330787c25d8089d9b46f984538ca13a5bc9377d60741d1f4add9a730",
+      "bytes": 1050
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/index.json",
+      "sha256": "sha256:c2031b68257610db421fa87c208865c1d9f4f5db5326ee03fb3e3cbc5e0fa286",
+      "bytes": 2400
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/business-approval.json",
+      "sha256": "sha256:83a549ba089e988e00af8cb12e9d100141b018f271b7819d9f8f3f1deebfba29",
+      "bytes": 1203
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/collector-continuity.json",
+      "sha256": "sha256:be830bd6d2bc0001dbd00e5c35108944705350ebe6c8ed5087629e992764b05b",
+      "bytes": 864
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/gateway-dispatch.json",
+      "sha256": "sha256:f1c512a9592e81734b26496cabb78a23bd499ea874ff5e07768dae39c5915dd3",
+      "bytes": 1019
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/gateway-request.json",
+      "sha256": "sha256:817394a517c0afb4e520293fbf910165777cd3a8ae741e28e6ddc6f682931aaa",
+      "bytes": 1016
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/iam-candidate.json",
+      "sha256": "sha256:cd1f52421c6a9dc80a994f0a884ee03f17bac04ba0f9116581364e623c657eb6",
+      "bytes": 1018
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/native-commit.json",
+      "sha256": "sha256:bc92e88f92c833a605d2f60cc52da81fb81b91f12f41f9288e6d0dc452a76f4f",
+      "bytes": 1064
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/profiled/native-readback.json",
+      "sha256": "sha256:ebb383bc90da81a01dd3ac8bcec6e1a8515f76c493caaaa4aa4d24be276747cf",
+      "bytes": 1044
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/remediation/corrected-receipt.json",
+      "sha256": "sha256:07f406ebbf0a53f15144cc69bf0b43076f2f0b985b7cf5b65a9034591f1f5900",
+      "bytes": 1227
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/remediation/no-mutation-witness.json",
+      "sha256": "sha256:d246ad86501e38bd04be3e13522476fffbc7fab29d89004c563902116e50bbc9",
+      "bytes": 601
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/remediation/rejected-attempt.json",
+      "sha256": "sha256:8c1d45551412c45f58d4582db53c75ded109f0220cf03704c5fbe25bbd06f244",
+      "bytes": 668
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/supplemental/domain-context.json",
+      "sha256": "sha256:381f4ebec8705673f9408ba50b1dbbdd24700d41ea4c6ffe5f70540cd80f9621",
+      "bytes": 1010
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/supplemental/runtime-behavior.json",
+      "sha256": "sha256:6df75e2d39668b12d7b41d6e97933ee308dee6f34f3a8e218c5983b18c6e67b4",
+      "bytes": 1036
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/index.json",
+      "sha256": "sha256:7e5c04577ced860480e80fa060652c2eb7f18ca0e2b1fe8e2e2ad91c0bf776a3",
+      "bytes": 2166
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/business-approval.json",
+      "sha256": "sha256:2240cf78eaa711b06cc1a1fc82e0038e7b2a1b999a577b3dd6144624cbabf5dc",
+      "bytes": 1205
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/collector-continuity.json",
+      "sha256": "sha256:fd6cc443f170f34eebcc7a5d9d53c13f10b41dfb7ed8a83704c56bbe8fe63f5c",
+      "bytes": 866
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/gateway-dispatch.json",
+      "sha256": "sha256:66ddfb6ec8058e4c948b62fb59f56db7edba6a8bd34cc90b70d6407073172837",
+      "bytes": 1025
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/gateway-request.json",
+      "sha256": "sha256:dd503b67f87a98b159e22e39a0fa8b72101b002788659fecbc9a43a078c23786",
+      "bytes": 1022
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/iam-candidate.json",
+      "sha256": "sha256:0cacf8fc6cbc7fc6e3cdaf099fb6a294a2102d7405608a736dcc60a633df6920",
+      "bytes": 1020
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/native-commit.json",
+      "sha256": "sha256:f61a75e58222c20d23a0f3886d17efbc03cfd4e6b380ca3126232ba811fdb419",
+      "bytes": 1072
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/profiled/native-readback.json",
+      "sha256": "sha256:10b2902decea8040f78bfc72ee70d32458093e6f94b116bf40d0745be1951c3c",
+      "bytes": 1052
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/supplemental/domain-context.json",
+      "sha256": "sha256:cfb78f363672fcf259978c7c7d7cf069ae416c8d456194abf180ee03bffb41b3",
+      "bytes": 1016
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/supplemental/runtime-behavior.json",
+      "sha256": "sha256:7558411c85113e30ed00d0db2233a405731d4cc7416d3bf60ad95f17e9f0766b",
+      "bytes": 1051
+    },
+    {
+      "path": "negative/agent-scope-escalation.json",
+      "sha256": "sha256:e125535d56fac9d503fc2719d6cd43eef5c60933374e96ea538eb06b22278958",
+      "bytes": 313
+    },
+    {
+      "path": "negative/caller-forged-qualification.json",
+      "sha256": "sha256:221c85adf50cee9fd7a156b582212f306a8d35e4fa54883d167cddd5153d505c",
+      "bytes": 1240
+    },
+    {
+      "path": "negative/changed-target-with-stale-payload-digest.json",
+      "sha256": "sha256:67a57fc68a31718283d885c45e30034bcb8d83df2cc3579d6346f78d68b232da",
+      "bytes": 1033
+    },
+    {
+      "path": "negative/changed-unapproved-static-hash.json",
+      "sha256": "sha256:b307029956fe068a219c75cf52296766d911b6493a4501664d4251c4c94ae474",
+      "bytes": 900
+    },
+    {
+      "path": "negative/collector-heartbeat-gap.json",
+      "sha256": "sha256:1a1c6d224473ccf61985bed6b52455ce1fe14be9c379af65452047df25fe91c8",
+      "bytes": 866
+    },
+    {
+      "path": "negative/cross-org-dispatch.json",
+      "sha256": "sha256:a09a667fd9b17637108778588e87d1afaabccae424507bedfbac3218f01f927c",
+      "bytes": 1018
+    },
+    {
+      "path": "negative/deny-then-native-mutation.json",
+      "sha256": "sha256:7043b11845852d1fe9e24b6b265ccfd7185c7322885a70e70e844e420af91d65",
+      "bytes": 581
+    },
+    {
+      "path": "negative/expired-approval.json",
+      "sha256": "sha256:bf29524fa8e2e7b0e234918c203340875cab572be1d1e7d530bfce4bad1d6c40",
+      "bytes": 1194
+    },
+    {
+      "path": "negative/future-event-clock-skew.json",
+      "sha256": "sha256:14007efa3185f3a6b257c918d55a589e30737a7df1364be621ed6d7e810df242",
+      "bytes": 1030
+    },
+    {
+      "path": "negative/index.json",
+      "sha256": "sha256:b6787f2d5ab0142b4acb56b8428a1b85d504bf81dff713d7aafe870094cc94b5",
+      "bytes": 3743
+    },
+    {
+      "path": "negative/missing-source-identity.json",
+      "sha256": "sha256:25e4f1308ceccc7280261fc2bb7e526b31a52daab0e8d8a5a21d851d199d1a93",
+      "bytes": 1020
+    },
+    {
+      "path": "negative/readback-resource-mismatch.json",
+      "sha256": "sha256:f55eb76306b488ff3028ac37d2a0b5b7238d9dd6ee8c8736b7bb29bb92bde452",
+      "bytes": 1045
+    },
+    {
+      "path": "negative/replayed-approval.json",
+      "sha256": "sha256:0ebde1c8a4780939f33f1403163186d0b5c7a6480c9ae6fec7fc55ba03f6f328",
+      "bytes": 1233
+    },
+    {
+      "path": "negative/same-transaction-foreign-site.json",
+      "sha256": "sha256:7c7c0685bd698ce7f913da3aeeea8c47a56c680d664d2020d78af8834410c86e",
+      "bytes": 1045
+    },
+    {
+      "path": "negative/unsupported-opcua-profile.json",
+      "sha256": "sha256:a15292059237a6129af4792314cd202adc6a4b8157a1e9da02d5a04e2131533a",
+      "bytes": 1045
+    },
+    {
+      "path": "producer-registry.json",
+      "sha256": "sha256:0ce1d10b394a2f1ae69451762d040804672fdf7b4f20cb2c7e0b593101b3d211",
+      "bytes": 3044
+    },
+    {
+      "path": "profiles/ELECTRICAL_EQUIPMENT/events.json",
+      "sha256": "sha256:8047a2006481866d57098c6ac8673a38d1274e8093b213ee701e20724342d720",
+      "bytes": 1336
+    },
+    {
+      "path": "profiles/RAIL_TRANSPORT/events.json",
+      "sha256": "sha256:6f9c8e1036f5323fd4a779ca1229c760dad3e22cd576fd615bb3e23282be8024",
+      "bytes": 1316
+    },
+    {
+      "path": "profiles/SMART_ELECTRONICS/events.json",
+      "sha256": "sha256:ba5a90b5db41c187979d8c93c418ed2b1c7464fcc371a12b76192ddb11fa69f1",
+      "bytes": 1326
+    },
+    {
+      "path": "profiles/SUPPLIER_NETWORK/events.json",
+      "sha256": "sha256:78558a01547d99247e537dc0a3956a35f6c027cbf0615207e3914d1753328545",
+      "bytes": 1347
+    },
+    {
+      "path": "profiles/registry.json",
+      "sha256": "sha256:b96d6c75220f66d6d6f13459289b1863c5f48972a07c26ad455274fe902bc143",
+      "bytes": 4203
+    },
+    {
+      "path": "scan-plan.json",
+      "sha256": "sha256:cbf71cb3571597a51b8a6f76ae224b6be4355e92922865379151705750d61290",
+      "bytes": 8574
+    },
+    {
+      "path": "systems/SYS-217/agent-runtime.json",
+      "sha256": "sha256:4031f456d2d01850ff82133c9e45ca0552c2e3567cc11d539e68958752443f47",
+      "bytes": 575
+    },
+    {
+      "path": "systems/SYS-217/domain-observations.json",
+      "sha256": "sha256:b04823119bd7bb68eec6493763093f1265c14ecbf540b945efe0cde115a76ce9",
+      "bytes": 24176
+    },
+    {
+      "path": "systems/SYS-217/quality-containment-policy-exercises.json",
+      "sha256": "sha256:87195ea2ad62670cf9554a1d6f150a77d7594877fdd2102d607c9ade90f8eb23",
+      "bytes": 1173
+    },
+    {
+      "path": "systems/SYS-217/scenario-context.json",
+      "sha256": "sha256:a67d2eb2a0d513f9eb361edc23094c2cb988d6d47ec49a5cefe954a7dc1edf2d",
+      "bytes": 1490
+    },
+    {
+      "path": "systems/SYS-217/source-code-candidate.json",
+      "sha256": "sha256:41d4bbdbcf31348e4b266723de304bad7c1eaedea94aee39e2e54a9267e8fb5b",
+      "bytes": 900
+    },
+    {
+      "path": "systems/SYS-340/agent-runtime.json",
+      "sha256": "sha256:862830cbbba963283f37020b6f89993211c115cb5237c8a6d118a726fffb52fe",
+      "bytes": 605
+    },
+    {
+      "path": "systems/SYS-340/domain-observations.json",
+      "sha256": "sha256:b04a0bb56eed77129aa44b3c0d7b8629a274185e26141f7be1fe776e4b982886",
+      "bytes": 24390
+    },
+    {
+      "path": "systems/SYS-340/scenario-context.json",
+      "sha256": "sha256:21917f15383186051594c2da7b0062e5e01f3726a5d695a446e78568a82f8c8d",
+      "bytes": 1274
+    },
+    {
+      "path": "systems/SYS-340/source-code-candidate.json",
+      "sha256": "sha256:46834a38423056f08b0b019d7682f5e743c5020c18c52e6fe6c605754bff374e",
+      "bytes": 909
+    },
+    {
+      "path": "systems/SYS-DYN412/agent-runtime.json",
+      "sha256": "sha256:01591e1fec70015e739edd5475a503f0870365ee11cf0db95d33cc801b3ceb1d",
+      "bytes": 592
+    },
+    {
+      "path": "systems/SYS-DYN412/domain-observations.json",
+      "sha256": "sha256:449661def6f1380dd987c8fa17c4e9342b8c42745a0ca28025492e9c5d97dd8c",
+      "bytes": 18944
+    },
+    {
+      "path": "systems/SYS-DYN412/scenario-context.json",
+      "sha256": "sha256:f75e930b6b0bca7e28f780e5814c80f22100a5cd134f1d0e08f86be80c798a9e",
+      "bytes": 1406
+    },
+    {
+      "path": "systems/SYS-DYN412/source-code-candidate.json",
+      "sha256": "sha256:8dba85703471d7463e464c5f274deaad2a0ba5a643549b4696f2aa9ecf30ffad",
+      "bytes": 933
+    },
+    {
+      "path": "systems/SYS-FC1/agent-runtime.json",
+      "sha256": "sha256:553da3a7b11d07c9d04f19f023fc07bcf862efbbd4d11544ae03e317fe3ef6bf",
+      "bytes": 859
+    },
+    {
+      "path": "systems/SYS-FC1/domain-observations.json",
+      "sha256": "sha256:fad811d1711cdf9958f91a4cfaba7227a0566a8f235eb6c8559983bb65caa89d",
+      "bytes": 16962
+    },
+    {
+      "path": "systems/SYS-FC1/scenario-context.json",
+      "sha256": "sha256:c04a3eb94aa605cae4a9f01f077b26feb8aac53ce72171e20a583ad7f9a3a34c",
+      "bytes": 1269
+    },
+    {
+      "path": "systems/SYS-FC1/source-code-candidate.json",
+      "sha256": "sha256:8d3863e89bd8dd9433660004ea37032bb64fe010fd13b0825f531f6acfb322b4",
+      "bytes": 897
+    },
+    {
+      "path": "systems/SYS-MNT88/agent-runtime.json",
+      "sha256": "sha256:3feb103eb04a05ce17dc4220eab853c7c5b7222f26d819d98b442f55293fcaca",
+      "bytes": 585
+    },
+    {
+      "path": "systems/SYS-MNT88/domain-observations.json",
+      "sha256": "sha256:edd720dee0cf2981b1f9d1d16a13c92268aec9675e5208047a372cddf25824bd",
+      "bytes": 17393
+    },
+    {
+      "path": "systems/SYS-MNT88/scenario-context.json",
+      "sha256": "sha256:98985276203bd16eb534a37b78458706e1cd87be25f29b6c3a9a595b764f94de",
+      "bytes": 1285
+    },
+    {
+      "path": "systems/SYS-MNT88/source-code-candidate.json",
+      "sha256": "sha256:189d922a557a12bdcac6369dda5e735b8013dd39b9687e12f7dd69942c831ac4",
+      "bytes": 909
+    },
+    {
+      "path": "systems/SYS-PO12/agent-runtime.json",
+      "sha256": "sha256:f2e319ca7360fcc716cc8d820b804c79e6ed159c11b979487cfe77147641be9b",
+      "bytes": 620
+    },
+    {
+      "path": "systems/SYS-PO12/domain-observations.json",
+      "sha256": "sha256:1ea77f392af3774dc81c19d8ac967246d5101f79299c1f15bdba7c22319aee5e",
+      "bytes": 16849
+    },
+    {
+      "path": "systems/SYS-PO12/scenario-context.json",
+      "sha256": "sha256:7e25da6d78e6c6fd4266e3082de92c10db61b71520a40908f0b011660b740b51",
+      "bytes": 1329
+    },
+    {
+      "path": "systems/SYS-PO12/source-code-candidate.json",
+      "sha256": "sha256:54f26565eafadc6567961e7a38be7e99adf4d4c1bf09cc43e06aa7bce3f7e547",
+      "bytes": 898
+    },
+    {
+      "path": "systems/SYS-SCH5/agent-runtime.json",
+      "sha256": "sha256:f57f8adfb0aaf5cf983fde0c7979e53b3a4132585f8b0435e6935272b6652313",
+      "bytes": 856
+    },
+    {
+      "path": "systems/SYS-SCH5/domain-observations.json",
+      "sha256": "sha256:62a176f0652f4246844f271f3df80ef8263e48396e1b8822ae395a7469738183",
+      "bytes": 17630
+    },
+    {
+      "path": "systems/SYS-SCH5/scenario-context.json",
+      "sha256": "sha256:a2baa9693498fb112118fcd50a9990bc16629642a41d76edc4c0844cf34256b7",
+      "bytes": 1300
+    },
+    {
+      "path": "systems/SYS-SCH5/source-code-candidate.json",
+      "sha256": "sha256:747616a6c056b8783f023534a4815aad36e7bef6f766f3d49154b4a08464c79d",
+      "bytes": 892
+    },
+    {
+      "path": "systems/SYS-SUP12/agent-runtime.json",
+      "sha256": "sha256:408097630dc3c0f643c8f1738a3901cd7eb495776362bc4ed824fd09fa4fdef6",
+      "bytes": 618
+    },
+    {
+      "path": "systems/SYS-SUP12/domain-observations.json",
+      "sha256": "sha256:a87195d0c428ac5b9862baa877f2869a1fc457452741d9af29354eaf8cbb4211",
+      "bytes": 17720
+    },
+    {
+      "path": "systems/SYS-SUP12/scenario-context.json",
+      "sha256": "sha256:7e11eb02e89939a79d2ff93fbcceeaab2241c0104f007aba474adbd92f0ce562",
+      "bytes": 1312
+    },
+    {
+      "path": "systems/SYS-SUP12/source-code-candidate.json",
+      "sha256": "sha256:9e79dc5ecd72aefdb54e98d6f6d78f0c82bdb3de5f84fb8530491a0cfc0c72de",
+      "bytes": 919
+    },
+    {
+      "path": "systems/SYS-WH15/agent-runtime.json",
+      "sha256": "sha256:4a38f97bfea67155909a0e16c93ba6a24e87dd2d43cea4b264379f2252a392ea",
+      "bytes": 603
+    },
+    {
+      "path": "systems/SYS-WH15/domain-observations.json",
+      "sha256": "sha256:611405bce26c95f5215227175bbb7cbe39bdddaebf5204bd0b598a71744e9164",
+      "bytes": 16247
+    },
+    {
+      "path": "systems/SYS-WH15/scenario-context.json",
+      "sha256": "sha256:b184162209dc1bc21d3b918f0ac306ffa36893680ea8cfd993480d641ba8b661",
+      "bytes": 1246
+    },
+    {
+      "path": "systems/SYS-WH15/source-code-candidate.json",
+      "sha256": "sha256:8107f8ef674b4c85ce8e95313415e0d88eacbc1d3cef66ca95e6e64d589b422c",
+      "bytes": 904
+    }
+  ],
+  "sourceQualifications": "NOT_ISSUED",
+  "haiecEvaluationsProduced": 0,
+  "upstreamV3Unmodified": true,
+  "historicalEvaluationsUnmodified": true
+}

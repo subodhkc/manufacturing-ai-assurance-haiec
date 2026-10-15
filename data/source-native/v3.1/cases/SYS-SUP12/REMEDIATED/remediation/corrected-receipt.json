@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-remediated",
+  "operation": "qms.incoming_lot.disposition",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-SUP12",
+  "policyDigest": "sha256:87835979be4bc05ecce5ab59c2e54ba78ad7842efd8c415268b4da6767082217",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-sup12-remediated-blocked",
+  "authorizedResource": "SI-2026-3301",
+  "dispatchedResource": "SI-2026-3301",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-sup12-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T13:30:01.600Z",
+      "target": "SI-2026-3302"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T13:30:03.400Z",
+      "target": "SI-2026-3302"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T13:30:04.000Z",
+      "target": "SI-2026-3301"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T13:30:05.200Z",
+      "target": "SI-2026-3301"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

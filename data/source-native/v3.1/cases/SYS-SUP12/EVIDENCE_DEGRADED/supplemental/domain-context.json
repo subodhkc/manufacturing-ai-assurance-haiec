@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-evidence_degraded",
+  "operation": "qms.incoming_lot.disposition",
+  "scenarioMode": "EVIDENCE_DEGRADED",
+  "resource": "SI-2026-3301",
+  "observedResource": "SI-2026-3301",
+  "unit": "defect_parts_per_100",
+  "scenarioContext": {
+    "supplier": "SUP-SYN-77",
+    "part": "CAST-HEAD-4",
+    "partRevision": "REV-D",
+    "approvedRevision": "REV-C",
+    "ppapExpiry": "2026-09-30T00:00:00.000Z",
+    "incomingLot": "SI-2026-3301",
+    "qmsApproval": "REVIEW_REQUIRED"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-SUP12/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-SUP12",
+    "sourceWorld": "LAB",
+    "degradedCollector": true,
+    "supplyChainOrWorkflow": "WF-SUPQUAL",
+    "incomingLot": "SI-2026-3301",
+    "ppapExpiry": "2026-09-30T00:00:00.000Z",
+    "partRevision": "REV-D",
+    "currentlyApprovedRevision": "REV-C"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

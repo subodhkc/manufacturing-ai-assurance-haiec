@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "actorPrincipal": "synthetic-agent/SYS-MNT88",
+  "agentDefinitionIds": [
+    "SYS-MNT88-AGENT-1"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-MNT88",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:54491b4b096ee4851320789f1763e11758cc0be247951181b566bb7ab189c81b",
+  "toolName": "propose_cmms_ticket",
+  "operation": "cmms.work_request.create",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

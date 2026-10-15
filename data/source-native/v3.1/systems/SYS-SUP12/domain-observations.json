@@ -1,0 +1,539 @@
+{
+  "schemaVersion": "manufacturing-domain-measurements-v3.1",
+  "aiSystemId": "SYS-SUP12",
+  "synthetic": true,
+  "sourceRole": "UNQUALIFIED_SENSORY_CONTEXT",
+  "testLabelsNotEngineVerdicts": true,
+  "unit": "defect_parts_per_100",
+  "sourceSystem": "LAB_INCOMING_DEFECTS",
+  "fixtures": [
+    {
+      "sampleId": "SYS-SUP12-v31-01",
+      "observedAt": "2026-10-14T06:00:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.1,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-02",
+      "observedAt": "2026-10-14T06:02:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-03",
+      "observedAt": "2026-10-14T06:04:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 1.5,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-04",
+      "observedAt": "2026-10-14T06:06:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.1,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-05",
+      "observedAt": "2026-10-14T06:08:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.7,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-06",
+      "observedAt": "2026-10-14T06:10:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-07",
+      "observedAt": "2026-10-14T06:12:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-08",
+      "observedAt": "2026-10-14T06:14:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-09",
+      "observedAt": "2026-10-14T06:16:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-10",
+      "observedAt": "2026-10-14T06:18:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-11",
+      "observedAt": "2026-10-14T06:20:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.1,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-12",
+      "observedAt": "2026-10-14T06:22:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.7,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-13",
+      "observedAt": "2026-10-14T06:24:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-14",
+      "observedAt": "2026-10-14T06:26:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-15",
+      "observedAt": "2026-10-14T06:28:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-16",
+      "observedAt": "2026-10-14T06:30:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-17",
+      "observedAt": "2026-10-14T06:32:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 1.5,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-18",
+      "observedAt": "2026-10-14T06:34:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 2.1,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-19",
+      "observedAt": "2026-10-14T06:36:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 4.5,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-20",
+      "observedAt": "2026-10-14T06:38:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-21",
+      "observedAt": "2026-10-14T06:40:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 3.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-22",
+      "observedAt": "2026-10-14T06:42:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.3,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-23",
+      "observedAt": "2026-10-14T06:44:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 0.9,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    },
+    {
+      "sampleId": "SYS-SUP12-v31-24",
+      "observedAt": "2026-10-14T06:46:00.000Z",
+      "siteId": "PLANT-C",
+      "sourceSystem": "LAB_INCOMING_DEFECTS",
+      "modelVersion": "synthetic-incoming_defects-1.1",
+      "modality": "INCOMING_DEFECTS",
+      "measurement": {
+        "value": 1.5,
+        "unit": "defect_parts_per_100"
+      },
+      "qualifyingContext": {
+        "supplier": "SUP-SYN-77",
+        "part": "CAST-HEAD-4",
+        "partRevision": "REV-D",
+        "approvedRevision": "REV-C",
+        "ppapExpiry": "2026-09-30T00:00:00.000Z",
+        "incomingLot": "SI-2026-3301",
+        "qmsApproval": "REVIEW_REQUIRED"
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED"
+    }
+  ]
+}

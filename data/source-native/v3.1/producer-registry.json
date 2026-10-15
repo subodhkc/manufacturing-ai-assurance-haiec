@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "manufacturing-producer-registry-v3.1",
+  "synthetic": true,
+  "trust": "ONE_COMMON_SYNTHETIC_LAB_ROOT",
+  "boundInHaiec": false,
+  "producerClasses": [
+    {
+      "profileId": "OPENAPI_3_JSON_PINNED",
+      "requiredFields": [
+        "sourceId",
+        "producerId",
+        "operationRef",
+        "resourceRef",
+        "sourceHash"
+      ],
+      "eligibleClaimTypes": [
+        "CODE_CAPABILITY_CANDIDATE"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    },
+    {
+      "profileId": "manufacturing_policy_iam_v1",
+      "requiredFields": [
+        "producerId",
+        "principalId",
+        "operationScope",
+        "targetScope",
+        "effectiveFrom",
+        "effectiveTo",
+        "claimType"
+      ],
+      "eligibleClaimTypes": [
+        "POLICY_AUTHORIZED",
+        "EFFECTIVELY_GRANTED"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    },
+    {
+      "profileId": "manufacturing_action_event_v1",
+      "requiredFields": [
+        "sourceId",
+        "producerId",
+        "organizationId",
+        "aiSystemId",
+        "principalRef",
+        "agentInstanceRef",
+        "operationRef",
+        "requestId",
+        "resourceRef",
+        "sourceEventTime",
+        "receivedTime",
+        "payloadDigest",
+        "claimType"
+      ],
+      "eligibleClaimTypes": [
+        "REQUESTED",
+        "DISPATCHED",
+        "NATIVE_ACCEPTED"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    },
+    {
+      "profileId": "manufacturing_mes_qms_state_v1",
+      "requiredFields": [
+        "sourceId",
+        "producerId",
+        "transactionId",
+        "siteId",
+        "resourceRef",
+        "nativeVersion",
+        "observedAt",
+        "sourceEventTime",
+        "receivedTime",
+        "claimType"
+      ],
+      "eligibleClaimTypes": [
+        "NATIVE_COMMIT",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    },
+    {
+      "profileId": "manufacturing_business_transaction_v1",
+      "requiredFields": [
+        "sourceId",
+        "producerId",
+        "transactionId",
+        "resourceRef",
+        "applicationRef",
+        "sourceEventTime",
+        "receivedTime",
+        "claimType"
+      ],
+      "eligibleClaimTypes": [
+        "BUSINESS_COMMIT_IF_QUALIFIED",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    },
+    {
+      "profileId": "manufacturing_collector_continuity_v1",
+      "requiredFields": [
+        "sourceId",
+        "producerId",
+        "collectorId",
+        "observedAt",
+        "claimType"
+      ],
+      "eligibleClaimTypes": [
+        "SOURCE_CONTINUITY"
+      ],
+      "qualification": "UNQUALIFIED_CANDIDATE"
+    }
+  ],
+  "runtimeOrgReplacement": {
+    "placeholder": "SYNTHETIC_ORG_REBIND_AT_HAIEC_INTAKE",
+    "mustDeriveAuthenticatedOrgAtServer": true,
+    "sourceIdIssuerMustBeRegistered": true,
+    "producerProof": "NEVER_COMMIT_SECRETS_OR_ATTESTATION_KEYS"
+  },
+  "truthBoundary": "PROFILE_FORMAT_VALIDITY_IS_NOT_QUALIFIED_EVIDENCE"
+}
