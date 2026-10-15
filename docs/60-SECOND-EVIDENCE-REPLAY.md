@@ -1,6 +1,6 @@
 # 60-Second Sequential Evidence Replay — Design Specification
 
-Status: **SPECIFIED, NOT IMPLEMENTED** (Sprint 14.2 documents the design; implementation is deferred).
+Status: **MODE A IMPLEMENTED** (Sprint 14.3) — the dashboard `Evidence Replay` page plays the SYS-217-WRONG_TARGET sequence per this spec. Mode B remains deferred.
 
 The manufacturing dashboard is **not** continuously connected to HAIEC telemetry. This document specifies a future judge-facing demonstration that plays a recorded, digest-pinned evidence sequence when the user clicks **Run Evidence Replay**.
 

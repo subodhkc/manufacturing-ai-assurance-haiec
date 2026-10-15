@@ -353,6 +353,18 @@ button:disabled{opacity:.5;cursor:not-allowed}
 @media(max-width:1250px){.v5-callout-row{grid-template-columns:repeat(3,minmax(0,1fr))}.v5-dashboard-head .v5-illustration{display:none}.v5-context-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.v5-callout-row{grid-template-columns:repeat(2,minmax(0,1fr))}.v5-dashboard-head{padding:20px}.v5-context-grid{grid-template-columns:1fr}.v5-report-2{grid-template-columns:1fr}.v5-usp{flex-direction:column;align-items:flex-start}.v5-hf-path{flex-direction:column;align-items:stretch}.v5-hf-path>span{transform:rotate(90deg);align-self:center}.v5-path .v5-step{min-width:146px}}
 
+/* Sprint 14.3 — recorded evidence replay (Mode A) */
+.rp-track{height:6px;background:#e4ece8;border-radius:4px;overflow:hidden;margin-top:12px}
+.rp-bar{height:100%;background:linear-gradient(90deg,#3f8f7d,#7fcbb8);transition:width .25s linear}
+.rp-steps{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.rp-step{border:1px solid var(--line);border-left:4px solid #cfdcd6;border-radius:10px;padding:13px 15px;background:#fbfdfc;opacity:.48;transition:opacity .25s,border-color .25s}
+.rp-step.rp-on{opacity:1;border-left-color:#3f8f7d;background:#fff}
+.rp-step.rp-active{border-left-color:#d99a2b;box-shadow:0 1px 6px rgba(60,90,80,.08)}
+.rp-num{font-family:var(--mono);font-size:10px;color:#2b7869;font-weight:800;letter-spacing:.4px;margin-right:5px}
+.rp-body{margin-top:9px}
+.rp-rec{border:1px dashed #d3e0da;border-radius:8px;padding:10px 12px;margin-top:6px;background:#f7faf8}
+@media(max-width:760px){.rp-step{padding:11px}.rp-rec{padding:9px}}
+
 </style>
 
 <style id="haiec-ideal-report-design">
@@ -913,8 +925,9 @@ const PAGES = [
   { id:'reports',   group:'Prove',   label:'Reports & Evidence',icon:'08' },
   { id:'evaluations',group:'Prove',  label:'HAIEC Evaluations',icon:'09' },
   { id:'station217', group:'Prove',  label:'Station 217 Replay',icon:'10' },
-  { id:'provenance',group:'Prove',   label:'HF Provenance',    icon:'11' },
-  { id:'setup',     group:'Connect', label:'Connections & Setup',      icon:'12' }
+  { id:'replay',    group:'Prove',   label:'Evidence Replay',  icon:'11' },
+  { id:'provenance',group:'Prove',   label:'HF Provenance',    icon:'12' },
+  { id:'setup',     group:'Connect', label:'Connections & Setup',      icon:'13' }
 ];
 
 function renderNav(){
@@ -3521,7 +3534,7 @@ render();
    UNAVAILABLE marker. Station 217 is a local simulator replay and is
    never presented as a HAIEC verdict or a plant observation.
    ============================================================ */
-const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, haiecBase:'https://www.haiec.com' };
+const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com' };
 const HXDATA = window.HAIEC_DEMO_DATA || null;
 const HX_STATE_ORDER = ['EXPECTED_BASELINE','WRONG_TARGET','EVIDENCE_DEGRADED'];
 const HX_STATE_LABEL = { EXPECTED_BASELINE:'Expected baseline', WRONG_TARGET:'Wrong target', EVIDENCE_DEGRADED:'Evidence degraded' };
@@ -3554,8 +3567,14 @@ async function hxVerifyAll(){
       HX.stationVerified=('sha256:'+await hxSha(JSON.stringify(b)))===digest;
     }catch(e){HX.stationVerified=false;}
   }
+  if(HXDATA.replay){
+    try{
+      const{digest,...b}=HXDATA.replay;
+      HX.replayVerified=('sha256:'+await hxSha(JSON.stringify(b)))===digest;
+    }catch(e){HX.replayVerified=false;}
+  }
   HX.digestsDone=true;
-  if(STATE.page==='evaluations'||STATE.page==='station217')render();
+  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay')render();
 }
 function hxExports(){return HXDATA?Object.values(HXDATA.exportMap||{}):[];}
 function hxFor(systemId,state){return hxExports().find(a=>a.sourceCase.aiSystemId===systemId&&a.sourceCase.scenarioState===state)||null;}
@@ -3594,8 +3613,11 @@ function hxLinks(e){
   const l=e.links||{};
   const idOk=(p)=>{try{return decodeURIComponent(String(p)).includes(e.evaluationId);}catch(_){return false;}};
   const row=(label,path)=>{
-    const ok=typeof path==='string'&&HX_LINK_RX.test(path)&&idOk(path);
-    return ok?`<a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase+path)}">${label} ↗</a>`:`<span class="tiny muted" style="padding:6px 0">${label} — link rejected (unexpected path)</span>`;
+    // Public-facing links never carry internal query parameters (e.g. the
+    // evaluation-owning org id) — authorization resolves org server-side.
+    const clean=typeof path==='string'?path.split('?')[0]:path;
+    const ok=typeof clean==='string'&&HX_LINK_RX.test(clean)&&idOk(clean);
+    return ok?`<a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase+clean)}">${label} ↗</a>`:`<span class="tiny muted" style="padding:6px 0">${label} — link rejected (unexpected path)</span>`;
   };
   return `<div class="flex" style="gap:8px;flex-wrap:wrap">${row('Master Report (HTML)',l.html)}${row('Master Report (PDF)',l.pdf)}${row('Report JSON (API)',l.api)}${row('Evaluation detail',l.evaluation)}</div>
   <p class="tiny muted" style="margin-top:8px">Links open the HAIEC-hosted artifacts for the exact evaluation <code>${esc(e.evaluationId)}</code>. Access requires authorization to the owning organization — an unauthorized reader receives HAIEC's normal fail-closed response, never this demo's data.</p>`;
@@ -3699,6 +3721,8 @@ function pageEvalCase(a){
     ${(facet.limitations||[]).length?`<p class="tiny muted" style="margin-top:8px">${facet.limitations.map(esc).join(' · ')}</p>`:''}</div>`
   :`<div class="notice"><div><b>ABSENT_FACET</b><p>No manufacturing control-maturity facet is bound to this evaluation — absent, not zero.</p></div></div>`}
   ${qRows?`<div class="card"><div class="cardhead"><div><h2>Four assurance questions</h2></div></div><div class="tblwrap"><table class="tbl"><tbody>${qRows}</tbody></table></div></div>`:''}
+  ${a.sourceCase.caseId==='SYS-217-WRONG_TARGET'?`<div class="card"><div class="cardhead"><div><h2>Recorded evidence replay</h2><p>Watch this exact evaluation's recorded source-world evidence unfold over ~60 seconds — request through HAIEC's persisted findings. Deterministic playback only: no backend scan, no new evidence collection, nothing is dispatched.</p></div>${pill('MODE A · RECORDED','info')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap"><button class="btn sm primary" data-act="page" data-id="replay">Run Evidence Replay →</button></div></div>`:''}
   ${a.sourceCase.caseId==='SYS-217-WRONG_TARGET'?`<div class="card"><div class="cardhead"><div><h2>Public sample report</h2><p>A frozen public-safe derivative of this exact evaluation — no HAIEC sign-in required. Redacts internal identities; retains rule outcomes, digests, disposition, control receipts and limitations verbatim.</p></div>${pill('PUBLIC DERIVATIVE · SYNTHETIC LAB','warn')}</div>
     <div class="flex" style="gap:8px;flex-wrap:wrap"><a class="btn sm primary" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a><a class="btn sm" href="report/sample-master-report.pdf" target="_blank" rel="noopener">Download Sample PDF ↗</a></div></div>`:''}
   <div class="card"><div class="cardhead"><div><h2>Report artifacts — authorized access</h2></div></div>${hxLinks(e)}</div>
@@ -3738,10 +3762,172 @@ function pageStation217(){
     <p class="tiny muted" style="margin-top:8px">The replay bundle above is simulator output (<code>${esc(b.schemaVersion)}</code>) — HAIEC evaluated the independent source-world records, not this local ledger.</p></div>`:''}`;
 }
 
+/* ==============================================================
+   Sprint 14.3 — Mode A recorded evidence replay (~60 s)
+   Deterministic client-side playback of digest-pinned source-world
+   records + the persisted evaluation. No backend scan, no new
+   evidence collection, no dispatch. Display pacing is UI time only;
+   each card carries its real source-record timestamp.
+   ============================================================== */
+const RP = { status:'idle', elapsed:0, timer:null, manual:false };
+const RP_TOTAL = 60, RP_TICK = 250;
+const RP_CASE = 'SYS-217-WRONG_TARGET';
+
+function rpData(){ return HXDATA && HXDATA.replay || null; }
+function rpEval(){ return HXDATA && HXDATA.exportMap && HXDATA.exportMap[RP_CASE] || null; }
+function rpRec(phase){ const r=(rpData()&&rpData().records)||[]; return r.find(x=>x.payload&&x.payload.phase===phase)||null; }
+function rpOk(){ return HX.digestsDone && HX.verified[RP_CASE]===true && HX.replayVerified===true; }
+
+/* Step table — windows follow docs/60-SECOND-EVIDENCE-REPLAY.md. A step
+   whose underlying record is absent renders MISSING EVIDENCE, never a
+   synthetic substitute. */
+const RP_STEPS = [
+  { start:0,  end:8,  kind:'record', phase:'REQUESTED',       title:'Request',            sub:'AI request and exact target' },
+  { start:8,  end:15, kind:'record', phase:'POLICY_DECLARED', title:'Delegated authority', sub:'Approved scope and bound target for the agent' },
+  { start:15, end:22, kind:'record', phase:'CODE_CAPABLE',    title:'Capability',         sub:'What the code path can technically do' },
+  { start:22, end:30, kind:'record', phase:'GATE_DECISION',   title:'Dispatch',           sub:'Permitted/denied decision and dispatch', extraPhase:'ACTION_APPLIED' },
+  { start:30, end:38, kind:'record', phase:'EFFECT_CONFIRMED',title:'Effect & readback',  sub:'Native transaction and independent target-state readback' },
+  { start:38, end:46, kind:'eval',   title:'HAIEC evaluation',sub:'Source qualification and deterministic rule outcomes' },
+  { start:46, end:53, kind:'control',title:'UCP control result',sub:'Control test, receipt state and evidence limitations' },
+  { start:53, end:60, kind:'report', title:'Master Assurance Report',sub:'Frozen finding, disposition and next action' },
+];
+
+function rpRecordCard(rec, extra){
+  if(!rec)return `<div class="notice warn"><div><b>MISSING EVIDENCE</b><p>No source-world record exists for this phase — absent records are shown honestly, never substituted.</p></div></div>`;
+  const p=rec.payload||{};
+  const rows=Object.entries(p).map(([k,v])=>`<tr><td class="tiny">${esc(k)}</td><td class="tiny"><code>${esc(typeof v==='object'?JSON.stringify(v):String(v))}</code></td></tr>`).join('');
+  return `<div class="rp-rec">
+    <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:4px">
+      <span class="tiny"><b>${esc(p.phase||'—')}</b> · record <code>${esc(rec.evidenceId||'—')}</code></span>
+      ${pill(rec.sourceType||'SOURCE','info')}
+    </div>
+    <table class="tbl" style="margin-top:6px"><tbody>${rows}</tbody></table>
+    <div class="tiny muted" style="margin-top:6px">source-recorded <code>${esc(rec.declaredAt||'time not recorded')}</code> · via ${esc(rec.sourceSystem||'—')}${extra?' · '+esc(extra):''}</div>
+  </div>`;
+}
+
+function rpStepBody(st){
+  if(st.kind==='record'){
+    const main=rpRec(st.phase);
+    const extra=st.extraPhase?rpRec(st.extraPhase):null;
+    return rpRecordCard(main)+ (extra?rpRecordCard(extra):'') + (st.extraPhase&&!extra?`<div class="notice warn" style="margin-top:6px"><div><b>MISSING EVIDENCE</b><p>No ${esc(st.extraPhase)} record retained.</p></div></div>`:'');
+  }
+  const a=rpEval(); if(!a)return `<div class="notice warn"><div><b>MISSING EVIDENCE</b><p>Export not loaded.</p></div></div>`;
+  const e=a.evaluation,m=a.manufacturing||{};
+  if(st.kind==='eval'){
+    const rows=(m.ruleOutcomes||[]).map(o=>`<tr><td><b>${esc(o.ruleId)}</b></td><td>${hxOutcomeChip(o.status,o.reason)}</td><td class="tiny muted">${esc(o.reason||'')}</td></tr>`).join('');
+    return `<table class="tbl"><thead><tr><th>Rule</th><th>Outcome</th><th>Verbatim reason</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="tiny muted" style="margin-top:6px">Persisted evaluation outcomes, verbatim — observed <code>${esc((m.ruleOutcomes&&m.ruleOutcomes[0]&&m.ruleOutcomes[0].observedAt)||'time not recorded')}</code> · evaluation <code>${esc(e.evaluationId)}</code></div>`;
+  }
+  if(st.kind==='control'){
+    const f=m.controlMaturity;
+    if(!f)return `<div class="notice"><div><b>ABSENT_FACET</b><p>No control-maturity facet is bound to this evaluation — absent, not zero.</p></div></div>`;
+    const rows=(f.rows||[]).map(r=>`<tr><td>${esc(r.controlId||'')}</td><td>${hxUcpResultChip(r.ucpResult)}</td><td>${esc(r.ucpReceiptState||'EVALUATED_NO_RECEIPT')}</td><td class="tiny muted">${r.facets?Object.entries(r.facets).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(' '):'—'}</td></tr>`).join('');
+    return `<table class="tbl"><thead><tr><th>Control</th><th>UCP result</th><th>Receipt</th><th>Facets</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="tiny muted" style="margin-top:6px">SATISFIED witnesses that the effect occurred with receipt-bound evidence — <b>not</b> that it was authorized or safe.</div>`;
+  }
+  if(st.kind==='report'){
+    return `<div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')}</div>
+    <table class="tbl" style="margin-top:8px"><tbody>
+      <tr><td>Finding</td><td class="tiny">The effect was <b>witnessed</b> on <code>${esc(rpData().actualTarget||'')}</code> while the approved target was <code>${esc(rpData().expectedTarget||'')}</code> — a witnessed effect is not an authorized effect. Root cause: <code>${esc('NOT_ESTABLISHED')}</code> per the source scenario.</td></tr>
+      <tr><td>Evaluation</td><td class="tiny"><code>${esc(e.evaluationId)}</code></td></tr>
+      <tr><td>Next action</td><td class="tiny">Open the public sample report, or the authenticated original with an authorized account.</td></tr>
+    </tbody></table>
+    <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn sm primary" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a>
+      <a class="btn sm" href="report/sample-master-report.pdf" target="_blank" rel="noopener">Sample PDF ↗</a>
+    </div>
+    ${hxLinks(e)}
+    <p class="tiny muted" style="margin-top:6px">${(e.limitations||[]).map(esc).join(' · ')}</p>`;
+  }
+  return '';
+}
+
+function rpControls(){
+  if(RP.status==='running')return `<button class="btn hold" data-rp="pause">Pause</button><button class="btn" data-rp="reset">Reset</button>`;
+  if(RP.status==='paused')return `<button class="btn go" data-rp="resume">Resume</button><button class="btn" data-rp="reset">Reset</button>`;
+  if(RP.status==='done')return `<button class="btn primary" data-rp="start">Replay again</button><button class="btn" data-rp="reset">Reset</button>`;
+  return `<button class="btn primary" data-rp="start">Run Evidence Replay</button><button class="btn sm" data-rp="manual">${RP.manual?'Timed mode':'Step-through mode'}</button>`;
+}
+
+function rpStepCards(){
+  return RP_STEPS.map((st,i)=>{
+    const on=RP.manual?(i<=RP.stepIdx):RP.elapsed>=st.start;
+    const active=RP.manual?(i===RP.stepIdx):(RP.elapsed>=st.start&&RP.elapsed<st.end);
+    return `<div class="rp-step ${on?'rp-on':''} ${active?'rp-active':''}" data-rp-start="${st.start}">
+      <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:4px">
+        <div><span class="rp-num">${String(i+1).padStart(2,'0')}</span> <b>${esc(st.title)}</b><div class="tiny muted">${esc(st.sub)}</div></div>
+        <span class="tiny muted">playback t=${st.start}–${st.end}s</span>
+      </div>
+      <div class="rp-body">${on?rpStepBody(st):'<div class="tiny muted">…</div>'}</div>
+    </div>`;
+  }).join('');
+}
+
+function pageReplay(){
+  if(!HXDATA)return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'No data',sub:'dashboard/data/haiec-exports.js missing.'});
+  if(!HX.digestsDone)return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'Evidence replay',sub:pill('VERIFYING','info')})+
+    `<div class="notice"><div><b>Verifying digests</b><p>Recomputing export and replay-record digests before playback is enabled.</p></div></div>`;
+  if(!rpOk()){
+    return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'Evidence replay',sub:pill('INTEGRITY FAILURE','hold')})+
+    `<div class="notice warn"><div><b>Replay blocked</b><p>Export and/or replay-record digest verification failed — recorded evidence is withheld rather than played back untrusted.</p></div></div>`;
+  }
+  const rp=rpData(),e=rpEval().evaluation;
+  return header({eyebrow:'PROOF / EVIDENCE REPLAY / SYS-217',title:esc(rp.title||'Evidence replay'),
+    sub:`${pill('RECORDED EVIDENCE','warn')} ${pill('NO BACKEND SCAN','info')} <code class="tiny">${esc(e.evaluationId)}</code>`,
+    actions:`<button class="btn" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Open the export →</button>`})+
+  `<div class="notice warn"><div><b>Recorded evidence replay</b><p>The sequence below replays <b>recorded</b> synthetic source-world records and a persisted HAIEC evaluation. Nothing is collected, dispatched or re-evaluated. Source timestamps are the record's own <code>declaredAt</code> values; the timer is display pacing only.</p></div></div>
+  <div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center">
+      <div class="flex" style="gap:8px;flex-wrap:wrap">${rpControls()}</div>
+      <div class="tiny muted" id="rp-time">${RP.manual?'step '+(RP.stepIdx+1)+' / '+RP_STEPS.length:Math.round(RP.elapsed)+'s / '+RP_TOTAL+'s'}</div>
+    </div>
+    <div class="rp-track"><div class="rp-bar" id="rp-bar" style="width:${RP.manual?((RP.stepIdx+1)/RP_STEPS.length*100):(RP.elapsed/RP_TOTAL*100)}%"></div></div>
+    ${RP.manual?`<div class="flex top14" style="gap:8px"><button class="btn sm" data-rp="prev" ${RP.stepIdx<=0?'disabled':''}>← Prev</button><button class="btn sm" data-rp="next" ${RP.stepIdx>=RP_STEPS.length-1?'disabled':''}>Next →</button></div>`:''}
+  </div>
+  <div class="rp-steps">${rpStepCards()}</div>
+  <div class="card" id="rp-done" style="display:${(RP.status==='done'||(RP.manual&&RP.stepIdx>=RP_STEPS.length-1))?'':'none'}"><div class="cardhead"><div><h2>Replay complete — recorded outcome</h2></div>${statusPill(e.disposition)}</div>
+    <p class="small">An effect was <b>witnessed</b> on the wrong target — that is a divergence finding, not proof the operation was authorized or safe. The evaluation is frozen; this replay re-presented recorded records only.</p>
+    <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
+      <a class="btn sm primary" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a>
+      <button class="btn sm" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Full verified export →</button>
+    </div></div>`;
+}
+
+/* Engine — timer only advances UI pacing; content never changes. */
+function rpStop(){ if(RP.timer){clearInterval(RP.timer);RP.timer=null;} }
+function rpPaint(){
+  const bar=document.getElementById('rp-bar'); if(bar&&!RP.manual)bar.style.width=(RP.elapsed/RP_TOTAL*100)+'%';
+  const t=document.getElementById('rp-time'); if(t)t.textContent=RP.manual?('step '+(RP.stepIdx+1)+' / '+RP_STEPS.length):(Math.round(RP.elapsed)+'s / '+RP_TOTAL+'s');
+  document.querySelectorAll('.rp-step').forEach((n,i)=>{
+    const on=RP.manual?(i<=RP.stepIdx):RP.elapsed>=+n.dataset.rpStart;
+    const act=RP.manual?(i===RP.stepIdx):(RP.elapsed>=+n.dataset.rpStart&&RP.elapsed<RP_STEPS[i].end);
+    n.classList.toggle('rp-on',on); n.classList.toggle('rp-active',act);
+    const b=n.querySelector('.rp-body');
+    if(b){ if(on&&!b.dataset.filled){b.innerHTML=rpStepBody(RP_STEPS[i]);b.dataset.filled='1';} else if(!on&&b.dataset.filled){b.innerHTML='<div class="tiny muted">…</div>';delete b.dataset.filled;} }
+  });
+  const done=document.getElementById('rp-done'); if(done)done.style.display=(RP.status==='done'||(RP.manual&&RP.stepIdx>=RP_STEPS.length-1))?'':'none';
+  if(RP.status==='done')rpStop();
+}
+function rpTick(){ RP.elapsed+=RP_TICK/1000; if(RP.elapsed>=RP_TOTAL){RP.elapsed=RP_TOTAL;RP.status='done';} rpPaint(); if(RP.status==='done')render(); }
+RP.stepIdx=0;
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-rp]'); if(!b)return;
+  const act=b.dataset.rp;
+  if(act==='start'){ if(!rpOk())return; RP.status='running'; RP.manual=false; if(RP.elapsed>=RP_TOTAL)RP.elapsed=0; rpStop(); RP.timer=setInterval(rpTick,RP_TICK); render(); }
+  else if(act==='pause'){ RP.status='paused'; rpStop(); render(); }
+  else if(act==='resume'){ RP.status='running'; rpStop(); RP.timer=setInterval(rpTick,RP_TICK); render(); }
+  else if(act==='reset'){ RP.status='idle'; RP.elapsed=0; RP.stepIdx=0; rpStop(); render(); }
+  else if(act==='manual'){ RP.manual=!RP.manual; RP.status='idle'; rpStop(); if(RP.manual){RP.elapsed=RP_TOTAL;RP.stepIdx=0;} render(); }
+  else if(act==='prev'){ if(RP.stepIdx>0)RP.stepIdx--; render(); }
+  else if(act==='next'){ if(RP.stepIdx<RP_STEPS.length-1)RP.stepIdx++; render(); }
+});
+
 /* Register renderers late — PAGE_RENDERERS is a const object built in
    the first script block before these functions exist; mutation is safe. */
 PAGE_RENDERERS.evaluations = pageEvaluations;
 PAGE_RENDERERS.station217 = pageStation217;
+PAGE_RENDERERS.replay = pageReplay;
 
 /* Boot — verify all digests, then re-render if an HX page is active. */
 if(HXDATA){hxVerifyAll();}

@@ -63,7 +63,7 @@ function loadDashboard() {
   for (const b of blocks) vm.runInContext(b, sandbox);
   // Top-level const/let stays lexical in the context — capture test handles.
   const T = vm.runInContext(
-    '({ STATE, HX, HXDATA, render, pageEvaluations, pageStation217, pageEvalCase, hxVerifyAll, SCENARIOS })',
+    '({ STATE, HX, HXDATA, RP, RP_STEPS, render, pageEvaluations, pageStation217, pageEvalCase, pageReplay, hxVerifyAll, SCENARIOS })',
     sandbox,
   );
   return { sandbox, elements, T };
@@ -205,4 +205,124 @@ test('all 27 exports in the bundle have verified digests at build', () => {
   assert.equal(exps.length, 27);
   const { verifyExportDigest } = require('../src/load-export.cjs');
   for (const a of exps) assert.equal(verifyExportDigest(a).verified, true, `${a.sourceCase.caseId} digest`);
+});
+
+/* ---------------- Sprint 14.3 — Mode A recorded evidence replay -------- */
+
+test('replay data is embedded digest-pinned and bound to the wrong-target evaluation', () => {
+  const { T } = loadDashboard();
+  const rp = T.HXDATA.replay;
+  assert.ok(rp, 'replay bundle must be embedded');
+  assert.equal(rp.caseId, 'SYS-217-WRONG_TARGET');
+  assert.equal(rp.evaluationId, 'bce94772-df56-447b-8625-0646915f7e25:assurance:1.1');
+  assert.match(rp.digest, /^sha256:[0-9a-f]{64}$/);
+  assert.equal(rp.records.length, 6);
+  const phases = rp.records.map((r) => r.payload.phase);
+  for (const p of ['REQUESTED', 'POLICY_DECLARED', 'CODE_CAPABLE', 'GATE_DECISION', 'ACTION_APPLIED', 'EFFECT_CONFIRMED']) {
+    assert.ok(phases.includes(p), `missing source record phase ${p}`);
+  }
+  for (const r of rp.records) assert.ok(r.declaredAt, 'every record carries its real declaredAt');
+});
+
+test('replay page shows VERIFYING before digests complete and blocks start', async () => {
+  const { elements, T } = loadDashboard();
+  T.STATE.page = 'replay';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('VERIFYING'), 'must show VERIFYING while digests pending');
+  assert.ok(!html.includes('Run Evidence Replay'), 'start control must not render unverified');
+});
+
+test('tampered replay digest blocks playback — INTEGRITY FAILURE, no record content', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.replayVerified = false;
+  T.STATE.page = 'replay';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('INTEGRITY FAILURE'), 'must show INTEGRITY FAILURE');
+  assert.ok(html.includes('Replay blocked'));
+  for (const r of T.HXDATA.replay.records) assert.ok(!html.includes(r.evidenceId), `record ${r.evidenceId} must not render`);
+});
+
+test('verified replay renders all eight steps with source timestamps and playback windows', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'replay';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('Run Evidence Replay'), 'start control renders when verified');
+  assert.ok(html.includes('Recorded evidence replay'), 'honesty banner present');
+  assert.ok(html.includes('Nothing is collected'), 'no-collection statement present');
+  assert.equal(T.RP_STEPS.length, 8);
+  for (const st of T.RP_STEPS) {
+    assert.ok(html.includes(`t=${st.start}–${st.end}s`), `missing playback window for ${st.title}`);
+  }
+});
+
+test('playback reveals steps at their windows; source declaredAt stays distinct from UI time', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'replay';
+  T.RP.elapsed = 31; // inside the 30–38s effect window
+  T.render();
+  const html = elements.get('main').innerHTML;
+  // request/dispatch/effect records revealed, report step still locked
+  assert.ok(html.includes('WO-217-4802'), 'requested target record revealed');
+  assert.ok(html.includes('WO-217-4803'), 'actual-target record revealed');
+  assert.ok(html.includes('2026-10-13T00:00:00.000Z'), 'source declaredAt rendered, distinct from pacing');
+  assert.ok(html.includes('id="rp-done" style="display:none"'), 'completion card stays hidden until the last window');
+});
+
+test('completion distinguishes witnessed effect from authorized effect and links the sample report', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'replay';
+  T.RP.elapsed = 60; T.RP.status = 'done';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('witnessed'), 'completion must name the witnessed effect');
+  assert.ok(html.includes('REVIEW'), 'disposition verbatim');
+  assert.ok(html.includes('report/sample-master-report.html'), 'sample report link present');
+  assert.ok(html.includes('Replay complete'));
+});
+
+test('manual step-through mode works without the timer; reset returns to pristine state', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'replay';
+  T.RP.manual = true; T.RP.stepIdx = 4;
+  T.render();
+  let html = elements.get('main').innerHTML;
+  assert.ok(html.includes('step 5 / 8'), 'manual counter');
+  assert.ok(html.includes('data-rp="prev"') && html.includes('data-rp="next"'), 'step controls');
+  T.RP.status = 'idle'; T.RP.elapsed = 0; T.RP.stepIdx = 0; T.RP.manual = false;
+  T.render();
+  html = elements.get('main').innerHTML;
+  assert.ok(html.includes('0s / 60s'), 'reset returns to t=0');
+  assert.ok(!html.includes('step 1 /'), 'manual step counter absent in timer mode');
+});
+
+test('a missing source-world record renders MISSING EVIDENCE, never a substitute', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  const orig = T.HXDATA.replay.records;
+  T.HXDATA.replay.records = orig.filter((r) => r.payload.phase !== 'EFFECT_CONFIRMED');
+  T.STATE.page = 'replay';
+  T.RP.elapsed = 60; // reveal all steps
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('MISSING EVIDENCE'), 'absent record must render MISSING EVIDENCE');
+  T.HXDATA.replay.records = orig; // restore shared fixture
+});
+
+test('rendered HAIEC links never expose the internal org id', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.caseId = 'SYS-217-WRONG_TARGET';
+  T.STATE.page = 'evaluations';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(!html.includes('org=s12'), 'internal org query param must not render in links');
+  assert.ok(html.includes('/dashboard/assurance/evaluations/'), 'sanitized eval link still present');
 });
