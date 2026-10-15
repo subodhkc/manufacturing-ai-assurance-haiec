@@ -369,8 +369,8 @@ test('exec center renders all seven modules from verified sources', async () => 
   const html = elements.get('main').innerHTML;
   for (const mod of ['AI Estate &amp; Inventory', 'Five Independent Evidence Planes',
     'Assurance &amp; Integrity Posture', 'Consequence Action Graph',
-    'Delegation &amp; Capability Boundary', 'Proof Frontier &amp; Required Evidence',
-    'Recorded Event Timeline']) {
+    'Delegated Action Integrity', 'Proof Frontier &amp; Required Evidence',
+    'Recorded Event Timeline', 'What HAIEC Demonstrated']) {
     assert.ok(html.includes(mod), `missing module: ${mod}`);
   }
   // canonical facts, verbatim
@@ -467,3 +467,138 @@ test('exec summary and technical case view preserve identical canonical facts', 
     assert.ok(caseHtml.includes(fact), `case view missing ${fact}`);
   }
 });
+
+/* ---------------- Sprint 14.5 — enterprise positioning fixes -------- */
+
+test('exec estate shows the frozen export date, not the bundle build time', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  const a = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'];
+  const exported = String(a.exportedAt).slice(0, 10);
+  assert.ok(html.includes(exported), 'frozen-export date must be export.exportedAt');
+  // The module row labelled "Frozen export" must not render generatedAt.
+  const row = html.match(/Frozen export[\s\S]{0,120}?<b>([^<]+)<\/b>/);
+  assert.ok(row && row[1].includes(exported), `Frozen export shows ${row && row[1]}`);
+});
+
+test('exec frontier chip shows the canonical 5+1 accounting', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  const pb = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].evaluation.fourQuestions.proofBoundary;
+  const m = String(pb.summary).match(/(\d+) unresolved evidence-frontier item\(s\) and (\d+) open evidence need\(s\)/);
+  assert.ok(m, 'canonical summary present');
+  assert.ok(html.includes(`${m[1]} frontier items`), 'canonical frontier count rendered');
+});
+
+test('estate agent count binds to the agent registry, not report documents', () => {
+  const agents = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/generated/agents.json'), 'utf8'));
+  const data = loadData();
+  assert.equal(data.estate.agentRoles, agents.agents.length, 'agentRoles must equal agents.json registry length');
+});
+
+test('evidence integrity panel distinguishes bound digests from unattached signatures', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  const e = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].evaluation;
+  assert.ok(html.includes('Evidence Integrity'), 'integrity section present');
+  assert.ok(html.includes(e.coreTruthDigest), 'core truth digest verbatim');
+  assert.ok(html.includes(e.evidenceBundleDigest), 'bundle digest verbatim');
+  assert.ok(html.includes('NOT ISSUED'), 'decision receipt honestly absent');
+  assert.ok(html.includes('unsigned'), 'unsigned state explicit');
+  assert.ok(!/issuer.?signed|digitally signed|cryptographically signed (origin|export|report)/i.test(html),
+    'no signature claim on the derivative');
+});
+
+test('consequence graph renders POLICY_DECLARED and GATE_DECISION as separate nodes', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('Declared policy target'));
+  assert.ok(html.includes('Gate decision'));
+});
+
+test('manufacturing impact is labeled potential and modeled context is not evaluated scope', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('POTENTIAL'), 'impact labeled potential');
+  assert.ok(html.includes('LOT-2026-4401'));
+  assert.ok(html.includes('41002'));
+  assert.ok(/not independently evaluated affected scope/i.test(html), 'modeled scope caveat present');
+  assert.ok(!/actually triggered|product recall|defective engines/i.test(html), 'no claimed real-world consequence');
+});
+
+test('DAI module shows the real nine-dimension engine and no fabricated result', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('dai-evaluation-1.0.0'));
+  for (const d of ['OPERATION', 'TARGET', 'SCOPE', 'MAGNITUDE', 'DURATION', 'APPROVAL', 'DATA_CLASS', 'ENVIRONMENT', 'GEOGRAPHY']) {
+    assert.ok(html.includes(`>${d}<`), `missing DAI dimension ${d}`);
+  }
+  assert.ok(html.includes('NOT ATTACHED'));
+  assert.ok(!/daiState|INSIDE_ESTABLISHED_DELEGATION|OBSERVED_OUTSIDE_DELEGATION/.test(html), 'no fabricated DAI state');
+  assert.ok(!/DCD\s*=\s*[\d.]+%?/.test(html), 'no computed DCD value');
+});
+
+test('replay one-click requires verified digest and replay wording is honest', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('data-act="exec-replay"'), 'one-click action present');
+  const src = fs.readFileSync(path.join(ROOT, 'dashboard/index.html'), 'utf8');
+  assert.ok(src.includes("case 'exec-replay'") && /HX\.replayVerified===true/.test(src),
+    'autostart gated on replay digest verification');
+  assert.ok(html.includes('source-world replay aligned to the persisted HAIEC evaluation'));
+});
+
+test('report derivatives share one deterministic identity and canonical parity', () => {
+  const idPath = path.join(ROOT, 'dashboard/report/sample-master-report.identity.json');
+  const id = JSON.parse(fs.readFileSync(idPath, 'utf8'));
+  const html = fs.readFileSync(path.join(ROOT, 'dashboard/report/sample-master-report.html'), 'utf8');
+  const sidecar = fs.readFileSync(path.join(ROOT, 'dashboard/report/sample-master-report.sha256'), 'utf8');
+  assert.ok(id.derivativeId.startsWith('sha256:'));
+  assert.ok(html.includes(id.derivativeId), 'HTML carries derivative identity');
+  assert.ok(sidecar.includes(id.derivativeId), 'sidecar records derivative identity');
+  for (const probe of [id.evaluationId, id.disposition, id.coreTruthDigest, id.evidenceBundleDigest]) {
+    assert.ok(html.includes(probe), `HTML missing canonical field ${String(probe).slice(0, 30)}`);
+  }
+  const r01 = id.ruleOutcomes.find((r) => r.ruleId === 'MFG-EFF-001');
+  assert.equal(r01 && r01.status, 'MATCH');
+  // deterministic: recompute and compare
+  const { createHash } = require('node:crypto');
+  const e = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/evaluations/sys-217-wrong-target.json'), 'utf8'));
+  const src = { derivativeVersion: 'sample-report-derivative-1.0.0', evaluationId: e.evaluation.evaluationId, reportId: e.evaluation.reportId, reportVersion: e.evaluation.reportVersion, projectionVersion: e.evaluation.projectionVersion, coreTruthDigest: e.evaluation.coreTruthDigest, exportDigest: e.exportDigest, exportedAt: e.exportedAt, disposition: e.evaluation.disposition };
+  const expect = 'sha256:' + createHash('sha256').update(JSON.stringify(src), 'utf8').digest('hex');
+  assert.equal(id.derivativeId, expect, 'derivative identity is deterministic');
+});
+
+test('no absolute cryptographic claims anywhere in dashboard or pitch copy', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const html = elements.get('main').innerHTML;
+  const home = fs.readFileSync(path.join(ROOT, 'dashboard/home.html'), 'utf8');
+  for (const text of [html, home]) {
+    assert.ok(!/absolute trust|tamper.?proof|unassailable|absolute replay|zero LLM hallucination/i.test(text),
+      'absolute claim must not appear');
+  }
+});
+
+function loadData() {
+  const vm = require('node:vm');
+  const src = fs.readFileSync(path.join(ROOT, 'dashboard/data/haiec-exports.js'), 'utf8');
+  const sandbox = { window: {} };
+  vm.runInNewContext(src, sandbox);
+  return sandbox.window.HAIEC_DEMO_DATA;
+}

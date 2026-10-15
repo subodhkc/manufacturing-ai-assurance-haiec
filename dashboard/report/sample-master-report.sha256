@@ -1,4 +1,5 @@
-# Derivative digests (Sprint 14.3) — these cover the redacted public files only.
+# Derivative digests (Sprint 14.3/14.5) — these cover the redacted public files only.
 # They are NOT the pinned HAIEC exportDigest; digest = integrity, not issuer signature.
-sha256:dbd661c64bc4963c048a0be3ecc3aa106643b3fd933dfd8b9f2606ac76f2f9de  sample-master-report.html
-sha256:a88e3f660e1f8b6eb601806d3a7e8b8dab40555b0e2fd44b3ed16b7430d5dcb0  sample-master-report.pdf
+# Derivative identity (shared across HTML/PDF): sha256:faa23e70ea0b9c499ef705b190b18ffc262d0d5437ff2b70d7c2806cddee228b
+sha256:af844d2e86da9a32d89b5c0d3219a24a65ad43e9320fe907c2469a27a6c80183  sample-master-report.html
+sha256:68a2e051873a53fe9985952cd36aa48bbc6a78353bc1f9474abb14de693db694  sample-master-report.pdf
