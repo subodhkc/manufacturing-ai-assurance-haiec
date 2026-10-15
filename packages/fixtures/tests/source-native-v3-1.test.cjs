@@ -22,7 +22,12 @@ test('upstream v3 evidence source & 27 evaluations remain untouched, pinned per 
     assert.equal(sha(fs.readFileSync(f)),e.sha256,f);
   }
   assert.equal(read('data/source-native/v3/manifest.json').cases,36);
-  assert.equal(manifest.upstream.mainCommit,'eda7a6f6df0addbac5d1fef99a67b72f131f83db');
+  assert.equal(manifest.upstream.baselineCommit,'eda7a6f6df0addbac5d1fef99a67b72f131f83db');
+  // The derived pack must record the digest of the CURRENT upstream v3
+  // manifest — a live comparison, so an upstream revision can never drift
+  // silently under a stale pin.
+  assert.equal(manifest.upstream.manifestDigest,sha(fs.readFileSync(path.join(repo,'data/source-native/v3/manifest.json'),'utf8')));
+  assert.deepEqual(manifest.upstreamRevisions,['SPRINT15_CANONICAL_OTLP_CONTRACT_ATTRS — v3 telemetry bytes augmented in place and manifest repinned; evaluations bound to revised bytes']);
   assert.doesNotMatch(fs.readFileSync(path.join(__dirname,'../src/source-native-v3-1-core.cjs'),'utf8'),/require\s*\(\s*['"][^'"]*expected-findings/);
 });
 test('nine differentiated industrial modalities, source hashes and no fake physical image assets',()=>{
