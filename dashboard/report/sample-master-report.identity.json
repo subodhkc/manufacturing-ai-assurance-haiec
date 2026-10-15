@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "sample-report-identity-1.0.0",
+  "derivativeId": "sha256:faa23e70ea0b9c499ef705b190b18ffc262d0d5437ff2b70d7c2806cddee228b",
+  "evaluationId": "bce94772-df56-447b-8625-0646915f7e25:assurance:1.1",
+  "disposition": "REVIEW",
+  "evaluationBasis": "EVIDENCE_ONLY",
+  "reportVersion": "master-report-schema-1.0.0",
+  "methodologyVersion": "1.1",
+  "projectionVersion": "master-report-1.3.0",
+  "coreTruthDigest": "0333d6221e27afd8b7d4a567156b8a49f118f305e035a9eda578834c85b21d49",
+  "evidenceBundleDigest": "298598834291cbf300ce9d259ab6dd1bddc338d2107ef8253cf0b1ef571a6ed5",
+  "exportDigest": "sha256:426985da32af4101ffa669c1c5751eeb99083b7fbb701a1cc53bd7e055b4b88f",
+  "ruleOutcomes": [
+    {
+      "ruleId": "MFG-AUTH-001",
+      "status": "NO_MATCH_WITH_ADEQUATE_COVERAGE"
+    },
+    {
+      "ruleId": "MFG-EFF-001",
+      "status": "MATCH"
+    },
+    {
+      "ruleId": "MFG-EFF-002",
+      "status": "INSUFFICIENT_SOURCE"
+    },
+    {
+      "ruleId": "MFG-QMS-001",
+      "status": "NO_MATCH_WITH_ADEQUATE_COVERAGE"
+    },
+    {
+      "ruleId": "MFG-OBS-001",
+      "status": "INSUFFICIENT_SOURCE"
+    }
+  ],
+  "r01": {
+    "controlId": "R01",
+    "title": "Action lifecycle and side-effect traceability",
+    "family": "R",
+    "referencedBy": [
+      "UCP_EVALUATED"
+    ],
+    "facets": {
+      "CATALOG_REFERENCE": "YES",
+      "IMPLEMENTED_VISIBILITY": "NO",
+      "QUALIFIED_SOURCE_READY": "YES",
+      "EXECUTED_RULE": "YES",
+      "GOVERNED_UCP_WITH_RECEIPT": "YES",
+      "INDEPENDENT_EFFECT_EVIDENCE": "YES"
+    },
+    "binding": {
+      "requiredClaimTypes": [
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "executedRuleIds": [
+        "MFG-EFF-001"
+      ],
+      "qualifiedClaimTypesPresent": [
+        "OBSERVED_DISPATCH",
+        "NATIVE_TARGET_READBACK"
+      ],
+      "missingClaimTypes": []
+    },
+    "ucpResult": "SATISFIED",
+    "ucpReceiptState": "RECEIPT_BOUND"
+  }
+}

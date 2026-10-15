@@ -36,7 +36,7 @@ Each step must render even when its evidence is absent — absent facets show `N
 
 ## Controls
 
-- **Start / Pause / Resume / Reset / Replay-from-step-N** — the sequence is a deterministic state machine: `stepIndex`, `elapsed`, `paused`. Reset returns to a pristine pre-run state.
+- **Start / Pause / Resume / Reset / Step-through mode** — the sequence is a deterministic state machine: `stepIndex`, `elapsed`, `paused`. Reset returns to a pristine pre-run state. The implemented manual step-through (Prev/Next) provides the equivalent of replay-from-step-N. The Executive Command Center's "Run 60-Second Evidence Replay" button navigates to the replay page and starts playback in one deliberate action — starting still requires the replay digest to be verified (fail-closed).
 - **Pacing** — nominal 60 s total; a "step-by-step" mode removes the timer for accessibility.
 - **Judge isolation** — pure client-side state; two judges on separate devices cannot interfere. No shared session, no server-side run registry.
 - **Missing evidence** — a step whose underlying claim is absent renders a `MISSING EVIDENCE` card (mirroring `INSUFFICIENT_SOURCE` semantics), never a synthetic substitute.

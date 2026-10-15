@@ -91,3 +91,18 @@ unavailable marker — never a substitute.
   LIVE_VERIFIED 2026-10-14) — never blended with the single SYS-217 evaluation.
 - No FAR %, no code-reach numerator, no proof-completion gauge, no fabricated
   OTLP ms timestamps.
+
+## Sprint 14.5 additions
+
+| UI field | Source | Semantics / limits |
+|---|---|---|
+| Frozen export date | `export.exportedAt` | was `HXDATA.generatedAt` (bundle build time) — corrected |
+| Agent registry roles | `data/generated/agents.json → agents.length` (16) | was `agent-reports.json` document count — corrected |
+| Frontier chip | `proofBoundary.summary` verbatim ("5 unresolved evidence-frontier item(s) and 1 open evidence need(s)") | was a count of `Not assessed:` detail lines — corrected |
+| Graph nodes | POLICY_DECLARED and GATE_DECISION now separate source records | each keeps its own qualification |
+| Evidence Integrity & Verification | `coreTruthDigest`, `evidenceBundleDigest`, `evaluationScenarioSnapshot.snapshotDigest`, `exportDigest`, `links.decisionReceipt` (null → NOT ISSUED) | digests = integrity anchors; issuer signature honestly absent; platform capabilities labeled unattached |
+| DAI module | `dai-evaluation-1.0.0` engine — nine dimensions shown as capability | SYS-217 binds no DAI input → "NOT ATTACHED"; no fabricated comparison |
+| Manufacturing impact | `estate.modeledContext` (LOT-2026-4401, SN 41002–41041) from `estate.json` SYS-217 | labeled POTENTIAL + modeled context, never evaluated affected scope |
+| Demonstrated corpus | 27 exports: 9 WRONG_TARGET all MFG-EFF-001 MATCH; 18 R01 SATISFIED rows; 9 degraded cases absent-facet | corpus counts verified by test |
+| Derivative identity | `sample-master-report.identity.json` — sha256 over canonical source fields, no wall-clock | shared by HTML/PDF; byte digests recorded separately |
+| Deck corrections | slide PNGs patched: "Absolute Trust"→"Cryptographically Bound Assurance", "tamper-proof"→"tamper-evident", "Absolute" replay→"Strong", "SHA-256 Truth Digests"→"Deterministic Integrity Digests", V2-ingest label | `scripts/patch-deck-slides.cjs` regenerates |

@@ -162,11 +162,24 @@ let replay = null;
 // These are FICTIONAL estate facts from the generated catalog — counts of
 // cataloged entities, never executed checks or evaluated coverage.
 const gen = (f) => JSON.parse(fs.readFileSync(path.join(root, 'data/generated', f), 'utf8'));
+const estateJson = gen('estate.json');
+const sys217 = (estateJson.systems || []).find((s) => s.id === 'SYS-217') || {};
 const estate = {
-  systems: gen('estate.json').systems.length,
-  agentRoles: gen('agent-reports.json').reports.length,
+  systems: estateJson.systems.length,
+  // Sprint 14.5 — bound to the agent registry (data/generated/agents.json),
+  // not the report-document count.
+  agentRoles: gen('agents.json').agents.length,
   catalogControls: gen('controls.json').controls.length,
   workflows: gen('workflows.json').workflows.length,
+  // Modeled estate context for the SYS-217 impact narrative — catalog data,
+  // NOT independently evaluated affected scope.
+  modeledContext: {
+    affectedLots: sys217.affectedLots || [],
+    affectedSerials: sys217.affectedSerials || null,
+    area: sys217.area || null,
+    agents: sys217.agents || [],
+    status: 'MODELED_ESTATE_CONTEXT — not evaluated affected scope',
+  },
   provenance: 'FICTIONAL_MANUFACTURING_ESTATE — catalog facts from data/generated; catalog size is not evaluated coverage',
 };
 if (estate.systems !== 9 || estate.agentRoles !== 16 || estate.catalogControls !== 45 || estate.workflows !== 7) {
@@ -219,10 +232,31 @@ console.log('sample pdf present:', pdfPath, `(${(pdf.length / 1024).toFixed(0)} 
 const htmlPath = path.join(root, 'dashboard/report/sample-master-report.html');
 const htmlDigest = createHash('sha256').update(fs.readFileSync(htmlPath)).digest('hex');
 const pdfDigest = createHash('sha256').update(pdf).digest('hex');
+// Sprint 14.5 T8 — shared deterministic derivative identity (canonical
+// source fields only, never wall-clock) proves HTML + PDF + any executive
+// summary were rendered from the same frozen export.
+const idPath = path.join(root, 'dashboard/report/sample-master-report.identity.json');
+const derivId = fs.existsSync(idPath)
+  ? (JSON.parse(fs.readFileSync(idPath, 'utf8')).derivativeId || 'unavailable')
+  : 'unavailable';
+if (derivId === 'unavailable') {
+  console.error('BUILD FAILED — sample-master-report.identity.json missing; derivative identity required');
+  process.exit(1);
+}
+// Semantic parity check — the rendered HTML must carry the canonical facts.
+const htmlText = fs.readFileSync(htmlPath, 'utf8');
+const parity = JSON.parse(fs.readFileSync(idPath, 'utf8'));
+for (const probe of [parity.evaluationId, parity.disposition, parity.coreTruthDigest, derivId]) {
+  if (probe && !htmlText.includes(String(probe))) {
+    console.error(`BUILD FAILED — report HTML missing canonical field: ${String(probe).slice(0, 40)}`);
+    process.exit(1);
+  }
+}
 fs.writeFileSync(
   path.join(root, 'dashboard/report/sample-master-report.sha256'),
-  `# Derivative digests (Sprint 14.3) — these cover the redacted public files only.\n` +
+  `# Derivative digests (Sprint 14.3/14.5) — these cover the redacted public files only.\n` +
   `# They are NOT the pinned HAIEC exportDigest; digest = integrity, not issuer signature.\n` +
+  `# Derivative identity (shared across HTML/PDF): ${derivId}\n` +
   `sha256:${htmlDigest}  sample-master-report.html\n` +
   `sha256:${pdfDigest}  sample-master-report.pdf\n`,
 );

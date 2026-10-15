@@ -421,6 +421,10 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .ex-study h3{font-size:11px;margin:0 0 6px}
 .ex-study table{width:100%;font-size:10.5px}
 .ex-study td{padding:4px 0;border-bottom:1px solid var(--line)}
+.ex-phase{flex:1;min-width:140px;border:1px solid var(--line);border-radius:9px;padding:10px 11px;background:#fbfdfc}
+.ex-phase .ph-n{display:inline-block;width:19px;height:19px;border-radius:50%;background:#1c5f4c;color:#fff;font:800 10px/19px var(--sans);text-align:center;margin-bottom:5px}
+.ex-phase b{display:block;font-size:10.5px;margin-bottom:3px}
+.ex-phase p{margin:0;font-size:9.8px}
 @media(max-width:1250px){.ex-s4,.ex-s5{grid-column:span 6}.ex-s8,.ex-s7{grid-column:span 12}.ex-planes{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:820px){.ex-grid{grid-template-columns:1fr}.ex-mod{grid-column:span 1!important}.ex-planes{grid-template-columns:repeat(2,1fr)}.ex-cg-row{flex-direction:column}.ex-cg-arrow{transform:rotate(90deg);align-self:flex-start;padding:4px 10px}.ex-cg-arrow.dashed{transform:none;border-top:0;border-left:2px dashed #c9a05f;padding:0 0 0 10px}.ex-study{grid-template-columns:1fr}.ex-strip{position:static}}
 /* Technical Console — optional dark telemetry theme (design inspiration:
@@ -437,7 +441,7 @@ body.console .navbtn.active{background:#14353c;color:#8fe3cf}
 body.console .navgroup{color:#4a6b78}
 body.console .topbar{background:#0d1b23;border-bottom-color:#1d3340}
 body.console .crumb strong{color:#e8f4f2}
-body.console .card,body.console .ex-mod,body.console .metric,body.console .ex-kpi,body.console .ex-plane,body.console .ex-cg-node,body.console .ex-tl-row,body.console .ex-frontier,body.console .ex-study>div,body.console .listitem{background:#0f1e27;border-color:#1d3340}
+body.console .card,body.console .ex-mod,body.console .metric,body.console .ex-kpi,body.console .ex-plane,body.console .ex-cg-node,body.console .ex-tl-row,body.console .ex-frontier,body.console .ex-study>div,body.console .ex-phase,body.console .listitem{background:#0f1e27;border-color:#1d3340}
 body.console .ex-plane.sel,body.console .ex-cg-node.sel{border-color:#3fd4ae;box-shadow:inset 0 0 0 1px #3fd4ae;background:#11292e}
 body.console .ex-cg-node.frontier{background:#181f24;border-color:#7a5f31}
 body.console .cardhead h2,body.console h1,body.console h2,body.console h3,body.console .ex-kpi b{color:#e4f2ef}
@@ -497,7 +501,7 @@ body.console .rp-track{background:#172b36}
           Approvals <span id="pendCount" style="background:#5c4630;color:#ffd9a3;padding:1px 6px;border-radius:6px;margin-left:4px;font-size:10px">0</span>
         </button>
         <a class="btn sm" href="home.html" title="Pitch homepage — deck, video and concept visuals">Pitch home ↗</a>
-        <button class="btn sm" data-act="theme" title="Toggle the dark technical-console theme">◐ Console</button>
+        <button class="btn sm" data-act="theme" title="Dark technical-console theme — applies to the Executive Command Center">◐ Console</button>
         <button class="btn sm" data-act="tour">Guided tour →</button>
         <button class="btn sm primary" data-act="run-demo">Run guided example</button>
       </div>
@@ -2159,10 +2163,18 @@ function render(){
   const badge = $('statusBadge');
   if(pausedCount > 0){ badge.textContent = '◉ ' + pausedCount + ' paused'; badge.className = 'badge warn tip'; badge.dataset.tip = pausedCount + ' agent(s) paused by dispatch control'; }
   else { badge.textContent = '● Simulation active'; badge.className = 'badge go tip'; badge.dataset.tip = 'Browser-local simulated agents. Not connected to factory systems or HAIEC runtime.'; }
+  applyConsoleTheme();
   // Reveal animations
   requestAnimationFrame(() => {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
   });
+}
+
+/* Sprint 14.5 — the dark Technical Console is scoped to the Executive
+   Command Center page; legacy pages keep the default light theme. */
+function applyConsoleTheme(){
+  if(typeof HX === 'undefined' || !document.body || !document.body.classList || !document.body.classList.toggle)return;
+  document.body.classList.toggle('console', !!HX.consoleTheme && STATE.page === 'exec');
 }
 
 /* ============================================================
@@ -2212,7 +2224,17 @@ document.addEventListener('click', e => {
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'exec-plane': HX.execPlane = (HX.execPlane===id?null:id); render(); break;
     case 'exec-node': HX.execNode = (HX.execNode===+id?null:+id); render(); break;
-    case 'theme': document.body.classList.toggle('console'); break;
+    case 'exec-replay':
+      // Sprint 14.5 — one deliberate action: navigate AND start the recorded
+      // replay. Digest must already be verified; otherwise the page's own
+      // Run control remains the only path (fail-closed).
+      STATE.page = 'replay'; render(); window.scrollTo({top:0,behavior:'instant'});
+      if(HX.replayVerified===true){
+        RP.status='running'; RP.manual=false; if(RP.elapsed>=RP_TOTAL)RP.elapsed=0;
+        rpStop(); RP.timer=setInterval(rpTick,RP_TICK); rpPaint(); render();
+      }
+      break;
+    case 'theme': HX.consoleTheme=!HX.consoleTheme; applyConsoleTheme(); break;
   }
 });
 
@@ -3633,7 +3655,7 @@ render();
    UNAVAILABLE marker. Station 217 is a local simulator replay and is
    never presented as a HAIEC verdict or a plant observation.
    ============================================================ */
-const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com', execPlane:null, execNode:null };
+const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com', execPlane:null, execNode:null, consoleTheme:false };
 const HXDATA = window.HAIEC_DEMO_DATA || null;
 const HX_STATE_ORDER = ['EXPECTED_BASELINE','WRONG_TARGET','EVIDENCE_DEGRADED'];
 const HX_STATE_LABEL = { EXPECTED_BASELINE:'Expected baseline', WRONG_TARGET:'Wrong target', EVIDENCE_DEGRADED:'Evidence degraded' };
@@ -3978,7 +4000,7 @@ function pageReplay(){
     sub:`${pill('RECORDED EVIDENCE','warn')} ${pill('NO BACKEND SCAN','info')} <code class="tiny">${esc(e.evaluationId)}</code>`,
     actions:`<button class="btn" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Open the export →</button>`})+
   `<div class="notice warn"><div><b>Recorded evidence replay</b><p>The sequence below replays <b>recorded</b> synthetic source-world records and a persisted HAIEC evaluation. Nothing is collected, dispatched or re-evaluated. Source timestamps are the record's own <code>declaredAt</code> values; the timer is display pacing only.</p></div></div>
-  <div class="notice"><div><b>Evidence lineage</b><p class="tiny">Records are deterministic output of the same source-world producer the evaluation consumed — <code>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</code> · run <code>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</code> · transaction <code>${esc(rp.provenance?rp.provenance.transactionId:'—')}</code>. ${esc(rp.provenance?rp.provenance.limitation:'')}</p></div></div>
+  <div class="notice"><div><b>Evidence lineage</b><p class="tiny">Synthetic manufacturing source-world replay aligned to the persisted HAIEC evaluation — records are deterministic output of the same source-world producer the evaluation consumed: <code>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</code> · run <code>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</code> · transaction <code>${esc(rp.provenance?rp.provenance.transactionId:'—')}</code>. ${esc(rp.provenance?rp.provenance.limitation:'')}</p></div></div>
   <div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center">
       <div class="flex" style="gap:8px;flex-wrap:wrap">${rpControls()}</div>
       <div class="tiny muted" id="rp-time">${RP.manual?'step '+(RP.stepIdx+1)+' / '+RP_STEPS.length:Math.round(RP.elapsed)+'s / '+RP_TOTAL+'s'}</div>
@@ -4047,7 +4069,7 @@ function exModEstate(){
   const body=`
     <div class="ex-kpis">
       <div class="ex-kpi"><b>${es.systems??'—'}</b><span>AI systems</span></div>
-      <div class="ex-kpi"><b>${es.agentRoles??'—'}</b><span>Agent roles</span></div>
+      <div class="ex-kpi"><b>${es.agentRoles??'—'}</b><span>Agent registry roles</span></div>
       <div class="ex-kpi"><b>${es.catalogControls??'—'}</b><span>Control catalog</span></div>
       <div class="ex-kpi"><b>${es.workflows??'—'}</b><span>Workflows</span></div>
     </div>
@@ -4055,7 +4077,7 @@ function exModEstate(){
       <div><span>Persisted HAIEC evaluations</span><b>${verified}/27 digest-verified</b></div>
       <div><span>Corpus shape</span><b>9 systems × 3 states</b></div>
       <div><span>Evaluation basis</span><b>${esc(e.evaluationBasis||'—')}</b></div>
-      <div><span>Frozen export</span><b>${esc(HXDATA&&HXDATA.generatedAt?(HXDATA.generatedAt||'').slice(0,10):'—')}</b></div>
+      <div><span>Frozen export</span><b>${esc(a&&a.exportedAt?String(a.exportedAt).slice(0,10):'—')}</b></div>
       <div><span>Methodology / report</span><b>${esc(e.methodologyVersion||'—')} · ${esc(e.reportVersion||'—')}</b></div>
     </div>
     <div class="ex-note">Catalog size is not evaluated coverage — the 45-entry control catalog is a fixture estate fact; executed rules appear per evaluation. Click a system on the HAIEC Evaluations page to open its verified case.</div>
@@ -4111,6 +4133,20 @@ function exModPosture(){
       <div><span>Static scan</span><b>none bound — EVIDENCE_ONLY</b></div>
     </div>
     ${u5?`<p class="tiny muted top10">U5: ${esc(u5.replace(/^U5 reason codes:\s*/,''))}</p>`:''}
+    <details class="ex-planedetail top10" style="cursor:pointer">
+      <summary class="tiny" style="font-weight:750;letter-spacing:.4px;text-transform:uppercase;color:var(--muted)">Evidence Integrity & Verification — expand</summary>
+      <table class="tbl" style="margin-top:6px"><tbody>
+        <tr><td class="tiny">Evaluation ID</td><td class="tiny"><code>${esc(e.evaluationId)}</code></td></tr>
+        <tr><td class="tiny">Core truth digest</td><td class="tiny"><code>${esc(e.coreTruthDigest||'—')}</code></td></tr>
+        <tr><td class="tiny">Evidence bundle digest</td><td class="tiny"><code>${esc(e.evidenceBundleDigest||'—')}</code></td></tr>
+        <tr><td class="tiny">Snapshot digest</td><td class="tiny"><code>${esc((e.evaluationScenarioSnapshot||{}).snapshotDigest||'—')}</code></td></tr>
+        <tr><td class="tiny">Export digest</td><td class="tiny"><code>${esc(a.exportDigest||'—')}</code> — verified client-side</td></tr>
+        <tr><td class="tiny">Decision receipt</td><td class="tiny">${a.evaluation.links&&a.evaluation.links.decisionReceipt?`<code>${esc(a.evaluation.links.decisionReceipt)}</code>`:'NOT ISSUED for this export — U6 assurance-package receipts bind issued packages, not frozen derivatives'}</td></tr>
+        <tr><td class="tiny">Source attestation</td><td class="tiny">Source records carry <code>UNQUALIFIED_SIMULATOR</code> qualification — no HMAC-SHA256-V2 payload-bound attestation attached to this corpus</td></tr>
+        <tr><td class="tiny">Issuer signature</td><td class="tiny">None on this public derivative — sha256 digests are integrity anchors, not signatures</td></tr>
+      </tbody></table>
+      <p class="tiny muted" style="margin-top:6px"><b>Platform capability (not bound to this artifact):</b> HAIEC issues HMAC-SHA256-V2 payload-bound producer attestations, U6 assurance packages with Merkle-bound evidence membership and receipt hashes, HMAC-signed verification responses, and signed compliance certificates. Org-authorized verification is available through HAIEC's package-verify routes for issued artifacts.</p>
+    </details>
     <div class="ex-note">Digest verification proves the export is byte-identical to what HAIEC persisted — it is an integrity check, not an issuer signature. SATISFIED on R01 means the effect was independently witnessed; it is not an authorization or safety verdict.</div>`;
   return exMod('ex-s4','SYS-217 · WRONG_TARGET','Assurance & Integrity Posture','Canonical results — no composite scores',body);
 }
@@ -4122,7 +4158,8 @@ function exModGraph(){
   const rq=rec('REQUESTED'),pl=rec('POLICY_DECLARED'),gt=rec('GATE_DECISION'),ar=rec('ACTION_RECORDED'),rb=rec('TARGET_READBACK');
   const nodes=[
     {k:'REQUESTED',t:'Requested operation',v:rq?`${esc(rq.payload.operation)} → ${esc(rq.payload.requestedTarget)}`:'MISSING EVIDENCE',r:rq},
-    {k:'POLICY_DECLARED',t:'Approved policy target',v:pl?esc(pl.payload.declaredTarget)+(pl.payload.qualifiedPolicy===false?' · unqualified policy':'')+(gt?` · gate ${esc(gt.payload.decision)}`:''):'MISSING EVIDENCE',r:pl||gt},
+    {k:'POLICY_DECLARED',t:'Declared policy target',v:pl?esc(pl.payload.declaredTarget)+(pl.payload.qualifiedPolicy===false?' · unqualified policy':''):'MISSING EVIDENCE',r:pl},
+    {k:'GATE_DECISION',t:'Gate decision',v:gt?`gate ${esc(gt.payload.decision)}`:'MISSING EVIDENCE',r:gt},
     {k:'ACTION_RECORDED',t:'Dispatch / transaction',v:ar?`txn ${esc(ar.payload.transactionId)} · target ${esc(ar.payload.actualTarget)}`:'MISSING EVIDENCE',r:ar},
     {k:'TARGET_READBACK',t:'Independently witnessed effect',v:rb?`readback ${esc(rb.payload.actualTarget)}`:'MISSING EVIDENCE',r:rb},
     {k:'FINDING',t:'Manufacturing divergence finding',v:eff?`MFG-EFF-001 = ${eff.status}`:'—',r:null},
@@ -4140,31 +4177,59 @@ function exModGraph(){
       <tr><td class="tiny">qualification</td><td class="tiny"><code>${esc(selN.r.producerQualification||'—')}</code></td></tr></tbody></table>`:''}
     ${selN.k==='FINDING'&&eff?`<p class="tiny" style="margin-top:6px"><b>Verbatim reason:</b> ${esc(eff.reason)}</p><p class="tiny muted">Evidence refs: ${eff.evidenceRefs.map(x=>`<code>${esc(x)}</code>`).join(' ')}</p>`:''}
   </div>`:'';
+  const mc=((HXDATA||{}).estate||{}).modeledContext||{};
   const body=`<div class="ex-cg"><div class="ex-cg-row">${row}</div></div>${detail}
-    <div class="ex-note">HAIEC established a <b>qualified target divergence</b> — approved <code>${esc(rp.expectedTarget||'—')}</code>, committed and independently read back <code>${esc(rp.actualTarget||'—')}</code>. This does not, by itself, establish the full code-reachability or delegated action-path projection — that frontier is drawn dashed.</div>`;
+    <div class="ex-note">HAIEC established a <b>qualified target divergence</b> — a qualified divergence between the approved work order <code>${esc(rp.expectedTarget||'—')}</code> and the recorded manufacturing effect committed and independently read back on <code>${esc(rp.actualTarget||'—')}</code>. This does not, by itself, establish the full code-reachability or delegated action-path projection — that frontier is drawn dashed.</div>
+    <div class="ex-planedetail top10">
+      <b class="tiny">Potential Manufacturing Impact and Response <span class="badge" style="font-size:9px">POTENTIAL — requires source evidence to confirm actual product impact</span></b>
+      <div class="ex-meta" style="border-top:0;padding-top:4px;margin-top:6px">
+        <div><span>Work-order genealogy</span><b>A <code>qualityHold</code> write landed on ${esc(rp.actualTarget||'the recorded target')} — outside the approved order ${esc(rp.expectedTarget||'')}; product genealogy on both orders is now suspect until reconciled.</b></div>
+        <div><span>Containment implications</span><b>A wrong-order quality-hold may leave the intended unit unheld and place an unrelated unit under hold — both need disposition.</b></div>
+        <div><span>Modeled estate context</span><b>Lot ${esc((mc.affectedLots||[]).join(', ')||'—')} · serials ${esc(mc.affectedSerials||'—')} · ${esc(mc.area||'Final Assembly')} — <i>modeled context only, not independently evaluated affected scope</i>.</b></div>
+        <div><span>Disposition path</span><b>Manufacturing Review Board review, quality disposition and CAPA/8D follow-up are the normal responses to this finding class.</b></div>
+      </div>
+      <p class="tiny muted" style="margin-top:6px"><b>Next actions (examples):</b> confirm actual MES/QMS product genealogy on both orders · place implicated inventory under human-reviewed containment where justified · initiate MRB disposition where required · document corrective/preventive action · bind resulting qualified evidence to a subsequent HAIEC evaluation.</p>
+    </div>`;
   return exMod('ex-s8','CONSEQUENCE PATHWAY · EVIDENCE-BOUND','Consequence Action Graph','Requested → authorized → dispatched → witnessed → adjudicated',body,pill('SYNTHETIC SOURCE WORLD','info'));
 }
-/* Module 5 — Delegation & Capability Boundary */
+/* Module 5 — Delegated Action Integrity (real shipped engine, honestly unattached) */
+const DAI_DIMENSIONS=['OPERATION','TARGET','SCOPE','MAGNITUDE','DURATION','APPROVAL','DATA_CLASS','ENVIRONMENT','GEOGRAPHY'];
 function exModDelegation(){
+  const dims=DAI_DIMENSIONS.map(d=>`<span class="badge" style="font-size:9px">${d}</span>`).join(' ');
   const body=`
-    <div class="ex-study">
+    <div class="flex" style="gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      ${pill('DAI ENGINE: AVAILABLE · dai-evaluation-1.0.0','go')} ${pill('SYS-217: NOT ATTACHED','info')}
+    </div>
+    <p class="tiny">HAIEC ships a deterministic <b>Delegated Action Integrity</b> engine that compares delegated authority against code capability, effective grants and observed actions across <b>nine bounded dimensions</b>:</p>
+    <div class="flex" style="gap:5px;flex-wrap:wrap;margin:8px 0">${dims}</div>
+    <div class="ex-meta"><div><span>Engine status</span><b>Implemented in the HAIEC platform</b></div>
+    <div><span>Per-dimension results</span><b>MATCHES · BROADER · NARROWER · MISSING · UNKNOWN</b></div>
+    <div><span>Engine states</span><b>inside delegation → observed outside delegation → unresolved exposure · NOT_ASSESSED</b></div>
+    <div><span>This evaluation</span><b>No DAI input bound — no DAI surface in the report (never an empty verdict)</b></div></div>
+    <div class="ex-frontier"><b>Required evidence for a future SYS-217 DAI result</b>
+      <p>An APPROVED operating envelope · org-confirmed delegation evidence · persisted capability-fact bindings · observed telemetry rows. Absent planes roll into UNKNOWN/MISSING comparisons — a surface with no approved envelope produces NOT_ASSESSED, never a breach state.</p>
+    </div>
+    <div class="ex-study top10">
       <div><h3>Permission — what is permitted</h3><p class="tiny">Credential and IAM evidence establishes what a principal <i>can</i> technically reach. A valid grant is not proof the consequential business choice was delegated.</p></div>
       <div><h3>Delegation — what was authorized</h3><p class="tiny">Business authority requires an accountable delegation: subject, action, parameters, scope, context, time and consequence bound together.</p></div>
     </div>
-    <p class="tiny" style="margin:10px 0"><b>Valid access ≠ authorized choice.</b> Delegated Action Integrity (DAI) and Delegation-Capability Divergence are the applicable framework concepts.</p>
-    <div class="ex-frontier"><b>Framework concepts — not evaluated results</b>
-      <p><code>DCD = C \\ (R ∩ P ∩ G)</code> — capability outside the requested/policy/granted intersection. Rendered as a concept only: no normalized sets, resource/action universes or version semantics are bound to this evaluation, so no DCD value is shown for SYS-217.</p>
-      <p class="close"><code>Scope(S_k) ⊆ Scope(S_(k-1))</code> — a conditional non-escalation invariant under a defined delegation contract, not a fact about every interaction.</p>
+    <div class="ex-frontier top10"><b>Framework concept — not an evaluated result</b>
+      <p><code>DCD = C \\ (R ∩ P ∩ G)</code> — Delegation-Capability Divergence as a mathematical concept: capability outside the requested/policy/granted intersection. No normalized sets, resource/action universes or version semantics are bound to this evaluation, so no DCD value is shown. This is a concept expression, not output of a shipped DCD engine.</p>
     </div>
     <div class="ex-note">The demonstrated finding on this estate remains the rule-based target divergence (MFG-EFF-001 MATCH) — see the graph.</div>`;
-  return exMod('ex-s4','FRAMEWORK CONCEPTS','Delegation & Capability Boundary','Permission is not delegation',body);
+  return exMod('ex-s4','SHIPPED ENGINE CAPABILITY','Delegated Action Integrity','Engine available — scenario evaluation not attached',body);
 }
 /* Module 6 — Proof Frontier & Required Evidence */
 function exModFrontier(){
   const a=exA(),pb=(a.evaluation.fourQuestions||{}).proofBoundary||{};
   const items=(pb.facts||[]).filter(f=>/^Not assessed:/.test(f));
+  // Sprint 14.5 — chip shows the CANONICAL frontier accounting from the
+  // persisted summary ("5 unresolved evidence-frontier item(s) and 1 open
+  // evidence need(s)"), not a count of explanatory detail lines.
+  const sm=String(pb.summary||'').match(/(\d+)\s+unresolved evidence-frontier item\(s\)\s+and\s+(\d+)\s+open evidence need\(s\)/);
+  const canon=sm?`${sm[1]} frontier items · ${sm[2]} open need`:(items.length+' detail lines');
   const body=`
-    <div class="flex" style="gap:8px;margin-bottom:8px">${pill('PROOF BOUNDARY: '+(pb.state||'—'),'warn')} ${pill((items.length)+' frontier items','info')}</div>
+    <div class="flex" style="gap:8px;margin-bottom:8px">${pill('PROOF BOUNDARY: '+(pb.state||'—'),'warn')} ${pill(canon,'info')}</div>
     <p class="tiny muted">${esc(pb.summary||'')}</p>
     ${items.map(f=>{
       const closing=(f.match(/producer[s]? not connected[^;.]*/i)||[])[0];
@@ -4184,8 +4249,8 @@ function exModReplay(){
     <div class="ex-meta"><div><span>Source world</span><b>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</b></div>
     <div><span>Scenario run</span><b>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</b></div>
     <div><span>Transaction</span><b>${esc(rp.provenance?rp.provenance.transactionId:'—')}</b></div></div>
-    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="page" data-id="replay">Run 60-Second Evidence Replay →</button></div>
-    <div class="ex-note">Recorded Synthetic Evidence Replay — source-declared timestamps; playback pacing 00:00–01:00 is display only. No OTLP collection exists in this demo.</div>`;
+    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="exec-replay">Run 60-Second Evidence Replay →</button></div>
+    <div class="ex-note">Synthetic manufacturing source-world replay aligned to the persisted HAIEC evaluation — source-declared timestamps (deterministic, identical by construction); playback pacing 00:00–01:00 is display only. No OTLP collection exists in this demo.</div>`;
   return exMod('ex-s5','AUDIT & EVIDENCE REPLAY','Recorded Event Timeline','Six source-world records + canonical evaluation stages',body,pill('RECORDED · NOT LIVE','warn'));
 }
 /* OOTB benchmark — separate population, separate proof point */
@@ -4206,6 +4271,43 @@ function exModStudy(){
   <div class="flex top10" style="gap:8px"><a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/research/out-of-the-box-assurance">Full case study ↗</a></div>`;
   return exMod('ex-s12','INDEPENDENT BENCHMARK','What HAIEC proved out of the box','Generic ingestion vs manufacturing-qualified evaluation — same records, different binder',body);
 }
+/* Sprint 14.5 T10 — telecom → manufacturing transformation story */
+function exModTransformation(){
+  const phases=[
+    ['Proven reusable assurance foundation','Five independent evidence planes, developed and demonstrated through telecom AI assurance work'],
+    ['Manufacturing ontology & semantics','Domain entities, operation/target mapping, producer profiles and source qualification — added for manufacturing'],
+    ['Manufacturing evidence sources','A purpose-built synthetic manufacturing enterprise exercising realistic consequential workflows'],
+    ['Deterministic evaluation','The canonical HAIEC engine evaluated manufacturing rules — no engine replacement, no browser-side adjudication'],
+    ['Independent effect-witness controls','UCP receipts bound to evaluations — 18 receipt-bound R01 results across the persisted corpus'],
+    ['Evidence-bound reports','Master Assurance Reports with deterministic digests — inspectable, verifiable, same truth everywhere'],
+  ];
+  const row=phases.map(([t,d],i)=>`<div class="ex-phase"><span class="ph-n">${i+1}</span><b class="tiny">${t}</b><p class="tiny muted">${d}</p></div>`).join('<span class="ex-cg-arrow">→</span>');
+  const body=`<div class="ex-cg-row">${row}</div>
+    <div class="ex-study top10">
+      <div><h3>What was reused</h3><p class="tiny">Five-plane assurance architecture · canonical evaluation engine · evidence and report identity · UCP control-test mechanism · deterministic findings · integrity and report verification infrastructure.</p></div>
+      <div><h3>What changed for manufacturing</h3><p class="tiny">Domain ontology · operation/target semantics · producer profiles & source qualification · industry-specific deterministic rules · effect-readback requirements · manufacturing control applicability.</p></div>
+    </div>
+    <div class="ex-note">One HAIEC assurance architecture, industry-specific intelligence — extended, not rebuilt. All five action-path planes remain NOT_ASSESSED for this evidence-only snapshot; the architecture's reach is not claimed beyond the evidence.</div>`;
+  return exMod('ex-s12','FROM TELECOM TO MANUFACTURING','One HAIEC Assurance Architecture — Industry-Specific Intelligence','The USP: extend to a new industry without reconstructing the core engine',body);
+}
+/* Sprint 14.5 T9 — what the program demonstrated (verified corpus facts) */
+function exModDemonstrated(){
+  const body=`
+    <div class="ex-kpis" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+      <div class="ex-kpi"><b>9</b><span>synthetic mfg AI systems</span></div>
+      <div class="ex-kpi"><b>27</b><span>persisted evaluations</span></div>
+      <div class="ex-kpi"><b>9</b><span>wrong-target divergence findings</span></div>
+      <div class="ex-kpi"><b>18</b><span>receipt-bound R01 results</span></div>
+      <div class="ex-kpi"><b>9</b><span>degraded-coverage cases (absent facet — never silent pass)</span></div>
+    </div>
+    <div class="ex-meta"><div><span>Manufacturing extensions</span><b>Ontology · semantics · rules · source qualification</b></div>
+    <div><span>Effect evidence</span><b>Independently read back — qualified target divergences</b></div>
+    <div><span>Reports</span><b>Evidence-first Master Assurance Reports, digest-bound</b></div>
+    <div><span>Validation context</span><b>Controlled synthetic environment · realistic industrial workflows</b></div></div>
+    <p class="tiny">HAIEC established a <b>qualified divergence between the approved work order and the recorded manufacturing effect</b> — deterministic, inspectable, and bound to persisted evidence. R01 witness satisfaction establishes eligible effect evidence — not that the action was authorized.</p>
+    <div class="ex-note">Validated in a controlled synthetic manufacturing environment representing realistic industrial workflows — not a production deployment, third-party certification, or field event.</div>`;
+  return exMod('ex-s12','CORPUS RESULTS','What HAIEC Demonstrated','Verified facts across the nine-system manufacturing program',body,pill('SYNTHETIC LAB — REAL ENGINE OUTPUT','info'));
+}
 function pageExec(){
   if(!HXDATA)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'No export data',sub:'dashboard/data/haiec-exports.js missing.'});
   const a=exA();
@@ -4217,9 +4319,9 @@ function pageExec(){
   return `<div class="ex-strip">
       <img src="assets/brand/haiec-eagle.png" alt="" style="width:26px;height:26px">
       <div class="hero-main" style="min-width:0">
-        <div class="eyebrow">EXECUTIVE AI ASSURANCE COMMAND CENTER · SYNTHETIC LAB</div>
+        <div class="eyebrow">HAIEC MANUFACTURING ASSURANCE — FROM AI AUTHORITY TO VERIFIED MANUFACTURING CONSEQUENCES</div>
         <h2>SYS-217 Torque Quality Assurance — wrong-target evaluation</h2>
-        <div class="tiny">${esc(e.evaluationId)} · exported ${esc(a.exportedAt?String(a.exportedAt).slice(0,10):'—')}</div>
+        <div class="tiny">${esc(e.evaluationId)} · exported ${esc(a.exportedAt?String(a.exportedAt).slice(0,10):'—')} · synthetic lab evaluation corpus</div>
       </div>
       <span style="flex:1"></span>
       ${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')}
@@ -4234,6 +4336,8 @@ function pageExec(){
       ${exModDelegation()}
       ${exModFrontier()}
       ${exModReplay()}
+      ${exModDemonstrated()}
+      ${exModTransformation()}
       ${exModStudy()}
     </div>`;
 }

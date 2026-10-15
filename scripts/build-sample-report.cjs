@@ -14,12 +14,36 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
+const { createHash } = require('node:crypto');
 const { loadExportFile } = require('../packages/haiec-adapter/src/load-export.cjs');
 
 const ROOT = path.join(__dirname, '..');
 const EXPORT_FILE = path.join(ROOT, 'data', 'evaluations', 'sys-217-wrong-target.json');
 const OUT_HTML = path.join(ROOT, 'dashboard', 'report', 'sample-master-report.html');
+const OUT_IDENTITY = path.join(ROOT, 'dashboard', 'report', 'sample-master-report.identity.json');
 const HAIEC_ORIGIN = 'https://www.haiec.com';
+
+/* Sprint 14.5 T8 — one deterministic derivative identity shared by every
+ * artifact rendered from this canonical source (HTML, PDF, summaries).
+ * Recomputed over CANONICAL SOURCE FIELDS ONLY — wall-clock time never
+ * enters, so the identity is stable across rebuilds and lets release
+ * verification prove HTML/PDF were regenerated from the same export. */
+const DERIVATIVE_VERSION = 'sample-report-derivative-1.0.0';
+function derivativeIdentity(a) {
+  const e = a.evaluation || {};
+  const source = {
+    derivativeVersion: DERIVATIVE_VERSION,
+    evaluationId: e.evaluationId,
+    reportId: e.reportId,
+    reportVersion: e.reportVersion,
+    projectionVersion: e.projectionVersion,
+    coreTruthDigest: e.coreTruthDigest,
+    exportDigest: a.exportDigest,
+    exportedAt: a.exportedAt,
+    disposition: e.disposition,
+  };
+  return 'sha256:' + createHash('sha256').update(JSON.stringify(source), 'utf8').digest('hex');
+}
 
 function esc(v) {
   return String(v ?? '')
@@ -46,7 +70,7 @@ function listItems(arr) {
   return arr.map((x) => `<li class="mono">${esc(x)}</li>`).join('');
 }
 
-function buildHtml(a) {
+function buildHtml(a, derivId) {
   const e = a.evaluation;
   const fq = e.fourQuestions || {};
   const rules = a.manufacturing?.ruleOutcomes ?? [];
@@ -185,6 +209,7 @@ function buildHtml(a) {
       ${kv('Core truth digest', e.coreTruthDigest)}
       ${kv('Evidence bundle digest', e.evidenceBundleDigest)}
       ${kv('Export digest (integrity check)', a.exportDigest)}
+      ${kv('Derivative identity', derivId)}
       ${kv('Data class', a.provenance.dataClass + ' · ' + a.provenance.truthLabel, false)}
       ${kv('Produced by', a.provenance.producedBy, false)}
       ${kv('Exported at', a.exportedAt)}
@@ -243,7 +268,7 @@ function buildHtml(a) {
     <img src="../assets/brand/haiec-wordmark.png" alt="HAIEC">
     <div>
       <strong>HAIEC — Human AI Evidence Company</strong> · "High assurance in every consequence."<br>
-      Public sample rendered ${esc(new Date().toISOString())} from export ${esc(a.exportDigest)} · fictional manufacturer, synthetic evaluation corpus.
+      Public sample rendered ${esc(new Date().toISOString())} from export ${esc(a.exportDigest)} · derivative ${esc(derivId)} · fictional manufacturer, synthetic evaluation corpus.
     </div>
   </div>
 </div>
@@ -258,7 +283,25 @@ if (!res.ok || !res.verified) {
   process.exit(1);
 }
 const artifact = res.artifact;
+const derivId = derivativeIdentity(artifact);
 fs.mkdirSync(path.dirname(OUT_HTML), { recursive: true });
-fs.writeFileSync(OUT_HTML, buildHtml(artifact));
+fs.writeFileSync(OUT_HTML, buildHtml(artifact, derivId));
+// Parity manifest — tests and release verification compare these canonical
+// fields inside the rendered derivatives rather than comparing PDF bytes.
+fs.writeFileSync(OUT_IDENTITY, JSON.stringify({
+  schemaVersion: 'sample-report-identity-1.0.0',
+  derivativeId: derivId,
+  evaluationId: artifact.evaluation.evaluationId,
+  disposition: artifact.evaluation.disposition,
+  evaluationBasis: artifact.evaluation.evaluationBasis,
+  reportVersion: artifact.evaluation.reportVersion,
+  methodologyVersion: artifact.evaluation.methodologyVersion,
+  projectionVersion: artifact.evaluation.projectionVersion,
+  coreTruthDigest: artifact.evaluation.coreTruthDigest,
+  evidenceBundleDigest: artifact.evaluation.evidenceBundleDigest,
+  exportDigest: artifact.exportDigest,
+  ruleOutcomes: (artifact.manufacturing.ruleOutcomes || []).map((r) => ({ ruleId: r.ruleId, status: r.status })),
+  r01: ((artifact.manufacturing.controlMaturity || {}).rows || []).find((r) => r.controlId === 'R01') || null,
+}, null, 2));
 console.log(`sample report: ${OUT_HTML}`);
-console.log(`  evaluation: ${artifact.evaluation.evaluationId} · ${artifact.evaluation.disposition} · ${artifact.evaluation.evaluationBasis}`);
+console.log(`  evaluation: ${artifact.evaluation.evaluationId} · ${artifact.evaluation.disposition} · ${artifact.evaluation.evaluationBasis} · derivative ${derivId.slice(0, 20)}…`);
