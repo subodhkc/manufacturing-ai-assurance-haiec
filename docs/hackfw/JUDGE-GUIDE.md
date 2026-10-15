@@ -40,6 +40,16 @@ Public repo · demo video · participant talent registration · in-person Demo D
 published 1.1.1 package → public verification page → dashboard projection.
 The digest-pinned export is the single source of truth on screen.
 
+**Reports & Evidence (Sprint 18):** the Reports page is now a real destination —
+nine-system Executive Assurance Report (45 canonical v3 evaluations, plain
+language), a per-case report for each of the 45 (Industry → Manufacturing →
+system → scenario → findings → report), the SYS-217 flagship in executive +
+technical versions, and labeled links to the telecom historical reference and
+four simulation-only sector reports. Signature status is explicit per report
+(`SKIPPED` — signing not requested; unsigned ≠ invalid). Digest verification
+still gates every canonical value; a failed digest renders INTEGRITY FAILURE,
+never findings.
+
 ## Video outline (<2 min)
 
 - 0:00–0:15 Command Center: wrong-target consequence, 9-system estate.

@@ -13,6 +13,7 @@
 <meta property="og:image" content="assets/brand/og-image.png">
 <link rel="stylesheet" href="industry/industry.css">
 <link rel="stylesheet" href="journey/journey.css">
+<link rel="stylesheet" href="report/reports.css">
 <style>
 :root{
   --paper:#f3f4f2;--surface:#fff;--canvas:#fafbfa;--ink:#141d22;--ink2:#2a3740;
@@ -3708,7 +3709,7 @@ async function hxVerifyAll(){
     }catch(e){HX.replayVerified=false;}
   }
   HX.digestsDone=true;
-  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='journey')render();
+  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='reports'||STATE.page==='journey')render();
 }
 /* The v3 set is the current program; the v1 set stays intact as the
    historical register. When v3 is absent the dashboard degrades to the
@@ -3855,7 +3856,7 @@ function pageEvalCase(a){
   return header({eyebrow:`PROOF / ${a.sourceCase.aiSystemId} / ${HX_STATE_LABEL[a.sourceCase.scenarioState]||a.sourceCase.scenarioState}`,
     title:`${a.sourceCase.caseId}`,
     sub:`${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')} ${pill('digest verified','go')}`,
-    actions:`<button class="btn" data-act="hx-system" data-id="${a.sourceCase.aiSystemId}">← ${a.sourceCase.aiSystemId}</button><button class="btn" data-act="hx-overview">All systems</button>`})+
+    actions:`<button class="btn primary" data-rp="case" data-id="${a.sourceCase.caseId}">Full case report →</button><button class="btn" data-act="hx-system" data-id="${a.sourceCase.aiSystemId}">← ${a.sourceCase.aiSystemId}</button><button class="btn" data-act="hx-overview">All systems</button>`})+
   `<div class="card"><div class="cardhead"><div><h2>Evaluation identity</h2></div></div>
     <table class="tbl"><tbody>
     <tr><td>Evaluation</td><td><code>${esc(e.evaluationId)}</code></td></tr>
@@ -4410,5 +4411,6 @@ if(HXDATA){hxVerifyAll();}
 
 <script src="industry/industry.js"></script>
 <script src="journey/journey.js"></script>
+<script src="report/reports.js"></script>
 </body>
 </html>

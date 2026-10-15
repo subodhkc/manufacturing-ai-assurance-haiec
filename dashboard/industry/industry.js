@@ -62,23 +62,29 @@ function shell(p,content){
  '<div class="ind-footer">Presentation profile: '+x(p.profileId)+'. No customer, sponsor, judging or partnership claim. Profile selection never imports findings or evaluation IDs from another industry. The canonical HAIEC platform remains the only assurance evaluator.</div></div>';
 }
 function manufacturer(p){
- const integrity = typeof HX!=='undefined' && HX.digestsDone &&
+ const keyOf=a=>a.sourceCase.caseId+'@'+((a.provenance&&a.provenance.sourceWorldId)||'unknown');
+ const v3ok = typeof HX!=='undefined' && HX.digestsDone &&
+  typeof HXDATA!=='undefined' && HXDATA && HXDATA.exportMapV3 &&
+  Object.keys(HXDATA.exportMapV3).length===45 &&
+  Object.values(HXDATA.exportMapV3).every(a=>HX.verified[keyOf(a)]===true);
+ const v1ok = typeof HX!=='undefined' && HX.digestsDone &&
   typeof HXDATA!=='undefined' && HXDATA && HXDATA.exportMap &&
   Object.keys(HXDATA.exportMap).length===27 &&
-  Object.values(HXDATA.exportMap).every(a=>HX.verified[a.sourceCase.caseId]===true);
- const headline=integrity?'27 of 27 frozen evaluation exports verified':'VERIFYING / UNAVAILABLE';
+  Object.values(HXDATA.exportMap).every(a=>HX.verified[keyOf(a)]===true);
+ const headline=(v3ok&&v1ok)?'45 v3 + 27 v1 frozen exports verified':'VERIFYING / UNAVAILABLE';
  const content='<div class="ind-grid" id="ind-overview">'+
    tile('Nine-system scope',9,'Fictional manufacturing systems across source-world cases')+
-   tile('Historical evaluation exports',headline,'27 canonical HAIEC evaluations over earlier synthetic source world')+
-   tile('New v3.1 source inputs','NOT YET EVALUATED','Separate from the historical 27 exports')+'</div>'+
+   tile('Evaluation exports',headline,'45 canonical v3 assessments + 27 preserved v1 evaluations over synthetic source worlds')+
+   tile('New v3.1 source inputs','NOT YET EVALUATED','Separate from the evaluated 27 + 45 exports')+'</div>'+
    auditNote()+
    '<div class="ind-split" id="ind-consequence">'+
    card('What makes the manufacturing view different?',
      muted('Work orders, protected releases, quality-hold status, test controller candidates, supplier PPAP, ERP PO approval and warehouse shipments are assessed as distinct consequences.')+
      '<div class="ind-proof">Permission is not delegation. A witnessed effect is not proof that its target was authorized.</div>')+
    card('Explore verified artifacts',
-     muted('The canonical assurance page re-verifies all frozen exports; the executive command center and evidence replay are also scoped to manufacturing.')+
-     '<p style="margin-top:12px"><button class="ind-action" data-act="page" data-id="evaluations">Open 9-system HAIEC Assurance →</button></p>'+
+     muted('The canonical assurance page re-verifies all frozen exports; Reports &amp; Evidence holds the executive report, per-case reports and the Station 217 flagship.')+
+     '<p style="margin-top:12px"><button class="ind-action" data-act="page" data-id="reports">Reports &amp; Evidence →</button></p>'+
+     '<p style="margin-top:8px"><button class="ind-action" data-act="page" data-id="evaluations">Open 9-system HAIEC Assurance →</button></p>'+
      '<p style="margin-top:8px"><button class="ind-action" data-act="page" data-id="exec">Manufacturing executive view →</button></p>')+
    '</div>'+
    '<div class="ind-split" id="ind-evidence">'+
@@ -138,6 +144,7 @@ function telecom(p){
  '<h3 style="margin-top:13px">Next evidence required</h3>'+list(['Exact policy/delegation and network-resource identity','Registered source and lineage for request, dispatch and native state','Independent KPI/QoS time series and recovery confirmation'])+
  '<h3 style="margin-top:13px">Limitations and provenance</h3>'+list(r.limitations)+
  '<p style="margin-top:13px"><a href="'+x(r.source.sourceUrl)+'" target="_blank" rel="noopener">View original TM Forum report source ↗</a></p>'+
+ '<div class="ind-proof" style="margin-top:13px">Digital signature: NOT_APPLICABLE. This is an illustrative or historical reference artifact outside the signing workflow.</div>'+
  '<p style="margin-top:13px"><button class="ind-action" data-ind-print="true">Print this reference report</button></p>','ind-auditor')+'</div>';
  return shell(p,content);
 }
@@ -173,6 +180,7 @@ function simulation(p){
  '<h3>Sample action trace</h3>'+steps(eventRows)+
  '<h3 style="margin-top:15px">Unresolved evidence frontier</h3>'+list(p.limitations)+
  '<div class="ind-proof ind-warning" style="margin-top:13px">No evaluation ID, U5 disposition, DAI authorization result or UCP receipt exists for this fictional profile. A printout is only a simulation reference.</div>'+
+ '<div class="ind-proof" style="margin-top:13px">Digital signature: NOT_APPLICABLE. This is an illustrative or historical reference artifact outside the signing workflow.</div>'+
  '<p style="margin-top:14px"><button class="ind-action" data-ind-print="true">Print simulation reference</button></p>',audit?'ind-auditor':'')+'</div>';
  return shell(p,content);
 }
