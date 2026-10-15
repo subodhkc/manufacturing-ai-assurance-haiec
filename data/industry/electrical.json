@@ -1,0 +1,53 @@
+{
+  "industryId": "electrical",
+  "profileId": "ELECTRICAL_EQUIPMENT",
+  "name": "Example Electrical Works",
+  "operator": "Panel Shop Quality Lead",
+  "eyebrow": "Electrical equipment & industrial controls",
+  "hero": "Could an AI release a serialized control panel while wiring, torque or revision evidence remains incomplete?",
+  "resourceLabel": "Panel serial / job",
+  "resource": "PANEL-DEMO-001 · JOB-DEMO-A",
+  "action": "Propose quality containment of a panel inspection mismatch",
+  "authority": "Quality Supervisor approval on exact serial, BOM, test evidence and revision",
+  "nativeEffect": "Digital QMS panel hold / release (simulated source, no plant actuation)",
+  "impact": "Potential shipment of a panel without qualified wiring and inspection evidence",
+  "nextOwner": "Panel Shop Quality Lead",
+  "riskCases": [
+    {
+      "name": "Terminal torque mismatch",
+      "question": "Does the recorded torque test cover the exact terminal and panel serial?",
+      "needed": "Calibrated test result + bound serial + independent QMS status"
+    },
+    {
+      "name": "Unapproved BOM substitution",
+      "question": "Is the installed component approved for the exact drawing/BOM revision?",
+      "needed": "Controlled BOM + supplier approval + as-built part scan"
+    },
+    {
+      "name": "Release without inspector sign-off",
+      "question": "Who delegated authority to release this specific panel?",
+      "needed": "Dated Quality authorization + test disposition + shipping readback"
+    }
+  ],
+  "sourceFamilies": [
+    "Controlled wiring drawing & revision",
+    "Serialized assembly/BOM record",
+    "Terminal torque / wire-label inspection",
+    "QMS test and hold ledger",
+    "Quality Supervisor approval"
+  ],
+  "controls": [
+    "A03 · Delegated Action Integrity",
+    "R01 · Effect witness requirement",
+    "E01 · Evidence provenance"
+  ],
+  "limitations": [
+    "Source events are fictional simulator records, not an electrical product certification.",
+    "UL 508A/UL 891 are contextual equipment standards, not HAIEC compliance findings.",
+    "A simulated QMS panel state does not establish a physical panel was held or released."
+  ],
+  "evidenceMode": "SIMULATION_ONLY",
+  "evaluationId": null,
+  "reportSourceMode": "FICTIONAL_SOURCE_WORLD",
+  "brandUsageStatus": "FICTIONAL_UNAFFILIATED"
+}

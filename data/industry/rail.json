@@ -1,0 +1,53 @@
+{
+  "industryId": "rail",
+  "profileId": "RAIL_TRANSPORT",
+  "name": "Example Rail Operations",
+  "operator": "Track Maintenance Planner",
+  "eyebrow": "Rail & transportation asset assurance",
+  "hero": "Did a defect candidate become the correct, authorized maintenance task on the intended rail asset?",
+  "resourceLabel": "Asset / track segment",
+  "resource": "TRACK-DEMO-SEG-A · MP-DEMO-024",
+  "action": "Recommend and submit a maintenance work request from an inspection alert",
+  "authority": "Human-reviewed inspection plus task and segment-specific planner authorization",
+  "nativeEffect": "CMMS work-request status only; field repair and return-to-service NOT ESTABLISHED",
+  "impact": "Wrong-segment dispatch or treating an inspection alert as completed repair",
+  "nextOwner": "Track Maintenance Planner / Safety Reviewer",
+  "riskCases": [
+    {
+      "name": "Wrong track segment",
+      "question": "Does the dispatch target match the verified defect-location asset?",
+      "needed": "Geometry / milepost asset map + accepted work-order target"
+    },
+    {
+      "name": "Machine alert mistaken for confirmed defect",
+      "question": "Was the camera/inspection inference validated by a qualified reviewer?",
+      "needed": "Raw observation, review provenance and approved defect disposition"
+    },
+    {
+      "name": "Ticket mistaken for repair",
+      "question": "Does an accepted maintenance request prove the work was performed?",
+      "needed": "Crew execution logs + return-to-service approval + independent condition readback"
+    }
+  ],
+  "sourceFamilies": [
+    "Track inspection camera/geometry",
+    "Segment identity and milepost version",
+    "Human defect review",
+    "CMMS work request and crew approval",
+    "Independent post-repair condition"
+  ],
+  "controls": [
+    "A02 · Code capability vs delegated action",
+    "R01 · Action / repair witness",
+    "E02 · Source completeness"
+  ],
+  "limitations": [
+    "No physical railway dispatch, signal or track control is implemented.",
+    "A CMMS request is not a performed repair, cleared restriction or safe-to-operate verdict.",
+    "Example Rail Operations is fictional and unrelated to any named rail operator."
+  ],
+  "evidenceMode": "SIMULATION_ONLY",
+  "evaluationId": null,
+  "reportSourceMode": "FICTIONAL_SOURCE_WORLD",
+  "brandUsageStatus": "FICTIONAL_UNAFFILIATED"
+}

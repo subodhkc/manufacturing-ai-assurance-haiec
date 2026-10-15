@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "haiec-industry-telecom-reference-1.0.0",
+  "source": {
+    "title": "HAIEC — Agentic Assurance: The Quest for Proof",
+    "origin": "TM_FORUM_COMPETITION_REFERENCE_HTML",
+    "sourceUrl": "https://drive.google.com/file/d/1yxBAE7jbXDAyGepqJgEUx3SC_STQNQvp/view",
+    "evidenceMode": "HISTORICAL_TMFORUM_REFERENCE",
+    "assertionPolicy": "Original report's simulated/illustrative labels are historical narrative, not newly issued HAIEC evaluations or verified operator events."
+  },
+  "profile": {
+    "industryId": "telecom",
+    "profileId": "FICTIONAL_TELECOM_OPERATOR",
+    "name": "Fictional Telecom Operator",
+    "role": "NOC Manager · Network Reliability · CISO",
+    "hero": "Which AI-directed network change was requested, who authorized it, what network path was reachable, and what service effect was independently observed?",
+    "resourceLabel": "Network slice / service target",
+    "referenceResource": "slice-DFW-043",
+    "evaluationId": null
+  },
+  "navigation": [
+    "Overview",
+    "Network AI Estate",
+    "Service & Slice Topology",
+    "Policy & Delegation",
+    "Network Changes",
+    "Service Quality",
+    "Cross-Domain Forensics",
+    "Controls & Guardrails",
+    "Evidence Sources",
+    "Telecom Reports"
+  ],
+  "states": [
+    {
+      "id": "AL0",
+      "label": "Baseline",
+      "originalSampleBadge": "PASS — All planes established",
+      "context": "The historical sample presents AL0 as a reference baseline, not an authenticated HAIEC control pass.",
+      "requested": "Reference baseline: service policy and network state nominal in the source narrative.",
+      "approved": "Policy and service scope are described in the reference; no source-qualified authority evaluated in this derivative.",
+      "observed": "No independent live network state is included with this derivative.",
+      "effect": "NOT_ESTABLISHED_FROM_REFERENCE",
+      "serviceImpact": "NOT_ESTABLISHED",
+      "divergence": "NOT_ASSESSED",
+      "nextOwner": "NOC Manager",
+      "limitation": "Historical sample descriptions cannot prove actual baseline network performance."
+    },
+    {
+      "id": "AL1",
+      "label": "Degraded",
+      "originalSampleBadge": "DIVERGENCE — Step 4 (Action)",
+      "context": "The historical sample describes an action-level deviation during its degraded phase.",
+      "requested": "Sample network-management request within a declared change scope.",
+      "approved": "Business/network authorization is described but not independently source-qualified in this derivative.",
+      "observed": "Sample attributes an action-path divergence to Step 4; no live action receipt carried.",
+      "effect": "NOT_ESTABLISHED_FROM_REFERENCE",
+      "serviceImpact": "UNKNOWN — QoS / KPI data not source-qualified",
+      "divergence": "ILLUSTRATIVE_ACTION_DIVERGENCE",
+      "nextOwner": "Network Reliability",
+      "limitation": "Do not equate the AL1 label or the example red badge with a canonical detector MATCH."
+    },
+    {
+      "id": "AL2",
+      "label": "Compromised (sample label)",
+      "originalSampleBadge": "TAMPERING — State Observation",
+      "context": "The historical narrative flags conflicting example state hashes on the slice resource; malicious intent is not independently established.",
+      "requested": "Reference AL2 change event described in the original mock forensic report.",
+      "approved": "Authority and actor claims require independent tenant, principal and policy evidence.",
+      "observed": "Reference states 'pre-state a3f2c1e9…' versus 'post-state b4e1a8d2…' for slice-DFW-043; these are illustrative truncated values.",
+      "effect": "NOT_ESTABLISHED_FROM_REFERENCE",
+      "serviceImpact": "UNKNOWN — requires network PM/QoS and native state witnesses",
+      "divergence": "ILLUSTRATIVE_STATE_INTEGRITY_CONCERN",
+      "nextOwner": "Incident Response / RAN Engineering",
+      "limitation": "A hash disagreement alone does not establish tampering, compromise or root cause."
+    }
+  ],
+  "sourceFamilies": [
+    {
+      "family": "A1 / R1 / O1",
+      "role": "RAN policy, control and configuration records",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "family": "API / OSS-BSS",
+      "role": "Request, principal, dispatch and service-order lineage",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "family": "RAN PM/FM/CM",
+      "role": "Network counters, faults, alarms and configuration state",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "family": "OTel / trace",
+      "role": "Request and delegation path correlation",
+      "status": "REFERENCE_ONLY"
+    },
+    {
+      "family": "Independent QoS / KPI",
+      "role": "Service impact and convergence readback",
+      "status": "NOT_QUALIFIED"
+    }
+  ],
+  "topology": [
+    {
+      "domain": "Customer / Service",
+      "function": "Service intent and declared change request"
+    },
+    {
+      "domain": "OSS / Orchestration",
+      "function": "Agent orchestration, mediation and work-order scope"
+    },
+    {
+      "domain": "RAN / O-RAN",
+      "function": "A1 policy, R1/O1 operations and cell / slice application"
+    },
+    {
+      "domain": "Core / Transport",
+      "function": "Subscriber service reach and downstream paths"
+    },
+    {
+      "domain": "Independent Observability",
+      "function": "RAN PM/FM/CM, native state and service QoS witness"
+    }
+  ],
+  "reportSections": [
+    "Executive consequence and source mode",
+    "Network target, actor and requested operation",
+    "Delegation and network capability",
+    "AL0 / AL1 / AL2 reference state comparison",
+    "Network effect and QoS evidence frontier",
+    "Cross-domain provenance",
+    "Guardrail, rollback and human owner",
+    "Limitations and original TM Forum reference"
+  ],
+  "limitations": [
+    "No new HAIEC telecom evaluation ID, verdict, receipt or source attestation is issued by this page.",
+    "AL0/AL1/AL2 are sample scenario labels, not canonical assurance dispositions.",
+    "Example source hash strings are not independently authenticated or complete.",
+    "Rollback accepted != service restored; API success != independently witnessed native effect.",
+    "No telecom telemetry is fetched or ingested by the browser."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "industryId": "supplier",
+  "profileId": "SUPPLIER_NETWORK",
+  "name": "Example Supplier Network",
+  "operator": "Supplier Quality & Procurement",
+  "eyebrow": "Cross-company supplier & procurement assurance",
+  "hero": "Could an AI commit money or release material without matching supplier-part-site approval, buyer authority and ledger effect?",
+  "resourceLabel": "Supplier / PO / receiving lot",
+  "resource": "SUP-DEMO-04 · PO-DEMO-251 · LOT-DEMO-8",
+  "action": "Recommend blocking receiving-lot release pending supplier qualification review",
+  "authority": "Exact supplier-part-site-revision PPAP + buyer cap + separate payment-change approval",
+  "nativeEffect": "Illustrative receiving status; no ERP PO or bank settlement proof",
+  "impact": "Unapproved supplier exposure, duplicate purchase commitments or unverified payment change",
+  "nextOwner": "Supplier Quality / Buyer / Accounts Payable",
+  "riskCases": [
+    {
+      "name": "Expired supplier PPAP",
+      "question": "Is this supplier approved for the exact part, site and revision today?",
+      "needed": "Versioned qualification record + expiry + receiving QMS status"
+    },
+    {
+      "name": "PO approval threshold",
+      "question": "Does the $26,500 example PO exceed the hypothetical $15,000 approval limit?",
+      "needed": "Approved spend envelope + buyer decision + independent ERP PO issuance"
+    },
+    {
+      "name": "Vendor bank detail changed",
+      "question": "Has the account change been independently approved before payment?",
+      "needed": "Separate out-of-band approval + vendor master diff + actual settlement record"
+    }
+  ],
+  "sourceFamilies": [
+    "Supplier master and PPAP revisions",
+    "Receiving/QMS nonconformance",
+    "PO request, approval and ERP commit",
+    "Vendor master change history",
+    "Settlement / receiving native readback"
+  ],
+  "controls": [
+    "A03 · Delegation and separation of duties",
+    "G06 · Third-party governance",
+    "R02 · Consequential effect envelope"
+  ],
+  "limitations": [
+    "Dollar thresholds are fictional demo policy examples, not supplier industry rules.",
+    "No bank transfer, crypto or settlement transaction is simulated as actual.",
+    "Recommendation, PO creation and payment settlement are different evidence states."
+  ],
+  "evidenceMode": "SIMULATION_ONLY",
+  "evaluationId": null,
+  "reportSourceMode": "FICTIONAL_SOURCE_WORLD",
+  "brandUsageStatus": "FICTIONAL_UNAFFILIATED"
+}
