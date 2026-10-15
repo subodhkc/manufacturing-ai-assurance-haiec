@@ -10,7 +10,7 @@
   "authorizedTarget": "WO-217-4802",
   "observedTarget": "WO-217-4803",
   "principal": "synthetic-agent/SYS-217",
-  "recordedAt": "2026-10-15T13:10:00.000Z",
+  "recordedAt": "2026-10-14T13:10:00.000Z",
   "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
   "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
   "limitations": [
@@ -22,7 +22,7 @@
   "sourceSystem": "SYNTHETIC_MES_GATEWAY",
   "eventId": "mes-commit-sys217-v2-001",
   "transactionState": "COMMIT_RECORDED_IN_SYNTHETIC_GATEWAY",
-  "eventTime": "2026-10-15T13:10:02.100Z",
+  "eventTime": "2026-10-14T13:10:02.100Z",
   "requestedTarget": "WO-217-4802",
   "actualTarget": "WO-217-4803",
   "before": {
