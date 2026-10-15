@@ -18,6 +18,8 @@ npm run verify
 
 `npm run generate` regenerates the tracked **illustrative** reference artifacts only. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
 
+**Live deployment:** https://haiec-manufacturing-demo.vercel.app — static Vercel deployment of `dashboard/` (project `haiec-manufacturing-demo`, built by `node scripts/build-dashboard-data.cjs`).
+
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
 
