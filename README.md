@@ -6,6 +6,10 @@ This repository is the independent manufacturing data and UX reference for the *
 
 The purpose is to test **what HAIEC can discover and establish from connected evidence**, including additional source, authority, approval and effect data that customers may choose to provide. This project does not create an alternative HAIEC assurance engine.
 
+## Devin / HackFW governing plan (GitHub mirror)
+
+The complete HackFW Master v2.4 + v2.5, source-native v3.1, and multi-industry/telecom Google Drive plan texts are mirrored at **[docs/hackfw/](docs/hackfw/README.md)**. Start with **[Devin's repo-native handoff](docs/hackfw/DEVIN_START_HERE.md)** and the [enhanced v2.6 execution overlay](docs/hackfw/ENHANCED_EXECUTION_PLAN_v2.6.md) for current gaps, source-truth boundaries, security gates, ownership and the correct next implementation sequence. The three Drive source snapshots are preserved, not silently overwritten.
+
 ## Local start (Node.js 22+; no dependencies)
 
 ```bash
