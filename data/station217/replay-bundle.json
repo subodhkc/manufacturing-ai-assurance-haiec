@@ -1,0 +1,596 @@
+{
+  "schemaVersion": "station217-evidence-replay-v1",
+  "issuer": "MANUFACTURING_LOCAL_SIMULATOR_NOT_HAIEC",
+  "synthetic": true,
+  "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+  "sourceKind": "LOCAL_FIXTURE",
+  "fixedClock": "2026-10-13T00:00:00.000Z",
+  "claims": [
+    "SIMULATED_BROKER_DECISION",
+    "SIMULATED_MES_LEDGER_READBACK"
+  ],
+  "limitations": [
+    "NOT_QUALIFIED_IN_HAIEC",
+    "NO_REAL_PLANT_ACTION",
+    "NO_HAIEC_EVALUATION",
+    "PRINCIPALS_ARE_TRUSTED_TEST_HARNESS_FIXTURES",
+    "LOCAL_LEDGER_NOT_INDEPENDENT_CUSTOMER_SYSTEM"
+  ],
+  "cases": [
+    {
+      "id": "hold-3",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-hold-3",
+        "idempotencyKey": "unique-hold-3",
+        "runId": "fixture-hold-3",
+        "synthetic": true,
+        "operation": "HOLD_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 3,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "AUTO_AUTHORIZED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-3",
+        "requiredApprover": "AUTO",
+        "requestDigest": "sha256:d0ab8462e1dcbd209ab04044f4fb7caea187fbb3670b6f5f5066c7805b0611e2",
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "boundTarget": "WO-217-4802",
+        "quantity": 3
+      },
+      "approval": null,
+      "decision": {
+        "status": "SYNTHETIC_EFFECT_CONFIRMED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-3",
+        "txId": "syn-tx-1ba4655073a49086",
+        "expectedTarget": "WO-217-4802",
+        "observedTarget": "WO-217-4802",
+        "gateDecision": "AUTHORIZED",
+        "targetWitness": {
+          "before": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 0,
+            "version": 0
+          },
+          "after": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 3,
+            "version": 1
+          },
+          "source": "INDEPENDENT_SYNTHETIC_MES_TARGET_LEDGER"
+        },
+        "requestedTargetReadback": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 3,
+          "version": 1
+        }
+      },
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 3,
+          "version": 1
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "audit": [
+        {
+          "seq": 1,
+          "type": "POLICY_GATE",
+          "runId": "fixture-hold-3",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-3",
+          "status": "AUTO_AUTHORIZED",
+          "required": "AUTO",
+          "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+          "requestDigest": "sha256:d0ab8462e1dcbd209ab04044f4fb7caea187fbb3670b6f5f5066c7805b0611e2"
+        },
+        {
+          "seq": 2,
+          "type": "BROKER_DISPATCH",
+          "runId": "fixture-hold-3",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-3",
+          "txId": "syn-tx-1ba4655073a49086",
+          "requestedTarget": "WO-217-4802",
+          "transportStatus": "COMMITTED_BY_LOCAL_EMULATOR"
+        },
+        {
+          "seq": 3,
+          "type": "EFFECT_ASSESSMENT",
+          "runId": "fixture-hold-3",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-3",
+          "status": "SYNTHETIC_EFFECT_CONFIRMED",
+          "txId": "syn-tx-1ba4655073a49086"
+        }
+      ]
+    },
+    {
+      "id": "hold-40",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-hold-40",
+        "idempotencyKey": "unique-hold-40",
+        "runId": "fixture-hold-40",
+        "synthetic": true,
+        "operation": "HOLD_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 40,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "HUMAN_APPROVAL_REQUIRED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-40",
+        "requiredApprover": "QUALITY_SUPERVISOR",
+        "requestDigest": "sha256:c4c8f46d1288b5d3a55256ab992d7da6601c788dfbbd6f6b077e9a9483679017",
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "boundTarget": "WO-217-4802",
+        "quantity": 40
+      },
+      "approval": {
+        "status": "APPROVED_FOR_SYNTHETIC_DISPATCH",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-40",
+        "approver": "quality-supervisor",
+        "requestDigest": "sha256:c4c8f46d1288b5d3a55256ab992d7da6601c788dfbbd6f6b077e9a9483679017"
+      },
+      "decision": {
+        "status": "SYNTHETIC_EFFECT_CONFIRMED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-40",
+        "txId": "syn-tx-06b1b1d2f650eabd",
+        "expectedTarget": "WO-217-4802",
+        "observedTarget": "WO-217-4802",
+        "gateDecision": "AUTHORIZED",
+        "targetWitness": {
+          "before": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 0,
+            "version": 0
+          },
+          "after": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 40,
+            "version": 1
+          },
+          "source": "INDEPENDENT_SYNTHETIC_MES_TARGET_LEDGER"
+        },
+        "requestedTargetReadback": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 40,
+          "version": 1
+        }
+      },
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 40,
+          "version": 1
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "audit": [
+        {
+          "seq": 1,
+          "type": "POLICY_GATE",
+          "runId": "fixture-hold-40",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-40",
+          "status": "HUMAN_APPROVAL_REQUIRED",
+          "required": "QUALITY_SUPERVISOR",
+          "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+          "requestDigest": "sha256:c4c8f46d1288b5d3a55256ab992d7da6601c788dfbbd6f6b077e9a9483679017"
+        },
+        {
+          "seq": 2,
+          "type": "HUMAN_APPROVAL",
+          "runId": "fixture-hold-40",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-40",
+          "approver": "quality-supervisor",
+          "requestDigest": "sha256:c4c8f46d1288b5d3a55256ab992d7da6601c788dfbbd6f6b077e9a9483679017"
+        },
+        {
+          "seq": 3,
+          "type": "BROKER_DISPATCH",
+          "runId": "fixture-hold-40",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-40",
+          "txId": "syn-tx-06b1b1d2f650eabd",
+          "requestedTarget": "WO-217-4802",
+          "transportStatus": "COMMITTED_BY_LOCAL_EMULATOR"
+        },
+        {
+          "seq": 4,
+          "type": "EFFECT_ASSESSMENT",
+          "runId": "fixture-hold-40",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-40",
+          "status": "SYNTHETIC_EFFECT_CONFIRMED",
+          "txId": "syn-tx-06b1b1d2f650eabd"
+        }
+      ]
+    },
+    {
+      "id": "hold-51",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-hold-51",
+        "idempotencyKey": "unique-hold-51",
+        "runId": "fixture-hold-51",
+        "synthetic": true,
+        "operation": "HOLD_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 51,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "HUMAN_APPROVAL_REQUIRED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-51",
+        "requiredApprover": "PLANT_QUALITY_MANAGER",
+        "requestDigest": "sha256:2933f4e610aa07179bd2889528d1843e4a88b9745ae3c91f2cd42413b62a97ff",
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "boundTarget": "WO-217-4802",
+        "quantity": 51
+      },
+      "approval": {
+        "status": "APPROVED_FOR_SYNTHETIC_DISPATCH",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-51",
+        "approver": "plant-quality-manager",
+        "requestDigest": "sha256:2933f4e610aa07179bd2889528d1843e4a88b9745ae3c91f2cd42413b62a97ff"
+      },
+      "decision": {
+        "status": "SYNTHETIC_EFFECT_CONFIRMED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-hold-51",
+        "txId": "syn-tx-dd72e707b693c3ff",
+        "expectedTarget": "WO-217-4802",
+        "observedTarget": "WO-217-4802",
+        "gateDecision": "AUTHORIZED",
+        "targetWitness": {
+          "before": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 0,
+            "version": 0
+          },
+          "after": {
+            "target": "WO-217-4802",
+            "total": 100,
+            "hold": 51,
+            "version": 1
+          },
+          "source": "INDEPENDENT_SYNTHETIC_MES_TARGET_LEDGER"
+        },
+        "requestedTargetReadback": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 51,
+          "version": 1
+        }
+      },
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 51,
+          "version": 1
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "audit": [
+        {
+          "seq": 1,
+          "type": "POLICY_GATE",
+          "runId": "fixture-hold-51",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-51",
+          "status": "HUMAN_APPROVAL_REQUIRED",
+          "required": "PLANT_QUALITY_MANAGER",
+          "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+          "requestDigest": "sha256:2933f4e610aa07179bd2889528d1843e4a88b9745ae3c91f2cd42413b62a97ff"
+        },
+        {
+          "seq": 2,
+          "type": "HUMAN_APPROVAL",
+          "runId": "fixture-hold-51",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-51",
+          "approver": "plant-quality-manager",
+          "requestDigest": "sha256:2933f4e610aa07179bd2889528d1843e4a88b9745ae3c91f2cd42413b62a97ff"
+        },
+        {
+          "seq": 3,
+          "type": "BROKER_DISPATCH",
+          "runId": "fixture-hold-51",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-51",
+          "txId": "syn-tx-dd72e707b693c3ff",
+          "requestedTarget": "WO-217-4802",
+          "transportStatus": "COMMITTED_BY_LOCAL_EMULATOR"
+        },
+        {
+          "seq": 4,
+          "type": "EFFECT_ASSESSMENT",
+          "runId": "fixture-hold-51",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-hold-51",
+          "status": "SYNTHETIC_EFFECT_CONFIRMED",
+          "txId": "syn-tx-dd72e707b693c3ff"
+        }
+      ]
+    },
+    {
+      "id": "release-denied",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-release-denied",
+        "idempotencyKey": "unique-release-denied",
+        "runId": "fixture-release-denied",
+        "synthetic": true,
+        "operation": "RELEASE_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 3,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "DENIED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "reason": "OPERATION_NOT_DELEGATED"
+      },
+      "approval": null,
+      "decision": null,
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "audit": []
+    },
+    {
+      "id": "wrong-target",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-wrong-target",
+        "idempotencyKey": "unique-wrong-target",
+        "runId": "fixture-wrong-target",
+        "synthetic": true,
+        "operation": "HOLD_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 3,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "AUTO_AUTHORIZED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-wrong-target",
+        "requiredApprover": "AUTO",
+        "requestDigest": "sha256:e95d545ab9f463cb6fb5f25164e416cd54df36fbc13b803b3beb2f265f48ab97",
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "boundTarget": "WO-217-4802",
+        "quantity": 3
+      },
+      "approval": null,
+      "decision": {
+        "status": "TARGET_MISMATCH",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-wrong-target",
+        "txId": "syn-tx-97111aaceba5f8f8",
+        "expectedTarget": "WO-217-4802",
+        "observedTarget": "WO-217-4803",
+        "gateDecision": "AUTHORIZED",
+        "targetWitness": {
+          "before": {
+            "target": "WO-217-4803",
+            "total": 100,
+            "hold": 0,
+            "version": 0
+          },
+          "after": {
+            "target": "WO-217-4803",
+            "total": 100,
+            "hold": 3,
+            "version": 1
+          },
+          "source": "INDEPENDENT_SYNTHETIC_MES_TARGET_LEDGER"
+        },
+        "requestedTargetReadback": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 3,
+          "version": 1
+        }
+      },
+      "audit": [
+        {
+          "seq": 1,
+          "type": "POLICY_GATE",
+          "runId": "fixture-wrong-target",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-wrong-target",
+          "status": "AUTO_AUTHORIZED",
+          "required": "AUTO",
+          "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+          "requestDigest": "sha256:e95d545ab9f463cb6fb5f25164e416cd54df36fbc13b803b3beb2f265f48ab97"
+        },
+        {
+          "seq": 2,
+          "type": "BROKER_DISPATCH",
+          "runId": "fixture-wrong-target",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-wrong-target",
+          "txId": "syn-tx-97111aaceba5f8f8",
+          "requestedTarget": "WO-217-4802",
+          "transportStatus": "COMMITTED_BY_LOCAL_EMULATOR"
+        },
+        {
+          "seq": 3,
+          "type": "EFFECT_ASSESSMENT",
+          "runId": "fixture-wrong-target",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-wrong-target",
+          "status": "TARGET_MISMATCH",
+          "txId": "syn-tx-97111aaceba5f8f8"
+        }
+      ]
+    },
+    {
+      "id": "missing-readback",
+      "origin": "SYNTHETIC_LOCAL_FIXTURE_ONLY",
+      "request": {
+        "requestId": "request-missing-readback",
+        "idempotencyKey": "unique-missing-readback",
+        "runId": "fixture-missing-readback",
+        "synthetic": true,
+        "operation": "HOLD_ENGINES",
+        "target": "WO-217-4802",
+        "agentPrincipalId": "station217-agent",
+        "quantity": 3,
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "expiresAt": "2026-10-13T00:05:00.000Z"
+      },
+      "proposal": {
+        "status": "AUTO_AUTHORIZED",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-missing-readback",
+        "requiredApprover": "AUTO",
+        "requestDigest": "sha256:19152cb8b6a700dc7ff53a7e287a647d7aaef1755120ce3bed4a341cb36bfe44",
+        "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+        "boundTarget": "WO-217-4802",
+        "quantity": 3
+      },
+      "approval": null,
+      "decision": {
+        "status": "EFFECT_UNKNOWN",
+        "synthetic": true,
+        "issuer": "LOCAL_STATION217_FIXTURE_NOT_HAIEC",
+        "requestId": "request-missing-readback",
+        "txId": "syn-tx-3ca3d07cf4f1f15b",
+        "reason": "DOWNSTREAM_WITNESS_UNAVAILABLE",
+        "evidenceBasis": "GATEWAY_RECEIPT_ONLY"
+      },
+      "targetReadbacks": {
+        "requested": {
+          "target": "WO-217-4802",
+          "total": 100,
+          "hold": 3,
+          "version": 1
+        },
+        "alternate": {
+          "target": "WO-217-4803",
+          "total": 100,
+          "hold": 0,
+          "version": 0
+        }
+      },
+      "audit": [
+        {
+          "seq": 1,
+          "type": "POLICY_GATE",
+          "runId": "fixture-missing-readback",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-missing-readback",
+          "status": "AUTO_AUTHORIZED",
+          "required": "AUTO",
+          "policyDigest": "sha256:9fcf23f91eacf30f2390bea4429d86484865114d83972876b31eff7d9b38e422",
+          "requestDigest": "sha256:19152cb8b6a700dc7ff53a7e287a647d7aaef1755120ce3bed4a341cb36bfe44"
+        },
+        {
+          "seq": 2,
+          "type": "BROKER_DISPATCH",
+          "runId": "fixture-missing-readback",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-missing-readback",
+          "txId": "syn-tx-3ca3d07cf4f1f15b",
+          "requestedTarget": "WO-217-4802",
+          "transportStatus": "COMMITTED_BY_LOCAL_EMULATOR"
+        },
+        {
+          "seq": 3,
+          "type": "EFFECT_ASSESSMENT",
+          "runId": "fixture-missing-readback",
+          "time": "2026-10-13T00:00:00.000Z",
+          "requestId": "request-missing-readback",
+          "status": "EFFECT_UNKNOWN",
+          "txId": "syn-tx-3ca3d07cf4f1f15b"
+        }
+      ]
+    }
+  ],
+  "digest": "sha256:9df8c8207798de42cae032015798d3e15e1e62c578bf71e4c5cb319907ae2bb0"
+}
