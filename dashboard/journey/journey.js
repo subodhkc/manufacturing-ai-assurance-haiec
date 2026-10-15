@@ -191,4 +191,5 @@ document.addEventListener('click',event=>{
 });
 if(!PAGES.some(p=>p.id==='journey'))PAGES.splice(1,0,{id:'journey',group:'See',label:'Operator Journey',icon:'OJ'});
 PAGE_RENDERERS.journey=pageJourney;
+render();
 })();
