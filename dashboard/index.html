@@ -1953,23 +1953,27 @@ function pageReports(){
   return header({
     eyebrow: 'Reports & evidence',
     title: 'The receipt, not the dashboard',
-    sub: 'Every evaluation produces a reproducible decision package. Where evidence is missing, HAIEC says so. Where the decision is defensible, HAIEC produces the receipt that proves it.',
+    sub: 'Open available persisted HAIEC artifacts. Separate historical evaluated evidence from browser-local actions; missing reports remain unavailable rather than simulated.',
     actions: `<button class="btn primary" data-act="page" data-id="provenance">See Hugging Face provenance</button>`
   })
   + `<div class="grid g3">
-       ${[
-         ['audit','Agent Audit','Source-bound findings and questions'],
-         ['dai','DAI & Action Proof','Delegation and consequence path'],
-         ['passport','Production Passport','Release evidence summary'],
-         ['capability','Capability & constellation','What the agent can do'],
-         ['controls','Control proof maturity','Cataloged, configured, tested'],
-         ['ledger','Local action ledger','Every local decision and effect']
-       ].map(([id,label,desc]) => `
-         <button class="card" style="text-align:left;cursor:pointer" data-act="report-kind" data-id="${id}">
-           <div class="eyebrow" style="margin-bottom:6px">Report type</div>
-           <strong style="font-size:15px">${esc(label)}</strong>
-           <p class="small" style="margin-top:6px">${esc(desc)}</p>
-         </button>`).join('')}
+       <a class="card" style="display:block" href="report/sample-master-report.html" target="_blank" rel="noopener">
+         <div class="eyebrow">PERSISTED HAIEC · PUBLIC DERIVATIVE</div>
+         <strong>SYS-217 Sample Master Report ↗</strong>
+         <p class="small">Read-only report from the verified manufacturing evaluation, not a browser-generated verdict.</p>
+       </a>
+       <button class="card" style="text-align:left;cursor:pointer" data-act="hx-case" data-id="SYS-217|SYS-217-WRONG_TARGET">
+         <div class="eyebrow">CANONICAL HAIEC EXPORT</div><strong>Open evaluated SYS-217 case →</strong>
+         <p class="small">Rule outcomes, U5 disposition, qualified claims and R01 effect witness.</p>
+       </button>
+       <button class="card" style="text-align:left;cursor:pointer" data-act="page" data-id="journey">
+         <div class="eyebrow">OPERATOR REHEARSAL · NOT LIVE</div><strong>Six-stage Operator Journey →</strong>
+         <p class="small">Detect, investigate, authorize, simulate containment, verify proof and report.</p>
+       </button>
+       <button class="card" style="text-align:left;cursor:pointer" data-act="page" data-id="replay">
+         <div class="eyebrow">REPLAY · HISTORICAL SYNTHETIC SOURCE</div><strong>60-second evidence replay →</strong>
+         <p class="small">Digest-pinned source-world playback, without a new evaluation or factory action.</p>
+       </button>
      </div>
      <div class="gap20"></div>
      <div class="card">
