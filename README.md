@@ -31,6 +31,14 @@ npm run verify
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
 
+## Multi-industry presentation (HackFW v2.4)
+
+Open the **Industry Experiences** navigation item in the same [manufacturing demo](https://haiec-manufacturing-demo.vercel.app/), or use `?industry=telecom` for the historical TM Forum-reference view. One shared dashboard shell renders Manufacturing, Telecommunications, Electrical Equipment, Rail & Transportation, Electronics / AI Infrastructure and Supplier Network. The organization/profile selector is fictional and profile-scoped.
+
+Manufacturing remains the only industry with genuine frozen persisted HAIEC evaluations (historical source-world v1; **not** v3.1 evaluations). Telecommunications reconstructs the original TM Forum demonstration as a **historical reference only**, with interactive AL0/AL1/AL2 scenario states but no newly issued HAIEC findings. The four other sectors render `SIMULATION_ONLY` consequence stories from independent v3.1 fictional source events; no source profile can inherit another industry's evaluation, approval, receipt or report. No actual operator, company, event judge or corporate partnership is claimed.
+
+The data is built by `node scripts/build-industry-data.cjs` from `data/industry/` and `data/source-native/v3.1/profiles/`. See [industry release and truth contract](docs/INDUSTRY-DASHBOARD-RELEASE.md). Industrial real estate remains backlog.
+
 ## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)
 
 [Versioned semantic contract and executable acceptance **specification**](contracts/manufacturing/v0.1.0/README.md) cover all nine systems, evidence-qualified typed identity, 5 P0 rule predicates and 25 oracle-separated public test cases. Run `npm test` for **spec integrity** or `node scripts/compare-manufacturing-detector-results.cjs --digests` to print exact SHA-256 identities. **Update (Sprint 14):** canonical HAIEC manufacturing detection, source qualification and persisted evaluation now exist — 27 digest-pinned evaluations live under `data/evaluations/` and render on the dashboard's HAIEC Assurance page. The v0.1.0-format blind C2 comparator remains intentionally unrun and fails closed.
