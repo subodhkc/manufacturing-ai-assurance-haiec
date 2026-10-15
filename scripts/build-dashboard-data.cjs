@@ -16,6 +16,10 @@ const { loadExportFile } = require('../packages/haiec-adapter/src/load-export.cj
 
 const root = path.resolve(__dirname, '..');
 const evalDir = path.join(root, 'data/evaluations');
+// Sprint 15 — the v3 source world produced its own canonical evaluation
+// set (9 systems × 5 assessments). Kept in a sibling directory so the
+// historical 27-export corpus stays byte-identical and parity-pinned.
+const evalDirV3 = path.join(root, 'data/evaluations-v3');
 const bundlePath = path.join(root, 'data/station217/replay-bundle.json');
 const outPath = path.join(root, 'dashboard/data/haiec-exports.js');
 
@@ -28,6 +32,20 @@ for (const f of fs.readdirSync(evalDir).filter((f) => f.endsWith('.json') && f !
   exportMap[r.artifact.sourceCase.caseId] = r.artifact;
 }
 const manifest = JSON.parse(fs.readFileSync(path.join(evalDir, 'manifest.json'), 'utf8'));
+
+const exportMapV3 = {};
+let manifestV3 = null;
+if (fs.existsSync(evalDirV3)) {
+  for (const f of fs.readdirSync(evalDirV3).filter((f) => f.endsWith('.json') && f !== 'manifest.json').sort()) {
+    const p = path.join(evalDirV3, f);
+    const r = loadExportFile(fs, p);
+    if (!r.ok) { problems.push(`v3/${f}: ${r.errors.join('; ')}`); continue; }
+    exportMapV3[r.artifact.sourceCase.caseId] = r.artifact;
+  }
+  if (fs.existsSync(path.join(evalDirV3, 'manifest.json'))) {
+    manifestV3 = JSON.parse(fs.readFileSync(path.join(evalDirV3, 'manifest.json'), 'utf8'));
+  }
+}
 const station217 = fs.existsSync(bundlePath) ? JSON.parse(fs.readFileSync(bundlePath, 'utf8')) : null;
 
 /* ------------------------------------------------------------------
@@ -71,6 +89,39 @@ for (const e of manifestEntries) {
   if (e.evaluationId && a.evaluation.evaluationId !== e.evaluationId) problems.push(`PARITY: manifest evaluationId mismatch for ${cid}`);
 }
 for (const cid of caseIds) if (!manifestCaseIds.has(cid)) problems.push(`PARITY: export ${cid} absent from manifest`);
+
+// Sprint 15 — v3 parity gate (independent of the historical v1 set).
+// Required when the directory exists: exactly 9 systems × 5 assessments =
+// 45 unique case IDs and evaluation bindings — EXPECTED_BASELINE, ENRICHED
+// (evidence-subset assessment), WRONG_TARGET, EVIDENCE_DEGRADED and
+// REMEDIATED — every v3 manifest entry present and bound.
+const v3Arr = Object.values(exportMapV3);
+if (v3Arr.length || manifestV3) {
+  const REQUIRED_V3_STATES = ['EXPECTED_BASELINE', 'ENRICHED', 'WRONG_TARGET', 'EVIDENCE_DEGRADED', 'REMEDIATED'];
+  const v3Systems = new Set(v3Arr.map((a) => a.sourceCase.aiSystemId));
+  const v3CaseIds = new Set(v3Arr.map((a) => a.sourceCase.caseId));
+  const v3EvalIds = new Set(v3Arr.map((a) => a.evaluation && a.evaluation.evaluationId));
+  if (v3Systems.size !== REQUIRED_SYSTEMS) problems.push(`PARITY-V3: ${v3Systems.size} systems — required ${REQUIRED_SYSTEMS}`);
+  if (v3CaseIds.size !== 45 || v3Arr.length !== 45) problems.push(`PARITY-V3: ${v3Arr.length} exports / ${v3CaseIds.size} unique — required 45`);
+  if (v3EvalIds.size !== 45) problems.push(`PARITY-V3: ${v3EvalIds.size} unique evaluationIds — required 45`);
+  for (const sys of v3Systems) {
+    const states = new Set(v3Arr.filter((a) => a.sourceCase.aiSystemId === sys).map((a) => a.sourceCase.scenarioState));
+    for (const st of REQUIRED_V3_STATES) if (!states.has(st)) problems.push(`PARITY-V3: ${sys} missing assessment ${st}`);
+  }
+  const v3Entries = manifestV3 && Array.isArray(manifestV3.exports) ? manifestV3.exports : [];
+  if (v3Entries.length !== 45) problems.push(`PARITY-V3: manifest lists ${v3Entries.length} entries — required 45`);
+  const v3Seen = new Set();
+  for (const e of v3Entries) {
+    const cid = e.caseId;
+    if (!cid) { problems.push('PARITY-V3: manifest entry missing caseId'); continue; }
+    if (v3Seen.has(cid)) problems.push(`PARITY-V3: duplicate manifest entry ${cid}`);
+    v3Seen.add(cid);
+    const a = exportMapV3[cid];
+    if (!a) { problems.push(`PARITY-V3: manifest entry ${cid} has no export file`); continue; }
+    if (e.evaluationId && a.evaluation.evaluationId !== e.evaluationId) problems.push(`PARITY-V3: manifest evaluationId mismatch for ${cid}`);
+  }
+  for (const cid of v3CaseIds) if (!v3Seen.has(cid)) problems.push(`PARITY-V3: export ${cid} absent from manifest`);
+}
 
 // Station 217 bundle integrity.
 if (!station217) problems.push('PARITY: station217 replay bundle absent');
@@ -199,11 +250,13 @@ const payload = {
   truthLabel: 'All evaluation content is HAIEC persisted output over a SYNTHETIC lab corpus. Station 217 is a local simulator replay — never a HAIEC verdict or plant observation.',
   exportMap,
   manifest,
+  exportMapV3: v3Arr.length ? exportMapV3 : undefined,
+  manifestV3: manifestV3 ?? undefined,
   station217,
   replay,
   estate,
 };
-payload.payloadDigest = 'sha256:' + createHash('sha256').update(JSON.stringify(exportMap) + JSON.stringify(station217 ?? ''), 'utf8').digest('hex');
+payload.payloadDigest = 'sha256:' + createHash('sha256').update(JSON.stringify(exportMap) + JSON.stringify(exportMapV3) + JSON.stringify(station217 ?? ''), 'utf8').digest('hex');
 
 const js = `'use strict';
 /* GENERATED FILE — scripts/build-dashboard-data.cjs. Do not edit.

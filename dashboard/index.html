@@ -3664,8 +3664,11 @@ render();
    ============================================================ */
 const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com', execPlane:null, execNode:null, consoleTheme:false };
 const HXDATA = window.HAIEC_DEMO_DATA || null;
-const HX_STATE_ORDER = ['EXPECTED_BASELINE','WRONG_TARGET','EVIDENCE_DEGRADED'];
-const HX_STATE_LABEL = { EXPECTED_BASELINE:'Expected baseline', WRONG_TARGET:'Wrong target', EVIDENCE_DEGRADED:'Evidence degraded' };
+// Sprint 15 — v3 adds two canonical assessments per system: ENRICHED (the
+// baseline source run re-evaluated with additional qualified pack records)
+// and REMEDIATED (the independently evaluated corrected-state run).
+const HX_STATE_ORDER = ['EXPECTED_BASELINE','ENRICHED','WRONG_TARGET','EVIDENCE_DEGRADED','REMEDIATED'];
+const HX_STATE_LABEL = { EXPECTED_BASELINE:'Expected baseline', ENRICHED:'Enriched evidence', WRONG_TARGET:'Wrong target', EVIDENCE_DEGRADED:'Evidence degraded', REMEDIATED:'Corrected state' };
 const HX_RULE_LABEL = { MATCH:'MATCH', NO_MATCH_WITH_ADEQUATE_COVERAGE:'NO MATCH · coverage adequate', INSUFFICIENT_SOURCE:'INSUFFICIENT SOURCE', CONTRADICTED:'CONTRADICTED' };
 
 /* canonical serialization — identical contract to
@@ -3683,11 +3686,14 @@ async function hxSha(s){
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 function hxPayload(a){const{exportDigest,...rest}=a;return rest;}
+/* Digest-verification key — v1 and v3 worlds both contain e.g.
+   SYS-217-WRONG_TARGET, so verification is keyed caseId@sourceWorld. */
+function hxKey(a){return `${a.sourceCase.caseId}@${(a.provenance&&a.provenance.sourceWorldId)||'unknown'}`;}
 async function hxVerifyAll(){
   if(!HXDATA)return;
-  for(const[caseId,a]of Object.entries(HXDATA.exportMap||{})){
-    try{HX.verified[caseId]=('sha256:'+await hxSha(JSON.stringify(hxCanon(hxPayload(a)))))===a.exportDigest;}
-    catch(e){HX.verified[caseId]=false;}
+  for(const m of [HXDATA.exportMap,HXDATA.exportMapV3])for(const[,a]of Object.entries(m||{})){
+    try{HX.verified[hxKey(a)]=('sha256:'+await hxSha(JSON.stringify(hxCanon(hxPayload(a)))))===a.exportDigest;}
+    catch(e){HX.verified[hxKey(a)]=false;}
   }
   if(HXDATA.station217){
     try{
@@ -3704,12 +3710,17 @@ async function hxVerifyAll(){
   HX.digestsDone=true;
   if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='journey')render();
 }
-function hxExports(){return HXDATA?Object.values(HXDATA.exportMap||{}):[];}
+/* The v3 set is the current program; the v1 set stays intact as the
+   historical register. When v3 is absent the dashboard degrades to the
+   historical set unchanged. */
+function hxCurrent(){return HXDATA?(HXDATA.exportMapV3||HXDATA.exportMap||{}):{};}
+function hxExports(){return Object.values(hxCurrent());}
+function hxHistorical(){return HXDATA&&HXDATA.exportMapV3?Object.values(HXDATA.exportMap||{}):[];}
 function hxFor(systemId,state){return hxExports().find(a=>a.sourceCase.aiSystemId===systemId&&a.sourceCase.scenarioState===state)||null;}
 function hxSystems(){const s=new Set(hxExports().map(a=>a.sourceCase.aiSystemId));return[...s].sort();}
 function hxIntegrityChip(){
   if(!HXDATA)return pill('no export data','hold');
-  const total=hxExports().length;
+  const total=hxExports().length+hxHistorical().length;
   if(!HX.digestsDone)return pill(`verifying ${total} digests…`,'info');
   const ok=Object.values(HX.verified).filter(Boolean).length;
   return ok===total?pill(`${ok}/${total} digests verified`,'go'):pill(`${ok}/${total} verified — INTEGRITY FAILURE`,'hold');
@@ -3777,7 +3788,7 @@ function pageEvaluations(){
     const cells=HX_STATE_ORDER.map(st=>{
       const a=hxFor(id,st);
       if(!a)return `<td class="hx-cell"><span class="tiny muted">no export</span></td>`;
-      const v=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
+      const v=HX.digestsDone?HX.verified[hxKey(a)]:null;
       if(v===false)return `<td class="hx-cell"><div>${pill('INTEGRITY FAILURE','hold')}</div><div class="tiny muted" style="margin-top:4px">Digest mismatch — assurance content withheld.</div></td>`;
       if(v!==true)return `<td class="hx-cell"><div>${pill('VERIFYING','info')}</div></td>`;
       return `<td class="hx-cell" data-act="hx-case" data-id="${id}|${a.sourceCase.caseId}" style="cursor:pointer">
@@ -3786,24 +3797,31 @@ function pageEvaluations(){
         <div class="tiny muted">${a.manufacturing.ruleOutcomes.filter(o=>o.status==='MATCH').length} rule match(es) · ${(a.manufacturing.controlMaturity?(a.manufacturing.controlMaturity.rows||[]).filter(r=>r.ucpReceiptState==='RECEIPT_BOUND').length:0)} receipt(s)</div>
         <div class="tiny muted">digest verified</div></td>`;
     }).join('');
-    return `<div class="card"><div class="cardhead"><div><h2>${esc(id)}</h2><p>Three evaluated corpus states — click a cell for the full export.</p></div>${pill('SYNTHETIC','info')}</div>
-      <div class="tblwrap"><table class="tbl"><thead><tr><th>Expected baseline</th><th>Wrong target</th><th>Evidence degraded</th></tr></thead><tbody><tr>${cells}</tr></tbody></table></div></div>`;
+    return `<div class="card"><div class="cardhead"><div><h2>${esc(id)}</h2><p>Five canonical assessments on the v3 source world — click a cell for the full export.</p></div>${pill('SYNTHETIC','info')}</div>
+      <div class="tblwrap"><table class="tbl"><thead><tr>${HX_STATE_ORDER.map(st=>`<th>${esc(HX_STATE_LABEL[st])}</th>`).join('')}</tr></thead><tbody><tr>${cells}</tr></tbody></table></div></div>`;
   }).join('');
+  const hist=hxHistorical();
   return header({eyebrow:'PROOF / HAIEC EVALUATIONS',title:'Genuine HAIEC evaluations — frozen export set',
-    sub:'27 persisted evaluations over the independent synthetic source world (9 systems × 3 states), produced by the canonical HAIEC assurance engine and exported digest-pinned. SYNTHETIC lab corpus — never a real plant.',
+    sub:HXDATA.exportMapV3
+      ?'45 persisted evaluations over the v3 source-native world (9 systems × 5 assessments — baseline, enriched, wrong-target, degraded, remediated), produced by the canonical HAIEC assurance engine and exported digest-pinned. The earlier 27-evaluation corpus is preserved below as the historical register. SYNTHETIC lab corpus — never a real plant.'
+      :'27 persisted evaluations over the independent synthetic source world (9 systems × 3 states), produced by the canonical HAIEC assurance engine and exported digest-pinned. SYNTHETIC lab corpus — never a real plant.',
     actions:hxIntegrityChip()})+
   `<div class="notice top14"><div><b>Truth boundary</b><p>Every value here is pass-through from a verified <code>haiec-evaluation-export-1.0.0</code> artifact or an explicit unavailable marker. Expected-findings oracle content is never shown as a HAIEC verdict. Exported ${esc(HXDATA.generatedAt)} · set digest <code>${esc(HXDATA.payloadDigest||'')}</code></p></div></div>
   <div class="card top14"><div class="cardhead"><div><h2>What HAIEC proved out of the box</h2><p>The measured generic-vs-manufacturing study these evaluations belong to.</p></div></div>
     <div class="flex" style="gap:8px;flex-wrap:wrap"><a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/research/out-of-the-box-assurance">Case study ↗</a><a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/briefs/haiec-out-of-the-box.pdf">One-page brief (PDF) ↗</a></div>
     <p class="tiny muted" style="margin-top:8px">The study measured generic ingestion, canonical evaluation and evidence-only reporting without manufacturing qualification — the enhancements added qualified industrial semantics, rule adjudication and governed independent-effect evidence. It did not measure generic static-code scanning, agent discovery or MCP tool discovery.</p></div>
-  ${cards}`;
+  ${cards}
+  ${hist.length?`<div class="card"><div class="cardhead"><div><h2>Historical register — source-world v1</h2><p>${hist.length} preserved evaluations from the earlier corpus. Byte-identical exports, digest-verified, superseded by the v3 assessments above — never overwritten.</p></div>${pill('PRESERVED','info')}</div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Case</th><th>Evaluation</th><th>Disposition</th><th>Integrity</th></tr></thead><tbody>
+    ${hist.map(a=>`<tr><td><code>${esc(a.sourceCase.caseId)}</code></td><td class="tiny"><code>${esc(a.evaluation.evaluationId)}</code></td><td>${statusPill(a.evaluation.disposition)}</td><td class="tiny">${HX.digestsDone?(HX.verified[hxKey(a)]===true?'verified ✓':'INTEGRITY FAILURE'):'verifying…'}</td></tr>`).join('')}
+    </tbody></table></div></div>`:''}`;
 }
 
 function pageEvalSystem(systemId){
   const triad=HX_STATE_ORDER.map(st=>[st,hxFor(systemId,st)]);
   const cells=triad.map(([st,a])=>{
     if(!a)return `<td class="hx-cell"><span class="tiny muted">no export</span></td>`;
-    const v=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
+    const v=HX.digestsDone?HX.verified[hxKey(a)]:null;
     if(v===false)return `<td class="hx-cell"><div>${pill('INTEGRITY FAILURE','hold')}</div><div class="tiny muted" style="margin-top:4px">Assurance content withheld.</div></td>`;
     if(v!==true)return `<td class="hx-cell"><div>${pill('VERIFYING','info')}</div></td>`;
     const rules=a.manufacturing.ruleOutcomes.map(o=>`<div class="tiny">${esc(o.ruleId)} ${hxOutcomeChip(o.status,o.reason)}</div>`).join('');
@@ -3811,15 +3829,22 @@ function pageEvalSystem(systemId){
       <div class="tiny muted" style="margin-top:6px"><code>${esc(a.evaluation.evaluationId)}</code></div>
       <button class="btn sm" data-act="hx-case" data-id="${systemId}|${a.sourceCase.caseId}" style="margin-top:6px">Open export →</button></td>`;
   }).join('');
-  return header({eyebrow:'PROOF / HAIEC EVALUATIONS / '+systemId,title:`${systemId} — three-state comparison`,
-    sub:'Same synthetic source world, three declared states. Wrong-target must show effect divergence; degraded evidence must show missing coverage — both read verbatim from the exports.',
+  const rem=hxFor(systemId,'REMEDIATED'),wt=hxFor(systemId,'WRONG_TARGET');
+  const correction=(rem&&wt&&HX.digestsDone&&HX.verified[hxKey(rem)]===true&&HX.verified[hxKey(wt)]===true)?`<div class="card top14"><div class="cardhead"><div><h2>Governed Response — corrected-state comparison</h2><p>The remediated source run was ingested and evaluated independently. It did not modify the original wrong-target finding — it is a separate persisted evaluation over the corrected world.</p></div>${pill('INDEPENDENT EVALUATION','info')}</div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Assessment</th><th>Disposition</th><th>Rule outcomes</th><th>Evaluation</th></tr></thead><tbody>
+    <tr><td><b>${esc(HX_STATE_LABEL.WRONG_TARGET)}</b></td><td>${statusPill(wt.evaluation.disposition)}</td><td class="tiny">${wt.manufacturing.ruleOutcomes.map(o=>`${esc(o.ruleId)} ${hxOutcomeChip(o.status,o.reason)}`).join('<br>')}</td><td><button class="btn sm" data-act="hx-case" data-id="${systemId}|${wt.sourceCase.caseId}">Open →</button></td></tr>
+    <tr><td><b>${esc(HX_STATE_LABEL.REMEDIATED)}</b></td><td>${statusPill(rem.evaluation.disposition)}</td><td class="tiny">${rem.manufacturing.ruleOutcomes.map(o=>`${esc(o.ruleId)} ${hxOutcomeChip(o.status,o.reason)}`).join('<br>')}</td><td><button class="btn sm" data-act="hx-case" data-id="${systemId}|${rem.sourceCase.caseId}">Open →</button></td></tr>
+    </tbody></table></div></div>`:'';
+  return header({eyebrow:'PROOF / HAIEC EVALUATIONS / '+systemId,title:`${systemId} — five-assessment comparison`,
+    sub:'Same synthetic source world, five assessments. Wrong-target must show effect divergence; degraded evidence must show missing coverage; the corrected state is an independently evaluated run — all verbatim from persisted exports.',
     actions:`<button class="btn" data-act="hx-overview">← All systems</button>`})+
-  `<div class="card"><div class="tblwrap"><table class="tbl"><thead><tr><th>Expected baseline</th><th>Wrong target</th><th>Evidence degraded</th></tr></thead><tbody><tr>${cells}</tr></tbody></table></div></div>`;
+  `<div class="card"><div class="tblwrap"><table class="tbl"><thead><tr>${HX_STATE_ORDER.map(st=>`<th>${esc(HX_STATE_LABEL[st])}</th>`).join('')}</tr></thead><tbody><tr>${cells}</tr></tbody></table></div></div>
+  ${correction}`;
 }
 
 function pageEvalCase(a){
   const e=a.evaluation,m=a.manufacturing;
-  const verified=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
+  const verified=HX.digestsDone?HX.verified[hxKey(a)]:null;
   if(verified===null)return pageEvalVerifying(a);
   if(verified!==true)return pageEvalIntegrityFailure(a);
   const rules=(m.ruleOutcomes||[]).map(o=>`<tr><td><b>${esc(o.ruleId)}</b></td><td>${hxOutcomeChip(o.status,o.reason)}<div class="tiny muted" style="margin-top:2px">${esc(o.reason||'')}</div></td><td class="tiny muted">${(o.evidenceRefs||[]).map(x=>`<code>${esc(x)}</code>`).join(' ')}</td></tr>`).join('');
@@ -3840,6 +3865,22 @@ function pageEvalCase(a){
     <tr><td>exportDigest</td><td class="tiny"><code>${esc(a.exportDigest)}</code></td></tr>
     <tr><td>Methodology / report</td><td>${esc(e.methodologyVersion||'—')} · ${esc(e.reportVersion||'—')}</td></tr>
     </tbody></table></div>
+  ${a.publication&&a.publication.publicationState==='PUBLIC'?`<div class="card"><div class="cardhead"><div><h2>Public verification</h2><p>This evaluation's Assurance Package is explicitly published — view-only, integrity-verified, no sign-in required. The canonical report routes stay fail-closed to the owning organization.</p></div>${pill('PUBLISHED · VIEW-ONLY','go')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap"><a class="btn sm primary" target="_blank" rel="noopener" href="${esc(String(a.publication.publicVerificationUrl||''))}">Verify publicly on haiec.com ↗</a></div>
+    <table class="tbl" style="margin-top:10px"><tbody>
+    <tr><td>Package</td><td class="tiny"><code>${esc(a.publication.packageId||'—')}</code></td></tr>
+    <tr><td>semanticReportDigest</td><td class="tiny"><code>${esc(a.publication.semanticReportDigest||'—')}</code></td></tr>
+    <tr><td>receiptHash</td><td class="tiny"><code>${esc(a.publication.receiptHash||'—')}</code></td></tr>
+    <tr><td>publicVerificationId</td><td class="tiny"><code>${esc(a.publication.publicVerificationId||'—')}</code></td></tr>
+    </tbody></table></div>`:''}
+  ${(a.dai&&a.dai.evaluations&&a.dai.evaluations.length)?`<div class="card"><div class="cardhead"><div><h2>Delegated action integrity</h2><p>Owner-computed dimension comparisons persisted with this evaluation — the real nine-dimension surface, verbatim.</p></div>${pill('EVALUATED','info')}</div>
+    ${a.dai.evaluations.map(d=>`<h3 style="margin:10px 0 4px">${esc(d.surfaceId||'surface')} ${statusPill(d.daiState)}</h3>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Dimension</th><th>Delegated</th><th>Observed</th><th>Comparison</th></tr></thead><tbody>
+    ${(d.comparisons||[]).map(c=>`<tr><td class="tiny">${esc(c.dimension)}</td><td class="tiny">${esc(c.delegatedValue||'—')}</td><td class="tiny">${esc(c.observedValue||'—')}</td><td>${statusPill(c.comparison)}</td></tr>`).join('')}
+    </tbody></table></div>`).join('')}</div>`:''}
+  ${a.sourceCase.scenarioState==='REMEDIATED'?`<div class="notice"><div><b>Independent corrected-state evaluation</b><p>This is a separately persisted evaluation over the corrected source run — it does not modify or close the original wrong-target finding. ${hxFor(a.sourceCase.aiSystemId,'WRONG_TARGET')?`The original evaluation stands: `:' '}<button class="btn sm" data-act="hx-case" data-id="${a.sourceCase.aiSystemId}|${a.sourceCase.aiSystemId}-WRONG_TARGET" style="margin-top:4px">Open wrong-target finding →</button></p></div></div>`:''}
+  ${a.sourceCase.scenarioState==='WRONG_TARGET'&&hxFor(a.sourceCase.aiSystemId,'REMEDIATED')?`<div class="notice"><div><b>Governed response exists</b><p>An independently evaluated corrected-state run is persisted for this system. <button class="btn sm" data-act="hx-case" data-id="${a.sourceCase.aiSystemId}|${a.sourceCase.aiSystemId}-REMEDIATED" style="margin-top:4px">Open corrected state →</button></p></div></div>`:''}
+  ${a.sourceCase.scenarioState==='ENRICHED'?`<div class="notice"><div><b>Enriched evidence assessment</b><p>The same expected-baseline source run re-evaluated with additional qualified pack records (behavioral history, sensor fixtures, IAM candidate, pinned handler source). The scenario binding marks this as the <code>ENRICHED_SUBSET</code> submission of the same run — not a different world.</p></div></div>`:''}
   <div class="card"><div class="cardhead"><div><h2>Manufacturing rule outcomes</h2><p>Persisted detout outcomes, verbatim. INSUFFICIENT_SOURCE is honest absence — never a score.</p></div></div>
     <div class="tblwrap"><table class="tbl"><thead><tr><th>Rule</th><th>Status</th><th>Bound evidence</th></tr></thead><tbody>${rules||'<tr><td colspan=3 class="tiny muted">no rule outcomes bound</td></tr>'}</tbody></table></div>
     <p class="tiny muted" style="margin-top:8px">A rule MATCH means its predicate matched — a finding to evaluate, not a pass. Whether an effect was witnessed and whether it matches the authorized target are separate questions; see the control-maturity facet and the overall disposition.</p></div>
@@ -3885,7 +3926,7 @@ function pageStation217(){
     <tr><td>Alternate target readback</td><td class="tiny"><code>${esc(JSON.stringify(rb.alternate||null))}</code></td></tr>
     </tbody></table>
     <div class="tblwrap" style="margin-top:10px"><table class="tbl"><thead><tr><th>Audit event</th><th>Payload</th></tr></thead><tbody>${ev||'<tr><td colspan=2 class="tiny muted">no audit events</td></tr>'}</tbody></table></div></div>`:''}
-  ${base&&HX.verified[base.sourceCase.caseId]===true?`<div class="card"><div class="cardhead"><div><h2>Associated HAIEC evaluation</h2><p>The SYS-217 expected-baseline corpus case — what the canonical engine actually evaluated from this world.</p></div></div>
+  ${base&&HX.verified[hxKey(base)]===true?`<div class="card"><div class="cardhead"><div><h2>Associated HAIEC evaluation</h2><p>The SYS-217 expected-baseline corpus case — what the canonical engine actually evaluated from this world.</p></div></div>
     <button class="btn" data-act="hx-case" data-id="SYS-217|${base.sourceCase.caseId}">Open ${esc(base.sourceCase.caseId)} export →</button>
     <p class="tiny muted" style="margin-top:8px">The replay bundle above is simulator output (<code>${esc(b.schemaVersion)}</code>) — HAIEC evaluated the independent source-world records, not this local ledger.</p></div>`:''}`;
 }
@@ -3902,9 +3943,9 @@ const RP_TOTAL = 60, RP_TICK = 250;
 const RP_CASE = 'SYS-217-WRONG_TARGET';
 
 function rpData(){ return HXDATA && HXDATA.replay || null; }
-function rpEval(){ return HXDATA && HXDATA.exportMap && HXDATA.exportMap[RP_CASE] || null; }
+function rpEval(){ const m=hxCurrent(); return m[RP_CASE] || null; }
 function rpRec(phase){ const r=(rpData()&&rpData().records)||[]; return r.find(x=>x.payload&&x.payload.phase===phase)||null; }
-function rpOk(){ return HX.digestsDone && HX.verified[RP_CASE]===true && HX.replayVerified===true; }
+function rpOk(){ const a=rpEval(); return HX.digestsDone && a && HX.verified[hxKey(a)]===true && HX.replayVerified===true; }
 
 /* Step table — windows follow docs/60-SECOND-EVIDENCE-REPLAY.md. A step
    whose underlying record is absent renders MISSING EVIDENCE, never a
@@ -4063,8 +4104,8 @@ document.addEventListener('click',e=>{
    no invented scores.
    ============================================================== */
 const EX_CASE='SYS-217-WRONG_TARGET';
-function exA(){return HXDATA&&HXDATA.exportMap?HXDATA.exportMap[EX_CASE]||null:null;}
-function exOk(){return HX.digestsDone&&HX.verified[EX_CASE]===true&&HX.replayVerified===true;}
+function exA(){const m=hxCurrent();return m[EX_CASE]||null;}
+function exOk(){const a=exA();return HX.digestsDone&&a&&HX.verified[hxKey(a)]===true&&HX.replayVerified===true;}
 function exMod(cls,eyebrow,title,sub,body,chip){
   return `<section class="ex-mod ${cls}"><div class="ex-head"><div><div class="eyebrow">${esc(eyebrow)}</div><h2>${esc(title)}</h2>${sub?`<p class="tiny muted">${sub}</p>`:''}</div>${chip||''}</div>${body}</section>`;
 }
@@ -4199,23 +4240,30 @@ function exModGraph(){
     </div>`;
   return exMod('ex-s8','CONSEQUENCE PATHWAY · EVIDENCE-BOUND','Consequence Action Graph','Requested → authorized → dispatched → witnessed → adjudicated',body,pill('SYNTHETIC SOURCE WORLD','info'));
 }
-/* Module 5 — Delegated Action Integrity (real shipped engine, honestly unattached) */
+/* Module 5 — Delegated Action Integrity (real shipped engine; Sprint 15 binds
+   the persisted DAI surface from the current-world SYS-217 evaluation) */
 const DAI_DIMENSIONS=['OPERATION','TARGET','SCOPE','MAGNITUDE','DURATION','APPROVAL','DATA_CLASS','ENVIRONMENT','GEOGRAPHY'];
 function exModDelegation(){
+  const a=exA(),daiSurfaces=(a&&a.dai&&a.dai.evaluations)||[];
+  const attached=daiSurfaces.length>0;
   const dims=DAI_DIMENSIONS.map(d=>`<span class="badge" style="font-size:9px">${d}</span>`).join(' ');
+  const surface=attached?daiSurfaces[0]:null;
+  const cmpRows=surface?(surface.comparisons||[]).map(c=>`<tr><td class="tiny"><b>${esc(c.dimension)}</b></td><td class="tiny">${esc(c.delegatedValue||'—')}</td><td class="tiny">${esc(c.observedValue||'—')}</td><td>${statusPill(c.comparison)}</td></tr>`).join(''):'';
   const body=`
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-bottom:8px">
-      ${pill('DAI ENGINE: AVAILABLE · dai-evaluation-1.0.0','go')} ${pill('SYS-217: NOT ATTACHED','info')}
+      ${pill('DAI ENGINE: AVAILABLE · dai-evaluation-1.0.0','go')} ${attached?pill('SYS-217: EVALUATED · '+esc(surface.daiState||''),'go'):pill('SYS-217: NOT ATTACHED','info')}
     </div>
     <p class="tiny">HAIEC ships a deterministic <b>Delegated Action Integrity</b> engine that compares delegated authority against code capability, effective grants and observed actions across <b>nine bounded dimensions</b>:</p>
     <div class="flex" style="gap:5px;flex-wrap:wrap;margin:8px 0">${dims}</div>
     <div class="ex-meta"><div><span>Engine status</span><b>Implemented in the HAIEC platform</b></div>
     <div><span>Per-dimension results</span><b>MATCHES · BROADER · NARROWER · MISSING · UNKNOWN</b></div>
     <div><span>Engine states</span><b>inside delegation → observed outside delegation → unresolved exposure · NOT_ASSESSED</b></div>
-    <div><span>This evaluation</span><b>No DAI input bound — no DAI surface in the report (never an empty verdict)</b></div></div>
-    <div class="ex-frontier"><b>Required evidence for a future SYS-217 DAI result</b>
+    <div><span>This evaluation</span><b>${attached?'Persisted DAI surface bound — owner-computed comparisons below':'No DAI input bound — no DAI surface in the report (never an empty verdict)'}</b></div></div>
+    ${surface?`<div class="tblwrap top10"><table class="tbl"><thead><tr><th>Dimension</th><th>Delegated</th><th>Observed</th><th>Comparison</th></tr></thead><tbody>${cmpRows}</tbody></table></div>
+    <p class="tiny muted" style="margin-top:6px">surfaceId <code>${esc(surface.surfaceId)}</code> · asOf <code>${esc(surface.asOf)}</code> · evidence refs: ${(surface.evidenceRefs||[]).length}</p>`:''}
+    ${attached?'':`<div class="ex-frontier"><b>Required evidence for a future SYS-217 DAI result</b>
       <p>An APPROVED operating envelope · org-confirmed delegation evidence · persisted capability-fact bindings · observed telemetry rows. Absent planes roll into UNKNOWN/MISSING comparisons — a surface with no approved envelope produces NOT_ASSESSED, never a breach state.</p>
-    </div>
+    </div>`}
     <div class="ex-study top10">
       <div><h3>Permission — what is permitted</h3><p class="tiny">Credential and IAM evidence establishes what a principal <i>can</i> technically reach. A valid grant is not proof the consequential business choice was delegated.</p></div>
       <div><h3>Delegation — what was authorized</h3><p class="tiny">Business authority requires an accountable delegation: subject, action, parameters, scope, context, time and consequence bound together.</p></div>
@@ -4224,7 +4272,7 @@ function exModDelegation(){
       <p><code>DCD = C \\ (R ∩ P ∩ G)</code> — Delegation-Capability Divergence as a mathematical concept: capability outside the requested/policy/granted intersection. No normalized sets, resource/action universes or version semantics are bound to this evaluation, so no DCD value is shown. This is a concept expression, not output of a shipped DCD engine.</p>
     </div>
     <div class="ex-note">The demonstrated finding on this estate remains the rule-based target divergence (MFG-EFF-001 MATCH) — see the graph.</div>`;
-  return exMod('ex-s4','SHIPPED ENGINE CAPABILITY','Delegated Action Integrity','Engine available — scenario evaluation not attached',body);
+  return exMod('ex-s4','SHIPPED ENGINE CAPABILITY','Delegated Action Integrity',attached?'Engine evaluated — surface persisted with this evaluation':'Engine available — scenario evaluation not attached',body);
 }
 /* Module 6 — Proof Frontier & Required Evidence */
 function exModFrontier(){
@@ -4320,7 +4368,7 @@ function pageExec(){
   const a=exA();
   if(!HX.digestsDone)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'SYS-217 assurance posture',sub:pill('VERIFYING','info')})+
     `<div class="notice"><div><b>Verifying export integrity</b><p>Recomputing sha256 digests for all 27 frozen exports before any assurance content renders.</p></div></div>`;
-  if(!a||HX.verified[EX_CASE]!==true)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'SYS-217 assurance posture',sub:pill('INTEGRITY FAILURE','hold')})+
+  if(!a||HX.verified[hxKey(a)]!==true)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'SYS-217 assurance posture',sub:pill('INTEGRITY FAILURE','hold')})+
     `<div class="notice warn"><div><b>Export digest failed</b><p>The pinned export did not verify. Assurance content is withheld — unverified data is never rendered as HAIEC results.</p></div></div>`;
   const e=a.evaluation;
   return `<div class="ex-strip">

@@ -69,6 +69,17 @@ function loadDashboard() {
   return { sandbox, elements, T };
 }
 
+/* The dashboard's current world is v3 when present, else v1.
+   Tests that assert on "the displayed artifact" must resolve the
+   same artifact the page renders, never pin the historical world. */
+function curMap(T) {
+  return T.HXDATA.exportMapV3 || T.HXDATA.exportMap;
+}
+function curKey(T, caseId) {
+  const a = curMap(T)[caseId];
+  return `${a.sourceCase.caseId}@${(a.provenance && a.provenance.sourceWorldId) || 'unknown'}`;
+}
+
 test('evaluations page renders all nine systems from verified exports', async () => {
   const { elements, T } = loadDashboard();
   T.STATE.page = 'evaluations';
@@ -90,7 +101,7 @@ test('case drill-down renders verbatim rule outcomes + facet, no recompute', asy
   T.STATE.page = 'evaluations';
   T.render();
   const html = elements.get('main').innerHTML;
-  const a = T.HXDATA.exportMap['SYS-217-EXPECTED_BASELINE'];
+  const a = curMap(T)['SYS-217-EXPECTED_BASELINE'];
   for (const o of a.manufacturing.ruleOutcomes) {
     assert.ok(html.includes(o.ruleId), `missing ${o.ruleId}`);
     assert.ok(html.includes(o.status), `missing status for ${o.ruleId}`);
@@ -120,13 +131,13 @@ test('wrong-target case displays the evaluated divergence verbatim — MATCH is 
 test('a failed export digest blocks the detail view — no untrusted assurance content', async () => {
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
-  T.HX.verified['SYS-217-EXPECTED_BASELINE'] = false;
+  T.HX.verified[curKey(T, 'SYS-217-EXPECTED_BASELINE')] = false;
   T.HX.caseId = 'SYS-217-EXPECTED_BASELINE';
   T.STATE.page = 'evaluations';
   T.render();
   const html = elements.get('main').innerHTML;
   assert.ok(html.includes('INTEGRITY FAILURE'), 'must show INTEGRITY FAILURE');
-  for (const o of T.HXDATA.exportMap['SYS-217-EXPECTED_BASELINE'].manufacturing.ruleOutcomes) {
+  for (const o of curMap(T)['SYS-217-EXPECTED_BASELINE'].manufacturing.ruleOutcomes) {
     assert.ok(!html.includes(o.ruleId), `withheld content leaked: ${o.ruleId}`);
   }
   assert.ok(!html.includes('Master Report (HTML)'), 'report links must be withheld');
@@ -401,7 +412,7 @@ test('exec planes render all five canonical action-path states as NOT_ASSESSED',
 test('exec center fails closed when the export digest is tampered', async () => {
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
-  T.HX.verified['SYS-217-WRONG_TARGET'] = false;
+  T.HX.verified[curKey(T, 'SYS-217-WRONG_TARGET')] = false;
   T.STATE.page = 'exec';
   T.render();
   const html = elements.get('main').innerHTML;
@@ -462,7 +473,8 @@ test('exec summary and technical case view preserve identical canonical facts', 
   const execHtml = elements.get('main').innerHTML;
   T.STATE.page = 'evaluations'; T.HX.caseId = 'SYS-217-WRONG_TARGET'; T.render();
   const caseHtml = elements.get('main').innerHTML;
-  for (const fact of ['bce94772-df56-447b-8625-0646915f7e25:assurance:1.1', 'REVIEW', 'EVIDENCE_ONLY', 'MFG-EFF-001', 'PARTIAL']) {
+  const wtEval = curMap(T)['SYS-217-WRONG_TARGET'].evaluation;
+  for (const fact of [wtEval.evaluationId, 'REVIEW', 'EVIDENCE_ONLY', 'MFG-EFF-001', 'PARTIAL']) {
     assert.ok(execHtml.includes(fact), `exec missing ${fact}`);
     assert.ok(caseHtml.includes(fact), `case view missing ${fact}`);
   }
@@ -488,7 +500,7 @@ test('exec frontier chip shows the canonical 5+1 accounting', async () => {
   await T.hxVerifyAll();
   T.STATE.page = 'exec'; T.render();
   const html = elements.get('main').innerHTML;
-  const pb = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].evaluation.fourQuestions.proofBoundary;
+  const pb = curMap(T)['SYS-217-WRONG_TARGET'].evaluation.fourQuestions.proofBoundary;
   const m = String(pb.summary).match(/(\d+) unresolved evidence-frontier item\(s\) and (\d+) open evidence need\(s\)/);
   assert.ok(m, 'canonical summary present');
   assert.ok(html.includes(`${m[1]} frontier items`), 'canonical frontier count rendered');
@@ -505,12 +517,18 @@ test('evidence integrity panel distinguishes bound digests from unattached signa
   await T.hxVerifyAll();
   T.STATE.page = 'exec'; T.render();
   const html = elements.get('main').innerHTML;
-  const e = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].evaluation;
+  const cur = curMap(T)['SYS-217-WRONG_TARGET'];
+  const e = cur.evaluation;
   assert.ok(html.includes('Evidence Integrity'), 'integrity section present');
   assert.ok(html.includes(e.coreTruthDigest), 'core truth digest verbatim');
   assert.ok(html.includes(e.evidenceBundleDigest), 'bundle digest verbatim');
-  assert.ok(html.includes('NOT ISSUED'), 'decision receipt honestly absent');
-  assert.ok(html.includes('unsigned'), 'unsigned state explicit');
+  if (e.links && e.links.decisionReceipt) {
+    // Sprint 15 v3 evaluations carry an issued + published U6 package.
+    assert.ok(html.includes(e.links.decisionReceipt), 'issued receipt link verbatim');
+  } else {
+    assert.ok(html.includes('NOT ISSUED'), 'decision receipt honestly absent');
+  }
+  assert.ok(html.includes('unsigned'), 'unsigned derivative state explicit');
   assert.ok(!/issuer.?signed|digitally signed|cryptographically signed (origin|export|report)/i.test(html),
     'no signature claim on the derivative');
 });
@@ -536,7 +554,7 @@ test('manufacturing impact is labeled potential and modeled context is not evalu
   assert.ok(!/actually triggered|product recall|defective engines/i.test(html), 'no claimed real-world consequence');
 });
 
-test('DAI module shows the real nine-dimension engine and no fabricated result', async () => {
+test('DAI module renders the persisted nine-dimension surface verbatim — no fabricated result', async () => {
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
   T.STATE.page = 'exec'; T.render();
@@ -545,8 +563,16 @@ test('DAI module shows the real nine-dimension engine and no fabricated result',
   for (const d of ['OPERATION', 'TARGET', 'SCOPE', 'MAGNITUDE', 'DURATION', 'APPROVAL', 'DATA_CLASS', 'ENVIRONMENT', 'GEOGRAPHY']) {
     assert.ok(html.includes(`>${d}<`), `missing DAI dimension ${d}`);
   }
-  assert.ok(html.includes('NOT ATTACHED'));
-  assert.ok(!/daiState|INSIDE_ESTABLISHED_DELEGATION|OBSERVED_OUTSIDE_DELEGATION/.test(html), 'no fabricated DAI state');
+  // Sprint 15 — a real DAI surface is persisted on the SYS-217 wrong-target
+  // evaluation: bound state + owner-computed comparisons pass through
+  // verbatim, never recomputed or fabricated.
+  const bound = T.HXDATA.exportMapV3['SYS-217-WRONG_TARGET'].dai.evaluations[0];
+  assert.equal(bound.daiState, 'OBSERVED_OUTSIDE_DELEGATION');
+  assert.ok(html.includes('SYS-217: EVALUATED'), 'bound surface pill rendered');
+  assert.ok(html.includes(bound.daiState), 'persisted daiState rendered verbatim');
+  const tgt = bound.comparisons.find((c) => c.dimension === 'TARGET');
+  assert.equal(tgt.comparison, 'BROADER');
+  assert.ok(html.includes(tgt.delegatedValue) && html.includes(tgt.observedValue), 'delegated/observed target values rendered');
   assert.ok(!/DCD\s*=\s*[\d.]+%?/.test(html), 'no computed DCD value');
 });
 
@@ -581,6 +607,83 @@ test('report derivatives share one deterministic identity and canonical parity',
   const src = { derivativeVersion: 'sample-report-derivative-1.0.0', evaluationId: e.evaluation.evaluationId, reportId: e.evaluation.reportId, reportVersion: e.evaluation.reportVersion, projectionVersion: e.evaluation.projectionVersion, coreTruthDigest: e.evaluation.coreTruthDigest, exportDigest: e.exportDigest, exportedAt: e.exportedAt, disposition: e.evaluation.disposition };
   const expect = 'sha256:' + createHash('sha256').update(JSON.stringify(src), 'utf8').digest('hex');
   assert.equal(id.derivativeId, expect, 'derivative identity is deterministic');
+});
+
+/* ---------- Sprint 15: v3 world, five-assessment coverage ---------- */
+
+test('v3 world carries 45 exports, five assessments per system, v1 preserved', async () => {
+  const { T } = loadDashboard();
+  assert.ok(T.HXDATA.exportMapV3, 'v3 world must be present');
+  assert.equal(Object.keys(T.HXDATA.exportMapV3).length, 45);
+  assert.equal(Object.keys(T.HXDATA.exportMap).length, 27, 'historical v1 corpus preserved');
+  const bySys = {};
+  for (const a of Object.values(T.HXDATA.exportMapV3)) {
+    (bySys[a.sourceCase.aiSystemId] ||= new Set()).add(a.sourceCase.scenarioState);
+  }
+  assert.equal(Object.keys(bySys).length, 9);
+  for (const [sys, states] of Object.entries(bySys)) {
+    for (const st of ['EXPECTED_BASELINE', 'ENRICHED', 'WRONG_TARGET', 'EVIDENCE_DEGRADED', 'REMEDIATED'])
+      assert.ok(states.has(st), `${sys} missing ${st}`);
+  }
+});
+
+test('system page renders five columns and corrected-state comparison', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.system = 'SYS-217'; T.HX.caseId = null;
+  T.STATE.page = 'evaluations'; T.render();
+  const html = elements.get('main').innerHTML;
+  for (const l of ['Expected baseline', 'Enriched evidence', 'Wrong target', 'Evidence degraded', 'Corrected state'])
+    assert.ok(html.includes(l), `missing state column ${l}`);
+  assert.ok(html.includes('corrected-state comparison'), 'governed-response comparison present');
+  assert.ok(html.includes('did not modify the original wrong-target finding'), 'remediation honesty preserved');
+});
+
+test('remediated case states independence — original finding stands', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.caseId = 'SYS-217-REMEDIATED';
+  T.STATE.page = 'evaluations'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('separately persisted evaluation'), 'independence must be stated');
+  assert.ok(html.includes('does not modify or close the original'), 'must not claim closure');
+  assert.ok(html.includes('SYS-217-WRONG_TARGET'), 'must link the standing finding');
+});
+
+test('published evaluation shows view-only public verification, org routes stay closed', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.caseId = 'SYS-217-WRONG_TARGET';
+  T.STATE.page = 'evaluations'; T.render();
+  const html = elements.get('main').innerHTML;
+  const a = curMap(T)['SYS-217-WRONG_TARGET'];
+  assert.equal(a.publication.publicationState, 'PUBLIC');
+  assert.ok(html.includes(a.publication.publicVerificationUrl), 'public verification link verbatim');
+  assert.ok(html.includes('fail-closed'), 'org-scoped routes stated fail-closed');
+  assert.ok(!html.includes('s15-v3-org'), 'internal org id never rendered');
+});
+
+test('tamper in the historical world does not block or confuse the v3 view', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.verified[`SYS-217-WRONG_TARGET@${T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].provenance.sourceWorldId}`] = false;
+  T.HX.caseId = 'SYS-217-WRONG_TARGET';
+  T.STATE.page = 'evaluations'; T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(!html.includes('INTEGRITY FAILURE'), 'v1 tamper must not leak into v3 view');
+  assert.ok(html.includes('MFG-EFF-001'), 'v3 case still renders verified content');
+});
+
+test('v3 DAI surfaces render the real nine-dimension comparison verbatim', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.caseId = 'SYS-217-EXPECTED_BASELINE';
+  T.STATE.page = 'evaluations'; T.render();
+  const html = elements.get('main').innerHTML;
+  const d = curMap(T)['SYS-217-EXPECTED_BASELINE'].dai.evaluations[0];
+  assert.ok(d, 'DAI surface persisted');
+  for (const c of d.comparisons) assert.ok(html.includes(c.dimension), `missing ${c.dimension}`);
+  assert.ok(html.includes(d.surfaceId || 'surface'), 'surface id rendered');
 });
 
 test('no absolute cryptographic claims anywhere in dashboard or pitch copy', async () => {
