@@ -25,6 +25,12 @@ The [enhanced v2.6 plan](ENHANCED_EXECUTION_PLAN_v2.6.md) is **not** a copy of a
 - Private kill-switch recovery fix is **unmerged** HAIEC [PR #2211](https://github.com/subodhkc/haiec-website/pull/2211), authorization tests/CI require acceptance before merge.
 - Manufacturing v1 27 frozen synthetic evaluations still exist; v3.1 registered source-native candidate files are not automatically newly evaluated snapshots.
 
+**Sprint 16/17 reconciliation (status as of the merged state above is now superseded):**
+
+- PR #20 **merged** `8b3e930`; PR #21 **merged** `55c8bbe` → manufacturing `main` (deployed via Vercel CLI production, deployment records `615d5ce`).
+- HAIEC PR #2212 **merged** `770b94cdc` → `Main` (Vercel production READY); kill-switch PR #2211 **merged** `aff91c80`.
+- 45 canonical v3 evaluations (9 systems × 5 states) are now persisted, exported under `data/evaluations-v3/` and publicly verifiable — genuine HAIEC evaluations **of synthetic lab evidence**, distinct from the v3.1 fixture pack, which remains unqualified candidate data.
+
 ## Evidence, IP and usage rules
 
 This repository is public. The snapshots contain only planning prose, research sources and fictional scenarios. No HAIEC SaaS secret, tenant credential, proprietary executable assurance engine or privileged live production artifact should be committed here.

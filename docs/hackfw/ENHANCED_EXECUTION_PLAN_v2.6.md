@@ -22,6 +22,14 @@ The three Drive plans were drafted before several later GitHub PRs. Preserve the
 | Telecom demonstration | **HISTORICAL TM FORUM REFERENCE** | Sample stages/labels, not new HAIEC verdicts |
 | OWASP / compliance crosswalk | Canonical HAIEC framework mapping exists; demo contextual only | Qualified mapping + reference release + actual control evidence required before evaluated claim |
 
+
+## Sprint 16/17 reconciliation (supersedes dated status rows below)
+
+- PR #20 merged `8b3e930`; PR #21 merged `55c8bbe` (Operator Journey world-aware) → `main`, deployed via Vercel CLI.
+- HAIEC PR #2212 merged `770b94cdc` → `Main`; kill-switch recovery tenant fix PR #2211 merged `aff91c80`.
+- "Nine-system fresh v3.1 assessed corpus" is superseded by **45 canonical v3 evaluations** (9 systems × 5 states: baseline, enriched, degraded, wrong-target, remediated) — persisted, digest-pinned under `data/evaluations-v3/`, publicly verifiable. They are genuine evaluations **of synthetic lab evidence**, not real factory monitoring or certification.
+- P0-1 six-step UI: merged and deployed-browser acceptance passed 32/32 (journey stages, systems, states, worlds, industry switch, mobile/keyboard/print).
+- Kill-switch execution guard: `assertAiExecutionAllowed`/`withKillSwitchGuard`/`isSystemKilled` still have **no runtime dispatcher call sites** — containment remains unproven; treat as bounded backlog, not shipped enforcement.
 **Status precedence:** actual deployed code/CI and signed, tenant-bound evaluation receipts supersede retrospective plan status text. The Drive copies are frozen planning sources, not updated release ledgers. A source-native event is not an admitted evidence claim; a report graphic is not a detector; a passed test of a local guard is not proof the runtime calls it.
 
 ## 1. Product narrative / UX north star
