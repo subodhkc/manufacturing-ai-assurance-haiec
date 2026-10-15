@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/brand/og-image.png">
 <link rel="stylesheet" href="industry/industry.css">
+<link rel="stylesheet" href="journey/journey.css">
 <style>
 :root{
   --paper:#f3f4f2;--surface:#fff;--canvas:#fafbfa;--ink:#141d22;--ink2:#2a3740;
@@ -1079,7 +1080,7 @@ function pageOverview(){
     <div class="judge">
       <div class="jmain">
         <h3>Explore a fictional manufacturing company</h3>
-        <p>You are looking at a synthetic estate created as a fictional, composite heavy-duty components manufacturer. The company runs 9 AI systems across 3 plants, a distribution center, and a supply chain organization. ${live} are live, ${poc} are in POC, and ${blocked} are blocked from production. Everything you see is interactive. Start with the guided tour, then run a live decision in the Decision Lab.</p>
+        <p>You are looking at a synthetic estate created as a fictional, composite heavy-duty components manufacturer. The company runs 9 AI systems across 3 plants, a distribution center, and a supply chain organization. ${live} are live, ${poc} are in POC, and ${blocked} are blocked from production. Everything you see is interactive. Start with the guided tour, then run an interactive browser-local policy simulation in the Decision Lab.</p>
       </div>
       <div class="flex" style="gap:6px;flex-wrap:wrap">
         <span class="jpill">9 systems</span>
@@ -1841,8 +1842,8 @@ function pageMonitor(){
   const events = STATE.events.slice(0, 15);
   return header({
     eyebrow: 'Operations & reviews',
-    title: 'What is happening right now',
-    sub: 'Pending decisions, live policy actions, containment state, and agent dispatch controls. Business-system effects are separated from decisions and alerts.',
+    title: 'Synthetic operations & recorded events',
+    sub: 'Inspect browser-local simulated reviews, dispatch decisions and local state. Not connected to production equipment or HAIEC live runtime.',
     actions: `<button class="btn" data-act="open-lab" data-id="HOLD">Trigger a new action</button>
               <button class="btn" data-act="export-ledger">Export ledger</button>`
   })
@@ -1850,7 +1851,7 @@ function pageMonitor(){
        <div class="metric warn"><div class="mh">Pending reviews</div><div class="num">${pending.length}</div><div class="mt">Awaiting human decision</div></div>
        <div class="metric hold"><div class="mh">Engines contained</div><div class="num">${STATE.mes.contained}</div><div class="mt">Under active quality hold</div></div>
        <div class="metric go"><div class="mh">Released engines</div><div class="num">${STATE.mes.released}</div><div class="mt">After documented disposition</div></div>
-       <div class="metric"><div class="mh">Agents paused</div><div class="num">${Object.values(STATE.paused).filter(Boolean).length}</div><div class="mt">Dispatch control</div></div>
+       <div class="metric"><div class="mh">Simulated dispatchers paused</div><div class="num">${Object.values(STATE.paused).filter(Boolean).length}</div><div class="mt">Dispatch control</div></div>
      </div>`
   + `<div class="gap20"></div>`
   + `<div class="grid g2">
@@ -2218,7 +2219,7 @@ document.addEventListener('click', e => {
       toast('Demo tip: run containment first, then try the release.'); break;
     case 'export-ledger': exportLedger(); break;
     case 'copy-prompt': copyPrompt(); break;
-    case 'report-kind': toast('Report "' + id + '" opened (synthetic fixture).'); break;
+    case 'report-kind': toast('No separate ' + id + ' report is issued for the browser simulation. Open HAIEC Assurance for actual persisted evaluation artifacts.'); break;
     case 'hx-system': HX.system = id; HX.caseId = null; STATE.page = 'evaluations'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-case': HX.system = id.split('|')[0]; HX.caseId = id.split('|')[1]; STATE.page = 'evaluations'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
@@ -3697,7 +3698,7 @@ async function hxVerifyAll(){
     }catch(e){HX.replayVerified=false;}
   }
   HX.digestsDone=true;
-  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec')render();
+  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='journey')render();
 }
 function hxExports(){return HXDATA?Object.values(HXDATA.exportMap||{}):[];}
 function hxFor(systemId,state){return hxExports().find(a=>a.sourceCase.aiSystemId===systemId&&a.sourceCase.scenarioState===state)||null;}
@@ -4328,7 +4329,7 @@ function pageExec(){
       <span style="flex:1"></span>
       ${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')}
       ${HX.replayVerified===true?pill('replay digest verified','go'):pill('replay unverified','hold')}
-      <a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
+      <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
     </div>
     <div class="ex-grid">
       ${exModEstate()}
@@ -4356,5 +4357,6 @@ if(HXDATA){hxVerifyAll();}
 </script>
 
 <script src="industry/industry.js"></script>
+<script src="journey/journey.js"></script>
 </body>
 </html>
