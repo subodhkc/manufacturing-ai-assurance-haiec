@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/2d645090-3edf-4fd3-9347-dc43805395c3%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/2d645090-3edf-4fd3-9347-dc43805395c3%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/2d645090-3edf-4fd3-9347-dc43805395c3%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/4QSNyqdCEQqurUhu2SmEtQaSwYpXuZ87/verify",
+      "decisionReceipt": "/api/assurance/packages/fpMoByQ7Di48tK_UpTv686UZ8PqIuU7d/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-MNT88?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "4QSNyqdCEQqurUhu2SmEtQaSwYpXuZ87",
+    "packageId": "fpMoByQ7Di48tK_UpTv686UZ8PqIuU7d",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "291f0332e48935c0645266f006bc44dbc3d104f2d819342d039c186bfd208770",
-    "receiptHash": "5da7b7ae41c0386ed04c3e8f57fc96a021e74e721820ba1c5fc88c1ddc600e53",
-    "publicVerificationId": "JkQG0PfeToff35IOA6myDAxL",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/JkQG0PfeToff35IOA6myDAxL"
+    "semanticReportDigest": "5d714bb83d626449ecb4c9799043fee3ea7f569ae7ecdf7413504d39af269f9b",
+    "receiptHash": "04e5dcf8dcdb488afc38482f37f3a3606dbaaf43ab05fed483e2abcfde7b48f0",
+    "publicVerificationId": "8aIBd0eqLWtYeBFlZJOqLx8c",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/8aIBd0eqLWtYeBFlZJOqLx8c"
   },
-  "exportDigest": "sha256:8a6de99f47ce3ee3d2baad290b84247b98d32017caa8b4702d445950cf770767"
+  "exportDigest": "sha256:ef9a9b77576546c308ddc921d099efc13a5b66caf0f54b2d86c4b3ca576ed249"
 }

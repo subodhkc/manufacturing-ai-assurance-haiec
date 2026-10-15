@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/d19700b9-e100-47c2-8967-9d8d97e7d6e5%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/d19700b9-e100-47c2-8967-9d8d97e7d6e5%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/d19700b9-e100-47c2-8967-9d8d97e7d6e5%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/8TgUCn9BCR929rsg-pZbr7tu3YB3jdq7/verify",
+      "decisionReceipt": "/api/assurance/packages/y5zyiX9j1t8T05HLbk7sMu0teLnZpBrC/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-FC1?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "8TgUCn9BCR929rsg-pZbr7tu3YB3jdq7",
+    "packageId": "y5zyiX9j1t8T05HLbk7sMu0teLnZpBrC",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "394b3ea0a9a756b31ac3da54e37f8b72f513b41f121590de5c09a7e37f5647c6",
-    "receiptHash": "dcf3cad5224afc8c5492623100eee0fd9ecb725a076935bbc44fb8e262ac3b5a",
-    "publicVerificationId": "Nyuk7fsbd69gaOgGxY7h6u6V",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/Nyuk7fsbd69gaOgGxY7h6u6V"
+    "semanticReportDigest": "aea7faa6a4e8c497200d375a47674db9960c56714d6b797574665845f3e443af",
+    "receiptHash": "07a5ffb4245e738bf4779ca2785c89a34d5f5157f74bfa950e06c3e246eb24d3",
+    "publicVerificationId": "x2ZI5R-lg0ZH9MYgd-YuyvdP",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/x2ZI5R-lg0ZH9MYgd-YuyvdP"
   },
-  "exportDigest": "sha256:0b207fc0bcea43d692eb09dd87e23a7f7c8d060643a15faa8ff642e0d82fd4a8"
+  "exportDigest": "sha256:67e362af02fc8de179ccc89b178baa3bc0c860239131d2b0626405de7a427370"
 }

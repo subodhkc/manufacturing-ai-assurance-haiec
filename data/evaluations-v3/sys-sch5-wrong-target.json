@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/22e307c1-672d-4ed1-a5c5-01ca15e95f2d%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/22e307c1-672d-4ed1-a5c5-01ca15e95f2d%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/22e307c1-672d-4ed1-a5c5-01ca15e95f2d%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/_GDXA0-5dGkLWBfGqSAkg2CppULHWbJX/verify",
+      "decisionReceipt": "/api/assurance/packages/Ixz-oVpeQD8znhmX_dT26SicJOHA1oaB/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-SCH5?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "_GDXA0-5dGkLWBfGqSAkg2CppULHWbJX",
+    "packageId": "Ixz-oVpeQD8znhmX_dT26SicJOHA1oaB",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "78bea3e1e67c38e69610c532a8797c2e37bcf3186990580f8c40945caf3b7d2a",
-    "receiptHash": "cfc613b864c5e2dfea97b298b943c1587d34de6353ea4c4c96f817bf5e36c217",
-    "publicVerificationId": "VG6H9vi-DV0_ZV_sivFunmQU",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/VG6H9vi-DV0_ZV_sivFunmQU"
+    "semanticReportDigest": "dada98de2c80de4ae2c62a250a9ba67f7b661c4af6a7bad117c7c25907dfeb52",
+    "receiptHash": "111c193f27ba90ea99b4b4ec0b856c4e8cc3407c6a9931f7df10e826a02362ce",
+    "publicVerificationId": "LoDRtMPGec1vfASeujb0Cee0",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/LoDRtMPGec1vfASeujb0Cee0"
   },
-  "exportDigest": "sha256:934738fb14c215721f2b42a6c86db58edf3e4583311b5f316cfc109925fac344"
+  "exportDigest": "sha256:110cebec802de11cc9a7467e42da7c5f45ddb138391361e7e3ffbb310f3fc146"
 }

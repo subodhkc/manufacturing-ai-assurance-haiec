@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/72eee732-4860-453f-8e07-06fbc68454cb%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/72eee732-4860-453f-8e07-06fbc68454cb%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/72eee732-4860-453f-8e07-06fbc68454cb%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/5Cf11djHJqJvQAbneBTFvEq6usXfzF_r/verify",
+      "decisionReceipt": "/api/assurance/packages/D4sbGxd7V0QJg-T3kILo6UH30wgiyNsY/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-PO12?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "5Cf11djHJqJvQAbneBTFvEq6usXfzF_r",
+    "packageId": "D4sbGxd7V0QJg-T3kILo6UH30wgiyNsY",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "e3847285c9c3b0599c4682b216e3a6eb5f086a47e6a12f24d743b0713f188689",
-    "receiptHash": "8d4dc2bee6ea05ea9150f6d721170b0057cc9774d217aac2d7d7071f584a84c3",
-    "publicVerificationId": "NsYN1yFideRjPyO9y4ivbFtx",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/NsYN1yFideRjPyO9y4ivbFtx"
+    "semanticReportDigest": "13c426bd8ebb1ebce9e12ffd150ce6ee8f8e1dc1a514c32a5ade61b614125b49",
+    "receiptHash": "e7d7b30b3d28900139bee6de776b84aa392ee3e3e12e9f6bb19f4b86b83c6a78",
+    "publicVerificationId": "nORBKkid7HCujAEfNI2uxG0W",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/nORBKkid7HCujAEfNI2uxG0W"
   },
-  "exportDigest": "sha256:129c805d66864066a23ede33588da3d72f8a5cf7f9590cdf5b8e8c95b5b133d3"
+  "exportDigest": "sha256:e9d2baa6ea7a1004a66595f5303296213203fbc27ec489031fb60c508508eaaf"
 }
