@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haiec.com/contracts/haiec-evaluation-export/v1.0.0/evaluation-export.schema.json",
+  "title": "haiec-evaluation-export-1.0.0",
+  "description": "Frozen, digest-pinned export of a canonical HAIEC evaluation + manufacturing facets. Read-only consumer contract; the producer is the authorized HAIEC Master Report read path.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "exportKind",
+    "exportedAt",
+    "provenance",
+    "sourceCase",
+    "evaluation",
+    "manufacturing",
+    "exportDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "haiec-evaluation-export-1.0.0" },
+    "exportKind": { "const": "FROZEN_EVALUATION_EXPORT" },
+    "exportedAt": { "type": "string", "format": "date-time" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["dataClass", "truthLabel", "oracleIndependent", "producedBy"],
+      "properties": {
+        "dataClass": { "enum": ["SYNTHETIC_LAB", "CUSTOMER_PRODUCTION", "UNKNOWN"] },
+        "truthLabel": { "enum": ["FROZEN_SYNTHETIC_EVALUATION", "CUSTOMER_EVALUATION"] },
+        "sourceWorldId": { "type": "string" },
+        "oracleIndependent": { "type": "boolean" },
+        "producedBy": { "enum": ["AUTHORIZED_DB_READ", "AUTHORIZED_API_READ"] },
+        "note": { "type": "string" }
+      }
+    },
+    "sourceCase": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["caseId", "aiSystemId", "scenarioState", "scenarioRunId"],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "aiSystemId": { "type": "string", "minLength": 1 },
+        "scenarioState": {
+          "enum": ["EXPECTED_BASELINE", "EVIDENCE_DEGRADED", "WRONG_TARGET", "EXPLICIT"]
+        },
+        "scenarioRunId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "description": "boundedMasterReportView (master-report-product-1.0.0), verbatim. Inner detail is owned by HAIEC's product schema; this contract pins the fields a dashboard may rely on.",
+      "additionalProperties": true,
+      "required": [
+        "schemaVersion",
+        "timeBasis",
+        "evaluationId",
+        "disposition",
+        "evaluationBasis",
+        "coreTruthDigest",
+        "fourQuestions",
+        "evaluationScenarioSnapshot",
+        "links",
+        "limitations",
+        "semantics"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "master-report-product-1.0.0" },
+        "timeBasis": { "const": "EVALUATED_SNAPSHOT" },
+        "evaluationId": { "type": "string", "minLength": 1 },
+        "disposition": { "enum": ["ALLOW", "REVIEW", "BLOCK", "UNKNOWN"] },
+        "evaluationBasis": { "enum": ["SCAN_BACKED", "EVIDENCE_ONLY"] },
+        "coreTruthDigest": { "type": "string", "minLength": 1 },
+        "evidenceBundleDigest": { "type": ["string", "null"] },
+        "fourQuestions": { "type": "object" },
+        "evaluationScenarioSnapshot": { "type": "object" },
+        "links": { "type": "object" },
+        "limitations": { "type": "array", "items": { "type": "string" } },
+        "semantics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "manufacturing": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["ruleOutcomes", "controlMaturity"],
+      "properties": {
+        "ruleOutcomes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ruleId", "status"],
+            "properties": {
+              "ruleId": { "type": "string", "pattern": "^MFG-" },
+              "status": {
+                "enum": ["MATCH", "NO_MATCH_WITH_ADEQUATE_COVERAGE", "INSUFFICIENT_SOURCE", "CONTRADICTED"]
+              }
+            }
+          }
+        },
+        "controlMaturity": {
+          "type": ["object", "null"],
+          "description": "ManufacturingControlMaturityFacet verbatim; null = ABSENT_FACET, never render as zero."
+        }
+      }
+    },
+    "exportDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

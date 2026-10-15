@@ -18,7 +18,7 @@ npm run verify
 
 `npm run generate` regenerates the tracked **illustrative** reference artifacts only. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
 
-Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. It is static and still renders its embedded v7.2 data; tying it to generated source events and genuine HAIEC evaluations is a **separate implementation step**, not silently represented as complete.
+Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
 
 ## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)
@@ -27,7 +27,17 @@ Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contai
 
 ## Station 217: executable synthetic action control (new)
 
-Run `npm run demo:station217 > station217-replay.json` for a deterministic 3/40/51-engine hold, denied release, wrong-target and missing-witness replay. This new CLI fixture has a fail-closed local policy broker, distinct private MES target ledger and independent assertions. It is **not wired into v7.2 HTML**, not a customer/HAIEC evaluation, and not safe as a public action API without authenticated server mediation. See [Station 217 acceptance and remaining integration gates](docs/STATION217-ACCEPTANCE.md).
+Run `npm run demo:station217 > station217-replay.json` for a deterministic 3/40/51-engine hold, denied release, wrong-target and missing-witness replay. This CLI fixture has a fail-closed local policy broker, distinct private MES target ledger and independent assertions. It is now wired into the dashboard's **Station 217** page as a read-only replay presentation (via `packages/station217/src/export-bundle.cjs` → `dashboard/data/`); no browser action is a factory authorization or prevention mechanism. It is not a customer/HAIEC evaluation and not safe as a public action API without authenticated server mediation. See [Station 217 acceptance and remaining integration gates](docs/STATION217-ACCEPTANCE.md).
+
+## Genuine HAIEC evaluation integration (frozen offline mode)
+
+The dashboard's **HAIEC Assurance** page is driven by 27 real, persisted HAIEC evaluations of the independent synthetic source world (9 systems × 3 states), produced by the canonical HAIEC assurance engine on the `haiec-website` repository and exported digest-pinned under `data/evaluations/` (+ `manifest.json`).
+
+- `packages/haiec-adapter/` — the read-only presentation adapter (`haiec-evaluation-export-1.0.0` contract, `contracts/haiec-evaluation-export/`). It validates schema, recomputes the canonical payload digest, and projects verbatim — it never recomputes dispositions, and a single mutated field fails the digest check both in tests and in the browser.
+- `scripts/build-dashboard-data.cjs` — re-verifies every export, then emits `dashboard/data/haiec-exports.js` (~479 KB static bundle; works over `file://` and static hosting).
+- Every displayed value is pass-through from a verified export or an explicit unavailable marker; synthetic content is labeled SYNTHETIC; the expected-findings oracle is never rendered as a HAIEC verdict.
+- The **open report** links point at the HAIEC-hosted artifacts for the exact `evaluationId` (e.g. `…/master-report/pdf`). They require authorization to the owning organization — an unauthorized reader gets HAIEC's normal fail-closed response. This is the *authenticated mode*; the frozen export set is the *offline mode*. No customer credentials or tokens exist in this repository.
+- Onboarding a real manufacturer reuses the same adapter contract — see [Manufacturer onboarding mapping](docs/MANUFACTURER-ONBOARDING-MAPPING.md).
 
 ## Evidence and results
 
