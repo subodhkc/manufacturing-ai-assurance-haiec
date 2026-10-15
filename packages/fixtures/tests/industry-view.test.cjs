@@ -40,7 +40,7 @@ test('generated bundle matches versioned repo sources exactly',()=>{
   assert.match(execFileSync(process.execPath,['scripts/build-industry-data.cjs','--check'],{cwd:root,encoding:'utf8'}),/parity: OK/);
   const p=makeDemo().window.HAIEC_INDUSTRY_DATA.profiles;
   assert.equal(p.length,6);
-  assert.deepEqual(p.map(x=>x.industryId),['manufacturing','telecom','electrical','rail','electronics','supplier']);
+  assert.deepEqual(Array.from(p,x=>x.industryId),['manufacturing','telecom','electrical','rail','electronics','supplier']);
 });
 
 test('telecom reference retains AL labels but does not fabricate a canonical evaluation',()=>{
