@@ -9,3 +9,6 @@ coverage/
 
 # Source-world intake candidates are generated per authorized test run; never tracked as evaluation evidence.
 data/generated/haiec-ingest-candidates.json
+
+.vercel
+.env*
