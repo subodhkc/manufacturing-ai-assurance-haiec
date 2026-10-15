@@ -107,3 +107,14 @@ window.HAIEC_DEMO_DATA = ${JSON.stringify(payload)};
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, js);
 console.log(`dashboard data: ${Object.keys(exportMap).length} verified exports + station217 bundle → ${outPath}`);
+
+// Sprint 14.2 — regenerate the public sample report (fails build on digest
+// mismatch) and verify the committed PDF derivative exists.
+require('./build-sample-report.cjs');
+const pdfPath = path.join(root, 'dashboard/report/sample-master-report.pdf');
+const pdf = fs.existsSync(pdfPath) ? fs.readFileSync(pdfPath) : null;
+if (!pdf || pdf.length < 50000 || pdf.slice(0, 5).toString('latin1') !== '%PDF-') {
+  console.error('BUILD FAILED — sample-master-report.pdf missing or invalid');
+  process.exit(1);
+}
+console.log('sample pdf present:', pdfPath, `(${(pdf.length / 1024).toFixed(0)} KB)`);

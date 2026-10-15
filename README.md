@@ -18,7 +18,13 @@ npm run verify
 
 `npm run generate` regenerates the tracked **illustrative** reference artifacts only. `npm test` runs the independent integrity and behavior tests. `npm run check:fixtures` fails if committed output drifts from deterministic generation.
 
-**Live deployment:** https://haiec-manufacturing-demo.vercel.app — static Vercel deployment of `dashboard/` (project `haiec-manufacturing-demo`, built by `node scripts/build-dashboard-data.cjs`).
+**Live deployment:** https://haiec-manufacturing-demo.vercel.app — static Vercel deployment of `dashboard/` (project `haiec-manufacturing-demo`, built by `node scripts/build-dashboard-data.cjs`). Branded domain `manufacturing.haiec.com` is associated with the Vercel project and goes live once its DNS CNAME record is published.
+
+**Public sample report (Sprint 14.2):** [`dashboard/report/sample-master-report.html`](dashboard/report/sample-master-report.html) (+ `.pdf`) is a frozen public-safe derivative of the genuine persisted SYS-217 wrong-target evaluation `bce94772-df56-447b-8625-0646915f7e25:assurance:1.1` — rendered verbatim from the digest-verified export by `scripts/build-sample-report.cjs` (regenerated on every build; the build fails if the export digest or the committed PDF is invalid). It retains the exact evaluation identity, rule outcomes, control-maturity facet, UCP receipt state, digests and limitations; it redacts internal identities. The original HTML/PDF remain behind HAIEC authorization — links on the case page open them for authorized org members only.
+
+**Demo email notifications:** the dashboard's "Send test email" action POSTs to `https://www.haiec.com/api/demo/manufacturing/notify` — a HAIEC-hosted endpoint that enforces an origin allowlist, a recipient allowlist (`MFG_DEMO_EMAIL_ALLOWLIST`), fixed synthetic-labeled templates, consent flag, and rate limits. Non-allowlisted recipients are refused, never silently dropped. Status is honest: `ACCEPTED_BY_PROVIDER` is not delivery.
+
+**60-second evidence replay:** specified in [`docs/60-SECOND-EVIDENCE-REPLAY.md`](docs/60-SECOND-EVIDENCE-REPLAY.md) — Mode A (recorded, client-side, no backend) vs Mode B (future live monitoring). Not yet implemented.
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
@@ -74,4 +80,4 @@ The dashboard's **HAIEC Assurance** page is driven by 27 real, persisted HAIEC e
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/HAIEC-INTEGRATION-HANDOFF.md`](docs/HAIEC-INTEGRATION-HANDOFF.md).
 
-This repository does **not** contain customer data, customer credentials, executable plant commands, auto-deploy to HAIEC Main, active email delivery, or cron-scheduled writes.
+This repository does **not** contain customer data, customer credentials, executable plant commands, auto-deploy to HAIEC Main, unrestricted email delivery (the demo notify path is HAIEC-hosted and recipient-allowlisted), or cron-scheduled writes.

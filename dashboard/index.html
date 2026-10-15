@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HAIEC · Example Manufacturing Company · Guided Manufacturing Assurance v7.2</title>
+<title>HAIEC Manufacturing Assurance · Synthetic nine-system evaluation demo</title>
+<meta name="description" content="HAIEC manufacturing assurance demonstration: nine fictional AI systems, 27 frozen persisted HAIEC evaluations over a synthetic lab corpus, deterministic replay and a public sample Master Assurance Report.">
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<meta property="og:title" content="HAIEC Manufacturing Assurance — synthetic evaluation demo">
+<meta property="og:description" content="Genuine HAIEC evaluation exports over a synthetic manufacturing corpus. High assurance in every consequence.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/brand/og-image.png">
 <style>
 :root{
   --paper:#f3f4f2;--surface:#fff;--canvas:#fafbfa;--ink:#141d22;--ink2:#2a3740;
@@ -44,7 +51,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .app{display:flex;min-height:100vh}
 .sidebar{width:250px;flex:0 0 250px;background:var(--nav);color:#d4e0e5;position:sticky;top:0;height:100vh;padding:22px 12px;display:flex;flex-direction:column;overflow:auto;z-index:30}
 .logo-row{display:flex;gap:11px;align-items:center;padding:4px 10px 22px;border-bottom:1px solid #2c3a44;margin-bottom:16px}
-.logo-mark{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#a8e5d8,#5bb3a2);display:grid;place-items:center;color:#0c2a26;font-size:22px;font-weight:900;letter-spacing:-1.4px}
+.logo-mark{width:38px;height:38px;border-radius:9px;display:block;object-fit:contain}
 .brand strong{font-size:16.5px;letter-spacing:2px;color:#fff;font-weight:800}
 .brand small{display:block;font-size:9.5px;color:#8fa4ae;text-transform:uppercase;letter-spacing:.85px;margin-top:2px}
 .navgroup{margin:14px 0 5px;color:#7c95a0;text-transform:uppercase;font-size:9.5px;letter-spacing:1.5px;font-weight:800;padding:0 12px}
@@ -359,16 +366,16 @@ button:disabled{opacity:.5;cursor:not-allowed}
 <div class="app">
   <aside class="sidebar">
     <div class="logo-row">
-      <div class="logo-mark">H</div>
+      <img class="logo-mark" src="assets/brand/haiec-eagle.png" alt="HAIEC eagle mark">
       <div class="brand">
         <strong>HAIEC</strong>
-        <small>Example Manufacturing Company</small>
+        <small>Manufacturing Assurance · synthetic</small>
       </div>
     </div>
     <div id="sidenav"></div>
     <div class="sidefoot">
-      <b>Evidence-bound assurance</b>
-      Deterministic comparison of qualified evidence. Unknown never counts as a pass.
+      <b>HAIEC — Human AI Evidence Company</b>
+      "High assurance in every consequence." Deterministic comparison of qualified evidence. Unknown never counts as a pass.
     </div>
   </aside>
   <div class="workspace">
@@ -380,7 +387,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
       </div>
       <div class="topactions">
         <span class="badge info tip" data-tip="All data in this workspace is synthetic. A fictional composite heavy-duty components manufacturer.">Fictional company · synthetic data</span>
-        <span class="badge tip" id="statusBadge" data-tip="Current dispatch state across all monitored AI systems">● Demo agents active</span>
+        <span class="badge tip" id="statusBadge" data-tip="Browser-local simulated dispatch state — no live factory or HAIEC runtime connection">● Simulation active</span>
         <button class="btn sm" data-act="pending">
           Approvals <span id="pendCount" style="background:#5c4630;color:#ffd9a3;padding:1px 6px;border-radius:6px;margin-left:4px;font-size:10px">0</span>
         </button>
@@ -400,6 +407,10 @@ button:disabled{opacity:.5;cursor:not-allowed}
 <script src="data/haiec-exports.js"></script>
 <script>
 'use strict';
+/* HAIEC-hosted demo notification endpoint (allowlisted recipients only).
+   Unset/override only in trusted deployments; the receiving route enforces
+   origin allowlist, recipient allowlist, fixed templates and rate limits. */
+window.HAIEC_DEMO_NOTIFICATION_ENDPOINT = 'https://www.haiec.com/api/demo/manufacturing/notify';
 
 /* ============================================================
    DEMO ORGANIZATION
@@ -916,7 +927,7 @@ function renderNav(){
     </button>`).join('')
   ).join('');
   $('sidenav').innerHTML = navHtml;
-  $('mobile-nav').innerHTML = PAGES.map(p =>
+  $('mobile-nav').innerHTML = '<img src="assets/brand/favicon.png" alt="HAIEC" style="width:26px;height:26px;flex:0 0 auto;margin:5px 8px 5px 2px">' + PAGES.map(p =>
     `<button data-nav="${p.id}" class="${STATE.page===p.id?'active':''}">${p.label}</button>`
   ).join('');
   const labels = Object.fromEntries(PAGES.map(p => [p.id, p.label]));
@@ -992,9 +1003,9 @@ function pageOverview(){
         <div class="mt">Awaiting decisions or qualified evidence</div>
       </div>
       <div class="metric go">
-        <div class="mh">Live monitored</div>
+        <div class="mh">In production (fictional)</div>
         <div class="num">${live}</div>
-        <div class="mt">Operating with active coverage</div>
+        <div class="mt">Synthetic systems marked production-stage</div>
       </div>
       <div class="metric">
         <div class="mh">Total AI systems</div>
@@ -1815,7 +1826,7 @@ function decide(id, verdict){
   else if(r.scenario === 'FORECAST'){ STATE.mes.planChanges += 1; effect = 'READBACK_VERIFIED'; }
   else if(r.scenario === 'VISION'){ STATE.mes.qualityCases += 1; effect = 'READBACK_VERIFIED'; }
   addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario });
-  toast('Approved — effect ' + (effect === 'READBACK_VERIFIED' ? 'verified by readback.' : 'not established.'));
+  toast('Approved — effect ' + (effect === 'READBACK_VERIFIED' ? 'verified by local simulator readback (not a HAIEC verification).' : 'not established.'));
   closeModal(); render();
 }
 
@@ -2038,7 +2049,7 @@ function render(){
   const pausedCount = Object.values(STATE.paused).filter(Boolean).length;
   const badge = $('statusBadge');
   if(pausedCount > 0){ badge.textContent = '◉ ' + pausedCount + ' paused'; badge.className = 'badge warn tip'; badge.dataset.tip = pausedCount + ' agent(s) paused by dispatch control'; }
-  else { badge.textContent = '● Demo agents active'; badge.className = 'badge go tip'; badge.dataset.tip = 'All demo agents active. Not connected to factory systems.'; }
+  else { badge.textContent = '● Simulation active'; badge.className = 'badge go tip'; badge.dataset.tip = 'Browser-local simulated agents. Not connected to factory systems or HAIEC runtime.'; }
   // Reveal animations
   requestAnimationFrame(() => {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
@@ -2294,7 +2305,7 @@ const body={
  spend:`<p>Illustrative monthly model spend: ${v5Money(obj?.inference.monthlyCost||SYSTEMS.reduce((n,s)=>n+s.inference.monthlyCost,0))}. This is sample budgeting data, not invoiced usage.</p><div class="v5-report-2"><div><b>C16 contract</b><p>Post-run reconciled whole-run token comparison against an immutable pre-frozen cap.</p></div><div><b>Not yet proved</b><p>Pre-execution dollar budget enforcement, per-agent reservations and invoice reconciliation.</p></div></div>`,
  ledger:`<p>Local actions/reviews matching scope: ${ev.length}. These are browser-session records of a synthetic environment.</p>${v5EventCards(ev)}`
  }[kind]||'';
-return `<div class="card v5-paper"><div class="cardhead"><div><div class="eyebrow">${esc(reportTitle)}</div><h2>${esc(aText)}</h2><p>Fixture report | generated from example source, control and scenario data</p></div><div class="stack" style="align-items:flex-end">${pill('SYNTHETIC · NOT HAIEC ISSUED','warn')}<button class="btn sm" data-act="v5-export-report" data-scope="${esc(scope)}" data-kind="${esc(kind)}">Download report JSON</button></div></div><div class="v5-report-meta">Report scope: ${esc(scope)} · Organization: ${esc(ORG.name)} · Basis: synthetic fixtures · Real HAIEC evaluation ID: NOT LOADED</div><div class="v5-report-body">${body}</div><div class="hr"></div><h4>Controls in context</h4><div class="flex top10" style="flex-wrap:wrap">${cv.map(id=>pill(id,'info')).join('')}</div><div class="notice warn top14"><div><b>Evidence interpretation</b><p>This generated example demonstrates reporting UX only. It is not an actual HAIEC scan or real monitoring assessment. Genuine HAIEC artifacts must carry the exact evaluation/source ID, source and evidence refs, producer versions, and declared limitations.</p></div></div></div>`;}
+return `<div class="card v5-paper"><div class="cardhead"><div><div class="eyebrow">${esc(reportTitle)}</div><h2>${esc(aText)}</h2><p>Fixture report | generated from example source, control and scenario data</p></div><div class="stack" style="align-items:flex-end">${pill('SYNTHETIC · NOT HAIEC ISSUED','warn')}<button class="btn sm" data-act="v5-export-report" data-scope="${esc(scope)}" data-kind="${esc(kind)}">Download report JSON</button></div></div><div class="v5-report-meta">Report scope: ${esc(scope)} · Organization: ${esc(ORG.name)} · Basis: synthetic fixtures · Real HAIEC evaluation ID: NOT LOADED</div><div class="v5-report-body">${body}</div><div class="hr"></div><h4>Controls in context</h4><div class="flex top10" style="flex-wrap:wrap">${cv.map(id=>pill(id,'info')).join('')}</div><div class="notice warn top14"><div><b>Evidence interpretation</b><p>This is an illustrative report preview, not an issued HAIEC assessment. For actual evaluated results from this fictional manufacturing environment, open the corresponding HAIEC assurance evaluation — the evaluated reports contain evidence-bound findings, source provenance, control-test results and explicit limitations.</p><p class="top10"><button class="btn sm" data-act="page" data-id="evaluations">Open the genuine evaluated exports →</button>&nbsp;&nbsp;<a class="btn sm" href="report/sample-master-report.html" target="_blank" rel="noopener">View public sample Master Report ↗</a></p></div></div></div>`;}
 function v5SystemReports(s){return `<div class="card"><div class="cardhead"><div><h2>All reports for ${esc(s.name)}</h2><p>Same system, multiple technical and operational projections. Select an agent from the reports center to refine the scope.</p></div></div><div class="v5-mini-buttons">${['audit','dai','passport','owasp','control','monitor','spend'].map(id=>`<button class="btn sm" data-act="v5-report-kind" data-id="${id}">${esc(v5TitleCase(id))}</button>`).join('')}</div></div><div class="gap14"></div>${v5ReportPanel(s.id,STATE.reportKind)}<div class="gap14"></div><button class="btn primary" data-act="v5-report-scope-system" data-id="${s.id}">Open full report center for this system →</button>`;}
 function v5SystemPage(){
  const s=sys(STATE.selectedSystem);const tabs=[['overview','Overview'],['flow','Processing & sources'],['agents','Agents & DAI'],['capability','Capability paths'],['constellation','Constellation'],['controls','Controls'],['monitoring','Monitoring & alerts'],['reports','Reports & evidence']];
@@ -2361,7 +2372,7 @@ PAGE_RENDERERS.controls=function(){
 const v5OldLab=PAGE_RENDERERS.lab;
 PAGE_RENDERERS.lab=function(){
  const sc=scen(STATE.selectedScenario),s=sys(sc.system),d=V5_FLOW_OWNER(s.id);
- return header({eyebrow:'JUDGE INTERACTIVE / OPERATING BOUNDARIES',title:'Change a manufacturing action. See exactly where it stops.',sub:'Example Manufacturing is a synthetic example organization. The following policies are set for consequential actions. You can change an input, run the deterministic local policy, open a human decision, and inspect the effect ledger.',actions:`<button class="btn" data-act="page" data-id="controls">Configure limits</button><button class="btn" data-act="page" data-id="monitor">Monitor outcomes</button>`})+v5Intro('How this interaction works','1. Select a real manufacturing use case. 2. Read the active rule. 3. Change the action. 4. Run it. 5. If review is required, approve or reject the exact request. 6. Check the simulator readback. Synthetic plant data is not production telemetry.')+`<div class="gap14"></div>`+v5OldLab().replace(/<div class="hero">[\s\S]*?<\/div>\s*<div class="grid g3">/,`<div class="grid g3">`)+`<div class="gap20"></div><div class="grid g2"><div class="card"><div class="cardhead"><div><h2>Alert an operator or judge</h2><p>Try the real-world handoff: a consequential event requires a named human response. In standalone HTML, messages can only be previewed.</p></div>${pill('Notification test','info')}</div><div class="field"><label for="v5email">Recipient email</label><input id="v5email" type="email" autocomplete="email" placeholder="judge@example.com" value="${esc(STATE.judgeEmail)}"><small>Enter an address to preview the exact-action alert. Real delivery requires an authorized server bridge and recipient verification.</small></div><label class="v5-checkbox"><input id="v5consent" type="checkbox"> I own or have permission to send a test email to this address.</label><div class="flex top14" style="flex-wrap:wrap"><button class="btn primary" data-act="v5-preview-email">Preview approval email</button><button class="btn" data-act="v5-send-email">Send test email (server only)</button></div><div class="notice top14"><div><b>Delivery status: ${esc(STATE.notificationResult)}</b><p>Offline file mode never claims an email was delivered. An optional authenticated, rate-limited same-origin notification service can enable real delivery during the hosted POC.</p></div></div></div><div class="card"><div class="cardhead"><h2>What HAIEC observes after this action</h2></div><div class="v5-compact-facts"><div><span>Action source</span><strong>${esc(d.sources[0][0])}</strong></div><div><span>Action & authority</span><strong>${esc(sc.controls.join(', '))}</strong></div><div><span>Policy version</span><strong>Local v${STATE.configVersion}</strong></div><div><span>Human approval</span><strong>${esc(d.human)}</strong></div><div><span>Operational readback</span><strong>${esc(d.proof)}</strong></div><div><span>Control cadence</span><strong>Each requested action</strong></div></div><div class="gap14"></div><button class="btn" data-act="open-system" data-id="${s.id}">Explore this AI system's evidence →</button></div></div>`;
+ return header({eyebrow:'JUDGE INTERACTIVE / OPERATING BOUNDARIES',title:'Change a manufacturing action. See exactly where it stops.',sub:'Example Manufacturing is a synthetic example organization. The following policies are set for consequential actions. You can change an input, run the deterministic local policy, open a human decision, and inspect the effect ledger.',actions:`<button class="btn" data-act="page" data-id="controls">Configure limits</button><button class="btn" data-act="page" data-id="monitor">Monitor outcomes</button>`})+v5Intro('How this interaction works','1. Select a real manufacturing use case. 2. Read the active rule. 3. Change the action. 4. Run it. 5. If review is required, approve or reject the exact request. 6. Check the simulator readback. Synthetic plant data is not production telemetry.')+`<div class="gap14"></div>`+v5OldLab().replace(/<div class="hero">[\s\S]*?<\/div>\s*<div class="grid g3">/,`<div class="grid g3">`)+`<div class="gap20"></div><div class="grid g2"><div class="card"><div class="cardhead"><div><h2>Alert an operator or judge</h2><p>Try the real-world handoff: a consequential event requires a named human response. In standalone HTML, messages can only be previewed.</p></div>${pill('Notification test','info')}</div><div class="field"><label for="v5email">Recipient email</label><input id="v5email" type="email" autocomplete="email" placeholder="judge@example.com" value="${esc(STATE.judgeEmail)}"><small>Enter an address to preview the exact-action alert. Real delivery goes through the HAIEC-hosted notification endpoint, which only accepts allowlisted recipients — an off-list address is refused, never silently dropped.</small></div><label class="v5-checkbox"><input id="v5consent" type="checkbox"> I own or have permission to send a test email to this address.</label><div class="flex top14" style="flex-wrap:wrap"><button class="btn primary" data-act="v5-preview-email">Preview approval email</button><button class="btn" data-act="v5-send-email">Send test email (server only)</button></div><div class="notice top14"><div><b>Delivery status: ${esc(STATE.notificationResult)}</b><p>Offline file mode never claims an email was delivered. An optional authenticated, rate-limited same-origin notification service can enable real delivery during the hosted POC.</p></div></div></div><div class="card"><div class="cardhead"><h2>What HAIEC observes after this action</h2></div><div class="v5-compact-facts"><div><span>Action source</span><strong>${esc(d.sources[0][0])}</strong></div><div><span>Action & authority</span><strong>${esc(sc.controls.join(', '))}</strong></div><div><span>Policy version</span><strong>Local v${STATE.configVersion}</strong></div><div><span>Human approval</span><strong>${esc(d.human)}</strong></div><div><span>Operational readback</span><strong>${esc(d.proof)}</strong></div><div><span>Control cadence</span><strong>Each requested action</strong></div></div><div class="gap14"></div><button class="btn" data-act="open-system" data-id="${s.id}">Explore this AI system's evidence →</button></div></div>`;
 };
 PAGE_RENDERERS.monitor=function(){
  const val=STATE.monitorView,ids=v5RelatedSystemIds(val),arr=SYSTEMS.filter(s=>ids.includes(s.id)),event=v5Events(val),review=STATE.requests.filter(r=>r.status==='PENDING'&&ids.includes(r.systemId));
@@ -2371,7 +2382,7 @@ PAGE_RENDERERS.monitor=function(){
 };
 PAGE_RENDERERS.reports=function(){
  let val=STATE.reportScope;const kinds=[['audit','Agent Audit'],['dai','DAI / Action Proof'],['passport','Production Passport'],['owasp','OWASP relevance'],['control','Control Proof'],['monitor','Monitoring'],['spend','Spend'],['ledger','Event Ledger']];
- return header({eyebrow:'REPORTS / ACCOUNTABLE EVIDENCE',title:'One assurance basis. Reports for every system, agent and workflow.',sub:'Select a scope and document type to see the synthetic example report. In a customer POC, the exact same scope would be bound to real evaluation IDs, source snapshots, evidence references and qualified outcomes.',actions:`<button class="btn primary" data-act="page" data-id="setup">Connect real HAIEC evidence →</button>`})+`<div class="grid g3"><div class="card"><div class="field"><label>Report scope</label><select id="v5reportscope" class="select">${v5ScopeOptions(val)}</select></div><div class="gap14"></div><h3>Choose report type</h3><div class="v5-report-links top14">${kinds.map(([id,title])=>`<button class="${STATE.reportKind===id?'active':''}" data-act="v5-report-kind" data-id="${id}">${esc(title)} <span>→</span></button>`).join('')}</div><div class="notice warn top14"><div><b>Source status</b><p>Actual HAIEC evaluation: NOT LOADED. These are generated illustrative reports, not issued assessments. No current live production metrics are claimed.</p></div></div></div><div class="span2">${v5ReportPanel(val,STATE.reportKind)}</div></div><div class="gap14"></div><div class="card"><div class="cardhead"><h2>How HAIEC produces the real reports</h2><p>System/source binding → qualified evidence → deterministic U5/DAI and Control Proof → one canonical reporting bundle → Executive, Technical, Auditor and machine-readable views. A frontend cannot manufacture missing evidence.</p></div>${v5ActionFlow(sys('SYS-217'),true)}</div>`;
+ return header({eyebrow:'REPORTS / ACCOUNTABLE EVIDENCE',title:'One assurance basis. Reports for every system, agent and workflow.',sub:'Select a scope and document type to see the synthetic example report. In a customer POC, the exact same scope would be bound to real evaluation IDs, source snapshots, evidence references and qualified outcomes.',actions:`<button class="btn primary" data-act="page" data-id="setup">Connect real HAIEC evidence →</button>`})+`<div class="grid g3"><div class="card"><div class="field"><label>Report scope</label><select id="v5reportscope" class="select">${v5ScopeOptions(val)}</select></div><div class="gap14"></div><h3>Choose report type</h3><div class="v5-report-links top14">${kinds.map(([id,title])=>`<button class="${STATE.reportKind===id?'active':''}" data-act="v5-report-kind" data-id="${id}">${esc(title)} <span>→</span></button>`).join('')}</div><div class="notice warn top14"><div><b>Source status</b><p>These are generated illustrative previews, not issued assessments. Genuine persisted evaluations are on the <b>HAIEC Evaluations</b> page; a public sample Master Report is linked below. No live production metrics are claimed.</p><p class="top10"><a class="btn sm" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a>&nbsp;&nbsp;<a class="btn sm" href="report/sample-master-report.pdf" target="_blank" rel="noopener">Download Sample PDF ↗</a></p></div></div></div><div class="span2">${v5ReportPanel(val,STATE.reportKind)}</div></div><div class="gap14"></div><div class="card"><div class="cardhead"><h2>How HAIEC produces the real reports</h2><p>System/source binding → qualified evidence → deterministic U5/DAI and Control Proof → one canonical reporting bundle → Executive, Technical, Auditor and machine-readable views. A frontend cannot manufacture missing evidence.</p></div>${v5ActionFlow(sys('SYS-217'),true)}</div>`;
 };
 PAGE_RENDERERS.provenance=function(){
  return header({eyebrow:'HUGGING FACE INCIDENT / EVIDENCE-BOUND CASE STUDY',title:'An agent crossed a boundary. What would HAIEC need to prove?',sub:'The real July 2026 disclosures motivate this comparison. No evidence shows HAIEC was deployed at Hugging Face or issued a contemporaneous evaluation. This page is a clearly labeled counterfactual assurance exercise.',actions:`<button class="btn primary" data-act="open-lab" data-id="MES">Try the same class of boundary →</button>`})+`<div class="v5-hf-warning"><strong>Two related public accounts are not interchangeable.</strong><p>Hugging Face disclosed an intrusion involving malicious dataset processing and credential exposure. Other reporting described OpenAI evaluation agents escaping their sandbox boundaries and affecting third-party infrastructure. Do not merge every public claim into one verified event chain.</p><div class="flex top10" style="flex-wrap:wrap"><a href="https://huggingface.co/blog/security-incident-july-2026" target="_blank" rel="noopener noreferrer">Hugging Face disclosure ↗</a><a href="https://huggingface.co/blog/agent-intrusion-technical-timeline" target="_blank" rel="noopener noreferrer">Technical timeline ↗</a><a href="https://www.reuters.com/business/openai-report-says-its-network-was-hacked-by-its-own-rogue-ai-agents-2026-08-26/" target="_blank" rel="noopener noreferrer">Reuters reporting ↗</a></div></div><div class="gap20"></div><div class="card"><div class="cardhead"><div><h2>Evidence we would request along an unauthorized action path</h2><p>What is requested? What is authorized? What can execute? What is granted? What actually happened? What was independently recorded?</p></div>${pill('Method illustration · not incident audit','warn')}</div><div class="v5-hf-path"><div><small>1 · UNTRUSTED INPUT</small><strong>Dataset / task / tool payload</strong><p>Source identity and trust boundary</p></div><span>→</span><div><small>2 · CODE CAPABILITY</small><strong>Loader / template execution</strong><p>Reachable code, processes and resources</p></div><span>→</span><div class="v5-danger"><small>3 · EFFECTIVE GRANT</small><strong>Credentials + network egress</strong><p>Actual IAM and environment scope</p></div><span>→</span><div class="v5-danger"><small>4 · CONSEQUENTIAL EFFECT</small><strong>Internal system / data access</strong><p>Qualified runtime evidence required</p></div></div><div class="gap14"></div>${v5Intro('What HAIEC does—not AI grading AI','HAIEC can statically investigate bounded reachable operations, compare them to declared delegation and source-qualified grants, and examine observed evidence when supplied. It cannot assert what a target network actually allowed without trusted network/IAM data.')}</div><div class="gap20"></div><div class="grid g2"><div class="card"><div class="cardhead"><h2>Illustrative five-plane assurance table</h2></div><div class="tblwrap"><table class="tbl"><thead><tr><th>Plane</th><th>Example input / claim</th><th>Status</th></tr></thead><tbody>${[
@@ -2435,8 +2446,8 @@ document.addEventListener('click', async e=>{
   }
   const endpoint=window.HAIEC_DEMO_NOTIFICATION_ENDPOINT;
   if(!endpoint||location.protocol==='file:'){STATE.notificationResult='No server bridge configured — not sent';toast('No email sent. Deploy a secure server notification bridge for real delivery.');render();return;}
-  try{const target=new URL(endpoint,location.href);if(target.origin!==location.origin||!['https:','http:'].includes(target.protocol)){toast('Notification endpoint must be same-origin.');return;}
-   const r=await fetch(target.href,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({kind:'SYNTHETIC_TEST',recipient:v,scenario:sc.id,systemId:sc.system,policyVersion:STATE.configVersion,consent:true})});const data=await r.json().catch(()=>({}));STATE.notificationResult=r.ok?(data.deliveryConfirmed?'Server confirmed delivered':'Server accepted request; delivery unconfirmed'):'Server rejected request';toast(STATE.notificationResult);render();
+  try{const target=new URL(endpoint,location.href);const okOrigins=new Set([location.origin,'https://www.haiec.com','https://haiec.com']);if(!okOrigins.has(target.origin)){toast('Notification endpoint must be this dashboard or www.haiec.com.');return;}
+   const r=await fetch(target.href,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind:'APPROVAL_ALERT',recipient:v,scenarioId:sc.id,systemId:sc.system,consent:true})});const data=await r.json().catch(()=>({}));STATE.notificationResult=r.ok?(data.status==='ACCEPTED_BY_PROVIDER'?'Provider accepted request — delivery unconfirmed':'Server accepted request; delivery unconfirmed'):('Not sent — '+(data.reason||'server rejected request'));toast(STATE.notificationResult);render();
   }catch(err){STATE.notificationResult='Notification failed; delivery unconfirmed';toast(STATE.notificationResult);render();}
  }
 });
@@ -3439,7 +3450,7 @@ render();
       raw.replaceWith(details);details.append(summary,raw);
     }
   }
-  const b=document.getElementById('statusBadge');if(b){const paused=Object.values(STATE.paused).filter(Boolean).length;b.textContent=paused?`${paused} local agent(s) paused`:'Demo agents active';b.title='Browser-only simulated agent dispatch status. Not connected to any factory.';b.setAttribute('aria-label',b.title);b.dataset.tip=b.title;}
+  const b=document.getElementById('statusBadge');if(b){const paused=Object.values(STATE.paused).filter(Boolean).length;b.textContent=paused?`${paused} simulated agent(s) paused`:'Simulation active';b.title='Browser-only simulated agent dispatch status. Not connected to any factory.';b.setAttribute('aria-label',b.title);b.dataset.tip=b.title;}
   const run=document.querySelector('.topactions [data-act="run-demo"]');if(run){run.textContent='Run guided example';run.title='Step-by-step 40-engine containment exercise; no factory writes.';}
   const tour=document.querySelector('.topactions [data-act="tour"]');if(tour){tour.textContent='Guided product tour';tour.title='Interactive walkthrough with explanations on every step';}
   const mark=document.querySelector('.topactions .badge.info');if(mark&&/Demo|Fictional/.test(mark.textContent)){mark.textContent='Fictional manufacturer · synthetic data';mark.title='No customer, plant, production system or report is connected to this offline HTML.';}
@@ -3688,6 +3699,8 @@ function pageEvalCase(a){
     ${(facet.limitations||[]).length?`<p class="tiny muted" style="margin-top:8px">${facet.limitations.map(esc).join(' · ')}</p>`:''}</div>`
   :`<div class="notice"><div><b>ABSENT_FACET</b><p>No manufacturing control-maturity facet is bound to this evaluation — absent, not zero.</p></div></div>`}
   ${qRows?`<div class="card"><div class="cardhead"><div><h2>Four assurance questions</h2></div></div><div class="tblwrap"><table class="tbl"><tbody>${qRows}</tbody></table></div></div>`:''}
+  ${a.sourceCase.caseId==='SYS-217-WRONG_TARGET'?`<div class="card"><div class="cardhead"><div><h2>Public sample report</h2><p>A frozen public-safe derivative of this exact evaluation — no HAIEC sign-in required. Redacts internal identities; retains rule outcomes, digests, disposition, control receipts and limitations verbatim.</p></div>${pill('PUBLIC DERIVATIVE · SYNTHETIC LAB','warn')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap"><a class="btn sm primary" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a><a class="btn sm" href="report/sample-master-report.pdf" target="_blank" rel="noopener">Download Sample PDF ↗</a></div></div>`:''}
   <div class="card"><div class="cardhead"><div><h2>Report artifacts — authorized access</h2></div></div>${hxLinks(e)}</div>
   <div class="notice"><div><b>Limitations & semantics</b><p class="tiny">${(e.limitations||[]).map(esc).join(' · ')||'—'}</p><p class="tiny muted">${(e.semantics||[]).map(esc).join(' · ')}</p></div></div>`;
 }
