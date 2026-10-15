@@ -17,5 +17,6 @@ jobs:
           node-version: '22'
       - run: npm test
       - run: npm run check:fixtures
+      - run: node scripts/generate-source-native-v3.cjs --check
       - name: Ensure no generated files drift
         run: git diff --exit-code -- data/generated
