@@ -53,17 +53,19 @@ function shell(p,content){
   '<div class="ind-field"><label for="ind-sector">Industry</label><select id="ind-sector">'+options()+'</select></div>'+profileSelector+
   '<div class="ind-field"><label for="ind-audience">Audience</label><select id="ind-audience">'+tabs.map(t=>'<option value="'+t+'" '+(t===audience?'selected':'')+'>'+x(t[0].toUpperCase()+t.slice(1))+'</option>').join('')+'</select></div>'+
   '<span style="margin-left:auto">'+tag(mode,isRef?'reference':p.industryId==='manufacturing'?'':'sim')+'</span></div>';
+ const audienceGuide={executive:'Decision: who owns the consequential action, what is established, and what remains open?',operations:'Operations: inspect the event sequence and distinguish a proposed change from an applied native effect.',engineer:'Engineering: inspect target identity, source families, executable path and readback provenance.',auditor:'Audit: distinguish canonical evaluation artifacts from reference or simulation-only source narratives.'};
  const hero='<div class="ind-hero"><div class="ind-eyebrow">HAIEC / INDUSTRY ASSURANCE / '+x(industryLabels[p.industryId])+'</div>'+
    '<h1>'+x(p.hero)+'</h1><p>'+x(p.name)+' · '+x(p.operator||p.role)+' · source-grounded, consequence-first experience. What can this AI system cause, and where does proof stop?</p>'+
    '<div class="ind-hero-foot">'+tag(mode)+(p.sourceWorldVersion?tag('Source world '+p.sourceWorldVersion):'')+tag('No browser-side assurance engine')+'</div></div>';
  const jump='<div class="ind-navtabs" aria-label="Sections"><a class="ind-tab" href="#ind-overview">Overview</a><a class="ind-tab" href="#ind-consequence">Action &amp; authority</a><a class="ind-tab" href="#ind-evidence">Evidence</a><a class="ind-tab" href="#ind-report">Report</a></div>';
- return '<div class="ind">'+toolbar+hero+jump+content+
+ return '<div class="ind">'+toolbar+hero+'<div class="ind-proof" role="note"><b>'+x(audience.toUpperCase())+' VIEW:</b> '+x(audienceGuide[audience])+'</div>'+jump+content+
  '<div class="ind-footer">Presentation profile: '+x(p.profileId)+'. No customer, sponsor, judging or partnership claim. Profile selection never imports findings or evaluation IDs from another industry. The canonical HAIEC platform remains the only assurance evaluator.</div></div>';
 }
 function manufacturer(p){
  const integrity = typeof HX!=='undefined' && HX.digestsDone &&
-  typeof HXDATA!=='undefined' && HXDATA && Array.isArray(HXDATA.exports) &&
-  HXDATA.exports.length===27 && HXDATA.exports.every(a=>HX.verified[a.sourceCase.caseId]===true);
+  typeof HXDATA!=='undefined' && HXDATA && HXDATA.exportMap &&
+  Object.keys(HXDATA.exportMap).length===27 &&
+  Object.values(HXDATA.exportMap).every(a=>HX.verified[a.sourceCase.caseId]===true);
  const headline=integrity?'27 of 27 frozen evaluation exports verified':'VERIFYING / UNAVAILABLE';
  const content='<div class="ind-grid" id="ind-overview">'+
    tile('Nine-system scope',9,'Fictional manufacturing systems across source-world cases')+
