@@ -1,0 +1,53 @@
+{
+  "industryId": "electronics",
+  "profileId": "SMART_ELECTRONICS",
+  "name": "Example Smart Electronics",
+  "operator": "Test & Traceability Manager",
+  "eyebrow": "Electronics / AI compute manufacturing",
+  "hero": "Could an agent approve a serial batch while firmware provenance, component revisions and test witnesses disagree?",
+  "resourceLabel": "Board serial / manufacturing lot",
+  "resource": "PCB-DEMO-120 · LOT-DEMO-07",
+  "action": "Recommend quarantine after board-test and firmware-context inconsistency",
+  "authority": "Test Engineering and Quality approval bound to exact board revision, firmware and serials",
+  "nativeEffect": "Digital QMS quarantine / test batch state (simulated only)",
+  "impact": "Shipping unqualified assemblies or conflating a retest request with a verified pass",
+  "nextOwner": "Manufacturing Test & Traceability Manager",
+  "riskCases": [
+    {
+      "name": "Firmware/test mismatch",
+      "question": "Does the installed firmware digest match the authorized test matrix?",
+      "needed": "Signed firmware provenance + immutable test rack result + serial identity"
+    },
+    {
+      "name": "Serial genealogy mismatch",
+      "question": "Do the board, component and supplier-lot identities correlate?",
+      "needed": "As-built trace graph + revisioned lot records + receiving QMS"
+    },
+    {
+      "name": "Burn-in failure overridden",
+      "question": "Was a failed test independently resolved before release?",
+      "needed": "Test failure witness + disposition authority + release readback"
+    }
+  ],
+  "sourceFamilies": [
+    "PCB AOI / defect candidate",
+    "Board & component serial genealogy",
+    "Firmware provenance / SBOM",
+    "Burn-in and test-rack telemetry",
+    "QMS / shipping release ledger"
+  ],
+  "controls": [
+    "G07 · Change governance",
+    "A03 · Delegation scope",
+    "R01 · Native consequence witness"
+  ],
+  "limitations": [
+    "No real boards, customers, proprietary firmware or manufacturing lines are represented.",
+    "A test rerun request is not a successful retest or approved batch release.",
+    "No measured yield, model accuracy or production cost claim is issued."
+  ],
+  "evidenceMode": "SIMULATION_ONLY",
+  "evaluationId": null,
+  "reportSourceMode": "FICTIONAL_SOURCE_WORLD",
+  "brandUsageStatus": "FICTIONAL_UNAFFILIATED"
+}
