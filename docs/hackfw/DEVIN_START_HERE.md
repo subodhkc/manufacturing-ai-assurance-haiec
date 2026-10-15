@@ -1,5 +1,7 @@
 # Devin: HackFW 2026 repo-native handoff
 
+> **Sprint 16/17 state (authoritative; the dated steps below are history, not queue):** manufacturing PRs #20 (`8b3e930`) and #21 (`55c8bbe`), and HAIEC PRs #2211 (`aff91c80`) and #2212 (`770b94cdc`) are **merged and deployed**. The corpus is now **27 v1 + 45 canonical v3 evaluations** (9 systems × 5 states, `data/evaluations-v3/`) — genuine HAIEC evaluations of synthetic lab evidence, publicly verifiable. The v3.1 pack remains fixture/profile data, not an assessed corpus. Deployed-browser acceptance passed 32/32. Remaining work: Drive plan reconciliation and judge materials.
+
 **Start here.** This file is an actionable implementation handoff, not a request to restart architecture research or to reproduce the Drive documents in another repo.
 
 ## Read in this exact order

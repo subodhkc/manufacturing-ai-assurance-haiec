@@ -11,7 +11,7 @@ agent scanner or new score engine. Industry and fictional organization selectors
 
 | Industry | Profile | Source mode | Eligible for HAIEC verdict? |
 |---|---|---|---|
-| Manufacturing | Example Manufacturing Company | Historical 27 genuine frozen evaluations (v1 source world) | **Only** when exact digest-bound export verifies |
+| Manufacturing | Example Manufacturing Company | 27 v1 + 45 canonical v3 frozen evaluations (synthetic lab evidence) | **Only** when exact digest-bound export verifies |
 | Telecommunications | Fictional Telecom Operator | HISTORICAL_TMFORUM_REFERENCE | No; original TM Forum report narrative is illustrative |
 | Electrical equipment | Example Electrical Works | SIMULATION_ONLY | No |
 | Rail & transportation | Example Rail Operations | SIMULATION_ONLY | No |
