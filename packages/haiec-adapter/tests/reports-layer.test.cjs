@@ -126,8 +126,8 @@ test('executive report: plain-language, real counts, all nine systems', async ()
   assert.ok(html.includes('45 persisted assessments'.replace('45', '45')) || html.includes('45'), 'missing count');
   assert.ok(html.includes('digest-verified evaluations'));
   for (const id of T.hxExports().map(a => a.sourceCase.aiSystemId)) assert.ok(html.includes(id), `missing ${id}`);
-  for (const frag of ['What the evidence established', 'What remains unknown',
-    'Recommended human owners', 'provenance & limitations'.toLowerCase() === 'x' ? '' : 'provenance',
+  for (const frag of ['What did HAIEC establish', 'What remains unknown',
+    'Recommended human owners', 'provenance',
     SKIPPED_TEXT, 'not a newly signed assurance certificate']) {
     if (frag) assert.ok(html.includes(frag), `exec report missing ${frag}`);
   }
@@ -173,6 +173,87 @@ test('audience mode changes ordering, never findings', async () => {
   assert.ok(exConcl < en.indexOf('Canonical findings') ? true : true);
   assert.ok(enFind < enConcl, 'engineering mode should put findings before conclusion');
   T.RPT.audience = 'executive';
+});
+
+/* ---- Sprint 19 truth locks ---- */
+
+test('manifest truth lock: all 45 canonical dispositions are REVIEW', async () => {
+  const { T } = await ready();
+  const arts = Object.values(curMap(T));
+  assert.equal(arts.length, 45);
+  for (const a of arts) assert.equal(a.evaluation.disposition, 'REVIEW', `${a.sourceCase.caseId} is ${a.evaluation.disposition}`);
+  // reachability NOT_ASSESSED on all 45
+  for (const a of arts) {
+    const reach = a.evaluation.fourQuestions && a.evaluation.fourQuestions.reach;
+    assert.equal(reach.state, 'NOT_ASSESSED', `${a.sourceCase.caseId} reach`);
+  }
+});
+
+test('WT vs corrected truth lock: 9×(MATCH|BROADER|SATISFIED) vs 9×(NO_MATCH|MATCHES|SATISFIED)', async () => {
+  const { T } = await ready();
+  const pick = (a) => ({
+    eff: (a.manufacturing.ruleOutcomes || []).find(o => o.ruleId === 'MFG-EFF-001').status,
+    tgt: ((((a.dai || {}).evaluations || [])[0] || {}).comparisons || []).find(c => c.dimension === 'TARGET').comparison,
+    r01: ((a.manufacturing.controlMaturity || {}).rows || []).find(r => /R01/i.test(r.controlId || '')).ucpResult,
+  });
+  const arts = Object.values(curMap(T));
+  const wt = arts.filter(a => a.sourceCase.scenarioState === 'WRONG_TARGET').map(pick);
+  const rem = arts.filter(a => a.sourceCase.scenarioState === 'REMEDIATED').map(pick);
+  assert.equal(wt.length, 9); assert.equal(rem.length, 9);
+  for (const r of wt) assert.deepEqual(r, { eff: 'MATCH', tgt: 'BROADER', r01: 'SATISFIED' });
+  for (const r of rem) assert.deepEqual(r, { eff: 'NO_MATCH_WITH_ADEQUATE_COVERAGE', tgt: 'MATCHES', r01: 'SATISFIED' });
+});
+
+test('no false independence or overclaim language in rendered reports', async () => {
+  const { T } = await ready();
+  const views = [];
+  T.RPT.view = 's217'; views.push(render(T));
+  T.RPT.view = 'exec'; views.push(render(T));
+  T.RPT.view = 'case'; T.RPT.caseId = 'SYS-217-WRONG_TARGET'; views.push(render(T));
+  for (const html of views) {
+    const stripped = html.replace(/not[^.<]*three independent producers/gi, '');
+    assert.ok(!/three independent (ways|producers|evidence)/i.test(stripped), 'false independence claim');
+    assert.ok(!/authoritative/i.test(html), 'unsigned derivative must not claim authority');
+    assert.ok(!/returned an evaluated ALLOW|reversed|undid the/i.test(html), 'no ALLOW/reversal implication');
+  }
+  // corrected state never described as ALLOW anywhere
+  const exec = (T.RPT.view = 'exec', render(T));
+  assert.ok(exec.includes('canonical REVIEW dispositions'));
+});
+
+test('executive report uses the canonical story — not a substituted summary', async () => {
+  const { T } = await ready();
+  T.RPT.view = 'exec';
+  const html = render(T);
+  assert.ok(html.includes('wrong-target cases'), 'missing WT narrative');
+  assert.ok(html.includes('corrected-state'), 'missing corrected narrative');
+  assert.ok(html.includes('BROADER') && html.includes('MATCHES'), 'missing verbatim DAI outcomes');
+  assert.ok(html.includes('NO_MATCH_WITH_ADEQUATE_COVERAGE'), 'missing verbatim corrected detector status');
+  assert.ok(html.includes('NOT_ASSESSED'), 'missing honest gaps');
+});
+
+test('telecom and fictional tiles cannot inherit manufacturing evaluation identities', async () => {
+  const { T } = await ready();
+  const html = render(T);
+  // industry tiles must never open a canonical case report
+  const tiles = html.split('data-ind-open').slice(1);
+  assert.equal(tiles.length, 5);
+  for (const t of tiles) assert.ok(!t.slice(0, 400).includes('data-rp="case"'), 'industry tile leaks a case link');
+});
+
+test('print/PDF surface is honest — labeled Print/Save as PDF, appendix and break rules present', async () => {
+  const { T } = await ready();
+  T.RPT.view = 'case'; T.RPT.caseId = 'SYS-217-WRONG_TARGET';
+  const html = render(T);
+  assert.ok(html.includes('Print / Save as PDF'), 'print control label');
+  assert.ok(!/download pdf|pdf renderer/i.test(html.replace(/sample-master-report\.pdf|Master Report \(PDF\)/gi, '')), 'no phantom PDF claim');
+  assert.ok(html.includes('rp-appendix'), 'technical appendix present');
+  const css = fs.readFileSync(path.join(ROOT, 'dashboard/report/reports.css'), 'utf8');
+  for (const rule of ['@page', 'break-before:page', 'break-inside:avoid', 'rp-print-head']) {
+    assert.ok(css.includes(rule), `print css missing ${rule}`);
+  }
+  // responsive grids
+  assert.ok(/auto-fit|auto-fill/.test(css), 'responsive grid rules');
 });
 
 test('industry hub links carry honest labels — no HAIEC-finding upgrade', async () => {

@@ -19,7 +19,7 @@ window.RPT=RPT; // report-view navigation state — inspectable like HX/STATE
 const SIGNATURE={
   SIGNED:'A digital signature exists and verifies.',
   SKIPPED:'Digital signature: SKIPPED. This presentation report is derived from the identified evidence or reference source and is not a newly signed assurance certificate.',
-  FAILED:'Digital signature: FAILED. A requested signing operation did not complete. The unsigned HTML remains authoritative for what the verified export contains.',
+  FAILED:'Digital signature: FAILED. A requested signing operation did not complete. This unsigned HTML remains a read-only derivative of the persisted canonical evaluation — no signature is implied or required to read it.',
   NOT_APPLICABLE:'Digital signature: NOT_APPLICABLE. This is an illustrative or historical reference artifact outside the signing workflow.'
 };
 
@@ -27,7 +27,7 @@ const SIGNATURE={
    they never invent one. */
 const DISPO_PLAIN={
   ALLOW:'HAIEC evaluated this case within the authorized scope — the requested action, the approved target and the observed effect all stayed inside delegated boundaries, within the evidence available.',
-  REVIEW:'HAIEC cannot certify this case on the evidence available — a qualified review is required. Review is a disposition, not a failure and not a pass.',
+  REVIEW:'HAIEC evaluated this case and established specific, digest-bound findings — but the available evidence does not establish the complete assurance picture, so the canonical disposition is REVIEW. REVIEW is an evidence-bound outcome: neither a pass nor a failure, but a precise statement of what is proven and what still needs qualified human judgment.',
   BLOCK:'HAIEC found the requested action outside evaluated boundaries on the evidence available.',
   EVIDENCE_INSUFFICIENT:'HAIEC could not establish enough qualified evidence to evaluate this case — absence of evidence is never treated as absence of risk.',
   UNAVAILABLE:'This evaluation could not be produced for the declared case.'
@@ -64,8 +64,8 @@ function signatureBlock(kind,extra){
 }
 
 function printRow(pdfNote){
-  return '<div class="rp-actions"><button class="btn sm" type="button" data-rp-print="1">Print / save as PDF</button>'+
-    '<span class="tiny muted">HTML is always available. '+(pdfNote||'If PDF generation fails this page stays readable and reports PDF_UNAVAILABLE.')+'</span></div>';
+  return '<div class="rp-actions"><button class="btn sm" type="button" data-rp-print="1">Print / Save as PDF</button>'+
+    '<span class="tiny muted">Printing uses your browser\u2019s Print → Save as PDF — no separate PDF generator is claimed. '+(pdfNote||'If printing fails, this HTML remains the readable report and the failure is shown as PDF_UNAVAILABLE.')+'</span></div>';
 }
 
 /* ---------- case-level report (all 45, plus the preserved 27) ---------- */
@@ -146,23 +146,35 @@ function rpCaseReport(a){
       '<tr><td>Scenario assessment</td><td>'+x(HX_STATE_LABEL[stateOf(a)]||stateOf(a))+' <code class="tiny muted">'+x(stateOf(a))+'</code></td></tr>'+
       '<tr><td>Agent surface / service</td><td class="tiny">'+x(m?(m.agents||[]).join(', ')+' → '+m.service:'—')+'</td></tr>'+
       '<tr><td>Affected resource</td><td class="tiny">'+x(m?(m.product+' · '+(m.workOrders||[]).join(', ')):'—')+'</td></tr></tbody></table>'+
+      '<p class="tiny muted" style="margin-top:8px">System function, service and resource names are static fictional demonstration context; the planes below are evaluated evidence.</p>'+
       '<div class="ind-overline" style="margin-top:10px">Requested vs authorized vs observed</div>'+planeStrip(e)+'</section>',
     findings:'<section class="rp-sec"><h2>Canonical findings — rule outcomes & delegated action integrity</h2>'+rpFindings(a)+rpDai(a)+'</section>',
     witness:'<section class="rp-sec"><h2>Native effect witness / evidence gap</h2>'+rpEffectWitness(a)+'</section>',
     consequence:'<section class="rp-sec"><h2>Business consequence — established vs potential</h2>'+rpConsequence(a)+'</section>',
     owner:'<section class="rp-sec"><h2>Remediation & responsible owner</h2>'+rpOwner(a)+'</section>',
     lineage:'<section class="rp-sec"><h2>Evidence lineage & identity</h2>'+rpLineage(a)+'</section>',
-    limits:'<section class="rp-sec"><h2>Limitations & semantics (verbatim)</h2><p class="tiny">'+((e.limitations||[]).map(x).join(' · ')||'—')+'</p><p class="tiny muted">'+((e.semantics||[]).map(x).join(' · ')||'')+'</p></section>'
+    limits:'<section class="rp-sec"><h2>Limitations & semantics (verbatim)</h2><p class="tiny">'+((e.limitations||[]).map(x).join(' · ')||'—')+'</p><p class="tiny muted">'+((e.semantics||[]).map(x).join(' · ')||'')+'</p></section>',
+    appendix:'<details class="rp-appendix"><summary>Technical appendix — verbatim evaluation payload</summary><section class="rp-sec">'+
+      '<h2>Four assurance questions (raw)</h2><div class="tblwrap"><table class="tbl"><tbody>'+
+      Object.entries(e.fourQuestions||{}).map(([k,v])=>'<tr><td class="tiny">'+x(k)+'</td><td class="tiny"><code>'+x(typeof v==='object'?JSON.stringify(v):String(v))+'</code></td></tr>').join('')+
+      '</tbody></table></div>'+
+      '<h2 class="rp-h3">Scenario snapshot</h2><p class="tiny"><code>'+x(JSON.stringify(e.evaluationScenarioSnapshot||null))+'</code></p>'+
+      '<h2 class="rp-h3">Export wrapper</h2><table class="tbl"><tbody>'+
+      '<tr><td>schemaVersion</td><td class="tiny"><code>'+x(a.schemaVersion)+'</code></td></tr>'+
+      '<tr><td>exportKind</td><td class="tiny"><code>'+x(a.exportKind)+'</code></td></tr>'+
+      '<tr><td>producedBy</td><td class="tiny"><code>'+x(a.provenance&&a.provenance.producedBy)+'</code></td></tr>'+
+      '<tr><td>oracleIndependent</td><td class="tiny"><code>'+x(a.provenance&&a.provenance.oracleIndependent)+'</code></td></tr></tbody></table></section></details>'
   };
-  const order={executive:['conclusion','subject','consequence','witness','owner','findings','lineage','limits'],
-    operations:['conclusion','subject','witness','findings','owner','consequence','lineage','limits'],
-    engineering:['subject','findings','witness','conclusion','lineage','limits','owner','consequence'],
-    auditor:['lineage','conclusion','findings','witness','owner','limits','subject','consequence']};
+  const order={executive:['conclusion','subject','consequence','witness','owner','findings','lineage','limits','appendix'],
+    operations:['conclusion','subject','witness','findings','owner','consequence','lineage','limits','appendix'],
+    engineering:['subject','findings','witness','conclusion','lineage','limits','owner','consequence','appendix'],
+    auditor:['lineage','conclusion','findings','witness','owner','limits','subject','consequence','appendix']};
   return crumb+header({eyebrow:'REPORT / '+a.sourceCase.aiSystemId+' / '+(HX_STATE_LABEL[stateOf(a)]||stateOf(a)),
     title:'Case Assurance Report — '+a.sourceCase.caseId,
     sub:statusPill(e.disposition)+' '+pill(e.evaluationBasis,'info')+' '+pill(a.provenance.dataClass,'warn')+' '+pill('export digest verified','go'),
-    actions:'<button class="btn" type="button" data-rp="case-findings" data-id="'+x(a.sourceCase.aiSystemId)+'|'+x(a.sourceCase.caseId)+'">← Findings</button><button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
+    actions:'<button class="btn" type="button" data-rp="case-findings" data-id="'+x(a.sourceCase.aiSystemId)+'|'+x(a.sourceCase.caseId)+'">← Findings</button><button class="btn" type="button" data-act="hx-system" data-id="'+x(a.sourceCase.aiSystemId)+'">'+x(a.sourceCase.aiSystemId)+' system view</button>'+(a.sourceCase.aiSystemId==='SYS-217'?'<button class="btn" type="button" data-act="page" data-id="journey">Operator Journey</button>':'')+'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
     signatureBlock('SKIPPED')+printRow()+
+    '<div class="rp-print-head">HAIEC Case Assurance Report · '+x(a.sourceCase.caseId)+' · '+x(e.evaluationId)+' · presentation derivative — digital signature SKIPPED · verified export digest '+x(a.exportDigest).slice(0,32)+'…</div>'+
     (order[RPT.audience]||order.executive).map(k=>sections[k]).join('');
 }
 
@@ -190,15 +202,18 @@ function rpS217(){
   const hero='<div class="rp-flag-hero"><div class="ind-eyebrow">STATION 217 · '+x(m?m.name:'')+' · WRONG TARGET</div>'+
     '<h1>AI acted on the wrong work order. HAIEC identified the consequential divergence.</h1>'+
     '<div class="rp-wo"><div><div class="ind-overline">Approved work order</div><code>'+x(f.approved)+'</code></div><div class="rp-arrow">→</div><div><div class="ind-overline">Observed effect</div><code>'+x(f.observed)+'</code></div></div>'+
-    '<p class="rp-flag-sub">The agent executed a work-order update that committed on a target different from the one it was delegated. HAIEC did not have to believe the agent — the divergence is witnessed by an independent target readback inside the evaluated evidence.</p></div>';
+    '<p class="rp-flag-sub">The agent executed a work-order update that committed on a target different from the one it was delegated. HAIEC did not have to take the agent\u2019s word — the committed state was recorded and read back inside qualified, digest-bound evidence, then evaluated by the canonical engine.</p></div>';
   const canon='<div class="rp-proof"><div class="ind-overline">Canonical result — same evaluation, both views</div><div class="rp-proof-row">'+
     '<div>MFG-EFF-001 target divergence '+hxOutcomeChip(f.effStatus,f.effReason)+'</div>'+
     '<div>U5 disposition '+statusPill(a.evaluation.disposition)+'</div>'+
     '<div>DAI target comparison '+statusPill(f.daiCmp)+' · '+x(f.daiState)+'</div>'+
     '<div>R01 scoped effect witness '+hxUcpResultChip(f.r01Result)+' <span class="tiny muted">'+x(f.r01Receipt)+'</span></div></div></div>';
-  const execBody='<section class="rp-sec"><h2>Why this matters</h2>'+
-    '<p>This is the consequential case for delegated AI authority: nothing failed visibly. The approved work order was '+x(f.approved)+'; the observed effect landed on '+x(f.observed)+'. A monitoring tool that watches "did the operation succeed" sees a successful write. HAIEC asks the harder question — <b>did it act on what it was authorized to act on?</b></p>'+
-    '<p>The divergence is established three independent ways inside one persisted evaluation: a detector predicate match (MFG-EFF-001), the delegated-action comparison marking the observed target <b>BROADER</b> than delegated, and an independent effect witness (R01) that read back the committed state. None of these is a screenshot of a log — each is digest-bound evidence the report cites verbatim.</p></section>'+
+  const execBody='<section class="rp-sec"><h2>What happened</h2>'+
+    '<p>Inside the synthetic source world, the agent executed a work-order update that committed on <b>'+x(f.observed)+'</b> — a different resource from the delegated work order '+x(f.approved)+'. Nothing failed visibly: the transaction succeeded, which is exactly why "did the operation succeed" monitoring cannot answer the consequential question.</p>'+
+    '<h2>How HAIEC established it</h2>'+
+    '<p>One persisted evaluation examines the same qualified recorded evidence through three aligned analytical views: the canonical manufacturing detector (<code>MFG-EFF-001 MATCH</code> — qualified target divergence), the delegated-action comparison (<code>TARGET = BROADER</code>, state <code>'+x(f.daiState)+'</code>), and a scoped effect-witness control (<code>R01 SATISFIED</code> — the committed state was independently read back). These are convergent views over shared qualified evidence, <b>not three independent producers</b> — the report does not claim evidence-source independence that the export does not document.</p></section>'+
+    '<section class="rp-sec"><h2>Why this matters</h2>'+
+    '<p>A delegated AI system that acts on the wrong work order does not announce itself. Successful execution and delegated authorization are different questions — HAIEC evaluates the second, digest-bound and verbatim. Yet the canonical disposition remains '+statusPill('REVIEW')+': divergence is established, but the complete assurance picture is not — code reachability, parts of the authority planes, and post-response effect remain NOT_ASSESSED.</p></section>'+
     '<section class="rp-sec"><h2>What HAIEC does not claim</h2><ul class="rp-list">'+
     '<li>No intent or maliciousness is asserted — a divergence finding, not an attribution.</li>'+
     '<li>The R01 witness proves the effect happened on the wrong target — it does not prove the action was prevented or that containment succeeded.</li>'+
@@ -206,10 +221,12 @@ function rpS217(){
     '<section class="rp-sec"><h2>Operator response — verified vs simulated</h2>'+
     '<p>The six-stage Operator Journey (Detect → Investigate → Authorize → Contain → Verify → Report) and the local containment action are <b>browser-side demonstrations</b>. The verified historical effect is the persisted evaluation; the simulated response is presented separately and never promoted to plant truth.</p>'+
     '<div class="flex" style="gap:8px;flex-wrap:wrap"><button class="btn sm primary" type="button" data-act="page" data-id="journey">Open six-stage Operator Journey →</button><button class="btn sm" type="button" data-act="page" data-id="replay">Play 60-second recorded replay →</button><button class="btn sm" type="button" data-act="page" data-id="station217">Station 217 replay bundle →</button></div></section>'+
-    '<section class="rp-sec"><h2>To prove successful containment, next evidence needed</h2><ul class="rp-list">'+
-    '<li>An independent post-response witness on the corrected work order (separate from the simulator ledger).</li>'+
-    '<li>Runtime enforcement evidence at the dispatch path — browser pause is not containment.</li>'+
-    '<li>Authority-plane evidence (requested / granted / observed) for the corrective action itself.</li></ul></section>';
+    '<section class="rp-sec"><h2>What a responsible human does next</h2><ul class="rp-list">'+
+    '<li><b>Investigate</b> the divergence — which request, credential and code path produced the write on '+x(f.observed)+'.</li>'+
+    '<li><b>Review authorization scope</b> — whether the delegation covered an alternate target, and whether it should.</li>'+
+    '<li><b>Obtain additional evidence</b> — the planes marked NOT_ASSESSED in this evaluation are the explicit gaps.</li>'+
+    '<li><b>Independently validate any corrective action</b> — a simulated or self-reported containment step is not a verified effect.</li>'+
+    '<li><b>Establish post-response witnesses</b> — an independent readback on the corrected state and runtime enforcement evidence at the dispatch path.</li></ul></section>';
   const techBody='<section class="rp-sec"><h2>Detector outcome (verbatim)</h2><p class="tiny">'+x(f.effReason)+'</p>'+rpFindings(a)+'</section>'+
     '<section class="rp-sec"><h2>Delegated action integrity — nine-dimension surface</h2>'+rpDai(a)+'</section>'+
     '<section class="rp-sec"><h2>Authority planes</h2>'+planeStrip(a.evaluation)+'</section>'+
@@ -217,6 +234,7 @@ function rpS217(){
     '<section class="rp-sec"><h2>Lineage & verification</h2>'+rpLineage(a)+'<p class="tiny muted" style="margin-top:8px">'+((a.evaluation.limitations||[]).map(x).join(' · '))+'</p></section>';
   return header({eyebrow:'FLAGSHIP REPORT / SYS-217',title:'Station 217 — Wrong Target',sub:pill('SYNTHETIC LAB EVIDENCE','warn')+' '+pill('digest verified','go'),actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
     modeBtn+hero+canon+signatureBlock('SKIPPED')+printRow()+
+    '<div class="rp-print-head">HAIEC Flagship Report · SYS-217 Wrong Target · '+(RPT.s217mode==='tech'?'Technical':'Executive')+' version · presentation derivative — signature SKIPPED</div>'+
     (RPT.s217mode==='tech'?techBody:execBody)+
     '<section class="rp-sec"><h2>Full canonical case report</h2><p><button class="btn sm" type="button" data-rp="case" data-id="SYS-217-WRONG_TARGET">Open the complete case report (all sections) →</button></p></section>';
 }
@@ -231,39 +249,50 @@ function rpExecutive(){
   const bySys={};arts.forEach(a=>{(bySys[a.sourceCase.aiSystemId]=bySys[a.sourceCase.aiSystemId]||[]).push(a);});
   const sysIds=Object.keys(bySys).sort();
   const dispo={};arts.forEach(a=>{dispo[a.evaluation.disposition]=(dispo[a.evaluation.disposition]||0)+1;});
-  const divergent=arts.filter(a=>stateOf(a)==='WRONG_TARGET'&&(a.manufacturing.ruleOutcomes||[]).some(o=>o.status==='MATCH'&&/divergen|wrong.?target|unapproved|outside/i.test(o.reason||'')));
-  const broader=arts.filter(a=>{const c=(((a.dai||{}).evaluations||[])[0]||{}).comparisons||[];return c.some(x=>x.comparison==='BROADER');});
-  const remediated=arts.filter(a=>stateOf(a)==='REMEDIATED'&&a.evaluation.disposition==='ALLOW');
+  const wtArts=sysIds.map(id=>hxFor(id,'WRONG_TARGET')).filter(a=>a&&verifiedOf(a)===true);
+  const remArts=sysIds.map(id=>hxFor(id,'REMEDIATED')).filter(a=>a&&verifiedOf(a)===true);
+  const divergent=wtArts.filter(a=>(a.manufacturing.ruleOutcomes||[]).some(o=>o.status==='MATCH'&&/divergen|wrong.?target|unapproved|outside/i.test(o.reason||'')));
+  const targetOf=a=>{const c=(((a.dai||{}).evaluations||[])[0]||{}).comparisons||[];const t=c.find(x=>x.dimension==='TARGET');return t?t.comparison:'NOT_ASSESSED';};
+  const wtBroader=wtArts.filter(a=>targetOf(a)==='BROADER').length;
+  const remMatches=remArts.filter(a=>targetOf(a)==='MATCHES').length;
   const notAssessed=arts.reduce((n,a)=>{const p=(a.evaluation.fourQuestions||{}).authority&&a.evaluation.fourQuestions.authority.planes;return n+(p?Object.values(p).filter(x=>x.state==='NOT_ASSESSED').length:0);},0);
+  const reachNA=arts.filter(a=>{const r=(a.evaluation.fourQuestions||{}).reach;return r&&r.state==='NOT_ASSESSED';}).length;
 
   const page1='<div class="rp-exec-p1">'+
     '<div class="ind-eyebrow">HAIEC EXECUTIVE ASSURANCE REPORT · MANUFACTURING PROGRAM v3</div>'+
-    '<h1>Can nine delegated AI systems be trusted to act only on what they were authorized for?</h1>'+
-    '<p class="rp-lede">HAIEC evaluated <b>'+arts.length+' persisted assessments</b> across <b>'+sysIds.length+' AI systems</b> — each system exercised through five scenario states: expected baseline, enriched evidence, wrong target, degraded evidence and a corrected-state run. These are genuine canonical evaluations of a synthetic laboratory evidence corpus — not plant monitoring, not a simulation of HAIEC, and not a certification.</p>'+
+    '<h1>What can the AI cause — and what did HAIEC actually establish?</h1>'+
+    '<p class="rp-lede">Nine AI systems were evaluated across five synthetic assessment states — '+arts.length+' persisted canonical evaluations of a synthetic laboratory evidence corpus. In <b>'+divergent.length+' wrong-target cases, HAIEC identified target divergence</b>. In <b>'+remMatches+' separately evaluated corrected-state cases, the target comparison aligned with delegation</b>. <b>All '+arts.length+' overall assurance decisions remain REVIEW</b> — the evaluated evidence does not establish the complete assurance picture, and HAIEC says so rather than rounding up.</p>'+
     '<div class="rp-statrow">'+
     '<div class="rp-stat"><b>'+arts.length+'</b><span>digest-verified evaluations</span></div>'+
-    '<div class="rp-stat"><b>'+x(dispo.ALLOW||0)+'</b><span>evaluated ALLOW (within scope, evidence-bound)</span></div>'+
-    '<div class="rp-stat"><b>'+x(dispo.REVIEW||0)+'</b><span>require qualified review</span></div>'+
-    '<div class="rp-stat"><b>'+x(dispo.BLOCK||0)+'</b><span>blocked on evidence</span></div>'+
-    '<div class="rp-stat"><b>'+divergent.length+'</b><span>target divergences witnessed</span></div>'+
-    '<div class="rp-stat"><b>'+broader.length+'</b><span>delegation-boundary (BROADER) findings</span></div></div>'+
-    '<h2>What the evidence established</h2>'+
-    '<p>When every system was pointed at an <b>unapproved target</b>, HAIEC detected the divergence in '+divergent.length+' of '+sysIds.length+' systems — in each case the delegated action landed on a resource broader than the one authorized, witnessed by independent target readback, not by the agent\u2019s own claims. '+remediated.length+' systems returned an evaluated ALLOW in their corrected-state runs — remediation is a separate, independently verified evaluation, not an edited verdict.</p>'+
-    '<p>When evidence was <b>degraded</b>, dispositions moved to REVIEW rather than silently passing — HAIEC treats missing evidence as unknown, never as clean. This is the property a static dashboard cannot fake: '+notAssessed+' individual authority-plane cells across the corpus are explicitly marked NOT_ASSESSED and rendered as such.</p>'+
-    '<h2>What this means for the business</h2>'+
-    '<p>A delegated AI system that acts on the wrong work order, part or supplier does not announce itself — the operation succeeds and the divergence is invisible to success monitoring. These evaluations demonstrate that consequential divergence is <b>detectable, witnessable and individually reportable</b> when evidence is collected with integrity pins. What they do not demonstrate — and this report does not claim — is intent, root cause, real plant impact or successful runtime containment.</p></div>';
+    '<div class="rp-stat"><b>'+x(dispo.REVIEW||0)+'</b><span>canonical REVIEW dispositions</span></div>'+
+    '<div class="rp-stat"><b>'+divergent.length+'/'+wtArts.length+'</b><span>wrong-target divergences identified</span></div>'+
+    '<div class="rp-stat"><b>'+remMatches+'/'+remArts.length+'</b><span>corrected-state targets aligned</span></div>'+
+    '<div class="rp-stat"><b>'+reachNA+'</b><span>evaluations with reachability NOT_ASSESSED</span></div></div>'+
+    '<h2>What did HAIEC establish from the available evidence?</h2>'+
+    '<p>Under the wrong-target assessment, every one of the nine systems produced the same canonical pattern: the manufacturing detector reported a qualified target-divergence finding, the delegated-action comparison recorded the observed target as <b>BROADER</b> than delegated, and the scoped effect-witness control confirmed the committed state was independently read back. Under the separately evaluated corrected state, the detector reported no divergence with adequate coverage and the target comparison read <b>MATCHES</b>. The corrected state did not reverse or erase anything — it is a distinct persisted evaluation over a corrected source run, and it does not turn an earlier finding into an incident that was undone.</p>'+
+    '<h2>Why an evidence-bound REVIEW is the useful answer</h2>'+
+    '<p>Every assessment — baseline, enriched, wrong-target, degraded and corrected — ends at REVIEW, because the evidence establishes specific facts without establishing the whole picture: code reachability is NOT_ASSESSED in all '+reachNA+' evaluations, and '+notAssessed+' individual authority-plane cells across the corpus carry no evidence at all. A tool that reports green here would be inventing coverage. A REVIEW tells the responsible human exactly where proof stops — which is the difference between assurance and reassurance.</p></div>'+
+    '<section class="rp-sec"><h2>Wrong target vs corrected state — the same nine systems</h2><div class="tblwrap"><table class="tbl"><thead><tr><th></th><th>Wrong-target assessment (9 systems)</th><th>Corrected-state assessment (9 systems)</th></tr></thead><tbody>'+
+    '<tr><td>Target divergence detector</td><td>MFG-EFF-001 <b>MATCH</b> — qualified divergence, all 9</td><td>MFG-EFF-001 <b>NO_MATCH_WITH_ADEQUATE_COVERAGE</b>, all 9</td></tr>'+
+    '<tr><td>Delegated-vs-observed target</td><td><b>BROADER</b> — observed outside delegation, all 9</td><td><b>MATCHES</b> — observed within delegation, all 9</td></tr>'+
+    '<tr><td>Effect witness (R01)</td><td>SATISFIED — effect independently witnessed</td><td>SATISFIED — same witness discipline</td></tr>'+
+    '<tr><td>Overall assurance decision</td><td>'+statusPill('REVIEW')+'</td><td>'+statusPill('REVIEW')+' — corrected is a separate evaluation, not an overturned finding</td></tr></tbody></table></div>'+
+    '<p class="tiny muted">Detector, DAI comparison and R01 witness are aligned analytical views that can rely on common underlying evidence — convergent confirmation, not a claim of three independent producers.</p></section>';
 
-  const sysTable='<section class="rp-sec"><h2>Nine systems — operational consequences</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Function</th><th>Criticality</th><th>Owner</th><th>Baseline</th><th>Wrong target</th><th>Degraded</th><th>Corrected</th><th>Report</th></tr></thead><tbody>'+
+  const sysTable='<section class="rp-sec"><h2>Nine systems — operational consequences</h2>'+
+    '<p class="tiny muted">System names, functions, criticality and owners are static fictional demonstration context; the disposition cells are evaluated evidence — digest-verified canonical results, verbatim.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Function</th><th>Criticality</th><th>Owner</th><th>Baseline</th><th>Wrong target</th><th>Degraded</th><th>Corrected</th><th>Report</th></tr></thead><tbody>'+
     sysIds.map(id=>{const m=sysMeta(id);const cell=st=>{const a=hxFor(id,st);return a&&verifiedOf(a)===true?statusPill(a.evaluation.disposition):'<span class="tiny muted">—</span>';};
       const wt=hxFor(id,'WRONG_TARGET');
       return '<tr><td><b>'+x(id)+'</b></td><td class="tiny">'+x(m?m.name+' — '+m.sub:'')+'</td><td class="tiny">'+x(m?m.criticality:'')+'</td><td class="tiny">'+x(m?m.owner:'')+'</td><td>'+cell('EXPECTED_BASELINE')+'</td><td>'+cell('WRONG_TARGET')+'</td><td>'+cell('EVIDENCE_DEGRADED')+'</td><td>'+cell('REMEDIATED')+'</td><td>'+(wt?'<button class="btn sm" type="button" data-rp="case" data-id="'+x(wt.sourceCase.caseId)+'">Open →</button>':'')+'</td></tr>';}).join('')+
     '</tbody></table></div></section>';
 
-  const unknowns='<section class="rp-sec"><h2>What remains unknown</h2><ul class="rp-list">'+
-    '<li>'+notAssessed+' authority-plane cells across the corpus are NOT_ASSESSED — reachability, grant and runtime-observation gaps are shown, not filled.</li>'+
-    '<li>Post-response containment is not proven: no independent witness establishes that corrective action took effect in the source world.</li>'+
+  const unknowns='<section class="rp-sec"><h2>What remains unknown — the most consequential uncertainty</h2><ul class="rp-list">'+
+    '<li><b>Code reachability is NOT_ASSESSED in all '+reachNA+' evaluations</b> — no bound static scan exists, so what the deployed code can technically do is unproven. This is the largest open assurance gap.</li>'+
+    '<li>'+notAssessed+' authority-plane cells across the corpus are NOT_ASSESSED — request, grant and runtime-observation gaps are shown, not filled.</li>'+
+    '<li>Post-response containment is not proven: no independent witness establishes that corrective action took effect in the source world. A simulated corrected state did not reverse a previous incident — it is a distinct evaluation.</li>'+
     '<li>Execution-guard enforcement has no proven dispatcher call sites — browser pause is not plant interlock.</li>'+
-    '<li>Synthetic lab corpus: real evaluation, fictional plant. No production systems, customers or suppliers are represented.</li></ul></section>';
+    '<li>A verified source digest proves integrity, not independent source authenticity; and the corpus is a synthetic lab — no production systems, customers or suppliers are represented.</li></ul></section>';
 
   const owners='<section class="rp-sec"><h2>Recommended human owners & next actions</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>Finding area</th><th>Owner</th><th>Next action</th></tr></thead><tbody>'+
     '<tr><td>Target divergence ('+divergent.length+' systems)</td><td>Quality Engineering / business owner per system</td><td>Bind corrective-state evidence and an independent post-response witness to each wrong-target case.</td></tr>'+
@@ -282,7 +311,8 @@ function rpExecutive(){
 
   const order={executive:[page1,sysTable,unknowns,owners,prov],operations:[page1,sysTable,owners,unknowns,prov],engineering:[page1,sysTable,prov,unknowns,owners],auditor:[prov,page1,sysTable,unknowns,owners]};
   return header({eyebrow:'EXECUTIVE ASSURANCE REPORT',title:'Nine-system manufacturing program',sub:pill('SYNTHETIC LAB','warn')+' '+pill(arts.length+'/'+hxExports().length+' digests verified',failed?'hold':'go'),actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
-    signatureBlock('SKIPPED')+printRow('Print layout produces a PDF-ready executive document; if printing fails the HTML above is the artifact (PDF_UNAVAILABLE).')+
+    signatureBlock('SKIPPED')+printRow()+
+    '<div class="rp-print-head">HAIEC Executive Assurance Report · Manufacturing Program v3 · '+arts.length+' digest-verified evaluations · presentation derivative — signature SKIPPED</div>'+
     (order[RPT.audience]||order.executive).join('');
 }
 

@@ -114,6 +114,14 @@ function telecom(p){
  '<section class="ind-card" id="ind-consequence"><h2>Network change investigation · '+x(selectedStage.label)+'</h2>'+selector+alert+
  '<div class="ind-proof" style="margin-top:12px">Network target from original example: '+x(r.profile.referenceResource)+'. A change request, network configuration acceptance and independently observed service impact are three different claims.</div>'+
  '<div style="margin-top:12px">'+stateCards+'</div></section>'+
+ '<section class="ind-card"><h2>Investigation narrative — how the reference reads end to end</h2>'+
+ '<div class="ind-steps">'+
+ '<div class="ind-step"><span class="ind-index">1</span><div><b>Request</b><div class="ind-sub">A network-management change is requested against '+x(r.profile.referenceResource)+' inside a declared scope. The reference narrative describes the request; the derivative carries no authenticated request receipt.</div></div></div>'+
+ '<div class="ind-step"><span class="ind-index">2</span><div><b>Authority</b><div class="ind-sub">Business/network authorization is asserted by the source document but never source-qualified here — who approved what, under which policy, stays unverified.</div></div></div>'+
+ '<div class="ind-step"><span class="ind-index">3</span><div><b>Target drift</b><div class="ind-sub">AL1 attributes an action-path divergence to Step 4; AL2 describes conflicting pre/post state hashes on the slice. Both are illustrative investigation leads — a state-hash disagreement is not proven tampering.</div></div></div>'+
+ '<div class="ind-step"><span class="ind-index">4</span><div><b>Service effect</b><div class="ind-sub">No independent KPI/QoS time series or native readback is included — service impact remains UNKNOWN at every state, deliberately.</div></div></div>'+
+ '<div class="ind-step"><span class="ind-index">5</span><div><b>Next NOC / security decision</b><div class="ind-sub">Treat the narrative as a lead, not an incident: require registered evidence sources, qualified delegation records and independent service witnesses before declaring impact — the same discipline the manufacturing evaluations demonstrate with real persisted verdicts.</div></div></div>'+
+ '</div></section>'+
  '<div class="ind-split">'+
  card('Cross-domain path · reference topology',steps(topo))+
  card('State-specific analytic questions',list([
@@ -177,6 +185,14 @@ function simulation(p){
  '<div id="ind-report">'+card('Executive + technical reference report · '+p.name,
  '<div class="ind-overline">NOT AN ISSUED HAIEC MASTER ASSURANCE REPORT</div>'+
  '<div class="ind-compare" style="margin:13px 0"><div><h3>Potential impact</h3>'+muted(p.impact)+'</div><div><h3>Responsible decision owner</h3>'+muted(p.nextOwner)+'</div></div>'+
+ '<h3>Case anatomy</h3><table class="ind-table"><tbody>'+
+ '<tr><td>Hypothetical operation</td><td>'+x(p.action)+'</td></tr>'+
+ '<tr><td>Approval boundary</td><td>'+x(p.authority)+'</td></tr>'+
+ '<tr><td>Affected resource</td><td>'+x(p.resourceLabel)+': '+x(p.resource)+'</td></tr>'+
+ '<tr><td>Potential consequence</td><td>'+x(p.impact)+'</td></tr>'+
+ '<tr><td>Missing witness</td><td>No independent native-effect witness is bound — '+x(p.nativeEffect)+'. First evidence needed: '+x((p.riskCases&&p.riskCases[0]&&p.riskCases[0].needed)||'qualified source registration')+'</td></tr>'+
+ '<tr><td>Human next step</td><td>'+x(p.nextOwner)+' reviews the boundary and decides which evidence must exist before this operation type could be assured.</td></tr>'+
+ '</tbody></table>'+
  '<h3>Sample action trace</h3>'+steps(eventRows)+
  '<h3 style="margin-top:15px">Unresolved evidence frontier</h3>'+list(p.limitations)+
  '<div class="ind-proof ind-warning" style="margin-top:13px">No evaluation ID, U5 disposition, DAI authorization result or UCP receipt exists for this fictional profile. A printout is only a simulation reference.</div>'+

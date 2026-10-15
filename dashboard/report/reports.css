@@ -38,8 +38,19 @@
 .rp-stat span{font-size:11px;color:var(--muted,#8b949e)}
 code{overflow-wrap:anywhere;word-break:break-all}
 .tblwrap{overflow-x:auto}
+.rp-appendix{margin:16px 0}
+.rp-appendix>summary{cursor:pointer;font-weight:600;padding:10px 14px;border:1px dashed var(--line,#30363d);border-radius:8px}
+.rp-appendix>.rp-sec{border-top:none}
+.rp-print-head{display:none}
 @media print{
+  @page{margin:14mm 12mm}
   .rp-modes,.rp-actions,.rp-crumb,.ind-controls{display:none}
+  .rp-print-head{display:block;font-size:11px;color:#555;border-bottom:1px solid #ccc;padding-bottom:6px;margin-bottom:14px}
   .rp-sec,.rp-flag-hero,.rp-proof{break-inside:avoid;border-color:#ccc}
+  .rp-appendix{break-before:page}
+  .rp-appendix>summary{display:none}
+  details.rp-appendix>*{display:block!important}
   .rp-flag-hero{background:none}
+  .rp-statrow{break-inside:avoid}
+  tr,td,th{break-inside:avoid}
 }

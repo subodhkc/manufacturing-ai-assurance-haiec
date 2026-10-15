@@ -40,15 +40,20 @@ Public repo · demo video · participant talent registration · in-person Demo D
 published 1.1.1 package → public verification page → dashboard projection.
 The digest-pinned export is the single source of truth on screen.
 
-**Reports & Evidence (Sprint 18):** the Reports page is now a real destination —
+**Reports & Evidence (Sprint 18/19):** the Reports page is a real destination —
 nine-system Executive Assurance Report (45 canonical v3 evaluations, plain
 language), a per-case report for each of the 45 (Industry → Manufacturing →
 system → scenario → findings → report), the SYS-217 flagship in executive +
 technical versions, and labeled links to the telecom historical reference and
 four simulation-only sector reports. Signature status is explicit per report
-(`SKIPPED` — signing not requested; unsigned ≠ invalid). Digest verification
-still gates every canonical value; a failed digest renders INTEGRITY FAILURE,
-never findings.
+(`SKIPPED` — signing not requested; unsigned ≠ invalid; reports are unsigned
+read-only derivatives of persisted canonical evaluations, not authoritative
+themselves). Digest verification still gates every canonical value; a failed
+digest renders INTEGRITY FAILURE, never findings. Sprint 19 truth locks: all
+45 dispositions are `REVIEW`; wrong-target = `MATCH`/`BROADER`/`SATISFIED`;
+corrected-state = `NO_MATCH_WITH_ADEQUATE_COVERAGE`/`MATCHES`/`SATISFIED`;
+detector + DAI + R01 are aligned views over shared evidence, not independent
+producers.
 
 ## Video outline (<2 min)
 
