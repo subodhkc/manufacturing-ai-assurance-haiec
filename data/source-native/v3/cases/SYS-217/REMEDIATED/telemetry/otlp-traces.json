@@ -61,6 +61,42 @@
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
                   }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-217-remediated"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "1"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
                 }
               ]
             },
@@ -101,6 +137,42 @@
                   "key": "manufacturing.source_world_version",
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-217-remediated"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "2"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
                   }
                 }
               ]
@@ -143,6 +215,48 @@
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
                   }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-217-remediated"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "3"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
                 }
               ]
             },
@@ -184,6 +298,42 @@
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
                   }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-217-remediated"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "4"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
                 }
               ]
             },
@@ -224,6 +374,42 @@
                   "key": "manufacturing.source_world_version",
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-217-remediated"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "5"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
                   }
                 }
               ]

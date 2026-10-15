@@ -61,6 +61,42 @@
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
                   }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-mnt88-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "1"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-88-2210"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-MNT88"
+                  }
                 }
               ]
             },
@@ -101,6 +137,42 @@
                   "key": "manufacturing.source_world_version",
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-mnt88-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "2"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-88-2210"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-MNT88"
                   }
                 }
               ]
@@ -143,6 +215,48 @@
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
                   }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-mnt88-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "3"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-88-2210"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-MNT88"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "cmms.work_request.create"
+                  }
                 }
               ]
             },
@@ -183,6 +297,42 @@
                   "key": "manufacturing.source_world_version",
                   "value": {
                     "stringValue": "manufacturing-source-native-v3"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-mnt88-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.level",
+                  "value": {
+                    "stringValue": "CASE"
+                  }
+                },
+                {
+                  "key": "haiec.scenario.sequence",
+                  "value": {
+                    "stringValue": "4"
+                  }
+                },
+                {
+                  "key": "haiec.target.id",
+                  "value": {
+                    "stringValue": "WO-88-2210"
+                  }
+                },
+                {
+                  "key": "haiec.target.type",
+                  "value": {
+                    "stringValue": "RESOURCE"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-MNT88"
                   }
                 }
               ]

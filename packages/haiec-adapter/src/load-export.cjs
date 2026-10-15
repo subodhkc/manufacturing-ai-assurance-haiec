@@ -19,7 +19,10 @@ const SCHEMA = 'haiec-evaluation-export-1.0.0';
 const DISPOSITIONS = new Set(['ALLOW', 'REVIEW', 'BLOCK', 'UNKNOWN']);
 const BASES = new Set(['SCAN_BACKED', 'EVIDENCE_ONLY']);
 const RULE_STATUSES = new Set(['MATCH', 'NO_MATCH_WITH_ADEQUATE_COVERAGE', 'INSUFFICIENT_SOURCE', 'CONTRADICTED']);
-const STATES = new Set(['EXPECTED_BASELINE', 'EVIDENCE_DEGRADED', 'WRONG_TARGET', 'EXPLICIT']);
+// v1 corpus uses EXPECTED_BASELINE/EVIDENCE_DEGRADED/WRONG_TARGET (+EXPLICIT).
+// Sprint 15 v3 adds ENRICHED (baseline + additional qualified evidence subset)
+// and REMEDIATED (independently evaluated corrected-state run).
+const STATES = new Set(['EXPECTED_BASELINE', 'EVIDENCE_DEGRADED', 'WRONG_TARGET', 'EXPLICIT', 'ENRICHED', 'REMEDIATED']);
 const DATA_CLASSES = new Set(['SYNTHETIC_LAB', 'CUSTOMER_PRODUCTION', 'UNKNOWN']);
 
 function canonicalize(value) {

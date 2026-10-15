@@ -5,8 +5,10 @@
   "generatedAt": "2026-10-15T08:00:00.000Z",
   "upstream": {
     "world": "manufacturing-source-native-v3",
-    "manifestDigest": "sha256:5441326a520e9eabc8b177b31d88e304427be9dec662e9e6c631f7f8ec0d0fef",
-    "mainCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db"
+    "manifestDigest": "sha256:d431d62de2a86e1252d4c65384565bb9bbc0f88b274efe597aa43a951f0eddb5",
+    "baselineCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db",
+    "revision": "SPRINT15_CANONICAL_OTLP_CONTRACT_ATTRS",
+    "revisionNote": "v3 telemetry records carry the canonical OTLP receiver contract attributes (haiec.scenario.run_id/level/sequence, mcp.resource.uri) added in Sprint 15 and the v3 manifest was repinned; the 45 exported HAIEC evaluations are bound to the revised upstream bytes"
   },
   "systems": 9,
   "scenarioRuns": 36,
@@ -1983,8 +1985,8 @@
     },
     {
       "path": "scan-plan.json",
-      "sha256": "sha256:cbf71cb3571597a51b8a6f76ae224b6be4355e92922865379151705750d61290",
-      "bytes": 8574
+      "sha256": "sha256:a8bb0f6d73af106288fc0d153b6d4146c7809f7ce09c5f7de539a3aac3b33f20",
+      "bytes": 8642
     },
     {
       "path": "systems/SYS-217/agent-runtime.json",
@@ -2174,6 +2176,8 @@
   ],
   "sourceQualifications": "NOT_ISSUED",
   "haiecEvaluationsProduced": 0,
-  "upstreamV3Unmodified": true,
+  "upstreamRevisions": [
+    "SPRINT15_CANONICAL_OTLP_CONTRACT_ATTRS — v3 telemetry bytes augmented in place and manifest repinned; evaluations bound to revised bytes"
+  ],
   "historicalEvaluationsUnmodified": true
 }

@@ -23,8 +23,24 @@ const card=(title,body)=>'<section class="oj-card"><h2>'+h(title)+'</h2>'+body+'
 const cta=(label,act,kind='',disabled=false)=>'<button type="button" class="oj-cta '+kind+'" data-oj="'+h(act)+'" '+(disabled?'disabled':'')+'>'+h(label)+'</button>';
 const line=(k,v)=>'<div class="oj-kpi"><div class="oj-overline">'+h(k)+'</div><div class="val">'+h(v)+'</div></div>';
 const list=(arr)=>'<ul>'+arr.map(a=>'<li>'+h(a)+'</li>').join('')+'</ul>';
-const read=()=>typeof HXDATA!=='undefined' && HXDATA && HXDATA.exportMap ? HXDATA.exportMap[CASE] : null;
-const digestReady=()=>typeof HX!=='undefined' && HX.digestsDone===true && HX.verified[CASE]===true;
+/* Resolve the SYS-217 wrong-target export from the CURRENT evidence world
+ * (the v3 program when published) — never pinned to a superseded artifact.
+ * Digest verification keys are caseId@sourceWorldId via hxKey(). */
+const read=()=>{
+  if(typeof HXDATA==='undefined'||!HXDATA)return null;
+  const cur=typeof hxCurrent==='function'?hxCurrent():null;
+  if(cur&&cur[CASE])return cur[CASE];
+  if(HXDATA.exportMap&&HXDATA.exportMap[CASE])return HXDATA.exportMap[CASE];
+  if(HXDATA.exportMapV3&&HXDATA.exportMapV3[CASE])return HXDATA.exportMapV3[CASE];
+  return null;
+};
+const worldOf=a=>a&&a.provenance&&a.provenance.sourceWorldId?a.provenance.sourceWorldId:'unknown-world';
+const digestReady=()=>{
+  if(typeof HX==='undefined'||!HX.digestsDone)return false;
+  const a=read();if(!a)return false;
+  const key=typeof hxKey==='function'?hxKey(a):a.sourceCase.caseId;
+  return HX.verified[key]===true;
+};
 const rule=(a,id)=>(a.manufacturing.ruleOutcomes||[]).find(r=>r.ruleId===id)||null;
 const receipt=a=>((a.manufacturing.controlMaturity||{}).rows||[]).find(r=>r.controlId==='R01')||null;
 const eLink=()=>'<button class="oj-cta" type="button" data-act="hx-case" data-id="SYS-217|'+CASE+'">Open evaluated case →</button>';
@@ -41,7 +57,7 @@ function safeData(a){
   obs:a.evaluation.fourQuestions&&a.evaluation.fourQuestions.observed?a.evaluation.fourQuestions.observed.state:'NOT_ASSESSED'};
 }
 function stageContent(a){
- const e=a.evaluation,d=safeData(a),head='<div class="oj-inline">'+tag('PERSISTED HAIEC · SYNTHETIC LAB','haiec')+tag('EXACT EVALUATION SNAPSHOT')+'</div>';
+ const e=a.evaluation,d=safeData(a),head='<div class="oj-inline">'+tag('PERSISTED HAIEC · SYNTHETIC LAB','haiec')+tag('EXACT EVALUATION SNAPSHOT')+tag('SOURCE WORLD '+h(worldOf(a)))+'</div>';
  if(S.stage==='detect'){
   return card('01 · Detection: the target diverged',head+
     '<p class="oj-headline">The agent-facing operation had an approved work-order target. The qualified manufacturing effect was recorded on a different target.</p>'+
@@ -55,7 +71,11 @@ function stageContent(a){
   const m=a.manufacturing.ruleOutcomes||[];
   const rows=m.map(r=>'<tr><td><b>'+h(r.ruleId)+'</b></td><td>'+h(r.status)+'</td><td>'+h(r.missingClaims&&r.missingClaims.length?r.missingClaims.join(', '):'None declared for this rule')+'</td></tr>').join('');
   const replay=HXDATA&&HXDATA.replay&&HX.replayVerified===true?HXDATA.replay:null;
-  const records=replay&&Array.isArray(replay.records)?replay.records:[];
+  // The recorded replay is bound to the historical v1 source world — it is
+  // shown as this evaluation's consumed evidence ONLY when the resolved
+  // artifact is that v1 export. Cross-world replay would fabricate lineage.
+  const sameWorld=worldOf(a)==='manufacturing-source-world-v1';
+  const records=replay&&sameWorld&&Array.isArray(replay.records)?replay.records:[];
   const samples=records.slice(0,6).map(x=>'<div><b>'+h(x.payload&&x.payload.phase||'SOURCE_RECORD')+'</b><span class="oj-sub">'+h(x.declaredAt||'Time not recorded')+' · source-world record, not an independent production witness</span></div>').join('');
   return card('02 · Investigate: evidence, authority and unknowns',head+
     '<p class="oj-headline">Trace the exact approved target to the recorded target. Do not infer model intent or root cause from a rule match.</p>'+
@@ -63,7 +83,7 @@ function stageContent(a){
     '<h3 style="margin-top:15px">Deterministic rule outcomes · verbatim statuses</h3>'+
     '<table class="oj-table"><thead><tr><th>Rule</th><th>Outcome</th><th>Missing evidence</th></tr></thead><tbody>'+rows+'</tbody></table>'+
     '<h3 style="margin-top:14px">Recorded replay source phases</h3>'+
-    (records.length?'<div class="oj-timeline">'+samples+'</div>':note('Replay digest not yet verified or source records unavailable; no reconstructed phase sequence displayed.'))+
+    (records.length?'<div class="oj-timeline">'+samples+'</div>':sameWorld?note('Replay digest not yet verified or source records unavailable; no reconstructed phase sequence displayed.'):note('The recorded evidence replay belongs to the historical v1 source world — it is not the evidence this '+h(worldOf(a))+' evaluation consumed. This evaluation\u2019s bound records are on the case detail view.'))+
     '<div class="oj-inline">'+replayLink()+eLink()+'</div>');
  }
  if(S.stage==='authorize'){
@@ -102,7 +122,7 @@ function stageContent(a){
   const r01=d.w,local=S.attempts.filter(x=>x.decision==='SIMULATED_DENY').length;
   return card('05 · Verify: distinguish an effect witness from a response witness',head+
     '<div class="oj-two">'+
-     '<div class="oj-card"><div class="oj-overline">Historical manufacturing effect · frozen evaluation</div>'+
+     '<div class="oj-card"><div class="oj-overline">Persisted manufacturing effect · frozen evaluation · '+h(worldOf(a))+'</div>'+
       tag('HAIEC UCP · '+h(r01?r01.ucpResult:'NOT ASSESSED'),'haiec')+
       '<h3 style="margin-top:11px">R01 effect traceability</h3><p>Receipt: <b>'+h(r01?r01.ucpReceiptState:'NO RECEIPT')+
       '</b>. This establishes eligible independent evidence of the wrong-target effect. It does NOT prove the effect was approved, prevented or remediated.</p></div>'+
@@ -166,12 +186,12 @@ function pageJourney(){
   '<div class="oj-tags">'+tag('SYNTHETIC LAB · REAL HAIEC EVALUATION','haiec')+tag('RESPONSE REHEARSAL · NOT LIVE','sim')+
     tag('U5 '+h(e.disposition))+
     tag('Digest checked against embedded export')+'</div></div>'+
-  '<div class="oj-alert">Two different trust tracks: <b>historical persisted HAIEC evidence</b> covers detection, manufacturing effect and R01 witness. <b>Simulated incident response</b> covers only your local browser actions. They cannot become one receipt or one historical chronology.</div>'+
+  '<div class="oj-alert">Two different trust tracks: <b>persisted HAIEC evaluation evidence</b> ('+h(worldOf(a))+') covers detection, manufacturing effect and R01 witness. <b>Simulated incident response</b> covers only your local browser actions. They cannot become one receipt or one historical chronology.</div>'+
   '<div class="oj-layout">'+stepsRail()+
   '<div class="oj-section">'+stageContent(a)+
   '<div class="oj-inline">'+cta('← Previous','prev','',current===0)+cta('Next step →','next','primary',current===STEPS.length-1)+'</div></div>'+
   '<aside class="oj-sidebar">'+sidePanel(a)+'</aside></div>'+
-  '<div class="oj-footer">Case '+h(CASE)+' · Evaluation '+h(e.evaluationId)+'. No production OT action, new HAIEC evaluation, signed response approval, framework certification or real agent termination is performed by this demo.</div></div>';
+  '<div class="oj-footer">Case '+h(CASE)+' · World '+h(worldOf(a))+' · Evaluation '+h(e.evaluationId)+'. No production OT action, new HAIEC evaluation, signed response approval, framework certification or real agent termination is performed by this demo.</div></div>';
 }
 document.addEventListener('click',event=>{
  const stage=event.target.closest('[data-oj-step]');

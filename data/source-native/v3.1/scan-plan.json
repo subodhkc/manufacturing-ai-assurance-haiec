@@ -2,7 +2,8 @@
   "schemaVersion": "manufacturing-scan-handoff-v3.1",
   "sourceVersion": "manufacturing-source-native-v3.1",
   "synthetic": true,
-  "upstreamMainCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db",
+  "upstreamBaselineCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db",
+  "upstreamRevision": "SPRINT15_CANONICAL_OTLP_CONTRACT_ATTRS",
   "organizationBinding": "ISOLATED_AUTHENTICATED_HAIEC_LAB_ORG",
   "credentialUse": "ROTATED_SCOPED_SECURE_SECRET_STORE_ONLY",
   "ordering": [

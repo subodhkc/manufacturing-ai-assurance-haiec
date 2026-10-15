@@ -51,8 +51,8 @@
     },
     {
       "path": "cases/SYS-217/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:2ef20f1c968c03f9f09ffe800cd5f8cc7a201cf62f7079fe94b9b01a7eb42b5a",
-      "bytes": 6219,
+      "sha256": "sha256:8e672e596e8bf669d80aaa9e5e9354a7f3bb35cf22655a850a138658e57aa6b3",
+      "bytes": 10857,
       "kind": "otlp-traces.json"
     },
     {
@@ -99,8 +99,8 @@
     },
     {
       "path": "cases/SYS-217/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:dbe71e84aefa3a8e466d930270a7235493f3425743a131a05fb0b66a42427c5e",
-      "bytes": 7633,
+      "sha256": "sha256:3434882ab963a15aefd3d23a2849a7b137654e81700ab3f27a6b7d6ad5d90bb6",
+      "bytes": 13383,
       "kind": "otlp-traces.json"
     },
     {
@@ -147,8 +147,8 @@
     },
     {
       "path": "cases/SYS-217/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:cb032eecaea46af6e5f290bc6f79fedf0e04575cbbb1dcdfc13cf485001ac5a4",
-      "bytes": 7563,
+      "sha256": "sha256:1bf808c0e77d19283fd964990a7a4c4639cd4e572d31c26b6307ac874e595760",
+      "bytes": 13278,
       "kind": "otlp-traces.json"
     },
     {
@@ -195,8 +195,8 @@
     },
     {
       "path": "cases/SYS-217/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:9e6f1c6b85cde1970c4941cb359157d01f54292237b85f055e1be5e08c9ae757",
-      "bytes": 7583,
+      "sha256": "sha256:f0c8738a3ac72c8e7422b0db1e02c35cbc0cd56b658fbf70db646d1b7ed9ee25",
+      "bytes": 13308,
       "kind": "otlp-traces.json"
     },
     {
@@ -237,8 +237,8 @@
     },
     {
       "path": "cases/SYS-340/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:a981ab651414120bcfe4af42c002b890c830a7b2537846a09830c8c75ef3f25d",
-      "bytes": 6227,
+      "sha256": "sha256:d74244fb3b6a10dfbfc8d150cd949fb2a97ed528e4b6295a938421dd9426614d",
+      "bytes": 10881,
       "kind": "otlp-traces.json"
     },
     {
@@ -285,8 +285,8 @@
     },
     {
       "path": "cases/SYS-340/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:19c87dc6e7d0660138e1ae13ebe9823860d58190048e994fa0b502a95a80a238",
-      "bytes": 7643,
+      "sha256": "sha256:41d1de8c8a96d30e94bd3e13ac43e724bdb6403987abc46b69a6224e1799f6b6",
+      "bytes": 13411,
       "kind": "otlp-traces.json"
     },
     {
@@ -333,8 +333,8 @@
     },
     {
       "path": "cases/SYS-340/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:3eb1f3ed4c7284df45a767c9923bc1bccf95ff7c5c5868e45c2a0ac0c429c56e",
-      "bytes": 7573,
+      "sha256": "sha256:f8b34918b7fd1328aa12c187a8ff259f47b342443988bc9c5b164179e726fc39",
+      "bytes": 13306,
       "kind": "otlp-traces.json"
     },
     {
@@ -381,8 +381,8 @@
     },
     {
       "path": "cases/SYS-340/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:5ea4af0d5adf59984890c43556ff7f0ea14287442319b73f6482caf85dbcf1d3",
-      "bytes": 7593,
+      "sha256": "sha256:9970f0eab8a57fd61fda7b61802c16d136af2c1cbbdbab135b63eb0edbb3f191",
+      "bytes": 13336,
       "kind": "otlp-traces.json"
     },
     {
@@ -423,8 +423,8 @@
     },
     {
       "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:90ca42448951ab8165d7074bb07144e2f6a7621f593833ac02a94e63c60af4aa",
-      "bytes": 6322,
+      "sha256": "sha256:9cde0e7b2856fa97f850f4c7980d75c2685cffc8235d52c488b13abebea9025a",
+      "bytes": 11057,
       "kind": "otlp-traces.json"
     },
     {
@@ -471,8 +471,8 @@
     },
     {
       "path": "cases/SYS-DYN412/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:79d4ee1140dce1ddb80db21b2efc13b3bc80f58f7028e77644ddc37b6e2f0bcc",
-      "bytes": 7761,
+      "sha256": "sha256:339c787a31d9a28c3e3abbdb2b9bf14abd75392c0af9d2837d370785e9aaae93",
+      "bytes": 13630,
       "kind": "otlp-traces.json"
     },
     {
@@ -519,8 +519,8 @@
     },
     {
       "path": "cases/SYS-DYN412/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:ad65b537eb8cdba1befa3b0386a41e628b4ebb959eb71ee45da34b1ad52a03c2",
-      "bytes": 7691,
+      "sha256": "sha256:2869ed9b7ce7d383310faa1d152291ffdec23c7dd0c73543268249db29536e67",
+      "bytes": 13525,
       "kind": "otlp-traces.json"
     },
     {
@@ -567,8 +567,8 @@
     },
     {
       "path": "cases/SYS-DYN412/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:e51def0e659715c656ee0be7bfebcb1a305702ea149d06b9d2129e5e271dad36",
-      "bytes": 7716,
+      "sha256": "sha256:35bd2724189348efa226b969c72905c9732144c6dab9d8374e6d1816057d15f7",
+      "bytes": 13565,
       "kind": "otlp-traces.json"
     },
     {
@@ -609,8 +609,8 @@
     },
     {
       "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:8f086f4a47cd8a10c162c5d7c37f80ee61524486f6d8b3adacde5198fdcacb06",
-      "bytes": 6207,
+      "sha256": "sha256:184468a000e0581cb973e5629ca7a968ceb7c18480b089afb92fc3ad69d85072",
+      "bytes": 10831,
       "kind": "otlp-traces.json"
     },
     {
@@ -657,8 +657,8 @@
     },
     {
       "path": "cases/SYS-FC1/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:0cf0c0ab47af14296027f9b323d89f59a492515284a45195fbbab8bf187aa9f2",
-      "bytes": 7618,
+      "sha256": "sha256:68fbce8dc5fb2c9da19135d033c4f7f1d32d6277db1e9f7129328e46a395a4e5",
+      "bytes": 13351,
       "kind": "otlp-traces.json"
     },
     {
@@ -705,8 +705,8 @@
     },
     {
       "path": "cases/SYS-FC1/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:544f9495eb85f146652d4b3329f4693b4ee5a28faf61a5106a9c7c4fbb2609f1",
-      "bytes": 7548,
+      "sha256": "sha256:0bb0f22868e16939703dc5f4009076653d81135aff7a7c5a220a087d771e556d",
+      "bytes": 13246,
       "kind": "otlp-traces.json"
     },
     {
@@ -753,8 +753,8 @@
     },
     {
       "path": "cases/SYS-FC1/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:2abb5ec8c753097540fc0afae36df01b4599102dcd1dbcc4370bfe8114517f9b",
-      "bytes": 7568,
+      "sha256": "sha256:9b6d4ba313051795c907fe2749ea78e9fd537aa051a18c98f0f3ba853b582427",
+      "bytes": 13276,
       "kind": "otlp-traces.json"
     },
     {
@@ -795,8 +795,8 @@
     },
     {
       "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:6f4af74570095ed0b43df0cc1f00907d797d1a4c474414baa588a48721122bc3",
-      "bytes": 6241,
+      "sha256": "sha256:767159b774f7a06257b4d5faf66bff8f228662e9e156f76b8576a4f65b80f2a8",
+      "bytes": 10894,
       "kind": "otlp-traces.json"
     },
     {
@@ -843,8 +843,8 @@
     },
     {
       "path": "cases/SYS-MNT88/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:ab7af00d28631614dcad46481b36a6d2721988020181649ecc8ae9a6517ce08d",
-      "bytes": 7660,
+      "sha256": "sha256:8e0cc372af23fdc49ebab008ba9cd949ea84d782a56fc2b4e39464f1ec911732",
+      "bytes": 13428,
       "kind": "otlp-traces.json"
     },
     {
@@ -891,8 +891,8 @@
     },
     {
       "path": "cases/SYS-MNT88/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:b82a0c2fd6f8e14dc39973f170bc51689cbf17bce4b27e9351a2dbcb210cfe75",
-      "bytes": 7590,
+      "sha256": "sha256:3ad6acb986cf13598fe012bfa5af67dd9997b505cae30283baa863f7d0454d05",
+      "bytes": 13323,
       "kind": "otlp-traces.json"
     },
     {
@@ -939,8 +939,8 @@
     },
     {
       "path": "cases/SYS-MNT88/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:9c37beaea37bd44ce7188cc8893a0f2d75f7aecac21a24cb41a524d738055831",
-      "bytes": 7610,
+      "sha256": "sha256:047152c593bd000d3a831900681a08da9c8dea383f28a3c78409b97a41244d4c",
+      "bytes": 13353,
       "kind": "otlp-traces.json"
     },
     {
@@ -981,8 +981,8 @@
     },
     {
       "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:7e96b1a75ba5cef82b784433dd84a157e73c689922a4e4dff2e259cb7b1d0d32",
-      "bytes": 6240,
+      "sha256": "sha256:05e7c4c297a70db385904389d3e612005eb7be9f3cd62aeed85a5b222a97609c",
+      "bytes": 10898,
       "kind": "otlp-traces.json"
     },
     {
@@ -1029,8 +1029,8 @@
     },
     {
       "path": "cases/SYS-PO12/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:7294d1e308e2c250d4f59cbb1e4761fe824dd9251a87afaa0f67d98af8fbb3a8",
-      "bytes": 7659,
+      "sha256": "sha256:9f6952dfd2d191c2d07facb1ce6dcd4a61ea6b82d21c359c78b0292c4d07cee8",
+      "bytes": 13433,
       "kind": "otlp-traces.json"
     },
     {
@@ -1077,8 +1077,8 @@
     },
     {
       "path": "cases/SYS-PO12/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:2995a7bba16a2aa2afe46e43f01be1aaebe4ce1865e2f991743a69b851e26755",
-      "bytes": 7589,
+      "sha256": "sha256:82dfc35d434f5a4214f6fcaca3a05a837b623ac04dbb0c9eb72891f2a47d2eba",
+      "bytes": 13328,
       "kind": "otlp-traces.json"
     },
     {
@@ -1125,8 +1125,8 @@
     },
     {
       "path": "cases/SYS-PO12/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:55b9534772379542578119e159dcf5d8babf837a784f678fa0b027f63ee41b8a",
-      "bytes": 7609,
+      "sha256": "sha256:dba4c8c3af7ff4ce65110aeeeeb9e614e350343c90ecab11c031042fb7cacb7a",
+      "bytes": 13358,
       "kind": "otlp-traces.json"
     },
     {
@@ -1167,8 +1167,8 @@
     },
     {
       "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:bc12044feddc91e0c1d7275b4fac9e0a37b59fdb58b8a57e88f021c14eebb8ce",
-      "bytes": 6220,
+      "sha256": "sha256:a36f20333dd65d5ab96a113f2ec98ca36a54412f4e618d4c2fe3f58163660915",
+      "bytes": 10851,
       "kind": "otlp-traces.json"
     },
     {
@@ -1215,8 +1215,8 @@
     },
     {
       "path": "cases/SYS-SCH5/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:c8d974d1ac5052e079ecab55205f447f5ee48160271c8329255c9d407e3af7e8",
-      "bytes": 7634,
+      "sha256": "sha256:96c5e88c4e7d2040e4e0480017f4f4bed73d89cba684294ac2c92ea405cc4f70",
+      "bytes": 13376,
       "kind": "otlp-traces.json"
     },
     {
@@ -1263,8 +1263,8 @@
     },
     {
       "path": "cases/SYS-SCH5/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:b6bbe7dc2ca1e55e8a37f23dba9f7ce1e35cfc9f2b864e372251398e4fb8f2eb",
-      "bytes": 7564,
+      "sha256": "sha256:3410214a011578eaea0e5375ef2d30944274fc12d6e882cf71745c9ac1fa00fe",
+      "bytes": 13271,
       "kind": "otlp-traces.json"
     },
     {
@@ -1311,8 +1311,8 @@
     },
     {
       "path": "cases/SYS-SCH5/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:717e387d0a5e4750a7f38c80b667bad6d0ca1fa437df0f8239841614ad8343f1",
-      "bytes": 7584,
+      "sha256": "sha256:97bdda4c7d23cb2f20fa1c646b0cdc247f1e8c7ceba40a629fab7d908ba08d02",
+      "bytes": 13301,
       "kind": "otlp-traces.json"
     },
     {
@@ -1353,8 +1353,8 @@
     },
     {
       "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:975d7b8b9b2e879c4ef697205d267eefe80ee78755fa5ac9b237e008b3cb6f6c",
-      "bytes": 6249,
+      "sha256": "sha256:c7a70576abc7154392396eca8f2e63642bf2bfab21bd4377cbd322be05ddff94",
+      "bytes": 10914,
       "kind": "otlp-traces.json"
     },
     {
@@ -1401,8 +1401,8 @@
     },
     {
       "path": "cases/SYS-SUP12/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:4c8d0a93566951b77fbb06fcd8f8a5428b8cc7166603e5d15ed313b16759d618",
-      "bytes": 7670,
+      "sha256": "sha256:697b35a4aa65d12ec37510d6f1f665553311a29bdca5e9c3da84ff4f65732337",
+      "bytes": 13452,
       "kind": "otlp-traces.json"
     },
     {
@@ -1449,8 +1449,8 @@
     },
     {
       "path": "cases/SYS-SUP12/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:d370d9de2ebec285d145024a4c75fde87d7e12770d4492833a19de6c5e88230d",
-      "bytes": 7600,
+      "sha256": "sha256:981bf5b8d7f258e9a487bc83558ba100cd37489252170e907cf8fe5694ee73f9",
+      "bytes": 13347,
       "kind": "otlp-traces.json"
     },
     {
@@ -1497,8 +1497,8 @@
     },
     {
       "path": "cases/SYS-SUP12/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:62cc35eb2f9a1425ee9d672028cbc9fd5d90cc8cd015882fcae0d86288707550",
-      "bytes": 7620,
+      "sha256": "sha256:15b47e153a47e012387be912ae04fb4413f2193152498c5df17174861412bccb",
+      "bytes": 13377,
       "kind": "otlp-traces.json"
     },
     {
@@ -1539,8 +1539,8 @@
     },
     {
       "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
-      "sha256": "sha256:716f1dfcd176d293fb84d552d74eff540a9753a4041f01688d7c932fabfc06a3",
-      "bytes": 6240,
+      "sha256": "sha256:ed15c0c7253ff8e04fa3280893d9d86dc497c75744844b85e9b57176655e7905",
+      "bytes": 10893,
       "kind": "otlp-traces.json"
     },
     {
@@ -1587,8 +1587,8 @@
     },
     {
       "path": "cases/SYS-WH15/EXPECTED_BASELINE/telemetry/otlp-traces.json",
-      "sha256": "sha256:c6ba3eb4cf419364225006146ae27e1075324d82eeb92c9a0a7619f4968272dc",
-      "bytes": 7659,
+      "sha256": "sha256:59508e67cf8fff647937bca341745ea7524f93ee02d586296393f45a76e4b8bd",
+      "bytes": 13428,
       "kind": "otlp-traces.json"
     },
     {
@@ -1635,8 +1635,8 @@
     },
     {
       "path": "cases/SYS-WH15/REMEDIATED/telemetry/otlp-traces.json",
-      "sha256": "sha256:354e56a3a803e519f867bce0c8e59fe9e2c130f3efb9c21cc74fda1ade3cb35d",
-      "bytes": 7589,
+      "sha256": "sha256:64b5f6e42f61e62eb4135803cb810f4b85c4caab9e7d1f2b97bc207e8c02f8eb",
+      "bytes": 13323,
       "kind": "otlp-traces.json"
     },
     {
@@ -1683,8 +1683,8 @@
     },
     {
       "path": "cases/SYS-WH15/WRONG_TARGET/telemetry/otlp-traces.json",
-      "sha256": "sha256:170a95bbe35118801c0e3e25d280713869eb1dea3d6aea05bfb566d9c4a2608a",
-      "bytes": 7609,
+      "sha256": "sha256:5c0b98accc235785f96aaddc55ed82ed5e08415eac9e762ea3834936bad8a3c9",
+      "bytes": 13353,
       "kind": "otlp-traces.json"
     },
     {
