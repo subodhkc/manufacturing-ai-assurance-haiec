@@ -11,10 +11,12 @@
     "generate": "node packages/fixtures/src/generate.cjs",
     "check:fixtures": "node packages/fixtures/src/generate.cjs --check",
     "test": "node --test packages/fixtures/tests/*.test.cjs packages/station217/tests/*.test.cjs packages/haiec-adapter/tests/*.test.cjs",
-    "verify": "npm run generate && npm test && npm run check:fixtures",
+    "verify": "npm run generate && npm test && npm run check:fixtures && npm run check:industry",
     "export:haiec-candidates": "node packages/fixtures/src/export-haiec-candidates.cjs",
     "demo:station217": "node packages/station217/src/replay.cjs",
     "source:world": "node packages/fixtures/src/source-world.cjs",
-    "test:oracle": "node --test packages/fixtures/tests/source-world-independence.test.cjs"
+    "test:oracle": "node --test packages/fixtures/tests/source-world-independence.test.cjs",
+    "build:industry": "node scripts/build-industry-data.cjs",
+    "check:industry": "node scripts/build-industry-data.cjs --check"
   }
 }
