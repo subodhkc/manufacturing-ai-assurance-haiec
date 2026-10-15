@@ -52,10 +52,15 @@ function buildHtml(a) {
   const rules = a.manufacturing?.ruleOutcomes ?? [];
   const maturity = a.manufacturing?.controlMaturity ?? null;
   const links = e.links || {};
-  const link = (pathRel) =>
-    typeof pathRel === 'string' && pathRel.startsWith('/')
-      ? `<a href="${esc(HAIEC_ORIGIN + pathRel)}" target="_blank" rel="noopener noreferrer">${esc(HAIEC_ORIGIN + pathRel)}</a>`
+  // Strip query params — the export's links carry the evaluation-owning
+  // org id (?org=…); public derivatives never disclose internal org
+  // identifiers. Authorization resolves the org server-side anyway.
+  const link = (pathRel) => {
+    const clean = typeof pathRel === 'string' ? pathRel.split('?')[0] : pathRel;
+    return typeof clean === 'string' && clean.startsWith('/')
+      ? `<a href="${esc(HAIEC_ORIGIN + clean)}" target="_blank" rel="noopener noreferrer">${esc(HAIEC_ORIGIN + clean)}</a>`
       : '<span class="mono">NOT RECORDED</span>';
+  };
 
   const divergent = rules.find((r) => r.ruleId === 'MFG-EFF-001' && r.status === 'MATCH');
 

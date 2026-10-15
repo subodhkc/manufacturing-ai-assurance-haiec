@@ -81,6 +81,43 @@ else {
   if ((station217.cases || []).length !== 6) problems.push(`PARITY: station217 has ${(station217.cases || []).length} cases — required 6`);
 }
 
+// Sprint 14.3 — Mode A evidence replay. Pin the SYS-217-WRONG_TARGET
+// source-world records (the six-phase fixture evidence the evaluation
+// consumed) with their own digest. The dashboard re-verifies it and
+// refuses playback on mismatch. These are recorded fixture facts only —
+// no timestamps are fabricated at display time.
+const goldenPath = path.join(root, 'data/generated/golden-scenarios.json');
+const golden = fs.existsSync(goldenPath) ? JSON.parse(fs.readFileSync(goldenPath, 'utf8')) : null;
+const wtScenario = golden && (golden.scenarios || []).find((s) => s.caseId === 'SYS-217-WRONG_TARGET');
+let replay = null;
+if (!wtScenario) {
+  problems.push('PARITY: evidence-replay source scenario SYS-217-WRONG_TARGET absent from data/generated/golden-scenarios.json');
+} else {
+  const recs = (wtScenario.evidence || []).slice().sort((x, y) => (x.sequence ?? 0) - (y.sequence ?? 0));
+  if (recs.length !== 6) problems.push(`PARITY: replay scenario has ${recs.length} records — required 6`);
+  for (const r of recs) {
+    if (!r.declaredAt || !r.payload || !r.payload.phase || !r.evidenceId) {
+      problems.push(`PARITY: replay record ${r.evidenceId || '?'} missing declaredAt/phase/evidenceId`);
+    }
+  }
+  const wtEval = exportMap['SYS-217-WRONG_TARGET'];
+  if (!wtEval) problems.push('PARITY: SYS-217-WRONG_TARGET export absent — replay cannot bind an evaluation');
+  replay = {
+    schemaVersion: 'haiec-evidence-replay-1.0.0',
+    truthLabel: 'RECORDED_SYNTHETIC_EVIDENCE — deterministic display pacing only; no new evaluation, no live collection, no dispatch',
+    caseId: 'SYS-217-WRONG_TARGET',
+    evaluationId: wtEval && wtEval.evaluation && wtEval.evaluation.evaluationId,
+    title: wtScenario.title,
+    operation: wtScenario.operation,
+    expectedTarget: wtScenario.expectedTarget,
+    actualTarget: wtScenario.actualTarget,
+    firstDivergence: wtScenario.firstDivergence,
+    notEvidenceOf: wtScenario.notEvidenceOf,
+    records: recs,
+  };
+  replay.digest = 'sha256:' + createHash('sha256').update(JSON.stringify(replay), 'utf8').digest('hex');
+}
+
 if (problems.length) {
   console.error('BUILD FAILED — integrity/parity violations:');
   for (const p of problems) console.error('  ✗', p);
@@ -95,6 +132,7 @@ const payload = {
   exportMap,
   manifest,
   station217,
+  replay,
 };
 payload.payloadDigest = 'sha256:' + createHash('sha256').update(JSON.stringify(exportMap) + JSON.stringify(station217 ?? ''), 'utf8').digest('hex');
 
@@ -118,3 +156,18 @@ if (!pdf || pdf.length < 50000 || pdf.slice(0, 5).toString('latin1') !== '%PDF-'
   process.exit(1);
 }
 console.log('sample pdf present:', pdfPath, `(${(pdf.length / 1024).toFixed(0)} KB)`);
+
+// Sprint 14.3 — the redacted public derivatives are separate artifacts from
+// the pinned export. Stamp derivative digests so consumers can verify the
+// published bytes without implying the HAIEC exportDigest covers them.
+const htmlPath = path.join(root, 'dashboard/report/sample-master-report.html');
+const htmlDigest = createHash('sha256').update(fs.readFileSync(htmlPath)).digest('hex');
+const pdfDigest = createHash('sha256').update(pdf).digest('hex');
+fs.writeFileSync(
+  path.join(root, 'dashboard/report/sample-master-report.sha256'),
+  `# Derivative digests (Sprint 14.3) — these cover the redacted public files only.\n` +
+  `# They are NOT the pinned HAIEC exportDigest; digest = integrity, not issuer signature.\n` +
+  `sha256:${htmlDigest}  sample-master-report.html\n` +
+  `sha256:${pdfDigest}  sample-master-report.pdf\n`,
+);
+console.log('derivative digests stamped: sample-master-report.sha256');
