@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "haiec-manufacturing-source-native-manifest-v2",
+  "sourceWorldVersion": "manufacturing-source-world-v2",
+  "scope": "SYS-217",
+  "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
+  "scenarioId": "SYS-217-WRONG_TARGET",
+  "generatedAt": "2026-10-15T13:10:00.000Z",
+  "qualificationState": "NOT_ASSESSED_BY_HAIEC",
+  "origin": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+  "historicalEvaluationUnaffected": true,
+  "entries": [
+    {
+      "path": "authority/delegation-approval.json",
+      "sha256": "sha256:1f5b940b624be15e2b7beacd2c7c14078aaed1dcd7e895ee312a787869795536",
+      "bytes": 1467,
+      "sourceRole": "AUTHORITY_CANDIDATE"
+    },
+    {
+      "path": "authority/operating-envelope.proposal.json",
+      "sha256": "sha256:14775670c0cedb1120865b1666bdfbbddd6bd1c975b9f1fadbab37ce2e93138e",
+      "bytes": 1546,
+      "sourceRole": "AUTHORITY_CANDIDATE"
+    },
+    {
+      "path": "code/agent-handler.js",
+      "sha256": "sha256:ad9409cdac3f5b59c00aada8cc6f1f581259a6df89a045ffa6d3378af0e2e9f7",
+      "bytes": 1564,
+      "sourceRole": "STATIC_SOURCE_FIXTURE"
+    },
+    {
+      "path": "code/mes-openapi.json",
+      "sha256": "sha256:36d766fb5f8829498032c9d94b1a26b7d6d72148922d55b2ed414de1feacf22c",
+      "bytes": 1430,
+      "sourceRole": "STATIC_SOURCE_FIXTURE"
+    },
+    {
+      "path": "deployment/build-and-runtime.json",
+      "sha256": "sha256:7427ac233c76341bf6e620c5987e66277adfb4e93789e7f4153017a8c903bf32",
+      "bytes": 1207,
+      "sourceRole": "BUILD_PROVENANCE_CANDIDATE"
+    },
+    {
+      "path": "iam/access-observation.json",
+      "sha256": "sha256:74a0798b62bbed28d01b402dd34b3a686d182c5a8c77b6ba922294479a26bc2a",
+      "bytes": 1641,
+      "sourceRole": "IAM_CANDIDATE"
+    },
+    {
+      "path": "iam/role-policy.aws-style.json",
+      "sha256": "sha256:24ce8a988f02128f1455acb6dcc954f1e9dae93da93a637691adb19caae7d49a",
+      "bytes": 1250,
+      "sourceRole": "IAM_CANDIDATE"
+    },
+    {
+      "path": "native/mes-transaction.json",
+      "sha256": "sha256:ba403ae52cde70e7387004ce1cb5f9c0dc26013196b83e7ff41acbb395c860ab",
+      "bytes": 1250,
+      "sourceRole": "NATIVE_EFFECT_FIXTURE"
+    },
+    {
+      "path": "native/qms-readback.json",
+      "sha256": "sha256:6e57d6886d80ec76e27509d08d5e249e7824e8d3400db0fb472498f2e2c0296b",
+      "bytes": 1305,
+      "sourceRole": "NATIVE_EFFECT_FIXTURE"
+    },
+    {
+      "path": "telemetry/collector-continuity.json",
+      "sha256": "sha256:708cbe239f767bc15105c49cc75a67ad68b79a78089d40f22f58cf74a24b4ea2",
+      "bytes": 1566,
+      "sourceRole": "TELEMETRY_FIXTURE"
+    },
+    {
+      "path": "telemetry/otlp-traces.json",
+      "sha256": "sha256:b6774301ea25e0fbaff2795a7472749c7d492e5bb58662b7f2683144e1a6895f",
+      "bytes": 10342,
+      "sourceRole": "TELEMETRY_FIXTURE"
+    }
+  ]
+}

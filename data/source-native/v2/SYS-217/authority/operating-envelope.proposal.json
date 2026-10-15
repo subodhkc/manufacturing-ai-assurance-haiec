@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v2",
+  "program": "HAIEC_MANUFACTURING_SOURCE_NATIVE_V2",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-217",
+  "scenarioId": "SYS-217-WRONG_TARGET",
+  "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
+  "transactionId": "syn-txn-v2-sys217-wrong-target-001",
+  "operation": "mes.work_order.update",
+  "authorizedTarget": "WO-217-4802",
+  "observedTarget": "WO-217-4803",
+  "principal": "synthetic-agent/SYS-217",
+  "recordedAt": "2026-10-15T13:10:00.000Z",
+  "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+  "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
+  "limitations": [
+    "SYNTHETIC_MANUFACTURING_EVIDENCE",
+    "NOT_HAIEC_QUALIFIED",
+    "NOT_REAL_CUSTOMER_EVIDENCE",
+    "NOT_PROOF_OF_FACTORY_EFFECT"
+  ],
+  "envelopeRef": "envelope-proposal-sys217-v2-01",
+  "state": "PROPOSED_NOT_APPROVED_IN_HAIEC",
+  "purpose": "Candidate business policy for authorized review, not actual system authority",
+  "constraints": {
+    "allowedOperations": [
+      "mes.work_order.update"
+    ],
+    "resourceScopes": [
+      "WO-217-4802"
+    ],
+    "deniedTargets": [
+      "WO-217-4803"
+    ],
+    "allowedEnvironments": [
+      "SYNTHETIC_LAB"
+    ],
+    "maxTargetCount": 1,
+    "approvalRequirements": [
+      {
+        "operation": "mes.work_order.update",
+        "required": true,
+        "role": "synthetic-plant-quality-manager"
+      }
+    ]
+  },
+  "approvalWorkflow": "HAIEC operating-envelope approval required before POLICY_AUTHORIZED status"
+}

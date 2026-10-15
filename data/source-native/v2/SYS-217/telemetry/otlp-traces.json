@@ -1,0 +1,332 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "synthetic-mes-agent-sys217"
+            }
+          },
+          {
+            "key": "haiec.synthetic",
+            "value": {
+              "boolValue": true
+            }
+          },
+          {
+            "key": "haiec.case_id",
+            "value": {
+              "stringValue": "SYS-217-WRONG_TARGET"
+            }
+          },
+          {
+            "key": "haiec.scenario_run_id",
+            "value": {
+              "stringValue": "syn-world-v2-sys-217-wrong_target"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "haiec.synthetic.manufacturing",
+            "version": "2.0.0"
+          },
+          "spans": [
+            {
+              "traceId": "e217e217e217e217e217e217e217e217",
+              "spanId": "0101010101010101",
+              "name": "request",
+              "startTimeUnixNano": "1792069800000000000",
+              "endTimeUnixNano": "1792069800250000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "request"
+                  }
+                },
+                {
+                  "key": "haiec.operation",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
+                },
+                {
+                  "key": "haiec.target",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "syn-txn-v2-sys217-wrong-target-001"
+                  }
+                },
+                {
+                  "key": "haiec.event_id",
+                  "value": {
+                    "stringValue": "otlp-sys217-v2-1"
+                  }
+                },
+                {
+                  "key": "haiec.source_qualification",
+                  "value": {
+                    "stringValue": "UNQUALIFIED_SOURCE_INPUT"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            },
+            {
+              "traceId": "e217e217e217e217e217e217e217e217",
+              "spanId": "0202020202020202",
+              "parentSpanId": "0101010101010101",
+              "name": "approval",
+              "startTimeUnixNano": "1792069800300000000",
+              "endTimeUnixNano": "1792069800700000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "approval"
+                  }
+                },
+                {
+                  "key": "haiec.operation",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
+                },
+                {
+                  "key": "haiec.target",
+                  "value": {
+                    "stringValue": "WO-217-4802"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "syn-txn-v2-sys217-wrong-target-001"
+                  }
+                },
+                {
+                  "key": "haiec.event_id",
+                  "value": {
+                    "stringValue": "otlp-sys217-v2-2"
+                  }
+                },
+                {
+                  "key": "haiec.source_qualification",
+                  "value": {
+                    "stringValue": "UNQUALIFIED_SOURCE_INPUT"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            },
+            {
+              "traceId": "e217e217e217e217e217e217e217e217",
+              "spanId": "0303030303030303",
+              "parentSpanId": "0101010101010101",
+              "name": "tool.dispatch",
+              "startTimeUnixNano": "1792069800800000000",
+              "endTimeUnixNano": "1792069801300000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "tool.dispatch"
+                  }
+                },
+                {
+                  "key": "haiec.operation",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
+                },
+                {
+                  "key": "haiec.target",
+                  "value": {
+                    "stringValue": "WO-217-4803"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "syn-txn-v2-sys217-wrong-target-001"
+                  }
+                },
+                {
+                  "key": "haiec.event_id",
+                  "value": {
+                    "stringValue": "otlp-sys217-v2-3"
+                  }
+                },
+                {
+                  "key": "haiec.source_qualification",
+                  "value": {
+                    "stringValue": "UNQUALIFIED_SOURCE_INPUT"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            },
+            {
+              "traceId": "e217e217e217e217e217e217e217e217",
+              "spanId": "0404040404040404",
+              "parentSpanId": "0303030303030303",
+              "name": "mes.commit",
+              "startTimeUnixNano": "1792069801500000000",
+              "endTimeUnixNano": "1792069802100000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "mes.commit"
+                  }
+                },
+                {
+                  "key": "haiec.operation",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
+                },
+                {
+                  "key": "haiec.target",
+                  "value": {
+                    "stringValue": "WO-217-4803"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "syn-txn-v2-sys217-wrong-target-001"
+                  }
+                },
+                {
+                  "key": "haiec.event_id",
+                  "value": {
+                    "stringValue": "otlp-sys217-v2-4"
+                  }
+                },
+                {
+                  "key": "haiec.source_qualification",
+                  "value": {
+                    "stringValue": "UNQUALIFIED_SOURCE_INPUT"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            },
+            {
+              "traceId": "e217e217e217e217e217e217e217e217",
+              "spanId": "0505050505050505",
+              "parentSpanId": "0303030303030303",
+              "name": "qms.readback",
+              "startTimeUnixNano": "1792069802400000000",
+              "endTimeUnixNano": "1792069802900000000",
+              "attributes": [
+                {
+                  "key": "gen_ai.agent.id",
+                  "value": {
+                    "stringValue": "synthetic-agent/SYS-217"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "qms.readback"
+                  }
+                },
+                {
+                  "key": "haiec.operation",
+                  "value": {
+                    "stringValue": "mes.work_order.update"
+                  }
+                },
+                {
+                  "key": "haiec.target",
+                  "value": {
+                    "stringValue": "WO-217-4803"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "syn-txn-v2-sys217-wrong-target-001"
+                  }
+                },
+                {
+                  "key": "haiec.event_id",
+                  "value": {
+                    "stringValue": "otlp-sys217-v2-5"
+                  }
+                },
+                {
+                  "key": "haiec.source_qualification",
+                  "value": {
+                    "stringValue": "UNQUALIFIED_SOURCE_INPUT"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_sourceMeta": {
+    "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+    "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
+    "limitations": [
+      "SYNTHETIC_MANUFACTURING_EVIDENCE",
+      "NOT_HAIEC_QUALIFIED",
+      "NOT_REAL_CUSTOMER_EVIDENCE",
+      "NOT_PROOF_OF_FACTORY_EFFECT"
+    ],
+    "signalType": "OTLP_TRACES_JSON",
+    "format": "OpenTelemetry OTLP JSON representation",
+    "caseId": "SYS-217-WRONG_TARGET",
+    "note": "OTLP-shaped synthetic records; not a connected streaming collector or HAIEC-qualified OBSERVED finding"
+  }
+}
