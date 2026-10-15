@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-remediated",
+  "operation": "erp.purchase_order.create",
+  "scenarioMode": "REMEDIATED",
+  "resource": "REQ-2026-8842",
+  "observedResource": "REQ-2026-8842",
+  "unit": "units_on_hand",
+  "scenarioContext": {
+    "supplier": "SUP-SYN-14",
+    "approvedSupplier": "SUP-SYN-02",
+    "duplicatePO": "PO-2026-7708",
+    "currency": "USD",
+    "proposedPO": "PO-2026-7712",
+    "SoD": "BUYER_INDEPENDENT_OF_REQUESTING_AGENT"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-PO12/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-PO12",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-PROCURE",
+    "purchaseOrderUsd": 26500,
+    "buyerReviewThresholdUsd": 15000,
+    "duplicateOrderCandidate": "PO-2026-7708",
+    "spendAuthority": "NOT_APPROVED_BY_HAIEC"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

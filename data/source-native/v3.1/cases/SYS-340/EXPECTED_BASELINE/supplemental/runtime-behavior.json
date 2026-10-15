@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-340",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-340-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-340-expected_baseline",
+  "operation": "qms.quality_disposition.write",
+  "observedAt": "2026-10-14T09:00:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.0",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 1700,
+    "inferenceUsd": 0.026
+  },
+  "toolCall": {
+    "tool": "quality_rework_case",
+    "operation": "qms.quality_disposition.write",
+    "approvedTarget": "LOT-2026-4508",
+    "dispatchedTarget": "LOT-2026-4508",
+    "latencyMs": 330,
+    "retries": 0,
+    "observedAt": "2026-10-14T09:00:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "LOT-2026-4508"
+    ],
+    "firstSeenAlternativeTarget": null
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}

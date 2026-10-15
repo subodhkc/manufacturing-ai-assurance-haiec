@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-340-code",
+  "producerId": "lab-sys-340-code",
+  "operationRef": "qms.quality_disposition.write",
+  "resourceRef": "LOT-2026-4508",
+  "sourceHash": "sha256:ac8c9befe8e94b4eb727b244f785269a12be8fd6abaa1fba0825a4198b50eb34",
+  "toolName": "quality_rework_case",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-340/code/agent-handler.js",
+  "openApiSourceHash": "sha256:a0d685aa246c3427d0ff3c2e80627ce8057a3b998892149d99b4affabd002d1a",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-340",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

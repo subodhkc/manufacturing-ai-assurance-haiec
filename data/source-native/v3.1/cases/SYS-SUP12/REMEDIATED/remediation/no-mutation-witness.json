@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-negative-state-witness-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-remediated-blocked",
+  "sourceId": "lab-sys-sup12-target-ledger",
+  "sourceCustody": "DIFFERENT_EMULATED_COMPONENT_SAME_LAB",
+  "resourceRef": "SI-2026-3302",
+  "observedAt": "2026-10-14T13:30:03.400Z",
+  "before": "RECEIVED",
+  "after": "RECEIVED",
+  "changed": false,
+  "sourceClaim": "NO_MUTATION_IN_EMULATED_LEDGER_ONLY",
+  "qualifiedCustomerNoEffectProof": false
+}

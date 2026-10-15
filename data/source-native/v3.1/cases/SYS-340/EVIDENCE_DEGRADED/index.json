@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-340/EVIDENCE_DEGRADED/case.json",
+  "upstreamCaseDigest": "sha256:b9660ee1024423968b3011bed894528bb6dbca429229bff3f573b111aa111786",
+  "caseId": "SYS-340-EVIDENCE_DEGRADED",
+  "scenarioRunId": "syn-mfg-v3-sys-340-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-340-evidence_degraded",
+  "aiSystemId": "SYS-340",
+  "siteId": "PLANT-A",
+  "scenarioState": "EVIDENCE_DEGRADED",
+  "operation": "qms.quality_disposition.write",
+  "approvedTarget": "LOT-2026-4508",
+  "dispatchedTarget": "LOT-2026-4508",
+  "nativeProfile": "manufacturing_mes_qms_state_v1",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/business-approval.json",
+    "iam": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/iam-candidate.json",
+    "request": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/gateway-dispatch.json",
+    "commit": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/native-commit.json",
+    "readback": null,
+    "continuity": "cases/SYS-340/EVIDENCE_DEGRADED/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-340/EVIDENCE_DEGRADED/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-340/EVIDENCE_DEGRADED/supplemental/domain-context.json"
+  },
+  "remediation": null,
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

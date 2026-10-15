@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-sup12-code",
+  "producerId": "lab-sys-sup12-code",
+  "operationRef": "qms.incoming_lot.disposition",
+  "resourceRef": "SI-2026-3301",
+  "sourceHash": "sha256:4d0f63cf5ec2bf8558004e61273a660e8928efb9517cc1dd70004e2be93e2e92",
+  "toolName": "request_supplier_change",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-SUP12/code/agent-handler.js",
+  "openApiSourceHash": "sha256:5bafc821d0e0dc968a17a1ca6a46a8efe5811003f8bca067a6ef4b1d78186374",
+  "siteId": "PLANT-C",
+  "aiSystemId": "SYS-SUP12",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

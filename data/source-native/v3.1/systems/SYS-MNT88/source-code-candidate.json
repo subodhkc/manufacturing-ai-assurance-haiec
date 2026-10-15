@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-mnt88-code",
+  "producerId": "lab-sys-mnt88-code",
+  "operationRef": "cmms.work_request.create",
+  "resourceRef": "WO-88-2210",
+  "sourceHash": "sha256:fe615d7e5998b050d2a9fcca3e87009fb33bdfc607298dd45a351e5859063f03",
+  "toolName": "propose_cmms_ticket",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-MNT88/code/agent-handler.js",
+  "openApiSourceHash": "sha256:54491b4b096ee4851320789f1763e11758cc0be247951181b566bb7ab189c81b",
+  "siteId": "PLANT-B",
+  "aiSystemId": "SYS-MNT88",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

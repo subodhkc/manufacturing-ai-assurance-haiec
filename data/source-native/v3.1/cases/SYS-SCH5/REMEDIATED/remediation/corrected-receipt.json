@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SCH5",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-sch5-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-sch5-remediated",
+  "operation": "aps.schedule.write",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-SCH5",
+  "policyDigest": "sha256:008a8ef43318445f98bfaa7a79e45889d7d5df6e895798f82f6f603711b6c989",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-sch5-remediated-blocked",
+  "authorizedResource": "SCH-WK42",
+  "dispatchedResource": "SCH-WK42",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-sch5-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T14:30:01.600Z",
+      "target": "SCH-WK43"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T14:30:03.400Z",
+      "target": "SCH-WK43"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T14:30:04.000Z",
+      "target": "SCH-WK42"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T14:30:05.200Z",
+      "target": "SCH-WK42"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

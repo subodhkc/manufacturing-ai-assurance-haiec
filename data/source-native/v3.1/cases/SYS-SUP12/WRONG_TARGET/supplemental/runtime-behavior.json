@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-wrong_target",
+  "operation": "qms.incoming_lot.disposition",
+  "observedAt": "2026-10-14T13:20:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.1",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 24800,
+    "inferenceUsd": 0.37
+  },
+  "toolCall": {
+    "tool": "request_supplier_change",
+    "operation": "qms.incoming_lot.disposition",
+    "approvedTarget": "SI-2026-3301",
+    "dispatchedTarget": "SI-2026-3302",
+    "latencyMs": 920,
+    "retries": 0,
+    "observedAt": "2026-10-14T13:20:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "SI-2026-3301"
+    ],
+    "firstSeenAlternativeTarget": "SI-2026-3302"
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "manufacturing-negative-input-index-v3.1",
+  "synthetic": true,
+  "inputs": [
+    {
+      "id": "cross-org-dispatch",
+      "input": "negative/cross-org-dispatch.json",
+      "changeClass": "TENANT_BOUNDARY",
+      "riskToTest": "Cross-org data cannot bind current test tenant",
+      "oracleVerdict": null
+    },
+    {
+      "id": "readback-resource-mismatch",
+      "input": "negative/readback-resource-mismatch.json",
+      "changeClass": "EXACT_RESOURCE",
+      "riskToTest": "Same transaction but different target",
+      "oracleVerdict": null
+    },
+    {
+      "id": "expired-approval",
+      "input": "negative/expired-approval.json",
+      "changeClass": "TEMPORAL_AUTHORITY",
+      "riskToTest": "Expired approval must not authorize operation",
+      "oracleVerdict": null
+    },
+    {
+      "id": "replayed-approval",
+      "input": "negative/replayed-approval.json",
+      "changeClass": "APPROVAL_REUSE",
+      "riskToTest": "Approval reused across different transaction",
+      "oracleVerdict": null
+    },
+    {
+      "id": "changed-target-with-stale-payload-digest",
+      "input": "negative/changed-target-with-stale-payload-digest.json",
+      "changeClass": "PAYLOAD_INTEGRITY",
+      "riskToTest": "Resource changed without re-signing canonical source digest",
+      "oracleVerdict": null
+    },
+    {
+      "id": "missing-source-identity",
+      "input": "negative/missing-source-identity.json",
+      "changeClass": "PRODUCER_IDENTITY",
+      "riskToTest": "Schema rejects empty required source ID",
+      "oracleVerdict": null
+    },
+    {
+      "id": "collector-heartbeat-gap",
+      "input": "negative/collector-heartbeat-gap.json",
+      "changeClass": "SOURCE_HEALTH",
+      "riskToTest": "Degraded observation coverage",
+      "oracleVerdict": null
+    },
+    {
+      "id": "caller-forged-qualification",
+      "input": "negative/caller-forged-qualification.json",
+      "changeClass": "SOURCE_AUTHORITY",
+      "riskToTest": "Caller flags must never grant authoritative source role",
+      "oracleVerdict": null
+    },
+    {
+      "id": "changed-unapproved-static-hash",
+      "input": "negative/changed-unapproved-static-hash.json",
+      "changeClass": "SOURCE_PINNING",
+      "riskToTest": "Hash differs from approved code source",
+      "oracleVerdict": null
+    },
+    {
+      "id": "same-transaction-foreign-site",
+      "input": "negative/same-transaction-foreign-site.json",
+      "changeClass": "SITE_BINDING",
+      "riskToTest": "Transaction at foreign site cannot satisfy current run",
+      "oracleVerdict": null
+    },
+    {
+      "id": "future-event-clock-skew",
+      "input": "negative/future-event-clock-skew.json",
+      "changeClass": "EVENT_TIME",
+      "riskToTest": "Future source timestamp must not silently substitute receive time",
+      "oracleVerdict": null
+    },
+    {
+      "id": "unsupported-opcua-profile",
+      "input": "negative/unsupported-opcua-profile.json",
+      "changeClass": "DEFERRED_SOURCE_CLASS",
+      "riskToTest": "Do not silently promote OPC UA to effect witness",
+      "oracleVerdict": null
+    },
+    {
+      "id": "agent-scope-escalation",
+      "input": "negative/agent-scope-escalation.json",
+      "changeClass": "AGENT_TO_AGENT_DELEGATION",
+      "riskToTest": "Permission of child tool is not parent delegation",
+      "oracleVerdict": null
+    },
+    {
+      "id": "deny-then-native-mutation",
+      "input": "negative/deny-then-native-mutation.json",
+      "changeClass": "ENFORCEMENT_CONTRADICTION",
+      "riskToTest": "Denial and later mutation must not be called prevented",
+      "oracleVerdict": null
+    }
+  ],
+  "sourceMutationNotExpectedVerdict": true,
+  "materializedCount": 14,
+  "behaviorAssertionsInTestsOnly": true
+}

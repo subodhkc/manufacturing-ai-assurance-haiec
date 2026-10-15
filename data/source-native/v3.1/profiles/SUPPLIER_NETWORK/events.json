@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-industry-simulated-flow-v1",
+  "profileId": "SUPPLIER_NETWORK",
+  "synthetic": true,
+  "simulationOnly": true,
+  "haiecEvaluationId": null,
+  "organizationId": "FICTIONAL_ONLY",
+  "runId": "syn-industry-supplier_network-case-01",
+  "operator": "FICTIONAL_ENTERPRISE_OPERATOR",
+  "businessContext": "Cross-company supplier and procurement operations",
+  "events": [
+    {
+      "step": "SOURCE_SIGNAL",
+      "eventId": "syn-industry-supplier_network-case-01-source",
+      "recordedAt": "2026-10-14T09:00:00.000Z",
+      "detail": "Expired supplier part-revision qualification"
+    },
+    {
+      "step": "AGENT_PROPOSAL",
+      "eventId": "syn-industry-supplier_network-case-01-proposal",
+      "recordedAt": "2026-10-14T09:01:00.000Z",
+      "detail": "Prevent material release and raise review"
+    },
+    {
+      "step": "SIMULATED_REVIEW",
+      "eventId": "syn-industry-supplier_network-case-01-review",
+      "recordedAt": "2026-10-14T09:02:00.000Z",
+      "detail": "Supplier Quality approval"
+    },
+    {
+      "step": "SIMULATED_TARGET_STATUS",
+      "eventId": "syn-industry-supplier_network-case-01-status",
+      "recordedAt": "2026-10-14T09:03:00.000Z",
+      "detail": "Illustrative receiving lot status"
+    }
+  ],
+  "reports": [],
+  "dataOrigin": "SYNTHETIC_SIMULATION_NOT_HAIEC_EVALUATION"
+}

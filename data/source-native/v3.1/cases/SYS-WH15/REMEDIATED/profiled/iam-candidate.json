@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "EFFECTIVELY_GRANTED",
+  "producerId": "lab-sys-wh15-iam-candidate",
+  "principalId": "synthetic-agent/SYS-WH15",
+  "operationScope": [
+    "wms.shipment.confirm"
+  ],
+  "targetScope": [
+    "LOT-2026-4510",
+    "LOT-2026-4511"
+  ],
+  "effectiveFrom": "2026-10-14T16:29:00.000Z",
+  "effectiveTo": "2026-10-14T16:40:00.000Z",
+  "sourceId": "lab-sys-wh15-iam-candidate",
+  "aiSystemId": "SYS-WH15",
+  "siteId": "DC-15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "sourceEventTime": "2026-10-14T16:30:00.900Z",
+  "receivedTime": "2026-10-14T16:30:01.200Z",
+  "effective": false,
+  "completeScope": false,
+  "status": "CANDIDATE_POLICY_NOT_VERIFIED",
+  "missingProviderLayers": [
+    "PERMISSION_BOUNDARY",
+    "SCP",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY"
+  ],
+  "sourceCustody": "FAKE_IAM_POLICY_SOURCE",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

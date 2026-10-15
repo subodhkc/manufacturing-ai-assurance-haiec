@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-agent-runtime-candidate-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "actorPrincipal": "synthetic-agent/SYS-SUP12",
+  "agentDefinitionIds": [
+    "SYS-SUP12-AGENT-1",
+    "SYS-SUP12-AGENT-2"
+  ],
+  "agentInstanceId": "synthetic-instance-SYS-SUP12",
+  "toolProtocol": "TOOL_CALL_INTERFACE_CANDIDATE",
+  "toolManifestDigest": "sha256:5bafc821d0e0dc968a17a1ca6a46a8efe5811003f8bca067a6ef4b1d78186374",
+  "toolName": "request_supplier_change",
+  "operation": "qms.incoming_lot.disposition",
+  "codeReachability": "TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS",
+  "a2a": null
+}

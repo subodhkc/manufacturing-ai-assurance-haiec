@@ -83,3 +83,7 @@ The dashboard's **HAIEC Assurance** page is driven by 27 real, persisted HAIEC e
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/HAIEC-INTEGRATION-HANDOFF.md`](docs/HAIEC-INTEGRATION-HANDOFF.md).
 
 This repository does **not** contain customer data, customer credentials, executable plant commands, auto-deploy to HAIEC Main, unrestricted email delivery (the demo notify path is HAIEC-hosted and recipient-allowlisted), or cron-scheduled writes.
+
+## Source-native v3.1 expanded manufacturer evidence
+
+The additive [v3.1 evidence pack](data/source-native/v3.1/README.md) provides profile-shaped input candidates for all nine systems, 36 scenario runs, four simulation-only industry profiles, distinct remediation receipts and materialized negative inputs. Run `node scripts/generate-source-native-v3-1.cjs --check` to verify the SHA-256 manifest. These are **synthetic unqualified source records**; fresh HAIEC SaaS evaluations and new dashboards/reports remain separate actions. Historical 27 evaluations and v2/v3 artifacts are preserved.

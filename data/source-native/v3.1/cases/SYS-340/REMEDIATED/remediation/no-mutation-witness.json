@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-negative-state-witness-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-340",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-340-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-340-remediated-blocked",
+  "sourceId": "lab-sys-340-target-ledger",
+  "sourceCustody": "DIFFERENT_EMULATED_COMPONENT_SAME_LAB",
+  "resourceRef": "LOT-2026-4509",
+  "observedAt": "2026-10-14T09:30:03.400Z",
+  "before": "PENDING_INSPECTION",
+  "after": "PENDING_INSPECTION",
+  "changed": false,
+  "sourceClaim": "NO_MUTATION_IN_EMULATED_LEDGER_ONLY",
+  "qualifiedCustomerNoEffectProof": false
+}

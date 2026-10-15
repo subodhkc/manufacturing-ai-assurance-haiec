@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-217-code",
+  "producerId": "lab-sys-217-code",
+  "operationRef": "mes.work_order.update",
+  "resourceRef": "WO-217-4802",
+  "sourceHash": "sha256:9991d323af34a274fc66c967e53707f8ab3a60d0d295d88754b752669ef296c9",
+  "toolName": "mes_workorder_client",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-217/code/agent-handler.js",
+  "openApiSourceHash": "sha256:52a5cec26c34cac36f093458372c14e5c5673d6ee31de10b22f906afd4332a74",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-217",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

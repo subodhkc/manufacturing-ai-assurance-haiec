@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "manufacturing-negative-handoff-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "parentAgent": "SYS-FC1-AGENT-1",
+  "childAgent": "SYS-FC1-AGENT-2",
+  "parentScope": [
+    "READ",
+    "RECOMMEND"
+  ],
+  "delegatedChildScope": [
+    "COMMIT",
+    "SCHEDULE"
+  ],
+  "approval": null
+}

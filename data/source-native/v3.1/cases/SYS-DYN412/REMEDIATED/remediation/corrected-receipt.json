@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-remediated",
+  "operation": "test_controller.setpoint.write",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-DYN412",
+  "policyDigest": "sha256:eadb246a1bece10b7852d66ce64725173328a0c5b87d5c7d60f82c10ec228c41",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-dyn412-remediated-blocked",
+  "authorizedResource": "TEST-412/authorized-param-1",
+  "dispatchedResource": "TEST-412/authorized-param-1",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-dyn412-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T15:30:01.600Z",
+      "target": "TEST-412/undelegated-param-4"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T15:30:03.400Z",
+      "target": "TEST-412/undelegated-param-4"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T15:30:04.000Z",
+      "target": "TEST-412/authorized-param-1"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T15:30:05.200Z",
+      "target": "TEST-412/authorized-param-1"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

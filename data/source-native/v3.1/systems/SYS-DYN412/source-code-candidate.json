@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-dyn412-code",
+  "producerId": "lab-sys-dyn412-code",
+  "operationRef": "test_controller.setpoint.write",
+  "resourceRef": "TEST-412/authorized-param-1",
+  "sourceHash": "sha256:c4bd8e186f6276aab86054bf53e2a641a889aa62943d8d14e3c3008db4716f08",
+  "toolName": "propose_setpoint",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-DYN412/code/agent-handler.js",
+  "openApiSourceHash": "sha256:5004c954100172f8b11d722ce26ce6925ce4adccb52476ff63575dc9993739a3",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-DYN412",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

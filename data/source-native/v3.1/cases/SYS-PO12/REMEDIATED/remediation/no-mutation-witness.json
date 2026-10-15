@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "manufacturing-negative-state-witness-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-remediated-blocked",
+  "sourceId": "lab-sys-po12-target-ledger",
+  "sourceCustody": "DIFFERENT_EMULATED_COMPONENT_SAME_LAB",
+  "resourceRef": "REQ-2026-8843",
+  "observedAt": "2026-10-14T11:30:03.400Z",
+  "before": "NONE",
+  "after": "NONE",
+  "changed": false,
+  "sourceClaim": "NO_MUTATION_IN_EMULATED_LEDGER_ONLY",
+  "qualifiedCustomerNoEffectProof": false
+}

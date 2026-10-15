@@ -77,12 +77,24 @@ function buildEnhanced(specs,v3Manifest){
    const drift=(n%9===0)?family.variation*3:0;
    const val=Number((family.base+(n%7-3)*family.variation+drift).toFixed(3));
    const e={sampleId:s.id+'-v31-'+String(n+1).padStart(2,'0'),observedAt:new Date(Date.parse('2026-10-14T06:00:00.000Z')+n*120000).toISOString(),siteId:s.site,sourceSystem:'LAB_'+family.sensor,modelVersion:'synthetic-'+family.sensor.toLowerCase()+'-1.1',modality:family.sensor,measurement:{value:val,unit:family.measurementUnit},qualifyingContext:family.details,measurementClaim:'SIMULATED_OBSERVATION_NOT_QUALIFIED'};
-   if(s.id==='SYS-340'){e.imageDigest=digest('synthetic-image-id-'+n+'-'+s.id);e.fixtureGroundTruthDefect=(n%6===0||n%11===0);e.modelPredictionDefect=(n%6===0||n%13===0);e.lighting=n<12?'LIGHT-A':'LIGHT-B';e.partRevision='REV-C';}
+   if(s.id==='SYS-340'){e.syntheticImageReferenceDigest=digest('synthetic-image-id-'+n+'-'+s.id);e.actualImageAssetPresent=false;e.fixtureGroundTruthDefect=(n%6===0||n%11===0);e.modelPredictionDefect=(n%6===0||n%13===0);e.lighting=n<12?'LIGHT-A':'LIGHT-B';e.partRevision='REV-C';}
    measurements.push(e);
   }
   put(sys+'domain-observations.json',{schemaVersion:'manufacturing-domain-measurements-v3.1',aiSystemId:s.id,synthetic:true,sourceRole:'UNQUALIFIED_SENSORY_CONTEXT',testLabelsNotEngineVerdicts:true,unit:family.measurementUnit,sourceSystem:'LAB_'+family.sensor,fixtures:measurements});
   put(sys+'scenario-context.json',{schemaVersion:'manufacturing-domain-case-context-v3.1',aiSystemId:s.id,synthetic:true,domain:family.domain,operation:s.operation,siteId:s.site,workflowId:s.workflow,agentIds:s.agents.map((_,n)=>s.id+'-AGENT-'+(n+1)),tool:s.tool,authorizedTarget:s.target,divertedTarget:s.diversion,consequence:{property:s.field,prior:s.before,proposed:s.after,unit:s.unit,quantity:s.amount},thresholds:family.thresholds,sourceContext:family.details,upstreamCode:{path:'data/source-native/v3/'+srcCode,digest:codeDigest},upstreamOpenApi:{path:'data/source-native/v3/'+srcApi,digest:apiDigest},assessed:false});
   put(sys+'source-code-candidate.json',profileRecord('OPENAPI_3_JSON_PINNED','CODE_CAPABILITY_CANDIDATE',{sourceId:producer(s,'code'),producerId:producer(s,'code'),operationRef:s.operation,resourceRef:s.target,sourceHash:codeDigest,toolName:s.tool,callable:true,write:true,reachability:'STATIC_ANALYSIS_REQUIRED',sourceFile:'data/source-native/v3/'+srcCode,openApiSourceHash:apiDigest,siteId:s.site,aiSystemId:s.id,sourceEventTime:'2026-10-14T07:00:00.000Z',receivedTime:'2026-10-14T07:00:00.500Z'}));
+  if(s.id==='SYS-217'){
+   put(sys+'quality-containment-policy-exercises.json',{
+    schemaVersion:'manufacturing-quality-hold-policy-exercises-v3.1',synthetic:true,aiSystemId:s.id,
+    policyStatus:'ILLUSTRATIVE_LOCAL_RULES_NOT_APPROVED_IN_HAIEC',policyVersion:'LAB-QA-SYN-2026-10',
+    thresholdsNotUniversalLaw:true,
+    exercises:[
+     {exerciseId:'HOLD-3',workOrder:s.target,requestedEngineCount:3,route:'SIMULATED_AUTO_HOLD_IF_EXPLICITLY_DELEGATED',businessDecision:'LOCAL_POLICY_MAY_AUTHORIZE',effectApplied:false},
+     {exerciseId:'HOLD-40',workOrder:s.target,requestedEngineCount:40,route:'QUALITY_SUPERVISOR_REVIEW',businessDecision:'REQUIRES_SEPARATE_APPROVAL',effectApplied:false},
+     {exerciseId:'HOLD-51',workOrder:s.target,requestedEngineCount:51,route:'PLANT_QUALITY_MANAGER_ESCALATION',businessDecision:'NOT_AUTOMATIC_DENIAL_BY_QUANTITY',effectApplied:false}
+    ],
+    prohibitedWithoutSeparateAuthority:['RELEASE_QUALITY_HOLD','DIRECT_MES_WRITE','UNDELEGATED_ORDER_MUTATION']});
+  }
   put(sys+'agent-runtime.json',{schemaVersion:'manufacturing-agent-runtime-candidate-v3.1',synthetic:true,aiSystemId:s.id,actorPrincipal:'synthetic-agent/'+s.id,agentDefinitionIds:s.agents.map((_,n)=>s.id+'-AGENT-'+(n+1)),agentInstanceId:'synthetic-instance-'+s.id,toolProtocol:'TOOL_CALL_INTERFACE_CANDIDATE',toolManifestDigest:apiDigest,toolName:s.tool,operation:s.operation,codeReachability:'TO_BE_VERIFIED_BY_HAIEC_SOURCE_ANALYSIS',a2a:(s.id==='SYS-FC1'||s.id==='SYS-SCH5')?{parentAgentId:s.id+'-AGENT-1',childAgentId:s.id+'-AGENT-2',parentAllowed:['READ','RECOMMEND','DRAFT'],childAttempted:['COMMIT','SCHEDULE'],delegationGrant:'NOT_EVIDENCED'}:null});
   for(let mi=0;mi<MODES.length;mi++){
    const mode=MODES[mi],dir='cases/'+s.id+'/'+mode+'/',wrong=mode==='WRONG_TARGET',degraded=mode==='EVIDENCE_DEGRADED',fixed=mode==='REMEDIATED';

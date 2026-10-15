@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-industry-simulated-flow-v1",
+  "profileId": "ELECTRICAL_EQUIPMENT",
+  "synthetic": true,
+  "simulationOnly": true,
+  "haiecEvaluationId": null,
+  "organizationId": "FICTIONAL_ONLY",
+  "runId": "syn-industry-electrical_equipment-case-01",
+  "operator": "FICTIONAL_ENTERPRISE_OPERATOR",
+  "businessContext": "Electrical equipment assembly",
+  "events": [
+    {
+      "step": "SOURCE_SIGNAL",
+      "eventId": "syn-industry-electrical_equipment-case-01-source",
+      "recordedAt": "2026-10-14T09:00:00.000Z",
+      "detail": "Wiring torque mismatch and panel inspection"
+    },
+    {
+      "step": "AGENT_PROPOSAL",
+      "eventId": "syn-industry-electrical_equipment-case-01-proposal",
+      "recordedAt": "2026-10-14T09:01:00.000Z",
+      "detail": "Quarantine panel batch"
+    },
+    {
+      "step": "SIMULATED_REVIEW",
+      "eventId": "syn-industry-electrical_equipment-case-01-review",
+      "recordedAt": "2026-10-14T09:02:00.000Z",
+      "detail": "Quality supervisor lot hold"
+    },
+    {
+      "step": "SIMULATED_TARGET_STATUS",
+      "eventId": "syn-industry-electrical_equipment-case-01-status",
+      "recordedAt": "2026-10-14T09:03:00.000Z",
+      "detail": "Illustrative digital QMS panel state"
+    }
+  ],
+  "reports": [],
+  "dataOrigin": "SYNTHETIC_SIMULATION_NOT_HAIEC_EVALUATION"
+}

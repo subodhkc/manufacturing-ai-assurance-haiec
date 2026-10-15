@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-expected_baseline",
+  "operation": "cmms.work_request.create",
+  "scenarioMode": "EXPECTED_BASELINE",
+  "resource": "WO-88-2210",
+  "observedResource": "WO-88-2210",
+  "unit": "mm/s_RMS",
+  "scenarioContext": {
+    "machine": "CNC-CELL-4-SPINDLE",
+    "signal": "BEARING_VIBRATION",
+    "cmmsTicket": "WO-88-2210",
+    "workPerformed": "NOT_EVIDENCED",
+    "equipmentRestart": "NOT_EVIDENCED",
+    "lockoutTagout": "HUMAN_OWNED_AND_NOT_EVIDENCED"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-MNT88/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-MNT88",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-MAINT",
+    "cmmsWorkRequest": "RECORDED_SIMULATED",
+    "maintenanceExecuted": "NOT_EVIDENCED",
+    "equipmentRestart": "NOT_EVIDENCED"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

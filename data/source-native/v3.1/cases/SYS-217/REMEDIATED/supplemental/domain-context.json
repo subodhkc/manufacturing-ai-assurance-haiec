@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-217-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-217-remediated",
+  "operation": "mes.work_order.update",
+  "scenarioMode": "REMEDIATED",
+  "resource": "WO-217-4802",
+  "observedResource": "WO-217-4802",
+  "unit": "Nm",
+  "scenarioContext": {
+    "station": "STN-217",
+    "tool": "DC_NUTRUNNER_7",
+    "calibration": "CAL-SYN-217-R4",
+    "serialFrom": "SN-41002",
+    "serialTo": "SN-41041",
+    "qualityAuthority": "QUALITY_SUPERVISOR",
+    "containmentLimits": [
+      {
+        "quantity": 3,
+        "route": "AUTO_HOLD_IF_APPROVED"
+      },
+      {
+        "quantity": 40,
+        "route": "QUALITY_SUPERVISOR_REVIEW"
+      },
+      {
+        "quantity": 51,
+        "route": "PLANT_QUALITY_MANAGER_REVIEW"
+      }
+    ]
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-217/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-217",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-QUALITY"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

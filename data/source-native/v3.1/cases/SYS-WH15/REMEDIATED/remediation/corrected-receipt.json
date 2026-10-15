@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "siteId": "DC-15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-remediated",
+  "operation": "wms.shipment.confirm",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-WH15",
+  "policyDigest": "sha256:234c595409ecc58f61e1765f6b25dfdf39c6b9649c48e91719f0541e2d3d3a13",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-wh15-remediated-blocked",
+  "authorizedResource": "LOT-2026-4510",
+  "dispatchedResource": "LOT-2026-4510",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-wh15-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T16:30:01.600Z",
+      "target": "LOT-2026-4511"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T16:30:03.400Z",
+      "target": "LOT-2026-4511"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T16:30:04.000Z",
+      "target": "LOT-2026-4510"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T16:30:05.200Z",
+      "target": "LOT-2026-4510"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

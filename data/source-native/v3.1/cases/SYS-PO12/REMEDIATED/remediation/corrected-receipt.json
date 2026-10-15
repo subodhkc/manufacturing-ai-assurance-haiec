@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "manufacturing-corrected-effect-receipt-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-remediated",
+  "operation": "erp.purchase_order.create",
+  "policyVersion": "LAB-POLICY-v3.1-SYS-PO12",
+  "policyDigest": "sha256:fdc84bbd418b2c7bd37a5f0bf5157d8e279c4417e87f48507428273aecda924c",
+  "relatedBlockedAttemptId": "txn-syn-mfg-v3-sys-po12-remediated-blocked",
+  "authorizedResource": "REQ-2026-8842",
+  "dispatchedResource": "REQ-2026-8842",
+  "emulatorReceiptId": "syn-receipt-txn-syn-mfg-v3-sys-po12-remediated",
+  "stageSequence": [
+    {
+      "phase": "DENIED",
+      "time": "2026-10-14T11:30:01.600Z",
+      "target": "REQ-2026-8843"
+    },
+    {
+      "phase": "NO_MUTATION_READBACK",
+      "time": "2026-10-14T11:30:03.400Z",
+      "target": "REQ-2026-8843"
+    },
+    {
+      "phase": "AUTHORIZED_DISPATCH",
+      "time": "2026-10-14T11:30:04.000Z",
+      "target": "REQ-2026-8842"
+    },
+    {
+      "phase": "NATIVE_READBACK",
+      "time": "2026-10-14T11:30:05.200Z",
+      "target": "REQ-2026-8842"
+    }
+  ],
+  "realEnforcementClaim": false,
+  "haiecEvaluated": false
+}

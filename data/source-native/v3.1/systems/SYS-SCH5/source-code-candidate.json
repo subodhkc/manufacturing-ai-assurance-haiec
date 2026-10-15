@@ -1,0 +1,22 @@
+{
+  "sourceProfile": "OPENAPI_3_JSON_PINNED",
+  "claimType": "CODE_CAPABILITY_CANDIDATE",
+  "sourceId": "lab-sys-sch5-code",
+  "producerId": "lab-sys-sch5-code",
+  "operationRef": "aps.schedule.write",
+  "resourceRef": "SCH-WK42",
+  "sourceHash": "sha256:878fe0677cad94f1cde86e25228366763020e6a761cfb298051bb4917642e41f",
+  "toolName": "write_schedule",
+  "callable": true,
+  "write": true,
+  "reachability": "STATIC_ANALYSIS_REQUIRED",
+  "sourceFile": "data/source-native/v3/systems/SYS-SCH5/code/agent-handler.js",
+  "openApiSourceHash": "sha256:b47873c4950644732add1ce72d625f633c2b992fa7570e798f75581aeb69f12e",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-SCH5",
+  "sourceEventTime": "2026-10-14T07:00:00.000Z",
+  "receivedTime": "2026-10-14T07:00:00.500Z",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

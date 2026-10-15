@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "manufacturing-domain-measurements-v3.1",
+  "aiSystemId": "SYS-340",
+  "synthetic": true,
+  "sourceRole": "UNQUALIFIED_SENSORY_CONTEXT",
+  "testLabelsNotEngineVerdicts": true,
+  "unit": "defect_score",
+  "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+  "fixtures": [
+    {
+      "sampleId": "SYS-340-v31-01",
+      "observedAt": "2026-10-14T06:00:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.21,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:fd2ac2350eb5324996fb9b12a7709e6a581e9e79ab9743282a2677c3f8482316",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": true,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-02",
+      "observedAt": "2026-10-14T06:02:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.07,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:8804bfeea11fc0e2f86fb7ca316f778573c1d9c0bb0c038158dfc913194142da",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-03",
+      "observedAt": "2026-10-14T06:04:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.14,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:c2be280ca04e499346129d004bed0ff8b7c51c32c0a59c41cec2871d038db770",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-04",
+      "observedAt": "2026-10-14T06:06:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.21,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:632c4b6c8a4b3f3647c3ac8e81c412760c679a5ecabbd768eb5a498c98d1392e",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-05",
+      "observedAt": "2026-10-14T06:08:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.28,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:26419d816d140a5a0c67d4dddf223f0ed38d9d24e5970ce980c30b38ba9f2ef5",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-06",
+      "observedAt": "2026-10-14T06:10:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.35,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:16ab7334bc4a2451b9e6db39bbf785f1674b240be6475d64686b7510296a47d4",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-07",
+      "observedAt": "2026-10-14T06:12:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.42,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:e6259119d1db3d661a16c01eced48b9e9fe9f42bb20a6886f9fbb2ac651c53f8",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": true,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-08",
+      "observedAt": "2026-10-14T06:14:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:7e0c7e7f02db85b5bf97109f50cb302346bf732854839702cff8734311d3af5d",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-09",
+      "observedAt": "2026-10-14T06:16:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.07,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:65cdb1b4a6a886dee93afc0085294716d26ac8da0f989d12dc030d8f5362584e",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-10",
+      "observedAt": "2026-10-14T06:18:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.35,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:b9948418525eced50b0c11394ab197d88775c75b8897d997f6d9e490e6881ceb",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-11",
+      "observedAt": "2026-10-14T06:20:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.21,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:1bcba07665985199c9adc4600dfb6004106c3a5daa37845941c93b3366506459",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-12",
+      "observedAt": "2026-10-14T06:22:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.28,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:deb1b6fe91477ec4300c47b00a25dcfd614647013098551ba7cde9798329b8d6",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-A",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-13",
+      "observedAt": "2026-10-14T06:24:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.35,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:168b5e34ed6ca7705eb7de8d24177e1d1269c290730d64749ad2a25871289066",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": true,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-14",
+      "observedAt": "2026-10-14T06:26:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.42,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:0e5942d64fea07ed94e9001889f813d03cc2aa845ed49864cdb49260ca1702dc",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": true,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-15",
+      "observedAt": "2026-10-14T06:28:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:f2d2d9f7dd35fb2333473789768f1cd217be3582ff5ccf4e20de46e20fcb3667",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-16",
+      "observedAt": "2026-10-14T06:30:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.07,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:b3869a9c740a194bdefca3f9e6d4610706215a19632dea584acd63a96a939f68",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-17",
+      "observedAt": "2026-10-14T06:32:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.14,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:d39182112684775a54134de6d8649842c5abd32c0b4611223927fa2fd914ac1c",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-18",
+      "observedAt": "2026-10-14T06:34:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.21,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:61fff51534d2891737efe958da50888e27f3d0173f509b6cfe50a35c07e4576e",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-19",
+      "observedAt": "2026-10-14T06:36:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.49,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:9fd13fa3a8b88724a6b17161160afe65f1c68d23992a9032c6fad2d5666ecf89",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": true,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-20",
+      "observedAt": "2026-10-14T06:38:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.35,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:0b4ff20994d71eb89d443c7a70dd4fa4088928aa99229dab8ef88ac17410e2d2",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-21",
+      "observedAt": "2026-10-14T06:40:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.42,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:1e12a89f86ffb2317a70744e3d78b080300d6d823ed30ab2998e84c72f69c9d1",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-22",
+      "observedAt": "2026-10-14T06:42:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:df0e3daebfe44d2276e9ceb314c3b997ef5e08303b2f32c4ae6b4e5bfa1a0247",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-23",
+      "observedAt": "2026-10-14T06:44:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.07,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:e55ea9c0ac9eb018ed98eab6da73e5c04a0cfbe65b2223949d8105cda65cdc3d",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": true,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    },
+    {
+      "sampleId": "SYS-340-v31-24",
+      "observedAt": "2026-10-14T06:46:00.000Z",
+      "siteId": "PLANT-A",
+      "sourceSystem": "LAB_IMAGE_CLASSIFICATION",
+      "modelVersion": "synthetic-image_classification-1.1",
+      "modality": "IMAGE_CLASSIFICATION",
+      "measurement": {
+        "value": 0.14,
+        "unit": "defect_score"
+      },
+      "qualifyingContext": {
+        "camera": "CAM-AL3-2",
+        "model": "vision-casting-syn-r2",
+        "part": "CYL-HEAD",
+        "partRevision": "REV-C",
+        "recipe": "VISION-LIGHT-A",
+        "lightingChange": "LIGHT-B",
+        "independentLabelsPresent": true
+      },
+      "measurementClaim": "SIMULATED_OBSERVATION_NOT_QUALIFIED",
+      "syntheticImageReferenceDigest": "sha256:b5ae53637e73b676ec17865032658cd14b0422800fbc2c0c745806153d66fc88",
+      "actualImageAssetPresent": false,
+      "fixtureGroundTruthDefect": false,
+      "modelPredictionDefect": false,
+      "lighting": "LIGHT-B",
+      "partRevision": "REV-C"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "EFFECTIVELY_GRANTED",
+  "producerId": "lab-sys-mnt88-iam-candidate",
+  "principalId": "synthetic-agent/SYS-MNT88",
+  "operationScope": [
+    "cmms.work_request.create"
+  ],
+  "targetScope": [
+    "WO-88-2210",
+    "WO-88-2211"
+  ],
+  "effectiveFrom": "2026-10-14T12:09:00.000Z",
+  "effectiveTo": "2026-10-14T12:20:00.000Z",
+  "sourceId": "lab-sys-mnt88-iam-candidate",
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "sourceEventTime": "2026-10-14T12:10:00.900Z",
+  "receivedTime": "2026-10-14T12:10:01.200Z",
+  "effective": false,
+  "completeScope": false,
+  "status": "CANDIDATE_POLICY_NOT_VERIFIED",
+  "missingProviderLayers": [
+    "PERMISSION_BOUNDARY",
+    "SCP",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY"
+  ],
+  "sourceCustody": "FAKE_IAM_POLICY_SOURCE",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

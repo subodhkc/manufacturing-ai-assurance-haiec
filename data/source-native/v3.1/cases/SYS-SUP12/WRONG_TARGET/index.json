@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "manufacturing-v3.1-case-index",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3.1",
+  "upstreamWorldVersion": "manufacturing-source-native-v3",
+  "upstreamCasePath": "data/source-native/v3/cases/SYS-SUP12/WRONG_TARGET/case.json",
+  "upstreamCaseDigest": "sha256:c1602d68e89ba8a7e1672a5aefddb8d3075490154fa1b38358f59c6b5a330141",
+  "caseId": "SYS-SUP12-WRONG_TARGET",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-wrong_target",
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioState": "WRONG_TARGET",
+  "operation": "qms.incoming_lot.disposition",
+  "approvedTarget": "SI-2026-3301",
+  "dispatchedTarget": "SI-2026-3302",
+  "nativeProfile": "manufacturing_mes_qms_state_v1",
+  "profiledRecordRefs": {
+    "policy": "cases/SYS-SUP12/WRONG_TARGET/profiled/business-approval.json",
+    "iam": "cases/SYS-SUP12/WRONG_TARGET/profiled/iam-candidate.json",
+    "request": "cases/SYS-SUP12/WRONG_TARGET/profiled/gateway-request.json",
+    "dispatch": "cases/SYS-SUP12/WRONG_TARGET/profiled/gateway-dispatch.json",
+    "commit": "cases/SYS-SUP12/WRONG_TARGET/profiled/native-commit.json",
+    "readback": "cases/SYS-SUP12/WRONG_TARGET/profiled/native-readback.json",
+    "continuity": "cases/SYS-SUP12/WRONG_TARGET/profiled/collector-continuity.json",
+    "runtime": "cases/SYS-SUP12/WRONG_TARGET/supplemental/runtime-behavior.json",
+    "domain": "cases/SYS-SUP12/WRONG_TARGET/supplemental/domain-context.json"
+  },
+  "remediation": null,
+  "evaluation": {
+    "actualHaiecEvaluationId": null,
+    "sourceQualification": "NOT_PERFORMED",
+    "issuedReport": null
+  },
+  "evidenceSubsetCandidates": {
+    "initial": [
+      "request",
+      "dispatch",
+      "continuity"
+    ],
+    "enriched": [
+      "request",
+      "policy",
+      "iam",
+      "dispatch",
+      "commit",
+      "readback",
+      "continuity"
+    ],
+    "sameRawRun": true,
+    "differenceIsSourceCoverageNotRemediation": true
+  },
+  "limitations": [
+    "UNQUALIFIED_SYNTHETIC_INPUT",
+    "FICTITIOUS_SINGLE_LAB_CUSTODY",
+    "NO_LIVE_PROVIDER_IAM_GRANT",
+    "NO_FACTORY_OR_PHYSICAL_EFFECT"
+  ]
+}

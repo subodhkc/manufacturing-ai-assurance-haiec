@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-domain-scenario-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-SCH5",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-sch5-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-sch5-expected_baseline",
+  "operation": "aps.schedule.write",
+  "scenarioMode": "EXPECTED_BASELINE",
+  "resource": "SCH-WK42",
+  "observedResource": "SCH-WK42",
+  "unit": "percent",
+  "scenarioContext": {
+    "scheduleId": "SCH-WK42",
+    "planVersion": "PLAN-SYN-R8",
+    "planner": "PLANNING_SUPERVISOR",
+    "parentAgent": "SYS-SCH5-AGENT-1",
+    "childAgent": "SYS-SCH5-AGENT-2",
+    "routeOptimizerWrite": "DELEGATION_EXPANSION_CANDIDATE"
+  },
+  "sourceMeasurementRefs": [
+    "systems/SYS-SCH5/domain-observations.json"
+  ],
+  "extraEvidence": {
+    "actor": "synthetic-agent/SYS-SCH5",
+    "sourceWorld": "LAB",
+    "degradedCollector": false,
+    "supplyChainOrWorkflow": "WF-PLAN"
+  },
+  "haiecVerdict": "NOT_ASSESSED"
+}

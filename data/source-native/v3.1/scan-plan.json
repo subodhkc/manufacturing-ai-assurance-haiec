@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "manufacturing-scan-handoff-v3.1",
+  "sourceVersion": "manufacturing-source-native-v3.1",
+  "synthetic": true,
+  "upstreamMainCommit": "eda7a6f6df0addbac5d1fef99a67b72f131f83db",
+  "organizationBinding": "ISOLATED_AUTHENTICATED_HAIEC_LAB_ORG",
+  "credentialUse": "ROTATED_SCOPED_SECURE_SECRET_STORE_ONLY",
+  "ordering": [
+    "VERIFY_V3_AND_V3_1_SHA256_MANIFESTS",
+    "REPLACE_ORG_PLACEHOLDER_USING_AUTHENTICATED_TENANT_ID",
+    "REGISTER_AND_QUALIFY_DISTINCT_SOURCE_PRODUCERS",
+    "VALIDATE_SOURCE_PROFILE_CONTRACTS_AND_AUTHORIZATIONS",
+    "PIN_CODE_SOURCE_HASH_AND_RUN_STATIC_ANALYZER",
+    "ACTUALLY_APPROVE_VERSIONED_POLICY_WITH_HAIEC",
+    "INGEST_SAME_CASE_INITIAL_SUBSET_AND_RUN_ASSURANCE",
+    "INGEST_QUALIFIED_ENRICHED_EVIDENCE_AND_RUN_NEW_SNAPSHOT",
+    "RUN_SEPARATE_WRONG_TARGET_DEGRADED_AND_REMEDIATED",
+    "EXPORT_AUTHENTIC_REPORTS_AND_REFRESH_DASHBOARD"
+  ],
+  "cases": [
+    {
+      "aiSystemId": "SYS-217",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-217/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-217-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-217/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-217-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-217/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-217-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-217/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-217-remediated"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-340/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-340-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-340/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-340-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-340/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-340-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-340/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-340-remediated"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-FC1/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-FC1/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-FC1/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-FC1/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-PO12/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-PO12/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-PO12/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-PO12/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-remediated"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-MNT88/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-MNT88/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-MNT88/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-MNT88/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-remediated"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-SUP12/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-SUP12/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-SUP12/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-SUP12/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-remediated"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-SCH5/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-SCH5/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-SCH5/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-SCH5/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-remediated"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-DYN412/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-DYN412/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-DYN412/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-DYN412/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-remediated"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "mode": "EXPECTED_BASELINE",
+      "caseFile": "cases/SYS-WH15/EXPECTED_BASELINE/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-expected_baseline"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "mode": "EVIDENCE_DEGRADED",
+      "caseFile": "cases/SYS-WH15/EVIDENCE_DEGRADED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-evidence_degraded"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "mode": "WRONG_TARGET",
+      "caseFile": "cases/SYS-WH15/WRONG_TARGET/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-wrong_target"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "mode": "REMEDIATED",
+      "caseFile": "cases/SYS-WH15/REMEDIATED/index.json",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated"
+    }
+  ],
+  "expectedInitialAssessments": 9,
+  "fullStateCoverage": 36,
+  "snapshotComparison": "SOURCE_COVERAGE_NOT_REMEDIATION",
+  "historical": "PRESERVE_EXISTING_27_EVALUATIONS_AND_V2_V3_BYTES",
+  "neverIngestAsManufacturingSource": [
+    "case-index-json",
+    "v3-raw-gateway-without-adapter",
+    "model-behavior-supplemental",
+    "negative-inputs-as-ordinary-positive",
+    "sim-industry-events-as-haiec-results"
+  ],
+  "opcjaMtconnectSparkplugB2mml": "DEFERRED_NOT_EFFECT_PROOF"
+}

@@ -1,0 +1,34 @@
+{
+  "sourceProfile": "manufacturing_policy_iam_v1",
+  "claimType": "POLICY_AUTHORIZED",
+  "producerId": "lab-sys-dyn412-business-approval",
+  "principalId": "synthetic-agent/SYS-DYN412",
+  "operationScope": [
+    "test_controller.setpoint.write"
+  ],
+  "targetScope": [
+    "TEST-412/authorized-param-1"
+  ],
+  "effectiveFrom": "2026-10-14T14:59:00.000Z",
+  "effectiveTo": "2026-10-14T15:10:00.000Z",
+  "sourceId": "lab-sys-dyn412-business-approval",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-expected_baseline",
+  "sourceEventTime": "2026-10-14T15:00:00.800Z",
+  "receivedTime": "2026-10-14T15:00:01.100Z",
+  "approvedPolicyId": "LAB-CANDIDATE-v3.1-SYS-DYN412",
+  "approverRef": "synthetic-test-engineering-manager",
+  "completeScope": false,
+  "valid": true,
+  "effective": false,
+  "authorizedActors": [
+    "synthetic-agent/SYS-DYN412"
+  ],
+  "policyDigest": "sha256:eadb246a1bece10b7852d66ce64725173328a0c5b87d5c7d60f82c10ec228c41",
+  "approvalStatus": "SIMULATED_APPROVAL_CANDIDATE_NOT_HAIEC_APPROVED",
+  "sourceCustody": "FICTIONAL_BUSINESS_APPROVAL",
+  "synthetic": true,
+  "trustLevel": "UNQUALIFIED_FIXTURE_CANDIDATE",
+  "sourceWorldVersion": "manufacturing-source-native-v3.1"
+}

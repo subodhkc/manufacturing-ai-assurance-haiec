@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "siteId": "DC-15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-remediated",
+  "operation": "wms.shipment.confirm",
+  "observedAt": "2026-10-14T16:30:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.0",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 1700,
+    "inferenceUsd": 0.026
+  },
+  "toolCall": {
+    "tool": "request_replenishment",
+    "operation": "wms.shipment.confirm",
+    "approvedTarget": "LOT-2026-4510",
+    "dispatchedTarget": "LOT-2026-4510",
+    "latencyMs": 330,
+    "retries": 0,
+    "observedAt": "2026-10-14T16:30:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "LOT-2026-4510"
+    ],
+    "firstSeenAlternativeTarget": null
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}

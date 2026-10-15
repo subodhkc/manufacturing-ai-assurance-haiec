@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "manufacturing-runtime-behavior-source-v3.1",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-217-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-217-remediated",
+  "operation": "mes.work_order.update",
+  "observedAt": "2026-10-14T08:30:07.600Z",
+  "modelId": "sim-agent-model-v1",
+  "modelVersion": "v1.0",
+  "modelContext": "FACTORY_SYNTHETIC",
+  "wholeRun": {
+    "tokens": 1700,
+    "inferenceUsd": 0.026
+  },
+  "toolCall": {
+    "tool": "mes_workorder_client",
+    "operation": "mes.work_order.update",
+    "approvedTarget": "WO-217-4802",
+    "dispatchedTarget": "WO-217-4802",
+    "latencyMs": 330,
+    "retries": 0,
+    "observedAt": "2026-10-14T08:30:04.000Z"
+  },
+  "history": {
+    "windowRuns": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "observedTargets": [
+      "WO-217-4802"
+    ],
+    "firstSeenAlternativeTarget": null
+  },
+  "claimType": "BEHAVIOR_OBSERVATION_ONLY",
+  "externalProviderBilling": "NOT_VERIFIED"
+}
