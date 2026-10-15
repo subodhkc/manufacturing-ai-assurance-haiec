@@ -766,6 +766,12 @@ const SCENARIOS = [
   { id:'DELEGATE', title:'Multi-agent handoff expands authority', area:'Multi-agent', system:'SYS-FC1', intent:'DELEGATE_WRITE',
     desc:'Planning agent hands a schedule-release task to another agent with broader tools. Delegation must narrow scope, never expand it.',
     field:'Handoff breadth (0=within scope, 1=expanded)', unit:'flag', default:1, min:0, max:1, controls:['A03','A08','R03'] },
+  { id:'INCOMING_QC', title:'Expired supplier qualification at receiving', area:'Supplier', system:'SYS-SUP12', intent:'RELEASE_RECEIVING_LOT',
+    desc:'Incoming casting SI-2026-3301 has no current supplier-part-site PPAP approval. The agent may recommend review, not release the receiving lot.',
+    field:'Supplier qualification (0=expired, 1=valid)', unit:'flag', default:0, min:0, max:1, controls:['G06','A03','A06','R03','E01'] },
+  { id:'WMS_HELD_SHIPMENT', title:'Shipment attempts to use quality-held material', area:'Warehouse', system:'SYS-WH15', intent:'CONFIRM_SHIPMENT',
+    desc:'A WMS shipment includes held LOT-2026-4510. Shipment requires qualified QMS disposition, an authorized WMS actor and an effect witness.',
+    field:'Quality hold (1=held, 0=released)', unit:'flag', default:1, min:0, max:1, controls:['A03','A05','R01','R03','E03'] },
   { id:'SPEND', title:'Workflow exceeds whole-run token budget', area:'Spending', system:'SYS-PO12', intent:'EVALUATE_USAGE',
     desc:'Full ordering workflow consumes more provider tokens than its frozen budget. Post-run C16 evaluation.',
     field:'Reconciled whole-run tokens', unit:'tokens', default:24800, min:0, max:1000000, controls:['C16','E01'] }
@@ -1500,7 +1506,9 @@ function pageLab(){
       SUPPLIER:`Vendor must be on approved master with current PPAP.`,
       MAINT:`Urgent recommendations above level 2 require maintenance window authorization.`,
       DELEGATE:`Delegated authority must narrow across agent handoffs, never expand.`,
-      SPEND:`Whole-run cap ${fmt(c.tokenCap)} tokens. Post-run C16 evaluation.`
+      SPEND:`Whole-run cap ${fmt(c.tokenCap)} tokens. Post-run C16 evaluation.`,
+      INCOMING_QC:`Expired supplier/part-site PPAP cannot be bypassed. A valid qualification still requires Supplier Quality authorization for lot release — the browser reviewer cannot grant it.`,
+      WMS_HELD_SHIPMENT:`Quality-held stock cannot ship on a pick recommendation. A released hold still requires qualified QMS disposition and an authorized WMS actor.`
     }[sc.id] || 'Standard policy applies.';
   })();
 
@@ -1519,13 +1527,13 @@ function pageLab(){
   return header({
     eyebrow: 'Decision lab · interactive',
     title: 'Set the boundary. Challenge it. Prove the outcome.',
-    sub: 'The same deterministic decision path across quality containment, release, forecasting, ordering, supplier, delegation and spend. Change a value, run the action, watch what happens.',
+    sub: 'The same deterministic decision path across quality containment, release, forecasting, ordering, supplier, delegation and spend. Change a value, run the action, watch what happens. All decisions here are ILLUSTRATIVE — browser-local simulation only; canonical evaluation conclusions live on the HAIEC Assurance page.',
     actions: `<button class="btn primary" data-act="open-monitor">Open monitoring</button>
               <button class="btn" data-act="export-ledger">Export ledger</button>`
   })
   + `<div class="grid g3">
        <div class="card">
-         <div class="cardhead"><div><h2>Manufacturing cases</h2><p>Ten reproducible scenarios.</p></div></div>
+         <div class="cardhead"><div><h2>Manufacturing cases</h2><p>${SCENARIOS.length} reproducible scenarios — deterministic, browser-local simulation only.</p></div></div>
          <div class="stack" style="max-height:780px;overflow:auto">${scenarioList}</div>
        </div>
        <div class="card span2">
@@ -1625,6 +1633,16 @@ function runScenario(){
   } else if(sc.id === 'DELEGATE'){
     if(v === 1){ decision = 'DENY'; status = 'rejected'; explanation = 'Delegated operation exceeds initiator scope. A2A handoff cannot expand authority.'; }
     else { decision = 'PASS'; status = 'applied'; explanation = 'Delegation narrows correctly. Execution still requires its own policy evidence.'; }
+  } else if(sc.id === 'INCOMING_QC'){
+    if(v === 0){ decision = 'DENY'; status = 'rejected';
+      explanation = 'Supplier/part-site PPAP qualification is expired. A receiving-lot release is never authorized on an agent recommendation; the lot remains quarantined.'; }
+    else { decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
+      explanation = 'Qualification is current, but receiving-lot release requires Supplier Quality authorization — not granted by this browser-local reviewer.'; }
+  } else if(sc.id === 'WMS_HELD_SHIPMENT'){
+    if(v === 1){ decision = 'DENY'; status = 'rejected';
+      explanation = 'LOT-2026-4510 is under quality hold. A pick recommendation cannot ship held stock; the shipment is blocked at the simulated WMS boundary.'; }
+    else { decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
+      explanation = 'Hold is marked released, but shipment still requires a qualified QMS disposition, an authorized WMS actor and an effect witness. Pending — not shipped.'; }
   } else if(sc.id === 'SPEND'){
     if(v > c.tokenCap){ decision = 'NOT_SATISFIED'; status = 'review';
       explanation = `Whole-run ${fmt(v)} tokens exceeds frozen cap of ${fmt(c.tokenCap)}. Post-run C16 evaluation. Already-consumed spend is not blocked retroactively.`;
@@ -1828,7 +1846,7 @@ function pageReports(){
      </div>
      <div class="gap20"></div>
      <div class="card">
-       <div class="cardhead"><div><h2>Local action ledger</h2><p>Every deterministic decision recorded in this session.</p></div>
+       <div class="cardhead"><div><h2>Local action ledger</h2><p>Every deterministic decision recorded in this session. ILLUSTRATIVE — browser-local simulation, not a HAIEC evaluation.</p></div>
          <button class="btn sm" data-act="export-ledger">Export JSON</button>
        </div>
        ${STATE.events.length ? STATE.events.map(e => `
@@ -3538,15 +3556,55 @@ function hxIntegrityChip(){
   const ok=Object.values(HX.verified).filter(Boolean).length;
   return ok===total?pill(`${ok}/${total} digests verified`,'go'):pill(`${ok}/${total} verified — INTEGRITY FAILURE`,'hold');
 }
-function hxOutcomeChip(st){
-  const k=st==='MATCH'?'go':st==='CONTRADICTED'?'hold':st==='INSUFFICIENT_SOURCE'?'warn':'info';
-  return pill(HX_RULE_LABEL[st]||st,k)+` <code class="tiny muted">${esc(st)}</code>`;
+/* A rule outcome is a detector predicate result — never a safety verdict.
+   MATCH means the predicate matched; for MFG-EFF-001 on a wrong-target
+   case that IS the consequential divergence finding. Coloring is kept
+   neutral (info) except CONTRADICTED (hold) and INSUFFICIENT_SOURCE
+   (warn). A verbatim reason containing a divergence is annotated as a
+   finding — the annotation is derived from the exported reason text,
+   not invented here. */
+function hxOutcomeChip(st,reason){
+  const k=st==='CONTRADICTED'?'hold':st==='INSUFFICIENT_SOURCE'?'warn':'info';
+  const div=st==='MATCH'&&/divergen|mismatch|wrong.?target|unapproved|unauthorized|outside/i.test(String(reason||''));
+  return pill(HX_RULE_LABEL[st]||st,k)+` <code class="tiny muted">${esc(st)}</code>`+(div?` ${pill('DIVERGENCE FINDING','hold')}`:'');
 }
+/* UCP control result label — SATISFIED means the independent effect-
+   witness control test passed; it is not an authorization or safety
+   verdict about the operation itself. */
+function hxUcpResultChip(res){
+  const k=res==='SATISFIED'?'go':res==='DENIED'?'hold':res==='NOT_RUN'?'info':'warn';
+  return pill(res||'—',k);
+}
+/* Outbound report links — allow only same-origin-relative HAIEC report
+   paths carrying the exact evaluationId. Rejects absolute URLs, other
+   schemes/hosts, protocol smuggling and markup injection. */
+const HX_LINK_RX=/^\/(reports\/evaluations|api\/(assurance|v1\/assurance)\/evaluations|dashboard\/assurance\/evaluations)\/[^\s"'<>\\]+$/;
 function hxLinks(e){
-  const l=e.links||{};const B=HX.haiecBase;
-  const row=(label,path)=>path?`<a class="btn sm" target="_blank" rel="noopener" href="${B}${path}">${label} ↗</a>`:'';
+  const l=e.links||{};
+  const idOk=(p)=>{try{return decodeURIComponent(String(p)).includes(e.evaluationId);}catch(_){return false;}};
+  const row=(label,path)=>{
+    const ok=typeof path==='string'&&HX_LINK_RX.test(path)&&idOk(path);
+    return ok?`<a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase+path)}">${label} ↗</a>`:`<span class="tiny muted" style="padding:6px 0">${label} — link rejected (unexpected path)</span>`;
+  };
   return `<div class="flex" style="gap:8px;flex-wrap:wrap">${row('Master Report (HTML)',l.html)}${row('Master Report (PDF)',l.pdf)}${row('Report JSON (API)',l.api)}${row('Evaluation detail',l.evaluation)}</div>
   <p class="tiny muted" style="margin-top:8px">Links open the HAIEC-hosted artifacts for the exact evaluation <code>${esc(e.evaluationId)}</code>. Access requires authorization to the owning organization — an unauthorized reader receives HAIEC's normal fail-closed response, never this demo's data.</p>`;
+}
+/* Fail-closed gates — an unverified export can never render assurance
+   content. Pending shows VERIFYING; a failed digest shows
+   INTEGRITY_FAILURE with identity metadata only. */
+function pageEvalVerifying(a){
+  return header({eyebrow:`PROOF / ${a.sourceCase.aiSystemId}`,title:a.sourceCase.caseId,sub:pill('VERIFYING','info')})+
+  `<div class="notice"><div><b>Verifying export integrity</b><p>Recomputing the canonical payload digest before any assurance content is displayed.</p></div></div>`;
+}
+function pageEvalIntegrityFailure(a){
+  return header({eyebrow:`PROOF / ${a.sourceCase.aiSystemId}`,title:a.sourceCase.caseId,sub:pill('INTEGRITY FAILURE','hold'),
+    actions:`<button class="btn" data-act="hx-overview">All systems</button>`})+
+  `<div class="notice warn"><div><b>Export digest failed</b><p>The stored artifact does not match its pinned <code>exportDigest</code>. Dispositions, rule outcomes, receipts and report links are withheld — unverified data is never rendered as HAIEC results.</p></div></div>
+  <div class="card"><table class="tbl"><tbody>
+    <tr><td>Case</td><td><code>${esc(a.sourceCase.caseId)}</code></td></tr>
+    <tr><td>Declared evaluation</td><td><code>${esc(a.evaluation&&a.evaluation.evaluationId||'—')}</code> (untrusted)</td></tr>
+    <tr><td>Pinned exportDigest</td><td class="tiny"><code>${esc(a.exportDigest||'—')}</code></td></tr>
+  </tbody></table></div>`;
 }
 
 function pageEvaluations(){
@@ -3558,12 +3616,14 @@ function pageEvaluations(){
     const cells=HX_STATE_ORDER.map(st=>{
       const a=hxFor(id,st);
       if(!a)return `<td class="hx-cell"><span class="tiny muted">no export</span></td>`;
-      const v=HX.digestsDone&&HX.verified[a.sourceCase.caseId]===false;
+      const v=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
+      if(v===false)return `<td class="hx-cell"><div>${pill('INTEGRITY FAILURE','hold')}</div><div class="tiny muted" style="margin-top:4px">Digest mismatch — assurance content withheld.</div></td>`;
+      if(v!==true)return `<td class="hx-cell"><div>${pill('VERIFYING','info')}</div></td>`;
       return `<td class="hx-cell" data-act="hx-case" data-id="${id}|${a.sourceCase.caseId}" style="cursor:pointer">
         <div>${statusPill(a.evaluation.disposition)}</div>
         <div class="tiny muted" style="margin-top:4px">${esc(a.evaluation.evaluationBasis)}</div>
-        <div class="tiny muted">${a.manufacturing.ruleOutcomes.filter(o=>o.status==='MATCH').length} MATCH · ${(a.manufacturing.controlMaturity?(a.manufacturing.controlMaturity.rows||[]).filter(r=>r.ucpReceiptState==='RECEIPT_BOUND').length:0)} receipt(s)</div>
-        ${v?'<div class="tiny" style="color:#b3261e">digest failed</div>':''}</td>`;
+        <div class="tiny muted">${a.manufacturing.ruleOutcomes.filter(o=>o.status==='MATCH').length} rule match(es) · ${(a.manufacturing.controlMaturity?(a.manufacturing.controlMaturity.rows||[]).filter(r=>r.ucpReceiptState==='RECEIPT_BOUND').length:0)} receipt(s)</div>
+        <div class="tiny muted">digest verified</div></td>`;
     }).join('');
     return `<div class="card"><div class="cardhead"><div><h2>${esc(id)}</h2><p>Three evaluated corpus states — click a cell for the full export.</p></div>${pill('SYNTHETIC','info')}</div>
       <div class="tblwrap"><table class="tbl"><thead><tr><th>Expected baseline</th><th>Wrong target</th><th>Evidence degraded</th></tr></thead><tbody><tr>${cells}</tr></tbody></table></div></div>`;
@@ -3582,7 +3642,10 @@ function pageEvalSystem(systemId){
   const triad=HX_STATE_ORDER.map(st=>[st,hxFor(systemId,st)]);
   const cells=triad.map(([st,a])=>{
     if(!a)return `<td class="hx-cell"><span class="tiny muted">no export</span></td>`;
-    const rules=a.manufacturing.ruleOutcomes.map(o=>`<div class="tiny">${esc(o.ruleId)} ${hxOutcomeChip(o.status)}</div>`).join('');
+    const v=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
+    if(v===false)return `<td class="hx-cell"><div>${pill('INTEGRITY FAILURE','hold')}</div><div class="tiny muted" style="margin-top:4px">Assurance content withheld.</div></td>`;
+    if(v!==true)return `<td class="hx-cell"><div>${pill('VERIFYING','info')}</div></td>`;
+    const rules=a.manufacturing.ruleOutcomes.map(o=>`<div class="tiny">${esc(o.ruleId)} ${hxOutcomeChip(o.status,o.reason)}</div>`).join('');
     return `<td class="hx-cell" style="vertical-align:top"><b>${esc(HX_STATE_LABEL[st])}</b><div style="margin:6px 0">${statusPill(a.evaluation.disposition)}</div>${rules}
       <div class="tiny muted" style="margin-top:6px"><code>${esc(a.evaluation.evaluationId)}</code></div>
       <button class="btn sm" data-act="hx-case" data-id="${systemId}|${a.sourceCase.caseId}" style="margin-top:6px">Open export →</button></td>`;
@@ -3596,14 +3659,16 @@ function pageEvalSystem(systemId){
 function pageEvalCase(a){
   const e=a.evaluation,m=a.manufacturing;
   const verified=HX.digestsDone?HX.verified[a.sourceCase.caseId]:null;
-  const rules=(m.ruleOutcomes||[]).map(o=>`<tr><td><b>${esc(o.ruleId)}</b></td><td>${hxOutcomeChip(o.status)}</td><td class="tiny muted">${(o.evidenceRefs||[]).map(x=>`<code>${esc(x)}</code>`).join(' ')}</td></tr>`).join('');
+  if(verified===null)return pageEvalVerifying(a);
+  if(verified!==true)return pageEvalIntegrityFailure(a);
+  const rules=(m.ruleOutcomes||[]).map(o=>`<tr><td><b>${esc(o.ruleId)}</b></td><td>${hxOutcomeChip(o.status,o.reason)}<div class="tiny muted" style="margin-top:2px">${esc(o.reason||'')}</div></td><td class="tiny muted">${(o.evidenceRefs||[]).map(x=>`<code>${esc(x)}</code>`).join(' ')}</td></tr>`).join('');
   const facet=m.controlMaturity;
-  const rows=facet?(facet.rows||[]).map(r=>`<tr><td>${esc(r.controlId||'')}</td><td>${esc(r.ucpResult||'—')}</td><td>${esc(r.ucpReceiptState||'EVALUATED_NO_RECEIPT')}</td><td class="tiny muted">${r.facets?Object.entries(r.facets).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(' '):'—'}</td></tr>`).join(''):'';
+  const rows=facet?(facet.rows||[]).map(r=>`<tr><td>${esc(r.controlId||'')}</td><td>${hxUcpResultChip(r.ucpResult)}</td><td>${esc(r.ucpReceiptState||'EVALUATED_NO_RECEIPT')}</td><td class="tiny muted">${r.facets?Object.entries(r.facets).map(([k,v])=>`${esc(k)}=${esc(v)}`).join(' '):'—'}</td></tr>`).join(''):'';
   const q=e.fourQuestions||{};
   const qRows=Object.entries(q).map(([k,v])=>`<tr><td class="tiny">${esc(k)}</td><td class="tiny">${esc(typeof v==='object'?JSON.stringify(v):String(v))}</td></tr>`).join('');
   return header({eyebrow:`PROOF / ${a.sourceCase.aiSystemId} / ${HX_STATE_LABEL[a.sourceCase.scenarioState]||a.sourceCase.scenarioState}`,
     title:`${a.sourceCase.caseId}`,
-    sub:`${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')} ${verified===true?pill('digest verified','go'):verified===false?pill('DIGEST FAILED','hold'):pill('digest check pending','info')}`,
+    sub:`${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')} ${pill('digest verified','go')}`,
     actions:`<button class="btn" data-act="hx-system" data-id="${a.sourceCase.aiSystemId}">← ${a.sourceCase.aiSystemId}</button><button class="btn" data-act="hx-overview">All systems</button>`})+
   `<div class="card"><div class="cardhead"><div><h2>Evaluation identity</h2></div></div>
     <table class="tbl"><tbody>
@@ -3615,9 +3680,11 @@ function pageEvalCase(a){
     <tr><td>Methodology / report</td><td>${esc(e.methodologyVersion||'—')} · ${esc(e.reportVersion||'—')}</td></tr>
     </tbody></table></div>
   <div class="card"><div class="cardhead"><div><h2>Manufacturing rule outcomes</h2><p>Persisted detout outcomes, verbatim. INSUFFICIENT_SOURCE is honest absence — never a score.</p></div></div>
-    <div class="tblwrap"><table class="tbl"><thead><tr><th>Rule</th><th>Status</th><th>Bound evidence</th></tr></thead><tbody>${rules||'<tr><td colspan=3 class="tiny muted">no rule outcomes bound</td></tr>'}</tbody></table></div></div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Rule</th><th>Status</th><th>Bound evidence</th></tr></thead><tbody>${rules||'<tr><td colspan=3 class="tiny muted">no rule outcomes bound</td></tr>'}</tbody></table></div>
+    <p class="tiny muted" style="margin-top:8px">A rule MATCH means its predicate matched — a finding to evaluate, not a pass. Whether an effect was witnessed and whether it matches the authorized target are separate questions; see the control-maturity facet and the overall disposition.</p></div>
   ${facet?`<div class="card"><div class="cardhead"><div><h2>Control-maturity facet</h2><p>${facet.qualifiedObservationCount} qualified / ${facet.rejectedObservationCount} rejected observations · bound batches ${esc((facet.boundBatchIds||[]).join(', '))}</p></div></div>
     <div class="tblwrap"><table class="tbl"><thead><tr><th>Control</th><th>UCP result</th><th>Receipt state</th><th>Facets</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="tiny muted" style="margin-top:8px">UCP result is the independent effect-witness control test for the control (R01 action-lifecycle traceability) — <b>SATISFIED means the effect was witnessed with receipt-bound independent evidence; it is not an authorization or safety verdict on the operation.</b> The evaluation disposition above is the canonical outcome.</p>
     ${(facet.limitations||[]).length?`<p class="tiny muted" style="margin-top:8px">${facet.limitations.map(esc).join(' · ')}</p>`:''}</div>`
   :`<div class="notice"><div><b>ABSENT_FACET</b><p>No manufacturing control-maturity facet is bound to this evaluation — absent, not zero.</p></div></div>`}
   ${qRows?`<div class="card"><div class="cardhead"><div><h2>Four assurance questions</h2></div></div><div class="tblwrap"><table class="tbl"><tbody>${qRows}</tbody></table></div></div>`:''}
@@ -3628,6 +3695,10 @@ function pageEvalCase(a){
 function pageStation217(){
   const b=HXDATA&&HXDATA.station217;
   if(!b)return header({eyebrow:'PROOF / STATION 217',title:'Replay bundle missing',sub:'Run node packages/station217/src/export-bundle.cjs then scripts/build-dashboard-data.cjs.'});
+  if(!HX.digestsDone)return header({eyebrow:'PROOF / STATION 217',title:'Station 217 — deterministic local replay',sub:pill('VERIFYING','info')})+
+    `<div class="notice"><div><b>Verifying replay-bundle integrity</b><p>Recomputing the bundle digest before any replay content is displayed.</p></div></div>`;
+  if(HX.stationVerified!==true)return header({eyebrow:'PROOF / STATION 217',title:'Station 217 — deterministic local replay',sub:pill('INTEGRITY FAILURE','hold')})+
+    `<div class="notice warn"><div><b>Replay-bundle digest failed</b><p>The stored bundle does not match its pinned digest <code>${esc(b.digest||'—')}</code>. Case content, ledger readbacks and audit trails are withheld — an unverified replay is never presented as simulator truth.</p></div></div>`;
   const sel=HX.s217case&&(b.cases||[]).find(c=>c.id===HX.s217case)?HX.s217case:(b.cases[0]&&b.cases[0].id);
   const c=(b.cases||[]).find(x=>x.id===sel);
   const tabs=(b.cases||[]).map(x=>`<button class="btn sm ${x.id===sel?'primary':''}" data-act="s217-case" data-id="${x.id}">${esc(x.id)}</button>`).join('');
@@ -3636,7 +3707,7 @@ function pageStation217(){
   const base=hxFor('SYS-217','EXPECTED_BASELINE');
   return header({eyebrow:'PROOF / STATION 217 / SYNTHETIC REPLAY',title:'Station 217 — deterministic local replay',
     sub:'Six synthetic broker cases replayed offline and pinned by digest. A UI click selects a precomputed case — it can never authorize, dispatch or modify anything. Not a HAIEC evaluation; not a plant interlock.',
-    actions:HX.digestsDone?(HX.stationVerified?pill('bundle digest verified','go'):pill('BUNDLE DIGEST FAILED','hold')):pill('digest check pending','info')})+
+    actions:pill('bundle digest verified','go')})+
   `<div class="notice"><div><b>Truth boundary</b><p>${(b.limitations||[]).map(esc).join(' · ')}</p><p class="tiny muted">issuer ${esc(b.issuer)} · policy <code>${esc(b.policyDigest)}</code> · bundle <code>${esc(b.digest)}</code></p></div></div>
   <div class="card"><div class="cardhead"><div><h2>Cases</h2></div></div><div class="flex" style="gap:8px;flex-wrap:wrap">${tabs}</div></div>
   ${c?`<div class="card"><div class="cardhead"><div><h2>${esc(c.id)}</h2><p>Requested → simulated policy decision → dispatch → synthetic ledger readback.</p></div>${pill('SYNTHETIC_LOCAL_FIXTURE','warn')}</div>
@@ -3649,7 +3720,7 @@ function pageStation217(){
     <tr><td>Alternate target readback</td><td class="tiny"><code>${esc(JSON.stringify(rb.alternate||null))}</code></td></tr>
     </tbody></table>
     <div class="tblwrap" style="margin-top:10px"><table class="tbl"><thead><tr><th>Audit event</th><th>Payload</th></tr></thead><tbody>${ev||'<tr><td colspan=2 class="tiny muted">no audit events</td></tr>'}</tbody></table></div></div>`:''}
-  ${base?`<div class="card"><div class="cardhead"><div><h2>Associated HAIEC evaluation</h2><p>The SYS-217 expected-baseline corpus case — what the canonical engine actually evaluated from this world.</p></div></div>
+  ${base&&HX.verified[base.sourceCase.caseId]===true?`<div class="card"><div class="cardhead"><div><h2>Associated HAIEC evaluation</h2><p>The SYS-217 expected-baseline corpus case — what the canonical engine actually evaluated from this world.</p></div></div>
     <button class="btn" data-act="hx-case" data-id="SYS-217|${base.sourceCase.caseId}">Open ${esc(base.sourceCase.caseId)} export →</button>
     <p class="tiny muted" style="margin-top:8px">The replay bundle above is simulator output (<code>${esc(b.schemaVersion)}</code>) — HAIEC evaluated the independent source-world records, not this local ledger.</p></div>`:''}`;
 }

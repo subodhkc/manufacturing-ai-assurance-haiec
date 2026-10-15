@@ -63,7 +63,7 @@ function loadDashboard() {
   for (const b of blocks) vm.runInContext(b, sandbox);
   // Top-level const/let stays lexical in the context — capture test handles.
   const T = vm.runInContext(
-    '({ STATE, HX, HXDATA, render, pageEvaluations, pageStation217, pageEvalCase })',
+    '({ STATE, HX, HXDATA, render, pageEvaluations, pageStation217, pageEvalCase, hxVerifyAll, SCENARIOS })',
     sandbox,
   );
   return { sandbox, elements, T };
@@ -85,6 +85,7 @@ test('evaluations page renders all nine systems from verified exports', async ()
 
 test('case drill-down renders verbatim rule outcomes + facet, no recompute', async () => {
   const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
   T.HX.caseId = 'SYS-217-EXPECTED_BASELINE';
   T.STATE.page = 'evaluations';
   T.render();
@@ -101,8 +102,9 @@ test('case drill-down renders verbatim rule outcomes + facet, no recompute', asy
   assert.doesNotMatch(html, /expected findings/i);
 });
 
-test('wrong-target case displays the evaluated divergence verbatim', () => {
+test('wrong-target case displays the evaluated divergence verbatim — MATCH is a finding, not green pass', async () => {
   const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
   T.HX.caseId = 'SYS-217-WRONG_TARGET';
   T.STATE.page = 'evaluations';
   T.render();
@@ -111,10 +113,40 @@ test('wrong-target case displays the evaluated divergence verbatim', () => {
   assert.ok(html.includes('WRONG_TARGET') || html.includes('Wrong target'));
   const eff = a.manufacturing.ruleOutcomes.find((o) => o.ruleId === 'MFG-EFF-001');
   assert.ok(html.includes(eff.status), 'MFG-EFF-001 outcome not shown verbatim');
+  assert.ok(html.includes('qualified target divergence'), 'MFG-EFF-001 divergence reason not rendered');
+  assert.ok(html.includes('DIVERGENCE FINDING'), 'wrong-target MATCH must be marked a divergence finding, not a green pass');
 });
 
-test('degraded case shows honest insufficient coverage, never a pass', () => {
+test('a failed export digest blocks the detail view — no untrusted assurance content', async () => {
   const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.verified['SYS-217-EXPECTED_BASELINE'] = false;
+  T.HX.caseId = 'SYS-217-EXPECTED_BASELINE';
+  T.STATE.page = 'evaluations';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('INTEGRITY FAILURE'), 'must show INTEGRITY FAILURE');
+  for (const o of T.HXDATA.exportMap['SYS-217-EXPECTED_BASELINE'].manufacturing.ruleOutcomes) {
+    assert.ok(!html.includes(o.ruleId), `withheld content leaked: ${o.ruleId}`);
+  }
+  assert.ok(!html.includes('Master Report (HTML)'), 'report links must be withheld');
+  assert.ok(!html.includes('RECEIPT_BOUND'), 'receipt state must be withheld');
+});
+
+test('pending verification shows VERIFYING, never renders findings early', () => {
+  const { elements, T } = loadDashboard();
+  // digests NOT awaited — digestsDone is false
+  T.HX.caseId = 'SYS-217-EXPECTED_BASELINE';
+  T.STATE.page = 'evaluations';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('VERIFYING'));
+  assert.ok(!html.includes('RECEIPT_BOUND'), 'findings must not render before verification');
+});
+
+test('degraded case shows honest insufficient coverage, never a pass', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
   T.HX.caseId = 'SYS-217-EVIDENCE_DEGRADED';
   T.STATE.page = 'evaluations';
   T.render();
@@ -123,8 +155,9 @@ test('degraded case shows honest insufficient coverage, never a pass', () => {
   assert.doesNotMatch(html, />PASS</);
 });
 
-test('station217 page renders all six replay cases with synthetic labels', () => {
+test('station217 page renders all six replay cases with synthetic labels', async () => {
   const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
   T.STATE.page = 'station217';
   T.render();
   const html = elements.get('main').innerHTML;
@@ -134,8 +167,9 @@ test('station217 page renders all six replay cases with synthetic labels', () =>
   assert.doesNotMatch(html, /real plant|factory authorized/i);
 });
 
-test('station217 case switch shows wrong-target divergence and missing-witness honesty', () => {
+test('station217 case switch shows wrong-target divergence and missing-witness honesty', async () => {
   const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
   T.STATE.page = 'station217';
   T.HX.s217case = 'wrong-target';
   T.render();
@@ -145,6 +179,24 @@ test('station217 case switch shows wrong-target divergence and missing-witness h
   T.render();
   html = elements.get('main').innerHTML;
   assert.ok(html.includes('EFFECT_UNKNOWN') || html.includes('missing'), 'missing readback must not show green');
+});
+
+test('station217 fails closed on bundle digest failure — no case content', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.stationVerified = false;
+  T.STATE.page = 'station217';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('INTEGRITY FAILURE'), 'bundle failure must show INTEGRITY FAILURE');
+  for (const c of T.HXDATA.station217.cases) assert.ok(!html.includes(`>${c.id}<`), `case ${c.id} must not render`);
+});
+
+test('all twelve repository scenarios are present in the dashboard', async () => {
+  const { T } = loadDashboard();
+  assert.equal(T.SCENARIOS.length, 12);
+  const ids = T.SCENARIOS.map((s) => s.id);
+  assert.ok(ids.includes('INCOMING_QC') && ids.includes('WMS_HELD_SHIPMENT'), 'missing Sprint-14.1 scenarios');
 });
 
 test('all 27 exports in the bundle have verified digests at build', () => {

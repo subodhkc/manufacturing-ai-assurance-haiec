@@ -1,5 +1,19 @@
 # HAIEC Manufacturing Semantic Pack v0.1.0 — public, proposed
 
+> **Current implementation-status overlay (2026-10-15, Sprint 14.1).**
+> The specification below is preserved as the historical v0.1.0 contract.
+> Since its writing, canonical HAIEC (`haiec-website` Main ≥ `7c72782ec`)
+> shipped the manufacturing evidence path this pack proposed: registered
+> V2 payload-bound upstream emitters, deterministic `MFG-*` rule
+> adjudication, the control-maturity facet and native UCP receipts.
+> This repository now carries 27 persisted, digest-pinned HAIEC
+> evaluations of the synthetic source world under `data/evaluations/`
+> and consumes them through `contracts/haiec-evaluation-export/v1.0.0`.
+> The v0.1.0 artifacts below remain a *proposed public interface* —
+> they were not the deployed pack, and the blind C2 acceptance gate
+> described here is still intentionally unrun (comparator fails closed
+> without an authenticated canonical export in its own format).
+
 **Status: CONTRACT SPECIFICATION / NOT HAIEC-REGISTERED / NOT AN ENGINE VERDICT.**
 
 This folder formalizes [Research R-A](https://docs.google.com/document/d/1tsyu4YtZt1E9B1vETHoeuRpRCeFQHc6gZF4_zNECHMU/edit) (bounded ISA-95-inspired entities and relations) and [Research R-C](https://docs.google.com/document/d/1db6jg3jkNUVOZomB5B0VqmNnwk_N-2SpVrqND_KuCwI/edit) (deterministic detector rules). It is a *versioned public interface proposal*. Canonical HAIEC evidence admission, semantic state, scan/evaluation, U5/DAI, UCP and MCP remain in private `subodhkc/haiec-website` Main.
