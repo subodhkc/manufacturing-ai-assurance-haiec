@@ -1,0 +1,15 @@
+{
+  "Version": "2012-10-17",
+  "Id": "synthetic-iam-SYS-SUP12",
+  "Statement": [
+    {
+      "Sid": "SourceOnlyToolCandidate",
+      "Effect": "Allow",
+      "Action": "execute-api:Invoke",
+      "Resource": "arn:aws:execute-api:us-east-1:000000000000:synthetic/QMS/*"
+    }
+  ],
+  "sourceType": "AWS_STYLE_FIXTURE_NOT_AWS_API",
+  "sourceRole": "CANDIDATE_UNQUALIFIED",
+  "principal": "synthetic-agent/SYS-SUP12"
+}

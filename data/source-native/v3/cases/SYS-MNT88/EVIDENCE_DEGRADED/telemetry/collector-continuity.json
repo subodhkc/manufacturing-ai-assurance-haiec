@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "manufacturing-collector-continuity-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "collectorId": "synthetic-collector-SYS-MNT88",
+  "coverageWindow": {
+    "start": "2026-10-14T12:09:58.000Z",
+    "end": "2026-10-14T12:10:10.000Z"
+  },
+  "expectedSpanCount": 5,
+  "receivedSpanCount": 4,
+  "receivedSpanIds": [
+    "0000000000000001",
+    "0000000000000002",
+    "0000000000000003",
+    "0000000000000004"
+  ],
+  "lastSequence": 4,
+  "heartbeatStatus": "MISSING_IN_INJECTED_TEST",
+  "gapReason": "READBACK_AND_HEARTBEAT_NOT_RECEIVED",
+  "sourceRole": "COLLECTOR_COVERAGE_CANDIDATE",
+  "custody": "SYNTHETIC_LAB"
+}

@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "manufacturing-measurement-fixture-v3",
+  "synthetic": true,
+  "sourceRole": "SENSOR_RECORD_CANDIDATE",
+  "aiSystemId": "SYS-340",
+  "measurementBasis": "SEE_DOMAIN_UNIT_AND_SAMPLE_IDS",
+  "holdoutSampleCount": 24,
+  "fixtures": [
+    {
+      "sampleId": "syn-SYS-340-sample-01",
+      "recordedAt": "2026-10-14T06:00:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 50,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": true
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-02",
+      "recordedAt": "2026-10-14T06:02:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 43,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-03",
+      "recordedAt": "2026-10-14T06:04:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 44,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-04",
+      "recordedAt": "2026-10-14T06:06:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 45,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-05",
+      "recordedAt": "2026-10-14T06:08:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 46,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-06",
+      "recordedAt": "2026-10-14T06:10:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 42,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-07",
+      "recordedAt": "2026-10-14T06:12:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 43,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": true
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-08",
+      "recordedAt": "2026-10-14T06:14:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 44,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-09",
+      "recordedAt": "2026-10-14T06:16:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 45,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-10",
+      "recordedAt": "2026-10-14T06:18:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 54,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-11",
+      "recordedAt": "2026-10-14T06:20:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 42,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-12",
+      "recordedAt": "2026-10-14T06:22:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 43,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-13",
+      "recordedAt": "2026-10-14T06:24:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 44,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": true
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-14",
+      "recordedAt": "2026-10-14T06:26:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 45,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": true
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-15",
+      "recordedAt": "2026-10-14T06:28:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 46,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-16",
+      "recordedAt": "2026-10-14T06:30:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 42,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-17",
+      "recordedAt": "2026-10-14T06:32:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 43,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-18",
+      "recordedAt": "2026-10-14T06:34:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 44,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-19",
+      "recordedAt": "2026-10-14T06:36:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 53,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": true
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-20",
+      "recordedAt": "2026-10-14T06:38:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 46,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-21",
+      "recordedAt": "2026-10-14T06:40:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 42,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-22",
+      "recordedAt": "2026-10-14T06:42:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 43,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-23",
+      "recordedAt": "2026-10-14T06:44:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 44,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": true,
+      "modelPrediction": false
+    },
+    {
+      "sampleId": "syn-SYS-340-sample-24",
+      "recordedAt": "2026-10-14T06:46:00.000Z",
+      "siteId": "PLANT-A",
+      "operation": "qms.quality_disposition.write",
+      "unit": "part",
+      "observedValue": 45,
+      "modelVersion": "synthetic-model-1.0",
+      "context": {
+        "partRevision": "REV-C",
+        "lighting": "LIGHTING-A"
+      },
+      "independentFixtureLabel": false,
+      "modelPrediction": false
+    }
+  ],
+  "interpretation": "GROUND_TRUTH_LABELS_IN_VISION_FIXTURE_ARE_TEST_LABELS_NOT_ENGINE_VERDICTS"
+}

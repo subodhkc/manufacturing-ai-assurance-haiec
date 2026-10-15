@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-340",
+  "scenarioRunId": "syn-mfg-v3-sys-340-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-340-remediated",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-340-remediated-request",
+    "actor": "synthetic-agent/SYS-340",
+    "operation": "qms.quality_disposition.write",
+    "target": "LOT-2026-4508",
+    "requestedQuantity": 20,
+    "unit": "part",
+    "requestedAt": "2026-10-14T09:30:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-340-remediated-approval",
+    "approver": "synthetic-quality-manager",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-340",
+    "operation": "qms.quality_disposition.write",
+    "authorizedTargets": [
+      "LOT-2026-4508"
+    ],
+    "quantityMax": 20,
+    "validFrom": "2026-10-14T09:29:00.000Z",
+    "validUntil": "2026-10-14T09:40:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-340-remediated-gate",
+    "policyRef": "systems/SYS-340/authority/operating-envelope.proposal.json",
+    "requestedTarget": "LOT-2026-4508",
+    "dispatchedTarget": "LOT-2026-4508",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T09:30:01.800Z",
+    "blockedAttempts": [
+      {
+        "eventId": "txn-syn-mfg-v3-sys-340-remediated-blocked",
+        "target": "LOT-2026-4509",
+        "decision": "SIMULATED_DENY_OUTSIDE_DELEGATION",
+        "mutationApplied": false
+      }
+    ]
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

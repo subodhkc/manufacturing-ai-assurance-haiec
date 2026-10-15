@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "manufacturing-scan-handoff-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "scanTarget": "ISOLATED_HAIEC_MANUFACTURING_LAB",
+  "minimumSafeScopes": [
+    "evidence:write",
+    "assurance:run",
+    "report:read"
+  ],
+  "credentials": "SECURE_SECRET_STORE_ONLY_NO_CREDS_IN_REPOSITORY",
+  "scanOrdering": [
+    "VERIFY_MANIFEST_AND_SOURCE_INDEPENDENCE",
+    "REGISTER_SYNTHETIC_PRODUCERS_AND_TENANT",
+    "RECONCILE_PROFILE_SCHEMAS_AND_SOURCE_CLASSES",
+    "REVIEW_AND_APPROVE_VERSIONED_ENVELOPE_IN_HAIEC",
+    "RUN_FRESH_V3_BASELINE_SNAPSHOT",
+    "ADD_ELIGIBLE_QUALIFIED_SOURCE_RECORDS_AND_RUN_ENRICHED",
+    "RUN_SEPARATE_REMEDIATED_EVALUATION",
+    "EXPORT_AUTHENTIC_CANONICAL_REPORTS",
+    "BIND_NEW_EVALUATION_DATA_TO_DASHBOARD_WITHOUT_OVERWRITING_V1"
+  ],
+  "caseCount": 36,
+  "caseFiles": [
+    {
+      "aiSystemId": "SYS-217",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-217-expected_baseline",
+      "caseFile": "cases/SYS-217/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-217-evidence_degraded",
+      "caseFile": "cases/SYS-217/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-217-wrong_target",
+      "caseFile": "cases/SYS-217/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-217",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-217-remediated",
+      "caseFile": "cases/SYS-217/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-340-expected_baseline",
+      "caseFile": "cases/SYS-340/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-340-evidence_degraded",
+      "caseFile": "cases/SYS-340/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-340-wrong_target",
+      "caseFile": "cases/SYS-340/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-340",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-340-remediated",
+      "caseFile": "cases/SYS-340/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-expected_baseline",
+      "caseFile": "cases/SYS-FC1/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-evidence_degraded",
+      "caseFile": "cases/SYS-FC1/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-wrong_target",
+      "caseFile": "cases/SYS-FC1/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-FC1",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated",
+      "caseFile": "cases/SYS-FC1/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-expected_baseline",
+      "caseFile": "cases/SYS-PO12/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-evidence_degraded",
+      "caseFile": "cases/SYS-PO12/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-wrong_target",
+      "caseFile": "cases/SYS-PO12/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-PO12",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+      "caseFile": "cases/SYS-PO12/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-expected_baseline",
+      "caseFile": "cases/SYS-MNT88/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded",
+      "caseFile": "cases/SYS-MNT88/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-wrong_target",
+      "caseFile": "cases/SYS-MNT88/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-MNT88",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-mnt88-remediated",
+      "caseFile": "cases/SYS-MNT88/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-expected_baseline",
+      "caseFile": "cases/SYS-SUP12/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-evidence_degraded",
+      "caseFile": "cases/SYS-SUP12/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-wrong_target",
+      "caseFile": "cases/SYS-SUP12/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SUP12",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-sup12-remediated",
+      "caseFile": "cases/SYS-SUP12/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-expected_baseline",
+      "caseFile": "cases/SYS-SCH5/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-evidence_degraded",
+      "caseFile": "cases/SYS-SCH5/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-wrong_target",
+      "caseFile": "cases/SYS-SCH5/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-SCH5",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-sch5-remediated",
+      "caseFile": "cases/SYS-SCH5/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-expected_baseline",
+      "caseFile": "cases/SYS-DYN412/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-evidence_degraded",
+      "caseFile": "cases/SYS-DYN412/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-wrong_target",
+      "caseFile": "cases/SYS-DYN412/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-DYN412",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-dyn412-remediated",
+      "caseFile": "cases/SYS-DYN412/REMEDIATED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "scenarioState": "EXPECTED_BASELINE",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-expected_baseline",
+      "caseFile": "cases/SYS-WH15/EXPECTED_BASELINE/case.json"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "scenarioState": "EVIDENCE_DEGRADED",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-evidence_degraded",
+      "caseFile": "cases/SYS-WH15/EVIDENCE_DEGRADED/case.json"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "scenarioState": "WRONG_TARGET",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-wrong_target",
+      "caseFile": "cases/SYS-WH15/WRONG_TARGET/case.json"
+    },
+    {
+      "aiSystemId": "SYS-WH15",
+      "scenarioState": "REMEDIATED",
+      "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+      "caseFile": "cases/SYS-WH15/REMEDIATED/case.json"
+    }
+  ],
+  "expectationPolicy": "NEVER_USE_GOLDEN_SCENARIOS_OR_REFERENCE_FINDINGS_AS_SOURCE",
+  "historical": "KEEP_ORIGINAL_27_EVALUATIONS_IMMUTABLE",
+  "reporting": "NEW_EVALUATION_IDS_ONLY",
+  "demonstration": "Full intended customer experience can use independent synthetic simulation; HAIEC verdicts come only from the canonical evaluator."
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "manufacturing-source-producer-registry-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "provenance": "MULTIPLE_EMULATED_PRODUCERS_COMMON_LAB_CUSTODY",
+  "trustLevel": "FIXTURE_ONLY",
+  "producerRoles": [
+    {
+      "id": "synthetic-business-approval",
+      "claimType": "BUSINESS_APPROVAL",
+      "sourceQualification": "UNQUALIFIED"
+    },
+    {
+      "id": "synthetic-iam",
+      "claimType": "EFFECTIVE_IAM",
+      "sourceQualification": "UNQUALIFIED"
+    },
+    {
+      "id": "synthetic-code",
+      "claimType": "EXECUTABLE_CODE",
+      "sourceQualification": "STATIC_ANALYSIS_REQUIRED"
+    },
+    {
+      "id": "synthetic-collector",
+      "claimType": "OTLP_TRACE",
+      "sourceQualification": "UNQUALIFIED"
+    },
+    {
+      "id": "synthetic-gateway",
+      "claimType": "DISPATCH_EVENT",
+      "sourceQualification": "UNQUALIFIED"
+    },
+    {
+      "id": "synthetic-native-ledger",
+      "claimType": "NATIVE_EFFECT_READBACK",
+      "sourceQualification": "SIMULATED_DISTINCT_SOURCE_COMMON_CUSTODY"
+    }
+  ],
+  "constraints": {
+    "noCustomerAuthority": true,
+    "noPhysicalEffect": true,
+    "requiresExactRunAndTransactionBinding": true,
+    "authorityCannotBeInferredFromFileRole": true,
+    "unseenFactoryAcceptanceNotClaimed": true
+  }
+}

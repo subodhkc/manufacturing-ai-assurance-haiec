@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-WH15",
+  "siteId": "DC-15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-remediated",
+  "eventTime": "2026-10-14T16:30:05.200Z",
+  "resourceId": "LOT-2026-4510",
+  "sourceSystem": "LAB_WMS_TARGET_LEDGER",
+  "producerRef": "syn-sys-wh15-target_ledger",
+  "sourceClaimRole": "SIMULATED_TARGET_READBACK",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "wms.shipment.confirm",
+  "eventId": "txn-syn-mfg-v3-sys-wh15-remediated-target_ledger",
+  "businessField": "shipmentStatus",
+  "before": "PENDING",
+  "after": "CONFIRMED",
+  "recordVersion": "syn-mfg-v3-sys-wh15-remediated-r1",
+  "consequenceScope": {
+    "unit": "shipment",
+    "quantity": 1
+  },
+  "readbackStatus": "SIMULATED_READBACK",
+  "modeInjection": "CORRECTED_TARGET_AND_BLOCKED_ATTEMPT"
+}

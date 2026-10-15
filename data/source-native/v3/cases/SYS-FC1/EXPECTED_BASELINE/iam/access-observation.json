@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-runtime-iam-observation-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-expected_baseline",
+  "observedAt": "2026-10-14T09:59:59.000Z",
+  "principal": "synthetic-agent/SYS-FC1",
+  "policyRef": "systems/SYS-FC1/iam/role-policy.aws-style.json",
+  "observedAccess": [
+    {
+      "operation": "execute-api:Invoke",
+      "resource": "synthetic-api/APS/aps.schedule.commit/*",
+      "decision": "ALLOW_CANDIDATE_POLICY_ONLY"
+    }
+  ],
+  "missingLayers": [
+    "SCP",
+    "PERMISSION_BOUNDARY",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY",
+    "NETWORK_ENDPOINT_POLICY"
+  ],
+  "effectiveGrant": "NOT_PROVIDER_VERIFIED",
+  "codeSourceRef": "systems/SYS-FC1/code/agent-handler.js",
+  "openApiRef": "systems/SYS-FC1/code/openapi.json",
+  "buildIdentity": {
+    "sourceSha": "NOT_BOUND_TO_DEPLOYMENT",
+    "immutableImageDigest": null,
+    "observedRuntime": "SYNTHETIC_LAB"
+  },
+  "sourceRole": "IAM_CANDIDATE"
+}

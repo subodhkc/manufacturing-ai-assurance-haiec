@@ -1,0 +1,2032 @@
+{
+  "schemaVersion": "manufacturing-evidence-manifest-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "generatedAt": "2026-10-14T08:00:00.000Z",
+  "synthetic": true,
+  "systems": 9,
+  "statesPerSystem": 4,
+  "cases": 36,
+  "entries": [
+    {
+      "path": "adversarial-inputs.json",
+      "sha256": "sha256:ab2629ca2e77a1fe5bdd36bd9cae21cdd9e5c1d2a6020f9eba47b74f0a2e24f6",
+      "bytes": 1498,
+      "kind": "adversarial-inputs.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:5dcb381bfb9e5f44eaf33b7df72daf8f2fb7b167d6768d9c48286c6c3217bf69",
+      "bytes": 1551,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:f7f230e62919e03ea9d75bc5f5e1236efbd291fca34fb00fc24ca2aaaa776ae0",
+      "bytes": 1933,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:6ecd691581e286168c0f158965540e1f228d62c3ab9ce0b9589e8caf68a6a03b",
+      "bytes": 1051,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:b92f3721187e430ae1a16225f33a306a0945e811ae2bca7f7e198c7515d465bd",
+      "bytes": 835,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:2ba6ff9cd6ec0e6f0d5e0de5cccae906c30a0e1efbdb9d0f99222c99b3ff9dbf",
+      "bytes": 1011,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:6c024848f356ce62e101d90dae43564e94c0d65668a4b553eb90ff7004df6ac6",
+      "bytes": 764,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-217/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:2ef20f1c968c03f9f09ffe800cd5f8cc7a201cf62f7079fe94b9b01a7eb42b5a",
+      "bytes": 6219,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:8a89e6546cbd9a72a45dc7bd0a25342de313b5167aec587674d599affa796552",
+      "bytes": 1551,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:0d50ff00378dd8d609033c64cc42ab559fd1ea6e4b261a439ad2283bf0c53678",
+      "bytes": 1990,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:edd992e42ceb34a381215b861264d856019b3e9c5aa521b0c1a9081e88d4e794",
+      "bytes": 1051,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:7872d55fbd97e152cdc181f573fdfaf341eb469d643adecbb9e644050947537c",
+      "bytes": 835,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:85413b65d261f7414c6b131cffc8f19b9b5cbe6aca8062c16cb059b09e38983f",
+      "bytes": 1011,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:49973f9b5a355c6bbcbbb0b1150b996c29a86a8ffe2c16602468c84b6b9024f4",
+      "bytes": 1030,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:a8b488a66270d115ae351675164bbf646238803c91e9448f40ef60d02e78d1ad",
+      "bytes": 749,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-217/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:dbe71e84aefa3a8e466d930270a7235493f3425743a131a05fb0b66a42427c5e",
+      "bytes": 7633,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:91fb5ca2ba93d902c9ed31d95807ac8218cd9af1004689b6a28f853a286e2093",
+      "bytes": 1724,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/case.json",
+      "sha256": "sha256:e3ca61ef0cae2cb01166b207147992215f17e99cfaa404148bbfff7c568b3faa",
+      "bytes": 1912,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:54f6d50a570a1a9d83f50c2da5fbcc48304f0a854861b8a8d07e6d3318bf64b7",
+      "bytes": 1037,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:56022f700fe0807f34fed8bde991e70ed49f4f21753c86fe07cd94a72e8f7f86",
+      "bytes": 828,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:0e2a1ef70fbeb21c050cc922234bbb0dced108b92dc245c2be1115fe71332423",
+      "bytes": 1015,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:149bac791427eef47d6db900f565855a19cbd8cb1fd8e51eaea3bcb911eb1374",
+      "bytes": 1034,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:fdb1106b9f55562ce267ac6ac56157e19878ac2acabe06e6f7b65612c53f0dc5",
+      "bytes": 735,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-217/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:cb032eecaea46af6e5f290bc6f79fedf0e04575cbbb1dcdfc13cf485001ac5a4",
+      "bytes": 7563,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:d5f62dea6997552045d98545b5da28c400dea2d7c4b5189881c843159b38e787",
+      "bytes": 1526,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/case.json",
+      "sha256": "sha256:4dfec2a7b4d1d61d997ac112103a019938861942ab6d7d82bb00cb7dde8e6f5d",
+      "bytes": 1935,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:62000866ec922034b550293a171a8c55ba2f5baaa7d2932d0110c3a8b2325200",
+      "bytes": 1041,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:a1532ae3c5f41293535aa2f3564deb02f502f6173eff86195ff7b36b43d86ab3",
+      "bytes": 856,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:b552f45316cd0b31c7c39ac9efa07957d3acf5485ca50c2152c523f8694089f4",
+      "bytes": 1006,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:90f15b10b39090b49811e6c85ff0e9d9fd8515397a0e9a8db5437c0f24cda897",
+      "bytes": 1025,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:9537074c1b9c77b86a168f6719fff3017b486195c4f3e154d02c886350228157",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-217/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:9e6f1c6b85cde1970c4941cb359157d01f54292237b85f055e1be5e08c9ae757",
+      "bytes": 7583,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:341871ff1394b2a92eb4d2866cf89fb69995c5a0c9f56cc2ed152d768d511f2f",
+      "bytes": 1567,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:b9660ee1024423968b3011bed894528bb6dbca429229bff3f573b111aa111786",
+      "bytes": 1968,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:da523abba320ff043eb828e917e46edec53685ff4c53eda8420a6b7c06d314c1",
+      "bytes": 1059,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:247978c4d4c8cbb7e08b3ce5c2476d6bd75a7389bd000c738fafd7ed856a4bcf",
+      "bytes": 847,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:61d00ab1a92790a1167d32adc6bf07697122329e3ffb3d6f12c8341b1b0d5b91",
+      "bytes": 1050,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:ce98277bb34c5c4ad0f6745e9f6eabaafced9ec2020c5bff9cf0cc17285500f9",
+      "bytes": 764,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-340/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:a981ab651414120bcfe4af42c002b890c830a7b2537846a09830c8c75ef3f25d",
+      "bytes": 6227,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:15b5a97cd603ad144604cb8d812265c84f3fce23869f0ee8d8e991981b66681c",
+      "bytes": 1567,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:adc8330b10a84400111da8ef9291f11d1083cd57376a452a1bd1effc95604436",
+      "bytes": 2025,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:6d02d936bf67e3425d97032df13c75483932806ada43bda29fa6e7846bd4c16f",
+      "bytes": 1059,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:841e481c5d13149407662418d4ba5c7831ca2a3da125a4074d6c185076f0fe66",
+      "bytes": 847,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:6b519f9f227ead58c07f711be734bb291d0578576a9c544107b94c76448e306c",
+      "bytes": 1050,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:42d31bf795e4f19e809d35a0c2fa3225e3fb5ff040af2c40f43a0071349f4c8b",
+      "bytes": 1069,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:2386aaa8e98af4c0cf29906a53a218508005416153b694af59c94e9bbcec3c1b",
+      "bytes": 749,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-340/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:19c87dc6e7d0660138e1ae13ebe9823860d58190048e994fa0b502a95a80a238",
+      "bytes": 7643,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:09058f2a6940d46c0b52f3571c55533ee1dbbe56e1e307129c91a54827fde1ac",
+      "bytes": 1742,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/case.json",
+      "sha256": "sha256:6930fb9bc3d871760a1758d65aad70347ababab14a25155eec401dd2dc59742d",
+      "bytes": 1947,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:644f4583bb59da8179c1041c5bbcdf69fa4ec64e3d6f3401ed47c4ae78a6f1a7",
+      "bytes": 1045,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:8d530cd58422decda6a8c4b5fb57a7945791255885d89b79a09585b9b9add89e",
+      "bytes": 840,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:22d32050f598960e77e363b020079ea5b05e6c559268f9c77e8638cc9f8b572a",
+      "bytes": 1054,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:78462ae717f10353393ad31a7bbbb457e5128bd0c0afb429213041c0016d8166",
+      "bytes": 1073,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:aba2881ac62b87cfff144e5b65d95fb4cc91a835c8ca414ff702fe0c3e3316e6",
+      "bytes": 735,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-340/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:3eb1f3ed4c7284df45a767c9923bc1bccf95ff7c5c5868e45c2a0ac0c429c56e",
+      "bytes": 7573,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:4f7c835808920030ba9a7cb5bd36b889af00574735c85356c71fac4f2477d2b2",
+      "bytes": 1542,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/case.json",
+      "sha256": "sha256:68a4d0d46d0d978f8f32dfafc8e7a794887e70850d895f569fe20b7a7c42eb4f",
+      "bytes": 1970,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:89dcb357171c60c66ae808e6814bd5e7f32ebf5167ac909d0a226394c81c5f5b",
+      "bytes": 1049,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:104da00a472150c69c15213854403e7ed9b5fe3fb71fb4cff6199b1ef424e90d",
+      "bytes": 868,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:6882f6065395f1ed3bdecb61fdb0e1c6cc7f9c69322c4387e1b9fdb09f39e2ff",
+      "bytes": 1045,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:8f7739773871be6284d2bdb526b502299ec8e6fefc05de40d21cb4ed3336eff9",
+      "bytes": 1064,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:cf8a541f0a446521fd15b9c10cb0867e324bb5f0dbbf2d46c68749ffb59015b0",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-340/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:5ea4af0d5adf59984890c43556ff7f0ea14287442319b73f6482caf85dbcf1d3",
+      "bytes": 7593,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:fd4c6d71dac135d6210554ee6acf45110a7b57fa6192c3b7410eb904caff02b7",
+      "bytes": 1672,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:b944c2b4ac3549e150c996e7c152040fa988a26f5c35affea0f7d3947947e216",
+      "bytes": 2019,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:afc1dbd112bf17a322a050fe23a545f45da7c9eb459d18a514d7c2727fd9bb82",
+      "bytes": 1102,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:fa9a2f54fed006b37985030d2099984b54b97527b6a2a599684f8d29ab7442c8",
+      "bytes": 879,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:3f9d4f4811ff76c57e685b0a864adaa9ce264e17f028760ba90098299bbfda7b",
+      "bytes": 1089,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:cb298b34232bb549e28b544d0ed67423387aff3915df9157c36fcc36acdde787",
+      "bytes": 776,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:90ca42448951ab8165d7074bb07144e2f6a7621f593833ac02a94e63c60af4aa",
+      "bytes": 6322,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:69b32564e4f3959ffb015b33b2ead742a68ab51b5c980be0897c55d6ca7b5768",
+      "bytes": 1672,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:a8c88dbafdc1f85767d5694e0f93d20a305ced12904554647d97b652d10f25ab",
+      "bytes": 2079,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:26f55701161fb6cc4170c5487ad8171a27536cc8eae669b90909298d8e7839a9",
+      "bytes": 1102,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:c09d86226bb0d7f27afbade2a4a5f26bacc03f16a21e4895687eafadbbd0c0d9",
+      "bytes": 879,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:a28e6121f1d942b6c8ed13c811624ae44b6054bb8b7ebb8e1552f6fb38beb6d9",
+      "bytes": 1089,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:486158769d94b7f021db6b49615c1ec6f16bb1f98dc619506d0f86b998306ba2",
+      "bytes": 1108,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:cfbc32a70ce75a6cba022e1624f8c38e39674f979587a27607e72ff2064f37b0",
+      "bytes": 761,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:79d4ee1140dce1ddb80db21b2efc13b3bc80f58f7028e77644ddc37b6e2f0bcc",
+      "bytes": 7761,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:0e25e9276d2c98328adc130e0f24bf36d112ae5b5ebcd493eff4eb4f3e0e67f3",
+      "bytes": 1865,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/case.json",
+      "sha256": "sha256:18b17cec63a46b043307e3e1b056ca8755e38b739160b9929e7e438c803b421d",
+      "bytes": 2001,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:55efbe476af9d5a593830fb9b75a6ab3a6427adc8cf5474eec0033cd84b379de",
+      "bytes": 1088,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:75a8778fc8d08d1f1dfe4438d7460d60366491cba096ee59480858c281992159",
+      "bytes": 872,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:73fb7e7f9134ffed2cf49dfffc6c1d8c1ae3702c7eb4f41129d64da883d6f0e2",
+      "bytes": 1093,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:f7b15da97e1666d1390dbbb5ddecd3a08d9b704f81324b66bd8122bc7977a111",
+      "bytes": 1112,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:fd05088cc16d9cd490c4712a97c6d860bac2ef397894e633e421475c351b1bc8",
+      "bytes": 747,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:ad65b537eb8cdba1befa3b0386a41e628b4ebb959eb71ee45da34b1ad52a03c2",
+      "bytes": 7691,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:c353ff9715f8544d3d06a4bda5158c9028059a5169b56faa7b9656beb485f812",
+      "bytes": 1648,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/case.json",
+      "sha256": "sha256:76ed296865fb13dedb82ccaa1c8837c3308829b48d959290acfe22004abc974d",
+      "bytes": 2025,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:936743b065f59f74887fdfa0ba66f0ecd39e6c27d9b78d226fd8591971c2ec40",
+      "bytes": 1092,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:2d40f03b72dd3c99b6a698b498001544e290e45de0861e7289626eb3e9b4dab0",
+      "bytes": 901,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:aa1f55fae91088dbda35f00aca4015d3f605e3ca02e8b8f9f445da10bd7a55d2",
+      "bytes": 1085,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:1d928030ca1be62a27f2e38e929d4b1f254c98194626a71a5c67efadb8af213e",
+      "bytes": 1104,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:272615ec15bb51da709117b7e9a0769b4e4b89fadaaa372c137abd7bafead7e1",
+      "bytes": 751,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-DYN412/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:e51def0e659715c656ee0be7bfebcb1a305702ea149d06b9d2129e5e271dad36",
+      "bytes": 7716,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:5cfd960c348cc15c009771c56f4194499ccf1edd7842390202975008d077548d",
+      "bytes": 1532,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:283eb0c147f69d6aa10c593e00ecb5ceb590567ee104b021e24644bf0a503df4",
+      "bytes": 1944,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:84ccc2215d745252d75c1d0f241dd501a6fee6a790e59ed9593fc72a5ded1530",
+      "bytes": 1049,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:30bf264c343ddb56079dca0b155c628f6b5d9364d008a08d011e2c0d8a5995d2",
+      "bytes": 823,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:7b03683a0e20ec8bcff694a7a320b0cf6e462fcbdc97b17ca308bea58e9b1230",
+      "bytes": 1007,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:3237182b1390b277bcf30eb24a3d732a458926757701f3b061b1a2053f625458",
+      "bytes": 764,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:8f086f4a47cd8a10c162c5d7c37f80ee61524486f6d8b3adacde5198fdcacb06",
+      "bytes": 6207,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:772711b2e7292c398d9a8433753d30e6808f63be260d278e589684503beb29ce",
+      "bytes": 1532,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:17c1174440ea9c5d14474cbe7a0e541db432f9c4329376d1a9d26387a8fe1d5c",
+      "bytes": 2001,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:88970dd8b3f514e3489027af10d9ad633891536f24ecb6cb661bba46cf2f7592",
+      "bytes": 1049,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:8d355d0f05c2b7b1695545eaa24334c5ccd44b25667557e0094be45fe0d067ff",
+      "bytes": 823,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:4682f15ccbc552750295a0c7abf6a491ab58a9b7aaa11763d010737a1fa0889f",
+      "bytes": 1007,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:739ee0e07d613d892d96088605ad2a409d77509828698d1a1f32661720c3fdaf",
+      "bytes": 1026,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:82dabdb3e3a9d8c3c9c6834ff40d420c2e777ed75d69b6701be2246fe90377e2",
+      "bytes": 749,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-FC1/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:0cf0c0ab47af14296027f9b323d89f59a492515284a45195fbbab8bf187aa9f2",
+      "bytes": 7618,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:90c54c4751ad7237b40b555d0918b1f9d3075fa904564b01fcf2774b008cd0d9",
+      "bytes": 1702,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/case.json",
+      "sha256": "sha256:68d7ebed159c11176b859646f8bda7acc67f4cadcc8933224577ffadec1a480b",
+      "bytes": 1923,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:1990fd9cbd6cbb546f29ab15faaab8677bc4400ef63a61a7261cf2d1960f2cc1",
+      "bytes": 1035,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:3fb9d044092a1e5841bd91ae811e1deaf56cc1885614de0552be6ff8e0640139",
+      "bytes": 816,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:756fd28cc32486cd774767923d8da3b010ceebb47381c84af84b961a01225506",
+      "bytes": 1011,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:0889897721a502fa516d31d6c77de37ec5b9155013cee0c9b12e0101c6048239",
+      "bytes": 1030,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:fdbc5642915a0c8a2a2bbe3706eec91ad7ef89062c98f8cb7c99202abc7c9545",
+      "bytes": 735,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-FC1/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:544f9495eb85f146652d4b3329f4693b4ee5a28faf61a5106a9c7c4fbb2609f1",
+      "bytes": 7548,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:90194b6a175b036b50dacb4d1d56a6250102b571fdd0b6dfb7c24cc79b003c70",
+      "bytes": 1507,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/case.json",
+      "sha256": "sha256:bd693674b3590c9637f2b2b3be1f19976e1da8e20c4f1a3c71d53512f4f715df",
+      "bytes": 1946,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:9cbf05554357676efd1aa969c420246a30a854c9877586e67be14e68a9958f53",
+      "bytes": 1039,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:5c75e6aa11e813b7060773efa3b4f0fc8cb62c27049429da0d72a8a98ca987a7",
+      "bytes": 844,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:90e1ac0d7599e1c6263c5110570e0b45a0e0dae0bc4824a2444f29da03304084",
+      "bytes": 1002,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:9ddca31b0e5f5fb08b10f930f15abfd34c5c46e7ce61e295afc90e87da8b6a5e",
+      "bytes": 1021,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:c2c91def0692acb815e1969def490c1bafdb469f3e991fa8c784d3ddceb99230",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-FC1/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:2abb5ec8c753097540fc0afae36df01b4599102dcd1dbcc4370bfe8114517f9b",
+      "bytes": 7568,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:bd3e0c82d2d752523bac48627ae7f0b5d79bf07fb441cad7dac2e5bfab7d8fa1",
+      "bytes": 1571,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:2f2b1d63ab2bb445bdaba486401f2cf611e13f9091013f2d6deff85dc3079644",
+      "bytes": 1964,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:26cfc68dd59e25e400d95a8da4ddfe0b02d36f8d934c0bea08c61f4ea2f76431",
+      "bytes": 1069,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:bfd6b47fcfb49f44f884fe73999b3731ddcc156e4d8e0b770c29b48b5e3d09ba",
+      "bytes": 838,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:b1cfecbf8530b92321a9aaaea09ce39f8ad44563979f00d30faf56257823748e",
+      "bytes": 1055,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:20dbeb89cb7829cf198ddc9e72301cdf0b3beda4cee5675e162396804e76c337",
+      "bytes": 772,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:6f4af74570095ed0b43df0cc1f00907d797d1a4c474414baa588a48721122bc3",
+      "bytes": 6241,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:7bc754151050f3a1df79e6ca097f43d74df381ae2d0dbdce9e6a99e5b1201003",
+      "bytes": 1571,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:0ef93a1d1a8d76594558b2782dc272d6f23015b7dde9597eabf4db00775885b9",
+      "bytes": 2023,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:be8ee2945efc02ab0f42e526e7f4e05e499634779f8b1ee4d7c7fb6f0c92a4cc",
+      "bytes": 1069,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:2d4fe9453639dc93d2a46a1f0dffcfe7765966a4de10f377daf9c1b1f2c68140",
+      "bytes": 838,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:aa6db64fbe3b610dc6f18d64d071b53f4dba72ed66fe2e720fe7397108e44d17",
+      "bytes": 1055,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:f967e9fefb7c4964ef43fc162a836f6bf540b319ea8981d1906364cf6814157c",
+      "bytes": 1074,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:8cf25d746767604c1680005b426acbda652dda93fd798749035dd5b9ff64153d",
+      "bytes": 757,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:ab7af00d28631614dcad46481b36a6d2721988020181649ecc8ae9a6517ce08d",
+      "bytes": 7660,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:6ca95ac5d204d9cd20db5e6e6f3e93ca3d8caf3d1c250943a68add828f01b488",
+      "bytes": 1745,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/case.json",
+      "sha256": "sha256:966bb2c608dbef3c1a100d191893099b1a3d3a39372711740d6a2ff6c7ce11e3",
+      "bytes": 1945,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:2a49dfc02ec31b7f3e94674c3335b6e4b9f61fcef781a82bc9cc86993bc5a6a3",
+      "bytes": 1055,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:7d367ad32a583c532fffc58952255116df7c7ca5aab8278cd6cbf0bdf90c3687",
+      "bytes": 831,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:6e756dc562ef5d5c2d3e9623288b38a5c0d272499805c954a70fb37aabf16730",
+      "bytes": 1059,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:6cbf5f57eac60987127d211f6a84f209d38fca630cea0b4b4a865824e4036c7b",
+      "bytes": 1078,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:27ab4f89b700188700bcd4550094145246e0227e389c64ea48d43dc787c607c1",
+      "bytes": 743,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:b82a0c2fd6f8e14dc39973f170bc51689cbf17bce4b27e9351a2dbcb210cfe75",
+      "bytes": 7590,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:0b7f07ea64b58eeb54c14638fd693c8926b23ebe3922cc1b10e0d74180d8a814",
+      "bytes": 1546,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/case.json",
+      "sha256": "sha256:20dfacd33223ea0f666338766f3f9cd0003956b30d8c82748113e57fb370386c",
+      "bytes": 1968,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:bd9139886bba61577bfd4860440bac78cc2934e74aaea2f540d1d5a2bb081e9a",
+      "bytes": 1059,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:662017cbdee22411869ab47884edcf40cb1798b7b5328fc6cf8e5c7ece012584",
+      "bytes": 859,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:a702aff516fbe60c2e784fd5eecab7e301b0649b7d781ca12450c5706ebd2d36",
+      "bytes": 1050,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:b8e3baa831ac839ffaf8c1a4de6f7e0b003efcef561627d08220217dcb389ba5",
+      "bytes": 1069,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:b30b11cf4b5b8f208f515e79299c4053841fe2b77651414e4e24973d5cad86bd",
+      "bytes": 747,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-MNT88/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:9c37beaea37bd44ce7188cc8893a0f2d75f7aecac21a24cb41a524d738055831",
+      "bytes": 7610,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:83cf66a2a30e2360961405f0c598432dbd6aa8eaba3e15a1fe317b61408df83a",
+      "bytes": 1576,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:91e54e660efab22e5b7217d5e8759cd3314107f0fb931b81d7f773289cf7df9b",
+      "bytes": 2004,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:7995568777d4e785209264b2ecd1efdb32b09716a0ab339f22872c876bc6c607",
+      "bytes": 1062,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:9754dacbb94fde5448625d1dfeb6e8101965bebf54d1782ddde86300e678c613",
+      "bytes": 844,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:6b59b6f195d2e1933e748412636af6f5c2caf12e7d5c15d205ff98de7dde410e",
+      "bytes": 1035,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:ee34588a76d83e3cbb43d2bfdfb19b84b7558b6034e18f12c642126afeb1afb0",
+      "bytes": 768,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:7e96b1a75ba5cef82b784433dd84a157e73c689922a4e4dff2e259cb7b1d0d32",
+      "bytes": 6240,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:ed37c2b506ec77ac37708cbf227876acad80a995b08501b5ac6030a7ef359c70",
+      "bytes": 1576,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:056880fd08ce5ad2afafb3e97b826ab4b0a53cb335491b9554ef1f38a61a9dea",
+      "bytes": 2062,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:9aea95ddab60a5f836b554d155e17e9fb1499490b84626ab9c81293fe4d9f8a5",
+      "bytes": 1062,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:64724063e12cb0b69ecc1d807f9ad79454e43f8f4522a971f33626acc76c08d5",
+      "bytes": 844,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:58019e18523f2ccc0f9135def1d965e5a48ab2284e76a46339c34385f40294f4",
+      "bytes": 1035,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:68670bee071a79664ab0667663c8233b8e32bffc22c80762b211609dbc1b9715",
+      "bytes": 1054,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:a236710fb7b89629fdc0d530ef42265e3a44d3c5400a87531ff4dec24ceecd4e",
+      "bytes": 753,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-PO12/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:7294d1e308e2c250d4f59cbb1e4761fe824dd9251a87afaa0f67d98af8fbb3a8",
+      "bytes": 7659,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:a12f64a305339cfa053120dbfa7e36ece9cf14b4f8ec9169aa8ad38ca024b2b0",
+      "bytes": 1752,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/case.json",
+      "sha256": "sha256:bea99c2c2e82f96c0f91aefacc9c7c311c5fddbbc6188495431353c383f1c3b8",
+      "bytes": 1984,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:870d3e315da92dffdd7b252d66588208ba2369183d34295e6e9c05e7b6fb3247",
+      "bytes": 1048,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:befdd1251ac35867ffaf6d2d54887025639829223f37199ee313c4074ab659fb",
+      "bytes": 837,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:786c53582a7613af3102a4ae86048639838b8d2a6bf970748ea86fd122df1444",
+      "bytes": 1039,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:36ef6148c7706040c6b070f7d88018fc9eaabe766367fe7df65c6642dc4e833e",
+      "bytes": 1058,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:8f50eee429f0ff9ba15c1a5c0f915fa14e21e42457863f82878a01437e42dcec",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-PO12/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:2995a7bba16a2aa2afe46e43f01be1aaebe4ce1865e2f991743a69b851e26755",
+      "bytes": 7589,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:d499fd17c6f1fdb8a32849e00a0d09d3281b5b2a53f88655a511f7e239392cf4",
+      "bytes": 1551,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/case.json",
+      "sha256": "sha256:7dea6a8ddec902c4d4201fff19c0d20ddda7c52da860eb3430e26a5a07e74d9e",
+      "bytes": 2007,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:35724ab11880e793d7ac6df9395ecf550a2dc7b62315be8d643ec838b7e9e32f",
+      "bytes": 1052,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:04cd1edf5be014f0de7589c17008543aad841f0528250c8c440c2ce6cd090327",
+      "bytes": 865,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:9c24ad70beea40b958123393fc4d0662d1ea683aee32ca987da219b14a110024",
+      "bytes": 1030,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:1ab4c999f04300ba1e4b8e75f727d0faea48dea2e22688acf1a708695421ad3b",
+      "bytes": 1049,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:be423bb7e3b2984ccb400ded049f9f99df70828d395a2ad2c86f34574aeea3d3",
+      "bytes": 743,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-PO12/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:55b9534772379542578119e159dcf5d8babf837a784f678fa0b027f63ee41b8a",
+      "bytes": 7609,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:ea00186245c02d16c1f8772af684ba8c893a92fa893666b9a5216019c8dd2d54",
+      "bytes": 1548,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:3bd0f5d29c34eeb9d942b05c17aa7c40bc1e1429af3713c7d666454193e643c0",
+      "bytes": 1961,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:83de59cd58647039dabecee225905b9a4f303530ab2b82ab88fd3783c2e79ae6",
+      "bytes": 1055,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:c9de44ff6be4987e915411752e9b4f461c8baf82042f603e03b346d1f61539fd",
+      "bytes": 825,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:d19abf6a2ecfaae7e8367ba6dd6a8a2e1235fa0031c279d683d58943ff6d8c9d",
+      "bytes": 1026,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:a5393ef08ddbc0d00b5a8cdcc9a9ea3648f53b752d97501fa599fa2fa6376ecf",
+      "bytes": 768,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:bc12044feddc91e0c1d7275b4fac9e0a37b59fdb58b8a57e88f021c14eebb8ce",
+      "bytes": 6220,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:dcb3619b15240df3f4eaa4c27b67dbc041b6940adb9275c2822a63f18aa4cfc8",
+      "bytes": 1548,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:7a0fc10d5772d60bd5df151266a9d66bc64ea635a2eb1004dc06854a4c69353c",
+      "bytes": 2019,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:c0a448c0c943327583b2feffdae01ffabb610a5576929137aec42ddfd679e64d",
+      "bytes": 1055,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:7d724d8d494faf4858ac79deae89986d82e3a4483251737668fc2716bd384f49",
+      "bytes": 825,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:38a546e3249a9858b8a443b84a824c80d78c40c77fd9d243fd9eb48b25e4a465",
+      "bytes": 1026,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:d1b27bafb70c8d6ab48e0ce3bd46f25595e178a3f6a44976a77a0dd66d38a103",
+      "bytes": 1045,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:8a224f26ecd2ceeafe1a0105ad3a9f5313e23511720a4e466c53217a8f890e2d",
+      "bytes": 753,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:c8d974d1ac5052e079ecab55205f447f5ee48160271c8329255c9d407e3af7e8",
+      "bytes": 7634,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:492256a2dd30d6ef743a074077530c71860cb5201db061e524b91332d5e067a9",
+      "bytes": 1719,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/case.json",
+      "sha256": "sha256:6a6b45546f7fa16a8252c514984ff185e3000dcbcc0026a9bb24faaea3c5ba4f",
+      "bytes": 1941,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:b5214675ec5e3bd39c1f8eb74f8c4f401f7a194542fa2d4d4d00d319bfe8fffa",
+      "bytes": 1041,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:3a7c8c2aaf02de4ce88210e0feb30d4ac6560cc892fd7b0e9fc0f12ad3ae3c96",
+      "bytes": 818,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:6471b6ab2f761e07f39eea92145ebde875ccc8e2cfca74fd3bd0fb2b0cbf3607",
+      "bytes": 1030,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:933a37e43c13b065d20e5aa0a381dcd9fb1cc845a2ec387d112b7c1ef2186877",
+      "bytes": 1049,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:42170cad6574711ad2da0f6bdf23bebd92ac65671c870c93c884684a71e9c47a",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:b6bbe7dc2ca1e55e8a37f23dba9f7ce1e35cfc9f2b864e372251398e4fb8f2eb",
+      "bytes": 7564,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:be3577a7cd2c7c683b8eab5c72c9b3e85b2b6328e8bd3938c5b46c9acee9d65a",
+      "bytes": 1523,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/case.json",
+      "sha256": "sha256:0b0fa8a28e7382249b86dcf637f42b0433cc1a57c74769e9e7395e5c0bc259da",
+      "bytes": 1964,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:fcac83607ffbedab26141c00e676622160483c8db27c7e99761b4789623d06ab",
+      "bytes": 1045,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:0ba2cf93bbc76e5e5b4a7aa908e71a9489e805325119b748aaff187e3cf3b602",
+      "bytes": 846,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:d0c65a34647b1c581b9a99eea24b4adc6b8d83d1fae8e2d366de2342c134eb98",
+      "bytes": 1021,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:c31cd88359bde657927e2d24856cc116f647461d7474c34a0532d3e115f298cc",
+      "bytes": 1040,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:f82a387d35eefc3dab71eb352e54ec33381b31336416c6a1ad5e36fae9326ea7",
+      "bytes": 743,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SCH5/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:717e387d0a5e4750a7f38c80b667bad6d0ca1fa437df0f8239841614ad8343f1",
+      "bytes": 7584,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:710e52d2ce066f8c8d0319c16c26cf683b1e72d2409c8fddf2842d8e77f054e7",
+      "bytes": 1586,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:7cd828b6f86fd17fe4abb11607e5206a5fc98516cbf303ac4536b666e0dd1ab2",
+      "bytes": 1999,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:9e3fa276d104dcb4e4eb16d0dbb6c2c593112b6f73a119154f5928f7f8e2389e",
+      "bytes": 1072,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:97b79681786204926ebb463b027cfbaa61d7715c881a32757287d1b9ed8c63c4",
+      "bytes": 848,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:38294459fff7ce2038e97942d56e2b5a4677c3088a908a04deb817684f2e9eab",
+      "bytes": 1052,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:94393bf6b515c9ad2a82af67af4502eb7ad6809e82170df0a25d04feefe6a554",
+      "bytes": 772,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:975d7b8b9b2e879c4ef697205d267eefe80ee78755fa5ac9b237e008b3cb6f6c",
+      "bytes": 6249,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:578cfb07f11dd13d8f549b15b188507216edf493e72d871069353a3c0d8a2aea",
+      "bytes": 1586,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:35a9a8f7e2962f44d4d00f754bdd20b6fb17570df8a0dfb53c08d918b16a7a71",
+      "bytes": 2058,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:14827bcc6a7bc8c786d595adc9161035c6007fd5ccc6bebeffdecfa2391ed049",
+      "bytes": 1072,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:5fb526d1a58941712eddad1fb63d75d061807c055612ea9ba93b2491cb7080a8",
+      "bytes": 848,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:ddb21d4a612fbfe36f68c1225be940089480ea179f0d3ae8fc228f2255829278",
+      "bytes": 1052,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:34bc64d67c7332fd99c621372a2cdcd102085dd0f04360f71c5943767a32bed6",
+      "bytes": 1071,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:bdbcae54284f456444c874f2dd3d313b33dfe6d46f5ac63439c692e86266ca0c",
+      "bytes": 757,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:4c8d0a93566951b77fbb06fcd8f8a5428b8cc7166603e5d15ed313b16759d618",
+      "bytes": 7670,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:a5895beba9ed866173a47ffef9ccf57b39554e54b9ca5249f2e9890ff39ac353",
+      "bytes": 1762,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/case.json",
+      "sha256": "sha256:10a698c24124c7e7f0cd75ef3b83501cbb28cf984a4c1c111c8d074acf3645b5",
+      "bytes": 1980,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:50a14002f1ecf44b7d3f3e22eb697fbeec69a65350c6aebd980d602e67e2c087",
+      "bytes": 1058,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:0716c059673dec30836e89ff56c4ae07eed34a29250d5f9c7cf7e6d0607eb4a3",
+      "bytes": 841,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:5c7cb623adf8317469d1d8b95185ed6abf6299a1b2d5c664bb3c72a319e30274",
+      "bytes": 1056,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:9c44cfc6f2b0fe17cfa9a48a6318ce116231f992a7907e12638223fda998ae48",
+      "bytes": 1075,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:c3224207eff483d3054b61781c97b4fe2bf60bb522a8d36b25ac7a20508df976",
+      "bytes": 743,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:d370d9de2ebec285d145024a4c75fde87d7e12770d4492833a19de6c5e88230d",
+      "bytes": 7600,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:d4c3eefe5348ee303a7b84bac48c877a8c4eab45c13f0a85dfdb4706a29c37f9",
+      "bytes": 1561,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/case.json",
+      "sha256": "sha256:c1602d68e89ba8a7e1672a5aefddb8d3075490154fa1b38358f59c6b5a330141",
+      "bytes": 2003,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:8e0d33e407aef57defabe2a7ec5c83393382609403dc05f02cea52e474c83407",
+      "bytes": 1062,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:8b8ec0c0fec75024367e8ba8a52e5027ac7529ef8478fcf4bf69b556668e0041",
+      "bytes": 869,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:2abee8f46d05ada8983e4965b4e67306d00f27bcc9f867df59fc70257e4e80a3",
+      "bytes": 1047,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:349e1d30f4b2b5e85d33cc9f4d80f946e8a322c0687cf63ee77e2902380a6765",
+      "bytes": 1066,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:f5dca64ce5f36597201b12fc14cef9cc766c46eefe9c9d8e686e7f8bb992bca9",
+      "bytes": 747,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-SUP12/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:62cc35eb2f9a1425ee9d672028cbc9fd5d90cc8cd015882fcae0d86288707550",
+      "bytes": 7620,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+      "sha256": "sha256:cea7406fba8e893608681a3665620fd9866c1f04a448d93d8ef9c5b38c7a1d02",
+      "bytes": 1574,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/case.json",
+      "sha256": "sha256:28bbe7fa5aae36627688b7203b48cd3472a07bdd8dcc389c46f8eaf1da9f56cb",
+      "bytes": 1976,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/iam/access-observation.json",
+      "sha256": "sha256:2b7f5baab29c2f94d35adaf13d32506c4fd1c17bf02bb3f2b5c42e7601c79cb0",
+      "bytes": 1057,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/monitoring/behavior.json",
+      "sha256": "sha256:a42675262d365a6c6df4e18fa56d31210dd83e32b367c931b5da1dd2b8caf5bc",
+      "bytes": 840,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+      "sha256": "sha256:8a8f268a8b8ad638e7d28bc2a4ba51e585cba368192f27ea576b53250ae3e5a3",
+      "bytes": 1031,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+      "sha256": "sha256:5e68e7224a3acb8b4a940996b02acb1168782ff8b967ac8377d355cabb9ca57a",
+      "bytes": 768,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+      "sha256": "sha256:716f1dfcd176d293fb84d552d74eff540a9753a4041f01688d7c932fabfc06a3",
+      "bytes": 6240,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/authority/delegation-approval.json",
+      "sha256": "sha256:770a94e01f0e23c76082768e3ec3b80e45fc20e3ac01f6a6c653bfd924e647dc",
+      "bytes": 1574,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/case.json",
+      "sha256": "sha256:8bfdc041a67949bc91607329514e3ecc9e0c4c1d50dce29c32c33c3599ba4a1e",
+      "bytes": 2034,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/iam/access-observation.json",
+      "sha256": "sha256:781e08de2f16daa989f0679b55e8a97aa1456f1520ae7c1df98d54d21dd4ea20",
+      "bytes": 1057,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/monitoring/behavior.json",
+      "sha256": "sha256:2f3d55f17a6da27d870472391c4f22845111de93feacf233c431bcd06c11ee43",
+      "bytes": 840,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/native/gateway-transaction.json",
+      "sha256": "sha256:f02aa407c326895de6082914bb7f05f731bc4333cc9d45b64c84caebc87ac170",
+      "bytes": 1031,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/native/target-readback.json",
+      "sha256": "sha256:4b062e2aba61594493c9dc34e7404f9e4a59d5757897b0a84a9667c0798bae78",
+      "bytes": 1050,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/telemetry/collector-continuity.json",
+      "sha256": "sha256:f8f84e9090b5b51857c89fd1586c3fde685a0edc8a1f599b3438e4436eb2021f",
+      "bytes": 753,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-WH15/EXPECTED_BASELINE/telemetry/otlp-traces.json",
+      "sha256": "sha256:c6ba3eb4cf419364225006146ae27e1075324d82eeb92c9a0a7619f4968272dc",
+      "bytes": 7659,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/authority/delegation-approval.json",
+      "sha256": "sha256:e5ab3d2d2bea035f3b2b86a84196a9672886af78d0baf0f973367e4efc2b7d4c",
+      "bytes": 1750,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/case.json",
+      "sha256": "sha256:d61f03bbef467be71b45953880d9b4e3fa8dd51dae8d7b484e2d94828dfe1817",
+      "bytes": 1956,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/iam/access-observation.json",
+      "sha256": "sha256:8bc133b50fdaa7bfc084ed4dc022d5c7e7c41d801e8db0444f27f8bdb575c893",
+      "bytes": 1043,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/monitoring/behavior.json",
+      "sha256": "sha256:e2c43df91e0a4cd3ca6fe2fe0dc3d6f96b277fcd4818b3d96436ca691e182e2c",
+      "bytes": 833,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/native/gateway-transaction.json",
+      "sha256": "sha256:af4e11c886ff9f041e47951a215a6b5b59709b0fbf907447655c78055e82bf10",
+      "bytes": 1035,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/native/target-readback.json",
+      "sha256": "sha256:2fab4912fe4add62e977731391ffa4889a0c0b729cd37846d29e0f30851ae3e4",
+      "bytes": 1054,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/telemetry/collector-continuity.json",
+      "sha256": "sha256:62407f65e705c1ab0602102fcc3b93ecce5513c71e14e97ae217ad8c86ce01dc",
+      "bytes": 739,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-WH15/REMEDIATED/telemetry/otlp-traces.json",
+      "sha256": "sha256:354e56a3a803e519f867bce0c8e59fe9e2c130f3efb9c21cc74fda1ade3cb35d",
+      "bytes": 7589,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/authority/delegation-approval.json",
+      "sha256": "sha256:3e22e775afc186cf7a5b085fa182e67ae8111ac35078de5afae92390de22c964",
+      "bytes": 1549,
+      "kind": "delegation-approval.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/case.json",
+      "sha256": "sha256:d826c0e5a28b43b495bc1756fcddf17cb13de5ead9a3c91055535c2cad07d80d",
+      "bytes": 1979,
+      "kind": "case.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/iam/access-observation.json",
+      "sha256": "sha256:4c846e144c2b1058a733b8737a7b128cca42a34a687fa683650b4a962eecf9ee",
+      "bytes": 1047,
+      "kind": "access-observation.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/monitoring/behavior.json",
+      "sha256": "sha256:c9f95d47685a04d5ca52ed3dda1b3c994e1bc283b66253b9f51410b890207fce",
+      "bytes": 861,
+      "kind": "behavior.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/native/gateway-transaction.json",
+      "sha256": "sha256:04a71f335c77f11ce88e8d1181df1f8d99b00eb3a767c93b300aa55e8b983d9b",
+      "bytes": 1026,
+      "kind": "gateway-transaction.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/native/target-readback.json",
+      "sha256": "sha256:bd2a20f60056f578f5c6f20ffd04cfe84ba10ce0be707d4ee62f07510d34e317",
+      "bytes": 1045,
+      "kind": "target-readback.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/telemetry/collector-continuity.json",
+      "sha256": "sha256:86fb4fc9d212f295480804d3d68877ba46832ce97a9cca51a8f3921dfdbab2d2",
+      "bytes": 743,
+      "kind": "collector-continuity.json"
+    },
+    {
+      "path": "cases/SYS-WH15/WRONG_TARGET/telemetry/otlp-traces.json",
+      "sha256": "sha256:170a95bbe35118801c0e3e25d280713869eb1dea3d6aea05bfb566d9c4a2608a",
+      "bytes": 7609,
+      "kind": "otlp-traces.json"
+    },
+    {
+      "path": "producer-registry.json",
+      "sha256": "sha256:a910f992013b477ee8e6db3fbfdbc85f6acc41814d4a796fc3a561ec38fd89a4",
+      "bytes": 1320,
+      "kind": "producer-registry.json"
+    },
+    {
+      "path": "scan-plan.json",
+      "sha256": "sha256:388ff710f283f93a65195e9592baca78ab2a4b2bd0e1f87bf777107f9e8dcfdf",
+      "bytes": 8663,
+      "kind": "scan-plan.json"
+    },
+    {
+      "path": "systems/SYS-217/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:35bbf80a64be47f4fd2e406729c3725b86b7029e0869fad7e6af347a6e1ea06d",
+      "bytes": 597,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-217/code/agent-handler.js",
+      "sha256": "sha256:9991d323af34a274fc66c967e53707f8ab3a60d0d295d88754b752669ef296c9",
+      "bytes": 795,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-217/code/openapi.json",
+      "sha256": "sha256:52a5cec26c34cac36f093458372c14e5c5673d6ee31de10b22f906afd4332a74",
+      "bytes": 1254,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-217/iam/role-policy.aws-style.json",
+      "sha256": "sha256:ae0477dc35df7397e139872a106ce34a88d1c3a78097d6226756dbbafbed6b11",
+      "bytes": 411,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-217/observations/sensor-samples.json",
+      "sha256": "sha256:ee87d1065078b2384885ed1b9611b58a4e381f2df34dce81936a1e7398973a12",
+      "bytes": 9186,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-217/source-contract.json",
+      "sha256": "sha256:2c5c2f4da17e29d0394a0429dbdb3142e24502789cd00ac61fb743f1e83e3eeb",
+      "bytes": 1057,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-340/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:e03ae8c7fe059488736fb80fc3df786b7185867122328bf18fbf9a0beb23e240",
+      "bytes": 601,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-340/code/agent-handler.js",
+      "sha256": "sha256:ac8c9befe8e94b4eb727b244f785269a12be8fd6abaa1fba0825a4198b50eb34",
+      "bytes": 803,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-340/code/openapi.json",
+      "sha256": "sha256:a0d685aa246c3427d0ff3c2e80627ce8057a3b998892149d99b4affabd002d1a",
+      "bytes": 1265,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-340/iam/role-policy.aws-style.json",
+      "sha256": "sha256:dc6b5566d4109abffebbcd09d8c773851cd1c59fadb086e9f71e09d51ba1b5f4",
+      "bytes": 411,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-340/observations/sensor-samples.json",
+      "sha256": "sha256:e32f6ca261db9601b3e896c40e018725db257d15994e084a0a536a6e258fec95",
+      "bytes": 10951,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-340/source-contract.json",
+      "sha256": "sha256:58c812365c0680c9f1d7121eefccc2b78167768ed4a7f113aa065f3cd1daeb50",
+      "bytes": 1177,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-DYN412/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:ab87a51aea2188eb3fd6b16e09afd777dc0439346f14bf8f5914ae35360d9234",
+      "bytes": 652,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-DYN412/code/agent-handler.js",
+      "sha256": "sha256:c4bd8e186f6276aab86054bf53e2a641a889aa62943d8d14e3c3008db4716f08",
+      "bytes": 804,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-DYN412/code/openapi.json",
+      "sha256": "sha256:5004c954100172f8b11d722ce26ce6925ce4adccb52476ff63575dc9993739a3",
+      "bytes": 1286,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-DYN412/iam/role-policy.aws-style.json",
+      "sha256": "sha256:799e8f5e729d0b51778f743aa79b265157b9b6bb71d80bca566be316bfd7d87e",
+      "bytes": 438,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-DYN412/observations/sensor-samples.json",
+      "sha256": "sha256:c313a920d4f7eb4d6814987ae0e903871b88eb6e29223afc973bcff37a45403d",
+      "bytes": 9741,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-DYN412/source-contract.json",
+      "sha256": "sha256:edb4889c612316ba5b6e604ade1a02b95f5224b75384e2aa488f7bb70dbd35b7",
+      "bytes": 1154,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-FC1/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:60e471ed63666f3d60e1df5d4794c1ccf8d6c5c17491cd05cdff14dc2a537e20",
+      "bytes": 584,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-FC1/code/agent-handler.js",
+      "sha256": "sha256:8d3b922c750b6724a8fa83f4763d0d31c8925060f66cd63b4249b85b6de7544d",
+      "bytes": 793,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-FC1/code/openapi.json",
+      "sha256": "sha256:e02976f337d1155e3c9265c60553bb9d6c9badc12679e37cc09cf442b623d014",
+      "bytes": 1253,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-FC1/iam/role-policy.aws-style.json",
+      "sha256": "sha256:c82878faf7ab9aefc123ee9b40665d5290e15a006f33e94f8364118ce0100f7c",
+      "bytes": 411,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-FC1/observations/sensor-samples.json",
+      "sha256": "sha256:6a6c96b637b41d002e3fb1b3f66b489e0d9d5e4ddfa015a64ad5e3b575a39103",
+      "bytes": 9066,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-FC1/source-contract.json",
+      "sha256": "sha256:970e9d6423ebe07a64c0e723c2b19b634cde956b148e7cc61cdca0ae01e65986",
+      "bytes": 1134,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-MNT88/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:abf9090c9c90bdb87437860ead7893fe35d233629f4d659a21768764a62b3abb",
+      "bytes": 599,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-MNT88/code/agent-handler.js",
+      "sha256": "sha256:fe615d7e5998b050d2a9fcca3e87009fb33bdfc607298dd45a351e5859063f03",
+      "bytes": 798,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-MNT88/code/openapi.json",
+      "sha256": "sha256:54491b4b096ee4851320789f1763e11758cc0be247951181b566bb7ab189c81b",
+      "bytes": 1261,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-MNT88/iam/role-policy.aws-style.json",
+      "sha256": "sha256:f0f9e53d2a0f33caf64f96524fbc598996e7fabc48001c17a60a014cdad57c7c",
+      "bytes": 416,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-MNT88/observations/sensor-samples.json",
+      "sha256": "sha256:c3b3a7ca3825619ac843d735099072417da517bb84de1ee0af9b1a1d2dde9500",
+      "bytes": 9332,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-MNT88/source-contract.json",
+      "sha256": "sha256:5e402fa8147c042acabbe037585b5f0e764866dc5eeff12afc434e1b2b96adda",
+      "bytes": 1099,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-PO12/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:3cd9bbe3ba9b1349aba2ca1da4f49388b4ced980f5a33474eece23b168f56073",
+      "bytes": 603,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-PO12/code/agent-handler.js",
+      "sha256": "sha256:3c3631f16b87fa2965c90ef5bdc62a9a16869395d23fea6f199ed1f369e08d2d",
+      "bytes": 799,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-PO12/code/openapi.json",
+      "sha256": "sha256:e9590400a4c4e11644a59d7a5a556097dd8f05882d268daaea709f67f65644a2",
+      "bytes": 1251,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-PO12/iam/role-policy.aws-style.json",
+      "sha256": "sha256:9743378129e726d716f6f4acb3b0a500a43019f7ad3e0d2980aa4c2257d1540b",
+      "bytes": 413,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-PO12/observations/sensor-samples.json",
+      "sha256": "sha256:b8f9044715adf474c7caa7335b3a53e7e8b6463c1d02b6739822ea7a46f31fc2",
+      "bytes": 9211,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-PO12/source-contract.json",
+      "sha256": "sha256:f1dcbe7e65b21f9ca40f4659a436fd7a2f4a1d0971525c6b8e6baacc8194ce2a",
+      "bytes": 1230,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-SCH5/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:74d02e52cac46ad97f04577758bc477d5c836a91e27444909c41a08e2609b8a3",
+      "bytes": 593,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-SCH5/code/agent-handler.js",
+      "sha256": "sha256:878fe0677cad94f1cde86e25228366763020e6a761cfb298051bb4917642e41f",
+      "bytes": 792,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-SCH5/code/openapi.json",
+      "sha256": "sha256:b47873c4950644732add1ce72d625f633c2b992fa7570e798f75581aeb69f12e",
+      "bytes": 1244,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-SCH5/iam/role-policy.aws-style.json",
+      "sha256": "sha256:cfb32fdaba34114446ddd5ecfe1bfbf03a09aa822b8f038b340c93a88738a629",
+      "bytes": 413,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-SCH5/observations/sensor-samples.json",
+      "sha256": "sha256:d75391d6495e4652e9030be2df29748d01d5c325d2d3b0901837469d79c9986c",
+      "bytes": 9187,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-SCH5/source-contract.json",
+      "sha256": "sha256:036d5aac5ee8f0167733b44965a197c0e5697f06bce193299698d3036d97b432",
+      "bytes": 1141,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-SUP12/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:a22da6230b1548bc9be131fe3809bce8592c53b3b5b482bc6b20f6ba494b828d",
+      "bytes": 608,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-SUP12/code/agent-handler.js",
+      "sha256": "sha256:4d0f63cf5ec2bf8558004e61273a660e8928efb9517cc1dd70004e2be93e2e92",
+      "bytes": 802,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-SUP12/code/openapi.json",
+      "sha256": "sha256:5bafc821d0e0dc968a17a1ca6a46a8efe5811003f8bca067a6ef4b1d78186374",
+      "bytes": 1271,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-SUP12/iam/role-policy.aws-style.json",
+      "sha256": "sha256:924152fd1ed8a5dcb264d5d260015c952748c637612fe9f7890aaf886ecb7cd9",
+      "bytes": 415,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-SUP12/observations/sensor-samples.json",
+      "sha256": "sha256:b2ccbc0d127f7fb0799b57d739673781b13e8a3f2f41c48fcc37f55068df6611",
+      "bytes": 9332,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-SUP12/source-contract.json",
+      "sha256": "sha256:18f91f341283ec9e7fe7b1a2408547965a95908b8a196fcb7877294c77b61cf4",
+      "bytes": 1187,
+      "kind": "source-contract.json"
+    },
+    {
+      "path": "systems/SYS-WH15/authority/operating-envelope.proposal.json",
+      "sha256": "sha256:309627143bf4484099588e49ee12d4cd2cab72369477aab9552468f24c8618ad",
+      "bytes": 612,
+      "kind": "operating-envelope.proposal.json"
+    },
+    {
+      "path": "systems/SYS-WH15/code/agent-handler.js",
+      "sha256": "sha256:286a39bdf7b0468fa11de42e89aa8ac4cee1794dbadd41c3178c453098dc6f3a",
+      "bytes": 794,
+      "kind": "agent-handler.js"
+    },
+    {
+      "path": "systems/SYS-WH15/code/openapi.json",
+      "sha256": "sha256:1a73d1544efa03763b49fc74e946976ec305575e81839e0c2e13bfca67e7f076",
+      "bytes": 1253,
+      "kind": "openapi.json"
+    },
+    {
+      "path": "systems/SYS-WH15/iam/role-policy.aws-style.json",
+      "sha256": "sha256:8a162cf37f4e426372dfccaf43fcbfc4a863cfdebede505c5d2cb16f07a2c4c3",
+      "bytes": 413,
+      "kind": "role-policy.aws-style.json"
+    },
+    {
+      "path": "systems/SYS-WH15/observations/sensor-samples.json",
+      "sha256": "sha256:25c9bbd5e4a3d070ca995075d5d030e9f1511b32992514853bd866eb8232cd35",
+      "bytes": 9187,
+      "kind": "sensor-samples.json"
+    },
+    {
+      "path": "systems/SYS-WH15/source-contract.json",
+      "sha256": "sha256:75eae92c584345e6dad6c9f51a5de385684fac034c32721e97a90dfefeec8d55",
+      "bytes": 1162,
+      "kind": "source-contract.json"
+    }
+  ],
+  "original27EvaluationsUnmodified": true,
+  "previousSourceNativeV2Unmodified": true,
+  "qualificationState": "NOT_YET_HAIEC_QUALIFIED",
+  "oracleIndependence": "PRODUCER_HAS_NO_EXPECTED_FINDINGS_IMPORT",
+  "sourceRolesAreClaimsNotAuthority": true
+}

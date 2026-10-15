@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "DC-15",
+  "aiSystemId": "SYS-WH15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-remediated",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-wh15-remediated-request",
+    "actor": "synthetic-agent/SYS-WH15",
+    "operation": "wms.shipment.confirm",
+    "target": "LOT-2026-4510",
+    "requestedQuantity": 1,
+    "unit": "shipment",
+    "requestedAt": "2026-10-14T16:30:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-wh15-remediated-approval",
+    "approver": "synthetic-warehouse-operations-supervisor",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-WH15",
+    "operation": "wms.shipment.confirm",
+    "authorizedTargets": [
+      "LOT-2026-4510"
+    ],
+    "quantityMax": 1,
+    "validFrom": "2026-10-14T16:29:00.000Z",
+    "validUntil": "2026-10-14T16:40:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-wh15-remediated-gate",
+    "policyRef": "systems/SYS-WH15/authority/operating-envelope.proposal.json",
+    "requestedTarget": "LOT-2026-4510",
+    "dispatchedTarget": "LOT-2026-4510",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T16:30:01.800Z",
+    "blockedAttempts": [
+      {
+        "eventId": "txn-syn-mfg-v3-sys-wh15-remediated-blocked",
+        "target": "LOT-2026-4511",
+        "decision": "SIMULATED_DENY_OUTSIDE_DELEGATION",
+        "mutationApplied": false
+      }
+    ]
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

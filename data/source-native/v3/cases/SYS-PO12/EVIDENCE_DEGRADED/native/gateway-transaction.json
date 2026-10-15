@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-evidence_degraded",
+  "eventTime": "2026-10-14T11:10:04.000Z",
+  "resourceId": "REQ-2026-8842",
+  "sourceSystem": "LAB_ERP_GATEWAY",
+  "producerRef": "syn-sys-po12-gateway",
+  "sourceClaimRole": "SIMULATED_DISPATCH_EMITTER",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "erp.purchase_order.create",
+  "eventId": "txn-syn-mfg-v3-sys-po12-evidence_degraded-gateway",
+  "businessField": "purchaseOrder",
+  "before": "NONE",
+  "after": "PO-2026-7712",
+  "recordVersion": "syn-mfg-v3-sys-po12-evidence_degraded-r1",
+  "consequenceScope": {
+    "unit": "USD",
+    "quantity": 26500
+  },
+  "readbackStatus": "EMITTER_RECORDED",
+  "modeInjection": "NONE"
+}

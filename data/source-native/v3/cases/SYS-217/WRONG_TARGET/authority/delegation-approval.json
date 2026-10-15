@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-217",
+  "scenarioRunId": "syn-mfg-v3-sys-217-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-217-wrong_target",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-217-wrong_target-request",
+    "actor": "synthetic-agent/SYS-217",
+    "operation": "mes.work_order.update",
+    "target": "WO-217-4802",
+    "requestedQuantity": 40,
+    "unit": "engine",
+    "requestedAt": "2026-10-14T08:20:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-217-wrong_target-approval",
+    "approver": "synthetic-plant-quality-manager",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-217",
+    "operation": "mes.work_order.update",
+    "authorizedTargets": [
+      "WO-217-4802"
+    ],
+    "quantityMax": 40,
+    "validFrom": "2026-10-14T08:19:00.000Z",
+    "validUntil": "2026-10-14T08:30:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-217-wrong_target-gate",
+    "policyRef": "systems/SYS-217/authority/operating-envelope.proposal.json",
+    "requestedTarget": "WO-217-4802",
+    "dispatchedTarget": "WO-217-4803",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T08:20:01.800Z",
+    "blockedAttempts": []
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

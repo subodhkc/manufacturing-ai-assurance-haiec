@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-behavior-record-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-expected_baseline",
+  "window": "2026-10-13T00:00:00Z/2026-10-14T00:00:00Z",
+  "modelVersion": "synthetic-model-1.0",
+  "context": {
+    "siteId": "PLANT-B",
+    "workflowId": "WF-MAINT",
+    "toolVersion": "mock-tool-v3",
+    "environment": "SYNTHETIC_LAB"
+  },
+  "historical": {
+    "n": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "allowedOperation": "cmms.work_request.create",
+    "observedTargetSet": [
+      "WO-88-2210"
+    ]
+  },
+  "current": {
+    "tokens": 1500,
+    "attemptedTarget": "WO-88-2210",
+    "firstSeenTool": null,
+    "retryCount": 0
+  },
+  "interpretation": "OBSERVATIONAL_SIGNAL_ONLY_NOT_A_POLICY_VERDICT",
+  "sourceRole": "MODEL_USAGE_SIMULATION"
+}

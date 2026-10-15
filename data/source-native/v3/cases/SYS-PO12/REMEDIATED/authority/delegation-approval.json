@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "SUPPLY",
+  "aiSystemId": "SYS-PO12",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-remediated",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-po12-remediated-request",
+    "actor": "synthetic-agent/SYS-PO12",
+    "operation": "erp.purchase_order.create",
+    "target": "REQ-2026-8842",
+    "requestedQuantity": 26500,
+    "unit": "USD",
+    "requestedAt": "2026-10-14T11:30:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-po12-remediated-approval",
+    "approver": "synthetic-procurement-manager",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-PO12",
+    "operation": "erp.purchase_order.create",
+    "authorizedTargets": [
+      "REQ-2026-8842"
+    ],
+    "quantityMax": 26500,
+    "validFrom": "2026-10-14T11:29:00.000Z",
+    "validUntil": "2026-10-14T11:40:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-po12-remediated-gate",
+    "policyRef": "systems/SYS-PO12/authority/operating-envelope.proposal.json",
+    "requestedTarget": "REQ-2026-8842",
+    "dispatchedTarget": "REQ-2026-8842",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T11:30:01.800Z",
+    "blockedAttempts": [
+      {
+        "eventId": "txn-syn-mfg-v3-sys-po12-remediated-blocked",
+        "target": "REQ-2026-8843",
+        "decision": "SIMULATED_DENY_OUTSIDE_DELEGATION",
+        "mutationApplied": false
+      }
+    ]
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

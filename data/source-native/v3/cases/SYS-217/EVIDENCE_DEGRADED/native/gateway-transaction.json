@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-217",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-217-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-217-evidence_degraded",
+  "eventTime": "2026-10-14T08:10:04.000Z",
+  "resourceId": "WO-217-4802",
+  "sourceSystem": "LAB_MES_GATEWAY",
+  "producerRef": "syn-sys-217-gateway",
+  "sourceClaimRole": "SIMULATED_DISPATCH_EMITTER",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "mes.work_order.update",
+  "eventId": "txn-syn-mfg-v3-sys-217-evidence_degraded-gateway",
+  "businessField": "qualityHold",
+  "before": false,
+  "after": true,
+  "recordVersion": "syn-mfg-v3-sys-217-evidence_degraded-r1",
+  "consequenceScope": {
+    "unit": "engine",
+    "quantity": 40
+  },
+  "readbackStatus": "EMITTER_RECORDED",
+  "modeInjection": "NONE"
+}

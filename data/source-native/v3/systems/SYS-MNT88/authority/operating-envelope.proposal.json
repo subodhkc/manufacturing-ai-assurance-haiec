@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "workflowId": "WF-MAINT",
+  "state": "PROPOSED_NOT_HAIEC_APPROVED",
+  "operation": "cmms.work_request.create",
+  "authorizedTargets": [
+    "WO-88-2210"
+  ],
+  "excludedTargets": [
+    "WO-88-2211"
+  ],
+  "maxQuantity": 1,
+  "unit": "request",
+  "approverRole": "Maintenance Supervisor",
+  "delegationIsNotPermission": true,
+  "environment": "SYNTHETIC_LAB",
+  "effectiveFrom": "2026-10-14T00:00:00.000Z",
+  "effectiveUntil": "2026-10-15T00:00:00.000Z"
+}

@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Predictive Maintenance AI Synthetic Tool API",
+    "version": "3.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://synthetic.invalid"
+    }
+  ],
+  "paths": {
+    "/synthetic/operations/dispatch": {
+      "post": {
+        "operationId": "propose_cmms_ticket",
+        "summary": "Emulated cmms.work_request.create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "target",
+                  "transactionId"
+                ],
+                "properties": {
+                  "target": {
+                    "type": "string"
+                  },
+                  "transactionId": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Synthetic in-memory response only"
+          }
+        }
+      }
+    }
+  },
+  "x-manufacturing-operation": "cmms.work_request.create",
+  "x-target-system": "CMMS"
+}

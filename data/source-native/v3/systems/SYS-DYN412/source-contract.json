@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-DYN412",
+  "name": "Dynamometer Tuning AI",
+  "siteId": "PLANT-A",
+  "workflowId": "WF-DYNO",
+  "agents": [
+    {
+      "agentId": "SYS-DYN412-AGENT-1",
+      "name": "Dyno Tuning Agent"
+    }
+  ],
+  "operation": "test_controller.setpoint.write",
+  "resourceKey": {
+    "site": "PLANT-A",
+    "namespace": "TEST_CONTROLLER_EMULATOR",
+    "approvedTarget": "TEST-412/authorized-param-1",
+    "alternateTarget": "TEST-412/undelegated-param-4"
+  },
+  "nativeEffect": {
+    "sourceSystem": "TEST_CONTROLLER_EMULATOR",
+    "property": "controllerSetpoint",
+    "preState": 40,
+    "postState": 42.5,
+    "unit": "emulated-setpoint",
+    "quantity": 1
+  },
+  "capability": {
+    "tool": "propose_setpoint",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

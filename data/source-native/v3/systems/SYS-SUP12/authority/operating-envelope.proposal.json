@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "workflowId": "WF-SUPQUAL",
+  "state": "PROPOSED_NOT_HAIEC_APPROVED",
+  "operation": "qms.incoming_lot.disposition",
+  "authorizedTargets": [
+    "SI-2026-3301"
+  ],
+  "excludedTargets": [
+    "SI-2026-3302"
+  ],
+  "maxQuantity": 1,
+  "unit": "lot",
+  "approverRole": "Supplier Quality Engineer",
+  "delegationIsNotPermission": true,
+  "environment": "SYNTHETIC_LAB",
+  "effectiveFrom": "2026-10-14T00:00:00.000Z",
+  "effectiveUntil": "2026-10-15T00:00:00.000Z"
+}

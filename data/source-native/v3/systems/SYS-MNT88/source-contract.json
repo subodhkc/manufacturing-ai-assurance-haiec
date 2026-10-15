@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-MNT88",
+  "name": "Predictive Maintenance AI",
+  "siteId": "PLANT-B",
+  "workflowId": "WF-MAINT",
+  "agents": [
+    {
+      "agentId": "SYS-MNT88-AGENT-1",
+      "name": "Spindle Health Analyst"
+    }
+  ],
+  "operation": "cmms.work_request.create",
+  "resourceKey": {
+    "site": "PLANT-B",
+    "namespace": "CMMS",
+    "approvedTarget": "WO-88-2210",
+    "alternateTarget": "WO-88-2211"
+  },
+  "nativeEffect": {
+    "sourceSystem": "CMMS",
+    "property": "workOrderStatus",
+    "preState": "NOT_OPENED",
+    "postState": "WORK_REQUEST_CREATED",
+    "unit": "request",
+    "quantity": 1
+  },
+  "capability": {
+    "tool": "propose_cmms_ticket",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

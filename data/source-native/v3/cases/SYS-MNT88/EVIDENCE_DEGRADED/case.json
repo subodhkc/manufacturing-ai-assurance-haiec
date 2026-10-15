@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "manufacturing-evidence-case-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "sourceQualification": "UNQUALIFIED_UNTIL_CANONICAL_HAIEC_BINDING",
+  "siteId": "PLANT-B",
+  "workflowId": "WF-MAINT",
+  "aiSystemId": "SYS-MNT88",
+  "agentIds": [
+    "SYS-MNT88-AGENT-1"
+  ],
+  "scenarioState": "EVIDENCE_DEGRADED",
+  "caseId": "SYS-MNT88-EVIDENCE_DEGRADED",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "operation": "cmms.work_request.create",
+  "approvedTarget": "WO-88-2210",
+  "sourceRecords": {
+    "businessApproval": "cases/SYS-MNT88/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+    "iamObservation": "cases/SYS-MNT88/EVIDENCE_DEGRADED/iam/access-observation.json",
+    "otlpTelemetry": "cases/SYS-MNT88/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+    "collectorContinuity": "cases/SYS-MNT88/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+    "gatewayNative": "cases/SYS-MNT88/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+    "targetNativeReadback": null,
+    "behavioralHistory": "cases/SYS-MNT88/EVIDENCE_DEGRADED/monitoring/behavior.json"
+  },
+  "sourceSystemRefs": {
+    "policy": "systems/SYS-MNT88/authority/operating-envelope.proposal.json",
+    "iam": "systems/SYS-MNT88/iam/role-policy.aws-style.json",
+    "code": "systems/SYS-MNT88/code/agent-handler.js",
+    "openapi": "systems/SYS-MNT88/code/openapi.json",
+    "sensor": "systems/SYS-MNT88/observations/sensor-samples.json"
+  },
+  "eventTime": "2026-10-14T12:10:00.000Z",
+  "recordedTarget": "WO-88-2210",
+  "sourceContentFacts": {
+    "gatewayRecorded": true,
+    "targetLedgerRecordPresent": false,
+    "extraRejectedAttemptRecordPresent": false,
+    "collectorGap": true
+  },
+  "provenance": "SYNTHETIC_MULTIPLE_EMULATED_COMPONENTS_SINGLE_LAB",
+  "independentOfExpectedOracle": true,
+  "producerRegistrationRequired": true
+}

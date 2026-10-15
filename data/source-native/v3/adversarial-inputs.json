@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "manufacturing-adversarial-inputs-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "comparisonBasis": "RAW_NEGATIVE_INPUT_MUTATIONS_ONLY_NO_EXPECTED_VERDICTS",
+  "fixtures": [
+    {
+      "id": "FOREIGN_TENANT",
+      "mutation": "change organization binding to another synthetic tenant",
+      "impactedClass": "IDENTITY"
+    },
+    {
+      "id": "WRONG_RESOURCE",
+      "mutation": "replace exact approved target without changing transaction ID",
+      "impactedClass": "TARGET"
+    },
+    {
+      "id": "EXPIRED_APPROVAL",
+      "mutation": "move business approval validUntil before tool dispatch",
+      "impactedClass": "AUTHORITY"
+    },
+    {
+      "id": "REUSED_APPROVAL",
+      "mutation": "reuse approval decision for different transactionId",
+      "impactedClass": "REPLAY"
+    },
+    {
+      "id": "MODIFIED_PAYLOAD",
+      "mutation": "alter quantity after producer digest is bound",
+      "impactedClass": "PROVENANCE"
+    },
+    {
+      "id": "MISSING_READBACK",
+      "mutation": "remove only independent target-ledger evidence",
+      "impactedClass": "EFFECT_COVERAGE"
+    },
+    {
+      "id": "HEARTBEAT_LOSS",
+      "mutation": "drop collector heartbeat and target witness spans",
+      "impactedClass": "COLLECTOR_CONTINUITY"
+    },
+    {
+      "id": "PROPOSED_POLICY_AS_APPROVED",
+      "mutation": "claim source role POLICY_AUTHORIZED from unapproved proposal",
+      "impactedClass": "SOURCE_AUTHORITY"
+    }
+  ]
+}

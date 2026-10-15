@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "manufacturing-evidence-case-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "sourceQualification": "UNQUALIFIED_UNTIL_CANONICAL_HAIEC_BINDING",
+  "siteId": "PLANT-A",
+  "workflowId": "WF-QUALITY",
+  "aiSystemId": "SYS-217",
+  "agentIds": [
+    "SYS-217-AGENT-1"
+  ],
+  "scenarioState": "EVIDENCE_DEGRADED",
+  "caseId": "SYS-217-EVIDENCE_DEGRADED",
+  "scenarioRunId": "syn-mfg-v3-sys-217-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-217-evidence_degraded",
+  "operation": "mes.work_order.update",
+  "approvedTarget": "WO-217-4802",
+  "sourceRecords": {
+    "businessApproval": "cases/SYS-217/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+    "iamObservation": "cases/SYS-217/EVIDENCE_DEGRADED/iam/access-observation.json",
+    "otlpTelemetry": "cases/SYS-217/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+    "collectorContinuity": "cases/SYS-217/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+    "gatewayNative": "cases/SYS-217/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+    "targetNativeReadback": null,
+    "behavioralHistory": "cases/SYS-217/EVIDENCE_DEGRADED/monitoring/behavior.json"
+  },
+  "sourceSystemRefs": {
+    "policy": "systems/SYS-217/authority/operating-envelope.proposal.json",
+    "iam": "systems/SYS-217/iam/role-policy.aws-style.json",
+    "code": "systems/SYS-217/code/agent-handler.js",
+    "openapi": "systems/SYS-217/code/openapi.json",
+    "sensor": "systems/SYS-217/observations/sensor-samples.json"
+  },
+  "eventTime": "2026-10-14T08:10:00.000Z",
+  "recordedTarget": "WO-217-4802",
+  "sourceContentFacts": {
+    "gatewayRecorded": true,
+    "targetLedgerRecordPresent": false,
+    "extraRejectedAttemptRecordPresent": false,
+    "collectorGap": true
+  },
+  "provenance": "SYNTHETIC_MULTIPLE_EMULATED_COMPONENTS_SINGLE_LAB",
+  "independentOfExpectedOracle": true,
+  "producerRegistrationRequired": true
+}

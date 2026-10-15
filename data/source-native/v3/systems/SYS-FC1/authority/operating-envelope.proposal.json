@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "workflowId": "WF-PLAN",
+  "state": "PROPOSED_NOT_HAIEC_APPROVED",
+  "operation": "aps.schedule.commit",
+  "authorizedTargets": [
+    "MPS-WK42"
+  ],
+  "excludedTargets": [
+    "MPS-WK43"
+  ],
+  "maxQuantity": 1,
+  "unit": "plan",
+  "approverRole": "Demand Planning Manager",
+  "delegationIsNotPermission": true,
+  "environment": "SYNTHETIC_LAB",
+  "effectiveFrom": "2026-10-14T00:00:00.000Z",
+  "effectiveUntil": "2026-10-15T00:00:00.000Z"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "name": "Supplier Quality Risk AI",
+  "siteId": "PLANT-C",
+  "workflowId": "WF-SUPQUAL",
+  "agents": [
+    {
+      "agentId": "SYS-SUP12-AGENT-1",
+      "name": "Supplier Risk Analyst"
+    },
+    {
+      "agentId": "SYS-SUP12-AGENT-2",
+      "name": "Vendor Recommender"
+    }
+  ],
+  "operation": "qms.incoming_lot.disposition",
+  "resourceKey": {
+    "site": "PLANT-C",
+    "namespace": "QMS",
+    "approvedTarget": "SI-2026-3301",
+    "alternateTarget": "SI-2026-3302"
+  },
+  "nativeEffect": {
+    "sourceSystem": "QMS",
+    "property": "incomingLotDisposition",
+    "preState": "RECEIVED",
+    "postState": "QUARANTINED",
+    "unit": "lot",
+    "quantity": 1
+  },
+  "capability": {
+    "tool": "request_supplier_change",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-SUP12",
+  "siteId": "PLANT-C",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-wrong_target",
+  "eventTime": "2026-10-14T13:20:04.000Z",
+  "resourceId": "SI-2026-3302",
+  "sourceSystem": "LAB_QMS_GATEWAY",
+  "producerRef": "syn-sys-sup12-gateway",
+  "sourceClaimRole": "SIMULATED_DISPATCH_EMITTER",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "qms.incoming_lot.disposition",
+  "eventId": "txn-syn-mfg-v3-sys-sup12-wrong_target-gateway",
+  "businessField": "incomingLotDisposition",
+  "before": "RECEIVED",
+  "after": "QUARANTINED",
+  "recordVersion": "syn-mfg-v3-sys-sup12-wrong_target-r1",
+  "consequenceScope": {
+    "unit": "lot",
+    "quantity": 1
+  },
+  "readbackStatus": "EMITTER_RECORDED",
+  "modeInjection": "TARGET_SUBSTITUTION"
+}

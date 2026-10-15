@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "siteId": "SUPPLY",
+  "workflowId": "WF-PROCURE",
+  "state": "PROPOSED_NOT_HAIEC_APPROVED",
+  "operation": "erp.purchase_order.create",
+  "authorizedTargets": [
+    "REQ-2026-8842"
+  ],
+  "excludedTargets": [
+    "REQ-2026-8843"
+  ],
+  "maxQuantity": 26500,
+  "unit": "USD",
+  "approverRole": "Procurement Manager",
+  "delegationIsNotPermission": true,
+  "environment": "SYNTHETIC_LAB",
+  "effectiveFrom": "2026-10-14T00:00:00.000Z",
+  "effectiveUntil": "2026-10-15T00:00:00.000Z"
+}

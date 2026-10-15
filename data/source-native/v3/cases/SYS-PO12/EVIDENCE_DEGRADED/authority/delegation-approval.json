@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "SUPPLY",
+  "aiSystemId": "SYS-PO12",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-evidence_degraded",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-po12-evidence_degraded-request",
+    "actor": "synthetic-agent/SYS-PO12",
+    "operation": "erp.purchase_order.create",
+    "target": "REQ-2026-8842",
+    "requestedQuantity": 26500,
+    "unit": "USD",
+    "requestedAt": "2026-10-14T11:10:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-po12-evidence_degraded-approval",
+    "approver": "synthetic-procurement-manager",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-PO12",
+    "operation": "erp.purchase_order.create",
+    "authorizedTargets": [
+      "REQ-2026-8842"
+    ],
+    "quantityMax": 26500,
+    "validFrom": "2026-10-14T11:09:00.000Z",
+    "validUntil": "2026-10-14T11:20:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-po12-evidence_degraded-gate",
+    "policyRef": "systems/SYS-PO12/authority/operating-envelope.proposal.json",
+    "requestedTarget": "REQ-2026-8842",
+    "dispatchedTarget": "REQ-2026-8842",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T11:10:01.800Z",
+    "blockedAttempts": []
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

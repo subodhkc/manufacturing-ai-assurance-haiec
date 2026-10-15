@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Warehouse Fulfillment AI Synthetic Tool API",
+    "version": "3.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://synthetic.invalid"
+    }
+  ],
+  "paths": {
+    "/synthetic/operations/dispatch": {
+      "post": {
+        "operationId": "request_replenishment",
+        "summary": "Emulated wms.shipment.confirm",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "target",
+                  "transactionId"
+                ],
+                "properties": {
+                  "target": {
+                    "type": "string"
+                  },
+                  "transactionId": {
+                    "type": "string"
+                  },
+                  "operation": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Synthetic in-memory response only"
+          }
+        }
+      }
+    }
+  },
+  "x-manufacturing-operation": "wms.shipment.confirm",
+  "x-target-system": "WMS"
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-FC1",
+  "siteId": "SUPPLY",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-expected_baseline",
+  "eventTime": "2026-10-14T10:00:04.000Z",
+  "resourceId": "MPS-WK42",
+  "sourceSystem": "LAB_APS_GATEWAY",
+  "producerRef": "syn-sys-fc1-gateway",
+  "sourceClaimRole": "SIMULATED_DISPATCH_EMITTER",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "aps.schedule.commit",
+  "eventId": "txn-syn-mfg-v3-sys-fc1-expected_baseline-gateway",
+  "businessField": "releasedSchedule",
+  "before": false,
+  "after": true,
+  "recordVersion": "syn-mfg-v3-sys-fc1-expected_baseline-r1",
+  "consequenceScope": {
+    "unit": "plan",
+    "quantity": 1
+  },
+  "readbackStatus": "EMITTER_RECORDED",
+  "modeInjection": "NONE"
+}

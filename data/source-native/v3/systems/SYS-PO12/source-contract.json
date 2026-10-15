@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "name": "Autonomous Replenishment",
+  "siteId": "SUPPLY",
+  "workflowId": "WF-PROCURE",
+  "agents": [
+    {
+      "agentId": "SYS-PO12-AGENT-1",
+      "name": "Inventory Monitor"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-2",
+      "name": "Sourcing Agent"
+    },
+    {
+      "agentId": "SYS-PO12-AGENT-3",
+      "name": "PO Assistant"
+    }
+  ],
+  "operation": "erp.purchase_order.create",
+  "resourceKey": {
+    "site": "SUPPLY",
+    "namespace": "ERP",
+    "approvedTarget": "REQ-2026-8842",
+    "alternateTarget": "REQ-2026-8843"
+  },
+  "nativeEffect": {
+    "sourceSystem": "ERP",
+    "property": "purchaseOrder",
+    "preState": "NONE",
+    "postState": "PO-2026-7712",
+    "unit": "USD",
+    "quantity": 26500
+  },
+  "capability": {
+    "tool": "create_po",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

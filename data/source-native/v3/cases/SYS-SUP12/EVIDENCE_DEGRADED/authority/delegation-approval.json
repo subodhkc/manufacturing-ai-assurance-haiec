@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "PLANT-C",
+  "aiSystemId": "SYS-SUP12",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-evidence_degraded",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-sup12-evidence_degraded-request",
+    "actor": "synthetic-agent/SYS-SUP12",
+    "operation": "qms.incoming_lot.disposition",
+    "target": "SI-2026-3301",
+    "requestedQuantity": 1,
+    "unit": "lot",
+    "requestedAt": "2026-10-14T13:10:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-sup12-evidence_degraded-approval",
+    "approver": "synthetic-supplier-quality-engineer",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-SUP12",
+    "operation": "qms.incoming_lot.disposition",
+    "authorizedTargets": [
+      "SI-2026-3301"
+    ],
+    "quantityMax": 1,
+    "validFrom": "2026-10-14T13:09:00.000Z",
+    "validUntil": "2026-10-14T13:20:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-sup12-evidence_degraded-gate",
+    "policyRef": "systems/SYS-SUP12/authority/operating-envelope.proposal.json",
+    "requestedTarget": "SI-2026-3301",
+    "dispatchedTarget": "SI-2026-3301",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T13:10:01.800Z",
+    "blockedAttempts": []
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}
