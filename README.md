@@ -31,6 +31,14 @@ npm run verify
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
 
+## Operator Action Assurance — six-stage judged walkthrough (v2.5)
+
+Open [the deployed manufacturing demo](https://haiec-manufacturing-demo.vercel.app/) and choose **Operator Journey**. The guide follows **Detect → Investigate → Authorize → Contain → Verify → Report** and links to the existing 60-second Evidence Replay, SYS-217 evaluated case and public sample Master Assurance Report. See [the scoped UX, control and OWASP release plan](docs/OPERATOR-ACTION-ASSURANCE-UX-V2.5.md).
+
+**Critical source split:** Detection, rule `MFG-EFF-001 MATCH`, `REVIEW`, target `WO-217-4802 → WO-217-4803` and R01 `SATISFIED / RECEIPT_BOUND` are read from a **historical, SHA-256 verified persisted HAIEC evaluation of fictional manufacturing data**. The “Authorize” screen is a proposed human-response checklist, not a new delegated authorization. “Contain” is an **in-memory, browser-only fictional dispatch pause**; a local `SIMULATED_DENY` is not a HAIEC kill switch, tool boundary or native effect witness. “Verify” explicitly leaves post-response enforcement `NOT ESTABLISHED`; the old R01 receipt does not qualify new remediation. No live production monitoring, OT actuation, new evaluation, framework certification or signed report is performed by this page.
+
+This feature does not modify HAIEC's private engine, manufacturing v1 exports, v3.1 candidate fixtures, 27 frozen digests, or existing industry-specific evidence modes. A focused test checks six stages, simulated response isolation and fail-closed export rendering. A live browser QA pass is still required for visual interaction acceptance.
+
 ## Multi-industry presentation (HackFW v2.4)
 
 Open the **Industry Experiences** navigation item in the same [manufacturing demo](https://haiec-manufacturing-demo.vercel.app/), or use `?industry=telecom` for the historical TM Forum-reference view. One shared dashboard shell renders Manufacturing, Telecommunications, Electrical Equipment, Rail & Transportation, Electronics / AI Infrastructure and Supplier Network. The organization/profile selector is fictional and profile-scoped.
