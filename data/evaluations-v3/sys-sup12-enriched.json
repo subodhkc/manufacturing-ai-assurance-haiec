@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/08bf12cc-4eab-4de3-8846-bfd6e2cf92e4%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/08bf12cc-4eab-4de3-8846-bfd6e2cf92e4%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/08bf12cc-4eab-4de3-8846-bfd6e2cf92e4%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/MrjRCGachRFZUMLad1GXG9HW3P10HFXl/verify",
+      "decisionReceipt": "/api/assurance/packages/Gt1noC_dapKdOMuU2mz-DB3X7z8FmmTv/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-SUP12?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -525,12 +525,12 @@
     ]
   },
   "publication": {
-    "packageId": "MrjRCGachRFZUMLad1GXG9HW3P10HFXl",
+    "packageId": "Gt1noC_dapKdOMuU2mz-DB3X7z8FmmTv",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "ef1ce3666bdf014c3ae5398c43f3ec18fedba8cc67467662e208a85de732ad43",
-    "receiptHash": "d71fde9b1fcac2ca802109b814bcb9c118240e817840a9ed701b0a9ebd7a676e",
-    "publicVerificationId": "7hk0JRfiVGWT-YKDzSL66VI_",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/7hk0JRfiVGWT-YKDzSL66VI_"
+    "semanticReportDigest": "2cf127bae40669b0240c790c6afe2b5b59c426f4df67a615ab522e98d71a920d",
+    "receiptHash": "3b459137dd7c783aa4b221c321a84a53a3f83fb898b9fd40f286b5d72cf77322",
+    "publicVerificationId": "pD_9WHNcOqoJ_eDD_vTzR1Ix",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/pD_9WHNcOqoJ_eDD_vTzR1Ix"
   },
-  "exportDigest": "sha256:6839a602f56541adf3ee614d909ba58d3a41646351f8407f9b3bb79af5f13b85"
+  "exportDigest": "sha256:20e98c145bf26212a52a21f043c01bf0838b7fc132835c80153475937aebfc00"
 }

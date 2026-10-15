@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/380d3777-4d23-4942-9aef-7f2374d89cb7%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/380d3777-4d23-4942-9aef-7f2374d89cb7%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/380d3777-4d23-4942-9aef-7f2374d89cb7%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/O6W3nzjEdQSLlf8Ztk8WGYTEPQvOoB6k/verify",
+      "decisionReceipt": "/api/assurance/packages/bO-ReqTn6a0ToAoUROAcEt_faKslACx7/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-MNT88?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "O6W3nzjEdQSLlf8Ztk8WGYTEPQvOoB6k",
+    "packageId": "bO-ReqTn6a0ToAoUROAcEt_faKslACx7",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "7e910013422a6431f307b678c767502b94a21909f735309221f4c858f5ad9050",
-    "receiptHash": "5695e810d829b4ee0ad052f34678cc42a92db8a2694f047d678d8d1215560919",
-    "publicVerificationId": "py7qu0LCyxQj1NHJodkL0ocE",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/py7qu0LCyxQj1NHJodkL0ocE"
+    "semanticReportDigest": "6e654470dbaf8cff207f7952e7cc24558cc8c8a98915d881005793297627caa2",
+    "receiptHash": "1b51b74a9c2b6880e055fa798966db9673731bef99a92f6c303cd1870387542c",
+    "publicVerificationId": "BZmABYYQcCkFrZtZa6Cu6a4m",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/BZmABYYQcCkFrZtZa6Cu6a4m"
   },
-  "exportDigest": "sha256:17d7b7b0218df00a63fd286801413ee1d3301b2a93724c073802f2147b95e3bc"
+  "exportDigest": "sha256:24083aa05f07d090b7838f949164a3d4a82e0f50990fc447e883ed3aa394134d"
 }

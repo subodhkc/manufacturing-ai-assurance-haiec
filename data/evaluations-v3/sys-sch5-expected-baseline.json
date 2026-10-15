@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/0c53f3bf-3467-4a52-a144-ece6b2bfdc11%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/0c53f3bf-3467-4a52-a144-ece6b2bfdc11%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/0c53f3bf-3467-4a52-a144-ece6b2bfdc11%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/Wl-EN4YouN40uYC1n_T2KLLoLkSS7QCJ/verify",
+      "decisionReceipt": "/api/assurance/packages/hoKykJAfnqP8bMxn84RBg-gVv750Fcvv/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-SCH5?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -524,12 +524,12 @@
     ]
   },
   "publication": {
-    "packageId": "Wl-EN4YouN40uYC1n_T2KLLoLkSS7QCJ",
+    "packageId": "hoKykJAfnqP8bMxn84RBg-gVv750Fcvv",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "c8c384f7bc8e25389e6bbbbae5a0a0c7ffc2bd58946f939752aed8b7074c0ce3",
-    "receiptHash": "919a8b7f2458c7bd3f2846fb44480e5a81cc340d1258e77370828b71b12c6326",
-    "publicVerificationId": "IASxwYRKx9T9OUVBaHHDTKvO",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/IASxwYRKx9T9OUVBaHHDTKvO"
+    "semanticReportDigest": "b5f143a59e6ed34dcb7f548f6f369335b1f1d023bb2f3ac25b63d6cbfb2658e4",
+    "receiptHash": "358d51c91a7d18533ea6908f9f3ab0c1a15529771785e0f2b3219e881f1c4bb3",
+    "publicVerificationId": "NBwCCjRBc_RM4x6Sk7NGeDzO",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/NBwCCjRBc_RM4x6Sk7NGeDzO"
   },
-  "exportDigest": "sha256:a6a9a4678e279f7f4ee302ab58b3fe7485301aa465239ec23a75a41e7ffcb489"
+  "exportDigest": "sha256:fddde67ca0f467c88b22e3654593796146527ba641516ce78f5544f580259e52"
 }

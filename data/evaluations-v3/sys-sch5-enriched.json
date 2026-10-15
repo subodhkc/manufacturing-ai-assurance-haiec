@@ -1,7 +1,7 @@
 {
   "schemaVersion": "haiec-evaluation-export-1.0.0",
   "exportKind": "FROZEN_EVALUATION_EXPORT",
-  "exportedAt": "2026-10-15T11:01:13.094Z",
+  "exportedAt": "2026-10-15T13:23:31.908Z",
   "provenance": {
     "dataClass": "SYNTHETIC_LAB",
     "truthLabel": "FROZEN_SYNTHETIC_EVALUATION",
@@ -182,7 +182,7 @@
       "passport": "/api/v1/assurance/evaluations/9711c694-6727-4097-a79c-29ab6aca8b6e%3Aassurance%3A1.1/passport",
       "assuranceReport": "/api/v1/assurance/evaluations/9711c694-6727-4097-a79c-29ab6aca8b6e%3Aassurance%3A1.1/report",
       "assuranceEvidencePdf": "/api/v1/assurance/evaluations/9711c694-6727-4097-a79c-29ab6aca8b6e%3Aassurance%3A1.1/report/pdf",
-      "decisionReceipt": "/api/assurance/packages/zEFp96TW5GuIFrTDTazve_rgQGMlwyET/verify",
+      "decisionReceipt": "/api/assurance/packages/iwX3_Cep7q45YepVI4CmG250KYOR5JyD/verify",
       "systemWorkspace": "/dashboard/ai-inventory/systems/SYS-SCH5?org=s15-v3-org-mv9ed6kh-r7ayko",
       "investigation": null
     },
@@ -525,12 +525,12 @@
     ]
   },
   "publication": {
-    "packageId": "zEFp96TW5GuIFrTDTazve_rgQGMlwyET",
+    "packageId": "iwX3_Cep7q45YepVI4CmG250KYOR5JyD",
     "publicationState": "PUBLIC",
-    "semanticReportDigest": "2887caebece96347dec9defe0f44a2a196029df92c084bf6c60e427b587d176e",
-    "receiptHash": "69d4986f9796c3f68adbcb0a464bd10fa644f6ef7974caf46b921fffe43b3850",
-    "publicVerificationId": "T0mdkAipxDetbQUFdBIzSLZk",
-    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/T0mdkAipxDetbQUFdBIzSLZk"
+    "semanticReportDigest": "a030cfa45c160203aeecf4a9e46142d221ec314a846e14be86b943b417258b5c",
+    "receiptHash": "454be72291a5cd760623773859c0f2c065b761a69dd7415b6d43171fb4d46186",
+    "publicVerificationId": "EnPZJJNomgHOSnlDRBs6IO_7",
+    "publicVerificationUrl": "https://www.haiec.com/verify/assurance/EnPZJJNomgHOSnlDRBs6IO_7"
   },
-  "exportDigest": "sha256:b9feb0e8342835b3c155f3e23b4950c5e3b3e18e6ee5321aa485583b4ae8cf3e"
+  "exportDigest": "sha256:93b94ce9795b09fd6ff738c781f332561a14dcf1f8d68b5d2bcb5024a47bb554"
 }
