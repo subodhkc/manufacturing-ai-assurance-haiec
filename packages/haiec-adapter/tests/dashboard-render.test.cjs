@@ -63,7 +63,7 @@ function loadDashboard() {
   for (const b of blocks) vm.runInContext(b, sandbox);
   // Top-level const/let stays lexical in the context — capture test handles.
   const T = vm.runInContext(
-    '({ STATE, HX, HXDATA, RP, RP_STEPS, render, pageEvaluations, pageStation217, pageEvalCase, pageReplay, hxVerifyAll, SCENARIOS })',
+    '({ STATE, HX, HXDATA, RP, RP_STEPS, render, pageEvaluations, pageStation217, pageEvalCase, pageReplay, pageExec, hxVerifyAll, SCENARIOS })',
     sandbox,
   );
   return { sandbox, elements, T };
@@ -218,10 +218,42 @@ test('replay data is embedded digest-pinned and bound to the wrong-target evalua
   assert.match(rp.digest, /^sha256:[0-9a-f]{64}$/);
   assert.equal(rp.records.length, 6);
   const phases = rp.records.map((r) => r.payload.phase);
-  for (const p of ['REQUESTED', 'POLICY_DECLARED', 'CODE_CAPABLE', 'GATE_DECISION', 'ACTION_APPLIED', 'EFFECT_CONFIRMED']) {
+  for (const p of ['REQUESTED', 'POLICY_DECLARED', 'CAPABILITY_DECLARED', 'GATE_DECISION', 'ACTION_RECORDED', 'TARGET_READBACK']) {
     assert.ok(phases.includes(p), `missing source record phase ${p}`);
   }
   for (const r of rp.records) assert.ok(r.declaredAt, 'every record carries its real declaredAt');
+});
+
+test('replay records come from the canonical source world, not the oracle storyboard', () => {
+  const { T } = loadDashboard();
+  const rp = T.HXDATA.replay;
+  const wt = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'];
+  // The evaluated run identity — oracle golden-scenarios carries
+  // 'syn-mfg-sys-217-001', which must never enter an evidence path.
+  assert.equal(rp.provenance.scenarioRunId, 'syn-world-sys-217-wrong_target');
+  assert.equal(rp.provenance.sourceWorldId, 'manufacturing-source-world-v1');
+  assert.equal(rp.provenance.transactionId, 'syn-txn-b855a022ebe42786bf');
+  assert.equal(rp.provenance.scenarioRunId, wt.sourceCase.scenarioRunId,
+    'replay run must equal the export\'s bound scenarioRunId');
+  assert.equal(rp.provenance.sourceWorldId, wt.provenance.sourceWorldId,
+    'replay world must equal the export\'s declared sourceWorldId');
+  for (const r of rp.records) {
+    assert.equal(r.payload.scenarioRunId, 'syn-world-sys-217-wrong_target',
+      'record must carry the evaluated run identity, not the storyboard');
+    assert.ok(!/^syn-mfg-/.test(r.payload.scenarioRunId), 'oracle storyboard identity leaked into evidence path');
+    assert.ok(/^synthetic-source-/.test(r.evidenceId), 'record must be a source-world evidence record');
+    assert.notEqual(r.sourceType, 'SYNTHETIC_FIXTURE', 'oracle fixture records must not be embedded');
+    assert.equal(r.producerQualification, 'NOT_HAIEC_QUALIFIED',
+      'raw source qualification state must be preserved, not upgraded');
+  }
+  // The persisted rule outcome must name the same transaction the records carry.
+  const eff = wt.manufacturing.ruleOutcomes.find((o) => o.ruleId === 'MFG-EFF-001');
+  assert.ok(eff.reason.includes(rp.provenance.transactionId),
+    'MFG-EFF-001 reason must name the source-world transaction');
+  // Record count equals what the evaluation declared it consumed.
+  const snap = wt.evaluation.evaluationScenarioSnapshot.states[0];
+  assert.equal(rp.records.length, snap.evidenceCount);
+  assert.equal(rp.provenance.consumedEvidenceCount, snap.evidenceCount);
 });
 
 test('replay page shows VERIFYING before digests complete and blocks start', async () => {
@@ -307,7 +339,7 @@ test('a missing source-world record renders MISSING EVIDENCE, never a substitute
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
   const orig = T.HXDATA.replay.records;
-  T.HXDATA.replay.records = orig.filter((r) => r.payload.phase !== 'EFFECT_CONFIRMED');
+  T.HXDATA.replay.records = orig.filter((r) => r.payload.phase !== 'TARGET_READBACK');
   T.STATE.page = 'replay';
   T.RP.elapsed = 60; // reveal all steps
   T.render();
@@ -325,4 +357,113 @@ test('rendered HAIEC links never expose the internal org id', async () => {
   const html = elements.get('main').innerHTML;
   assert.ok(!html.includes('org=s12'), 'internal org query param must not render in links');
   assert.ok(html.includes('/dashboard/assurance/evaluations/'), 'sanitized eval link still present');
+});
+
+/* ---------------- Sprint 14.4 — Executive Command Center -------- */
+
+test('exec center renders all seven modules from verified sources', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  for (const mod of ['AI Estate &amp; Inventory', 'Five Independent Evidence Planes',
+    'Assurance &amp; Integrity Posture', 'Consequence Action Graph',
+    'Delegation &amp; Capability Boundary', 'Proof Frontier &amp; Required Evidence',
+    'Recorded Event Timeline']) {
+    assert.ok(html.includes(mod), `missing module: ${mod}`);
+  }
+  // canonical facts, verbatim
+  assert.ok(html.includes('REVIEW'));
+  assert.ok(html.includes('EVIDENCE_ONLY'));
+  assert.ok(html.includes('WO-217-4802') && html.includes('WO-217-4803'));
+  assert.ok(html.includes('MFG-EFF-001'));
+  assert.ok(html.includes('syn-world-sys-217-wrong_target'));
+  assert.ok(html.includes('syn-txn-b855a022ebe42786bf'));
+  assert.ok(html.includes('FICTIONAL MANUFACTURING ESTATE'));
+  // forbidden invented metrics must never render
+  assert.ok(!/False Assurance Rate|44\/44|silent.?miss|proof.{0,20}\d{1,3}\s?%/i.test(html));
+  assert.ok(!/0\.0\s?%|100\s?%/.test(html));
+});
+
+test('exec planes render all five canonical action-path states as NOT_ASSESSED', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  const planes = T.HXDATA.exportMap['SYS-217-WRONG_TARGET'].evaluation.fourQuestions.authority.planes;
+  for (const p of Object.values(planes)) assert.equal(p.state, 'NOT_ASSESSED');
+  assert.equal((html.match(/NOT_ASSESSED/g) || []).length >= 5, true, 'five NOT_ASSESSED plane cards');
+  assert.ok(html.includes('path(s)'));
+});
+
+test('exec center fails closed when the export digest is tampered', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.HX.verified['SYS-217-WRONG_TARGET'] = false;
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('INTEGRITY FAILURE'));
+  assert.ok(!html.includes('MFG-EFF-001'), 'no assurance content under tamper');
+});
+
+test('exec proof frontier shows verbatim canonical items and never downgrades', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('PARTIAL'), 'proof boundary verbatim');
+  for (const probe of ['AI-PROOF-003', 'AI-PROOF-012', 'AI-PROOF-014', 'AI-PROOF-015']) {
+    assert.ok(html.includes(probe), `missing frontier item ${probe}`);
+  }
+  assert.ok(html.includes('NOT_EVALUATED') && html.includes('REQUESTED_NOT_AUTHORIZED'), 'U5 reasons verbatim');
+});
+
+test('exec graph separates established edges from the evidence frontier', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('EVIDENCE FRONTIER'), 'dashed frontier marker present');
+  assert.ok(html.includes('NOT ESTABLISHED'), 'frontier node honestly labeled');
+  assert.ok(html.includes('qualified target divergence'));
+});
+
+test('exec delegation module labels DCD as concept, not an evaluated result', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('not evaluated results') || html.includes('not an evaluated'), 'DCD must be labeled a concept');
+  assert.ok(!/DCD\s*=\s*[\d.]+%?/.test(html), 'no computed DCD value may render');
+});
+
+test('exec plane selection reveals exact status, path count and meaning', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec';
+  T.HX.execPlane = 'observed';
+  T.render();
+  const html = elements.get('main').innerHTML;
+  assert.ok(html.includes('Observed plane — NOT_ASSESSED'));
+  assert.ok(html.includes('Bound evidence paths'));
+  assert.ok(html.includes('Supplied runtime signals'));
+});
+
+test('exec summary and technical case view preserve identical canonical facts', async () => {
+  const { elements, T } = loadDashboard();
+  await T.hxVerifyAll();
+  T.STATE.page = 'exec'; T.render();
+  const execHtml = elements.get('main').innerHTML;
+  T.STATE.page = 'evaluations'; T.HX.caseId = 'SYS-217-WRONG_TARGET'; T.render();
+  const caseHtml = elements.get('main').innerHTML;
+  for (const fact of ['bce94772-df56-447b-8625-0646915f7e25:assurance:1.1', 'REVIEW', 'EVIDENCE_ONLY', 'MFG-EFF-001', 'PARTIAL']) {
+    assert.ok(execHtml.includes(fact), `exec missing ${fact}`);
+    assert.ok(caseHtml.includes(fact), `case view missing ${fact}`);
+  }
 });

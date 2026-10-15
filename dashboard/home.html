@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAIEC — Evidence-Bound Assurance · Manufacturing Pitch Home</title>
+<meta name="description" content="HAIEC evidence-bound assurance pitch home: concept visuals, pitch video, cryptographic assurance deck, and entry into the manufacturing synthetic-lab demonstration.">
+<link rel="icon" href="assets/brand/favicon.png">
+<style>
+:root{--paper:#0a1014;--surface:#101b22;--ink:#e4f0ee;--ink2:#a7bfc3;--muted:#72909a;--line:#1d303a;--accent:#3fd4ae;--accent2:#7fb3a4;--amber:#d9a860;--r:14px;--sans:ui-sans-serif,-apple-system,'Segoe UI',Roboto,sans-serif;--mono:ui-monospace,'SF Mono',Consolas,monospace}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(10,16,20,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding:12px 22px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo img{width:30px;height:30px}
+.logo b{font-size:16px;letter-spacing:.4px}
+.logo small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+nav a{color:var(--ink2);text-decoration:none;font-size:12px;font-weight:650;padding:7px 12px;border-radius:8px;border:1px solid transparent}
+nav a:hover{border-color:var(--line);color:var(--ink)}
+nav a.primary{background:var(--accent);color:#06231c;border-color:var(--accent)}
+.hero{padding:64px 0 40px;text-align:center}
+.hero .eyebrow{font:800 10.5px var(--mono);letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.12;margin:14px auto 10px;max-width:840px;font-weight:800;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:680px;margin:0 auto;color:var(--ink2);font-size:15.5px}
+.hero .cta{display:flex;gap:10px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:750;font-size:13px;background:var(--surface)}
+.btn:hover{border-color:var(--accent2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#06231c}
+.sec{padding:44px 0}
+.sec h2{font-size:24px;letter-spacing:-.3px;margin-bottom:6px}
+.sec .lede{color:var(--ink2);font-size:13.5px;max-width:720px;margin-bottom:22px}
+.truths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.truth{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.truth b{display:block;font-size:15px;margin-bottom:6px}
+.truth p{font-size:12.5px;color:var(--ink2)}
+.truth .k{font:800 9.5px var(--mono);letter-spacing:1.4px;color:var(--accent);text-transform:uppercase}
+.video{aspect-ratio:16/9;width:100%;max-width:880px;margin:0 auto;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#000}
+.video iframe{width:100%;height:100%;border:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.figure{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.figure img{display:block;width:100%;height:auto}
+.figure figcaption{padding:12px 16px;font-size:11.5px;color:var(--ink2);border-top:1px solid var(--line)}
+.figure figcaption b{color:var(--ink)}
+.badge{display:inline-block;font:800 9px var(--mono);letter-spacing:1px;color:var(--amber);border:1px solid #3a3122;background:#1c1810;padding:3px 8px;border-radius:5px;margin-bottom:6px;text-transform:uppercase}
+.deck{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.deck .ic{font-size:34px}
+.deck h3{font-size:17px}
+.deck p{color:var(--ink2);font-size:12.5px;margin-top:4px;max-width:560px}
+footer{border-top:1px solid var(--line);padding:30px 0 46px;color:var(--muted);font-size:11.5px}
+@media(max-width:760px){.truths{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding:44px 0 28px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="home.html"><img src="assets/brand/haiec-eagle.png" alt="HAIEC eagle mark"><span><b>HAIEC</b><small>Evidence-Bound Assurance</small></span></a>
+  <nav>
+    <a href="index.html">Executive Command Center</a>
+    <a href="report/sample-master-report.html">Sample report</a>
+    <a href="#video">Video</a>
+    <a href="#deck">Deck</a>
+    <a class="primary" href="index.html">Open the demo →</a>
+  </nav>
+</div></header>
+
+<section class="hero wrap">
+  <div class="eyebrow">Deterministic proof for AI agents</div>
+  <h1>Assurance is <em>evidence-bound</em>, not assumed.</h1>
+  <p>HAIEC evaluates qualified evidence about consequential AI actions — what was requested, authorized, granted, reachable and observed — and renders frozen, digest-pinned results that say exactly what is proven and what is not.</p>
+  <div class="cta">
+    <a class="btn primary" href="index.html">Executive Command Center →</a>
+    <a class="btn" href="report/sample-master-report.html">Public sample Master Report ↗</a>
+    <a class="btn" href="report/sample-master-report.pdf">Sample PDF ↗</a>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <h2>What HAIEC separates</h2>
+  <p class="lede">Three distinctions the product never blurs — applied verbatim inside the manufacturing evaluation.</p>
+  <div class="truths">
+    <div class="truth"><span class="k">Permission ≠ delegation</span><b>Valid access is not authorized choice</b><p>A credential can permit an action no accountable human ever delegated. HAIEC keeps the capability plane and the authority plane independent.</p></div>
+    <div class="truth"><span class="k">Witnessed ≠ authorized</span><b>An observed effect is not an approved one</b><p>Independent readback can prove a work-order target changed while the approval question remains separately evaluated — or NOT_ASSESSED.</p></div>
+    <div class="truth"><span class="k">Digest ≠ signature</span><b>Integrity is not issuer authenticity</b><p>SHA-256 verification proves a frozen export is unaltered since persistence. Issuer-signed manifests are a documented roadmap item, honestly labeled.</p></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="video">
+  <h2>The pitch — watch it</h2>
+  <p class="lede">“Deterministic Proof for AI Agents: Evidence-Bound Assurance” — the report walkthrough and product pitch.</p>
+  <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/ztI7mWNDj8c" title="Deterministic Proof for AI Agents: Evidence Bound Assurance" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+</section>
+
+<section class="sec wrap">
+  <h2>Concept visuals</h2>
+  <p class="lede">Framework illustrations from the HAIEC design material. These explain concepts — they are not measured results.</p>
+  <div class="grid">
+    <figure class="figure"><img src="assets/infographic/permission-vs-delegation.png" alt="Permission versus delegation — evaluating AI agent security across five evidence planes" loading="lazy"><figcaption><span class="badge">Concept</span><b>Permission vs. Delegation.</b> Traditional permission checks ask what a credential allows; delegated business authority asks what an accountable human authorized — evaluated across five independent evidence planes.</figcaption></figure>
+    <figure class="figure"><img src="assets/infographic/planes-one-evaluation.png" alt="Five evidence planes, one evaluation — what each plane answers and its source of truth" loading="lazy"><figcaption><span class="badge">Concept</span><b>Five planes, one evaluation.</b> Requested, policy-authorized, effectively granted, code-capable and observed each answer a different question with a different source of truth.</figcaption></figure>
+    <figure class="figure"><img src="assets/infographic/five-planes.png" alt="Five planes of audit — requested, policy-authorized, effectively granted, code-capable, observed" loading="lazy"><figcaption><span class="badge">Concept</span><b>Five planes of audit.</b> Divergence between planes is where undelegated capability, scope expansion and unwitnessed effects surface — instead of collapsing into one score.</figcaption></figure>
+    <figure class="figure"><img src="assets/infographic/dai-five-boundaries.png" alt="Delegated Action Integrity compares five boundary dimensions" loading="lazy"><figcaption><span class="badge">Concept</span><b>DAI — five boundary dimensions.</b> Delegated Action Integrity compares request, policy, grant, capability and observation boundaries rather than merging them.</figcaption></figure>
+    <figure class="figure"><img src="assets/infographic/assumed-vs-proven.png" alt="Assumed versus proven — what security tooling asserts versus what evidence establishes" loading="lazy"><figcaption><span class="badge">Concept</span><b>Assumed vs. proven.</b> The core HAIEC stance: absence of evidence stays unknown — it is never silently cleared into a pass.</figcaption></figure>
+    <figure class="figure"><img src="assets/infographic/telemetry-console-concept.png" alt="Concept rendering of an assurance telemetry console" loading="lazy"><figcaption><span class="badge">Concept</span><b>Assurance telemetry console.</b> Design exploration for dense, evidence-bound presentation — the shipped Executive Command Center renders only verified export data.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec wrap" id="deck">
+  <h2>Pitch deck</h2>
+  <div class="deck">
+    <div class="ic">📑</div>
+    <div style="flex:1;min-width:260px"><h3>HAIEC — Cryptographic Assurance</h3>
+      <p>The full pitch deck: evidence-bound assurance, the five-plane model, the manufacturing case and the assurance report product.</p></div>
+    <a class="btn primary" href="deck/haiec-cryptographic-assurance.pdf" target="_blank" rel="noopener">Open deck (PDF) ↗</a>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <h2>Into the demo</h2>
+  <p class="lede">A seven-module command center driven entirely by 27 frozen, digest-verified HAIEC evaluations over a synthetic manufacturing corpus.</p>
+  <div class="cta" style="display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn primary" href="index.html">Executive Command Center →</a>
+    <a class="btn" href="index.html">Evidence replay — inside the demo</a>
+    <a class="btn" href="report/sample-master-report.html">Sample Master Report ↗</a>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <b>HAIEC — Human AI Evidence Company.</b> “High assurance in every consequence.”<br>
+  This pitch home presents concept visuals and a synthetic-lab demonstration. Manufacturing estate data is fictional; evaluation content is genuine persisted HAIEC output over that synthetic corpus. Digests prove integrity, not issuer signatures.
+</div></footer>
+</body>
+</html>

@@ -365,6 +365,99 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .rp-rec{border:1px dashed #d3e0da;border-radius:8px;padding:10px 12px;margin-top:6px;background:#f7faf8}
 @media(max-width:760px){.rp-step{padding:11px}.rp-rec{padding:9px}}
 
+/* ============================================================
+   Sprint 14.4 — Executive Command Center (bento grid) + optional
+   Technical Console theme (blueprint-inspired dark surfaces).
+   ============================================================ */
+.ex-strip{position:sticky;top:74px;z-index:15;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(110deg,#14262c,#1c3d44);border:1px solid #2c4f57;color:#dcebe8;border-radius:12px;padding:12px 16px;margin-bottom:14px}
+.ex-strip .eyebrow{color:#8fc4ba}
+.ex-strip h2{margin:0;font-size:15px;color:#f0f7f5}
+.ex-strip .tiny{color:#9db8b4}
+.ex-strip .badge{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);color:#dcebe8}
+.ex-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.ex-mod{background:#fff;border:1px solid var(--line);border-radius:var(--r2);padding:18px;box-shadow:var(--shadow);min-width:0;display:flex;flex-direction:column}
+.ex-s4{grid-column:span 4}.ex-s5{grid-column:span 5}.ex-s6{grid-column:span 6}.ex-s7{grid-column:span 7}.ex-s8{grid-column:span 8}.ex-s12{grid-column:span 12}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.ex-head h2{font-size:14px;margin:0}
+.ex-head p{margin:3px 0 0;font-size:11px}
+.ex-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ex-kpi{border:1px solid var(--line);border-radius:9px;padding:10px;background:#fbfcfc}
+.ex-kpi b{display:block;font-size:21px;color:var(--ink)}
+.ex-kpi span{font-size:10px;font-weight:750;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.ex-meta{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+.ex-meta>div{display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:4px 0}
+.ex-meta span{color:var(--muted)}.ex-meta b{font-weight:650;text-align:right}
+.ex-planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:7px}
+.ex-plane{border:1px solid var(--line2);border-radius:9px;padding:10px 9px;background:#fbfcfc;text-align:left;cursor:pointer;transition:border-color .15s,transform .15s}
+.ex-plane:hover{border-color:#7fb3a4;transform:translateY(-1px)}
+.ex-plane.sel{border-color:#2b7a68;box-shadow:inset 0 0 0 1px #2b7a68;background:#f0f7f3}
+.ex-plane b{display:block;font-size:10.5px;color:var(--ink)}
+.ex-plane .st{font:800 9.5px var(--mono);letter-spacing:.4px;color:#a06a1f;margin-top:6px;display:block}
+.ex-plane .pc{font-size:9.5px;color:var(--muted);margin-top:3px;display:block}
+.ex-planedetail{margin-top:10px;border:1px dashed #c9d8d2;border-radius:9px;padding:12px;background:#fbfdfb}
+.ex-cg{position:relative;padding:14px 6px 4px}
+.ex-cg-row{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:8px}
+.ex-cg-node{min-width:150px;flex:1;border:1px solid var(--line2);border-radius:10px;padding:11px;background:#fbfdfc;text-align:left;cursor:pointer;transition:border-color .15s}
+.ex-cg-node:hover{border-color:#7fb3a4}
+.ex-cg-node.sel{border-color:#2b7a68;box-shadow:inset 0 0 0 1px #2b7a68}
+.ex-cg-node small{display:block;font:800 9px var(--mono);letter-spacing:.6px;color:#2b7869;text-transform:uppercase}
+.ex-cg-node b{display:block;font-size:11.5px;margin:5px 0 3px}
+.ex-cg-node code{font-size:9.5px}
+.ex-cg-arrow{align-self:center;padding:0 7px;color:#5c8a7c;font-weight:800;flex:none}
+.ex-cg-arrow.dashed{color:#b98a4a;border-top:2px dashed #c9a05f;margin:0 4px;padding:14px 4px 0;font-size:9.5px;letter-spacing:.3px}
+.ex-cg-node.frontier{border-style:dashed;border-color:#c9a05f;background:#fdf9f1;cursor:default}
+.ex-cg-node.frontier small{color:#a06a1f}
+.ex-frontier{border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-bottom:8px;background:#fbfdfc}
+.ex-frontier b{font-size:11.5px}
+.ex-frontier p{font-size:11px;margin:4px 0}
+.ex-frontier .close{font-size:10.5px;color:var(--muted)}
+.ex-tl{display:flex;flex-direction:column;gap:6px}
+.ex-tl-row{display:grid;grid-template-columns:26px 110px 1fr;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:10.5px;background:#fbfdfc}
+.ex-tl-row .sq{font:800 10px var(--mono);color:#2b7869}
+.ex-tl-row code{font-size:9.5px}
+.ex-note{font-size:10.5px;color:var(--muted);border-left:3px solid #d9c7a4;padding:6px 10px;background:#fdfaf3;border-radius:0 6px 6px 0;margin-top:10px}
+.ex-study{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ex-study>div{border:1px solid var(--line);border-radius:9px;padding:12px;background:#fbfdfc}
+.ex-study h3{font-size:11px;margin:0 0 6px}
+.ex-study table{width:100%;font-size:10.5px}
+.ex-study td{padding:4px 0;border-bottom:1px solid var(--line)}
+@media(max-width:1250px){.ex-s4,.ex-s5{grid-column:span 6}.ex-s8,.ex-s7{grid-column:span 12}.ex-planes{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:820px){.ex-grid{grid-template-columns:1fr}.ex-mod{grid-column:span 1!important}.ex-planes{grid-template-columns:repeat(2,1fr)}.ex-cg-row{flex-direction:column}.ex-cg-arrow{transform:rotate(90deg);align-self:flex-start;padding:4px 10px}.ex-cg-arrow.dashed{transform:none;border-top:0;border-left:2px dashed #c9a05f;padding:0 0 0 10px}.ex-study{grid-template-columns:1fr}.ex-strip{position:static}}
+/* Technical Console — optional dark telemetry theme (design inspiration:
+   docs/handoff 'AI Agent Assurance Telemetry Dashboard'). Truth states and
+   labels are identical; only chrome changes. */
+body.console{--paper:#0a1218;--surface:#0f1c24;--canvas:#0b151b;--ink:#dcebf0;--ink2:#a8c4cc;--line:#1d3340;--line2:#27495a;--muted:#6d8f99;--muted2:#54707c;--shadow:none}
+body.console{background:var(--paper)}
+body.console .sidebar{background:#0c1a21;border-right-color:#1d3340}
+body.console .sidebar .brand strong{color:#e8f4f2}
+body.console .sidebar .brand small,.sidebar .sidefoot{color:#6d97a2}
+body.console .navbtn{color:#9db8bf}
+body.console .navbtn:hover{background:#13262f;color:#d7ebe7}
+body.console .navbtn.active{background:#14353c;color:#8fe3cf}
+body.console .navgroup{color:#4a6b78}
+body.console .topbar{background:#0d1b23;border-bottom-color:#1d3340}
+body.console .crumb strong{color:#e8f4f2}
+body.console .card,body.console .ex-mod,body.console .metric,body.console .ex-kpi,body.console .ex-plane,body.console .ex-cg-node,body.console .ex-tl-row,body.console .ex-frontier,body.console .ex-study>div,body.console .listitem{background:#0f1e27;border-color:#1d3340}
+body.console .ex-plane.sel,body.console .ex-cg-node.sel{border-color:#3fd4ae;box-shadow:inset 0 0 0 1px #3fd4ae;background:#11292e}
+body.console .ex-cg-node.frontier{background:#181f24;border-color:#7a5f31}
+body.console .cardhead h2,body.console h1,body.console h2,body.console h3,body.console .ex-kpi b{color:#e4f2ef}
+body.console .tbl th{background:#0d1a22;color:#5f8592;border-bottom-color:#1d3340}
+body.console .tbl td{border-bottom-color:#172b36;color:#c3d8dc}
+body.console code{background:#122530;color:#8fd8c4}
+body.console .ex-meta{border-top-color:#1d3340}
+body.console .ex-meta>div,.ex-frontier p{color:#9db8bf}
+body.console .notice{background:#142830;border-color:#27495a}
+body.console .notice.warn{background:#241f14;border-color:#5c4a24}
+body.console .ex-planedetail{background:#0f1e27;border-color:#27495a}
+body.console .ex-note{background:#1a1a12;border-left-color:#7a5f31;color:#b39a6a}
+body.console .badge{background:#122530;border-color:#27495a;color:#8fb0ba}
+body.console .btn{background:#122530;border-color:#27495a;color:#b9d4da}
+body.console .btn.primary{background:#0f6a54;border-color:#0f6a54;color:#eafff8}
+body.console .rp-step{background:#0f1e27;border-color:#1d3340;border-left-color:#27495a}
+body.console .rp-step.rp-on{background:#12222c;border-left-color:#3fd4ae}
+body.console .rp-rec{background:#0d1a22;border-color:#27495a}
+body.console .rp-track{background:#172b36}
+
 </style>
 
 <style id="haiec-ideal-report-design">
@@ -403,6 +496,8 @@ button:disabled{opacity:.5;cursor:not-allowed}
         <button class="btn sm" data-act="pending">
           Approvals <span id="pendCount" style="background:#5c4630;color:#ffd9a3;padding:1px 6px;border-radius:6px;margin-left:4px;font-size:10px">0</span>
         </button>
+        <a class="btn sm" href="home.html" title="Pitch homepage — deck, video and concept visuals">Pitch home ↗</a>
+        <button class="btn sm" data-act="theme" title="Toggle the dark technical-console theme">◐ Console</button>
         <button class="btn sm" data-act="tour">Guided tour →</button>
         <button class="btn sm primary" data-act="run-demo">Run guided example</button>
       </div>
@@ -866,7 +961,7 @@ const CFG_DEFAULT = {
 };
 
 let STATE = {
-  page: 'overview',
+  page: 'exec',
   selectedSystem: 'SYS-217',
   systemTab: 'overview',
   selectedWorkflow: 'WF-QUALITY',
@@ -915,7 +1010,8 @@ function tip(text, content){ return `<span class="tip" data-tip="${esc(text)}">$
    NAV
    ============================================================ */
 const PAGES = [
-  { id:'overview',  group:'See',     label:'Command Center',   icon:'01' },
+  { id:'exec',      group:'See',     label:'Executive Command Center', icon:'EC' },
+  { id:'overview',  group:'See',     label:'Operations Overview', icon:'01' },
   { id:'estate',    group:'See',     label:'AI Estate',        icon:'02' },
   { id:'system',    group:'See',     label:'System detail',    icon:'03' },
   { id:'workflows', group:'See',     label:'Workflows & Authority',  icon:'04' },
@@ -2114,6 +2210,9 @@ document.addEventListener('click', e => {
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-overview': HX.system = null; HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'exec-plane': HX.execPlane = (HX.execPlane===id?null:id); render(); break;
+    case 'exec-node': HX.execNode = (HX.execNode===+id?null:+id); render(); break;
+    case 'theme': document.body.classList.toggle('console'); break;
   }
 });
 
@@ -3534,7 +3633,7 @@ render();
    UNAVAILABLE marker. Station 217 is a local simulator replay and is
    never presented as a HAIEC verdict or a plant observation.
    ============================================================ */
-const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com' };
+const HX = { system:null, caseId:null, s217case:null, verified:{}, digestsDone:false, stationVerified:false, replayVerified:false, haiecBase:'https://www.haiec.com', execPlane:null, execNode:null };
 const HXDATA = window.HAIEC_DEMO_DATA || null;
 const HX_STATE_ORDER = ['EXPECTED_BASELINE','WRONG_TARGET','EVIDENCE_DEGRADED'];
 const HX_STATE_LABEL = { EXPECTED_BASELINE:'Expected baseline', WRONG_TARGET:'Wrong target', EVIDENCE_DEGRADED:'Evidence degraded' };
@@ -3574,7 +3673,7 @@ async function hxVerifyAll(){
     }catch(e){HX.replayVerified=false;}
   }
   HX.digestsDone=true;
-  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay')render();
+  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec')render();
 }
 function hxExports(){return HXDATA?Object.values(HXDATA.exportMap||{}):[];}
 function hxFor(systemId,state){return hxExports().find(a=>a.sourceCase.aiSystemId===systemId&&a.sourceCase.scenarioState===state)||null;}
@@ -3782,13 +3881,13 @@ function rpOk(){ return HX.digestsDone && HX.verified[RP_CASE]===true && HX.repl
    whose underlying record is absent renders MISSING EVIDENCE, never a
    synthetic substitute. */
 const RP_STEPS = [
-  { start:0,  end:8,  kind:'record', phase:'REQUESTED',       title:'Request',            sub:'AI request and exact target' },
-  { start:8,  end:15, kind:'record', phase:'POLICY_DECLARED', title:'Delegated authority', sub:'Approved scope and bound target for the agent' },
-  { start:15, end:22, kind:'record', phase:'CODE_CAPABLE',    title:'Capability',         sub:'What the code path can technically do' },
-  { start:22, end:30, kind:'record', phase:'GATE_DECISION',   title:'Dispatch',           sub:'Permitted/denied decision and dispatch', extraPhase:'ACTION_APPLIED' },
-  { start:30, end:38, kind:'record', phase:'EFFECT_CONFIRMED',title:'Effect & readback',  sub:'Native transaction and independent target-state readback' },
-  { start:38, end:46, kind:'eval',   title:'HAIEC evaluation',sub:'Source qualification and deterministic rule outcomes' },
-  { start:46, end:53, kind:'control',title:'UCP control result',sub:'Control test, receipt state and evidence limitations' },
+  { start:0,  end:8,  kind:'record', phase:'REQUESTED',           title:'Request',            sub:'AI request and exact target' },
+  { start:8,  end:15, kind:'record', phase:'POLICY_DECLARED',     title:'Delegated authority', sub:'Approved scope and bound target for the agent' },
+  { start:15, end:22, kind:'record', phase:'CAPABILITY_DECLARED', title:'Capability',         sub:'What the code path can technically do — declared, not verified' },
+  { start:22, end:30, kind:'record', phase:'GATE_DECISION',       title:'Dispatch',           sub:'Permitted/denied decision and dispatch transaction', extraPhase:'ACTION_RECORDED' },
+  { start:30, end:38, kind:'record', phase:'TARGET_READBACK',     title:'Effect & readback',  sub:'Native transaction and independent target-state readback' },
+  { start:38, end:46, kind:'eval',   title:'HAIEC evaluation',    sub:'Source qualification and deterministic rule outcomes' },
+  { start:46, end:53, kind:'control',title:'UCP control result',  sub:'Control test, receipt state and evidence limitations' },
   { start:53, end:60, kind:'report', title:'Master Assurance Report',sub:'Frozen finding, disposition and next action' },
 ];
 
@@ -3802,7 +3901,9 @@ function rpRecordCard(rec, extra){
       ${pill(rec.sourceType||'SOURCE','info')}
     </div>
     <table class="tbl" style="margin-top:6px"><tbody>${rows}</tbody></table>
-    <div class="tiny muted" style="margin-top:6px">source-recorded <code>${esc(rec.declaredAt||'time not recorded')}</code> · via ${esc(rec.sourceSystem||'—')}${extra?' · '+esc(extra):''}</div>
+    <div class="tiny muted" style="margin-top:6px">source-recorded <code>${esc(rec.declaredAt||'time not recorded')}</code> · seq ${esc(rec.sequence??'—')} · via ${esc(rec.sourceSystem||'—')} · producer <code>${esc(rec.producerRunId||'—')}</code>${extra?' · '+esc(extra):''}</div>
+    ${(rec.claimedSourceRole||rec.producerQualification)?`<div class="tiny muted" style="margin-top:3px">qualification: <code>${esc(rec.claimedSourceRole||'—')}</code> / <code>${esc(rec.producerQualification||'—')}</code></div>`:''}
+    ${(rec.limitations&&rec.limitations.length)?`<div class="tiny muted" style="margin-top:3px">${rec.limitations.map(esc).join(' · ')}</div>`:''}
   </div>`;
 }
 
@@ -3877,6 +3978,7 @@ function pageReplay(){
     sub:`${pill('RECORDED EVIDENCE','warn')} ${pill('NO BACKEND SCAN','info')} <code class="tiny">${esc(e.evaluationId)}</code>`,
     actions:`<button class="btn" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Open the export →</button>`})+
   `<div class="notice warn"><div><b>Recorded evidence replay</b><p>The sequence below replays <b>recorded</b> synthetic source-world records and a persisted HAIEC evaluation. Nothing is collected, dispatched or re-evaluated. Source timestamps are the record's own <code>declaredAt</code> values; the timer is display pacing only.</p></div></div>
+  <div class="notice"><div><b>Evidence lineage</b><p class="tiny">Records are deterministic output of the same source-world producer the evaluation consumed — <code>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</code> · run <code>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</code> · transaction <code>${esc(rp.provenance?rp.provenance.transactionId:'—')}</code>. ${esc(rp.provenance?rp.provenance.limitation:'')}</p></div></div>
   <div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center">
       <div class="flex" style="gap:8px;flex-wrap:wrap">${rpControls()}</div>
       <div class="tiny muted" id="rp-time">${RP.manual?'step '+(RP.stepIdx+1)+' / '+RP_STEPS.length:Math.round(RP.elapsed)+'s / '+RP_TOTAL+'s'}</div>
@@ -3922,6 +4024,220 @@ document.addEventListener('click',e=>{
   else if(act==='prev'){ if(RP.stepIdx>0)RP.stepIdx--; render(); }
   else if(act==='next'){ if(RP.stepIdx<RP_STEPS.length-1)RP.stepIdx++; render(); }
 });
+
+/* ==============================================================
+   Sprint 14.4 — Executive Command Center (seven-module bento grid)
+   Every rendered value is pass-through from the verified frozen
+   export, the digest-pinned replay bundle, the fictional estate
+   catalog, or an explicit unavailable marker. Field map:
+   docs/EXEC-COMMAND-CENTER-FIELD-MAP.md — no computed verdicts,
+   no invented scores.
+   ============================================================== */
+const EX_CASE='SYS-217-WRONG_TARGET';
+function exA(){return HXDATA&&HXDATA.exportMap?HXDATA.exportMap[EX_CASE]||null:null;}
+function exOk(){return HX.digestsDone&&HX.verified[EX_CASE]===true&&HX.replayVerified===true;}
+function exMod(cls,eyebrow,title,sub,body,chip){
+  return `<section class="ex-mod ${cls}"><div class="ex-head"><div><div class="eyebrow">${esc(eyebrow)}</div><h2>${esc(title)}</h2>${sub?`<p class="tiny muted">${sub}</p>`:''}</div>${chip||''}</div>${body}</section>`;
+}
+/* Module 1 — AI Estate & Inventory (fictional catalog facts) */
+function exModEstate(){
+  const es=(HXDATA&&HXDATA.estate)||{};
+  const verified=Object.values(HX.verified||{}).filter(Boolean).length;
+  const a=exA(),e=a?a.evaluation:{};
+  const body=`
+    <div class="ex-kpis">
+      <div class="ex-kpi"><b>${es.systems??'—'}</b><span>AI systems</span></div>
+      <div class="ex-kpi"><b>${es.agentRoles??'—'}</b><span>Agent roles</span></div>
+      <div class="ex-kpi"><b>${es.catalogControls??'—'}</b><span>Control catalog</span></div>
+      <div class="ex-kpi"><b>${es.workflows??'—'}</b><span>Workflows</span></div>
+    </div>
+    <div class="ex-meta">
+      <div><span>Persisted HAIEC evaluations</span><b>${verified}/27 digest-verified</b></div>
+      <div><span>Corpus shape</span><b>9 systems × 3 states</b></div>
+      <div><span>Evaluation basis</span><b>${esc(e.evaluationBasis||'—')}</b></div>
+      <div><span>Frozen export</span><b>${esc(HXDATA&&HXDATA.generatedAt?(HXDATA.generatedAt||'').slice(0,10):'—')}</b></div>
+      <div><span>Methodology / report</span><b>${esc(e.methodologyVersion||'—')} · ${esc(e.reportVersion||'—')}</b></div>
+    </div>
+    <div class="ex-note">Catalog size is not evaluated coverage — the 45-entry control catalog is a fixture estate fact; executed rules appear per evaluation. Click a system on the HAIEC Evaluations page to open its verified case.</div>
+    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="page" data-id="evaluations">All nine systems →</button></div>`;
+  return exMod('ex-s4','FICTIONAL MANUFACTURING ESTATE','AI Estate & Inventory',null,body,pill('CATALOG ≠ EVALUATED','warn'));
+}
+/* Module 2 — Five Independent Evidence Planes */
+const EX_PLANES=[
+  ['requested','Requested','What did the agent ask to do?','Agent / caller boundary'],
+  ['policyAuthorized','Policy-Authorized','What does written policy permit?','Written policy + provenance'],
+  ['effectivelyGranted','Effectively Granted','What does the identity actually hold?','Roles · scopes · tokens · inheritance'],
+  ['codeCapable','Code Capable','What can the code path reach?','Static analysis of workers · callbacks · retries'],
+  ['observed','Observed','What did runtime evidence show?','Supplied runtime signals where supported'],
+];
+function exModPlanes(){
+  const a=exA(),planes=((a||{}).evaluation||{}).fourQuestions?(a.evaluation.fourQuestions.authority||{}).planes||{}:{};
+  const cards=EX_PLANES.map(([k,label])=>{
+    const p=planes[k]||{};
+    return `<button class="ex-plane ${HX.execPlane===k?'sel':''}" data-act="exec-plane" data-id="${k}" title="${esc(label)} plane — click for detail">
+      <b>${esc(label)}</b><span class="st">${esc(p.state||'NOT_ASSESSED')}</span><span class="pc">${esc(p.pathCount??0)} path(s)</span></button>`;
+  }).join('');
+  const sel=HX.execPlane?EX_PLANES.find(x=>x[0]===HX.execPlane):null;
+  const detail=sel?(()=>{const p=planes[sel[0]]||{};return `<div class="ex-planedetail">
+      <b class="tiny">${esc(sel[1])} plane — ${esc(p.state||'NOT_ASSESSED')}</b>
+      <p class="tiny" style="margin:6px 0">${esc(p.detail||'No evaluated action paths carry this evidence plane.')}</p>
+      <div class="ex-meta"><div><span>Question it answers</span><b>${esc(sel[2])}</b></div>
+      <div><span>Source of truth</span><b>${esc(sel[3])}</b></div>
+      <div><span>Bound evidence paths</span><b>${esc(p.pathCount??0)}</b></div>
+      <div><span>Supporting refs</span><b>${(a.evaluation.fourQuestions.authority.evidenceRefs||[]).length?a.evaluation.fourQuestions.authority.evidenceRefs.map(esc).join(', '):'none bound'}</b></div></div>
+      <p class="tiny muted" style="margin-top:6px">NOT_ASSESSED is an honest state — the plane was not evaluated, which is never promoted to pass or fail.</p>
+    </div>`;})():'';
+  const body=`<div class="ex-planes">${cards}</div>${detail}
+    <div class="ex-note">A manufacturing rule can establish a qualified target-side effect while the broader action-path <b>Observed</b> plane remains NOT_ASSESSED — these are different, independently scoped assurance questions. Rule outcomes never promote a plane.</div>`;
+  return exMod('ex-s4','FOUR ASSURANCE QUESTIONS · AUTHORITY','Five Independent Evidence Planes','Action-path planes for this evaluation — verbatim',body);
+}
+/* Module 3 — Assurance & Integrity Posture */
+function exModPosture(){
+  const a=exA(),e=a.evaluation,m=a.manufacturing||{};
+  const rules=m.ruleOutcomes||[];
+  const byStatus={}; for(const o of rules) byStatus[o.status]=(byStatus[o.status]||0)+1;
+  const r01=(m.controlMaturity&&(m.controlMaturity.rows||[]).find(r=>r.controlId==='R01'))||null;
+  const pb=(e.fourQuestions||{}).proofBoundary||{};
+  const u5=(pb.facts||[]).find(f=>/U5 reason codes/.test(f))||'';
+  const body=`
+    <div class="flex" style="gap:8px;flex-wrap:wrap;margin-bottom:8px">${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')}</div>
+    <div class="ex-meta" style="border:0;padding-top:0;margin-top:0">
+      <div><span>Export integrity</span><b>sha256 digest verified · unsigned</b></div>
+      <div><span>R01 effect-witness UCP</span><b>${r01?esc(r01.ucpResult)+' · '+esc(r01.ucpReceiptState):'ABSENT_FACET'}</b></div>
+      <div><span>Qualified / rejected observations</span><b>${m.controlMaturity?esc(m.controlMaturity.qualifiedObservationCount)+' / '+esc(m.controlMaturity.rejectedObservationCount):'—'}</b></div>
+      <div><span>Rule outcomes</span><b>${rules.length} persisted</b></div>
+      ${Object.entries(byStatus).map(([k,n])=>`<div><span class="tiny">${esc(k)}</span><b>${n}</b></div>`).join('')}
+      <div><span>Proof boundary</span><b>${esc(pb.state||'—')}</b></div>
+      <div><span>Static scan</span><b>none bound — EVIDENCE_ONLY</b></div>
+    </div>
+    ${u5?`<p class="tiny muted top10">U5: ${esc(u5.replace(/^U5 reason codes:\s*/,''))}</p>`:''}
+    <div class="ex-note">Digest verification proves the export is byte-identical to what HAIEC persisted — it is an integrity check, not an issuer signature. SATISFIED on R01 means the effect was independently witnessed; it is not an authorization or safety verdict.</div>`;
+  return exMod('ex-s4','SYS-217 · WRONG_TARGET','Assurance & Integrity Posture','Canonical results — no composite scores',body);
+}
+/* Module 4 — Consequence Action Graph */
+function exModGraph(){
+  const a=exA(),rp=rpData(),recs=(rp&&rp.records)||[];
+  const rec=(ph)=>recs.find(r=>r.payload&&r.payload.phase===ph)||null;
+  const eff=(a.manufacturing.ruleOutcomes||[]).find(o=>o.ruleId==='MFG-EFF-001');
+  const rq=rec('REQUESTED'),pl=rec('POLICY_DECLARED'),gt=rec('GATE_DECISION'),ar=rec('ACTION_RECORDED'),rb=rec('TARGET_READBACK');
+  const nodes=[
+    {k:'REQUESTED',t:'Requested operation',v:rq?`${esc(rq.payload.operation)} → ${esc(rq.payload.requestedTarget)}`:'MISSING EVIDENCE',r:rq},
+    {k:'POLICY_DECLARED',t:'Approved policy target',v:pl?esc(pl.payload.declaredTarget)+(pl.payload.qualifiedPolicy===false?' · unqualified policy':'')+(gt?` · gate ${esc(gt.payload.decision)}`:''):'MISSING EVIDENCE',r:pl||gt},
+    {k:'ACTION_RECORDED',t:'Dispatch / transaction',v:ar?`txn ${esc(ar.payload.transactionId)} · target ${esc(ar.payload.actualTarget)}`:'MISSING EVIDENCE',r:ar},
+    {k:'TARGET_READBACK',t:'Independently witnessed effect',v:rb?`readback ${esc(rb.payload.actualTarget)}`:'MISSING EVIDENCE',r:rb},
+    {k:'FINDING',t:'Manufacturing divergence finding',v:eff?`MFG-EFF-001 = ${eff.status}`:'—',r:null},
+  ];
+  const row=nodes.map((n,i)=>`<button class="ex-cg-node ${HX.execNode===i?'sel':''}" data-act="exec-node" data-id="${i}">
+      <small>${esc(n.k)}</small><b>${esc(n.t)}</b><span class="tiny muted">${n.v}</span>
+    </button>`).join('<span class="ex-cg-arrow">→</span>')
+    +`<span class="ex-cg-arrow dashed">EVIDENCE FRONTIER →</span>
+    <div class="ex-cg-node frontier"><small>NOT ESTABLISHED</small><b>Full action-path projection</b><span class="tiny muted">Reachability · delegation path · observed plane — NOT_ASSESSED</span></div>`;
+  const selN=HX.execNode!=null?nodes[HX.execNode]:null;
+  const detail=selN?`<div class="ex-planedetail"><b class="tiny">${esc(selN.t)}</b>
+    ${selN.r?`<table class="tbl" style="margin-top:6px"><tbody>${Object.entries(selN.r.payload||{}).map(([k,v])=>`<tr><td class="tiny">${esc(k)}</td><td class="tiny"><code>${esc(typeof v==='object'?JSON.stringify(v):String(v))}</code></td></tr>`).join('')}
+      <tr><td class="tiny">evidenceId</td><td class="tiny"><code>${esc(selN.r.evidenceId)}</code></td></tr>
+      <tr><td class="tiny">declaredAt</td><td class="tiny"><code>${esc(selN.r.declaredAt)}</code></td></tr>
+      <tr><td class="tiny">qualification</td><td class="tiny"><code>${esc(selN.r.producerQualification||'—')}</code></td></tr></tbody></table>`:''}
+    ${selN.k==='FINDING'&&eff?`<p class="tiny" style="margin-top:6px"><b>Verbatim reason:</b> ${esc(eff.reason)}</p><p class="tiny muted">Evidence refs: ${eff.evidenceRefs.map(x=>`<code>${esc(x)}</code>`).join(' ')}</p>`:''}
+  </div>`:'';
+  const body=`<div class="ex-cg"><div class="ex-cg-row">${row}</div></div>${detail}
+    <div class="ex-note">HAIEC established a <b>qualified target divergence</b> — approved <code>${esc(rp.expectedTarget||'—')}</code>, committed and independently read back <code>${esc(rp.actualTarget||'—')}</code>. This does not, by itself, establish the full code-reachability or delegated action-path projection — that frontier is drawn dashed.</div>`;
+  return exMod('ex-s8','CONSEQUENCE PATHWAY · EVIDENCE-BOUND','Consequence Action Graph','Requested → authorized → dispatched → witnessed → adjudicated',body,pill('SYNTHETIC SOURCE WORLD','info'));
+}
+/* Module 5 — Delegation & Capability Boundary */
+function exModDelegation(){
+  const body=`
+    <div class="ex-study">
+      <div><h3>Permission — what is permitted</h3><p class="tiny">Credential and IAM evidence establishes what a principal <i>can</i> technically reach. A valid grant is not proof the consequential business choice was delegated.</p></div>
+      <div><h3>Delegation — what was authorized</h3><p class="tiny">Business authority requires an accountable delegation: subject, action, parameters, scope, context, time and consequence bound together.</p></div>
+    </div>
+    <p class="tiny" style="margin:10px 0"><b>Valid access ≠ authorized choice.</b> Delegated Action Integrity (DAI) and Delegation-Capability Divergence are the applicable framework concepts.</p>
+    <div class="ex-frontier"><b>Framework concepts — not evaluated results</b>
+      <p><code>DCD = C \\ (R ∩ P ∩ G)</code> — capability outside the requested/policy/granted intersection. Rendered as a concept only: no normalized sets, resource/action universes or version semantics are bound to this evaluation, so no DCD value is shown for SYS-217.</p>
+      <p class="close"><code>Scope(S_k) ⊆ Scope(S_(k-1))</code> — a conditional non-escalation invariant under a defined delegation contract, not a fact about every interaction.</p>
+    </div>
+    <div class="ex-note">The demonstrated finding on this estate remains the rule-based target divergence (MFG-EFF-001 MATCH) — see the graph.</div>`;
+  return exMod('ex-s4','FRAMEWORK CONCEPTS','Delegation & Capability Boundary','Permission is not delegation',body);
+}
+/* Module 6 — Proof Frontier & Required Evidence */
+function exModFrontier(){
+  const a=exA(),pb=(a.evaluation.fourQuestions||{}).proofBoundary||{};
+  const items=(pb.facts||[]).filter(f=>/^Not assessed:/.test(f));
+  const body=`
+    <div class="flex" style="gap:8px;margin-bottom:8px">${pill('PROOF BOUNDARY: '+(pb.state||'—'),'warn')} ${pill((items.length)+' frontier items','info')}</div>
+    <p class="tiny muted">${esc(pb.summary||'')}</p>
+    ${items.map(f=>{
+      const closing=(f.match(/producer[s]? not connected[^;.]*/i)||[])[0];
+      return `<div class="ex-frontier"><b>${esc(f.slice(0,f.indexOf('—')>0?f.indexOf('—'):Math.min(f.length,120)))}</b>
+        ${f.indexOf('—')>0?`<p>${esc(f.slice(f.indexOf('—')+1))}</p>`:''}
+        <p class="close">${closing?`Closes with: ${esc(closing)} — not available in this evaluated snapshot`:'Closes with: additional qualified evidence — not available in this evaluated snapshot'}</p></div>`;
+    }).join('')}
+    ${(pb.nextEvidence||[]).map(n=>`<div class="ex-frontier"><b>Open evidence need</b><p>${esc(n)}</p></div>`).join('')}
+    <div class="ex-note">A frontier item is a reason to request further evidence — not a failed control. NOT_ASSESSED is never downgraded to suggest progress.</div>`;
+  return exMod('ex-s7','PROOF FRONTIER','Proof Frontier & Required Evidence','What the evidence does not yet establish — verbatim from the export',body);
+}
+/* Module 7 — Audit, Events & Evidence Replay */
+function exModReplay(){
+  const rp=rpData(),recs=(rp&&rp.records)||[];
+  const rows=recs.map(r=>`<div class="ex-tl-row"><span class="sq">#${r.sequence}</span><b class="tiny">${esc(r.payload.phase)}</b><code>${esc(r.evidenceId)} · ${esc(r.declaredAt)}</code></div>`).join('');
+  const body=`${rows}
+    <div class="ex-meta"><div><span>Source world</span><b>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</b></div>
+    <div><span>Scenario run</span><b>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</b></div>
+    <div><span>Transaction</span><b>${esc(rp.provenance?rp.provenance.transactionId:'—')}</b></div></div>
+    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="page" data-id="replay">Run 60-Second Evidence Replay →</button></div>
+    <div class="ex-note">Recorded Synthetic Evidence Replay — source-declared timestamps; playback pacing 00:00–01:00 is display only. No OTLP collection exists in this demo.</div>`;
+  return exMod('ex-s5','AUDIT & EVIDENCE REPLAY','Recorded Event Timeline','Six source-world records + canonical evaluation stages',body,pill('RECORDED · NOT LIVE','warn'));
+}
+/* OOTB benchmark — separate population, separate proof point */
+function exModStudy(){
+  const body=`<div class="ex-study">
+    <div><h3>Condition A — reconstructed generic comparator</h3>
+      <table><tr><td>Records accepted</td><td><b>11/11</b></td></tr>
+      <tr><td>Authenticated emitter stamps</td><td><b>0</b></td></tr>
+      <tr><td>Manufacturing rule coverage</td><td><b>INSUFFICIENT_SOURCE</b></td></tr>
+      <tr><td>R01 effect-witness</td><td><b>DENIED:EVALUATION_NOT_SOURCE_VERIFIED</b></td></tr></table></div>
+    <div><h3>Condition B — manufacturing-enhanced</h3>
+      <table><tr><td>Records accepted</td><td><b>11/11 identical</b></td></tr>
+      <tr><td>Authenticated emitter stamps</td><td><b>11</b></td></tr>
+      <tr><td>Corpus-wide (27 cases)</td><td><b>18 SATISFIED receipts · 9 coverage denials</b></td></tr>
+      <tr><td>R01 effect-witness</td><td><b>SATISFIED · receipt-bound</b></td></tr></table></div>
+  </div>
+  <div class="ex-note">Separate measured study — population: one 11-record SYS-217 expected-baseline run plus the 27-case acceptance corpus, LIVE_VERIFIED 2026-10-14 (docs/handoff/ucp/08). Not a SYS-217 assurance score; measurements are never merged across populations.</div>
+  <div class="flex top10" style="gap:8px"><a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/research/out-of-the-box-assurance">Full case study ↗</a></div>`;
+  return exMod('ex-s12','INDEPENDENT BENCHMARK','What HAIEC proved out of the box','Generic ingestion vs manufacturing-qualified evaluation — same records, different binder',body);
+}
+function pageExec(){
+  if(!HXDATA)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'No export data',sub:'dashboard/data/haiec-exports.js missing.'});
+  const a=exA();
+  if(!HX.digestsDone)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'SYS-217 assurance posture',sub:pill('VERIFYING','info')})+
+    `<div class="notice"><div><b>Verifying export integrity</b><p>Recomputing sha256 digests for all 27 frozen exports before any assurance content renders.</p></div></div>`;
+  if(!a||HX.verified[EX_CASE]!==true)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'SYS-217 assurance posture',sub:pill('INTEGRITY FAILURE','hold')})+
+    `<div class="notice warn"><div><b>Export digest failed</b><p>The pinned export did not verify. Assurance content is withheld — unverified data is never rendered as HAIEC results.</p></div></div>`;
+  const e=a.evaluation;
+  return `<div class="ex-strip">
+      <img src="assets/brand/haiec-eagle.png" alt="" style="width:26px;height:26px">
+      <div class="hero-main" style="min-width:0">
+        <div class="eyebrow">EXECUTIVE AI ASSURANCE COMMAND CENTER · SYNTHETIC LAB</div>
+        <h2>SYS-217 Torque Quality Assurance — wrong-target evaluation</h2>
+        <div class="tiny">${esc(e.evaluationId)} · exported ${esc(a.exportedAt?String(a.exportedAt).slice(0,10):'—')}</div>
+      </div>
+      <span style="flex:1"></span>
+      ${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')}
+      ${HX.replayVerified===true?pill('replay digest verified','go'):pill('replay unverified','hold')}
+      <a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
+    </div>
+    <div class="ex-grid">
+      ${exModEstate()}
+      ${exModPlanes()}
+      ${exModPosture()}
+      ${exModGraph()}
+      ${exModDelegation()}
+      ${exModFrontier()}
+      ${exModReplay()}
+      ${exModStudy()}
+    </div>`;
+}
+PAGE_RENDERERS.exec = pageExec;
 
 /* Register renderers late — PAGE_RENDERERS is a const object built in
    the first script block before these functions exist; mutation is safe. */
