@@ -4,20 +4,20 @@
   "scope": "SYS-217",
   "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
   "scenarioId": "SYS-217-WRONG_TARGET",
-  "generatedAt": "2026-10-15T13:10:00.000Z",
+  "generatedAt": "2026-10-14T13:10:00.000Z",
   "qualificationState": "NOT_ASSESSED_BY_HAIEC",
   "origin": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
   "historicalEvaluationUnaffected": true,
   "entries": [
     {
       "path": "authority/delegation-approval.json",
-      "sha256": "sha256:1f5b940b624be15e2b7beacd2c7c14078aaed1dcd7e895ee312a787869795536",
+      "sha256": "sha256:720cca0521ebae92138921df6540766a1ff233a7534f3c997072898ddeaed577",
       "bytes": 1467,
       "sourceRole": "AUTHORITY_CANDIDATE"
     },
     {
       "path": "authority/operating-envelope.proposal.json",
-      "sha256": "sha256:14775670c0cedb1120865b1666bdfbbddd6bd1c975b9f1fadbab37ce2e93138e",
+      "sha256": "sha256:d66911789561c566f6533a1668f3ec3c6574d8274068c5641cd7469ac643888e",
       "bytes": 1546,
       "sourceRole": "AUTHORITY_CANDIDATE"
     },
@@ -35,13 +35,13 @@
     },
     {
       "path": "deployment/build-and-runtime.json",
-      "sha256": "sha256:7427ac233c76341bf6e620c5987e66277adfb4e93789e7f4153017a8c903bf32",
+      "sha256": "sha256:f3bae2d911609c934facb396ef10639888c5ee1a017204f18db2baf36d107d19",
       "bytes": 1207,
       "sourceRole": "BUILD_PROVENANCE_CANDIDATE"
     },
     {
       "path": "iam/access-observation.json",
-      "sha256": "sha256:74a0798b62bbed28d01b402dd34b3a686d182c5a8c77b6ba922294479a26bc2a",
+      "sha256": "sha256:7bca607b4111a97fefd6a955e9c85b35b3398dc94e710613bc18e554311064f2",
       "bytes": 1641,
       "sourceRole": "IAM_CANDIDATE"
     },
@@ -53,25 +53,25 @@
     },
     {
       "path": "native/mes-transaction.json",
-      "sha256": "sha256:ba403ae52cde70e7387004ce1cb5f9c0dc26013196b83e7ff41acbb395c860ab",
+      "sha256": "sha256:6dd66179319cac0084a60f5d9073212598a06f0b1b19b55462a76f60843c8923",
       "bytes": 1250,
       "sourceRole": "NATIVE_EFFECT_FIXTURE"
     },
     {
       "path": "native/qms-readback.json",
-      "sha256": "sha256:6e57d6886d80ec76e27509d08d5e249e7824e8d3400db0fb472498f2e2c0296b",
+      "sha256": "sha256:ca310759ab0307b0d63cc865ba6027fce6ad721785ce2c4309fae901f004b380",
       "bytes": 1305,
       "sourceRole": "NATIVE_EFFECT_FIXTURE"
     },
     {
       "path": "telemetry/collector-continuity.json",
-      "sha256": "sha256:708cbe239f767bc15105c49cc75a67ad68b79a78089d40f22f58cf74a24b4ea2",
+      "sha256": "sha256:53070983e799e937e99c9950f3dba82600b67b92679c2b4f607dea270ccb4b97",
       "bytes": 1566,
       "sourceRole": "TELEMETRY_FIXTURE"
     },
     {
       "path": "telemetry/otlp-traces.json",
-      "sha256": "sha256:b6774301ea25e0fbaff2795a7472749c7d492e5bb58662b7f2683144e1a6895f",
+      "sha256": "sha256:7c3a551931f7db7a9e469723bef71b2433ac4c2922ae90d340b4bb9ef6075e8d",
       "bytes": 10342,
       "sourceRole": "TELEMETRY_FIXTURE"
     }

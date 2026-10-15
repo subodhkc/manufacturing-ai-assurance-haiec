@@ -10,7 +10,7 @@
   "authorizedTarget": "WO-217-4802",
   "observedTarget": "WO-217-4803",
   "principal": "synthetic-agent/SYS-217",
-  "recordedAt": "2026-10-15T13:10:00.000Z",
+  "recordedAt": "2026-10-14T13:10:00.000Z",
   "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
   "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
   "limitations": [
@@ -22,8 +22,8 @@
   "sourceSystem": "SYNTHETIC_OTEL_COLLECTOR",
   "collectorId": "synthetic-collector-sys217-01",
   "coverageWindow": {
-    "start": "2026-10-15T13:09:00.000Z",
-    "end": "2026-10-15T13:11:00.000Z"
+    "start": "2026-10-14T13:09:00.000Z",
+    "end": "2026-10-14T13:11:00.000Z"
   },
   "expectedSpanCount": 5,
   "emittedSpanCount": 5,
