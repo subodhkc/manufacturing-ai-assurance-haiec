@@ -30,6 +30,63 @@ for (const f of fs.readdirSync(evalDir).filter((f) => f.endsWith('.json') && f !
 const manifest = JSON.parse(fs.readFileSync(path.join(evalDir, 'manifest.json'), 'utf8'));
 const station217 = fs.existsSync(bundlePath) ? JSON.parse(fs.readFileSync(bundlePath, 'utf8')) : null;
 
+/* ------------------------------------------------------------------
+ * Strict frozen-release parity gate. A missing or invalid export fails
+ * the build — the displayed program may never silently shrink.
+ * Required for this release: exactly 9 systems × 3 scenario states =
+ * 27 unique case IDs and evaluation bindings, every manifest entry
+ * present, no unexpected or duplicate entries, every export schema +
+ * digest valid, Station 217 bundle integrity valid.
+ * ------------------------------------------------------------------ */
+const REQUIRED_STATES = ['EXPECTED_BASELINE', 'WRONG_TARGET', 'EVIDENCE_DEGRADED'];
+const REQUIRED_SYSTEMS = 9;
+const REQUIRED_EXPORTS = 27;
+
+const exportsArr = Object.values(exportMap);
+const systems = new Set(exportsArr.map((a) => a.sourceCase.aiSystemId));
+const caseIds = new Set(exportsArr.map((a) => a.sourceCase.caseId));
+const evalIds = new Set(exportsArr.map((a) => a.evaluation && a.evaluation.evaluationId));
+
+if (systems.size !== REQUIRED_SYSTEMS) problems.push(`PARITY: ${systems.size} distinct systems — required ${REQUIRED_SYSTEMS}`);
+if (caseIds.size !== REQUIRED_EXPORTS || exportsArr.length !== REQUIRED_EXPORTS) {
+  problems.push(`PARITY: ${exportsArr.length} exports / ${caseIds.size} unique case IDs — required ${REQUIRED_EXPORTS} unique`);
+}
+if (evalIds.size !== REQUIRED_EXPORTS) problems.push(`PARITY: ${evalIds.size} unique evaluationIds — required ${REQUIRED_EXPORTS} (duplicate or missing binding)`);
+for (const sys of systems) {
+  const states = new Set(exportsArr.filter((a) => a.sourceCase.aiSystemId === sys).map((a) => a.sourceCase.scenarioState));
+  for (const st of REQUIRED_STATES) if (!states.has(st)) problems.push(`PARITY: ${sys} missing state ${st}`);
+}
+
+// Manifest parity — every listed entry present, no extras, no dupes.
+const manifestEntries = manifest && Array.isArray(manifest.exports) ? manifest.exports : (manifest && manifest.entries) || [];
+if (manifestEntries.length !== REQUIRED_EXPORTS) problems.push(`PARITY: manifest lists ${manifestEntries.length} entries — required ${REQUIRED_EXPORTS}`);
+const manifestCaseIds = new Set();
+for (const e of manifestEntries) {
+  const cid = e.caseId || (e.sourceCase && e.sourceCase.caseId);
+  if (!cid) { problems.push('PARITY: manifest entry missing caseId'); continue; }
+  if (manifestCaseIds.has(cid)) problems.push(`PARITY: duplicate manifest entry ${cid}`);
+  manifestCaseIds.add(cid);
+  const a = exportMap[cid];
+  if (!a) { problems.push(`PARITY: manifest entry ${cid} has no export file`); continue; }
+  if (e.evaluationId && a.evaluation.evaluationId !== e.evaluationId) problems.push(`PARITY: manifest evaluationId mismatch for ${cid}`);
+}
+for (const cid of caseIds) if (!manifestCaseIds.has(cid)) problems.push(`PARITY: export ${cid} absent from manifest`);
+
+// Station 217 bundle integrity.
+if (!station217) problems.push('PARITY: station217 replay bundle absent');
+else {
+  const { digest, ...body } = station217;
+  const recomputed = 'sha256:' + createHash('sha256').update(JSON.stringify(body), 'utf8').digest('hex');
+  if (recomputed !== digest) problems.push('PARITY: station217 bundle digest mismatch');
+  if ((station217.cases || []).length !== 6) problems.push(`PARITY: station217 has ${(station217.cases || []).length} cases — required 6`);
+}
+
+if (problems.length) {
+  console.error('BUILD FAILED — integrity/parity violations:');
+  for (const p of problems) console.error('  ✗', p);
+  process.exit(1);
+}
+
 const payload = {
   schemaVersion: 'haiec-dashboard-data-1.0.0',
   generatedAt: new Date().toISOString(),
@@ -49,6 +106,4 @@ window.HAIEC_DEMO_DATA = ${JSON.stringify(payload)};
 `;
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, js);
-console.log(`dashboard data: ${Object.keys(exportMap).length} verified exports + station217 ${station217 ? 'bundle' : 'ABSENT'} → ${outPath}`);
-for (const p of problems) console.error('SKIPPED (integrity/shape failure):', p);
-if (Object.keys(exportMap).length === 0) { console.error('FATAL: zero valid exports'); process.exit(1); }
+console.log(`dashboard data: ${Object.keys(exportMap).length} verified exports + station217 bundle → ${outPath}`);

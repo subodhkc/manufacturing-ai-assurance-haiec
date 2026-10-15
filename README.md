@@ -23,7 +23,7 @@ Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contai
 
 ## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)
 
-[Versioned semantic contract and executable acceptance **specification**](contracts/manufacturing/v0.1.0/README.md) cover all nine systems, evidence-qualified typed identity, 5 P0 rule predicates and 25 oracle-separated public test cases. Run `npm test` for **spec integrity** or `node scripts/compare-manufacturing-detector-results.cjs --digests` to print exact SHA-256 identities. **Actual HAIEC detector execution, source qualification, blind C2 acceptance and persisted evaluation remain NOT_VERIFIED.** The offline comparator intentionally fails closed without a separately authenticated canonical HAIEC evaluation output.
+[Versioned semantic contract and executable acceptance **specification**](contracts/manufacturing/v0.1.0/README.md) cover all nine systems, evidence-qualified typed identity, 5 P0 rule predicates and 25 oracle-separated public test cases. Run `npm test` for **spec integrity** or `node scripts/compare-manufacturing-detector-results.cjs --digests` to print exact SHA-256 identities. **Update (Sprint 14):** canonical HAIEC manufacturing detection, source qualification and persisted evaluation now exist — 27 digest-pinned evaluations live under `data/evaluations/` and render on the dashboard's HAIEC Assurance page. The v0.1.0-format blind C2 comparator remains intentionally unrun and fails closed.
 
 ## Station 217: executable synthetic action control (new)
 

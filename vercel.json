@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/build-dashboard-data.cjs",
+  "outputDirectory": "dashboard",
+  "installCommand": "echo 'no dependencies — zero-dep static site'"
+}
