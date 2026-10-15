@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-build-runtime-v2",
+  "program": "HAIEC_MANUFACTURING_SOURCE_NATIVE_V2",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-217",
+  "scenarioId": "SYS-217-WRONG_TARGET",
+  "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
+  "transactionId": "syn-txn-v2-sys217-wrong-target-001",
+  "operation": "mes.work_order.update",
+  "authorizedTarget": "WO-217-4802",
+  "observedTarget": "WO-217-4803",
+  "principal": "synthetic-agent/SYS-217",
+  "recordedAt": "2026-10-15T13:10:00.000Z",
+  "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+  "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
+  "limitations": [
+    "SYNTHETIC_MANUFACTURING_EVIDENCE",
+    "NOT_HAIEC_QUALIFIED",
+    "NOT_REAL_CUSTOMER_EVIDENCE",
+    "NOT_PROOF_OF_FACTORY_EFFECT",
+    "BUILD_SOURCE_PROVENANCE_NOT_ESTABLISHED",
+    "RUNTIME_IDENTITY_NOT_PROVIDER_VERIFIED"
+  ],
+  "artifactId": "synthetic-mes-agent-sys217:v2",
+  "sourceRevision": "SOURCE_TREE_PIN_REQUIRED_AT_EVALUATION",
+  "imageDigest": null,
+  "containerDigest": null,
+  "deployedAt": "2026-10-15T13:08:00.000Z",
+  "runtimeIdentity": "synthetic-agent/SYS-217",
+  "policyBindings": [
+    "envelope-proposal-sys217-v2-01"
+  ]
+}

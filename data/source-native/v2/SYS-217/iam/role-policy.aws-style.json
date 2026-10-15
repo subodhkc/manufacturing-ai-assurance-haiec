@@ -1,0 +1,41 @@
+{
+  "Version": "2012-10-17",
+  "Id": "SYNTHETIC_SYS217_IAM_V2",
+  "Statement": [
+    {
+      "Sid": "SyntheticWritePathToMES",
+      "Effect": "Allow",
+      "Action": [
+        "execute-api:Invoke"
+      ],
+      "Resource": [
+        "arn:aws:execute-api:us-east-1:000000000000:synthetic-mes-api/synthetic/POST/work-orders/*/quality-hold"
+      ]
+    },
+    {
+      "Sid": "SyntheticExplicitDenyDestructiveAdmin",
+      "Effect": "Deny",
+      "Action": [
+        "iam:PassRole",
+        "iam:CreatePolicyVersion"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ],
+  "_sourceMeta": {
+    "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+    "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
+    "limitations": [
+      "SYNTHETIC_MANUFACTURING_EVIDENCE",
+      "NOT_HAIEC_QUALIFIED",
+      "NOT_REAL_CUSTOMER_EVIDENCE",
+      "NOT_PROOF_OF_FACTORY_EFFECT"
+    ],
+    "principal": "synthetic-agent/SYS-217",
+    "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
+    "provider": "AWS_IAM_STYLE_FIXTURE_NO_AWS_CREDENTIALS",
+    "note": "An AWS-style policy is neither complete AWS authorization nor delegated business approval; wildcard scope intentionally illustrates excess technical permission candidate"
+  }
+}

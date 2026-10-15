@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Synthetic MES Work Order API",
+    "version": "2.0.0",
+    "description": "Test-only, no real factory endpoint"
+  },
+  "servers": [
+    {
+      "url": "https://synthetic.invalid",
+      "description": "Unreachable documentation placeholder; no production access"
+    }
+  ],
+  "paths": {
+    "/work-orders/{workOrderId}/quality-hold": {
+      "post": {
+        "operationId": "mes_work_order_update",
+        "summary": "Synthetic quality hold update",
+        "parameters": [
+          {
+            "name": "workOrderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hold": {
+                    "type": "boolean"
+                  },
+                  "transactionId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "hold",
+                  "transactionId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Synthetic fixture write response"
+          }
+        }
+      }
+    }
+  }
+}

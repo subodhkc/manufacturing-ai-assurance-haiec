@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "manufacturing-collector-continuity-v2",
+  "program": "HAIEC_MANUFACTURING_SOURCE_NATIVE_V2",
+  "siteId": "PLANT-A",
+  "aiSystemId": "SYS-217",
+  "scenarioId": "SYS-217-WRONG_TARGET",
+  "scenarioRunId": "syn-world-v2-sys-217-wrong_target",
+  "transactionId": "syn-txn-v2-sys217-wrong-target-001",
+  "operation": "mes.work_order.update",
+  "authorizedTarget": "WO-217-4802",
+  "observedTarget": "WO-217-4803",
+  "principal": "synthetic-agent/SYS-217",
+  "recordedAt": "2026-10-15T13:10:00.000Z",
+  "sourceClassification": "PURPOSE_BUILT_SYNTHETIC_MANUFACTURING_EVIDENCE",
+  "qualificationState": "UNQUALIFIED_SOURCE_INPUT",
+  "limitations": [
+    "SYNTHETIC_MANUFACTURING_EVIDENCE",
+    "NOT_HAIEC_QUALIFIED",
+    "NOT_REAL_CUSTOMER_EVIDENCE",
+    "NOT_PROOF_OF_FACTORY_EFFECT"
+  ],
+  "sourceSystem": "SYNTHETIC_OTEL_COLLECTOR",
+  "collectorId": "synthetic-collector-sys217-01",
+  "coverageWindow": {
+    "start": "2026-10-15T13:09:00.000Z",
+    "end": "2026-10-15T13:11:00.000Z"
+  },
+  "expectedSpanCount": 5,
+  "emittedSpanCount": 5,
+  "receivedSpanCount": 5,
+  "lastSequence": 5,
+  "collectorEvidence": "SYNTHETIC_ASSERTION_NOT_HAIEC_QUALIFIED",
+  "negativeCases": [
+    {
+      "caseId": "SYS-217-EVIDENCE_DEGRADED",
+      "injectedFailure": "TARGET_READBACK_MISSING",
+      "receivedSpanCount": 4,
+      "continuityState": "DEGRADED_FIXTURE"
+    },
+    {
+      "caseId": "SYS-217-COLLECTOR_GAP",
+      "injectedFailure": "HEARTBEAT_MISSING",
+      "receivedSpanCount": 3,
+      "continuityState": "INSUFFICIENT_COVERAGE_FIXTURE"
+    }
+  ]
+}
