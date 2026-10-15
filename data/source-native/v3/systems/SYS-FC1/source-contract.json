@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-FC1",
+  "name": "Demand Forecast and S&OP",
+  "siteId": "SUPPLY",
+  "workflowId": "WF-PLAN",
+  "agents": [
+    {
+      "agentId": "SYS-FC1-AGENT-1",
+      "name": "Demand Forecaster"
+    },
+    {
+      "agentId": "SYS-FC1-AGENT-2",
+      "name": "Capacity Planner"
+    }
+  ],
+  "operation": "aps.schedule.commit",
+  "resourceKey": {
+    "site": "SUPPLY",
+    "namespace": "APS",
+    "approvedTarget": "MPS-WK42",
+    "alternateTarget": "MPS-WK43"
+  },
+  "nativeEffect": {
+    "sourceSystem": "APS",
+    "property": "releasedSchedule",
+    "preState": false,
+    "postState": true,
+    "unit": "plan",
+    "quantity": 1
+  },
+  "capability": {
+    "tool": "propose_master_schedule",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

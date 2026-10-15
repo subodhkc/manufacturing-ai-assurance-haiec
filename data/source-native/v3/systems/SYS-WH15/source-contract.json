@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "name": "Warehouse Fulfillment AI",
+  "siteId": "DC-15",
+  "workflowId": "WF-WAREHOUSE",
+  "agents": [
+    {
+      "agentId": "SYS-WH15-AGENT-1",
+      "name": "Pick Optimizer"
+    },
+    {
+      "agentId": "SYS-WH15-AGENT-2",
+      "name": "Replenishment Agent"
+    }
+  ],
+  "operation": "wms.shipment.confirm",
+  "resourceKey": {
+    "site": "DC-15",
+    "namespace": "WMS",
+    "approvedTarget": "LOT-2026-4510",
+    "alternateTarget": "LOT-2026-4511"
+  },
+  "nativeEffect": {
+    "sourceSystem": "WMS",
+    "property": "shipmentStatus",
+    "preState": "PENDING",
+    "postState": "CONFIRMED",
+    "unit": "shipment",
+    "quantity": 1
+  },
+  "capability": {
+    "tool": "request_replenishment",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

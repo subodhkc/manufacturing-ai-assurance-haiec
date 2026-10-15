@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-behavior-record-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-SCH5",
+  "scenarioRunId": "syn-mfg-v3-sys-sch5-wrong_target",
+  "window": "2026-10-13T00:00:00Z/2026-10-14T00:00:00Z",
+  "modelVersion": "synthetic-model-1.0",
+  "context": {
+    "siteId": "PLANT-A",
+    "workflowId": "WF-PLAN",
+    "toolVersion": "mock-tool-v3",
+    "environment": "SYNTHETIC_LAB"
+  },
+  "historical": {
+    "n": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "allowedOperation": "aps.schedule.write",
+    "observedTargetSet": [
+      "SCH-WK42"
+    ]
+  },
+  "current": {
+    "tokens": 7100,
+    "attemptedTarget": "SCH-WK43",
+    "firstSeenTool": "synthetic-broader-write-tool",
+    "retryCount": 0
+  },
+  "interpretation": "OBSERVATIONAL_SIGNAL_ONLY_NOT_A_POLICY_VERDICT",
+  "sourceRole": "MODEL_USAGE_SIMULATION"
+}

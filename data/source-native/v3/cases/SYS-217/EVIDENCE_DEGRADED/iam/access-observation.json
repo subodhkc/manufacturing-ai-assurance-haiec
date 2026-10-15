@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-runtime-iam-observation-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "scenarioRunId": "syn-mfg-v3-sys-217-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-217-evidence_degraded",
+  "observedAt": "2026-10-14T08:09:59.000Z",
+  "principal": "synthetic-agent/SYS-217",
+  "policyRef": "systems/SYS-217/iam/role-policy.aws-style.json",
+  "observedAccess": [
+    {
+      "operation": "execute-api:Invoke",
+      "resource": "synthetic-api/MES/mes.work_order.update/*",
+      "decision": "ALLOW_CANDIDATE_POLICY_ONLY"
+    }
+  ],
+  "missingLayers": [
+    "SCP",
+    "PERMISSION_BOUNDARY",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY",
+    "NETWORK_ENDPOINT_POLICY"
+  ],
+  "effectiveGrant": "NOT_PROVIDER_VERIFIED",
+  "codeSourceRef": "systems/SYS-217/code/agent-handler.js",
+  "openApiRef": "systems/SYS-217/code/openapi.json",
+  "buildIdentity": {
+    "sourceSha": "NOT_BOUND_TO_DEPLOYMENT",
+    "immutableImageDigest": null,
+    "observedRuntime": "SYNTHETIC_LAB"
+  },
+  "sourceRole": "IAM_CANDIDATE"
+}

@@ -1,0 +1,195 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "synthetic-agent-SYS-SCH5"
+            }
+          },
+          {
+            "key": "deployment.environment",
+            "value": {
+              "stringValue": "SYNTHETIC_LAB"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "synthetic-manufacturing-v3",
+            "version": "3.0.0"
+          },
+          "spans": [
+            {
+              "traceId": "00000000000000000000000000000002",
+              "spanId": "0000000000000001",
+              "name": "request.accepted",
+              "kind": 3,
+              "startTimeUnixNano": "1791987001000000000",
+              "endTimeUnixNano": "1791987001250000000",
+              "attributes": [
+                {
+                  "key": "haiec.ai_system_id",
+                  "value": {
+                    "stringValue": "SYS-SCH5"
+                  }
+                },
+                {
+                  "key": "haiec.scenario_run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "txn-syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "manufacturing.target_id",
+                  "value": {
+                    "stringValue": "SCH-WK42"
+                  }
+                },
+                {
+                  "key": "manufacturing.source_world_version",
+                  "value": {
+                    "stringValue": "manufacturing-source-native-v3"
+                  }
+                }
+              ]
+            },
+            {
+              "traceId": "00000000000000000000000000000002",
+              "spanId": "0000000000000002",
+              "parentSpanId": "0000000000000001",
+              "name": "authority.approval_observed",
+              "kind": 3,
+              "startTimeUnixNano": "1791987002000000000",
+              "endTimeUnixNano": "1791987002250000000",
+              "attributes": [
+                {
+                  "key": "haiec.ai_system_id",
+                  "value": {
+                    "stringValue": "SYS-SCH5"
+                  }
+                },
+                {
+                  "key": "haiec.scenario_run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "txn-syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "manufacturing.target_id",
+                  "value": {
+                    "stringValue": "SCH-WK42"
+                  }
+                },
+                {
+                  "key": "manufacturing.source_world_version",
+                  "value": {
+                    "stringValue": "manufacturing-source-native-v3"
+                  }
+                }
+              ]
+            },
+            {
+              "traceId": "00000000000000000000000000000002",
+              "spanId": "0000000000000003",
+              "parentSpanId": "0000000000000002",
+              "name": "tool.dispatch",
+              "kind": 3,
+              "startTimeUnixNano": "1791987003000000000",
+              "endTimeUnixNano": "1791987003250000000",
+              "attributes": [
+                {
+                  "key": "haiec.ai_system_id",
+                  "value": {
+                    "stringValue": "SYS-SCH5"
+                  }
+                },
+                {
+                  "key": "haiec.scenario_run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "txn-syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "manufacturing.target_id",
+                  "value": {
+                    "stringValue": "SCH-WK42"
+                  }
+                },
+                {
+                  "key": "manufacturing.source_world_version",
+                  "value": {
+                    "stringValue": "manufacturing-source-native-v3"
+                  }
+                }
+              ]
+            },
+            {
+              "traceId": "00000000000000000000000000000002",
+              "spanId": "0000000000000004",
+              "parentSpanId": "0000000000000003",
+              "name": "native.commit",
+              "kind": 3,
+              "startTimeUnixNano": "1791987004000000000",
+              "endTimeUnixNano": "1791987004250000000",
+              "attributes": [
+                {
+                  "key": "haiec.ai_system_id",
+                  "value": {
+                    "stringValue": "SYS-SCH5"
+                  }
+                },
+                {
+                  "key": "haiec.scenario_run_id",
+                  "value": {
+                    "stringValue": "syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "haiec.transaction_id",
+                  "value": {
+                    "stringValue": "txn-syn-mfg-v3-sys-sch5-evidence_degraded"
+                  }
+                },
+                {
+                  "key": "manufacturing.target_id",
+                  "value": {
+                    "stringValue": "SCH-WK42"
+                  }
+                },
+                {
+                  "key": "manufacturing.source_world_version",
+                  "value": {
+                    "stringValue": "manufacturing-source-native-v3"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

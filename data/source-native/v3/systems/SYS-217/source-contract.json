@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "manufacturing-source-contract-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "name": "Torque Quality Assurance",
+  "siteId": "PLANT-A",
+  "workflowId": "WF-QUALITY",
+  "agents": [
+    {
+      "agentId": "SYS-217-AGENT-1",
+      "name": "Torque Monitor"
+    }
+  ],
+  "operation": "mes.work_order.update",
+  "resourceKey": {
+    "site": "PLANT-A",
+    "namespace": "MES",
+    "approvedTarget": "WO-217-4802",
+    "alternateTarget": "WO-217-4803"
+  },
+  "nativeEffect": {
+    "sourceSystem": "MES",
+    "property": "qualityHold",
+    "preState": false,
+    "postState": true,
+    "unit": "engine",
+    "quantity": 40
+  },
+  "capability": {
+    "tool": "mes_workorder_client",
+    "codePath": "code/agent-handler.js",
+    "openapiPath": "code/openapi.json",
+    "staticReachability": "NOT_YET_SCANNED"
+  },
+  "claimBoundaries": [
+    "BUSINESS_APPROVAL_CANDIDATE",
+    "IAM_GRANT_CANDIDATE",
+    "CODE_STATIC_SOURCE",
+    "OTLP_TELEMETRY_CANDIDATE",
+    "NATIVE_TARGET_SIMULATOR_WITNESS"
+  ],
+  "safeForPhysicalActuation": false
+}

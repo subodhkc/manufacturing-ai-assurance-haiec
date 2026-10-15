@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-remediated",
+  "eventTime": "2026-10-14T12:30:05.200Z",
+  "resourceId": "WO-88-2210",
+  "sourceSystem": "LAB_CMMS_TARGET_LEDGER",
+  "producerRef": "syn-sys-mnt88-target_ledger",
+  "sourceClaimRole": "SIMULATED_TARGET_READBACK",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "cmms.work_request.create",
+  "eventId": "txn-syn-mfg-v3-sys-mnt88-remediated-target_ledger",
+  "businessField": "workOrderStatus",
+  "before": "NOT_OPENED",
+  "after": "WORK_REQUEST_CREATED",
+  "recordVersion": "syn-mfg-v3-sys-mnt88-remediated-r1",
+  "consequenceScope": {
+    "unit": "request",
+    "quantity": 1
+  },
+  "readbackStatus": "SIMULATED_READBACK",
+  "modeInjection": "CORRECTED_TARGET_AND_BLOCKED_ATTEMPT"
+}

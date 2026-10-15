@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-MNT88",
+  "siteId": "PLANT-B",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-evidence_degraded",
+  "eventTime": "2026-10-14T12:10:04.000Z",
+  "resourceId": "WO-88-2210",
+  "sourceSystem": "LAB_CMMS_GATEWAY",
+  "producerRef": "syn-sys-mnt88-gateway",
+  "sourceClaimRole": "SIMULATED_DISPATCH_EMITTER",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "cmms.work_request.create",
+  "eventId": "txn-syn-mfg-v3-sys-mnt88-evidence_degraded-gateway",
+  "businessField": "workOrderStatus",
+  "before": "NOT_OPENED",
+  "after": "WORK_REQUEST_CREATED",
+  "recordVersion": "syn-mfg-v3-sys-mnt88-evidence_degraded-r1",
+  "consequenceScope": {
+    "unit": "request",
+    "quantity": 1
+  },
+  "readbackStatus": "EMITTER_RECORDED",
+  "modeInjection": "NONE"
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "manufacturing-operating-envelope-proposal-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "siteId": "PLANT-A",
+  "workflowId": "WF-QUALITY",
+  "state": "PROPOSED_NOT_HAIEC_APPROVED",
+  "operation": "mes.work_order.update",
+  "authorizedTargets": [
+    "WO-217-4802"
+  ],
+  "excludedTargets": [
+    "WO-217-4803"
+  ],
+  "maxQuantity": 40,
+  "unit": "engine",
+  "approverRole": "Plant Quality Manager",
+  "delegationIsNotPermission": true,
+  "environment": "SYNTHETIC_LAB",
+  "effectiveFrom": "2026-10-14T00:00:00.000Z",
+  "effectiveUntil": "2026-10-15T00:00:00.000Z"
+}

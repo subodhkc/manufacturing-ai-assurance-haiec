@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-behavior-record-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-217",
+  "scenarioRunId": "syn-mfg-v3-sys-217-expected_baseline",
+  "window": "2026-10-13T00:00:00Z/2026-10-14T00:00:00Z",
+  "modelVersion": "synthetic-model-1.0",
+  "context": {
+    "siteId": "PLANT-A",
+    "workflowId": "WF-QUALITY",
+    "toolVersion": "mock-tool-v3",
+    "environment": "SYNTHETIC_LAB"
+  },
+  "historical": {
+    "n": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "allowedOperation": "mes.work_order.update",
+    "observedTargetSet": [
+      "WO-217-4802"
+    ]
+  },
+  "current": {
+    "tokens": 1500,
+    "attemptedTarget": "WO-217-4802",
+    "firstSeenTool": null,
+    "retryCount": 0
+  },
+  "interpretation": "OBSERVATIONAL_SIGNAL_ONLY_NOT_A_POLICY_VERDICT",
+  "sourceRole": "MODEL_USAGE_SIMULATION"
+}

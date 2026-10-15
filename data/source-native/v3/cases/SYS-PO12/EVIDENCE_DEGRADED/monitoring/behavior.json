@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "manufacturing-behavior-record-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-evidence_degraded",
+  "window": "2026-10-13T00:00:00Z/2026-10-14T00:00:00Z",
+  "modelVersion": "synthetic-model-1.0",
+  "context": {
+    "siteId": "SUPPLY",
+    "workflowId": "WF-PROCURE",
+    "toolVersion": "mock-tool-v3",
+    "environment": "SYNTHETIC_LAB"
+  },
+  "historical": {
+    "n": 120,
+    "medianTokens": 1400,
+    "p95Tokens": 2350,
+    "allowedOperation": "erp.purchase_order.create",
+    "observedTargetSet": [
+      "REQ-2026-8842"
+    ]
+  },
+  "current": {
+    "tokens": 2550,
+    "attemptedTarget": "REQ-2026-8842",
+    "firstSeenTool": null,
+    "retryCount": 4
+  },
+  "interpretation": "OBSERVATIONAL_SIGNAL_ONLY_NOT_A_POLICY_VERDICT",
+  "sourceRole": "MODEL_USAGE_SIMULATION"
+}

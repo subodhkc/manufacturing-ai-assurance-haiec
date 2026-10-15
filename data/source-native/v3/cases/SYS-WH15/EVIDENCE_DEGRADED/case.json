@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "manufacturing-evidence-case-v3",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "synthetic": true,
+  "sourceQualification": "UNQUALIFIED_UNTIL_CANONICAL_HAIEC_BINDING",
+  "siteId": "DC-15",
+  "workflowId": "WF-WAREHOUSE",
+  "aiSystemId": "SYS-WH15",
+  "agentIds": [
+    "SYS-WH15-AGENT-1",
+    "SYS-WH15-AGENT-2"
+  ],
+  "scenarioState": "EVIDENCE_DEGRADED",
+  "caseId": "SYS-WH15-EVIDENCE_DEGRADED",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-evidence_degraded",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-evidence_degraded",
+  "operation": "wms.shipment.confirm",
+  "approvedTarget": "LOT-2026-4510",
+  "sourceRecords": {
+    "businessApproval": "cases/SYS-WH15/EVIDENCE_DEGRADED/authority/delegation-approval.json",
+    "iamObservation": "cases/SYS-WH15/EVIDENCE_DEGRADED/iam/access-observation.json",
+    "otlpTelemetry": "cases/SYS-WH15/EVIDENCE_DEGRADED/telemetry/otlp-traces.json",
+    "collectorContinuity": "cases/SYS-WH15/EVIDENCE_DEGRADED/telemetry/collector-continuity.json",
+    "gatewayNative": "cases/SYS-WH15/EVIDENCE_DEGRADED/native/gateway-transaction.json",
+    "targetNativeReadback": null,
+    "behavioralHistory": "cases/SYS-WH15/EVIDENCE_DEGRADED/monitoring/behavior.json"
+  },
+  "sourceSystemRefs": {
+    "policy": "systems/SYS-WH15/authority/operating-envelope.proposal.json",
+    "iam": "systems/SYS-WH15/iam/role-policy.aws-style.json",
+    "code": "systems/SYS-WH15/code/agent-handler.js",
+    "openapi": "systems/SYS-WH15/code/openapi.json",
+    "sensor": "systems/SYS-WH15/observations/sensor-samples.json"
+  },
+  "eventTime": "2026-10-14T16:10:00.000Z",
+  "recordedTarget": "LOT-2026-4510",
+  "sourceContentFacts": {
+    "gatewayRecorded": true,
+    "targetLedgerRecordPresent": false,
+    "extraRejectedAttemptRecordPresent": false,
+    "collectorGap": true
+  },
+  "provenance": "SYNTHETIC_MULTIPLE_EMULATED_COMPONENTS_SINGLE_LAB",
+  "independentOfExpectedOracle": true,
+  "producerRegistrationRequired": true
+}

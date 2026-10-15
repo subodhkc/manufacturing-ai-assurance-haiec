@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-runtime-iam-observation-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-WH15",
+  "scenarioRunId": "syn-mfg-v3-sys-wh15-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-wh15-remediated",
+  "observedAt": "2026-10-14T16:29:59.000Z",
+  "principal": "synthetic-agent/SYS-WH15",
+  "policyRef": "systems/SYS-WH15/iam/role-policy.aws-style.json",
+  "observedAccess": [
+    {
+      "operation": "execute-api:Invoke",
+      "resource": "synthetic-api/WMS/wms.shipment.confirm/*",
+      "decision": "ALLOW_CANDIDATE_POLICY_ONLY"
+    }
+  ],
+  "missingLayers": [
+    "SCP",
+    "PERMISSION_BOUNDARY",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY",
+    "NETWORK_ENDPOINT_POLICY"
+  ],
+  "effectiveGrant": "NOT_PROVIDER_VERIFIED",
+  "codeSourceRef": "systems/SYS-WH15/code/agent-handler.js",
+  "openApiRef": "systems/SYS-WH15/code/openapi.json",
+  "buildIdentity": {
+    "sourceSha": "NOT_BOUND_TO_DEPLOYMENT",
+    "immutableImageDigest": null,
+    "observedRuntime": "SYNTHETIC_LAB"
+  },
+  "sourceRole": "IAM_CANDIDATE"
+}

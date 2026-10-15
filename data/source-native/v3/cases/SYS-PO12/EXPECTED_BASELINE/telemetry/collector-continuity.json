@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "manufacturing-collector-continuity-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-PO12",
+  "scenarioRunId": "syn-mfg-v3-sys-po12-expected_baseline",
+  "transactionId": "txn-syn-mfg-v3-sys-po12-expected_baseline",
+  "collectorId": "synthetic-collector-SYS-PO12",
+  "coverageWindow": {
+    "start": "2026-10-14T10:59:58.000Z",
+    "end": "2026-10-14T11:00:10.000Z"
+  },
+  "expectedSpanCount": 5,
+  "receivedSpanCount": 5,
+  "receivedSpanIds": [
+    "0000000000000001",
+    "0000000000000002",
+    "0000000000000003",
+    "0000000000000004",
+    "0000000000000005"
+  ],
+  "lastSequence": 5,
+  "heartbeatStatus": "OBSERVED_SIMULATED",
+  "gapReason": null,
+  "sourceRole": "COLLECTOR_COVERAGE_CANDIDATE",
+  "custody": "SYNTHETIC_LAB"
+}

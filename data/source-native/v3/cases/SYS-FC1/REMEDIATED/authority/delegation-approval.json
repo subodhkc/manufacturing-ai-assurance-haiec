@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "SUPPLY",
+  "aiSystemId": "SYS-FC1",
+  "scenarioRunId": "syn-mfg-v3-sys-fc1-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-fc1-remediated",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-fc1-remediated-request",
+    "actor": "synthetic-agent/SYS-FC1",
+    "operation": "aps.schedule.commit",
+    "target": "MPS-WK42",
+    "requestedQuantity": 1,
+    "unit": "plan",
+    "requestedAt": "2026-10-14T10:30:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-fc1-remediated-approval",
+    "approver": "synthetic-demand-planning-manager",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-FC1",
+    "operation": "aps.schedule.commit",
+    "authorizedTargets": [
+      "MPS-WK42"
+    ],
+    "quantityMax": 1,
+    "validFrom": "2026-10-14T10:29:00.000Z",
+    "validUntil": "2026-10-14T10:40:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-fc1-remediated-gate",
+    "policyRef": "systems/SYS-FC1/authority/operating-envelope.proposal.json",
+    "requestedTarget": "MPS-WK42",
+    "dispatchedTarget": "MPS-WK42",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T10:30:01.800Z",
+    "blockedAttempts": [
+      {
+        "eventId": "txn-syn-mfg-v3-sys-fc1-remediated-blocked",
+        "target": "MPS-WK43",
+        "decision": "SIMULATED_DENY_OUTSIDE_DELEGATION",
+        "mutationApplied": false
+      }
+    ]
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

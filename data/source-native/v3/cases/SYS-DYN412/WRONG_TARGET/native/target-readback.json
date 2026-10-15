@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "manufacturing-native-record-v3",
+  "dataClass": "SYNTHETIC_MANUFACTURING_LAB",
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "aiSystemId": "SYS-DYN412",
+  "siteId": "PLANT-A",
+  "scenarioRunId": "syn-mfg-v3-sys-dyn412-wrong_target",
+  "transactionId": "txn-syn-mfg-v3-sys-dyn412-wrong_target",
+  "eventTime": "2026-10-14T15:20:05.200Z",
+  "resourceId": "TEST-412/undelegated-param-4",
+  "sourceSystem": "LAB_TEST_CONTROLLER_EMULATOR_TARGET_LEDGER",
+  "producerRef": "syn-sys-dyn412-target_ledger",
+  "sourceClaimRole": "SIMULATED_TARGET_READBACK",
+  "qualification": "UNQUALIFIED_EXTERNAL_INPUT",
+  "custody": "DISTINCT_SIMULATOR_COMPONENT_SAME_LAB",
+  "operation": "test_controller.setpoint.write",
+  "eventId": "txn-syn-mfg-v3-sys-dyn412-wrong_target-target_ledger",
+  "businessField": "controllerSetpoint",
+  "before": 40,
+  "after": 42.5,
+  "recordVersion": "syn-mfg-v3-sys-dyn412-wrong_target-r1",
+  "consequenceScope": {
+    "unit": "emulated-setpoint",
+    "quantity": 1
+  },
+  "readbackStatus": "SIMULATED_READBACK",
+  "modeInjection": "TARGET_SUBSTITUTION"
+}

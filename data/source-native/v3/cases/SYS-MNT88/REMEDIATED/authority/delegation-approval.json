@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "manufacturing-approval-delegation-v3",
+  "synthetic": true,
+  "sourceWorldVersion": "manufacturing-source-native-v3",
+  "siteId": "PLANT-B",
+  "aiSystemId": "SYS-MNT88",
+  "scenarioRunId": "syn-mfg-v3-sys-mnt88-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-mnt88-remediated",
+  "request": {
+    "eventId": "txn-syn-mfg-v3-sys-mnt88-remediated-request",
+    "actor": "synthetic-agent/SYS-MNT88",
+    "operation": "cmms.work_request.create",
+    "target": "WO-88-2210",
+    "requestedQuantity": 1,
+    "unit": "request",
+    "requestedAt": "2026-10-14T12:30:00.000Z"
+  },
+  "businessApproval": {
+    "recordId": "txn-syn-mfg-v3-sys-mnt88-remediated-approval",
+    "approver": "synthetic-maintenance-supervisor",
+    "decision": "APPROVED_IN_SIMULATED_SOURCE_ONLY",
+    "delegate": "synthetic-agent/SYS-MNT88",
+    "operation": "cmms.work_request.create",
+    "authorizedTargets": [
+      "WO-88-2210"
+    ],
+    "quantityMax": 1,
+    "validFrom": "2026-10-14T12:29:00.000Z",
+    "validUntil": "2026-10-14T12:40:00.000Z",
+    "separationOfDuties": true
+  },
+  "simulatedGate": {
+    "recordId": "txn-syn-mfg-v3-sys-mnt88-remediated-gate",
+    "policyRef": "systems/SYS-MNT88/authority/operating-envelope.proposal.json",
+    "requestedTarget": "WO-88-2210",
+    "dispatchedTarget": "WO-88-2210",
+    "decision": "SIMULATED_ALLOW",
+    "evaluatedAt": "2026-10-14T12:30:01.800Z",
+    "blockedAttempts": [
+      {
+        "eventId": "txn-syn-mfg-v3-sys-mnt88-remediated-blocked",
+        "target": "WO-88-2211",
+        "decision": "SIMULATED_DENY_OUTSIDE_DELEGATION",
+        "mutationApplied": false
+      }
+    ]
+  },
+  "role": "AUTHORITY_CANDIDATE",
+  "approvalInHaiec": "NOT_REQUESTED",
+  "noImplicitAuthority": true
+}

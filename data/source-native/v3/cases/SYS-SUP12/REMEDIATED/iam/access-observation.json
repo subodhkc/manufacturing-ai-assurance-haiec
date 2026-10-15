@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "manufacturing-runtime-iam-observation-v3",
+  "synthetic": true,
+  "aiSystemId": "SYS-SUP12",
+  "scenarioRunId": "syn-mfg-v3-sys-sup12-remediated",
+  "transactionId": "txn-syn-mfg-v3-sys-sup12-remediated",
+  "observedAt": "2026-10-14T13:29:59.000Z",
+  "principal": "synthetic-agent/SYS-SUP12",
+  "policyRef": "systems/SYS-SUP12/iam/role-policy.aws-style.json",
+  "observedAccess": [
+    {
+      "operation": "execute-api:Invoke",
+      "resource": "synthetic-api/QMS/qms.incoming_lot.disposition/*",
+      "decision": "ALLOW_CANDIDATE_POLICY_ONLY"
+    }
+  ],
+  "missingLayers": [
+    "SCP",
+    "PERMISSION_BOUNDARY",
+    "SESSION_POLICY",
+    "RESOURCE_POLICY",
+    "NETWORK_ENDPOINT_POLICY"
+  ],
+  "effectiveGrant": "NOT_PROVIDER_VERIFIED",
+  "codeSourceRef": "systems/SYS-SUP12/code/agent-handler.js",
+  "openApiRef": "systems/SYS-SUP12/code/openapi.json",
+  "buildIdentity": {
+    "sourceSha": "NOT_BOUND_TO_DEPLOYMENT",
+    "immutableImageDigest": null,
+    "observedRuntime": "SYNTHETIC_LAB"
+  },
+  "sourceRole": "IAM_CANDIDATE"
+}
