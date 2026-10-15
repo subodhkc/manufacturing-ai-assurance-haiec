@@ -5,7 +5,7 @@ const base = path.resolve(__dirname, '../../../data/source-native/v2/SYS-217');
 const load = p => JSON.parse(fs.readFileSync(path.join(base,p),'utf8'));
 const manifest=load('manifest.json');
 test('source-native v2 manifest pins all native source files byte-exactly',()=>{
-  assert.equal(manifest.entries.length, 10);
+  assert.equal(manifest.entries.length, 11);
   for(const e of manifest.entries){
     const raw=fs.readFileSync(path.join(base,e.path));
     assert.equal('sha256:'+crypto.createHash('sha256').update(raw).digest('hex'),e.sha256,e.path);
