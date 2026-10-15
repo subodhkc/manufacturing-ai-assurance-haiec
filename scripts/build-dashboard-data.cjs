@@ -81,41 +81,96 @@ else {
   if ((station217.cases || []).length !== 6) problems.push(`PARITY: station217 has ${(station217.cases || []).length} cases — required 6`);
 }
 
-// Sprint 14.3 — Mode A evidence replay. Pin the SYS-217-WRONG_TARGET
-// source-world records (the six-phase fixture evidence the evaluation
-// consumed) with their own digest. The dashboard re-verifies it and
-// refuses playback on mismatch. These are recorded fixture facts only —
-// no timestamps are fabricated at display time.
-const goldenPath = path.join(root, 'data/generated/golden-scenarios.json');
-const golden = fs.existsSync(goldenPath) ? JSON.parse(fs.readFileSync(goldenPath, 'utf8')) : null;
-const wtScenario = golden && (golden.scenarios || []).find((s) => s.caseId === 'SYS-217-WRONG_TARGET');
+// Sprint 14.4 P0 — Mode A evidence replay bound to the CANONICAL source world.
+// The frozen export's sourceCase.scenarioRunId is
+// 'syn-world-sys-217-wrong_target', produced by packages/fixtures/src/
+// source-world.cjs (manufacturing-source-world-v1) — the deterministic,
+// oracle-independent input producer. The earlier build incorrectly embedded
+// golden-scenarios.json storyboard records (scenarioRunId
+// 'syn-mfg-sys-217-001'), which are oracle-authored illustrative content,
+// NOT the evidence the evaluation consumed. Replay records are now taken
+// from buildSourceWorld() and their lineage is asserted against the pinned
+// export on three independent fields before the bundle is emitted:
+//   1. sourceWorldId  — export.provenance.sourceWorldId === WORLD_VERSION
+//   2. scenarioRunId  — export.sourceCase.scenarioRunId === scenario.sourceRunId
+//   3. transactionId  — scenario.transactionId appears verbatim in the
+//      persisted MFG-EFF-001 reason, and the record count equals the
+//      evaluation's own evaluationScenarioSnapshot evidenceCount.
+// These bindings demonstrate the replay records share the identity the
+// evaluation consumed. Per-record bodies are deterministic generator output,
+// not independently issuer-signed — the UI states this plainly.
+const { buildSourceWorld, WORLD_VERSION } = require('../packages/fixtures/src/source-world.cjs');
 let replay = null;
-if (!wtScenario) {
-  problems.push('PARITY: evidence-replay source scenario SYS-217-WRONG_TARGET absent from data/generated/golden-scenarios.json');
-} else {
-  const recs = (wtScenario.evidence || []).slice().sort((x, y) => (x.sequence ?? 0) - (y.sequence ?? 0));
-  if (recs.length !== 6) problems.push(`PARITY: replay scenario has ${recs.length} records — required 6`);
-  for (const r of recs) {
-    if (!r.declaredAt || !r.payload || !r.payload.phase || !r.evidenceId) {
-      problems.push(`PARITY: replay record ${r.evidenceId || '?'} missing declaredAt/phase/evidenceId`);
-    }
-  }
+{
   const wtEval = exportMap['SYS-217-WRONG_TARGET'];
   if (!wtEval) problems.push('PARITY: SYS-217-WRONG_TARGET export absent — replay cannot bind an evaluation');
-  replay = {
-    schemaVersion: 'haiec-evidence-replay-1.0.0',
-    truthLabel: 'RECORDED_SYNTHETIC_EVIDENCE — deterministic display pacing only; no new evaluation, no live collection, no dispatch',
-    caseId: 'SYS-217-WRONG_TARGET',
-    evaluationId: wtEval && wtEval.evaluation && wtEval.evaluation.evaluationId,
-    title: wtScenario.title,
-    operation: wtScenario.operation,
-    expectedTarget: wtScenario.expectedTarget,
-    actualTarget: wtScenario.actualTarget,
-    firstDivergence: wtScenario.firstDivergence,
-    notEvidenceOf: wtScenario.notEvidenceOf,
-    records: recs,
-  };
-  replay.digest = 'sha256:' + createHash('sha256').update(JSON.stringify(replay), 'utf8').digest('hex');
+  let wtWorld = null;
+  try { wtWorld = buildSourceWorld(); } catch (e) { problems.push('PARITY: source-world generator failed: ' + e.message); }
+  const wtScenario = wtWorld && (wtWorld.scenarios || []).find((s) => s.caseId === 'SYS-217-WRONG_TARGET');
+  if (wtEval && wtScenario) {
+    const e = wtEval.evaluation || {};
+    const prov = wtEval.provenance || {};
+    const snap = (e.evaluationScenarioSnapshot && e.evaluationScenarioSnapshot.states) || [];
+    const snapCount = snap[0] && snap[0].evidenceCount;
+    const eff = ((wtEval.manufacturing || {}).ruleOutcomes || []).find((o) => o.ruleId === 'MFG-EFF-001');
+    const recs = (wtScenario.events || []).slice().sort((x, y) => (x.sequence ?? 0) - (y.sequence ?? 0));
+    // Lineage assertions — any mismatch fails the build.
+    if (prov.sourceWorldId !== WORLD_VERSION) problems.push(`PARITY: export sourceWorldId ${prov.sourceWorldId} !== ${WORLD_VERSION}`);
+    if ((wtEval.sourceCase || {}).scenarioRunId !== wtScenario.sourceRunId) {
+      problems.push(`PARITY: export scenarioRunId ${(wtEval.sourceCase || {}).scenarioRunId} !== source-world ${wtScenario.sourceRunId}`);
+    }
+    if (!eff || !String(eff.reason || '').includes(wtScenario.transactionId)) {
+      problems.push(`PARITY: MFG-EFF-001 reason does not name source-world transaction ${wtScenario.transactionId}`);
+    }
+    if (recs.length !== snapCount) problems.push(`PARITY: replay has ${recs.length} records — evaluation consumed ${snapCount}`);
+    for (const r of recs) {
+      if (!r.declaredAt || !r.payload || !r.payload.phase || !r.evidenceId) {
+        problems.push(`PARITY: replay record ${r.evidenceId || '?'} missing declaredAt/phase/evidenceId`);
+      }
+      if ((r.payload || {}).scenarioRunId !== wtScenario.sourceRunId) {
+        problems.push(`PARITY: replay record ${r.evidenceId || '?'} carries foreign scenarioRunId ${(r.payload || {}).scenarioRunId}`);
+      }
+    }
+    const readback = recs.find((r) => r.payload.phase === 'TARGET_READBACK');
+    replay = {
+      schemaVersion: 'haiec-evidence-replay-1.0.0',
+      truthLabel: 'RECORDED_SYNTHETIC_EVIDENCE — deterministic display pacing only; no new evaluation, no live collection, no dispatch',
+      caseId: 'SYS-217-WRONG_TARGET',
+      evaluationId: e.evaluationId,
+      title: 'SYS-217 wrong-target — recorded evidence sequence',
+      operation: wtScenario.operation,
+      expectedTarget: wtScenario.requestedTarget,
+      actualTarget: readback && readback.payload ? readback.payload.actualTarget : null,
+      provenance: {
+        sourceWorldId: wtWorld.schemaVersion,
+        scenarioRunId: wtScenario.sourceRunId,
+        transactionId: wtScenario.transactionId,
+        consumedEvidenceCount: snapCount,
+        binding: 'sourceWorldId + scenarioRunId + transactionId + record-count all verified against the pinned export',
+        limitation: 'Records are deterministic source-world generator output; identity is bound to the export, individual record bodies are not issuer-signed.',
+        origin: wtScenario.sourceOrigin,
+      },
+      records: recs,
+    };
+    replay.digest = 'sha256:' + createHash('sha256').update(JSON.stringify(replay), 'utf8').digest('hex');
+  } else if (!wtScenario) {
+    problems.push('PARITY: source-world generator produced no SYS-217-WRONG_TARGET scenario');
+  }
+}
+
+// Sprint 14.4 — estate/catalog facts for the Executive Command Center.
+// These are FICTIONAL estate facts from the generated catalog — counts of
+// cataloged entities, never executed checks or evaluated coverage.
+const gen = (f) => JSON.parse(fs.readFileSync(path.join(root, 'data/generated', f), 'utf8'));
+const estate = {
+  systems: gen('estate.json').systems.length,
+  agentRoles: gen('agent-reports.json').reports.length,
+  catalogControls: gen('controls.json').controls.length,
+  workflows: gen('workflows.json').workflows.length,
+  provenance: 'FICTIONAL_MANUFACTURING_ESTATE — catalog facts from data/generated; catalog size is not evaluated coverage',
+};
+if (estate.systems !== 9 || estate.agentRoles !== 16 || estate.catalogControls !== 45 || estate.workflows !== 7) {
+  problems.push(`PARITY: estate counts ${JSON.stringify(estate)} — expected 9/16/45/7`);
 }
 
 if (problems.length) {
@@ -133,6 +188,7 @@ const payload = {
   manifest,
   station217,
   replay,
+  estate,
 };
 payload.payloadDigest = 'sha256:' + createHash('sha256').update(JSON.stringify(exportMap) + JSON.stringify(station217 ?? ''), 'utf8').digest('hex');
 

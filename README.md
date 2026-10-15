@@ -24,7 +24,9 @@ npm run verify
 
 **Demo email notifications:** the dashboard's "Send test email" action POSTs to `https://www.haiec.com/api/demo/manufacturing/notify` — a HAIEC-hosted endpoint that enforces an origin allowlist, a recipient allowlist (`MFG_DEMO_EMAIL_ALLOWLIST`), fixed synthetic-labeled templates, consent flag, and rate limits. Non-allowlisted recipients are refused, never silently dropped. Status is honest: `ACCEPTED_BY_PROVIDER` is not delivery.
 
-**60-second evidence replay:** specified in [`docs/60-SECOND-EVIDENCE-REPLAY.md`](docs/60-SECOND-EVIDENCE-REPLAY.md) — Mode A (recorded, client-side, no backend) vs Mode B (future live monitoring). Not yet implemented.
+**60-second evidence replay:** implemented (Mode A) on the dashboard's **Evidence Replay** page — eight deterministic stages over ~60s using the canonical source-world records (`syn-world-sys-217-wrong_target`, digest-pinned) plus the persisted evaluation. Spec: [`docs/60-SECOND-EVIDENCE-REPLAY.md`](docs/60-SECOND-EVIDENCE-REPLAY.md). Mode B (live monitoring) remains deferred.
+
+**Executive Command Center:** the dashboard's default landing page — a seven-module bento view (estate, five evidence planes, assurance posture, consequence graph, delegation boundary, proof frontier, recorded timeline) rendered pass-through from the verified SYS-217 wrong-target export. Field-level source mapping: [`docs/EXEC-COMMAND-CENTER-FIELD-MAP.md`](docs/EXEC-COMMAND-CENTER-FIELD-MAP.md). A separate pitch home with concept visuals, the pitch video and the deck lives at [`dashboard/home.html`](dashboard/home.html).
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
