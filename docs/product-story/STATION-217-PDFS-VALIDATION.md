@@ -1,5 +1,7 @@
 # Validation Register — Two Uploaded Station 217 PDFs
 
+> **2026-10-16 acceptance clarification (supersedes over-restrictive creative-use language below):** Synthetic human approvals, reviewer notifications, runtime action holds/blocks and monitoring are **already implemented as demo scenarios** and should be prominently shown as part of HAIEC's full operating experience. The two PDFs are **accepted as supporting visual storyboards**, with the source-specific corrections described below. The distinction is not "may we show a block?" — **yes, an explicitly simulated *subsequent* request may be shown held** — but "did HAIEC physically prevent the earlier already-recorded target mismatch?" — no. See [full synthetic control demo acceptance and Sprint 25 storyboard](SYNTHETIC-CONTROL-DEMO-ACCEPTANCE-AND-S25-STORYBOARD.md). For invented readiness PASS rows, use a versioned synthetic readiness fixture rather than unsupported actual-authenticated PASS claims.
+
 **Purpose:** Preserve reusable visual concepts and exact claim corrections for Devin/design/editorial use. **Not a final deck and not an assertion of validation of the original PDFs.** Inspection basis: uploaded PDF renderings, saved HAIEC manufacturing export, fictional reviewer/monitoring fixture and shared product architecture as of 2026-10-16.
 
 ## Source asset identities and custody
