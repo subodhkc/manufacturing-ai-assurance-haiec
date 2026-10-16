@@ -9,15 +9,15 @@ Artifact index: [`FINAL-PACKAGE.md`](FINAL-PACKAGE.md)
 `?report=judge` is a fixed, concise showcase — platform first, then the
 manufacturing proof. The video below follows the same seven scenes:
 
-| # | Time | Screen | Narration beat |
-|---|------|--------|----------------|
-| 1 | 0:04–0:16 | Executive Command Center | "HAIEC gives you evidence-bound assurance for consequential AI. Understand what your AI can do. Assure what it does. Govern what it may do — in any industry." |
-| 2 | 0:16–0:28 | Station 217 flagship `?report=s217` | "A plant-floor AI was told to update work order 4802. It performed flawlessly — on work order 4803. HAIEC's deterministic engine caught the divergence. The verdict: review required." |
-| 3 | 0:28–0:42 | Digital Factory — MES | "The agent tried to write back. Its declared scope doesn't allow it — held for a human, while a permitted advisory note proceeds." |
-| 4 | 0:42–0:56 | Digital Factory — live | "Work orders, purchase orders, live equipment telemetry — one shared state, one operating boundary. Held material stays held." |
-| 5 | 0:56–1:14 | ERP — two-gate decisions | "The buyer approves the spend — but the supplier qualification expired, so the commitment holds. The qualified order approves and commits." |
-| 6 | 1:14–1:30 | Monitoring + record | "Anomalies become monitoring observations — alongside the operating report and the exact record of what was asked, decided and simulated." |
-| 7 | 1:30–1:53 | Showcase close + card | "Know what your AI can do. Govern what it may do. Verify what happened. Deploy AI with confidence." |
+| # | Audio | Screen | Narration beat |
+|---|-------|--------|----------------|
+| 1 | 0:04.5–0:18.0 | Executive Command Center | "HAIEC gives you evidence-bound assurance for consequential AI. Understand what your AI can do. Assure what it does. Govern what it may do — in any industry." |
+| 2 | 0:18.6–0:33.8 | Station 217 flagship `?report=s217` | "A plant-floor AI was told to update work order 4802. It performed flawlessly — on work order 4803. HAIEC's deterministic engine caught the divergence. The verdict: review required." |
+| 3 | 0:34.4–0:48.6 | Digital Factory — MES | "The agent tried to write back. Its declared scope doesn't allow it — held for a human, while a permitted advisory note proceeds." |
+| 4 | 0:49.2–1:01.7 | Digital Factory — live | "Work orders, purchase orders, live equipment telemetry — one shared state, one operating boundary. Held material stays held." |
+| 5 | 1:02.3–1:19.3 | ERP — two-gate decisions | "The buyer approves the spend — but the supplier qualification expired, so the commitment holds. The qualified order approves and commits." |
+| 6 | 1:19.9–1:30.9 | Monitoring + record | "Anomalies become monitoring observations — alongside the operating report and the exact record of what was asked, decided and simulated." |
+| 7–8 | 1:31.5–1:53.8 | Showcase close + card | "Know what your AI can do. Govern what it may do. Verify what happened. Deploy AI with confidence." |
 
 Optional afterwards: the **Interactive Deep Dive** on the Digital Factory page
 (guided demonstration — 3/40/60-engine reviews, role enforcement, record
@@ -35,6 +35,28 @@ export). No step is mandatory.
 - Devpost submission: **UNCONFIRMED** until actually submitted.
 
 ## C. Devpost submission copy
+
+**Copy-ready fields**
+
+- **Title:** HAIEC — evidence-bound assurance for manufacturing AI agents
+- **GitHub URL:** https://github.com/subodhkc/manufacturing-ai-assurance-haiec
+- **Demo URL:** https://haiec-manufacturing-demo.vercel.app
+  (judge showcase: `/?report=judge`)
+- **Video URL:** *hosted link pending owner upload — see checklist §F*
+- **Technology summary:** Static browser-local manufacturing demonstration
+  (single-page dashboard, no backend for the demo) served on Vercel; canonical
+  HAIEC deterministic assurance engine exports (digest-verified, read-only
+  adapter); browser-local MES/ERP/equipment simulation with shared policy;
+  portable `demo-factory-record-1.0.0` session export. Video captured with
+  Playwright, narrated with edge-tts, composed with ffmpeg.
+- **Video description (hosting field):**
+  > HAIEC is evidence-bound assurance for consequential AI. In under two
+  > minutes, watch a manufacturing AI act on the wrong work order, see HAIEC's
+  > deterministic engine prove it, watch a consequential write get held for
+  > human review, and see independent financial and supplier-qualification
+  > gates keep a purchase order honest — all inside an interactive digital
+  > factory you can drive yourself. Know what your AI can do. Govern what it
+  > may do. Verify what happened. https://haiec-manufacturing-demo.vercel.app
 
 **Title:** HAIEC — evidence-bound assurance for manufacturing AI agents
 

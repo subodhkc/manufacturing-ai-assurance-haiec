@@ -10,11 +10,11 @@
 [vt][v0][v1][v2][v3][v4][v5][v6][vc]concat=n=9:v=1:a=0[vcat];
 [vcat]subtitles='C\:/Users/Subodh Kc/Desktop/App Building/Github/manufacturing-ai-assurance-haiec/docs/hackfw/judge-path-subtitles-v29.vtt':force_style='FontName=Segoe UI,FontSize=17,OutlineColour=&H80000000,BorderStyle=3'[vout];
 [3:a]adelay=4500|4500[a0];
-[4:a]adelay=16000|16000[a1];
-[5:a]adelay=28000|28000[a2];
-[6:a]adelay=42000|42000[a3];
-[7:a]adelay=56000|56000[a4];
-[8:a]adelay=74000|74000[a5];
-[9:a]adelay=90000|90000[a6];
+[4:a]adelay=18560|18560[a1];
+[5:a]adelay=34420|34420[a2];
+[6:a]adelay=49160|49160[a3];
+[7:a]adelay=62290|62290[a4];
+[8:a]adelay=79930|79930[a5];
+[9:a]adelay=91520|91520[a6];
 [10:a]adelay=105000|105000[a7];
 [a0][a1][a2][a3][a4][a5][a6][a7]amix=inputs=8:normalize=0:duration=longest,aresample=44100[aout]
