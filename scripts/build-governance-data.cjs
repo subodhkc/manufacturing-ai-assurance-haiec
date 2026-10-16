@@ -37,6 +37,51 @@ if (count('APPROVED_SCOPED_PILOT') !== 1) throw new Error('GOV_APPROVED_PILOT:' 
 if (count('REJECTED') !== 2) throw new Error('GOV_REJECTED:' + count('REJECTED'));
 if (count('PENDING') !== 4) throw new Error('GOV_PENDING:' + count('PENDING'));
 
+/* The review dossier is a fictional source record, never authenticated human approval. */
+const infra = g.reviewInfrastructure || {};
+for (const key of ['type','reviewerIdentity','reviewerAuthentication','persistentApprovalStore','serverAuthorization','productionDispatcher','liveMonitoring','canonicalAssurance']) {
+  if (!infra[key]) throw new Error('GOV_APPROVAL_INFRA_MISSING:' + key);
+}
+if (infra.type !== 'DEMONSTRATION_ONLY' || infra.reviewerAuthentication !== 'NOT_CONNECTED' ||
+    infra.persistentApprovalStore !== 'NOT_PROVISIONED' || infra.productionDispatcher !== 'NOT_CONNECTED' ||
+    infra.liveMonitoring !== 'NO_LIVE_CONNECTORS') throw new Error('GOV_APPROVAL_INFRA_OVERCLAIM');
+const requestIds = new Set();
+for (const d of decisions) {
+  const q = d.requestRecord;
+  if (!q || !Array.isArray(d.reviewEvents) || !d.reviewEvents.length) throw new Error('GOV_REVIEW_DOSSIER_MISSING:' + d.systemId);
+  if (requestIds.has(q.requestId)) throw new Error('GOV_REVIEW_DUPLICATE_ID:' + q.requestId);
+  requestIds.add(q.requestId);
+  if (q.requestedOperation !== d.proposedOperation || q.requestedEnvironment !== d.environment ||
+      q.assignedReviewerRole !== d.approverRole || q.policyVersion !== d.policyVersion ||
+      q.decisionState !== d.humanDecision || q.decisionTime !== d.decidedAt ||
+      q.supportingCaseId !== d.canonicalCaseId || q.approvalExpiresAt !== d.expiresAt ||
+      q.liveDispatchEnforcement !== 'NOT_CONNECTED')
+    throw new Error('GOV_REVIEW_BINDING_MISMATCH:' + d.systemId);
+  if (q.requestedByRole === q.assignedReviewerRole || q.reviewerIdentityState !== 'FICTIONAL_ROLE_ONLY_NOT_AUTHENTICATED' ||
+      q.mfaState !== 'NOT_PERFORMED_SIMULATION')
+    throw new Error('GOV_REVIEW_IDENTITY_OVERCLAIM:' + d.systemId);
+  if (JSON.stringify(q.allowedAdvisoryScope) !== JSON.stringify(d.allowedOperations) ||
+      JSON.stringify(q.forbiddenConsequenceScope) !== JSON.stringify(d.prohibitedOperations) ||
+      JSON.stringify(q.evidenceRequirements) !== JSON.stringify(d.requiredConditions))
+    throw new Error('GOV_REVIEW_SCOPE_MISMATCH:' + d.systemId);
+  const ts = Date.parse(q.requestTime), ref = Date.parse(g.referenceClock);
+  if (!Number.isFinite(ts) || ts > ref) throw new Error('GOV_REVIEW_TIME_INVALID:' + d.systemId);
+  for (const ev of d.reviewEvents) {
+    const et = Date.parse(ev.at);
+    if (ev.requestId !== q.requestId || !Number.isFinite(et) || et < ts || et > ref)
+      throw new Error('GOV_REVIEW_EVENT_MISMATCH:' + d.systemId);
+  }
+  const last = d.reviewEvents[d.reviewEvents.length-1];
+  if (d.humanDecision === 'PENDING') {
+    if (last.eventType !== 'DEMO_REVIEW_PENDING' || q.decisionTime !== null || !q.reviewDueAt)
+      throw new Error('GOV_REVIEW_PENDING_UNSAFE:' + d.systemId);
+  } else {
+    const expected = d.humanDecision === 'REJECTED' ? 'DEMO_ACTION_REJECTED' : 'DEMO_SCOPED_APPROVAL_RECORDED';
+    if (last.eventType !== expected || last.at !== d.decidedAt || last.actorRole !== d.approverRole || q.reviewDueAt !== null)
+      throw new Error('GOV_REVIEW_DECISION_MISMATCH:' + d.systemId);
+  }
+}
+
 const monIds = new Set((g.monitoringScenarios || []).map(m => m.scenarioId));
 for (const d of decisions) {
   for (const f of ['systemId','agentId','canonicalCaseId','environment','proposedOperation','humanDecision',
