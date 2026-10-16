@@ -2,6 +2,8 @@
 
 This directory provides the **full HAIEC platform story through manufacturing examples**, source validation and supporting draft material. It is not a separate MAA engineering roadmap, alternate evaluator, executed test, or final pitch deck.
 
+> **Creative demo policy:** Synthetic human approval, execution hold/block and monitoring are legitimate MAA storyboard features. Present them confidently through [the accepted simulation storyboard and two-action Station 217 narrative](SYNTHETIC-CONTROL-DEMO-ACCEPTANCE-AND-S25-STORYBOARD.md). The source/issuer qualification matters only when a scene is claimed as an actual HAIEC assessment or live customer control. Keep the full demonstration explanation once at the end.
+
 ## Read in this order
 
 1. [HAIEC Master Showcase Contract](HAIEC-MASTER-SHOWCASE-CONTRACT.md) — canonical presentation rule, three pillars, six selectable capabilities, source claims and one end-of-dashboard disclosure.
