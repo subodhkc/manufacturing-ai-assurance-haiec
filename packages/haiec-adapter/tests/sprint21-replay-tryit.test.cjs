@@ -368,8 +368,8 @@ test('nine fictional review requests bind role, scope, policy, decision trail an
     assert.equal(q.requestedOperation, d.proposedOperation);
     assert.equal(q.assignedReviewerRole, d.approverRole);
     assert.notEqual(q.requestedByRole, q.assignedReviewerRole);
-    assert.deepEqual(q.allowedAdvisoryScope, d.allowedOperations);
-    assert.deepEqual(q.forbiddenConsequenceScope, d.prohibitedOperations);
+    assert.equal(JSON.stringify(q.allowedAdvisoryScope), JSON.stringify(d.allowedOperations));
+    assert.equal(JSON.stringify(q.forbiddenConsequenceScope), JSON.stringify(d.prohibitedOperations));
     assert.equal(q.reviewerIdentityState, 'FICTIONAL_ROLE_ONLY_NOT_AUTHENTICATED');
     assert.equal(q.liveDispatchEnforcement, 'NOT_CONNECTED');
     const last = d.reviewEvents.at(-1);
