@@ -1,0 +1,163 @@
+/* GENERATED from data/demo-factory/digital-factory.json; presentation-only simulation baseline. */
+window.HAIEC_DIGITAL_FACTORY = {
+  "schemaVersion": "demo-digital-factory-1.0.0",
+  "artifactClass": "FICTIONAL_DIGITAL_FACTORY_STATE_NOT_LIVE_PLANT_DATA",
+  "provenance": "SIMULATION_ONLY",
+  "plant": "PLANT-A",
+  "referenceClock": "2026-10-15T12:00:00.000Z",
+  "note": "Browser-local baseline state for the interactive digital-factory demonstration. All identities, quantities and readings are authored scenario data — no live MES/ERP/PLC connectivity exists. New identities (EQ-*, VND-*) are defined once here and reused across panels, events and reports.",
+  "workOrders": [
+    {
+      "id": "WO-217-4802",
+      "station": "STN-217",
+      "line": "Engine Line 2",
+      "product": "DD4 head-bolt torque set",
+      "qty": 240,
+      "completedQty": 118,
+      "qualityStatus": "HOLD_REVIEW",
+      "systemId": "SYS-217",
+      "note": "Approved delegated target. Under review after the saved evaluation detected the recorded divergence."
+    },
+    {
+      "id": "WO-217-4803",
+      "station": "STN-217",
+      "line": "Engine Line 2",
+      "product": "DD4 head-bolt torque set",
+      "qty": 40,
+      "completedQty": 40,
+      "qualityStatus": "HOLD_REVIEW",
+      "systemId": "SYS-217",
+      "note": "Recorded divergent target — the committed effect HAIEC's evaluation identified. Held pending disposition."
+    },
+    {
+      "id": "WO-340-9110",
+      "station": "STN-340",
+      "line": "Engine Line 3",
+      "product": "Cylinder-head porosity inspection",
+      "qty": 180,
+      "completedQty": 132,
+      "qualityStatus": "RELEASED",
+      "systemId": "SYS-340",
+      "note": "Operating inside the approved advisory scope."
+    }
+  ],
+  "erp": {
+    "suppliers": [
+      {
+        "id": "VND-CST-042",
+        "name": "Meridian Castings",
+        "qualification": "PPAP_CURRENT",
+        "note": "Approved master supplier for housings."
+      },
+      {
+        "id": "VND-FST-118",
+        "name": "Alloy Fasteners Co.",
+        "qualification": "PPAP_EXPIRED",
+        "note": "Fastener supplier — PPAP expired at receiving gate."
+      },
+      {
+        "id": "VND-SEA-207",
+        "name": "SealTech Components",
+        "qualification": "PPAP_CURRENT",
+        "note": "Approved master supplier for seals."
+      }
+    ],
+    "purchaseOrders": [
+      {
+        "id": "REQ-2026-8842",
+        "supplierId": "VND-FST-118",
+        "amount": 86500,
+        "status": "PROPOSED",
+        "systemId": "SYS-PO12",
+        "note": "Agent-prepared proposal — exceeds the $15,000 buyer review cap and names a supplier whose PPAP expired. Never committed without an accountable buyer."
+      }
+    ],
+    "inventory": [
+      {
+        "lotId": "LOT-2026-4510",
+        "sku": "CAST-417 housing castings",
+        "qty": 48,
+        "status": "QUALITY_HOLD",
+        "systemId": "SYS-WH15",
+        "note": "Held pending QMS disposition; shipments cannot consume it."
+      },
+      {
+        "lotId": "SI-2026-3301",
+        "sku": "Incoming casting lot",
+        "qty": 64,
+        "status": "QUARANTINE_RECEIVING",
+        "systemId": "SYS-SUP12",
+        "note": "Receiving quarantine — supplier PPAP expired."
+      }
+    ]
+  },
+  "equipment": [
+    {
+      "id": "EQ-TORQUE-217",
+      "station": "STN-217",
+      "line": "Engine Line 2",
+      "kind": "DC nutrunner",
+      "systemId": "SYS-217",
+      "baseTorqueNm": 32,
+      "baseRpm": 1450,
+      "baseTempC": 61,
+      "heartbeatSec": 10,
+      "units": {
+        "torque": "Nm",
+        "rpm": "rpm",
+        "temp": "°C"
+      }
+    },
+    {
+      "id": "EQ-SPINDLE-88",
+      "station": "STN-88",
+      "line": "CNC Cell 4",
+      "kind": "CNC spindle",
+      "systemId": "SYS-MNT88",
+      "baseTorqueNm": 18,
+      "baseRpm": 8200,
+      "baseTempC": 47,
+      "heartbeatSec": 10,
+      "units": {
+        "torque": "Nm",
+        "rpm": "rpm",
+        "temp": "°C"
+      }
+    },
+    {
+      "id": "EQ-DYNO-412",
+      "station": "STN-412",
+      "line": "CNC Cell 5",
+      "kind": "Dyno test stand",
+      "systemId": "SYS-DYN412",
+      "baseTorqueNm": 210,
+      "baseRpm": 3800,
+      "baseTempC": 78,
+      "heartbeatSec": 15,
+      "units": {
+        "torque": "Nm",
+        "rpm": "rpm",
+        "temp": "°C"
+      }
+    }
+  ],
+  "anomalyPrograms": {
+    "TORQUE_ANOMALY": {
+      "equipment": "EQ-TORQUE-217",
+      "torqueDelta": 11,
+      "alarm": true,
+      "copy": "Torque trace exceeds the control band on Station 217 — the same kind of signal behind the recorded WO-217-4803 divergence."
+    },
+    "TEMP_RISE": {
+      "equipment": "EQ-SPINDLE-88",
+      "tempDelta": 14,
+      "alarm": true,
+      "copy": "Spindle temperature rising on CNC Cell 4 — the predictive-maintenance context for SYS-MNT88."
+    },
+    "SOURCE_GAP": {
+      "equipment": "EQ-TORQUE-217",
+      "signalLoss": true,
+      "copy": "Source heartbeat interrupted — coverage becomes unknown. Missing observations are shown as missing, never as safe."
+    }
+  }
+};

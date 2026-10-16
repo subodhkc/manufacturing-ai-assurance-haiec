@@ -21,5 +21,6 @@ jobs:
       - run: node scripts/generate-source-native-v3-1.cjs --check
       - run: node scripts/build-scenario-shared.cjs --check
       - run: node scripts/build-supporting-report.cjs --check
+      - run: node scripts/build-factory-data.cjs --check
       - name: Ensure no generated files drift
         run: git diff --exit-code -- data/generated

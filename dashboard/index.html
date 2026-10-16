@@ -451,6 +451,41 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .ex-cap-tile .ex-cap-go{display:inline-block;margin-top:8px;font:700 10px var(--mono);color:#2b7869}
 @media(max-width:900px){.ex-cap{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.ex-cap{grid-template-columns:1fr}}
+/* Sprint 26 — Digital Factory */
+.df-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.df-panel{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card,#fff)}
+.df-panel-h{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:#f7faf9}
+.df-panel-h b{font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.df-panel-b{padding:12px 14px}
+.df-wo{border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-bottom:8px;transition:border-color .25s}
+.df-wo.flash{border-color:#2b7869;box-shadow:0 0 0 2px rgba(43,120,105,.18)}
+.df-wo .row{justify-content:space-between}
+.df-q{display:flex;align-items:center;gap:8px;font:10px var(--mono);color:var(--muted)}
+.df-bar{flex:1;height:5px;border-radius:3px;background:#edf1f0;overflow:hidden}
+.df-bar i{display:block;height:100%;background:#2b7869;border-radius:3px;transition:width .8s ease}
+.df-gauge{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:8px 0}
+.df-g{border:1px solid var(--line);border-radius:8px;padding:8px;text-align:center;background:#fbfdfc}
+.df-g .v{font:700 17px var(--mono);color:var(--text)}
+.df-g .u{font:9px var(--mono);color:var(--muted)}
+.df-g .n{font:700 8.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:#667085;margin-bottom:2px}
+.df-eq{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.df-eq.alarm{border-color:#d97706;background:#fffdf6}
+.df-eq.dead{border-color:#b42318;background:#fff8f7}
+.df-eq-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.df-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2b7869;margin-right:6px}
+.df-dot.alarm{background:#d97706}.df-dot.dead{background:#b42318}
+.df-hb{font:9px var(--mono);color:#98a2b3}
+.df-flow{display:flex;gap:0;flex-wrap:wrap;margin-top:8px}
+.df-flow-step{display:flex;align-items:center;gap:6px;font:10px var(--mono)}
+.df-flow-step b{padding:3px 9px;border-radius:999px;background:#f0f4f3;border:1px solid var(--line);font-weight:600}
+.df-flow-step b.go{background:#e8f5f1;border-color:#2b7869;color:#2b7869}
+.df-flow-step b.hold{background:#fdf3e7;border-color:#d97706;color:#b45309}
+.df-flow-step b.bad{background:#fdeceb;border-color:#b42318;color:#b42318}
+.df-flow-step .ar{color:#98a2b3}
+.df-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+@media(max-width:1100px){.df-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.df-gauge{grid-template-columns:1fr 1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.df-bar i{transition:none}.df-wo{transition:none}}
 @media(prefers-reduced-motion:reduce){.govp-progress>div,.govloop-item,.govp-stage{transition:none}.govp-reset{animation:none}}
 .ex-note{font-size:10.5px;color:var(--muted);border-left:3px solid #d9c7a4;padding:6px 10px;background:#fdfaf3;border-radius:0 6px 6px 0;margin-top:10px}
 .ex-study{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -555,6 +590,7 @@ body.console .rp-track{background:#172b36}
 <script src="data/haiec-exports.js"></script>
 <script src="data/governance-scenarios.js"></script>
 <script src="data/scenario-shared.js"></script>
+<script src="data/digital-factory.js"></script>
 <script src="data/industry-profiles.js"></script>
 <script>
 'use strict';
@@ -1055,6 +1091,7 @@ function tip(text, content){ return `<span class="tip" data-tip="${esc(text)}">$
    ============================================================ */
 const PAGES = [
   { id:'exec',      group:'See',     label:'Executive Command Center', icon:'EC' },
+  { id:'factory',   group:'See',     label:'Digital Factory',     icon:'DF' },
   { id:'overview',  group:'See',     label:'Operations Overview', icon:'01' },
   { id:'estate',    group:'See',     label:'AI Estate',        icon:'02' },
   { id:'system',    group:'See',     label:'System detail',    icon:'03' },
@@ -1765,21 +1802,18 @@ function pageLab(){
      </div>`;
 }
 
-function runScenario(){
-  const sc = scen(STATE.selectedScenario);
-  const s = sys(sc.system);
-  const input = $('scenario-value');
-  if(!input) return;
-  const v = Number(input.value);
-  if(!Number.isFinite(v) || v < sc.min || v > sc.max){ toast(`Enter a value between ${sc.min} and ${sc.max}.`); return; }
-  STATE.simValue = v;
-
+/* Single source of local policy truth — used by the Decision Lab
+   (runScenario) and by Digital Factory action attempts (factoryAttempt).
+   Returns the verdict WITHOUT mutating state; mesKey names the bounded
+   STATE.mes field an auto-pass is allowed to update. */
+function policyVerdict(sc, v){
   const c = STATE.config;
   let decision = 'REVIEW_REQUIRED';
   let status = 'pending';
   let explanation = '';
   let effect = 'NONE';
   let requires = false;
+  let mesKey = null;
 
   if(STATE.paused[sc.system]){
     decision = 'DENY'; status = 'rejected';
@@ -1788,7 +1822,7 @@ function runScenario(){
     if(v <= c.autoContainMax){
       decision = 'PASS'; status = 'applied';
       explanation = `Within ${c.autoContainMax}-engine automatic containment path. Quality broker applied. Local simulator readback recorded.`;
-      STATE.mes.contained += v; effect = 'SIMULATED_LOCAL_READBACK';
+      mesKey = 'contained'; effect = 'SIMULATED_LOCAL_READBACK';
     } else if(v <= c.supervisorCeiling){
       decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
       explanation = `${v} engines exceeds automatic containment ceiling of ${c.autoContainMax}. Expanded containment requires Quality Supervisor authorization. Containment is protective; this is not a denial.`;
@@ -1813,7 +1847,7 @@ function runScenario(){
   } else if(sc.id === 'PO'){
     if(v > c.poMax){ decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
       explanation = `PO $${fmt(v)} exceeds buyer review cap of $${fmt(c.poMax)}. Buyer decision required.`;
-    } else { decision = 'PASS'; status = 'applied'; explanation = `PO $${fmt(v)} inside bounded envelope. Broker applied.`; STATE.mes.poValue += v; effect = 'SIMULATED_LOCAL_READBACK'; }
+    } else { decision = 'PASS'; status = 'applied'; explanation = `PO $${fmt(v)} inside bounded envelope. Broker applied.`; mesKey = 'poValue'; effect = 'SIMULATED_LOCAL_READBACK'; }
   } else if(sc.id === 'SUPPLIER'){
     if(v === 0){ decision = 'DENY'; status = 'rejected'; explanation = 'Proposed vendor not on approved master (PPAP status expired). Sourcing cannot bypass Supplier Quality Engineering.'; }
     else { decision = 'PASS'; status = 'applied'; explanation = 'Vendor is on approved master with current PPAP. Recommendation recorded.'; }
@@ -1838,26 +1872,47 @@ function runScenario(){
       explanation = `Whole-run ${fmt(v)} tokens exceeds frozen cap of ${fmt(c.tokenCap)}. Post-run C16 evaluation. Already-consumed spend is not blocked retroactively.`;
     } else { decision = 'PASS'; status = 'applied'; explanation = `Whole-run ${fmt(v)} tokens within frozen cap of ${fmt(c.tokenCap)}.`; }
   }
+  return { decision, status, explanation, effect, requires, mesKey };
+}
 
+/* Applies a verdict to shared demonstration state: bounded STATE.mes field,
+   optional exact-action review request, one ledger entry — then syncs the
+   Digital Factory baseline so the same event can never disagree with itself
+   across panels. */
+function commitOutcome(sc, s, v, r, meta){
+  if(r.mesKey) STATE.mes[r.mesKey] += v;
   let request = null;
-  if(requires){
+  if(r.requires){
     request = {
       id:'REV-'+String(STATE.requests.length+1).padStart(4,'0'),
       status:'PENDING', system: s.name, systemId: s.id, scenario: sc.id,
       action: sc.title, target: s.workOrders[0], amount: v, unit: sc.unit,
-      policyVersion: STATE.configVersion, createdAt: now(), reason: explanation
+      policyVersion: STATE.configVersion, createdAt: now(), reason: r.explanation
     };
     STATE.requests.push(request);
   }
-
   const ev = addEvent({
-    title: `${s.name} — ${decision}`, desc: explanation, system: s.name, systemId: s.id,
-    decision, effect, scenario: sc.id, status
+    title: `${s.name} — ${r.decision}`, desc: r.explanation, system: s.name, systemId: s.id,
+    decision: r.decision, effect: r.effect, scenario: sc.id, status: r.status,
+    channel: (meta && meta.channel) || 'LAB'
   });
   ev.policyVersion = STATE.configVersion;
   ev.requestId = request?.id || null;
+  if(typeof dfApplyOutcome === 'function') dfApplyOutcome(sc, v, r, request, ev);
+  return { request, event: ev };
+}
 
-  toast(`Outcome: ${decision}`);
+function runScenario(){
+  const sc = scen(STATE.selectedScenario);
+  const s = sys(sc.system);
+  const input = $('scenario-value');
+  if(!input) return;
+  const v = Number(input.value);
+  if(!Number.isFinite(v) || v < sc.min || v > sc.max){ toast(`Enter a value between ${sc.min} and ${sc.max}.`); return; }
+  STATE.simValue = v;
+  const r = policyVerdict(sc, v);
+  commitOutcome(sc, s, v, r);
+  toast(`Outcome: ${r.decision}`);
   render();
 }
 
@@ -2004,7 +2059,8 @@ function decide(id, verdict){
   else if(r.scenario === 'PO'){ STATE.mes.poValue += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
   else if(r.scenario === 'FORECAST'){ STATE.mes.planChanges += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
   else if(r.scenario === 'VISION'){ STATE.mes.qualityCases += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
-  addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario });
+  if(typeof dfApplyDecision === 'function') dfApplyDecision(r, verdict);
+  addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario, channel:'LAB' });
   toast('Approved — effect ' + (effect === 'SIMULATED_LOCAL_READBACK' ? 'verified by local simulator readback (not a HAIEC verification).' : 'not established.'));
   closeModal(); render();
 }
@@ -2234,6 +2290,7 @@ function render(){
   if(pausedCount > 0){ badge.textContent = '◉ ' + pausedCount + ' paused'; badge.className = 'badge warn tip'; badge.dataset.tip = pausedCount + ' agent(s) paused by dispatch control'; }
   else { badge.textContent = '● Simulation active'; badge.className = 'badge go tip'; badge.dataset.tip = 'Browser-local simulated agents. Not connected to factory systems or HAIEC runtime.'; }
   applyConsoleTheme();
+  if(typeof dfLifecycle === 'function') dfLifecycle();
   // Reveal animations
   requestAnimationFrame(() => {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
@@ -2303,6 +2360,14 @@ document.addEventListener('click', e => {
     case 'gov-approve': govApprove(id); PLAY.enter(); break;
     case 'gov-reject': govReject(id); PLAY.enter(); break;
     case 'gov-reset': govReset(); toast('Roleplay reset — fictional portfolio restored to 3 approved / 2 rejected / 4 pending.'); render(); PLAY.enter(); break;
+    case 'df-mes-write': factoryAttempt('MES', 12, 'Attempted MES work-order update'); break;
+    case 'df-advisory': dfAdvisory(id); break;
+    case 'df-release': factoryAttempt('RELEASE', 40, 'Attempted quality-hold release'); break;
+    case 'df-po': factoryAttempt('PO', 86500, 'Purchase-order commitment proposed'); break;
+    case 'df-lot-release': factoryAttempt('WMS_HELD_SHIPMENT', 1, 'Attempted quality-held stock release'); break;
+    case 'df-receiving': factoryAttempt('INCOMING_QC', 0, 'Attempted receiving-lot release'); break;
+    case 'df-eq': dfSetMode(id); break;
+    case 'df-reset': dfReset(); toast('Digital Factory reset — virtual plant baseline restored; the append-only ledger keeps prior demonstration events.'); render(); break;
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-overview': HX.system = null; HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
@@ -4378,6 +4443,241 @@ function govReadinessTable(){
 /* Coordinated scenario playback — one virtual clock drives every lane.
    Deterministic: screen state = f(script, virtual time). Presentation only;
    playback never mutates decisions, sends notifications or touches runtime. */
+/* ============================================================
+   DIGITAL FACTORY — browser-local deterministic state layer.
+   One shared fictional plant state observed by the MES panel, ERP panel,
+   equipment panel, Judge Control (Decision Lab) and the event ledger.
+   All state transitions are seeded by the versioned fixture and the
+   existing policyVerdict/commitOutcome path — never random, never a
+   second policy engine, never a real MES/ERP/PLC connection.
+   ============================================================ */
+const DF = { loaded:false, t:0, mode:'NORMAL', timer:null, active:false, fired:{},
+  lastAction:null, wo:{}, suppliers:[], pos:[], lots:[], equip:{} };
+
+function dfLoadFixture(){
+  const fx = window.HAIEC_DIGITAL_FACTORY || null;
+  if(!fx || fx.schemaVersion !== 'demo-digital-factory-1.0.0') return;
+  DF.fx = fx; DF.loaded = true; dfReset();
+}
+function dfReset(){
+  const fx = DF.fx; if(!fx) return;
+  DF.wo = Object.fromEntries(fx.workOrders.map(w => [w.id, { ...w, heldQty:0, attempts:[], lastAdvisory:null }]));
+  DF.suppliers = fx.erp.suppliers.map(s => ({ ...s }));
+  DF.pos = fx.erp.purchaseOrders.map(p => ({ ...p }));
+  DF.lots = fx.erp.inventory.map(l => ({ ...l }));
+  DF.equip = Object.fromEntries(fx.equipment.map(e => [e.id, { ...e }]));
+  DF.t = 0; DF.mode = 'NORMAL'; DF.fired = {}; DF.lastAction = null;
+}
+dfLoadFixture();
+
+/* Deterministic readings: f(equipment, virtual tick, anomaly mode). */
+function dfRead(eqId){
+  const e = DF.equip[eqId]; if(!e) return null;
+  const prog = (DF.fx && DF.fx.anomalyPrograms[DF.mode]) || null;
+  const applies = prog && prog.equipment === eqId;
+  const loss = !!(applies && prog.signalLoss);
+  if(loss) return { torque:null, rpm:null, temp:null, heartbeat:'LOST', running:false, alarm:false, dead:true };
+  const torque = +(e.baseTorqueNm + 5*Math.sin(DF.t/7) + (applies ? (prog.torqueDelta||0) : 0)).toFixed(1);
+  const rpm = Math.max(0, Math.round(e.baseRpm + e.baseRpm*0.04*Math.sin(DF.t/5)));
+  const temp = +(e.baseTempC + 1.5*Math.sin(DF.t/11) + (applies ? (prog.tempDelta||0) : 0)).toFixed(1);
+  const hb = DF.t - (DF.t % e.heartbeatSec);
+  return { torque, rpm, temp, heartbeat: hb + 's ago base', running: rpm > 50, alarm: !!(applies && prog.alarm), dead:false };
+}
+
+/* Scenario outcome → factory state. Called once inside commitOutcome so a
+   Judge Control run and a factory action share the identical transition. */
+function dfApplyOutcome(sc, v, r, request, ev){
+  if(!DF.loaded) return;
+  const mark = (woId)=>{ const w=DF.wo[woId]; if(w) w.attempts.push({ result:r.decision, ref:(request?request.id:ev.id), at:now() }); };
+  if(sc.id==='HOLD' && r.status==='applied'){ const w=DF.wo['WO-217-4802']; if(w) w.heldQty += v; mark('WO-217-4802'); }
+  else if(sc.id==='MES'){ mark('WO-217-4802'); }
+  else if(sc.id==='RELEASE'){ mark('WO-217-4802'); mark('WO-217-4803'); }
+  else if(sc.id==='PO'){ const p=DF.pos.find(p=>p.id==='REQ-2026-8842'); if(p) p.status = r.decision==='PASS' ? 'COMMITTED' : 'BUYER_REVIEW'; }
+  else if(sc.id==='WMS_HELD_SHIPMENT'){ const l=DF.lots.find(l=>l.lotId==='LOT-2026-4510'); if(l) l.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
+  else if(sc.id==='INCOMING_QC'){ const l=DF.lots.find(l=>l.lotId==='SI-2026-3301'); if(l) l.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
+  else if(sc.id==='SUPPLIER'){ const s2=DF.suppliers.find(s=>s.id==='VND-FST-118'); if(s2) s2.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
+}
+function dfApplyDecision(req, verdict){
+  if(!DF.loaded || verdict !== 'APPROVED') return;
+  if(req.scenario === 'HOLD'){ const w=DF.wo['WO-217-4802']; if(w) w.heldQty += req.amount; }
+  else if(req.scenario === 'PO'){ const p=DF.pos.find(p=>p.id==='REQ-2026-8842'); if(p){ p.status='COMMITTED'; p.committedAmount=req.amount; } }
+}
+
+/* Visitor-driven action — the same policyVerdict/commitOutcome path as the
+   Decision Lab, with the factory interaction ribbon recording the flow. */
+function factoryAttempt(scenarioId, v, label){
+  const sc = scen(scenarioId), s = sys(sc.system);
+  const r = policyVerdict(sc, v);
+  const { request, event } = commitOutcome(sc, s, v, r, { channel:'FACTORY' });
+  DF.lastAction = {
+    label: label || sc.title, systemId: s.id, eventId: event.id,
+    requestId: request ? request.id : null,
+    flow: [
+      { t:'Agent proposed', k:'info' },
+      { t:'Boundary checked', k:'go' },
+      r.requires ? { t:'Human review pending', k:'hold' } : null,
+      { t: r.decision==='PASS' ? 'Applied in scope' : r.decision==='DENY' ? 'Held — outside scope' : r.decision==='NOT_SATISFIED' ? 'Cap breached' : 'Review required', k: r.decision==='PASS' ? 'go' : 'bad' },
+      { t:'Ledger '+event.id, k:'info' }
+    ].filter(Boolean)
+  };
+  render();
+}
+
+/* Permitted advisory record — inside SYS-217's declared scope; no request. */
+function dfAdvisory(woId){
+  const w = DF.wo[woId]; const s = sys('SYS-217');
+  const ev = addEvent({ title:'Advisory quality note — '+s.name,
+    desc:`Advisory observation recorded against ${woId} inside the approved advisory scope. No consequential write requested or applied.`,
+    system:s.name, systemId:s.id, decision:'ADVISORY', effect:'ADVISORY_RECORDED', status:'applied', channel:'FACTORY' });
+  if(w) w.lastAdvisory = ev.id;
+  DF.lastAction = { label:'Advisory quality note', systemId:'SYS-217', eventId:ev.id,
+    flow:[{t:'Agent proposed',k:'info'},{t:'Boundary checked',k:'go'},{t:'Applied in scope',k:'go'},{t:'Ledger '+ev.id,k:'info'}] };
+  render();
+}
+
+/* Equipment anomaly program — deterministic, one ledger entry per episode. */
+function dfSetMode(m){
+  if(DF.mode === m) { dfPaintEquip(); return; }
+  DF.mode = m;
+  const prog = DF.fx && DF.fx.anomalyPrograms[m];
+  if(prog && !DF.fired[m]){
+    DF.fired[m] = true;
+    const eq = DF.equip[prog.equipment], s2 = sys(eq.systemId);
+    addEvent({ title:'Monitoring observation — ' + eq.kind, desc: prog.copy + ' Demonstration telemetry — not a plant sensor read.',
+      system:s2.name, systemId:eq.systemId, decision:'OBSERVED', effect:'SIMULATED_MONITORING_OBSERVATION', status:'pending', channel:'FACTORY' });
+    if(m === 'TORQUE_ANOMALY') DF.lastAction = { label:'Torque anomaly observed', systemId:eq.systemId,
+      flow:[{t:'Signal observed',k:'info'},{t:'Monitoring event recorded',k:'warn'},{t:'Review flagged — see saved evaluation',k:'info'}] };
+  }
+  if(m === 'NORMAL') DF.fired = {};
+  if(DF.active) render(); else dfPaintEquip();
+}
+
+function dfReducedMotion(){ try{ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return true; } }
+function dfStart(){ if(!DF.timer && !dfReducedMotion() && !(typeof document!=='undefined'&&document.hidden)) DF.timer = setInterval(dfTick, 1400); }
+function dfStop(){ if(DF.timer){ clearInterval(DF.timer); DF.timer = null; } }
+function dfEnter(){ if(DF.active) return; DF.active = true; dfStart(); dfPaintEquip(); }
+function dfLeave(){ DF.active = false; dfStop(); }
+function dfLifecycle(){ if(STATE.page === 'factory') dfEnter(); else dfLeave(); }
+if(typeof document !== 'undefined' && document.addEventListener)
+  document.addEventListener('visibilitychange', ()=>{ if(DF.active) (document.hidden ? dfStop : dfStart)(); });
+function dfTick(){ DF.t += 1; dfPaintEquip(); }
+function dfPaintEquip(){
+  if(!DF.loaded) return;
+  DF.fx.equipment.forEach(eq => {
+    const r = dfRead(eq.id); const card = document.getElementById('df-eq-'+eq.id);
+    if(!card || !r) return;
+    card.classList.toggle('alarm', !!r.alarm); card.classList.toggle('dead', !!r.dead);
+    const set=(k,v)=>{ const n=card.querySelector('[data-g="'+k+'"] .v'); if(n) n.textContent = v; };
+    set('torque', r.torque==null?'—':r.torque); set('rpm', r.rpm==null?'—':fmt(r.rpm)); set('temp', r.temp==null?'—':r.temp);
+    const hb = card.querySelector('.df-hb'); if(hb) hb.textContent = r.heartbeat==='LOST' ? 'signal lost' : 'heartbeat ' + r.heartbeat;
+    const dot = card.querySelector('.df-dot'); if(dot) dot.className = 'df-dot' + (r.dead?' dead':r.alarm?' alarm':'');
+    const st = card.querySelector('.df-eq-state'); if(st) st.textContent = r.dead?'SIGNAL LOST':r.alarm?'ALARM':r.running?'RUNNING':'STOPPED';
+  });
+}
+
+/* ---------- Digital Factory page ---------- */
+function dfFlowRibbon(){
+  const a = DF.lastAction;
+  const steps = a ? a.flow : [{t:'Proposed action',k:'info'},{t:'Boundary check',k:'info'},{t:'Human review',k:'info'},{t:'Outcome & ledger',k:'info'}];
+  return `<div class="card top14"><div class="cardhead"><div><h2>${a ? esc(a.label) : 'Pick an action — watch HAIEC keep it inside the boundary'}</h2>
+    <p class="tiny muted">${a ? 'System ' + esc(a.systemId) + ' · event ' + esc(a.eventId) + (a.requestId ? ' · review ' + esc(a.requestId) + ' pending' : '') : 'Every attempt evaluates the same deterministic local policy as the Decision Lab, then lands in one shared ledger.'}</p></div>${pill('Interactive Demo Factory','info')}</div>
+    <div class="df-flow">${steps.map((s,i)=>`<span class="df-flow-step"><b class="${s.k}">${esc(s.t)}</b>${i<steps.length-1?'<span class="ar">→</span>':''}</span>`).join('')}</div></div>`;
+}
+function dfWoCard(w){
+  const d = SHARED && SHARED.dossiers.find(x=>x.systemId===w.systemId);
+  const pct = Math.min(100, Math.round(100 * w.completedQty / w.qty));
+  const last = w.attempts[w.attempts.length-1];
+  return `<div class="df-wo" id="df-wo-${esc(w.id)}">
+    <div class="row"><b>${esc(w.id)}</b>${pill(w.qualityStatus.replace(/_/g,' '), w.qualityStatus==='RELEASED'?'go':'warn')}</div>
+    <p class="tiny muted" style="margin:4px 0">${esc(w.station)} · ${esc(w.line)} · ${esc(w.product)}</p>
+    <div class="df-q"><span>${w.completedQty}/${w.qty}</span><span class="df-bar"><i style="width:${pct}%"></i></span></div>
+    ${w.heldQty?`<p class="tiny" style="margin-top:4px">Under quality hold: <b>${w.heldQty}</b> engines</p>`:''}
+    ${w.lastAdvisory?`<p class="tiny muted" style="margin-top:4px">Advisory note ${esc(w.lastAdvisory)} recorded</p>`:''}
+    ${last?`<p class="tiny" style="margin-top:4px">Latest attempt: ${pill(last.result, last.result==='PASS'?'go':last.result==='DENY'?'bad':'warn')} <span class="muted">${esc(last.ref)}</span></p>`:''}
+    <p class="tiny muted" style="margin-top:4px">Agent ${esc(w.systemId)}${d?' · permitted: '+esc(d.allowedOperations[0]||'advisory'):''} — writes excluded</p>
+    <div class="df-acts">
+      ${w.systemId==='SYS-217'?`<button class="btn xs" data-act="df-mes-write" data-id="${w.id}">Attempt MES update</button>
+      <button class="btn xs" data-act="df-advisory" data-id="${w.id}">Issue advisory note</button>
+      <button class="btn xs" data-act="df-release" data-id="${w.id}">Attempt hold release</button>`:''}
+    </div></div>`;
+}
+function dfMesPanel(){
+  return `<div class="df-panel"><div class="df-panel-h"><b>MES · work orders</b><span class="badge info">STN-217 · STN-340</span></div><div class="df-panel-b">
+    ${Object.values(DF.wo).map(dfWoCard).join('')}
+    <p class="tiny muted">Attempts evaluate the same local policy as the Decision Lab. Out-of-scope writes are held — the work-order state is preserved.</p></div></div>`;
+}
+function dfErpPanel(){
+  const qualTone = q => q==='PPAP_CURRENT' ? 'go' : 'warn';
+  return `<div class="df-panel"><div class="df-panel-h"><b>ERP · suppliers &amp; inventory</b><span class="badge info">PO12 · SUP12 · WH15</span></div><div class="df-panel-b">
+    ${DF.pos.map(p=>`<div class="df-wo"><div class="row"><b>${esc(p.id)}</b>${pill(p.status.replace(/_/g,' '), p.status==='COMMITTED'?'go':p.status==='BUYER_REVIEW'?'warn':'info')}</div>
+      <p class="tiny muted" style="margin:4px 0">$${fmt(p.amount)} · ${esc((DF.suppliers.find(s=>s.id===p.supplierId)||{}).name||p.supplierId)} · agent SYS-PO12</p>
+      <p class="tiny">${esc(p.note)}</p>
+      <div class="df-acts"><button class="btn xs" data-act="df-po" data-id="${p.id}">Commit purchase order</button></div></div>`).join('')}
+    <div class="ind-overline tiny muted" style="margin:10px 0 6px">Suppliers</div>
+    ${DF.suppliers.map(s=>`<div class="row tiny" style="margin-bottom:4px"><span>${esc(s.name)} <code>${esc(s.id)}</code></span>${pill(s.qualification.replace(/_/g,' '),qualTone(s.qualification))}</div>`).join('')}
+    <div class="ind-overline tiny muted" style="margin:10px 0 6px">Inventory</div>
+    ${DF.lots.map(l=>`<div class="df-wo" style="margin-bottom:6px"><div class="row"><b>${esc(l.lotId)}</b>${pill(l.status.replace(/_/g,' '),l.status==='QUALITY_HOLD'||l.status==='QUARANTINE_RECEIVING'?'warn':'go')}</div>
+      <p class="tiny muted" style="margin:4px 0">${l.qty} × ${esc(l.sku)} · agent ${esc(l.systemId)}</p>
+      ${l.lastAttempt?`<p class="tiny">Latest release attempt: ${pill(l.lastAttempt.result,'bad')} <span class="muted">${esc(l.lastAttempt.ref)}</span></p>`:''}</div>`).join('')}
+    <div class="df-acts"><button class="btn xs" data-act="df-lot-release">Attempt quality-held stock release</button><button class="btn xs" data-act="df-receiving">Attempt receiving-lot release</button></div>
+    <p class="tiny muted" style="margin-top:6px">Proposals stay proposals until an accountable buyer decides; held material cannot ship.</p></div></div>`;
+}
+function dfEquipCard(eq){
+  const r = dfRead(eq.id) || {};
+  const cls = r.dead ? 'df-eq dead' : r.alarm ? 'df-eq alarm' : 'df-eq';
+  return `<div class="${cls}" id="df-eq-${esc(eq.id)}">
+    <div class="df-eq-head"><span><span class="df-dot${r.dead?' dead':r.alarm?' alarm':''}"></span><b class="tiny">${esc(eq.id)}</b> <span class="tiny muted">${esc(eq.kind)} · ${esc(eq.station)}</span></span>
+    <span class="tiny df-eq-state" style="font-family:var(--mono)">${r.dead?'SIGNAL LOST':r.alarm?'ALARM':r.running?'RUNNING':'—'}</span></div>
+    <div class="df-gauge">
+      <div class="df-g" data-g="torque"><div class="n">Torque</div><div class="v">${r.torque==null?'—':r.torque}</div><div class="u">Nm</div></div>
+      <div class="df-g" data-g="rpm"><div class="n">Speed</div><div class="v">${r.rpm==null?'—':fmt(r.rpm)}</div><div class="u">rpm</div></div>
+      <div class="df-g" data-g="temp"><div class="n">Temp</div><div class="v">${r.temp==null?'—':r.temp}</div><div class="u">°C</div></div>
+    </div>
+    <div class="df-hb">${r.heartbeat==='LOST'?'signal lost — coverage unknown':'heartbeat '+r.heartbeat}</div></div>`;
+}
+function dfEquipPanel(){
+  return `<div class="df-panel"><div class="df-panel-h"><b>Virtual equipment · PLANT-A</b><span class="badge info">demonstration telemetry</span></div><div class="df-panel-b">
+    ${DF.fx.equipment.map(dfEquipCard).join('')}
+    <div class="df-acts">
+      <button class="btn xs ${DF.mode==='NORMAL'?'primary':''}" data-act="df-eq" data-id="NORMAL">Normal production</button>
+      <button class="btn xs" data-act="df-eq" data-id="TORQUE_ANOMALY">Torque anomaly</button>
+      <button class="btn xs" data-act="df-eq" data-id="TEMP_RISE">Temperature rise</button>
+      <button class="btn xs" data-act="df-eq" data-id="SOURCE_GAP">Signal interruption</button>
+      <button class="btn xs" data-act="df-eq" data-id="NORMAL">Restore</button>
+    </div></div></div>`;
+}
+function dfHaiecRail(){
+  const d217 = SHARED && SHARED.dossiers.find(x=>x.systemId==='SYS-217');
+  const pending = STATE.requests.filter(r=>r.status==='PENDING');
+  const feed = STATE.events.filter(e=>e.channel==='FACTORY'||e.channel==='LAB').slice(0,6);
+  return `<div class="grid g2 top14">
+    <div class="card"><div class="cardhead"><div><h2>HAIEC assurance &amp; governance rail</h2><p>The agent, its permitted scope, and the evidence behind the boundary.</p></div></div>
+      ${d217?`<p class="small"><b>SYS-217 · ${esc(d217.systemName)}</b></p>
+      <p class="tiny" style="margin-top:4px"><b>Permitted:</b> ${esc(d217.allowedOperations.join(' · '))}</p>
+      <p class="tiny"><b>Excluded:</b> ${esc(d217.prohibitedOperations.join(' · '))}</p>
+      <p class="tiny" style="margin-top:4px">Saved evaluation detected the recorded target difference (<code>WO-217-4802</code> → recorded <code>WO-217-4803</code>). Result: <b>Review required</b>. The write-expansion request <code>DEMO-REQ-SYS-217-06</code> remains pending.</p>`:''}
+      <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn sm" data-rp="case" data-id="SYS-217-WRONG_TARGET">Verified report →</button>
+        <button class="btn sm" data-rp="gov" data-id="">Operating report →</button>
+        <a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase)}/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public receipt ↗</a>
+      </div></div>
+    <div class="card"><div class="cardhead"><div><h2>Live demonstration ledger</h2><p>Shared with the Decision Lab — one event, one identity, everywhere.</p></div>${pending.length?pill(pending.length+' pending review','warn'):pill('No pending review','go')}</div>
+      ${pending.map(r=>`<div class="listitem amber" style="margin-bottom:8px"><div class="row"><strong class="tiny">${esc(r.action)}</strong>${pill('PENDING','warn')}</div><p class="tiny muted" style="margin:4px 0">${esc(r.id)} · ${esc(r.system)} · ${r.amount} ${esc(r.unit)}</p><button class="btn xs primary" data-act="open-review" data-id="${r.id}">Open review →</button></div>`).join('')}
+      ${feed.length?feed.map(e=>`<div class="listitem ${e.status==='rejected'?'red':e.status==='applied'?'go':'amber'}" style="margin-bottom:6px"><div class="row"><strong class="tiny">${esc(e.title)}</strong>${pill(e.decision||'recorded',e.status==='rejected'?'hold':e.status==='applied'?'go':'warn')}</div><p class="tiny muted" style="margin:3px 0">${esc(e.desc||'')}</p><span class="tiny muted" style="font-family:var(--mono)">${esc(e.id)} · ${esc(e.channel||'LAB')}${e.requestId?' · '+esc(e.requestId):''}</span></div>`).join(''):'<p class="tiny muted">No demonstration activity yet — trigger an action above.</p>'}
+    </div></div>`;
+}
+function pageFactory(){
+  if(!DF.loaded) return header({eyebrow:'DIGITAL FACTORY',title:'Factory fixture not loaded',sub:'dashboard/data/digital-factory.js is missing — run scripts/build-factory-data.cjs.'});
+  return header({eyebrow:'HAIEC DIGITAL FACTORY · PLANT-A',title:'Deploy AI with confidence. Stay in control of every consequential action.',
+    sub:'One fictional plant: MES work orders, ERP suppliers and inventory, and virtual equipment — with HAIEC showing the agent, its permitted scope, the accountable review and the supporting evidence. Trigger an action and watch the boundary.',
+    actions:`<button class="btn" data-act="df-reset">Reset factory</button><button class="btn" data-act="page" data-id="governance">Governance playback</button>`})+
+  dfFlowRibbon()+
+  `<div class="df-grid top14">${dfMesPanel()}${dfErpPanel()}${dfEquipPanel()}</div>`+
+  dfHaiecRail()+
+  `<div class="card top14"><div class="cardhead"><div><h2>About this demonstration</h2></div></div>
+    <p class="small">HAIEC's real deterministic engine evaluated the synthetic manufacturing evidence behind this environment — 45 digest-verified assessments, all <b>Review required</b>, including the recorded Station 217 target divergence. The work orders, purchase orders, equipment readings, notifications and execution holds on this page are demonstration scenarios over a versioned fixture — no MES, ERP or PLC connection exists. The same local policy and ledger serve this page and the Decision Lab, so an action can never show two different outcomes.</p></div>`;
+}
+
 const SHARED=window.HAIEC_SCENARIO_SHARED||null;
 const GOV_STAGE_LABEL={PROPOSED:'Proposed action',SCOPE:'Scope check',REQUEST:'Review request',NOTIFY:'Reviewer notified',REVIEW:'Review & evidence',DECISION:'Human decision',STATUS:'Operating status',MONITORING:'Monitoring',EVIDENCE:'Evidence'};
 const GOV_LANE={action:'govpLaneAction',reviewer:'govpLaneReviewer',monitoring:'govpLaneMonitoring'};
@@ -4982,7 +5282,7 @@ function pageExec(){
       <span style="flex:1"></span>
       ${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')}
       ${rpOk()?pill('replay bound to v1 export','go'):pill('REPLAY_BINDING_MISMATCH','hold')}
-      <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><button class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" data-act="try-open">Try it yourself →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
+      <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="factory">Digital Factory →</button><button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><button class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" data-act="try-open">Try it yourself →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
     </div>
     ${exModCapabilities()}
     <div class="ex-grid">
@@ -5008,6 +5308,7 @@ PAGE_RENDERERS.station217 = pageStation217;
 PAGE_RENDERERS.replay = pageReplay;
 PAGE_RENDERERS.tryit = pageTryIt;
 PAGE_RENDERERS.governance = pageGovernance;
+PAGE_RENDERERS.factory = pageFactory;
 
 /* Boot — verify all digests, then re-render if an HX page is active. */
 if(HXDATA){hxVerifyAll();}
