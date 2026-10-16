@@ -1,33 +1,40 @@
 WEBVTT
 
-00:00.000 --> 00:12.000
-An AI assistant at Station 217 was delegated to update
-work order WO-217-4802. It committed the transaction
-on a different resource — WO-217-4803.
+00:04.500 --> 00:16.500
+An AI assistant on a plant floor was told to update
+one work order — 4802. It did the job perfectly.
+On the wrong work order.
 
-00:12.000 --> 00:26.000
-Recorded, digest-bound evidence: MFG-EFF-001 MATCH,
-DAI target BROADER, disposition REVIEW.
+00:17.500 --> 00:30.500
+HAIEC doesn't take the agent's word for it — it compares
+what the agent was told to touch against what the record
+shows it actually touched. The target came back broader.
 
-00:26.000 --> 00:58.000
-Operator Journey: Detect → Investigate → Authorize →
-Contain. Containment is a browser-only simulation —
-a local pause, never real plant control.
+00:31.500 --> 00:45.000
+So what does a human do? Walk with me.
+Detect. Investigate. Authorize.
 
-00:58.000 --> 01:14.000
-Verify shows what is not established: code reachability
-NOT_ASSESSED, partial authority coverage, no independent
-post-response witness. Unknown is never upgraded to pass.
+00:45.000 --> 00:62.000
+Watch — I can pause the dispatcher right from the browser.
+But look how honest the screen is: it's a rehearsal.
+It's not touching real equipment.
 
-01:14.000 --> 01:26.000
-Each case links to a public U6 verification receipt —
-a persisted canonical evaluation, SYNTHETIC_REFERENCE.
+00:63.000 --> 00:78.500
+Everything we couldn't prove stays on screen,
+marked not assessed. Unknown doesn't get
+rounded up to "fine."
 
-01:26.000 --> 01:44.000
-Nine systems × five states = 45 evaluations, all REVIEW.
-Nine wrong-target cases diverge; nine corrected-state
-cases align with delegation.
+00:79.500 --> 00:90.500
+Every finding links to a public receipt — anyone can check
+the integrity of this exact evaluation. It's labeled
+synthetic, because it is.
 
-01:44.000 --> 01:50.000
-HAIEC: verified facts, explicit unknowns, a bounded
-next action. Evidence-bound assurance.
+00:91.500 --> 01:07.000
+Nine AI systems. Forty-five evaluations. Nine times the
+target drifted — caught. Every single one still says
+review. Here's what the evidence proves — and where it stops.
+
+01:08.500 --> 01:16.500
+That's HAIEC. Not a score. Not a guess. Verified facts,
+explicit unknowns — and a human who finally knows
+what they're looking at.
