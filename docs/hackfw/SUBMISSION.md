@@ -3,31 +3,33 @@
 Track: **AI for Manufacturing** · Demo: https://haiec-manufacturing-demo.vercel.app
 Repo: https://github.com/subodhkc/manufacturing-ai-assurance-haiec (public)
 
-## A. Final demo script (< 2 minutes)
+## A. Two-Minute Judge Showcase (< 2 minutes)
 
-Every step is a shareable URL — open the demo, then:
+`?report=judge` is a fixed, concise showcase — platform first, then the
+manufacturing proof. The video below follows the same seven scenes:
 
-| # | Time | Screen | URL / action | Narration |
-|---|------|--------|--------------|-----------|
-| 1 | 0:00–0:15 | Station 217 flagship | `?report=s217` | "Nine AI systems run a fictional plant. One of them updated a work order — successfully — on the wrong work order. Approved: WO-217-4802. Recorded: WO-217-4803. Nothing failed visibly." |
-| 2 | 0:15–0:35 | Case report | `?report=case:SYS-217-WRONG_TARGET` | "This is a real persisted evaluation — digest-verified in the browser. The detector matched a qualified target divergence, the delegated-action comparison reads BROADER, and the canonical disposition is REVIEW." |
-| 3 | 0:35–0:55 | Operator Journey | nav → Operator Journey | "A human responds in six stages — detect, investigate, authorize, contain, verify, report. Containment here is a browser simulation, labeled as such." |
-| 4 | 0:55–1:10 | Evidence planes | back on case report | "HAIEC shows exactly where proof stops: code reachability NOT_ASSESSED, authority planes partial. Unknown is rendered as unknown." |
-| 5 | 1:10–1:25 | Public verification | case report → "Verify publicly on haiec.com" | "The evaluation is a view-only public receipt — integrity-verified, labeled SYNTHETIC_REFERENCE. Integrity is not source truth — and the page says so." |
-| 6 | 1:25–1:50 | Executive report | `?report=exec` | "Nine systems, five states, 45 evaluations — all REVIEW, because the evidence never completes the whole picture. Wrong-target and corrected-state differ exactly where the evidence differs." |
-| 7 | 1:50–2:00 | Optional: telecom | Reports hub → telecom tile | "Same canonical engine, historical reference — marked reference, not a second evaluation." |
+| # | Time | Screen | Narration beat |
+|---|------|--------|----------------|
+| 1 | 0:04–0:16 | Executive Command Center | "HAIEC gives you evidence-bound assurance for consequential AI. Understand what your AI can do. Assure what it does. Govern what it may do — in any industry." |
+| 2 | 0:16–0:28 | Station 217 flagship `?report=s217` | "A plant-floor AI was told to update work order 4802. It performed flawlessly — on work order 4803. HAIEC's deterministic engine caught the divergence. The verdict: review required." |
+| 3 | 0:28–0:42 | Digital Factory — MES | "The agent tried to write back. Its declared scope doesn't allow it — held for a human, while a permitted advisory note proceeds." |
+| 4 | 0:42–0:56 | Digital Factory — live | "Work orders, purchase orders, live equipment telemetry — one shared state, one operating boundary. Held material stays held." |
+| 5 | 0:56–1:14 | ERP — two-gate decisions | "The buyer approves the spend — but the supplier qualification expired, so the commitment holds. The qualified order approves and commits." |
+| 6 | 1:14–1:30 | Monitoring + record | "Anomalies become monitoring observations — alongside the operating report and the exact record of what was asked, decided and simulated." |
+| 7 | 1:30–1:53 | Showcase close + card | "Know what your AI can do. Govern what it may do. Verify what happened. Deploy AI with confidence." |
+
+Optional afterwards: the **Interactive Deep Dive** on the Digital Factory page
+(guided demonstration — 3/40/60-engine reviews, role enforcement, record
+export). No step is mandatory.
 
 ## B. Video deliverable
 
-The committed recording follows the cue order in `docs/hackfw/NARRATION.md`
-(flagship → canonical chips → journey interaction → verify → case report →
-executive → hub), not the live-walkthrough ordering in section A — both are
-valid paths over the same deployed screens.
-
-- Source recording: **CREATED** — `docs/hackfw/screens/judge-path-recording.webm` (WebM, ~110 s, 1440×900, real UI interaction incl. browser-only containment pause/attempt; reproducible via `scripts/capture-judge-path.cjs`, requires playwright).
-- Voiceover script: `docs/hackfw/NARRATION.md`; timed subtitles: `docs/hackfw/judge-path-subtitles.vtt`.
-- Ordered stills: `docs/hackfw/screens/01-flagship.png` … `07-hub.png`.
-- Final edited video: **CREATED** — `docs/hackfw/screens/judge-path-final.mp4` (113 s, H.264/AAC, AI voiceover + burned-in captions, blank lead-in trimmed). Ready to upload as-is.
+- Final video: **CREATED** — `docs/hackfw/screens-v29/judge-path-final-v29.mp4` (113.8 s, 1440×900 H.264/AAC, AI voiceover via edge-tts + burned-in captions, title + closing cards). Ready to upload as-is.
+- Source recording: `docs/hackfw/screens-v29/judge-path-recording.webm` (94.7 s WebM of real production UI interaction) — reproducible via `scripts/capture-judge-path.cjs` (playwright).
+- Voiceover script: `docs/hackfw/NARRATION-V29.md`; timed captions: `docs/hackfw/judge-path-subtitles-v29.vtt` (also burned in).
+- Stills: `docs/hackfw/screens-v29/01-platform.png` … `09-showcase-close.png`; thumbnail/cover: `docs/hackfw/screens-v29/thumbnail-v29.png`.
+- Render pipeline: `scripts/render-judge-video.cjs` (cards via Playwright, narration via edge-tts, assembly via ffmpeg).
+- Prior video retained unchanged in `docs/hackfw/screens/`.
 - Publicly hosted video URL (YouTube/Vimeo): **PENDING** — requires human upload; do not claim until the provider confirms.
 - Devpost submission: **UNCONFIRMED** until actually submitted.
 
@@ -55,7 +57,15 @@ adapter is a read-only projection — never a second engine.
 
 **What is working:** 45 persisted canonical evaluations over a synthetic lab
 corpus (9 systems × 5 states), publicly verifiable receipts, a full dashboard,
-per-case reports, an executive report, and a six-stage operator journey.
+per-case reports, an executive report, a nine-system operating & governance
+report, and a six-stage operator journey. On top of that sits an interactive
+browser-local digital factory: MES work orders, ERP purchase orders and
+virtual equipment telemetry sharing one policy boundary — held MES writes,
+permitted advisories, two-gate supplier/financial PO decisions, fictional
+reviewer-role enforcement (Quality Supervisor / Plant Quality Manager /
+Authorized Buyer), equipment anomalies and signal-loss monitoring, and an
+exportable `demo-factory-record-1.0.0` session record that stays explicitly
+labeled non-HAIEC-issued.
 
 **Evidence:** all 45 dispositions REVIEW; 9 wrong-target cases show
 `MFG-EFF-001 MATCH` + `TARGET BROADER` + `R01 SATISFIED`; 9 corrected-state
@@ -78,7 +88,7 @@ dispatcher → monitoring.
 | Physical robustness | Fail-closed digest verification; corrupt exports show INTEGRITY FAILURE only; simulation clearly labeled | No real OT integration — stated everywhere |
 | Edge-to-AI pipeline | synthetic source-world capture → canonical ingestion → qualification → evaluation → report; replay bundle is digest-pinned | Replay is recorded synthetic evidence, not live telemetry |
 | Data sovereignty | Tenant authorization server-side; exports are read-only projections; provenance `SYNTHETIC_LAB` + `AUTHORIZED_DB_READ` | Public receipts are view-only integrity proofs |
-| Measured performance | 9/9 wrong-target cases produce the expected detector pattern; 136/142→142 repo tests; 37/37 browser acceptance | Scenario-acceptance coverage — **not** a real-world detection-accuracy claim |
+| Measured performance | 9/9 wrong-target cases produce the expected detector pattern; 209/209 repo tests; 24/24 production browser checks (Sprint 28) | Scenario-acceptance coverage — **not** a real-world detection-accuracy claim |
 | Enterprise readiness | Canonical engine, envelopes, U6 receipts, tenant model exist in production HAIEC | Runtime guard dispatch wiring and real adapters are listed gaps |
 
 ## E. Technical & judge FAQ
@@ -116,8 +126,8 @@ four simulation-only sector narratives — labeled, never claimed as evaluations
 
 - [x] Public GitHub repo + working deployed demo
 - [x] Judge guide + deep-linked reports
-- [x] End-to-end source recording — `docs/hackfw/screens/judge-path-recording.webm` (~110 s, 1440×900, real Operator Journey interaction incl. browser-only SIMULATED_DENY, no audio track) + `judge-path-subtitles.vtt` + `NARRATION.md`
-- [ ] Hosted video URL (YouTube/Vimeo) — human step; upload `judge-path-final.mp4`, Devpost needs the public link
+- [x] End-to-end source recording + final video — `docs/hackfw/screens-v29/` (113.8 s MP4, real production UI, AI narration + burned captions) + `judge-path-subtitles-v29.vtt` + `NARRATION-V29.md` + `demo-record-sample.json` (authentic browser export)
+- [ ] Hosted video URL (YouTube/Vimeo) — human step; upload `judge-path-final-v29.mp4`, Devpost needs the public link
 - [ ] All participants registered at talent.fwtx.city — unconfirmed
 - [ ] North Texas proximity/eligibility — human attestation
 - [ ] Demo Day registration (luma.com/ygyxb4yy) + in-person attendance, Oct 30, 9:30 a.m.–3:00 p.m. CDT — human step

@@ -525,43 +525,48 @@ function rpDemo(rec){
     '<section class="rp-sec"><h2>What this record is</h2><p class="tiny muted">A portable, reproducible account of a browser-local Digital Factory demonstration: every proposed operation, the deterministic policy decision, any human review outcome, the resulting simulated MES/ERP/equipment state and monitoring observations. It is scenario output — it does not create, modify or replace any HAIEC assurance evaluation, and an imported copy can never act as an authenticated decision.</p></section>';
 }
 
-/* ---------- judge path (~2 minutes, manufacturing track) ---------- */
+/* ---------- judge showcase (~2 minutes) + interactive deep dive ---------- */
 
 function rpJudge(){
-  const step=(n,t,why,btn)=>'<div class="rp-jstep"><div class="rp-jnum">'+n+'</div><div class="rp-jbody"><h3>'+x(t)+'</h3><p>'+why+'</p><div style="margin-top:8px">'+btn+'</div></div></div>';
+  const step=(n,t,tm,why,btn)=>'<div class="rp-jstep"><div class="rp-jnum">'+n+'</div><div class="rp-jbody"><div class="row"><h3 style="margin:0">'+x(t)+'</h3><span class="tiny muted" style="font-family:var(--mono)">'+x(tm)+'</span></div><p>'+why+'</p><div style="margin-top:8px">'+btn+'</div></div></div>';
   const b=(label,attrs)=>'<button class="btn sm" type="button" '+attrs+'>'+label+'</button>';
-  return header({eyebrow:'JUDGE DEMO · AI FOR MANUFACTURING TRACK',title:'Two-minute judge path',
-    sub:'A fixed, reproducible sequence through the deployed demonstration — what the AI caused, what HAIEC proved from the synthetic evidence, where proof stops, and how a human responds. No HAIEC vocabulary is required to follow it.',
-    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
+  return header({eyebrow:'JUDGE SHOWCASE · AI FOR MANUFACTURING TRACK',title:'HAIEC in two minutes',
+    sub:pill('DEPLOY AI WITH CONFIDENCE','go')+' '+pill('Stay in control of every consequential action','info'),
+    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button><button class="btn primary" type="button" data-act="page" data-id="factory">Interactive Digital Factory →</button>'})+
     signatureBlock('SKIPPED')+
-    step(1,'The consequence — AI acted on the wrong work order (~15 s)',
-      'Read the headline: the delegated target was <code>WO-217-4802</code>; the committed effect landed on <code>WO-217-4803</code>. Nothing failed visibly — that is the business problem.',
-      b('Open the Station 217 story →','data-rp="s217-exec"'))+
-    step(2,'The finding (~20 s)',
-      'The case report shows the canonical result verbatim: <code>MFG-EFF-001 MATCH</code> (qualified target divergence), delegated-action comparison <code>TARGET = BROADER</code>, and overall disposition <b>REVIEW</b>.',
-      b('Open the canonical case report →','data-rp="case" data-id="SYS-217-WRONG_TARGET"'))+
-    step(3,'The human response (~15 s)',
-      'Six stages — Detect → Investigate → Authorize → Contain → Verify → Report. The contain step is labeled browser-only simulation; it is never presented as plant enforcement.',
-      b('Open the Operator Journey →','data-act="page" data-id="journey"'))+
-    step(4,'Where proof stops (~10 s)',
-      'Inside the case report, authority planes marked NOT_ASSESSED and code reachability NOT_ASSESSED are shown explicitly — the evidence boundary is part of the finding, not a footnote.',
-      b('See the evidence planes →','data-rp="case" data-id="SYS-217-WRONG_TARGET"'))+
-    step(5,'Independent verification (~10 s)',
-      'The evaluation is published as a view-only U6 receipt — anyone can verify integrity on haiec.com without an account or this dashboard.',
-      '<a class="btn sm primary" target="_blank" rel="noopener" href="https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Verify the public receipt ↗</a>')+
-    step(6,'Scale (~20 s)',
-      'Nine AI systems, five assessment states each, 45 persisted canonical evaluations — every one ending in REVIEW because the evidence does not establish the complete picture. Wrong-target and corrected-state outcomes differ exactly where the evidence differs.',
-      b('Open the executive assurance report →','data-rp="exec"'))+
-    step(7,'Optional — another industry (~10 s)',
-      'The same canonical engine boundaries, applied to a historical telecom reference (AL0/AL1/AL2) — clearly marked reference, not a second evaluated system.',
-      b('Telecom reference →','data-ind-open="telecom"'))+
-    step(8,'Try it yourself (~2 min)',
-      'Reproduce the finding hands-on: compare the four persisted evidence states for SYS-217, enter a new simulated input into the same deterministic fixture, then inspect the local event and the canonical report. Canonical evaluations, historical replay and local simulation are labeled separately throughout.',
-      b('Open Try it yourself →','data-act="try-open"'))+
-    step(9,'Deployment governance — human layer (~1 min)',
-      'See the contrast that makes assurance legible: three fictional scoped approvals, two explicit rejections, four pending reviews — including SYS-217, still pending because of the wrong-target finding. Simulated monitoring exists inside the fictional scenario; every HAIEC disposition stays REVIEW. A fictional approval is a human operating decision, never a HAIEC verdict.',
-      b('Open Deployment Governance →','data-act="page" data-id="governance"'))+
-    '<div class="notice top14"><div><b>Reproducibility</b><p>Every step above is a shareable URL (<code>?report=…</code>) or a stable page — a judge can refresh, bookmark or open any step directly. The demo runs fully on the static deployed site; digest verification of all 45 exports runs in the browser before any finding is shown.</p></div></div>';
+    '<section class="rp-sec"><h2>The platform</h2><p>HAIEC is evidence-bound assurance for consequential AI: <b>Understand</b> what AI can do and what it can affect · <b>Assure</b> consequential actions with deterministic, digest-verified evidence · <b>Govern &amp; Operate</b> with declared operating scope and accountable human decisions. Six capabilities — <b>Discover · Evaluate · Authorize · Monitor · Protect · Verify</b> — independently usable, applied here to a fictional manufacturing plant.</p></section>'+
+    '<section class="rp-sec"><h2>Two-minute showcase — seven scenes, ~115 seconds</h2>'+
+    step(1,'HAIEC — the platform','0:00–0:12',
+      'The command center: nine AI systems in a fictional plant, three pillars, six selectable capabilities. HAIEC works across industries — manufacturing is the running example.',
+      b('Open the command center →','data-act="page" data-id="exec"'))+
+    step(2,'AI caused the wrong consequence','0:12–0:28',
+      'Station 217: the delegated target was <code>WO-217-4802</code>; the committed effect landed on <code>WO-217-4803</code>. A real HAIEC deterministic evaluation of synthetic evidence found the target divergence — disposition <b>REVIEW</b>.',
+      b('Station 217 story →','data-rp="s217-exec"')+' '+b('Canonical case report →','data-rp="case" data-id="SYS-217-WRONG_TARGET"'))+
+    step(3,'Human authority and operating controls','0:28–0:42',
+      'The follow-on episode: the same agent attempts a consequential MES write. Its declared scope does not permit it, the demo execution gateway holds the attempt, and the Quality Director review stays pending — while a permitted advisory note proceeds.',
+      b('See the held write on the factory floor →','data-act="page" data-id="factory"'))+
+    step(4,'Industrial operations in action','0:42–0:56',
+      'The connected digital factory: MES work orders, ERP purchase orders, virtual equipment telemetry, review requests and operating decisions — one shared state responding to real clicks.',
+      b('Open the Digital Factory →','data-act="page" data-id="factory"'))+
+    step(5,'Decisions across systems','0:56–1:12',
+      'Independent restrictions on one screen: a financially approved purchase order stays held because supplier qualification is expired — while the qualified-supplier order commits on buyer approval. Containment shows 3 / 40 / 60-engine authority escalation.',
+      b('Run the ERP pair yourself →','data-act="page" data-id="factory"'))+
+    step(6,'Monitoring and evidence','1:12–1:28',
+      'A torque anomaly and a source interruption become monitoring observations in the shared ledger — coverage gaps shown as unknown, never as safe. Every activity links to the operating report, the exact event record and the verified evaluation.',
+      b('Operating &amp; governance report →','data-rp="gov"')+' '+b('Demonstration record →','data-rp="demo"'))+
+    step(7,'Know · Govern · Verify','1:28–1:55',
+      'Know what your AI can do. Govern what it may do. Verify what happened. Forty-five persisted digest-verified evaluations — all honestly <b>REVIEW</b> — plus an interactive factory you can drive yourself.',
+      b('Start the guided demonstration →','data-act="page" data-id="factory"')+' <a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Verify the public receipt ↗</a>')+
+    '</section>'+
+    '<section class="rp-sec"><h2>Interactive deep dive — take as long as you like</h2>'+
+    '<p>The showcase is a fixed sequence; the deep dive is yours to drive. The factory page\u2019s <b>Guided demonstration</b> walks seven steps — in-scope containment (3 engines), supervisor review (40), plant-manager authority (60), the prohibited MES write, the two-gate purchase-order pair, monitoring anomalies — and ends by exporting a portable demonstration record.</p>'+
+    '<div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">'+
+    b('Guided demonstration →','data-act="page" data-id="factory"')+
+    b('Deployment governance →','data-act="page" data-id="governance"')+
+    b('Six-stage operator journey →','data-act="page" data-id="journey"')+
+    b('Try it yourself →','data-act="try-open"')+
+    b('Telecom reference →','data-ind-open="telecom"')+'</div></section>'+
+    '<section class="rp-sec"><h2>About this demonstration</h2><p class="tiny muted">HAIEC\u2019s real deterministic engine evaluated a synthetic manufacturing evidence package — 45 digest-verified exports, all REVIEW. The human approvals, notification previews, execution-control behavior, MES/ERP/equipment actions and monitoring observations on the Digital Factory page are versioned demonstration scenarios over a fictional fixture — no live MES, ERP or PLC connection exists. The two are labeled separately throughout.</p></section>';
 }
 
 /* ---------- hub ---------- */
@@ -590,7 +595,7 @@ function pageReports(){
     sub:'Every report below is generated presentation bound to a digest-verified frozen export — or honestly marked reference/simulation. Signature status is explicit on each report; unsigned is not invalid, and no static page can mint an assurance verdict.'})+
     aud+notFound+
     '<div class="rp-grid">'+
-    '<button class="rp-tile rp-tile-hero" type="button" data-rp="judge"><div class="ind-overline">START HERE · ~2 MIN</div><h3>Judge demo path</h3><p>A fixed seven-step sequence through the deployed demo — consequence, evidence, response, boundaries, verification and scale. Manufacturing track.</p></button>'+
+    '<button class="rp-tile rp-tile-hero" type="button" data-rp="judge"><div class="ind-overline">START HERE · ~2 MIN</div><h3>Two-minute judge showcase</h3><p>Seven timed scenes — the platform, the Station 217 finding, human authority, the live digital factory, cross-system decisions, monitoring and evidence — plus an optional interactive deep dive.</p></button>'+
     '<button class="rp-tile" type="button" data-act="try-open"><div class="ind-overline">INTERACTIVE</div><h3>Try it yourself — reproduce the finding</h3><p>Compare persisted evidence states, change a simulated input, observe the local result — with canonical, replay and simulation clearly separated.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="exec"><div class="ind-overline">EXECUTIVE</div><h3>Nine-System Executive Assurance Report</h3><p>45 canonical v3 evaluations, plain-language business significance, state comparison, unknowns, owners and provenance.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="gov"><div class="ind-overline">OPERATING &amp; GOVERNANCE</div><h3>Enterprise Operating &amp; Governance Report</h3><p>The whole fictional portfolio: nine systems, operating scopes, 3 approved / 2 rejected / 4 pending decisions, monitoring coverage, Station 217\u2019s two events and next actions.</p></button>'+
