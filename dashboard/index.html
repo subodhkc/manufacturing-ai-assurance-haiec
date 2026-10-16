@@ -4378,7 +4378,7 @@ function pageGovernance(){
       <td class="tiny muted">${latest?esc(latest):'—'}</td></tr>`;
   }).join(''):'';
   const timeline=(mon?mon.sources.flatMap(s=>(s.records||[]).map(r=>({src:s.sourceId,...r}))).sort((a,b)=>b.declaredAt.localeCompare(a.declaredAt)).slice(0,6):[])
-    .map(r=>`<div class="ex-tl-row"><span class="sq">${esc(r.eventType.split('_')[0])}</span><b class="tiny">${esc(r.eventType)}</b><code>${esc(r.src)} · declared ${esc(r.declaredAt)} · observed ${esc(r.observedAt)}</code></div>`).join('');
+    .map((r,i)=>`<div class="ex-tl-row"><span class="sq">#${i+1}</span><b class="tiny">${esc(r.eventType)}</b><code>${esc(r.src)} · declared ${esc(r.declaredAt)} · observed ${esc(r.observedAt)}</code></div>`).join('');
 
   const roleplay=pending?`<div class="card" style="border-left:4px solid var(--amber)"><div class="cardhead"><div><h2>Judge roleplay — fictional reviewer</h2><p>Roleplay the accountable owner. Actions are <code>SIMULATED_HUMAN_DECISION</code> ledger entries — not authenticated approvals. Only the declared allowed scope can be approved; prohibited operations are never unlockable by a click.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
     <div class="flex" style="gap:8px;flex-wrap:wrap">
