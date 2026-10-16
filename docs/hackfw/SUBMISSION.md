@@ -110,7 +110,9 @@ four simulation-only sector narratives — labeled, never claimed as evaluations
 
 - [x] Public GitHub repo + working deployed demo
 - [x] Judge guide + deep-linked reports
-- [ ] End-to-end video (< 2 min) — **not yet recorded** (human step)
+- [x] End-to-end source recording — `docs/hackfw/screens/judge-path-recording.webm` (~95 s, 1440×900, six-step judge path, no audio track)
+- [ ] Hosted video URL (YouTube/Vimeo) — human step; Devpost needs a public link, the WebM in-repo is not hosted
 - [ ] All participants registered at talent.fwtx.city — unconfirmed
-- [ ] Demo Day registration + attendance (Oct 30, 9:30 a.m.–3:00 p.m. CDT) — human step
-- [ ] Devpost submission before Oct 30, 2026 11:00 a.m. CDT — human step
+- [ ] North Texas proximity/eligibility — human attestation
+- [ ] Demo Day registration (luma.com/ygyxb4yy) + in-person attendance, Oct 30, 9:30 a.m.–3:00 p.m. CDT — human step
+- [ ] Devpost submission before Oct 30, 2026 11:00 a.m. CDT — human step (deadline and event start are separate)
