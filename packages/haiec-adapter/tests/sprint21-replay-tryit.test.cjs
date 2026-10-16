@@ -353,6 +353,38 @@ test('every approval carries explicit operation and environment scope', async ()
   }
 });
 
+test('nine fictional review requests bind role, scope, policy, decision trail and infrastructure state', async () => {
+  const { T } = await ready();
+  const g = T.GOVDATA;
+  assert.equal(g.reviewInfrastructure.reviewerAuthentication, 'NOT_CONNECTED');
+  assert.equal(g.reviewInfrastructure.persistentApprovalStore, 'NOT_PROVISIONED');
+  assert.equal(g.reviewInfrastructure.productionDispatcher, 'NOT_CONNECTED');
+  const ids = new Set();
+  for (const d of g.decisions) {
+    const q = d.requestRecord;
+    assert.ok(q && Array.isArray(d.reviewEvents) && d.reviewEvents.length >= 2);
+    assert.ok(!ids.has(q.requestId)); ids.add(q.requestId);
+    assert.equal(q.supportingCaseId, d.canonicalCaseId);
+    assert.equal(q.requestedOperation, d.proposedOperation);
+    assert.equal(q.assignedReviewerRole, d.approverRole);
+    assert.notEqual(q.requestedByRole, q.assignedReviewerRole);
+    assert.deepEqual(q.allowedAdvisoryScope, d.allowedOperations);
+    assert.deepEqual(q.forbiddenConsequenceScope, d.prohibitedOperations);
+    assert.equal(q.reviewerIdentityState, 'FICTIONAL_ROLE_ONLY_NOT_AUTHENTICATED');
+    assert.equal(q.liveDispatchEnforcement, 'NOT_CONNECTED');
+    const last = d.reviewEvents.at(-1);
+    assert.equal(last.requestId, q.requestId);
+    assert.equal(last.eventType, d.humanDecision === 'PENDING' ? 'DEMO_REVIEW_PENDING' :
+      d.humanDecision === 'REJECTED' ? 'DEMO_ACTION_REJECTED' : 'DEMO_SCOPED_APPROVAL_RECORDED');
+  }
+  T.STATE.govSystem = 'SYS-217';
+  const html = T.pageGovernance();
+  assert.ok(html.includes('Fictional human approval dossier'));
+  assert.ok(html.includes('DEMO-REQ-SYS-217-06'));
+  assert.ok(html.includes('FICTIONAL_ROLE_ONLY_NOT_AUTHENTICATED'));
+  assert.ok(html.includes('NOT_PROVISIONED'));
+});
+
 test('monitoring status is derived from records, not approval status', async () => {
   const { T } = await ready();
   assert.equal(T.govMonitoringStatus('SYS-340'), 'SIMULATED_MONITORING_ESTABLISHED');
@@ -367,20 +399,28 @@ test('monitoring status is derived from records, not approval status', async () 
   assert.equal(T.govMonitoringStatus('SYS-WH15'), 'SIMULATED_MONITORING_PARTIAL');
 });
 
-test('roleplay: pending can be scope-approved, rejected cannot be approved', async () => {
+test('roleplay: safe advisory continuation cannot approve the pending consequential request', async () => {
   const { T } = await ready();
+  const d = T.GOVDATA.decisions.find(x => x.systemId === 'SYS-217');
   T.govApprove('SYS-217');
-  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-217')), 'APPROVED_SCOPED');
+  assert.equal(T.govDecision(d), 'PENDING', 'MES authority expansion was silently approved');
+  assert.equal(T.GOV.advisory['SYS-217'], true);
+  assert.ok(T.pageGovernance().includes('advisory only; expansion still pending'));
   const ev = T.STATE.events.find(e => !e.fixture);
   assert.equal(ev.decision, 'SIMULATED_HUMAN_DECISION');
   assert.equal(ev.effect, 'LOCAL_FIXTURE_EFFECT_ONLY');
-  // rejected stays rejected — no approve path
+  assert.ok(ev.desc.includes('REMAINS PENDING'));
+  // A simulated advisory continuation cannot also reject/approve the same pending request.
+  T.govReject('SYS-217');
+  assert.equal(T.govDecision(d), 'PENDING');
+  // Already rejected actions remain rejected and cannot be elevated.
   T.govReject('SYS-SUP12');
   T.govApprove('SYS-SUP12');
-  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-SUP12')), 'REJECTED');
-  // reset restores fixture
+  assert.equal(T.govDecision(T.GOVDATA.decisions.find(x => x.systemId === 'SYS-SUP12')), 'REJECTED');
   T.govReset();
-  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-217')), 'PENDING');
+  assert.equal(T.govDecision(d), 'PENDING');
+  assert.equal(Object.keys(T.GOV.advisory).length, 0);
+  assert.equal(T.STATE.events.filter(e => e.decision === 'SIMULATED_HUMAN_DECISION').length, 0);
 });
 
 test('roleplay never mutates the 45 canonical exports and carries no U6 receipt', async () => {
