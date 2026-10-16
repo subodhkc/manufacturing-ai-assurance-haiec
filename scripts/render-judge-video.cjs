@@ -22,17 +22,27 @@ const VTT = path.join(ROOT, 'docs', 'hackfw', 'judge-path-subtitles-v29.vtt');
 const FF = process.env.FFMPEG || 'ffmpeg';
 const W = 1440, H = 900, FPS = 30;
 
-/* Cue timeline on the FINAL video (seconds). Title card 0–4, recorded
-   content 4–~99, closing card ~99–110. */
+/* Cue timeline. `at` is the desired start on the FINAL video; the schedule
+   pass below pushes each cue later if the previous clip is still playing —
+   fixed starts let edge-tts clips overlap (Sprint 29.1 fix). `cap` is the
+   burned-caption display text for the same cue. */
 const CUES = [
-  { at: 4.5, text: "HAIEC gives you evidence-bound assurance for consequential AI. Understand what your AI can do. Assure what it does. Govern what it may do — in any industry. Let's see it on a manufacturing floor." },
-  { at: 16, text: "A plant-floor AI was told to update work order forty-eight-oh-two. It performed flawlessly — on work order forty-eight-oh-three. Nothing alarmed. HAIEC's deterministic engine caught the divergence. The verdict: review required." },
-  { at: 28, text: "Then the agent tried to write back to the factory system. Its declared scope doesn't allow it — so the action is held for a human, while a permitted advisory note proceeds. That's the difference between an agent acting and an agent being governed." },
-  { at: 42, text: "This is a working digital factory: work orders, purchase orders, live equipment telemetry — one shared state that responds to every action through the same operating boundary. Held material stays held." },
-  { at: 56, text: "Watch two decisions stay independent. The buyer approves the spend — but the supplier's qualification expired, so the commercial commitment holds. The qualified order? Approved — and committed. Financial authority and supplier qualification are different gates." },
-  { at: 74, text: "Anomalies become monitoring observations — a torque spike, a lost signal — alongside the human operating report and the exact record of what was asked, decided, and simulated." },
-  { at: 90, text: "Know what your AI can do. Govern what it may do. Verify what happened. Every finding is digest-verified — and this receipt is public." },
-  { at: 105, text: "Deploy AI with confidence. Stay in control of every consequential action. Explore the interactive digital factory yourself." },
+  { at: 4.5, text: "HAIEC gives you evidence-bound assurance for consequential AI. Understand what your AI can do. Assure what it does. Govern what it may do — in any industry. Let's see it on a manufacturing floor.",
+    cap: "HAIEC gives you evidence-bound assurance for\nconsequential AI. Understand what your AI can do.\nAssure what it does. Govern what it may do —\nin any industry." },
+  { at: 16, text: "A plant-floor AI was told to update work order forty-eight-oh-two. It performed flawlessly — on work order forty-eight-oh-three. Nothing alarmed. HAIEC's deterministic engine caught the divergence. The verdict: review required.",
+    cap: "A plant-floor AI was told to update work order\n4802. It performed flawlessly — on work order\n4803. HAIEC's deterministic engine caught the\ndivergence. Verdict: review required." },
+  { at: 28, text: "Then the agent tried to write back to the factory system. Its declared scope doesn't allow it — so the action is held for a human, while a permitted advisory note proceeds. That's the difference between an agent acting and an agent being governed.",
+    cap: "Then the agent tried to write back to the factory\nsystem. Its declared scope doesn't allow it —\nso the action is held for a human, while a\npermitted advisory note proceeds." },
+  { at: 42, text: "This is a working digital factory: work orders, purchase orders, live equipment telemetry — one shared state that responds to every action through the same operating boundary. Held material stays held.",
+    cap: "This is a working digital factory: work orders,\npurchase orders, live equipment telemetry —\none shared state that responds to every action\nthrough the same operating boundary." },
+  { at: 56, text: "Watch two decisions stay independent. The buyer approves the spend — but the supplier's qualification expired, so the commercial commitment holds. The qualified order? Approved — and committed. Financial authority and supplier qualification are different gates.",
+    cap: "Watch two decisions stay independent. The buyer\napproves the spend — but the supplier's\nqualification expired, so the commitment holds.\nThe qualified order approves, and commits." },
+  { at: 74, text: "Anomalies become monitoring observations — a torque spike, a lost signal — alongside the human operating report and the exact record of what was asked, decided, and simulated.",
+    cap: "Anomalies become monitoring observations —\na torque spike, a lost signal — alongside the\nhuman operating report and the exact record of\nwhat was asked, decided, and simulated." },
+  { at: 90, text: "Know what your AI can do. Govern what it may do. Verify what happened. Every finding is digest-verified — and this receipt is public.",
+    cap: "Know what your AI can do. Govern what it may do.\nVerify what happened. Every finding is\ndigest-verified — and this receipt is public." },
+  { at: 105, text: "Deploy AI with confidence. Stay in control of every consequential action. Explore the interactive digital factory yourself.",
+    cap: "Deploy AI with confidence. Stay in control of\nevery consequential action. Explore the\ninteractive digital factory yourself." },
 ];
 
 /* Recorded-content scene windows (seconds inside the webm) with optional
@@ -83,6 +93,34 @@ function ttsAll() {
   });
 }
 
+/* Measure a media file's duration in seconds via `ffmpeg -i` stderr. */
+function probeDur(f) {
+  try { execFileSync(FF, ['-i', f], { stdio: 'pipe' }); } catch (e) {
+    const m = /Duration: (\d+):(\d+):([\d.]+)/.exec(String(e.stderr || ''));
+    if (m) return +m[1] * 3600 + +m[2] * 60 + parseFloat(m[3]);
+  }
+  throw new Error('cannot probe duration: ' + f);
+}
+
+const GAP = 0.6;
+/* Sequential schedule: each cue starts at its desired time or 0.6s after the
+   previous clip ends — whichever is later. Writes the VTT from the same
+   schedule so burned captions track the actual audio. */
+function schedule() {
+  const fmt = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${(s % 60).toFixed(3).padStart(6, '0')}`;
+  const vtt = ['WEBVTT', ''];
+  let prevEnd = 0;
+  CUES.forEach((c, i) => {
+    const f = path.join(OUT, `cue${i}.mp3`);
+    c.dur = probeDur(f);
+    c.t = Math.max(c.at, prevEnd ? prevEnd + GAP : c.at);
+    prevEnd = c.t + c.dur;
+    vtt.push(`${fmt(c.t)} --> ${fmt(prevEnd - 0.3)}`, c.cap, '');
+  });
+  fs.writeFileSync(VTT, vtt.join('\n'));
+  CUES.forEach((c, i) => console.log(`cue${i}  ${c.t.toFixed(2)}–${(c.t + c.dur).toFixed(2)}s`));
+}
+
 function render() {
   const inputs = ['-i', REC, '-loop', '1', '-t', '4', '-i', path.join(OUT, 'title-card.png'), '-loop', '1', '-t', '11', '-i', path.join(OUT, 'closing-card.png')];
   CUES.forEach((c, i) => inputs.push('-i', path.join(OUT, `cue${i}.mp3`)));
@@ -98,7 +136,7 @@ function render() {
   const order = ['[vt]', ...SCENES.map((_, i) => `[v${i}]`), '[vc]'];
   F.push(order.join('') + `concat=n=${order.length}:v=1:a=0[vcat]`);
   F.push(`[vcat]subtitles='${VTT.replace(/\\/g, '/').replace(/:/g, '\\:')}':force_style='FontName=Segoe UI,FontSize=17,OutlineColour=&H80000000,BorderStyle=3'[vout]`);
-  CUES.forEach((c, i) => F.push(`[${i + 3}:a]adelay=${Math.round(c.at * 1000)}|${Math.round(c.at * 1000)}[a${i}]`));
+  CUES.forEach((c, i) => F.push(`[${i + 3}:a]adelay=${Math.round(c.t * 1000)}|${Math.round(c.t * 1000)}[a${i}]`));
   F.push(CUES.map((_, i) => `[a${i}]`).join('') + `amix=inputs=${CUES.length}:normalize=0:duration=longest,aresample=44100[aout]`);
   const fscript = path.join(OUT, 'filtergraph.txt');
   fs.writeFileSync(fscript, F.join(';\n'));
@@ -110,6 +148,7 @@ function render() {
   if (!fs.existsSync(REC)) { console.error('missing recording: ' + REC); process.exit(1); }
   await makeCards();
   ttsAll();
+  schedule();
   render();
   console.log('rendered →', FINAL);
 })().catch(e => { console.error(e); process.exit(1); });
