@@ -3,30 +3,53 @@
 **Submission deadline: October 30, 2026, 11:00 a.m. CDT.**
 Public repo · demo video · participant talent registration · in-person Demo Day — all required.
 
-## The 90-second path
+## Two experiences — pick your depth (Sprint 29)
 
-1. Open `https://haiec-manufacturing-demo.vercel.app/?report=judge` — the
-   **two-minute judge path** is a fixed seven-step sequence. Or press
-   **"Judge demo — 2 minutes →"** on the Command Center.
-   The narrative: *the AI had access — it changed the wrong work order.*
-2. **HAIEC Assurance** — pick `SYS-217 · Wrong Target`. Every number on that
-   page is verbatim from a persisted canonical HAIEC evaluation.
-3. **Operator Journey** — six stages: Detect → Investigate → Authorize →
-   Contain → Verify → Report. Containment is explicitly a *browser-only
-   rehearsal*; independent response proof is shown as `NOT ESTABLISHED`.
-4. **Industry Experiences** — switch to Telecommunications for one short
-   AL0/AL1/AL2 historical reference, then back. Profiles are isolated.
-5. Any verification link opens `haiec.com/verify/assurance/{id}` — integrity
-   verification of the exact issued receipt, labeled `SYNTHETIC_REFERENCE`.
+**A. Two-Minute Judge Showcase** — `https://haiec-manufacturing-demo.vercel.app/?report=judge`
 
-## Shareable report URLs (Sprint 20)
+A fixed, concise presentation (~114 s video equivalent) in seven timed scenes:
+1. **HAIEC platform** — three pillars (Understand · Assure · Govern & Operate)
+   and six independently selectable capabilities (Discover · Evaluate ·
+   Authorize · Monitor · Protect · Verify). Manufacturing is the reference
+   demonstration of the platform, not a separate product.
+2. **Station 217** — approved target `WO-217-4802`, recorded target
+   `WO-217-4803`, deterministic `MFG-EFF-001` divergence, disposition REVIEW —
+   verbatim from a persisted, digest-verified HAIEC evaluation, linked to the
+   saved case.
+3. **Human authority + operating controls** — the subsequent simulated MES
+   write held at the demonstration gateway (Quality Director review pending,
+   `DEMO-REQ-SYS-217-06` / `DEMO-GW-SYS-217-02`), advisory work continues.
+4. **Digital factory live** — MES, ERP, virtual equipment, review requests —
+   one shared state through one policy boundary.
+5. **Decisions across systems** — expired-supplier PO held after financial
+   approval; qualified-supplier PO commits. Financial authority ≠ supplier
+   qualification.
+6. **Monitoring + evidence** — anomaly events, human operating report,
+   exact action record, saved assessment, public verification receipt.
+7. **Close** — *Know what your AI can do. Govern what it may do. Verify what
+   happened.* — plus a compact methodology card separating real HAIEC
+   evaluations from demonstration activity.
+
+The recorded version is `docs/hackfw/screens-v29/judge-path-final-v29.mp4`.
+
+**B. Interactive Deep Dive** — nav → **Digital Factory** → "Guided demonstration →"
+
+The full hands-on path: 3-engine automatic containment, 40-engine Quality
+Supervisor approval (with a wrong-role rejection demo), 60-engine Plant
+Quality Manager pending, the Station 217 held write, both ERP decisions,
+anomaly + signal-loss monitoring, and a one-click `demo-factory-record-1.0.0`
+export. The showcase links into this; nothing is mandatory.
+
+## Shareable report URLs
 
 | Destination | URL |
 |---|---|
-| Judge path (~2 min) | `/?report=judge` |
+| Judge showcase (~2 min) | `/?report=judge` |
 | Executive report | `/?report=exec` |
 | Station 217 flagship (exec / tech) | `/?report=s217` · `/?report=s217-tech` |
 | Any case report | `/?report=case:SYS-217-WRONG_TARGET` (all 45 IDs work) |
+| Demonstration record view | `/?report=demo` |
+| Operating & governance report | `/?report=gov` |
 | Reports hub | `/?report=hub` |
 
 All are public-safe (case IDs only — no org or principal data), refresh- and
@@ -94,20 +117,26 @@ corrected to `SIMULATED_LOCAL_READBACK` — no local path claims independently
 witnessed production effects. Per-system report navigation now links real
 persisted artifacts and marks never-issued types `NOT ISSUED`.
 
-## Video outline (<2 min)
+## Video outline — v29 (~114 s)
 
-- 0:00–0:15 Command Center: wrong-target consequence, 9-system estate.
-- 0:15–0:40 SYS-217 Wrong Target case: MATCH, U5 REVIEW, honest NOT_ASSESSED planes.
-- 0:40–1:10 Operator Journey: Detect → Investigate → Authorize (human checklist) → Contain (labeled browser-only) → Verify (response proof NOT ESTABLISHED) → Report.
-- 1:10–1:30 Public verification page: `INTEGRITY_VERIFIED` + `SYNTHETIC_REFERENCE` — integrity ≠ source truth.
-- 1:30–1:50 Telecom switch (5 seconds) → "one canonical engine, honest per-plane truth, no overclaim."
-- 1:50–2:00 Preservation note: 27 v1 + 45 v3 real persisted evaluations; everything else labeled simulation/reference.
+The Sprint 29 video follows the showcase scene order; the prior video and
+assets are retained under `docs/hackfw/screens/`.
+
+- 0:00–0:04 Title card — HAIEC · Deploy AI with confidence.
+- 0:04–0:16 Platform: pillars + six capabilities, manufacturing as the example.
+- 0:16–0:28 Station 217 flagship: `WO-217-4802` → `WO-217-4803`, MATCH + REVIEW.
+- 0:28–0:42 Held MES write (denied) + permitted advisory note.
+- 0:42–0:56 Digital factory live: held-stock release denied, gauges running.
+- 0:56–1:14 Two-gate ERP: expired supplier held, qualified PO committed.
+- 1:14–1:30 Monitoring anomaly + signal loss → demonstration record view.
+- 1:30–1:40 Judge showcase close → CTA to the interactive deep dive.
+- 1:40–1:53 Closing card — know / govern / verify + methodology note.
 
 ## Submission checklist
 
 - [x] Public repo with run instructions (root README).
 - [x] Stable demo: frozen verified exports; works static/`file://` and deployed.
-- [x] Demo video — `docs/hackfw/screens/judge-path-final.mp4` (CREATED, 113 s, 1440×900 H.264, AI voiceover + burned captions; source WebM + `judge-path-subtitles.vtt` + `NARRATION.md` retained).
+- [x] Demo video — `docs/hackfw/screens-v29/judge-path-final-v29.mp4` (CREATED, 113.8 s, 1440×900 H.264, AI voiceover + burned captions; source WebM + `judge-path-subtitles-v29.vtt` + `NARRATION-V29.md` + thumbnail-v29.png retained; prior cut preserved in `docs/hackfw/screens/`).
 - [ ] Hosted video URL (YouTube/Vimeo link for Devpost) — PENDING until provider-confirmed.
 - [ ] Participant talent registration — talent.fwtx.city, human-owned, unconfirmed.
 - [ ] In-person Demo Day — October 30, 2026, 9:30 a.m.–3:00 p.m. CDT (separate event; RSVP luma.com/ygyxb4yy).
@@ -248,5 +277,28 @@ records inside the fictional scenario — live connectors stay not connected.
   is self-describing; an authorized operator can pair it with the SYS-217
   case report, operating report and 12-page PDF for an executive report.
   Nothing uploads automatically.
+
+**Sprint 29 — full-platform showcase & judge experience:**
+
+- **Two distinct experiences.** `?report=judge` is now a fixed ~2-minute
+  showcase (seven scenes, platform → divergence → controls → factory →
+  cross-system decisions → monitoring → close). The interactive deep dive —
+  guided demonstration, 3/40/60 scenarios, reviewer roles, record export —
+  remains on the Digital Factory page and is linked, not required.
+- **Platform-first story.** The showcase establishes the three pillars and six
+  capabilities before the manufacturing example; one consolidated
+  methodology section at the end distinguishes HAIEC evaluations from
+  browser-local demonstration activity.
+- **New video package** — `docs/hackfw/screens-v29/`: 113.8 s MP4 with AI
+  narration + burned captions, nine stills, source WebM, title/closing cards,
+  thumbnail. Regenerable via `scripts/capture-judge-path.cjs` +
+  `scripts/render-judge-video.cjs`; narration in `NARRATION-V29.md`, captions
+  in `judge-path-subtitles-v29.vtt`. Previous cut retained in `screens/`.
+- **Authentic sample record** — `docs/hackfw/demo-record-sample.json` is a
+  real browser export (`SES-0001`, demo-factory-record-1.0.0) captured through
+  the production UI via `scripts/export-demo-record.cjs`; classified
+  `BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED`.
+- Hub tile, narration and submission copy now match the actual two-minute
+  experience; the old "seven-step"/"nine-step" wording is reconciled.
 
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.

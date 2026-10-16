@@ -1,0 +1,20 @@
+[1:v]scale=1440:900,setsar=1,fps=30,format=yuv420p[vt];
+[2:v]scale=1440:900,setsar=1,fps=30,format=yuv420p[vc];
+[0:v]trim=0:12,setpts=PTS-STARTPTS,setsar=1,fps=30,format=yuv420p[v0];
+[0:v]trim=12:28,setpts=PTS-STARTPTS,crop=iw*0.82:ih*0.82:iw*0.04:ih*0.1,scale=1440:900,setsar=1,fps=30,format=yuv420p[v1];
+[0:v]trim=28:42,setpts=PTS-STARTPTS,crop=iw*0.74:ih*0.74:iw*0.02:ih*0.16,scale=1440:900,setsar=1,fps=30,format=yuv420p[v2];
+[0:v]trim=42:56,setpts=PTS-STARTPTS,setsar=1,fps=30,format=yuv420p[v3];
+[0:v]trim=56:74,setpts=PTS-STARTPTS,crop=iw*0.66:ih*0.66:iw*0.3:ih*0.12,scale=1440:900,setsar=1,fps=30,format=yuv420p[v4];
+[0:v]trim=74:90,setpts=PTS-STARTPTS,setsar=1,fps=30,format=yuv420p[v5];
+[0:v]trim=90:99,setpts=PTS-STARTPTS,setsar=1,fps=30,format=yuv420p[v6];
+[vt][v0][v1][v2][v3][v4][v5][v6][vc]concat=n=9:v=1:a=0[vcat];
+[vcat]subtitles='C\:/Users/Subodh Kc/Desktop/App Building/Github/manufacturing-ai-assurance-haiec/docs/hackfw/judge-path-subtitles-v29.vtt':force_style='FontName=Segoe UI,FontSize=17,OutlineColour=&H80000000,BorderStyle=3'[vout];
+[3:a]adelay=4500|4500[a0];
+[4:a]adelay=16000|16000[a1];
+[5:a]adelay=28000|28000[a2];
+[6:a]adelay=42000|42000[a3];
+[7:a]adelay=56000|56000[a4];
+[8:a]adelay=74000|74000[a5];
+[9:a]adelay=90000|90000[a6];
+[10:a]adelay=105000|105000[a7];
+[a0][a1][a2][a3][a4][a5][a6][a7]amix=inputs=8:normalize=0:duration=longest,aresample=44100[aout]

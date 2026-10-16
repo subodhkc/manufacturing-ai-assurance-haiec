@@ -1,0 +1,788 @@
+{
+  "schemaVersion": "demo-factory-record-1.0.0",
+  "artifactClass": "BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED",
+  "exportedAt": "2026-10-16T15:24:51.120Z",
+  "session": {
+    "id": "SES-0001",
+    "sequence": 1,
+    "referenceClock": "2026-10-15T12:00:00.000Z",
+    "virtualTick": 4,
+    "anomalyMode": "TORQUE_ANOMALY"
+  },
+  "fixture": {
+    "schemaVersion": "demo-digital-factory-1.0.0",
+    "provenance": "SIMULATION_ONLY",
+    "plant": "PLANT-A"
+  },
+  "policy": {
+    "configVersion": 1,
+    "config": {
+      "autoContainMax": 5,
+      "supervisorCeiling": 50,
+      "releaseBlocked": true,
+      "poMax": 15000,
+      "forecastMax": 25,
+      "visionDrift": 12,
+      "tokenCap": 20000
+    }
+  },
+  "baseline": {
+    "workOrders": [
+      {
+        "id": "WO-217-4802",
+        "station": "STN-217",
+        "systemId": "SYS-217",
+        "qty": 240,
+        "completedQty": 118,
+        "qualityStatus": "HOLD_REVIEW"
+      },
+      {
+        "id": "WO-217-4803",
+        "station": "STN-217",
+        "systemId": "SYS-217",
+        "qty": 40,
+        "completedQty": 40,
+        "qualityStatus": "HOLD_REVIEW"
+      },
+      {
+        "id": "WO-340-9110",
+        "station": "STN-340",
+        "systemId": "SYS-340",
+        "qty": 180,
+        "completedQty": 132,
+        "qualityStatus": "RELEASED"
+      }
+    ],
+    "purchaseOrders": [
+      {
+        "id": "REQ-2026-8842",
+        "supplierId": "VND-FST-118",
+        "amount": 86500,
+        "status": "PROPOSED"
+      },
+      {
+        "id": "REQ-2026-8855",
+        "supplierId": "VND-CST-042",
+        "amount": 38900,
+        "status": "PROPOSED"
+      }
+    ],
+    "inventory": [
+      {
+        "lotId": "LOT-2026-4510",
+        "sku": "CAST-417 housing castings",
+        "qty": 48,
+        "status": "QUALITY_HOLD"
+      },
+      {
+        "lotId": "SI-2026-3301",
+        "sku": "Incoming casting lot",
+        "qty": 64,
+        "status": "QUARANTINE_RECEIVING"
+      }
+    ],
+    "suppliers": [
+      {
+        "id": "VND-CST-042",
+        "qualification": "PPAP_CURRENT"
+      },
+      {
+        "id": "VND-FST-118",
+        "qualification": "PPAP_EXPIRED"
+      },
+      {
+        "id": "VND-SEA-207",
+        "qualification": "PPAP_CURRENT"
+      }
+    ],
+    "equipment": [
+      {
+        "id": "EQ-TORQUE-217",
+        "station": "STN-217",
+        "kind": "DC nutrunner",
+        "systemId": "SYS-217"
+      },
+      {
+        "id": "EQ-SPINDLE-88",
+        "station": "STN-88",
+        "kind": "CNC spindle",
+        "systemId": "SYS-MNT88"
+      },
+      {
+        "id": "EQ-DYNO-412",
+        "station": "STN-412",
+        "kind": "Dyno test stand",
+        "systemId": "SYS-DYN412"
+      }
+    ]
+  },
+  "current": {
+    "workOrders": [
+      {
+        "id": "WO-217-4802",
+        "station": "STN-217",
+        "systemId": "SYS-217",
+        "qty": 240,
+        "completedQty": 118,
+        "qualityStatus": "HOLD_REVIEW",
+        "heldQty": 0,
+        "attempts": [
+          {
+            "result": "DENY",
+            "ref": "EV-0026",
+            "at": "10:24 AM"
+          }
+        ],
+        "lastAdvisory": "EV-0027"
+      },
+      {
+        "id": "WO-217-4803",
+        "station": "STN-217",
+        "systemId": "SYS-217",
+        "qty": 40,
+        "completedQty": 40,
+        "qualityStatus": "HOLD_REVIEW",
+        "heldQty": 0,
+        "attempts": [],
+        "lastAdvisory": null
+      },
+      {
+        "id": "WO-340-9110",
+        "station": "STN-340",
+        "systemId": "SYS-340",
+        "qty": 180,
+        "completedQty": 132,
+        "qualityStatus": "RELEASED",
+        "heldQty": 0,
+        "attempts": [],
+        "lastAdvisory": null
+      }
+    ],
+    "purchaseOrders": [
+      {
+        "id": "REQ-2026-8842",
+        "supplierId": "VND-FST-118",
+        "amount": 86500,
+        "status": "PROPOSED",
+        "requestId": null,
+        "committedAmount": null,
+        "financialApproval": null
+      },
+      {
+        "id": "REQ-2026-8855",
+        "supplierId": "VND-CST-042",
+        "amount": 38900,
+        "status": "COMMITTED",
+        "requestId": "REV-0001",
+        "committedAmount": 38900,
+        "financialApproval": null
+      }
+    ],
+    "suppliers": [
+      {
+        "id": "VND-CST-042",
+        "qualification": "PPAP_CURRENT",
+        "lastAttempt": null
+      },
+      {
+        "id": "VND-FST-118",
+        "qualification": "PPAP_EXPIRED",
+        "lastAttempt": null
+      },
+      {
+        "id": "VND-SEA-207",
+        "qualification": "PPAP_CURRENT",
+        "lastAttempt": null
+      }
+    ],
+    "inventory": [
+      {
+        "lotId": "LOT-2026-4510",
+        "status": "QUALITY_HOLD",
+        "lastAttempt": {
+          "result": "DENY",
+          "ref": "EV-0028",
+          "at": "10:24 AM"
+        }
+      },
+      {
+        "lotId": "SI-2026-3301",
+        "status": "QUARANTINE_RECEIVING",
+        "lastAttempt": null
+      }
+    ],
+    "equipment": [
+      {
+        "id": "EQ-TORQUE-217",
+        "mode": "TORQUE_ANOMALY",
+        "reading": {
+          "torque": 45.7,
+          "rpm": 1492,
+          "temp": 61.5,
+          "heartbeat": "0s ago base",
+          "running": true,
+          "alarm": true,
+          "dead": false
+        }
+      },
+      {
+        "id": "EQ-SPINDLE-88",
+        "mode": "TORQUE_ANOMALY",
+        "reading": {
+          "torque": 20.7,
+          "rpm": 8435,
+          "temp": 47.5,
+          "heartbeat": "0s ago base",
+          "running": true,
+          "alarm": false,
+          "dead": false
+        }
+      },
+      {
+        "id": "EQ-DYNO-412",
+        "mode": "TORQUE_ANOMALY",
+        "reading": {
+          "torque": 212.7,
+          "rpm": 3909,
+          "temp": 78.5,
+          "heartbeat": "0s ago base",
+          "running": true,
+          "alarm": false,
+          "dead": false
+        }
+      }
+    ],
+    "mes": {
+      "contained": 0,
+      "released": 0,
+      "poValue": 38900,
+      "planChanges": 0,
+      "qualityCases": 0
+    }
+  },
+  "requests": [
+    {
+      "id": "REV-0001",
+      "status": "APPROVED",
+      "session": "SES-0001",
+      "scenario": "PO",
+      "action": "Purchase order above review cap",
+      "target": "REQ-2026-8855",
+      "amount": 38900,
+      "unit": "USD",
+      "systemId": "SYS-PO12",
+      "policyVersion": 1,
+      "createdAt": "10:24 AM",
+      "reason": "PO $38,900 exceeds buyer review cap of $15,000. Buyer decision required.",
+      "requiredRole": "Authorized Buyer",
+      "decidedByRole": "Authorized Buyer"
+    }
+  ],
+  "events": [
+    {
+      "id": "EV-0031",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Monitoring observation — DC nutrunner",
+      "desc": "Torque trace exceeds the control band on Station 217 — the same kind of signal behind the recorded WO-217-4803 divergence. Demonstration telemetry — not a plant sensor read.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "OBSERVED",
+      "effect": "SIMULATED_MONITORING_OBSERVATION",
+      "status": "pending",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0030",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "LAB",
+      "title": "Supervisor approved exact bounded action",
+      "desc": "Purchase order above review cap · 38900 USD · REQ-2026-8855. Rationale: Decision recorded.. Effect: SIMULATED_LOCAL_READBACK.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "APPROVED",
+      "effect": "SIMULATED_LOCAL_READBACK",
+      "status": "applied",
+      "scenario": "PO",
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0029",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Autonomous Replenishment — REVIEW_REQUIRED",
+      "desc": "PO $38,900 exceeds buyer review cap of $15,000. Buyer decision required.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "REVIEW_REQUIRED",
+      "effect": "NONE",
+      "status": "pending",
+      "scenario": "PO",
+      "requestId": "REV-0001",
+      "policyVersion": 1
+    },
+    {
+      "id": "EV-0028",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Warehouse Fulfillment AI — DENY",
+      "desc": "LOT-2026-4510 is under quality hold. A pick recommendation cannot ship held stock; the shipment is blocked at the simulated WMS boundary.",
+      "system": "Warehouse Fulfillment AI",
+      "systemId": "SYS-WH15",
+      "decision": "DENY",
+      "effect": "NONE",
+      "status": "rejected",
+      "scenario": "WMS_HELD_SHIPMENT",
+      "requestId": null,
+      "policyVersion": 1
+    },
+    {
+      "id": "EV-0027",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Advisory quality note — Torque Quality Assurance",
+      "desc": "Advisory observation recorded against WO-217-4802 inside the approved advisory scope. No consequential write requested or applied.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "ADVISORY",
+      "effect": "ADVISORY_RECORDED",
+      "status": "applied",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0026",
+      "at": "10:24 AM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Torque Quality Assurance — DENY",
+      "desc": "Direct MES work-order write is prohibited for this agent. Inherited service permission does not confer delegation.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "DENY",
+      "effect": "NONE",
+      "status": "rejected",
+      "scenario": "MES",
+      "requestId": null,
+      "policyVersion": 1
+    },
+    {
+      "id": "FCT-001",
+      "at": "Fixture T–07m",
+      "session": null,
+      "channel": null,
+      "title": "Authority review · MES grant broader than delegation",
+      "desc": "The torque agent can propose containment but the service principal can access MES write functions.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "REVIEW",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-002",
+      "at": "Fixture T–14m",
+      "session": null,
+      "channel": null,
+      "title": "Vision model change · inspection revalidation",
+      "desc": "New part/lighting variant requires validation evidence before auto disposition.",
+      "system": "Vision Inspection AI",
+      "systemId": "SYS-340",
+      "decision": "REVIEW",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-003",
+      "at": "Fixture T–21m",
+      "session": null,
+      "channel": null,
+      "title": "Schedule revision exceeds frozen planning window",
+      "desc": "Planning team review required before releasing a new MPS to APS.",
+      "system": "Demand Forecast & S&OP",
+      "systemId": "SYS-FC1",
+      "decision": "REVIEW",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-004",
+      "at": "Fixture T–28m",
+      "session": null,
+      "channel": null,
+      "title": "Purchase order policy · supplier restriction",
+      "desc": "Procurement workflow requires supplier and quantity/price authority check.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "WATCH",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-005",
+      "at": "Fixture T–35m",
+      "session": null,
+      "channel": null,
+      "title": "Predictive maintenance POC · CMMS evidence gap",
+      "desc": "A recommendation-to-ticket path exists; effect witness unqualified.",
+      "system": "Predictive Maintenance AI",
+      "systemId": "SYS-MNT88",
+      "decision": "NOT_ASSESSED",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-006",
+      "at": "Fixture T–42m",
+      "session": null,
+      "channel": null,
+      "title": "POC blocked · expired supplier qualification",
+      "desc": "Vendor/part combination lacks currently qualified PPAP authorization.",
+      "system": "Supplier Quality Risk AI",
+      "systemId": "SYS-SUP12",
+      "decision": "BLOCK",
+      "effect": "NONE",
+      "status": "rejected",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-007",
+      "at": "Fixture T–49m",
+      "session": null,
+      "channel": null,
+      "title": "POC promotion failed · unmediated schedule write",
+      "desc": "Release path can reach APS/MES without qualified mediation evidence.",
+      "system": "Autonomous Line Scheduling",
+      "systemId": "SYS-SCH5",
+      "decision": "BLOCK",
+      "effect": "NONE",
+      "status": "rejected",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-008",
+      "at": "Fixture T–56m",
+      "session": null,
+      "channel": null,
+      "title": "Test parameter scope exceeds delegation",
+      "desc": "19 source-capable settings compared with three intended tuning parameters.",
+      "system": "Dynamometer Tuning AI",
+      "systemId": "SYS-DYN412",
+      "decision": "REVIEW",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FCT-009",
+      "at": "Fixture T–63m",
+      "session": null,
+      "channel": null,
+      "title": "Shared warehouse identity · traceability gap",
+      "desc": "Unable to establish which agent executed the held-lot pick request.",
+      "system": "Warehouse Fulfillment AI",
+      "systemId": "SYS-WH15",
+      "decision": "NOT_ASSESSED",
+      "effect": "NONE",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-217-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Torque Monitor",
+      "desc": "Illustrative event from DC nutrunners / torque-angle. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-340-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Vision Inspector",
+      "desc": "Illustrative event from Industrial vision cameras. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Vision Inspection AI",
+      "systemId": "SYS-340",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-340-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Quality Reviewer",
+      "desc": "Illustrative event from Lighting and recipe config. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Vision Inspection AI",
+      "systemId": "SYS-340",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-FC1-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Demand Forecaster",
+      "desc": "Illustrative event from ERP customer orders. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Demand Forecast & S&OP",
+      "systemId": "SYS-FC1",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-FC1-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Capacity Planner",
+      "desc": "Illustrative event from APS capacity and routings. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Demand Forecast & S&OP",
+      "systemId": "SYS-FC1",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-PO12-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Inventory Monitor",
+      "desc": "Illustrative event from ERP inventory / reorder points. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-PO12-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Sourcing Agent",
+      "desc": "Illustrative event from Supplier master / contracts. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-PO12-03",
+      "at": "Fixture T–44m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · PO Assistant",
+      "desc": "Illustrative event from ERP purchase-order endpoint. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-MNT88-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Spindle Health Analyst",
+      "desc": "Illustrative event from Vibration / temperature sensors. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Predictive Maintenance AI",
+      "systemId": "SYS-MNT88",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-SUP12-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Supplier Risk Analyst",
+      "desc": "Illustrative event from Supplier master. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Supplier Quality Risk AI",
+      "systemId": "SYS-SUP12",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-SUP12-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Vendor Recommender",
+      "desc": "Illustrative event from PPAP status and expiry. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Supplier Quality Risk AI",
+      "systemId": "SYS-SUP12",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-SCH5-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Order Sequencer",
+      "desc": "Illustrative event from APS finite-capacity plan. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Autonomous Line Scheduling",
+      "systemId": "SYS-SCH5",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-SCH5-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Route Optimizer",
+      "desc": "Illustrative event from MES dispatch state. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Autonomous Line Scheduling",
+      "systemId": "SYS-SCH5",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-DYN412-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Dyno Tuning Agent",
+      "desc": "Illustrative event from Dynamometer controller. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Dynamometer Tuning AI",
+      "systemId": "SYS-DYN412",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-WH15-01",
+      "at": "Fixture T–38m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Pick Optimizer",
+      "desc": "Illustrative event from WMS bin locations / picks. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Warehouse Fulfillment AI",
+      "systemId": "SYS-WH15",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "FAC-SYS-WH15-02",
+      "at": "Fixture T–41m",
+      "session": null,
+      "channel": null,
+      "title": "Agent evidence preview · Replenishment Agent",
+      "desc": "Illustrative event from Quality hold ledger. Sample source trust and runtime identity remain to be qualified in customer POC.",
+      "system": "Warehouse Fulfillment AI",
+      "systemId": "SYS-WH15",
+      "decision": "NOT_ASSESSED",
+      "effect": "NO_QUALIFIED_EFFECT",
+      "status": "info",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    }
+  ],
+  "boundaries": {
+    "sessions": []
+  },
+  "evidence": {
+    "note": "Real HAIEC output — digest-verified evaluations of synthetic manufacturing evidence. Unchanged by anything in this record.",
+    "evaluations": "45 canonical v3 exports · all REVIEW",
+    "flagshipCase": "SYS-217-WRONG_TARGET",
+    "publicReceipt": "https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX"
+  }
+}

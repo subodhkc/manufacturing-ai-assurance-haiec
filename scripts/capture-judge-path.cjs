@@ -1,17 +1,17 @@
 'use strict';
-/* Sprint 20.1 — judge-path final-cut capture. Records a WebM screen recording
-   and ordered PNG stills of the deployed manufacturing demo, timed to
-   docs/hackfw/judge-path-subtitles.vtt (~110 s). Includes REAL UI interaction:
-   clicking through Operator Journey stages and the browser-only containment
-   pause/attempt — not just page navigation.
+/* Sprint 29 — judge showcase capture. Records a WebM screen recording and
+   ordered PNG stills of the deployed manufacturing demo, timed to
+   docs/hackfw/judge-path-subtitles.vtt (~116 s incl. title/closing cards
+   added at render time). Real UI interaction throughout: held MES write,
+   advisory note, held-stock release, two-gate PO approvals, anomaly modes.
 
    Dependency: playwright (chromium). Not a repo dependency — install in
    your environment: `npm i -D playwright && npx playwright install chromium`.
-   Usage: `CAPTURE_DIR=docs/hackfw/screens node scripts/capture-judge-path.cjs` */
+   Usage: `CAPTURE_DIR=docs/hackfw/screens-v29 node scripts/capture-judge-path.cjs` */
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const OUT = path.resolve(process.env.CAPTURE_DIR || 'captures-sprint20');
+const OUT = path.resolve(process.env.CAPTURE_DIR || 'captures-sprint29');
 const BASE = process.env.DEMO_URL || 'https://haiec-manufacturing-demo.vercel.app';
 
 const dwell = (p, ms) => p.waitForTimeout(ms);
@@ -22,43 +22,58 @@ const dwell = (p, ms) => p.waitForTimeout(ms);
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, recordVideo: { dir: OUT, size: { width: 1440, height: 900 } } });
   const page = await ctx.newPage();
   const shot = (n) => page.screenshot({ path: path.join(OUT, n + '.png') });
+  const click = async (sel) => { await page.click(sel); await dwell(page, 400); };
 
-  // Cue 1 — 0:00–0:12  Station 217 flagship: approved vs recorded target
+  // Scene 1 — 0:00–0:12  Platform: command center, pillars, capability map
+  await page.goto(BASE + '/index.html', { waitUntil: 'networkidle' });
+  await dwell(page, 9000); await shot('01-platform');
+
+  // Scene 2 — 0:12–0:28  Station 217: delegated 4802 vs recorded 4803, REVIEW
   await page.goto(BASE + '/?report=s217', { waitUntil: 'networkidle' });
-  await dwell(page, 12000); await shot('01-flagship');
+  await dwell(page, 10000);
+  await page.evaluate(() => window.scrollTo(0, 560));
+  await dwell(page, 6000); await shot('02-flagship');
 
-  // Cue 2 — 0:12–0:26  canonical chips: MATCH / BROADER / REVIEW
-  await page.evaluate(() => window.scrollTo(0, 620));
-  await dwell(page, 14000); await shot('02-canonical-result');
+  // Scene 3 — 0:28–0:42  Held MES write + permitted advisory on factory floor
+  await page.evaluate(() => { STATE.page = 'factory'; window.scrollTo(0, 0); render(); });
+  await dwell(page, 2500);
+  await click('[data-act="df-mes-write"]');            // DENY — held write
+  await dwell(page, 5500); await shot('03-mes-held');
+  await click('[data-act="df-advisory"]');             // advisory proceeds
+  await dwell(page, 5000);
 
-  // Cue 3 — 0:26–0:58  Operator Journey, real clicks incl. containment sim
-  await page.evaluate(() => { STATE.page = 'journey'; window.scrollTo(0, 0); render(); });
-  await dwell(page, 6000);
-  for (const st of ['investigate', 'authorize']) {
-    await page.click('[data-oj-step="' + st + '"]'); await dwell(page, 6000);
-  }
-  await page.click('[data-oj-step="contain"]'); await dwell(page, 4000);
-  await page.click('[data-oj="pause"]'); await dwell(page, 2500);          // browser-only pause
-  await page.click('[data-oj="attempt"]'); await dwell(page, 4500);        // SIMULATED_DENY shown
-  await shot('03-journey-contain');
+  // Scene 4 — 0:42–0:56  Factory in action: held-stock release denied, gauges live
+  await click('[data-act="df-lot-release"]');          // DENY — held stock
+  await dwell(page, 6500); await shot('04-factory-live');
+  await page.evaluate(() => window.scrollTo(0, 300));
+  await dwell(page, 7000);
 
-  // Cue 4 — 0:58–1:14  Verify stage: NOT_ASSESSED evidence boundary
-  await page.click('[data-oj-step="verify"]'); await dwell(page, 16000); await shot('04-journey-verify');
+  // Scene 5 — 0:56–1:14  Two-gate PO pair: expired stays held, qualified commits
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await click('[data-act="df-po"][data-id="REQ-2026-8842"]');
+  await dwell(page, 1200);
+  await page.locator('[data-act="open-review"]').last().click();   // open the pending request
+  await dwell(page, 800);
+  await click('[data-act="decide"][data-verdict="APPROVED"]');  // Authorized Buyer default
+  await dwell(page, 3500); await shot('05-po-held');
+  await click('[data-act="df-po"][data-id="REQ-2026-8855"]');
+  await dwell(page, 1200);
+  await page.locator('[data-act="open-review"]').last().click();
+  await dwell(page, 800);
+  await click('[data-act="decide"][data-verdict="APPROVED"]');
+  await dwell(page, 4000); await shot('06-po-committed');
 
-  // Cue 5 — 1:14–1:26  case report + public U6 verification link
-  await page.goto(BASE + '/?report=case:SYS-217-WRONG_TARGET', { waitUntil: 'networkidle' });
-  await page.evaluate(() => window.scrollTo(0, 900));
-  await dwell(page, 12000); await shot('05-case-report');
+  // Scene 6 — 1:14–1:30  Monitoring: torque anomaly + signal loss, then record
+  await click('[data-act="df-eq"][data-id="TORQUE_ANOMALY"]');
+  await dwell(page, 3500); await shot('07-anomaly');
+  await click('[data-act="df-eq"][data-id="SOURCE_GAP"]');
+  await dwell(page, 3500);
+  await page.goto(BASE + '/?report=demo', { waitUntil: 'networkidle' });
+  await dwell(page, 6000); await shot('08-demo-record');
 
-  // Cue 6 — 1:26–1:44  nine-system executive report
-  await page.goto(BASE + '/?report=exec', { waitUntil: 'networkidle' });
-  await dwell(page, 9000);
-  await page.evaluate(() => window.scrollTo(0, 1400));
-  await dwell(page, 9000); await shot('06-exec-report');
-
-  // Cue 7 — 1:44–1:50  Reports & Evidence hub close
-  await page.goto(BASE + '/?report=hub', { waitUntil: 'networkidle' });
-  await dwell(page, 6000); await shot('07-hub');
+  // Scene 7 — 1:30–1:40  Close: capability map + entry points
+  await page.goto(BASE + '/?report=judge', { waitUntil: 'networkidle' });
+  await dwell(page, 8000); await shot('09-showcase-close');
 
   await ctx.close();
   await browser.close();

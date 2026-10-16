@@ -278,7 +278,7 @@ test('deep links exec / s217 / s217-tech / judge resolve', async () => {
     ['?report=exec', 'EXECUTIVE ASSURANCE REPORT'],
     ['?report=s217', 'AI acted on the wrong work order'],
     ['?report=s217-tech', 'nine-dimension'],
-    ['?report=judge', 'Two-minute judge path'],
+    ['?report=judge', 'Two-minute showcase'],
     ['?report=hub', 'Reports & Evidence'],
   ]) {
     const { T } = await ready(q);
