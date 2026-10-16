@@ -6,10 +6,6 @@ This repository is the independent manufacturing data and UX reference for the *
 
 The purpose is to test **what HAIEC can discover and establish from connected evidence**, including additional source, authority, approval and effect data that customers may choose to provide. This project does not create an alternative HAIEC assurance engine.
 
-## Devin / HackFW governing plan (GitHub mirror)
-
-The complete HackFW Master v2.4 + v2.5, source-native v3.1, and multi-industry/telecom Google Drive plan texts are mirrored at **[docs/hackfw/](docs/hackfw/README.md)**. Start with **[Devin's repo-native handoff](docs/hackfw/DEVIN_START_HERE.md)** and the [enhanced v2.6 execution overlay](docs/hackfw/ENHANCED_EXECUTION_PLAN_v2.6.md) for current gaps, source-truth boundaries, security gates, ownership and the correct next implementation sequence. The three Drive source snapshots are preserved, not silently overwritten.
-
 ## Local start (Node.js 22+; no dependencies)
 
 ```bash
@@ -34,22 +30,8 @@ npm run verify
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
+**Judge path & deep links (Sprint 20):** `?report=judge` opens the two-minute demo path; `?report=exec`, `?report=s217`, `?report=s217-tech` and `?report=case:<CASE_ID>` deep-link any of the 45 canonical case reports; `?report=hub` opens Reports & Evidence. URLs carry public case identifiers only and fail closed to a "Report not found" hub notice. Judge guide: [`docs/hackfw/JUDGE-GUIDE.md`](docs/hackfw/JUDGE-GUIDE.md); submission pack: [`docs/hackfw/SUBMISSION.md`](docs/hackfw/SUBMISSION.md).
 
-## Operator Action Assurance — six-stage judged walkthrough (v2.5)
-
-Open [the deployed manufacturing demo](https://haiec-manufacturing-demo.vercel.app/) and choose **Operator Journey**. The guide follows **Detect → Investigate → Authorize → Contain → Verify → Report** and links to the existing 60-second Evidence Replay, SYS-217 evaluated case and public sample Master Assurance Report. See [the scoped UX, control and OWASP release plan](docs/OPERATOR-ACTION-ASSURANCE-UX-V2.5.md).
-
-**Critical source split:** Detection, rule `MFG-EFF-001 MATCH`, `REVIEW`, target `WO-217-4802 → WO-217-4803` and R01 `SATISFIED / RECEIPT_BOUND` are read from a **historical, SHA-256 verified persisted HAIEC evaluation of fictional manufacturing data**. The “Authorize” screen is a proposed human-response checklist, not a new delegated authorization. “Contain” is an **in-memory, browser-only fictional dispatch pause**; a local `SIMULATED_DENY` is not a HAIEC kill switch, tool boundary or native effect witness. “Verify” explicitly leaves post-response enforcement `NOT ESTABLISHED`; the old R01 receipt does not qualify new remediation. No live production monitoring, OT actuation, new evaluation, framework certification or signed report is performed by this page.
-
-This feature does not modify HAIEC's private engine, manufacturing v1 exports, v3.1 candidate fixtures, 27 frozen digests, or existing industry-specific evidence modes. A focused test checks six stages, simulated response isolation and fail-closed export rendering. **Sprint 17 update:** headless-browser acceptance ran against the deployed site — all six journey stages, nine systems, five assessment states, v1/v3 world selection, industry switching, 360px mobile, keyboard traversal and print emulation passed (32/32 checks).
-
-## Multi-industry presentation (HackFW v2.4)
-
-Open the **Industry Experiences** navigation item in the same [manufacturing demo](https://haiec-manufacturing-demo.vercel.app/), or use `?industry=telecom` for the historical TM Forum-reference view. One shared dashboard shell renders Manufacturing, Telecommunications, Electrical Equipment, Rail & Transportation, Electronics / AI Infrastructure and Supplier Network. The organization/profile selector is fictional and profile-scoped.
-
-Manufacturing remains the only industry with genuine frozen persisted HAIEC evaluations — the historical 27 v1 exports **plus** 45 canonical v3 evaluations (9 systems × 5 assessment states) persisted and exported under `data/evaluations-v3/` in Sprint 15/16. The v3.1 pack is enhanced source-native fixture and industry-profile data — not an independently established v3.1 assessed corpus. Telecommunications reconstructs the original TM Forum demonstration as a **historical reference only**, with interactive AL0/AL1/AL2 scenario states but no newly issued HAIEC findings. The four other sectors render `SIMULATION_ONLY` consequence stories from independent v3.1 fictional source events; no source profile can inherit another industry's evaluation, approval, receipt or report. No actual operator, company, event judge or corporate partnership is claimed.
-
-The data is built by `node scripts/build-industry-data.cjs` from `data/industry/` and `data/source-native/v3.1/profiles/`. See [industry release and truth contract](docs/INDUSTRY-DASHBOARD-RELEASE.md). Industrial real estate remains backlog.
 
 ## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)
 
@@ -103,7 +85,3 @@ The dashboard's **HAIEC Assurance** page is driven by real, persisted HAIEC eval
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/HAIEC-INTEGRATION-HANDOFF.md`](docs/HAIEC-INTEGRATION-HANDOFF.md).
 
 This repository does **not** contain customer data, customer credentials, executable plant commands, auto-deploy to HAIEC Main, unrestricted email delivery (the demo notify path is HAIEC-hosted and recipient-allowlisted), or cron-scheduled writes.
-
-## Source-native v3.1 expanded manufacturer evidence
-
-The additive [v3.1 evidence pack](data/source-native/v3.1/README.md) provides profile-shaped input candidates for all nine systems, 36 scenario runs, four simulation-only industry profiles, distinct remediation receipts and materialized negative inputs. Run `node scripts/generate-source-native-v3-1.cjs --check` to verify the SHA-256 manifest. These are **synthetic unqualified source records**; fresh HAIEC SaaS evaluations and new dashboards/reports remain separate actions. Historical 27 evaluations and v2/v3 artifacts are preserved.

@@ -19,9 +19,11 @@ Every step is a shareable URL — open the demo, then:
 
 ## B. Video deliverable
 
-- Preferred: screen-record the script above against the deployed site (< 2 min, MP4/WebM).
-- Fallback: ordered screenshots under `docs/hackfw/screens/` + this script — do not claim a video exists until one is recorded.
-- Status: **recording not yet produced** — human step (owner: Subodh).
+- Source recording: **CREATED** — `docs/hackfw/screens/judge-path-recording.webm` (WebM, ~2 min path capture, reproducible via `scripts/capture-judge-path.cjs`, requires playwright).
+- Ordered stills: `docs/hackfw/screens/01-flagship.png` … `06-hub.png`.
+- Final polished video (edited/voiced MP4 for YouTube/Vimeo): **PENDING** — human step. MP4 conversion needs ffmpeg or an editor; not required to claim the WebM source exists.
+- Publicly hosted video URL (YouTube/Vimeo): **PENDING** — requires human upload; do not claim until the provider confirms.
+- Devpost submission: **UNCONFIRMED** until actually submitted.
 
 ## C. Devpost submission copy
 
