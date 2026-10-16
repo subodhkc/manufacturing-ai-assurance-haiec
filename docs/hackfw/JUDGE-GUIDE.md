@@ -175,4 +175,34 @@ records inside the fictional scenario — live connectors stay not connected.
 - Player controls, pause/step/speed, hidden-tab pause and reduced-motion
   behavior are unchanged; CI now `--check`-s both generators for drift.
 
+**Sprint 26 — interactive Digital Factory:**
+
+- **Digital Factory page (nav "DF")** — one fictional plant in three panels:
+  MES work orders (`WO-217-4802`, `WO-217-4803`, `WO-340-9110` with quality
+  holds and per-order attempt history), ERP (`REQ-2026-8842` PO proposal,
+  supplier qualifications, held/quarantined lots) and virtual equipment
+  (`EQ-TORQUE-217`, `EQ-SPINDLE-88`, `EQ-DYNO-412` gauges with deterministic
+  readings, heartbeat, alarm and signal-loss states).
+- **Interactive actions all flow through the same local policy as the Decision
+  Lab** — `policyVerdict`/`commitOutcome` are the single funnel: Attempt MES
+  update → held (out of scope); Issue advisory note → applied in scope;
+  Commit purchase order → pending buyer review (approve in the review modal
+  to commit); held-stock and receiving-lot releases → denied; 3/40/60-engine
+  outcomes unchanged.
+- **Anomaly buttons** (torque anomaly, temperature rise, signal interruption,
+  restore) change the virtual equipment deterministically and record one
+  `OBSERVED` monitoring event each in the shared ledger — the same
+  `EV-####`/`REV-####` sequence the Decision Lab uses, so an action can never
+  show two different outcomes.
+- **Interaction ribbon** at the top traces each action proposed → boundary →
+  review → outcome → ledger; the live feed shows pending reviews with
+  open-review buttons and links to the verified `SYS-217-WRONG_TARGET` report.
+- **`?report=gov`** gained a Digital Factory Operations section: fixture
+  baseline table plus in-session activity, classified separately from the
+  digest-verified evaluations. Disclosure is concentrated in the "About this
+  demonstration" card; the saved 45/27 evaluations are untouched.
+- Fixture `data/demo-factory/digital-factory.json` (`demo-digital-factory-1.0.0`)
+  is the single source for new identities; `scripts/build-factory-data.cjs`
+  emits the browser bundle and is `--check`-enforced in CI.
+
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.

@@ -425,17 +425,39 @@ function rpGov(){
     '<li><b>Pending systems</b> — '+dossiers.filter(d=>govDecision(d)==='PENDING').map(d=>d.systemId).join(', ')+' await accountable decisions; each remains blocked from its consequential request until then.</li>'+
     '<li><b>Monitoring gaps</b> — sources stale or missing at the fixed scenario clock (including <code>mes-release-readback</code>) need qualified coverage before autonomy expands.</li>'+
     '<li><b>Evidence gaps</b> — code reachability and several authority-plane cells remain NOT_ASSESSED across the corpus; the case reports name exactly which.</li></ul></section>';
+  /* Sprint 26 — Digital Factory Operations: the shared browser-local factory
+     state (versioned fixture) plus any in-session demonstration activity,
+     classified separately from the digest-verified evaluation records. */
+  const fx=window.HAIEC_DIGITAL_FACTORY||null;
+  const sessEv=(typeof STATE!=='undefined'?STATE.events:[]).filter(e=>e.channel==='FACTORY'||e.channel==='LAB');
+  const sessReq=(typeof STATE!=='undefined'?STATE.requests:[]);
+  const dfBase=fx?'<p class="tiny muted">Baseline from versioned fixture <code>'+x(fx.schemaVersion)+'</code>: '+fx.workOrders.length+' work orders, '+fx.erp.suppliers.length+' suppliers, '+fx.erp.purchaseOrders.length+' purchase order, '+fx.erp.inventory.length+' inventory lots, '+fx.equipment.length+' equipment records. '+x(fx.plant)+' · reference clock '+x(fx.referenceClock)+'.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Record</th><th>Owner agent</th><th>State in fixture</th><th>Meaning</th></tr></thead><tbody>'+
+    fx.workOrders.map(w=>'<tr><td class="tiny"><code>'+x(w.id)+'</code> · '+x(w.station)+'</td><td class="tiny">'+x(w.systemId)+'</td><td class="tiny">'+x(w.qualityStatus)+' · '+w.completedQty+'/'+w.qty+'</td><td class="tiny">'+x(w.note)+'</td></tr>').join('')+
+    fx.erp.purchaseOrders.map(p=>'<tr><td class="tiny"><code>'+x(p.id)+'</code> · ERP</td><td class="tiny">'+x(p.systemId)+'</td><td class="tiny">'+x(p.status)+' · $'+x(Number(p.amount).toLocaleString('en-US'))+'</td><td class="tiny">'+x(p.note)+'</td></tr>').join('')+
+    fx.erp.inventory.map(l=>'<tr><td class="tiny"><code>'+x(l.lotId)+'</code> · ERP</td><td class="tiny">'+x(l.systemId)+'</td><td class="tiny">'+x(l.status)+' · '+l.qty+' × '+x(l.sku)+'</td><td class="tiny">'+x(l.note)+'</td></tr>').join('')+
+    fx.equipment.map(q=>'<tr><td class="tiny"><code>'+x(q.id)+'</code> · '+x(q.kind)+'</td><td class="tiny">'+x(q.systemId)+'</td><td class="tiny">virtual readings · heartbeat '+q.heartbeatSec+'s</td><td class="tiny">Deterministic demonstration telemetry — no PLC connection.</td></tr>').join('')+
+    '</tbody></table></div>':'<p class="tiny muted">Factory fixture not loaded.</p>';
+  const dfActivity=sessEv.length?
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Event</th><th>System</th><th>Decision</th><th>Effect</th><th>Review</th></tr></thead><tbody>'+
+    sessEv.slice(0,12).map(e=>'<tr><td class="tiny"><code>'+x(e.id)+'</code> '+x(e.title)+'</td><td class="tiny">'+x(e.systemId||'')+'</td><td>'+statusPill(e.decision||'recorded')+'</td><td class="tiny">'+x(e.effect||'NONE')+'</td><td class="tiny">'+(e.requestId?x(e.requestId):'—')+'</td></tr>').join('')+'</tbody></table></div>'+
+    (sessReq.length?'<p class="tiny">Open in-session requests: '+sessReq.map(r=>'<code>'+x(r.id)+'</code> '+x(r.status)).join(' · ')+'</p>':''):
+    '<p class="tiny muted">No in-session demonstration activity yet. Interactive actions on the Digital Factory page and the Decision Lab write to one shared browser-local ledger; those rows will appear here, classified as browser-generated activity — never as HAIEC-issued evaluations.</p>';
+  const dfSec='<section class="rp-sec"><h2>Digital Factory Operations</h2>'+
+    '<p class="tiny muted">Interactive demonstration state — browser-local, seeded by fixture <code>demo-digital-factory-1.0.0</code>, evaluated by the same local policy and ledger as the Decision Lab. Classified separately from the digest-verified HAIEC evaluation records elsewhere in this report.</p>'+
+    dfBase+dfActivity+'</section>';
   const provenance='<section class="rp-sec"><h2>What is real versus authored</h2><table class="tbl"><tbody>'+
     '<tr><td>Assurance evaluations</td><td class="tiny"><b>Real HAIEC output</b> — '+hxExports().length+' digest-verified exports over synthetic evidence; all REVIEW. Unchanged by anything on this page.</td></tr>'+
     '<tr><td>Human decisions, scopes, reviewers</td><td class="tiny"><b>Authored scenario</b> — fictional roles and decisions; no authenticated people, no entitlement proof.</td></tr>'+
     '<tr><td>Monitoring & source states</td><td class="tiny"><b>Authored scenario</b> — fixed 2026-10-15 clock; freshness derived from fixture records.</td></tr>'+
+    '<tr><td>Digital-factory activity</td><td class="tiny"><b>Browser-generated demonstration</b> — fixture-seeded MES/ERP/equipment state and in-session ledger entries; deterministic, reproducible, never an assurance record.</td></tr>'+
     '<tr><td>Execution holds / notification previews</td><td class="tiny"><b>Demonstration behavior</b> — no dispatcher, email or SMS is connected.</td></tr></tbody></table></section>';
   return header({eyebrow:'OPERATING & GOVERNANCE REPORT / NINE SYSTEMS',title:'Enterprise Operating & Governance Report',
     sub:pill('PRESENTATION — NOT HAIEC ISSUED','warn')+' '+pill('authored operating layer + verified evaluations','info'),
-    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button><button class="btn" type="button" data-act="page" data-id="governance">Interactive governance view</button>'})+
+    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button><button class="btn" type="button" data-act="page" data-id="governance">Interactive governance view</button><button class="btn" type="button" data-act="page" data-id="factory">Digital Factory →</button>'})+
     signatureBlock('SKIPPED')+printRow()+
     '<div class="rp-print-head">HAIEC Enterprise Operating &amp; Governance Report · fictional manufacturing · presentation derivative — signature SKIPPED · authored scenario + digest-verified evaluations</div>'+
-    intro+portfolio+two217+next+provenance;
+    intro+portfolio+two217+dfSec+next+provenance;
 }
 
 /* ---------- judge path (~2 minutes, manufacturing track) ---------- */
