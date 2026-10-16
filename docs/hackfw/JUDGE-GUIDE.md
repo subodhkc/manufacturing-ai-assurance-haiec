@@ -88,8 +88,8 @@ producers.
 
 - [x] Public repo with run instructions (root README).
 - [x] Stable demo: frozen verified exports; works static/`file://` and deployed.
-- [x] Demo video source recording — `docs/hackfw/screens/judge-path-recording.webm` (CREATED, ~110 s, 1440×900, no audio) + timed subtitles `docs/hackfw/judge-path-subtitles.vtt` + voiceover script `docs/hackfw/NARRATION.md`.
-- [ ] Final polished/hosted video (YouTube/Vimeo link for Devpost) — PENDING until provider-confirmed.
+- [x] Demo video — `docs/hackfw/screens/judge-path-final.mp4` (CREATED, 113 s, 1440×900 H.264, AI voiceover + burned captions; source WebM + `judge-path-subtitles.vtt` + `NARRATION.md` retained).
+- [ ] Hosted video URL (YouTube/Vimeo link for Devpost) — PENDING until provider-confirmed.
 - [ ] Participant talent registration — talent.fwtx.city, human-owned, unconfirmed.
 - [ ] In-person Demo Day — October 30, 2026, 9:30 a.m.–3:00 p.m. CDT (separate event; RSVP luma.com/ygyxb4yy).
 

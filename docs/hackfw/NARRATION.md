@@ -16,8 +16,12 @@ authoritative timings and match the on-screen segments.
 
 ## Editing notes
 
+- **Final cut (produced):** `docs/hackfw/screens/judge-path-final.mp4` — 113 s,
+  H.264/AAC 1440×900, AI voiceover (edge-tts `en-US-ChristopherNeural`) aligned to
+  the cue table above, captions burned in from `judge-path-subtitles.vtt`, ~9.5 s
+  white lead-in trimmed from the source recording.
 - Source recording: `docs/hackfw/screens/judge-path-recording.webm` (1440×900, no audio — MediaRecorder screen-only).
-- Subtitles: `docs/hackfw/judge-path-subtitles.vtt` — mux or burn in with any editor
-  (e.g. `ffmpeg -i judge-path-recording.webm -vf "subtitles=judge-path-subtitles.vtt" -c:a aac voiceover.m4a → final.mp4`).
+- Subtitles: `docs/hackfw/judge-path-subtitles.vtt` — also usable as a separate
+  YouTube caption upload (WebVTT is accepted).
 - Do not add claims beyond this script — no detection-accuracy percentages, no real
   OT control, no customer results.
