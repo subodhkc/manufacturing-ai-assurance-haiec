@@ -21,6 +21,15 @@ const g = read('data/demo-governance/governance-scenarios.json');
 if (g.schemaVersion !== 'demo-governance-scenario-1.0.0') throw new Error('SHARED_SCHEMA');
 if (g.provenance !== 'SIMULATION_ONLY') throw new Error('SHARED_PROVENANCE');
 
+/* Versioned scenario-readiness fixture (seven honest facets, authored states). */
+const readiness = read('data/demo-governance/scenario-readiness.json');
+if (readiness.schemaVersion !== 'scenario-readiness-1.0.0') throw new Error('READINESS_SCHEMA');
+if (readiness.systemId !== 'SYS-217' || (readiness.facets || []).length !== 7) throw new Error('READINESS_SHAPE');
+const readyById = Object.fromEntries(readiness.facets.map(f => [f.id, f]));
+if (readyById['qualified-evidence'].state !== 'EVALUATED') throw new Error('READINESS_EVIDENCE');
+if (readyById['org-entitlement'].state !== 'NOT_ASSESSED') throw new Error('READINESS_ENTITLEMENT');
+if (readyById['approval-and-control'].state !== 'PENDING_DEMO_GATEWAY') throw new Error('READINESS_APPROVAL');
+
 /* ---- display names (fixture carries ids only) ---- */
 const NAMES = {
   'SYS-340': 'Vision Inspection AI', 'SYS-FC1': 'Demand Forecast AI',
@@ -118,8 +127,55 @@ function ev(scenarioId, systemId, seq, offsetMs, stage, lane, eventType, severit
 }
 const decisionRequest = d => ({ decisionRequestId: d.request.requestId, decisionRef: d.decisionRef || undefined });
 
+/* Station 217 two-episode journey (~46s): Episode A = the saved HAIEC
+   evaluation detected the recorded target difference (Oct 14). Episode B =
+   the subsequent fictional MES write-expansion request stays pending while a
+   later demo write attempt is held at the illustrative gateway (Oct 15).
+   Distinct identifiers: evaluation SYS-217-WRONG_TARGET / request
+   DEMO-REQ-SYS-217-06 / held attempt DEMO-GW-SYS-217-02. */
+function journey217(d) {
+  const sid = 'mfg-journey-SYS-217';
+  const mon = latestRecord(d.systemId);
+  const req = decisionRequest(d);
+  const E = [];
+  E.push(ev(sid, d.systemId, 1, 0, 'REQUEST', 'action', 'REVIEW_REQUESTED', 'info',
+    'Write-expansion review requested', d.proposedOperation, req));
+  E.push(ev(sid, d.systemId, 2, 4000, 'SCOPE', 'action', 'SCOPE_CHECK', 'warn',
+    'Outside advisory scope', 'Autonomous MES writes sit outside the approved operating scope — an accountable human decision is required.', req));
+  E.push(ev(sid, d.systemId, 3, 8000, 'REVIEW', 'action', 'RECORDED_MISMATCH_DETECTED', 'warn',
+    'Earlier recorded mismatch detected',
+    'Saved evaluation: approved target WO-217-4802, recorded target WO-217-4803 — target divergence found in the submitted evidence. Result: review required.',
+    Object.assign({ evaluationRef: d.canonicalCaseId }, req)));
+  E.push(ev(sid, d.systemId, 4, 12000, 'REQUEST', 'reviewer', 'REVIEWER_ASSIGNED', 'info',
+    'Accountable reviewer assigned', d.approverRole + ' takes the review for this request.', req));
+  E.push(ev(sid, d.systemId, 5, 16000, 'NOTIFY', 'reviewer', 'EMAIL_PREVIEW', 'info',
+    'Reviewer notified', 'Email preview: "Torque Quality — Station 217 write expansion awaiting your decision."', req));
+  E.push(ev(sid, d.systemId, 6, 20000, 'NOTIFY', 'reviewer', 'SMS_PREVIEW', 'info',
+    'Reminder preview', 'Text alert preview: "HAIEC review ' + d.request.requestId + ' awaiting your decision."', req));
+  E.push(ev(sid, d.systemId, 7, 24000, 'REVIEW', 'reviewer', 'REVIEW_OPENED', 'info',
+    'Request opened', 'Reviewer opened the request and its evidence.', req));
+  E.push(ev(sid, d.systemId, 8, 28000, 'DECISION', 'reviewer', 'DECISION_PENDING', 'hold',
+    'Decision pending', 'No decision recorded yet. The consequential request stays open.', req));
+  E.push(ev(sid, d.systemId, 9, 32000, 'STATUS', 'action', 'SUBSEQUENT_WRITE_HELD', 'hold',
+    'Subsequent write attempt held',
+    'A later autonomous write attempt (DEMO-GW-SYS-217-02) is held at the demonstration gateway while the expansion decision is pending.',
+    Object.assign({ attemptRef: 'DEMO-GW-SYS-217-02' }, req)));
+  E.push(ev(sid, d.systemId, 10, 36000, 'STATUS', 'action', 'OPERATING_STATUS', 'hold',
+    'Advisory work continues — write expansion still pending',
+    'Lower-risk advisory activity may continue inside the existing scope. The MES write expansion is not approved.', req));
+  E.push(ev(sid, d.systemId, 11, 40000, 'MONITORING', 'monitoring', 'MONITORING_EVENT', 'info',
+    'Monitoring coverage partial',
+    mon ? 'Latest recorded event: ' + mon.eventType + ' — ' + mon.target + '. One source missing at the fixed scenario clock.'
+        : 'No source records in this scenario.', req));
+  E.push(ev(sid, d.systemId, 12, 44000, 'EVIDENCE', 'monitoring', 'EVIDENCE_LINK', 'info',
+    'Supporting evidence available', 'Verified report and review history stay linked to this system.',
+    Object.assign({ evaluationRef: d.canonicalCaseId }, req)));
+  return { scenarioId: sid, systemId: d.systemId, title: 'Human review journey — ' + d.systemName, durationMs: 47000, events: E };
+}
+
 /* Journey: the human review lifecycle for one system (~40s). */
 function journey(d) {
+  if (d.systemId === 'SYS-217') return journey217(d);
   const sid = 'mfg-journey-' + d.systemId;
   const dec = DECISION[d.humanDecision];
   const q = d.request;
@@ -217,6 +273,7 @@ const out = {
   generatedFrom: { fixtureSchema: g.schemaVersion, fixtureGeneratedAt: g.generatedAt },
   referenceClock: g.referenceClock,
   dossiers,
+  readiness,
   scripts: { controlRoom: controlRoom(), journey: Object.fromEntries(dossiers.map(j => [j.systemId, journey(j)])) },
 };
 

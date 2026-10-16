@@ -21,7 +21,7 @@ window.RPT=RPT; // report-view navigation state — inspectable like HX/STATE
    Only public case identifiers appear in URLs — never org IDs,
    principals or internal routing fields. Unknown/invalid values fail
    back to the hub with an explicit notice, never to findings. */
-const RPT_VIEWS={hub:'hub',exec:'exec',s217:'s217','s217-tech':'s217',judge:'judge'};
+const RPT_VIEWS={hub:'hub',exec:'exec',s217:'s217','s217-tech':'s217',judge:'judge',gov:'gov'};
 function rptReadUrl(){
   try{
     const p=new URLSearchParams(window.location.search).get('report');
@@ -43,6 +43,7 @@ function rptSyncUrl(push){
     let v=null;
     if(RPT.view==='exec')v='exec';
     else if(RPT.view==='judge')v='judge';
+    else if(RPT.view==='gov')v='gov';
     else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
     else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
     else if(RPT.view==='hub')v='hub';
@@ -107,6 +108,7 @@ function signatureBlock(kind,extra){
 function rptDeepLink(){
   let v=null;
   if(RPT.view==='exec')v='exec';else if(RPT.view==='judge')v='judge';
+  else if(RPT.view==='gov')v='gov';
   else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
   else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
   return v?'?report='+v:null;
@@ -277,13 +279,19 @@ function rpS217(){
     '<li><b>Obtain additional evidence</b> — the planes marked NOT_ASSESSED in this evaluation are the explicit gaps.</li>'+
     '<li><b>Independently validate any corrective action</b> — a simulated or self-reported containment step is not a verified effect.</li>'+
     '<li><b>Establish post-response witnesses</b> — an independent readback on the corrected state and runtime enforcement evidence at the dispatch path.</li></ul></section>';
+  const twoEp='<section class="rp-sec"><h2>Two linked but distinct events</h2>'+
+    '<div class="rp-compare"><div><div class="ind-overline">Episode A · recorded evidence — Oct 14</div>'+
+    '<p>The AI was delegated <code>'+x(f.approved)+'</code>; the committed effect landed on <code>'+x(f.observed)+'</code>. HAIEC\u2019s deterministic engine detected the target divergence in the submitted evidence — disposition '+statusPill('REVIEW')+'. <b>Detected, not prevented</b> — the transaction had already committed.</p></div>'+
+    '<div><div class="ind-overline">Episode B · governance scenario — Oct 15</div>'+
+    '<p>A subsequent request to expand autonomous MES write authority (<code>DEMO-REQ-SYS-217-06</code>) is routed to the Quality Director role and stays <b>pending</b>. A later write attempt (<code>DEMO-GW-SYS-217-02</code>) is held at the demonstration gateway while advisory work continues — a legitimate simulated hold, not a claim about the earlier event.</p></div></div>'+
+    (RPT.s217mode==='exec'&&typeof govReadinessTable==='function'?govReadinessTable():'')+'</section>';
   const techBody='<section class="rp-sec"><h2>Detector outcome (verbatim)</h2><p class="tiny">'+x(f.effReason)+'</p>'+rpFindings(a)+'</section>'+
     '<section class="rp-sec"><h2>Delegated action integrity — nine-dimension surface</h2>'+rpDai(a)+'</section>'+
     '<section class="rp-sec"><h2>Authority planes</h2>'+planeStrip(a.evaluation)+'</section>'+
     '<section class="rp-sec"><h2>Effect witness facet</h2>'+rpEffectWitness(a)+'</section>'+
     '<section class="rp-sec"><h2>Lineage & verification</h2>'+rpLineage(a)+'<p class="tiny muted" style="margin-top:8px">'+((a.evaluation.limitations||[]).map(x).join(' · '))+'</p></section>';
   return header({eyebrow:'FLAGSHIP REPORT / SYS-217',title:'Station 217 — Wrong Target',sub:pill('SYNTHETIC LAB EVIDENCE','warn')+' '+pill('digest verified','go'),actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
-    modeBtn+hero+canon+signatureBlock('SKIPPED')+printRow()+
+    modeBtn+hero+canon+twoEp+signatureBlock('SKIPPED')+printRow()+
     '<div class="rp-print-head">HAIEC Flagship Report · SYS-217 Wrong Target · '+(RPT.s217mode==='tech'?'Technical':'Executive')+' version · presentation derivative — signature SKIPPED</div>'+
     (RPT.s217mode==='tech'?techBody:execBody)+
     '<section class="rp-sec"><h2>Full canonical case report</h2><p><button class="btn sm" type="button" data-rp="case" data-id="SYS-217-WRONG_TARGET">Open the complete case report (all sections) →</button></p></section>';
@@ -366,6 +374,70 @@ function rpExecutive(){
     (order[RPT.audience]||order.executive).join('');
 }
 
+/* ---------- Enterprise Operating & Governance Report ----------
+   One readable view combining digest-verified saved evaluations (real)
+   with the authored fictional operating layer (decisions, scopes,
+   reviewers, monitoring states, readiness). Never a newly issued
+   assurance report — presentation material bound to existing artifacts. */
+function rpGov(){
+  const SHARED=window.HAIEC_SCENARIO_SHARED;
+  if(!SHARED||!Array.isArray(SHARED.dossiers))return header({eyebrow:'OPERATING & GOVERNANCE REPORT',title:'Scenario data missing',sub:'dashboard/data/scenario-shared.js is not loaded.'});
+  if(!HXDATA||!HX.digestsDone)return header({eyebrow:'OPERATING & GOVERNANCE REPORT',title:'Verifying export integrity',sub:pill('VERIFYING','info')});
+  const dossiers=SHARED.dossiers;
+  const counts={APPROVED:0,REJECTED:0,PENDING:0};
+  dossiers.forEach(d=>{counts[d.humanDecision]=(counts[d.humanDecision]||0)+1;});
+  const sysRow=d=>{
+    const st=govDecision(d);
+    const wt=hxFor(d.systemId,'WRONG_TARGET');
+    const verified=wt?verifiedOf(wt):null;
+    return '<tr><td><b>'+x(d.systemId)+'</b><div class="tiny muted">'+x(d.systemName)+'</div></td>'+
+      '<td class="tiny">'+x(d.proposedOperation)+'</td>'+
+      '<td class="tiny"><span class="tiny muted">Permitted:</span> '+x(d.allowedOperations.join(' · '))+'<br><span class="tiny muted">Excluded:</span> '+x(d.prohibitedOperations.join(' · '))+'</td>'+
+      '<td>'+govDecisionBadge(d)+'</td>'+
+      '<td class="tiny">'+x(d.approverRole)+(d.decidedAt?'<div class="tiny muted">'+x(d.decidedAt.slice(0,10))+' · expires '+x(d.expiresAt||'—')+'</div>':'<div class="tiny muted">awaiting decision</div>')+'</td>'+
+      '<td>'+govMonBadge(d.systemId)+'</td>'+
+      '<td>'+(wt&&verified===true?statusPill(wt.evaluation.disposition):'<span class="tiny muted">—</span>')+'</td>'+
+      '<td>'+(wt?'<button class="btn sm" type="button" data-rp="case" data-id="'+x(wt.sourceCase.caseId)+'">Report →</button>':'')+'</td></tr>';
+  };
+  const intro='<div class="rp-exec-p1"><div class="ind-eyebrow">HAIEC ENTERPRISE OPERATING &amp; GOVERNANCE REPORT · FICTIONAL MANUFACTURING</div>'+
+    '<h1>Nine AI systems. Three operating decisions approved, two rejected, four still pending — every consequential action stays under human control.</h1>'+
+    '<p class="rp-lede">This report joins two deliberately separate facts. The <b>assurance layer</b> is real: '+hxExports().length+' digest-verified HAIEC evaluations over synthetic manufacturing evidence — all '+statusPill('REVIEW')+'. The <b>operating layer</b> is authored scenario material: fictional reviewer decisions, approval scopes, monitoring states and demonstration holds that show how HAIEC\u2019s governance model keeps a human accountable for every consequential change.</p>'+
+    '<div class="rp-statrow">'+
+    '<div class="rp-stat"><b>9</b><span>fictional AI systems</span></div>'+
+    '<div class="rp-stat"><b>'+x(counts.APPROVED)+'</b><span>approved within scope</span></div>'+
+    '<div class="rp-stat"><b>'+x(counts.REJECTED)+'</b><span>rejected expansions</span></div>'+
+    '<div class="rp-stat"><b>'+x(counts.PENDING)+'</b><span>pending human decisions</span></div>'+
+    '<div class="rp-stat"><b>'+hxExports().length+'</b><span>digest-verified evaluations</span></div></div>'+
+    '<h2>How HAIEC operates across this enterprise</h2>'+
+    '<p><b>Understand</b> — every system\u2019s purpose, agents, integrations and declared consequential actions are cataloged. <b>Assure</b> — deterministic, digest-verified evaluation of submitted evidence establishes what actually happened (Station 217\u2019s recorded target divergence is the flagship). <b>Govern &amp; Operate</b> — declared operating scope plus an accountable human decision for each consequential change; lower-risk work continues while consequential requests wait for a named reviewer.</p>'+
+    '<p class="tiny muted">Six capabilities — Discover, Evaluate, Authorize, Monitor, Protect, Verify — are independently selectable; this report shows them operating together in one environment.</p></div>';
+  const portfolio='<section class="rp-sec"><h2>Nine-system operating portfolio</h2>'+
+    '<p class="tiny muted">Decisions, scopes, reviewer roles and monitoring states are authored fictional scenario data (fixture <code>demo-governance-scenario-1.0.0</code>); the assurance column is the digest-verified wrong-target evaluation result — verbatim.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Requested consequential change</th><th>Declared operating scope</th><th>Human Review Decision</th><th>Accountable role</th><th>Monitoring Coverage</th><th>Assurance</th><th></th></tr></thead><tbody>'+
+    dossiers.map(sysRow).join('')+'</tbody></table></div></section>';
+  const two217='<section class="rp-sec"><h2>Station 217 — detection, then demonstrated control</h2>'+
+    '<p><b>Episode A — recorded evidence (Oct 14).</b> The agent was delegated work order <code>WO-217-4802</code>; the committed effect landed on <code>WO-217-4803</code>. HAIEC\u2019s deterministic engine detected the target divergence in the submitted evidence — assurance result '+statusPill('REVIEW')+', digest-verified and publicly checkable.</p>'+
+    '<p><b>Episode B — operating scenario (Oct 15).</b> A subsequent request (<code>DEMO-REQ-SYS-217-06</code>) to expand autonomous MES write authority is checked against the operating boundary, routed to the Quality Director role, and remains <b>pending</b>. A later write attempt (<code>DEMO-GW-SYS-217-02</code>) is held at the demonstration gateway while advisory work continues inside the approved scope. This is a simulated blocked-action demonstration — the earlier recorded event was detected, not prevented.</p>'+
+    '<div class="flex" style="gap:8px;flex-wrap:wrap"><button class="btn sm" type="button" data-rp="case" data-id="SYS-217-WRONG_TARGET">Verified case report →</button><button class="btn sm" type="button" data-rp="s217-exec">Station 217 brief →</button><a class="btn sm" target="_blank" rel="noopener" href="https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public verified receipt ↗</a></div>'+
+    (typeof govReadinessTable==='function'?govReadinessTable():'')+'</section>';
+  const next='<section class="rp-sec"><h2>Required next business actions</h2><ul class="rp-list">'+
+    '<li><b>SYS-217</b> — complete the Quality Director review of request <code>DEMO-REQ-SYS-217-06</code> and restore qualified torque-tool source coverage before expanding write authority.</li>'+
+    '<li><b>Pending systems</b> — '+dossiers.filter(d=>govDecision(d)==='PENDING').map(d=>d.systemId).join(', ')+' await accountable decisions; each remains blocked from its consequential request until then.</li>'+
+    '<li><b>Monitoring gaps</b> — sources stale or missing at the fixed scenario clock (including <code>mes-release-readback</code>) need qualified coverage before autonomy expands.</li>'+
+    '<li><b>Evidence gaps</b> — code reachability and several authority-plane cells remain NOT_ASSESSED across the corpus; the case reports name exactly which.</li></ul></section>';
+  const provenance='<section class="rp-sec"><h2>What is real versus authored</h2><table class="tbl"><tbody>'+
+    '<tr><td>Assurance evaluations</td><td class="tiny"><b>Real HAIEC output</b> — '+hxExports().length+' digest-verified exports over synthetic evidence; all REVIEW. Unchanged by anything on this page.</td></tr>'+
+    '<tr><td>Human decisions, scopes, reviewers</td><td class="tiny"><b>Authored scenario</b> — fictional roles and decisions; no authenticated people, no entitlement proof.</td></tr>'+
+    '<tr><td>Monitoring & source states</td><td class="tiny"><b>Authored scenario</b> — fixed 2026-10-15 clock; freshness derived from fixture records.</td></tr>'+
+    '<tr><td>Execution holds / notification previews</td><td class="tiny"><b>Demonstration behavior</b> — no dispatcher, email or SMS is connected.</td></tr></tbody></table></section>';
+  return header({eyebrow:'OPERATING & GOVERNANCE REPORT / NINE SYSTEMS',title:'Enterprise Operating & Governance Report',
+    sub:pill('PRESENTATION — NOT HAIEC ISSUED','warn')+' '+pill('authored operating layer + verified evaluations','info'),
+    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button><button class="btn" type="button" data-act="page" data-id="governance">Interactive governance view</button>'})+
+    signatureBlock('SKIPPED')+printRow()+
+    '<div class="rp-print-head">HAIEC Enterprise Operating &amp; Governance Report · fictional manufacturing · presentation derivative — signature SKIPPED · authored scenario + digest-verified evaluations</div>'+
+    intro+portfolio+two217+next+provenance;
+}
+
 /* ---------- judge path (~2 minutes, manufacturing track) ---------- */
 
 function rpJudge(){
@@ -423,6 +495,7 @@ function pageReports(){
   if(RPT.view==='exec')return rpExecutive();
   if(RPT.view==='s217')return rpS217();
   if(RPT.view==='judge')return rpJudge();
+  if(RPT.view==='gov')return rpGov();
   const aud='<div class="ind-controls" style="margin:0 0 14px"><div class="ind-field"><label for="rp-aud">Audience</label><select id="rp-aud">'+AUDIENCES.map(t=>'<option value="'+x(t.id)+'" '+(t.id===RPT.audience?'selected':'')+'>'+x(t.label)+'</option>').join('')+'</select><p class="tiny muted" style="margin-top:4px">'+x((AUDIENCES.find(t=>t.id===RPT.audience)||AUDIENCES[0]).hint)+'</p></div><span style="margin-left:auto">'+pill('Presentation layer — findings verbatim from verified exports','info')+'</span></div>';
   const notFound=RPT.notice?'<div class="notice warn"><div><b>Report not found</b><p><code>'+x(RPT.notice)+'</code> does not match a persisted export in the verified corpus — no report was rendered. Pick a report below.</p></div></div>':'';
   return header({eyebrow:'REPORTS & EVIDENCE',title:'Reports & Evidence',
@@ -432,7 +505,10 @@ function pageReports(){
     '<button class="rp-tile rp-tile-hero" type="button" data-rp="judge"><div class="ind-overline">START HERE · ~2 MIN</div><h3>Judge demo path</h3><p>A fixed seven-step sequence through the deployed demo — consequence, evidence, response, boundaries, verification and scale. Manufacturing track.</p></button>'+
     '<button class="rp-tile" type="button" data-act="try-open"><div class="ind-overline">INTERACTIVE</div><h3>Try it yourself — reproduce the finding</h3><p>Compare persisted evidence states, change a simulated input, observe the local result — with canonical, replay and simulation clearly separated.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="exec"><div class="ind-overline">EXECUTIVE</div><h3>Nine-System Executive Assurance Report</h3><p>45 canonical v3 evaluations, plain-language business significance, state comparison, unknowns, owners and provenance.</p></button>'+
-    '<button class="rp-tile" type="button" data-rp="s217"><div class="ind-overline">FLAGSHIP</div><h3>Station 217 — Wrong Target</h3><p>AI acted on the wrong work order. HAIEC identified the consequential divergence. Executive + technical versions.</p></button>'+
+    '<button class="rp-tile" type="button" data-rp="gov"><div class="ind-overline">OPERATING &amp; GOVERNANCE</div><h3>Enterprise Operating &amp; Governance Report</h3><p>The whole fictional portfolio: nine systems, operating scopes, 3 approved / 2 rejected / 4 pending decisions, monitoring coverage, Station 217\u2019s two events and next actions.</p></button>'+
+    '<button class="rp-tile" type="button" data-rp="s217"><div class="ind-overline">FLAGSHIP</div><h3>Station 217 — Detection, then Demonstrated Control</h3><p>Episode A: the saved evaluation detected the recorded target difference. Episode B: the subsequent write-expansion request stays pending while a later attempt is held.</p></button>'+
+    '<a class="rp-tile" href="report/supporting/haiec-12p.html" target="_blank" rel="noopener"><div class="ind-overline">SUPPORTING · VISUAL DEMO</div><h3>Twelve-page HAIEC program report ↗</h3><p>Corrected visual package — nine unique system cards, the platform map and the two-event Station 217 timeline. Presentation material, not an issued assurance report.</p></a>'+
+    '<a class="rp-tile" href="report/supporting/station-217-readiness.html" target="_blank" rel="noopener"><div class="ind-overline">SUPPORTING · VISUAL DEMO</div><h3>Station 217 seven-gate readiness ↗</h3><p>One-page fictional readiness view — seven facets with honest states and named sources.</p></a>'+
     '<a class="rp-tile" href="report/sample-master-report.html" target="_blank" rel="noopener"><div class="ind-overline">PUBLIC SAMPLE</div><h3>SYS-217 Sample Master Report ↗</h3><p>Frozen public-safe derivative — no sign-in. HTML + PDF artifacts.</p></a>'+
     '<button class="rp-tile" type="button" data-act="page" data-id="evaluations"><div class="ind-overline">FINDINGS</div><h3>Canonical Evaluations — full export viewer</h3><p>All 45 verbatim exports with digests, rule outcomes, receipts and authorized report links.</p></button>'+
     '<button class="rp-tile" type="button" data-ind-open="telecom"><div class="ind-overline">HISTORICAL REFERENCE</div><h3>Telecom — TM Forum investigation</h3><p>AL0/AL1/AL2 reference states, source binder, missing KPI evidence — not a new HAIEC evaluation.</p></button>'+
@@ -464,6 +540,7 @@ document.addEventListener('click',event=>{
     if(v==='hub')RPT.view='hub';
     else if(v==='exec')RPT.view='exec';
     else if(v==='judge')RPT.view='judge';
+    else if(v==='gov')RPT.view='gov';
     else if(v==='s217'||v==='s217-exec'||v==='s217-tech'){RPT.view='s217';if(v==='s217-exec')RPT.s217mode='exec';if(v==='s217-tech')RPT.s217mode='tech';}
     else if(v==='case'){
       const id=rp.dataset.id;
