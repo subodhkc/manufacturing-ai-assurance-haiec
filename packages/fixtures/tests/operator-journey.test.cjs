@@ -41,7 +41,7 @@ test('journey is registered once and linked from the command center',()=>{
  assert.match(htmlSrc,/data-id="journey">Operator Journey/);
  assert.match(htmlSrc,/journey\/journey.css/);
  assert.match(htmlSrc,/journey\/journey.js/);
- assert.match(htmlSrc,/STATE.page==='journey'\)render\(\)/);
+ assert.match(htmlSrc,/STATE\.page==='journey'[^)]*\)render\(\)/);
 });
 test('historical finding uses actual frozen canonical status, never simulated pass',()=>{
  const t=setup();

@@ -276,15 +276,15 @@ test('replay page shows VERIFYING before digests complete and blocks start', asy
   assert.ok(!html.includes('Run Evidence Replay'), 'start control must not render unverified');
 });
 
-test('tampered replay digest blocks playback — INTEGRITY FAILURE, no record content', async () => {
+test('tampered replay digest blocks playback — REPLAY_BINDING_MISMATCH, no record content', async () => {
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
   T.HX.replayVerified = false;
   T.STATE.page = 'replay';
   T.render();
   const html = elements.get('main').innerHTML;
-  assert.ok(html.includes('INTEGRITY FAILURE'), 'must show INTEGRITY FAILURE');
-  assert.ok(html.includes('Replay blocked'));
+  assert.ok(html.includes('REPLAY_BINDING_MISMATCH'), 'must show REPLAY_BINDING_MISMATCH');
+  assert.ok(html.includes('Replay withheld'));
   for (const r of T.HXDATA.replay.records) assert.ok(!html.includes(r.evidenceId), `record ${r.evidenceId} must not render`);
 });
 
@@ -295,7 +295,7 @@ test('verified replay renders all eight steps with source timestamps and playbac
   T.render();
   const html = elements.get('main').innerHTML;
   assert.ok(html.includes('Run Evidence Replay'), 'start control renders when verified');
-  assert.ok(html.includes('Recorded evidence replay'), 'honesty banner present');
+  assert.ok(html.includes('Historical v1 evidence replay'), 'honesty banner present');
   assert.ok(html.includes('Nothing is collected'), 'no-collection statement present');
   assert.equal(T.RP_STEPS.length, 8);
   for (const st of T.RP_STEPS) {
@@ -346,7 +346,7 @@ test('manual step-through mode works without the timer; reset returns to pristin
   assert.ok(!html.includes('step 1 /'), 'manual step counter absent in timer mode');
 });
 
-test('a missing source-world record renders MISSING EVIDENCE, never a substitute', async () => {
+test('a missing source-world record fails closed — REPLAY_BINDING_MISMATCH, never a substitute', async () => {
   const { elements, T } = loadDashboard();
   await T.hxVerifyAll();
   const orig = T.HXDATA.replay.records;
@@ -355,7 +355,10 @@ test('a missing source-world record renders MISSING EVIDENCE, never a substitute
   T.RP.elapsed = 60; // reveal all steps
   T.render();
   const html = elements.get('main').innerHTML;
-  assert.ok(html.includes('MISSING EVIDENCE'), 'absent record must render MISSING EVIDENCE');
+  // Sprint 21: record-count divergence from the bundle declaration is a binding
+  // mismatch — the whole replay is withheld rather than partially replayed.
+  assert.ok(html.includes('REPLAY_BINDING_MISMATCH'), 'record-count mismatch must fail closed');
+  assert.ok(!html.includes('TARGET_READBACK'), 'absent record content must not render');
   T.HXDATA.replay.records = orig; // restore shared fixture
 });
 
@@ -585,7 +588,7 @@ test('replay one-click requires verified digest and replay wording is honest', a
   const src = fs.readFileSync(path.join(ROOT, 'dashboard/index.html'), 'utf8');
   assert.ok(src.includes("case 'exec-replay'") && /HX\.replayVerified===true/.test(src),
     'autostart gated on replay digest verification');
-  assert.ok(html.includes('source-world replay aligned to the persisted HAIEC evaluation'));
+  assert.ok(html.includes('Historical v1 evidence replay — different evaluation and source world from the current v3 assessment'));
 });
 
 test('report derivatives share one deterministic identity and canonical parity', () => {
