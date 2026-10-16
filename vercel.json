@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": "node scripts/build-dashboard-data.cjs && node scripts/build-industry-data.cjs && node scripts/build-governance-data.cjs",
+  "buildCommand": "node scripts/build-dashboard-data.cjs && node scripts/build-industry-data.cjs && node scripts/build-governance-data.cjs && node scripts/build-scenario-shared.cjs",
   "outputDirectory": "dashboard",
   "installCommand": "echo 'no dependencies — zero-dep static site'"
 }

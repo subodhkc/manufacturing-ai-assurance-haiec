@@ -419,10 +419,25 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .ex-tl-row .sq{font:800 10px var(--mono);color:#2b7869}
 .ex-tl-row code{font-size:9.5px}
 .govloop-feed{display:flex;flex-direction:column;gap:6px;min-height:230px}
-.govloop-item{grid-template-columns:16px 90px 1fr;transition:opacity .3s ease}
+.govloop-item{grid-template-columns:16px 110px 1fr;transition:opacity .3s ease}
 .govloop-new{border-color:#7fc4ae;background:#f0faf6;animation:govloopIn .3s ease}
 @keyframes govloopIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 @media(max-width:900px){.govloop-item{grid-template-columns:16px 1fr}.govloop-item b{display:none}}
+.govp-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.govp-controls .btn{white-space:nowrap}
+.govp-speed{width:auto;min-width:64px;padding:4px 6px}
+.govp-progress{height:4px;background:#e9f0ec;border-radius:3px;overflow:hidden;margin:8px 0 10px}
+.govp-progress>div{height:100%;width:0;background:linear-gradient(90deg,#2b7869,#7fc4ae);transition:width .3s linear}
+.govp-stages{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.govp-stage{font:700 9px var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#8aa398;border:1px solid var(--line);border-radius:20px;padding:3px 8px;transition:all .25s ease}
+.govp-stage.on{color:#fff;background:#2b7869;border-color:#2b7869}
+.govp-headline{font:700 13px/1.4 var(--sans);color:var(--ink);margin-bottom:10px;min-height:18px}
+.govp-cur{border-color:#7fc4ae!important;background:#f0faf6}
+.govloop-item .sq.go{color:#2b9a6c}.govloop-item .sq.warn{color:#c2410c}.govloop-item .sq.hold{color:#b45309}
+.govp-reset{animation:govpReset .5s ease}
+@keyframes govpReset{from{opacity:.55}to{opacity:1}}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;clip:rect(0 0 0 0);overflow:hidden;border:0}
+@media(prefers-reduced-motion:reduce){.govp-progress>div,.govloop-item,.govp-stage{transition:none}.govp-reset{animation:none}}
 .ex-note{font-size:10.5px;color:var(--muted);border-left:3px solid #d9c7a4;padding:6px 10px;background:#fdfaf3;border-radius:0 6px 6px 0;margin-top:10px}
 .ex-study{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .ex-study>div{border:1px solid var(--line);border-radius:9px;padding:12px;background:#fbfdfc}
@@ -525,6 +540,7 @@ body.console .rp-track{background:#172b36}
      canonical sha256 exportDigest re-verified by the runtime script below. -->
 <script src="data/haiec-exports.js"></script>
 <script src="data/governance-scenarios.js"></script>
+<script src="data/scenario-shared.js"></script>
 <script src="data/industry-profiles.js"></script>
 <script>
 'use strict';
@@ -2264,10 +2280,15 @@ document.addEventListener('click', e => {
     case 'try-preset': STATE.selectedScenario = 'HOLD'; { const i=$('scenario-value'); if(i){ i.value=id; STATE.simValue=Number(id); } } runScenario(); break;
     case 'try-run': STATE.selectedScenario = 'HOLD'; runScenario(); break;
     case 'try-reset': tryReset(); toast('Local simulation state reset — canonical evaluations untouched.'); render(); break;
-    case 'gov-select': STATE.govSystem = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
-    case 'gov-approve': govApprove(id); break;
-    case 'gov-reject': govReject(id); break;
-    case 'gov-reset': govReset(); toast('Roleplay reset — fictional portfolio restored to 3 approved / 2 rejected / 4 pending.'); render(); break;
+    case 'gov-select': STATE.govSystem = id; render(); window.scrollTo({top:0,behavior:'instant'}); PLAY.enter(); break;
+    case 'govp-play': if(PLAY.playing)PLAY.pause();else PLAY.play(); break;
+    case 'govp-restart': PLAY.restart(); break;
+    case 'govp-prev': PLAY.stepTo(-1); break;
+    case 'govp-next': PLAY.stepTo(1); break;
+    case 'govp-overview': PLAY.load(SHARED&&SHARED.scripts.controlRoom); PLAY.play(); break;
+    case 'gov-approve': govApprove(id); PLAY.enter(); break;
+    case 'gov-reject': govReject(id); PLAY.enter(); break;
+    case 'gov-reset': govReset(); toast('Roleplay reset — fictional portfolio restored to 3 approved / 2 rejected / 4 pending.'); render(); PLAY.enter(); break;
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-overview': HX.system = null; HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
@@ -2289,6 +2310,7 @@ document.addEventListener('click', e => {
 
 document.addEventListener('change', e => {
   if(e.target.id === 'scenario-value'){ STATE.simValue = Number(e.target.value); }
+  if(e.target.id === 'govpSpeed'){ PLAY.setSpeed(Number(e.target.value)||1); }
 });
 
 function exportLedger(){
@@ -3621,7 +3643,7 @@ render();
   {page:'autobaseline',headline:'6 · Detect new tools and usage changes',why:'Next, inspect a first-seen MES mutation path or abnormal token usage. HAIEC can identify novelty, then separately compare qualified authority evidence.',notice:'Adjust a baseline threshold and record an example result; historical normal must never become authorization.',target:'.card'},
   {page:'evolution',headline:'7 · Compare expected, evidence-degraded and wrong-target conditions',why:'These states demonstrate the difference between correct behavior, incomplete proof, and an established wrong-target difference.',notice:'Choose each example condition or use the side-by-side matrix. Neither missing telemetry nor target divergence proves root cause.',target:'#al-comparison-matrix'},
   {page:'idealreport',headline:'8 · Finish with the evidence-backed report',why:'A buyer receives an explanation of what was scoped, what was established, what cannot be concluded, and which source or approval is needed next.',notice:'The report is an illustrative specification. Actual HAIEC evaluation IDs and verdicts come only from the canonical evaluation pipeline.',target:'.card'},
-  {page:'governance',headline:'9 · Watch humans stay in control',why:'Some AI operations are approved by fictional accountable owners, some consequential actions are rejected, and Station 217 write expansion stays pending after the target mismatch. The demo activity stream shows reviewer notification, runtime control and monitoring in motion.',notice:'The assurance result and the human decision are two separate facts — neither substitutes for the other.',target:'.govloop-feed'},
+  {page:'governance',headline:'9 · Watch humans stay in control',why:'One playback shows three outcomes: work proceeding inside an approved scope, Station 217 write expansion held after a target mismatch, and a rejected expansion. Pause, step or restart it — or select any of the nine systems to play its review journey.',notice:'The assurance result and the human decision are two separate facts — neither substitutes for the other.',target:'#govPlayer'},
  ];
  const PANEL={mode:null,step:0};
  const H=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4327,51 +4349,63 @@ function govMonBadge(sysId){
   const kind=s==='SIMULATED_MONITORING_ESTABLISHED'?'go':s==='NO_LIVE_CONNECTION'?'hold':'warn';
   return pill(govMonLabel(s),kind);
 }
-/* Loopable synthetic operations feeds — staged demo activity, never live data. */
-const GOVLOOP={
-  tick:0,timer:null,
-  feeds:{
-    a:{label:'Reviewer workflow — demo activity',events:[
-      'Review request created — Station 217 write expansion',
-      'Assignment recorded — Quality Director (fictional role)',
-      'Notification sent to reviewer — email',
-      'Reminder sent — SMS alert',
-      'Reviewer opened request',
-      'Review in progress — evidence attached',
-      'Decision pending — awaiting human review']},
-    b:{label:'Simulated runtime control',events:[
-      'Action attempted — MES work-order write',
-      'Boundary check — approved scope loaded',
-      'Approval check — pending human review',
-      'Scope check — outside approved operating scope',
-      'Execution held for review',
-      'Advisory action allowed — within approved scope',
-      'Event logged — evidence updated']},
-    c:{label:'Synthetic monitoring scenario',events:[
-      'Connector heartbeat — SYS-340 inspection source',
-      'Monitoring event received — inspection batch',
-      'Model version observed — within declared scope',
-      'Divergence flag — target mismatch at Station 217',
-      'Action review required',
-      'Case status refreshed']}
-  }
+/* Coordinated scenario playback — one virtual clock drives every lane.
+   Deterministic: screen state = f(script, virtual time). Presentation only;
+   playback never mutates decisions, sends notifications or touches runtime. */
+const SHARED=window.HAIEC_SCENARIO_SHARED||null;
+const GOV_STAGE_LABEL={PROPOSED:'Proposed action',SCOPE:'Scope check',REQUEST:'Review request',NOTIFY:'Reviewer notified',REVIEW:'Review & evidence',DECISION:'Human decision',STATUS:'Operating status',MONITORING:'Monitoring',EVIDENCE:'Evidence'};
+const GOV_LANE={action:'govpLaneAction',reviewer:'govpLaneReviewer',monitoring:'govpLaneMonitoring'};
+const GOV_SEV_CLS={go:'go',warn:'warn',hold:'hold',info:''};
+const PLAY={
+  script:null,t:0,speed:1,playing:false,timer:null,_obs:null,_vis:null,_bound:false,reduced:false,inView:true,_lastStage:'',
+  mmss(ms){const s=Math.max(0,Math.round(ms/1000));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');},
+  defaultScript(){return SHARED?(STATE.govSystem&&SHARED.scripts.journey[STATE.govSystem]?SHARED.scripts.journey[STATE.govSystem]:SHARED.scripts.controlRoom):null;},
+  load(s){PLAY.stop();PLAY.script=s||null;PLAY.t=0;PLAY._lastStage='';PLAY.render();const ov=document.getElementById('govpOverview');if(ov)ov.style.display=(s&&s.scenarioId!=='mfg-control-room')?'':'none';},
+  play(){if(!PLAY.script||PLAY.playing)return;PLAY.playing=true;if(!PLAY.timer)PLAY.timer=setInterval(()=>PLAY.tick(),300);PLAY.updateBtn();},
+  pause(){PLAY.playing=false;PLAY.updateBtn();},
+  stop(){PLAY.playing=false;if(PLAY.timer){clearInterval(PLAY.timer);PLAY.timer=null;}},
+  restart(){PLAY.t=0;PLAY._lastStage='';PLAY.render('calm');PLAY.play();},
+  stepTo(dir){const evs=(PLAY.script&&PLAY.script.events)||[];if(!evs.length)return;
+    let t=dir>0?evs.find(e=>e.offsetMs>PLAY.t):[...evs].reverse().find(e=>e.offsetMs<PLAY.t-1);
+    PLAY.t=t?t.offsetMs:(dir>0?PLAY.script.durationMs:0);PLAY.render();},
+  setSpeed(v){PLAY.speed=v;},
+  tick(){if(!PLAY.playing||!PLAY.script)return;PLAY.t+=300*PLAY.speed;
+    if(PLAY.t>=PLAY.script.durationMs){PLAY.t=0;PLAY._lastStage='';PLAY.render('calm');return;}PLAY.render();},
+  visible(){const evs=(PLAY.script&&PLAY.script.events)||[];return PLAY.reduced?evs:evs.filter(e=>e.offsetMs<=PLAY.t);},
+  render(mode){
+    const card=document.getElementById('govPlayer');if(!card)return PLAY.stop();
+    if(!PLAY.script)return;
+    if(mode==='calm'){card.classList.remove('govp-reset');void card.offsetWidth;card.classList.add('govp-reset');}
+    const evs=PLAY.visible(),last=evs[evs.length-1];
+    for(const lane of Object.keys(GOV_LANE)){
+      const el=document.getElementById(GOV_LANE[lane]);if(!el)continue;
+      const items=evs.filter(e=>e.lane===lane).slice(-6);
+      el.innerHTML=items.map(e=>`<div class="ex-tl-row govloop-item${e===last?' govp-cur':''}"><span class="sq ${GOV_SEV_CLS[e.severity]||''}">●</span><b class="tiny">${esc(e.headline)}</b><code>${esc(e.copy)}</code></div>`).join('')||'<div class="tiny muted" style="padding:8px">Waiting…</div>';
+    }
+    const hl=document.getElementById('govpHeadline');
+    if(hl)hl.textContent=last?last.headline+(last.systemId?' · '+last.systemId:''):PLAY.script.title;
+    const st=document.getElementById('govpStages');
+    if(st){const cur=last?last.stage:'';st.innerHTML=Object.keys(GOV_STAGE_LABEL).map(k=>`<span class="govp-stage${k===cur?' on':''}">${GOV_STAGE_LABEL[k]}</span>`).join('');
+      if(cur&&cur!==PLAY._lastStage){PLAY._lastStage=cur;const lv=document.getElementById('govpLive');if(lv)lv.textContent='Stage: '+GOV_STAGE_LABEL[cur]+(last&&last.headline?' — '+last.headline:'');}}
+    const bar=document.getElementById('govpBar');if(bar)bar.style.width=(Math.min(100,PLAY.t/PLAY.script.durationMs*100))+'%';
+    const tm=document.getElementById('govpTime');if(tm)tm.textContent=PLAY.mmss(PLAY.t)+' / '+PLAY.mmss(PLAY.script.durationMs);
+    const tt=document.getElementById('govpTitle');if(tt)tt.textContent=PLAY.script.title;
+  },
+  updateBtn(){const b=document.getElementById('govpPlay');if(b)b.textContent=PLAY.playing?'Pause':'Play';},
+  attach(){if(PLAY._bound)return;PLAY._bound=true;
+    PLAY.reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const card=document.getElementById('govPlayer');
+    if(card&&'IntersectionObserver' in window){PLAY._obs=new IntersectionObserver(en=>{PLAY.inView=!!en[0].isIntersecting;if(!PLAY.inView)PLAY.pause();else if(!document.hidden&&!PLAY.reduced)PLAY.play();},{threshold:.2});PLAY._obs.observe(card);}
+    PLAY._vis=()=>{if(document.hidden)PLAY.pause();else if(PLAY.inView&&!PLAY.reduced&&PLAY.script)PLAY.play();};
+    document.addEventListener('visibilitychange',PLAY._vis);},
+  detach(){PLAY.stop();if(PLAY._obs){PLAY._obs.disconnect();PLAY._obs=null;}if(PLAY._vis){document.removeEventListener('visibilitychange',PLAY._vis);PLAY._vis=null;}PLAY._bound=false;PLAY.inView=true;},
+  enter(){PLAY.detach();PLAY.attach();PLAY.load(PLAY.defaultScript());
+    if(PLAY.reduced){PLAY.render();return;}
+    if(PLAY.inView&&!document.hidden)PLAY.play();},
+  leave(){PLAY.detach();},
 };
-function govLoopTick(){
-  GOVLOOP.tick++;
-  for(const k of ['a','b','c']){
-    const feed=GOVLOOP.feeds[k],el=document.getElementById('govloop-'+k);
-    if(!el)continue;
-    if(typeof el.prepend!=='function'){govLoopStop();return;}
-    const item=document.createElement('div');
-    item.className='ex-tl-row govloop-item govloop-new';
-    item.innerHTML=`<span class="sq">●</span><b class="tiny">${esc(feed.label.split('—')[0].trim())}</b><code>${esc(feed.events[GOVLOOP.tick%feed.events.length])}</code>`;
-    el.querySelectorAll('.govloop-new').forEach(n=>n.classList.remove('govloop-new'));
-    el.prepend(item);
-    while(el.children.length>5)el.lastElementChild.remove();
-  }
-}
-function govLoopStart(){govLoopStop();GOVLOOP.timer=setInterval(govLoopTick,1800);}
-function govLoopStop(){if(GOVLOOP.timer){clearInterval(GOVLOOP.timer);GOVLOOP.timer=null;}}
+function govLoopStart(){PLAY.enter();}
+function govLoopStop(){PLAY.leave();}
 function govCanonical(d){
   const a=hxExports().find(x=>x.sourceCase.caseId===d.canonicalCaseId)||null;
   return a;
@@ -4478,17 +4512,30 @@ function pageGovernance(){
     sub:'How fictional accountable humans decided to deploy AI — and what HAIEC evidence-bound assurance says about each system. Two separate facts, deliberately kept apart.',
     actions:`<button class="btn" data-act="gov-reset" ${Object.keys(GOV.overlay).length||Object.keys(GOV.advisory).length?'':'disabled'}>Reset demo</button>
       <button class="btn" data-act="page" data-id="exec">Command Center</button>`})+
-  `<div class="notice warn top14"><div><b>Simulated workflow — fictional governance scenario</b>
-    <p>Approvals and rejections below are fictional human decisions recorded in demo data — not HAIEC release authorizations, verified receipts or real attestations. Every HAIEC assurance result remains <b>Review required</b>.</p></div></div>
-  ${kpi}
-  <div class="card top14"><div class="cardhead"><div><h2>Portfolio — ${decs.length} fictional systems</h2><p>Policy ${esc(GOVDATA.policy.id)} v${esc(GOVDATA.policy.version.replace('demo-gov-policy-',''))} · fixed demo reference time ${esc(GOVDATA.referenceClock)} — not live freshness.</p></div></div>
-    <div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Human Review Decision</th><th>Environment</th><th>Proposed operation</th><th>Monitoring Coverage</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
-
-  <div class="card top14"><div class="cardhead"><div><h2>Operations activity — watch it work</h2><p>A rolling view of how a governed deployment behaves: the reviewer is notified, runtime control holds consequential actions for review, and monitoring keeps evidence current.</p></div>${pill('Demo activity stream','info')}</div>
+  `<div class="card top14 govp" id="govPlayer"><div class="cardhead"><div><h2>Watch a governed deployment work</h2><p class="govp-title" id="govpTitle"></p></div>
+    <div class="govp-controls" role="group" aria-label="Demo playback controls">
+      <span class="badge info" title="Looping fictional scenario">DEMO PLAYBACK</span>
+      <button class="btn xs" id="govpPlay" data-act="govp-play">Pause</button>
+      <button class="btn xs" id="govpRestart" data-act="govp-restart" aria-label="Restart scenario">Restart</button>
+      <button class="btn xs" id="govpPrev" data-act="govp-prev" aria-label="Previous event">‹</button>
+      <button class="btn xs" id="govpNext" data-act="govp-next" aria-label="Next event">›</button>
+      <select class="inp govp-speed" id="govpSpeed" aria-label="Playback speed"><option value="1">1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+      <span class="tiny muted" id="govpTime"></span>
+      <button class="btn xs" id="govpOverview" data-act="govp-overview" style="display:none">Enterprise overview</button>
+    </div></div>
+    <div class="govp-progress"><div id="govpBar"></div></div>
+    <div class="govp-stages" id="govpStages"></div>
+    <div class="govp-headline" id="govpHeadline"></div>
     <div class="grid g3">
-      ${['a','b','c'].map(k=>`<div><div class="ind-overline tiny muted" style="margin-bottom:6px">${esc(GOVLOOP.feeds[k].label)}</div><div id="govloop-${k}" class="govloop-feed">${GOVLOOP.feeds[k].events.slice(0,3).map(e=>`<div class="ex-tl-row govloop-item"><span class="sq">●</span><b class="tiny">${esc(GOVLOOP.feeds[k].label.split('—')[0].trim())}</b><code>${esc(e)}</code></div>`).join('')}</div></div>`).join('')}
+      <div><div class="ind-overline tiny muted" style="margin-bottom:6px">Action &amp; scope</div><div id="govpLaneAction" class="govloop-feed"></div></div>
+      <div><div class="ind-overline tiny muted" style="margin-bottom:6px">Reviewer</div><div id="govpLaneReviewer" class="govloop-feed"></div></div>
+      <div><div class="ind-overline tiny muted" style="margin-bottom:6px">Monitoring &amp; evidence</div><div id="govpLaneMonitoring" class="govloop-feed"></div></div>
     </div>
-    <p class="tiny muted top10">Illustrative execution workflow — no live dispatcher, connector, email or SMS is connected in this demo.</p></div>
+    <div id="govpLive" class="sr" aria-live="polite"></div>
+  </div>
+  ${kpi}
+  <div class="card top14"><div class="cardhead"><div><h2>Portfolio — ${decs.length} fictional systems</h2><p>Policy ${esc(GOVDATA.policy.id)} v${esc(GOVDATA.policy.version.replace('demo-gov-policy-',''))} · fixed demo reference time ${esc(GOVDATA.referenceClock)}.</p></div></div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Human Review Decision</th><th>Environment</th><th>Proposed operation</th><th>Monitoring Coverage</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
 
   <div class="grid g2 top14">
     <div class="card"><div class="cardhead"><div><h2>1 · HAIEC Assurance Result</h2><p>Verified evidence report — unchanged by any fictional decision.</p></div>${pill('Verified assurance','go')}</div>${assuranceBlock}</div>
@@ -4532,6 +4579,8 @@ function pageGovernance(){
     <p class="tiny muted top10">Infrastructure: reviewer directory ${esc(GOVDATA.reviewInfrastructure.roleRegistry)} · browser ledger ${esc(GOVDATA.reviewInfrastructure.auditTrail)} · persistent approval store ${esc(GOVDATA.reviewInfrastructure.persistentApprovalStore)} · real reviewer authentication ${esc(GOVDATA.reviewInfrastructure.reviewerAuthentication)} · dispatcher ${esc(GOVDATA.reviewInfrastructure.productionDispatcher)}. This does not authorize operations.</p>
   </div>
   ${roleplay}${s217Block}
+  <div class="card top14"><div class="cardhead"><div><h2>About this demonstration</h2><p>What is verified evidence, what is illustrative.</p></div></div>
+    <p class="small">Human review decisions are fictional records in demo data — not HAIEC release authorizations or attested approvals. HAIEC assurance results come from digest-verified saved evaluations and remain <b>Review required</b> for all nine systems. The playback above is an illustrative operations view: no live dispatcher, connector, email or SMS is connected, and no factory command is sent or blocked. Monitoring coverage is derived from scenario records against a fixed reference time, never live telemetry. Demo reviewer actions are browser-local and cannot unlock prohibited operations.</p></div>
   ${GOV.log.length?`<div class="card top14"><div class="cardhead"><div><h2>Demo activity ledger</h2><p>Local demo records only.</p></div>${pill('Demo reviewer action','info')}</div>
     ${GOV.log.slice(0,6).map(l=>`<div class="listitem" style="margin-bottom:6px"><div class="row"><strong>${esc(l.systemId)}</strong>${pill('Demo reviewer action','info')}</div><p class="small" style="margin-top:4px">${esc(l.kind)} · request ${esc(l.requestId)} · fictional role ${esc(l.reviewerRole)} · ${esc(l.at)}</p></div>`).join('')}</div>`:''}`;
 }

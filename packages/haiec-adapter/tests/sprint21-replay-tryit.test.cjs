@@ -55,6 +55,9 @@ function loadDash() {
   win.HAIEC_GOVERNANCE_DEMO = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'dashboard/data/governance-scenarios.js'), 'utf8')
       .replace(/^[\s\S]*?window\.HAIEC_GOVERNANCE_DEMO = /, '').replace(/;\s*$/, ''));
+  win.HAIEC_SCENARIO_SHARED = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'dashboard/data/scenario-shared.js'), 'utf8')
+      .replace(/^[\s\S]*?window\.HAIEC_SCENARIO_SHARED = /, '').replace(/;\s*$/, ''));
   const blobs = [];
   const sandbox = {
     window: win, document: doc,
@@ -72,7 +75,7 @@ function loadDash() {
   const T = vm.runInContext(
     '({STATE,HX,HXDATA,GOVDATA,GOV,hxVerifyAll,hxKey,hxExports,hxFor,hxHistorical,rpEval,rpBinding,rpOk,' +
     'pageReplay,pageExec,pageTryIt,tryReset,runScenario,exportLedger,renderSystemReports,' +
-    'pageGovernance,govDecision,govMonitoringStatus,govApprove,govReject,govReset,GOVLOOP,' +
+    'pageGovernance,govDecision,govMonitoringStatus,govApprove,govReject,govReset,PLAY,SHARED,' +
     'PAGE_RENDERERS,scen,sys,RP,RP_CASE})', sandbox);
   T.rptArtifact = win.rptArtifact;
   return { T, sandbox, win, doc, elements, listeners, blobs };
@@ -338,7 +341,7 @@ test('portfolio: exactly 3 approved / 2 rejected / 4 pending, all derived', asyn
   assert.equal(decs.filter(d => d.humanDecision === 'REJECTED').length, 2);
   assert.equal(decs.filter(d => d.humanDecision === 'PENDING').length, 4);
   const html = T.pageGovernance();
-  assert.ok(html.includes('Simulated workflow — fictional governance scenario'));
+  assert.ok(html.includes('About this demonstration'));
   assert.ok(html.includes('<div class="num">3</div>'));
   assert.ok(html.includes('<div class="num">2</div>'));
   assert.ok(html.includes('<div class="num">4</div>'));
@@ -457,19 +460,54 @@ test('governance page uses plain-language labels and a loopable demo activity fe
   // Preferred plain-language labels present.
   for (const label of ['Assurance result', 'Human Review Decision', 'Approved Operating Scope', 'Monitoring Coverage',
     'Approved — scoped', 'Pending review', 'Established — simulated', 'Partial — simulated',
-    'Demo activity stream', 'Simulated runtime control', 'Synthetic monitoring scenario', 'Reviewer workflow — demo activity'])
+    'DEMO PLAYBACK', 'Action &amp; scope', 'Monitoring &amp; evidence', 'About this demonstration'])
     assert.ok(html.includes(label), 'missing plain label: ' + label);
-  // Loopable feed markup: three live regions with seeded staged entries.
-  for (const k of ['a', 'b', 'c']) {
-    assert.ok(html.includes(`id="govloop-${k}"`), 'missing feed ' + k);
-    assert.ok(html.includes('govloop-item'));
-  }
+  // Coordinated player markup: one clock, three lanes, controls, stage ribbon.
+  for (const k of ['govPlayer', 'govpLaneAction', 'govpLaneReviewer', 'govpLaneMonitoring',
+    'govpPlay', 'govpRestart', 'govpPrev', 'govpNext', 'govpSpeed', 'govpStages', 'govpBar', 'govpLive'])
+    assert.ok(html.includes(`id="${k}"`), 'missing player node ' + k);
   // Station 217 plain-language story.
   for (const phrase of ['target mismatch observed', 'approved for advisory use only', 'write expansion'])
     assert.ok(html.toLowerCase().includes(phrase), 'missing story phrase: ' + phrase);
-  // Loop engine exists and is timer-driven; ticking appends staged events.
-  assert.equal(typeof T.GOVLOOP, 'object');
-  assert.ok(T.GOVLOOP.feeds.a.events.length >= 5 && T.GOVLOOP.feeds.b.events.length >= 5 && T.GOVLOOP.feeds.c.events.length >= 5);
+  // Shared scenario source: one artifact drives both apps — no hand-maintained lists.
+  assert.equal(typeof T.SHARED, 'object');
+  assert.equal(T.SHARED.schemaVersion, 'haiec-scenario-playback-1.0.0');
+  assert.equal(T.SHARED.dossiers.length, 9);
+  assert.equal(Object.keys(T.SHARED.scripts.journey).length, 9);
+  // Deterministic playback: same virtual time => same visible events, every lane.
+  const cr = T.SHARED.scripts.controlRoom;
+  assert.equal(cr.scenarioId, 'mfg-control-room');
+  for (const e of cr.events) {
+    assert.ok(e.eventId && e.offsetMs >= 0 && e.stage && e.lane && e.eventType && e.origin === 'SIMULATED');
+    assert.ok(['action', 'reviewer', 'monitoring'].includes(e.lane));
+  }
+  // Three contrasting outcomes are staged and bound to their systems.
+  const held = cr.events.filter(e => e.eventType === 'EXECUTION_HELD');
+  assert.equal(held.length, 1); assert.equal(held[0].systemId, 'SYS-217');
+  const blocked = cr.events.filter(e => e.eventType === 'EXECUTION_BLOCKED');
+  assert.equal(blocked.length, 1); assert.equal(blocked[0].systemId, 'SYS-SCH5');
+  // Per-system journey loads the matching system, never Station 217's events.
+  const j217 = T.SHARED.scripts.journey['SYS-217'];
+  assert.ok(j217.events.every(e => e.systemId === 'SYS-217'));
+  assert.ok(j217.events.some(e => e.eventType === 'DECISION_PENDING'));
+  const j340 = T.SHARED.scripts.journey['SYS-340'];
+  assert.ok(j340.events.every(e => e.systemId === 'SYS-340'));
+  assert.ok(j340.events.some(e => e.eventType === 'DECISION_RECORDED'));
+  assert.ok(!j340.events.some(e => /WO-217-/.test(e.copy)), 'journey for another system leaked Station 217 copy');
+  // Controller exists; deterministic render and no leaked timers in the sandbox.
+  assert.equal(typeof T.PLAY, 'object');
+  assert.equal(typeof T.PLAY.load, 'function');
+  assert.equal(typeof T.PLAY.stepTo, 'function');
+  T.PLAY.load(cr);
+  T.PLAY.t = 21001; // past the first act boundary — deterministic visible set
+  const seen = T.PLAY.visible();
+  assert.ok(seen.length > 0 && seen.every(e => e.offsetMs <= T.PLAY.t));
+  T.PLAY.t = 0;
+  assert.equal(T.PLAY.visible().length, 1); // only the t=0 event is visible
+  // Station 217 invariants from the shared source: approved target, pending decision.
+  const d217 = T.SHARED.dossiers.find(d => d.systemId === 'SYS-217');
+  assert.equal(d217.humanDecision, 'PENDING');
+  assert.ok(d217.request.requestedTarget.includes('WO-217-4802'));
 });
 
 test('governance fixture is cleanly separated: SIMULATION_ONLY, no canonical identity', () => {

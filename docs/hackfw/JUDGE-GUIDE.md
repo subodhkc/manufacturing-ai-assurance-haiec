@@ -124,10 +124,19 @@ a fictional approval is a human's scoped operating decision, not a HAIEC
 verdict; a "Review required" result is not a deployment ban, it is what the
 evidence supports.
 
-The page also carries a **demo activity stream** — a rolling, loopable view of
-reviewer notifications, simulated runtime control holding consequential actions
-for review, and synthetic monitoring events. It is illustrative workflow, not a
-live dispatcher or connector. Monitoring coverage there is derived from demo
+The page opens with a **coordinated scenario playback** — one shared clock
+drives three lanes (Action & scope · Reviewer · Monitoring & evidence). The
+default *Enterprise overview* (~78 s) contrasts three outcomes: Vision
+Inspection operating inside its approved scope, Station 217's write expansion
+held after the target mismatch, and a rejected schedule-commit expansion.
+Selecting any of the nine systems plays its ~40 s human-review journey
+(request → accountable role → notification previews → evidence → decision →
+operating status → monitoring). Pause, step, restart, or change speed with the
+player controls; reduced-motion shows a static equivalent. It is illustrative
+workflow — no live dispatcher, connector, email or SMS is connected — and all
+events come from the same versioned scenario artifact
+(`scenario-shared.json`) that drives the HAIEC website demonstration, so both
+apps tell one identical story. Monitoring coverage there is derived from demo
 records inside the fictional scenario — live connectors stay not connected.
 
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.
