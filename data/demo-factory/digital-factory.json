@@ -47,7 +47,8 @@
       { "id": "VND-SEA-207", "name": "SealTech Components", "qualification": "PPAP_CURRENT", "note": "Approved master supplier for seals." }
     ],
     "purchaseOrders": [
-      { "id": "REQ-2026-8842", "supplierId": "VND-FST-118", "amount": 86500, "status": "PROPOSED", "systemId": "SYS-PO12", "note": "Agent-prepared proposal — exceeds the $15,000 buyer review cap and names a supplier whose PPAP expired. Never committed without an accountable buyer." }
+      { "id": "REQ-2026-8842", "supplierId": "VND-FST-118", "amount": 86500, "status": "PROPOSED", "systemId": "SYS-PO12", "note": "Agent-prepared proposal — exceeds the $15,000 buyer review cap and names a supplier whose PPAP expired. A buyer may approve the financial amount, but the commercial commitment stays held until supplier qualification resolves." },
+      { "id": "REQ-2026-8855", "supplierId": "VND-CST-042", "amount": 38900, "status": "PROPOSED", "systemId": "SYS-PO12", "note": "Agent-prepared proposal — exceeds the $15,000 buyer review cap with a fully qualified supplier. Buyer approval commits it: financial authority and supplier qualification both satisfied." }
     ],
     "inventory": [
       { "lotId": "LOT-2026-4510", "sku": "CAST-417 housing castings", "qty": 48, "status": "QUALITY_HOLD", "systemId": "SYS-WH15", "note": "Held pending QMS disposition; shipments cannot consume it." },

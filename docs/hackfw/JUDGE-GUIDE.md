@@ -205,4 +205,26 @@ records inside the fictional scenario — live connectors stay not connected.
   is the single source for new identities; `scripts/build-factory-data.cjs`
   emits the browser bundle and is `--check`-enforced in CI.
 
+**Sprint 27 — integrity, sessions and a portable record:**
+
+- **Guided demonstration** — the factory page's "Guided demonstration →"
+  button walks a judge through seven steps: 3-engine auto-pass, 40-engine
+  supervisor approval, 60-engine plant-manager pending, the Station 217
+  held write, the two-gate ERP story, anomaly + signal-loss monitoring, then
+  a one-click record export. Each step calls the same functions the panel
+  buttons call — no separate demo path.
+- **Two independent gates on purchase orders** — approving `REQ-2026-8842`
+  covers financial authority only; the commitment stays
+  `HELD_SUPPLIER_QUALIFICATION` because `VND-FST-118`'s PPAP is expired.
+  `REQ-2026-8855` (qualified supplier) commits on approval — the same policy
+  path produces both outcomes.
+- **Reset session** — coordinated reset: new `SES-####` identity, virtual
+  plant + MES counters restored, prior pending requests closed (they cannot
+  approve into the new session), append-only ledger preserved with prior
+  sessions labeled.
+- **Portable record** — `?report=demo` renders the session record; "Export
+  record" downloads `haiec-demo-record-SES-####.json`
+  (`demo-factory-record-1.0.0`, explicitly not HAIEC-issued); "Import record"
+  replays a validated file read-only.
+
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.
