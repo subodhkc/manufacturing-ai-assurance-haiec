@@ -227,4 +227,26 @@ records inside the fictional scenario — live connectors stay not connected.
   (`demo-factory-record-1.0.0`, explicitly not HAIEC-issued); "Import record"
   replays a validated file read-only.
 
+**Sprint 28 — decision integrity and reviewer roles:**
+
+- **Fictional reviewer roles are enforced** — every review request names its
+  required role (40 engines → Quality Supervisor; 60 → Plant Quality Manager;
+  POs → Authorized Buyer). Pick a different role in the review dialog and the
+  approval is refused with a `ROLE_MISMATCH` ledger event; the request stays
+  pending and nothing mutates. Prohibited operations can't be approved under
+  any role. This is scenario roleplay, not authentication.
+- **Purchase orders gate twice before committing** — even under the buyer
+  cap, an expired-supplier PO stays `HELD_SUPPLIER_QUALIFICATION` and never
+  enters committed value; a qualified under-cap PO commits its own target.
+- **Guide hardening** — each step shows its expected result and a live
+  baseline→now table; steps can't be double-run; "Restart demonstration"
+  starts a clean session boundary.
+- **Hardened record review** — "Review saved demonstration record" validates
+  imported JSON structurally (identities, references, contradictory states,
+  URL safety, size caps) and renders it read-only.
+- **NotebookLM packaging** — the exported `haiec-demo-record-SES-####.json`
+  is self-describing; an authorized operator can pair it with the SYS-217
+  case report, operating report and 12-page PDF for an executive report.
+  Nothing uploads automatically.
+
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.

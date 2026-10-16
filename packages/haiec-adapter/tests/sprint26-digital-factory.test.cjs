@@ -148,7 +148,7 @@ test('ERP: financial approval cannot bypass supplier qualification; qualified PO
   assert.strictEqual(req.status,'PENDING');
   assert.strictEqual(T.DF.pos[0].status,'BUYER_REVIEW');
   assert.strictEqual(T.STATE.mes.poValue,0);
-  T.decide(req.id,'APPROVED');
+  T.decide(req.id,'APPROVED','Authorized Buyer');
   // Buyer approval covers financial authority only — VND-FST-118 PPAP expired.
   assert.strictEqual(T.STATE.mes.poValue,0,'unqualified supplier must not commit');
   assert.strictEqual(T.DF.pos[0].status,'HELD_SUPPLIER_QUALIFICATION');
@@ -157,7 +157,7 @@ test('ERP: financial approval cannot bypass supplier qualification; qualified PO
   // The qualified-supplier proposal commits fully on approval.
   T.factoryAttempt('PO',38900,'po2',{target:'REQ-2026-8855'});
   const req2=T.STATE.requests.at(-1);
-  T.decide(req2.id,'APPROVED');
+  T.decide(req2.id,'APPROVED','Authorized Buyer');
   assert.strictEqual(T.STATE.mes.poValue,38900,'qualified supplier commits');
   assert.strictEqual(T.DF.pos.find(p=>p.id==='REQ-2026-8855').status,'COMMITTED');
   // Quality-held stock release denied — lot stays held.
