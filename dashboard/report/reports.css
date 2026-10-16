@@ -5,6 +5,11 @@
 .rp-tile:hover{border-color:var(--accent,#58a6ff)}
 .rp-tile h3{margin:6px 0 8px;font-size:15px}
 .rp-tile p{margin:0;font-size:13px;color:var(--muted,#8b949e)}
+.rp-tile-hero{border-color:var(--accent,#58a6ff);border-width:2px}
+.rp-jstep{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line,#30363d)}
+.rp-jnum{flex:0 0 34px;height:34px;border-radius:50%;background:var(--accent,#255e63);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.rp-jbody h3{margin:0 0 4px;font-size:15px}
+.rp-jbody p{margin:0;font-size:13px;color:var(--muted,#8b949e);max-width:72ch}
 .rp-sec{margin:16px 0;padding:16px;border:1px solid var(--line,#30363d);border-radius:10px;background:var(--card,#161b22)}
 .rp-sec h2{margin:0 0 10px;font-size:16px}
 .rp-h3{margin:12px 0 4px;font-size:13px}

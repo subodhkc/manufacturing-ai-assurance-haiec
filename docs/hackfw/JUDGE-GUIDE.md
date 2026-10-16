@@ -5,7 +5,9 @@ Public repo · demo video · participant talent registration · in-person Demo D
 
 ## The 90-second path
 
-1. Open `https://haiec-manufacturing-demo.vercel.app` → **Command Center**.
+1. Open `https://haiec-manufacturing-demo.vercel.app/?report=judge` — the
+   **two-minute judge path** is a fixed seven-step sequence. Or press
+   **"Judge demo — 2 minutes →"** on the Command Center.
    The narrative: *the AI had access — it changed the wrong work order.*
 2. **HAIEC Assurance** — pick `SYS-217 · Wrong Target`. Every number on that
    page is verbatim from a persisted canonical HAIEC evaluation.
@@ -16,6 +18,24 @@ Public repo · demo video · participant talent registration · in-person Demo D
    AL0/AL1/AL2 historical reference, then back. Profiles are isolated.
 5. Any verification link opens `haiec.com/verify/assurance/{id}` — integrity
    verification of the exact issued receipt, labeled `SYNTHETIC_REFERENCE`.
+
+## Shareable report URLs (Sprint 20)
+
+| Destination | URL |
+|---|---|
+| Judge path (~2 min) | `/?report=judge` |
+| Executive report | `/?report=exec` |
+| Station 217 flagship (exec / tech) | `/?report=s217` · `/?report=s217-tech` |
+| Any case report | `/?report=case:SYS-217-WRONG_TARGET` (all 45 IDs work) |
+| Reports hub | `/?report=hub` |
+
+All are public-safe (case IDs only — no org or principal data), refresh- and
+bookmark-safe, and fail closed: unknown IDs land on the hub with a "Report not
+found" notice; corrupt exports render INTEGRITY FAILURE, never findings.
+Browser back/forward works via history state.
+
+Full Devpost copy, judging-criteria matrix, FAQ and checklist:
+`docs/hackfw/SUBMISSION.md`.
 
 ## What is canonical vs simulated
 
