@@ -48,6 +48,10 @@ All capabilities above must use their own **availability and scope qualifiers**.
 3. **Proof/details:** clickable saved HAIEC assessment and rule evidence, fictional dossier when showing human decisions, case identity and source clock when showing monitoring; expand raw developer IDs only on demand.
 4. **Bottom, once:** dedicated **About This Demonstration** page or section explaining what came from the actual HAIEC engine and what is an illustrative scenario. An unobtrusive "Demo playback" identifier by player controls is enough local context for the show. Preserve the same meaning in shared screenshots and exported report captions.
 
+### Synthetic operational capability demonstration — positive presentation rule
+
+Existing Sprint 24 playback legitimately illustrates **reviewer assignment and scoped decisions, email/SMS previews, monitored source events, and fictional execution controls that allow, hold or block a subsequently proposed action**. Show these as HAIEC operating capabilities in the *demonstration experience*; do not remove them solely because a real plant is not connected. Keep the **earlier recorded wrong-target source event** distinct from any **later blocked attempt**. Product copy may say "the demo gateway holds the requested write" and "advisory work continues within scope"; only claims of a *verified real customer action* require real integration evidence. See the [simulation acceptance/storyboard](SYNTHETIC-CONTROL-DEMO-ACCEPTANCE-AND-S25-STORYBOARD.md).
+
 ### End-of-dashboard disclosure — recommended customer wording
 
 **About this demonstration**
