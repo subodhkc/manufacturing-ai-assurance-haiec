@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const OUT = path.resolve(process.env.CAPTURE_DIR || 'captures-sprint20');
 const BASE = process.env.DEMO_URL || 'https://haiec-manufacturing-demo.vercel.app';
-const SETTLE = 4500; // per-step dwell for digest verification + readability
+const SETTLE = 15000; // per-step dwell — raw footage lands near the ~2-minute demo target
 
 const steps = [
   ['01-flagship', '?report=s217'],
