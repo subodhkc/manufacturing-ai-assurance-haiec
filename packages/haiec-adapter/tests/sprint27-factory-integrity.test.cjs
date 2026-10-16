@@ -55,7 +55,7 @@ test('financial approval never satisfies the supplier-qualification gate',()=>{
   T.factoryAttempt('PO',86500,'po',{target:'REQ-2026-8842'});
   const req=T.STATE.requests.at(-1);
   assert.strictEqual(req.target,'REQ-2026-8842');
-  T.decide(req.id,'APPROVED');
+  T.decide(req.id,'APPROVED','Authorized Buyer');
   assert.strictEqual(T.DF.pos.find(p=>p.id==='REQ-2026-8842').status,'HELD_SUPPLIER_QUALIFICATION');
   assert.strictEqual(T.STATE.mes.poValue,0,'held PO never enters committed value');
   assert.strictEqual(T.STATE.requests.find(r=>r.id===req.id).status,'APPROVED','human did approve — the hold is a second gate, not a hidden rejection');
@@ -142,7 +142,7 @@ test('guided judge path exists and runs the six scenarios through the shared pat
   T.dfGuideNext();
   T.dfGuideRun(); // HOLD 40 → request; guide opened review but decide needs modal — call decide directly
   assert.strictEqual(T.STATE.requests.at(-1).status,'PENDING');
-  T.decide(T.STATE.requests.at(-1).id,'APPROVED');
+  T.decide(T.STATE.requests.at(-1).id,'APPROVED','Quality Supervisor');
   assert.strictEqual(T.STATE.mes.contained,43);
   T.dfGuideNext();T.dfGuideRun(); // HOLD 60 → pending PQM
   assert.strictEqual(T.STATE.requests.at(-1).status,'PENDING');
@@ -162,7 +162,7 @@ test('3/40/60 outcomes unchanged; approved action touches only permitted targets
   assert.strictEqual(T.policyVerdict(hold,60).decision,'REVIEW_REQUIRED');
   // Approved containment mutates only WO-217-4802 — not WO-217-4803 or lots.
   T.factoryAttempt('HOLD',40,'x');
-  T.decide(T.STATE.requests.at(-1).id,'APPROVED');
+  T.decide(T.STATE.requests.at(-1).id,'APPROVED','Quality Supervisor');
   assert.strictEqual(T.DF.wo['WO-217-4802'].heldQty,40);
   assert.strictEqual(T.DF.wo['WO-217-4803'].heldQty,0);
   assert.strictEqual(T.DF.lots.find(l=>l.lotId==='LOT-2026-4510').status,'QUALITY_HOLD');
@@ -180,7 +180,7 @@ test('demo report view wired: router, tile, projection, classification',()=>{
   const T=loadDash();
   T.factoryAttempt('MES',12,'x');
   T.factoryAttempt('PO',86500,'po',{target:'REQ-2026-8842'});
-  T.decide(T.STATE.requests.at(-1).id,'APPROVED');
+  T.decide(T.STATE.requests.at(-1).id,'APPROVED','Authorized Buyer');
   const out=T.rpDemo(T.demoRecord());
   assert.ok(out.includes('SES-0001'));
   assert.ok(out.includes('WO-217-4802'));
