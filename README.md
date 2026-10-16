@@ -2,6 +2,8 @@
 
 **Fictional manufacturer · source-only input world isolated from expected outcomes · judge-facing reference UX**
 
+> **HAIEC-first product story:** This repository is the manufacturing demonstration of the full HAIEC platform (Understand / Assure / Govern & Operate; Discover / Evaluate / Authorize / Monitor / Protect / Verify). See [product story and validated NotebookLM/PDF supporting documents](docs/product-story/README.md). The executive experience leads with the HAIEC USP; the complete source-versus-scenario disclosure belongs at the end. No assessments were rerun for these supporting documents.
+
 This repository is the independent manufacturing data and UX reference for the **Example Manufacturing Company**. It provides nine AI systems, sixteen agent roles, seven manufacturing workflows, a 45-entry control catalog, twelve scenario definitions and 27 three-condition test fixtures (39 scenario cases total), nine baseline findings and sixteen agent report examples.
 
 The purpose is to test **what HAIEC can discover and establish from connected evidence**, including additional source, authority, approval and effect data that customers may choose to provide. This project does not create an alternative HAIEC assurance engine.
