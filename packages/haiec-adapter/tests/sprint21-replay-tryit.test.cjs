@@ -52,6 +52,9 @@ function loadDash() {
   win.HAIEC_DEMO_DATA = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'dashboard/data/haiec-exports.js'), 'utf8')
       .replace(/^[\s\S]*?window\.HAIEC_DEMO_DATA = /, '').replace(/;\s*$/, ''));
+  win.HAIEC_GOVERNANCE_DEMO = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'dashboard/data/governance-scenarios.js'), 'utf8')
+      .replace(/^[\s\S]*?window\.HAIEC_GOVERNANCE_DEMO = /, '').replace(/;\s*$/, ''));
   const blobs = [];
   const sandbox = {
     window: win, document: doc,
@@ -67,9 +70,11 @@ function loadDash() {
   vm.createContext(sandbox);
   for (const b of blocks) vm.runInContext(b, sandbox);
   const T = vm.runInContext(
-    '({STATE,HX,HXDATA,hxVerifyAll,hxKey,hxExports,hxFor,hxHistorical,rpEval,rpBinding,rpOk,' +
+    '({STATE,HX,HXDATA,GOVDATA,GOV,hxVerifyAll,hxKey,hxExports,hxFor,hxHistorical,rpEval,rpBinding,rpOk,' +
     'pageReplay,pageExec,pageTryIt,tryReset,runScenario,exportLedger,renderSystemReports,' +
+    'pageGovernance,govDecision,govMonitoringStatus,govApprove,govReject,govReset,' +
     'PAGE_RENDERERS,scen,sys,RP,RP_CASE})', sandbox);
+  T.rptArtifact = win.rptArtifact;
   return { T, sandbox, win, doc, elements, listeners, blobs };
 }
 
@@ -266,4 +271,148 @@ test('entry points exist on command center, judge page and hub', async () => {
   assert.ok(T.PAGE_RENDERERS.reports().includes('data-act="try-open"'));
   win.RPT.view = 'hub';
   assert.ok(T.PAGE_RENDERERS.reports().includes('data-act="try-open"'));
+});
+
+/* ---------------- Sprint 21.1: hardened binding ---------------- */
+
+test('empty or missing transaction ID fails closed', async () => {
+  for (const mutate of [
+    (T) => { T.HXDATA.replay.provenance.transactionId = ''; },
+    (T) => { delete T.HXDATA.replay.provenance.transactionId; },
+    (T) => { T.HXDATA.replay.records[0].payload.transactionId = 'syn-txn-other'; },
+    (T) => { T.HXDATA.replay.records[2].payload.scenarioRunId = 'syn-mfg-v3-run'; },
+  ]) {
+    const { T } = await ready();
+    mutate(T);
+    assert.equal(T.rpBinding().ok, false);
+    assert.ok(T.PAGE_RENDERERS.replay().includes('REPLAY_BINDING_MISMATCH'));
+  }
+});
+
+test('exec timeline withholds records and autostart when binding fails', async () => {
+  const { T, sandbox } = await ready();
+  T.HXDATA.replay.provenance.transactionId = 'forged';
+  const html = T.PAGE_RENDERERS.exec();
+  assert.ok(html.includes('REPLAY_BINDING_MISMATCH'));
+  assert.ok(!html.includes(T.HXDATA.replay.records[0].evidenceId), 'withheld record leaked');
+  // autostart source gate uses full binding, not bare digest flag
+  const src = fs.readFileSync(path.join(ROOT, 'dashboard/index.html'), 'utf8');
+  const branch = src.match(/case 'exec-replay':[\s\S]{0,400}/)[0];
+  assert.ok(/if\(rpOk\(\)\)/.test(branch), 'exec-replay must gate on rpOk()');
+});
+
+test('v1 case@world resolves the v1 report; bare id stays v3', async () => {
+  const { T, win } = await ready();
+  const v1 = T.rptArtifact('SYS-217-WRONG_TARGET@manufacturing-source-world-v1');
+  assert.equal(v1.evaluation.evaluationId, V1_EVAL);
+  const v3 = T.rptArtifact('SYS-217-WRONG_TARGET');
+  assert.equal(v3.evaluation.evaluationId, V3_EVAL);
+  const bogus = T.rptArtifact('SYS-217-WRONG_TARGET@manufacturing-source-world-v9');
+  assert.equal(bogus, null);
+  win.RPT.view = 'case'; win.RPT.caseId = 'SYS-217-WRONG_TARGET@manufacturing-source-world-v1';
+  const html = T.PAGE_RENDERERS.reports();
+  assert.ok(html.includes(V1_EVAL));
+  assert.ok(html.includes('HISTORICAL REGISTER'));
+});
+
+test('v5SystemReports shows VERIFYING/INTEGRITY FAILURE, never unverified dispositions', async () => {
+  const { T, sandbox } = await ready();
+  const a = T.hxExports().find(x => x.sourceCase.caseId === 'SYS-217-WRONG_TARGET');
+  T.HX.verified[T.hxKey(a)] = false;
+  let html = vm.runInContext('v5SystemReports(sys("SYS-217"))', sandbox);
+  assert.ok(html.includes('INTEGRITY FAILURE'));
+  assert.ok(!html.includes('data-rp="case" data-id="SYS-217-WRONG_TARGET"'), 'unverified report link rendered');
+  T.HX.verified[T.hxKey(a)] = true;
+  T.HX.digestsDone = false;
+  html = vm.runInContext('v5SystemReports(sys("SYS-217"))', sandbox);
+  assert.ok(html.includes('VERIFYING'));
+});
+
+/* ---------------- Sprint 21.1: governance fixture ---------------- */
+
+test('portfolio: exactly 3 approved / 2 rejected / 4 pending, all derived', async () => {
+  const { T } = await ready();
+  const decs = T.GOVDATA.decisions;
+  assert.equal(decs.length, 9);
+  assert.equal(decs.filter(d => /^APPROVED/.test(d.humanDecision)).length, 3);
+  assert.equal(decs.filter(d => d.humanDecision === 'REJECTED').length, 2);
+  assert.equal(decs.filter(d => d.humanDecision === 'PENDING').length, 4);
+  const html = T.pageGovernance();
+  assert.ok(html.includes('FICTIONAL DEPLOYMENT GOVERNANCE SCENARIOS — NOT ACTUAL HAIEC RELEASE AUTHORIZATIONS'));
+  assert.ok(html.includes('<div class="num">3</div>'));
+  assert.ok(html.includes('<div class="num">2</div>'));
+  assert.ok(html.includes('<div class="num">4</div>'));
+});
+
+test('every approval carries explicit operation and environment scope', async () => {
+  const { T } = await ready();
+  for (const d of T.GOVDATA.decisions) {
+    assert.ok(d.allowedOperations.length > 0 && d.prohibitedOperations.length > 0, d.systemId);
+    assert.ok(/^FICTIONAL_/.test(d.environment), d.systemId);
+    assert.ok(d.approverRole && d.decisionRef && d.policyVersion, d.systemId);
+  }
+});
+
+test('monitoring status is derived from records, not approval status', async () => {
+  const { T } = await ready();
+  assert.equal(T.govMonitoringStatus('SYS-340'), 'SIMULATED_MONITORING_ESTABLISHED');
+  assert.equal(T.govMonitoringStatus('SYS-FC1'), 'SIMULATED_MONITORING_ESTABLISHED');
+  assert.equal(T.govMonitoringStatus('SYS-MNT88'), 'SIMULATED_MONITORING_PARTIAL');
+  assert.equal(T.govMonitoringStatus('SYS-S217') === 'x', false); // guard
+  assert.equal(T.govMonitoringStatus('SYS-217'), 'SIMULATED_MONITORING_PARTIAL');
+  assert.equal(T.govMonitoringStatus('SYS-SUP12'), 'SIMULATED_MONITORING_STALE');
+  assert.equal(T.govMonitoringStatus('SYS-PO12'), 'SIMULATED_MONITORING_STALE');
+  assert.equal(T.govMonitoringStatus('SYS-DYN412'), 'NO_LIVE_CONNECTION');
+  assert.equal(T.govMonitoringStatus('SYS-SCH5'), 'SIMULATED_MONITORING_PARTIAL');
+  assert.equal(T.govMonitoringStatus('SYS-WH15'), 'SIMULATED_MONITORING_PARTIAL');
+});
+
+test('roleplay: pending can be scope-approved, rejected cannot be approved', async () => {
+  const { T } = await ready();
+  T.govApprove('SYS-217');
+  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-217')), 'APPROVED_SCOPED');
+  const ev = T.STATE.events.find(e => !e.fixture);
+  assert.equal(ev.decision, 'SIMULATED_HUMAN_DECISION');
+  assert.equal(ev.effect, 'LOCAL_FIXTURE_EFFECT_ONLY');
+  // rejected stays rejected — no approve path
+  T.govReject('SYS-SUP12');
+  T.govApprove('SYS-SUP12');
+  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-SUP12')), 'REJECTED');
+  // reset restores fixture
+  T.govReset();
+  assert.equal(T.govDecision(T.GOVDATA.decisions.find(d => d.systemId === 'SYS-217')), 'PENDING');
+});
+
+test('roleplay never mutates the 45 canonical exports and carries no U6 receipt', async () => {
+  const { T } = await ready();
+  const before = Object.values(T.HXDATA.exportMapV3).map(a => a.evaluation.evaluationId).sort().join(',');
+  T.govApprove('SYS-217'); T.govReject('SYS-WH15');
+  const after = Object.values(T.HXDATA.exportMapV3).map(a => a.evaluation.evaluationId).sort().join(',');
+  assert.equal(after, before);
+  assert.equal(Object.keys(T.HXDATA.exportMapV3).length, 45);
+  assert.ok(!JSON.stringify(T.GOVDATA).includes('publicVerificationId'));
+  assert.ok(!/evaluationId/.test(JSON.stringify(T.GOVDATA.decisions)), 'governance fixture carries evaluation IDs');
+});
+
+test('governance page keeps the four fields separate + Station 217 story', async () => {
+  const { T } = await ready();
+  T.STATE.govSystem = 'SYS-217';
+  const html = T.pageGovernance();
+  for (const f of ['1 · HAIEC assurance', '2 · Human deployment decision', '3 · Operating scope', '4 · Monitoring state'])
+    assert.ok(html.includes(f), 'missing field ' + f);
+  assert.ok(html.includes('WO-217-4802') && html.includes('WO-217-4803'));
+  assert.ok(html.includes('NOT ESTABLISHED'));
+  assert.ok(html.includes('SIMULATED_HUMAN_DECISION'));
+  assert.ok(html.includes('NOT CONNECTED'));
+  assert.ok(!/GO\/NO-GO/.test(html), 'no combined risk score');
+});
+
+test('governance fixture is cleanly separated: SIMULATION_ONLY, no canonical identity', () => {
+  const g = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/demo-governance/governance-scenarios.json'), 'utf8'));
+  assert.equal(g.provenance, 'SIMULATION_ONLY');
+  assert.equal(g.artifactClass, 'FICTIONAL_DEPLOYMENT_GOVERNANCE_SCENARIOS_NOT_HAIEC_AUTHORIZATIONS');
+  for (const d of g.decisions) {
+    assert.ok(!('evaluationId' in d) && !('receipt' in d) && !('publicVerificationId' in d));
+    assert.ok(d.canonicalCaseId, 'each decision references its canonical case for the assurance pane');
+  }
 });
