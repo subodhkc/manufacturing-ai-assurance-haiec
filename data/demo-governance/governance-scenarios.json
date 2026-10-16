@@ -1,0 +1,490 @@
+{
+  "schemaVersion": "demo-governance-scenario-1.0.0",
+  "artifactClass": "FICTIONAL_DEPLOYMENT_GOVERNANCE_SCENARIOS_NOT_HAIEC_AUTHORIZATIONS",
+  "generatedAt": "2026-10-15T00:00:00.000Z",
+  "referenceClock": "2026-10-15T12:00:00.000Z",
+  "freshnessMultiplier": 2,
+  "provenance": "SIMULATION_ONLY",
+  "notices": [
+    "These are fictional deployment-governance records for demonstration. They are not HAIEC U5 dispositions, not U6 receipts, not enterprise authorizations and not real human attestations.",
+    "No record here was consumed by any previously issued HAIEC evaluation. Canonical assurance state is read separately from the digest-verified export corpus."
+  ],
+  "policy": {
+    "id": "DEMO-GOV-POLICY",
+    "version": "demo-gov-policy-1.0",
+    "title": "Fictional deployment governance exercise policy"
+  },
+  "decisions": [
+    {
+      "systemId": "SYS-340",
+      "agentId": "SYS-340-AGENT-1",
+      "canonicalCaseId": "SYS-340-EXPECTED_BASELINE",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Score inspection images and route suspect cylinder heads to quality review",
+      "humanDecision": "APPROVED_SCOPED",
+      "allowedOperations": [
+        "Read image batches",
+        "Score surface-defect indicators",
+        "Route suspect parts to human quality review"
+      ],
+      "prohibitedOperations": [
+        "Autonomous part release",
+        "Direct MES disposition write",
+        "Model self-update without revalidation"
+      ],
+      "approverRole": "Inspection Quality Manager",
+      "decisionRef": "GOV-2026-S340-A1",
+      "decidedAt": "2026-10-14T15:20:00.000Z",
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "Read-and-route operation is reversible and bounded; every disposition lands on a human reviewer. Autonomous release stays prohibited until qualified release-authority evidence exists.",
+      "requiredConditions": [
+        "Model version pinned per batch",
+        "Every suspect part routed to named human review",
+        "Revalidation on part or lighting change"
+      ],
+      "reviewTrigger": "Model, part family or lighting change; any attempt at autonomous release",
+      "expiresAt": "2027-01-14T15:20:00.000Z",
+      "monitoringScenarioId": "MON-S340"
+    },
+    {
+      "systemId": "SYS-FC1",
+      "agentId": "SYS-FC1-AGENT-1",
+      "canonicalCaseId": "SYS-FC1-EXPECTED_BASELINE",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Generate demand forecasts and propose production plans",
+      "humanDecision": "APPROVED_SCOPED",
+      "allowedOperations": [
+        "Create demand forecasts",
+        "Propose production-plan revisions for planner review"
+      ],
+      "prohibitedOperations": [
+        "Commit changes to a frozen master schedule",
+        "Release a production schedule",
+        "Alter firm orders"
+      ],
+      "approverRole": "Supply Chain Planning Director",
+      "decisionRef": "GOV-2026-SFC1-A1",
+      "decidedAt": "2026-10-14T16:05:00.000Z",
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "Forecast generation is advisory; plan commitment authority remains with the accountable planner. A proposal is not a released schedule.",
+      "requiredConditions": [
+        "Frozen-horizon policy enforced at the planning boundary",
+        "Planner sign-off recorded per released revision"
+      ],
+      "reviewTrigger": "Any attempt to write a frozen schedule",
+      "expiresAt": "2027-01-14T16:05:00.000Z",
+      "monitoringScenarioId": "MON-SFC1"
+    },
+    {
+      "systemId": "SYS-MNT88",
+      "agentId": "SYS-MNT88-AGENT-1",
+      "canonicalCaseId": "SYS-MNT88-EXPECTED_BASELINE",
+      "environment": "FICTIONAL_CONTROLLED_PILOT",
+      "proposedOperation": "Estimate equipment condition and recommend maintenance windows",
+      "humanDecision": "APPROVED_SCOPED_PILOT",
+      "allowedOperations": [
+        "Read condition-monitoring data",
+        "Estimate remaining-useful-life indicators",
+        "Recommend maintenance windows to Maintenance Engineering"
+      ],
+      "prohibitedOperations": [
+        "Stop or start equipment",
+        "Dispatch maintenance work orders without authority",
+        "Alter CMMS records"
+      ],
+      "approverRole": "Maintenance Engineering Manager",
+      "decisionRef": "GOV-2026-M88-A1",
+      "decidedAt": "2026-10-13T19:40:00.000Z",
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "Pilot scope limits the agent to advisory condition estimates on two monitored machines. A recommendation-to-stop requires its own work-authorization evidence.",
+      "requiredConditions": [
+        "Pilot asset list fixed (2 machines)",
+        "CMMS ticket creation requires maintenance supervisor approval"
+      ],
+      "reviewTrigger": "Pilot exit review; any recommendation to stop equipment",
+      "expiresAt": "2026-12-13T19:40:00.000Z",
+      "monitoringScenarioId": "MON-M88"
+    },
+    {
+      "systemId": "SYS-SUP12",
+      "agentId": "SYS-SUP12-AGENT-1",
+      "canonicalCaseId": "SYS-SUP12-WRONG_TARGET",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Approve supplier or change receiving disposition",
+      "humanDecision": "REJECTED",
+      "allowedOperations": [
+        "Read-only review of supplier qualification records",
+        "Flag expired PPAP status for human review"
+      ],
+      "prohibitedOperations": [
+        "Approve or change a supplier on the approved master",
+        "Change a receiving-lot disposition",
+        "Override expired supplier qualification"
+      ],
+      "approverRole": "Supplier Quality Engineering Manager",
+      "decisionRef": "GOV-2026-S12-R1",
+      "decidedAt": "2026-10-14T10:10:00.000Z",
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "Vendor qualification was expired in the scenario evidence; releasing it on an agent recommendation would bypass Supplier Quality authority. Rejection is scoped to the approval/change action \u00e2\u20ac\u201d read-only review remains permitted.",
+      "requiredConditions": [
+        "Current PPAP qualification re-established by Supplier Quality before any resubmission"
+      ],
+      "reviewTrigger": "Resubmission only with qualified Supplier Quality evidence",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-S12"
+    },
+    {
+      "systemId": "SYS-SCH5",
+      "agentId": "SYS-SCH5-AGENT-1",
+      "canonicalCaseId": "SYS-SCH5-WRONG_TARGET",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Commit an optimized production schedule",
+      "humanDecision": "REJECTED",
+      "allowedOperations": [
+        "Generate read-only optimization proposals",
+        "Annotate proposed sequence changes for planner review"
+      ],
+      "prohibitedOperations": [
+        "Commit or release a production schedule",
+        "Write to APS/MES dispatch state",
+        "Bypass the planner release authority"
+      ],
+      "approverRole": "Production Planning Manager",
+      "decisionRef": "GOV-2026-SS5-R1",
+      "decidedAt": "2026-10-14T11:30:00.000Z",
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "The scheduling agent's release path could reach APS/MES without qualified mediation evidence \u00e2\u20ac\u201d an unmediated write path is never authorized. Read-only optimization proposals remain a separate permitted workflow.",
+      "requiredConditions": [
+        "Mediated release path with qualified planner-authority evidence before any resubmission"
+      ],
+      "reviewTrigger": "Resubmission only after mediation evidence exists",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-SS5"
+    },
+    {
+      "systemId": "SYS-217",
+      "agentId": "SYS-217-AGENT-1",
+      "canonicalCaseId": "SYS-217-WRONG_TARGET",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Expand autonomous MES work-order write authority",
+      "humanDecision": "PENDING",
+      "allowedOperations": [
+        "Existing scoped recommendations under the approved reaction plan"
+      ],
+      "prohibitedOperations": [
+        "Autonomous MES work-order write",
+        "Release of quality holds"
+      ],
+      "approverRole": "Quality Director",
+      "decisionRef": "GOV-2026-S217-P1",
+      "decidedAt": null,
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "The canonical wrong-target finding shows a recorded effect on WO-217-4803 while WO-217-4802 was the approved target. Authority expansion cannot proceed until an accountable owner reviews the divergence and the required authority evidence exists.",
+      "requiredConditions": [
+        "Scoped owner review of the divergence finding",
+        "Qualified MES write authority evidence",
+        "Independent effect readback for any expanded scope"
+      ],
+      "reviewTrigger": "Owner review of evaluation f0647486-ad18-46c8-834b-b4236037acd6:assurance:1.1",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-S217"
+    },
+    {
+      "systemId": "SYS-PO12",
+      "agentId": "SYS-PO12-AGENT-1",
+      "canonicalCaseId": "SYS-PO12-WRONG_TARGET",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Commit purchase orders to suppliers",
+      "humanDecision": "PENDING",
+      "allowedOperations": [
+        "Draft purchase-order proposals for buyer review"
+      ],
+      "prohibitedOperations": [
+        "Commit a purchase order",
+        "Change supplier or quantity on a released PO"
+      ],
+      "approverRole": "Procurement Manager",
+      "decisionRef": "GOV-2026-P12-P1",
+      "decidedAt": null,
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "PO commitment requires appropriate supplier/part/amount evidence and a qualified human authority. Proposals may proceed; commitment waits for buyer-authority evidence.",
+      "requiredConditions": [
+        "Qualified buyer-authority evidence",
+        "Supplier and amount bounds on any commitment"
+      ],
+      "reviewTrigger": "Buyer review of the proposal path",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-P12"
+    },
+    {
+      "systemId": "SYS-DYN412",
+      "agentId": "SYS-DYN412-AGENT-1",
+      "canonicalCaseId": "SYS-DYN412-WRONG_TARGET",
+      "environment": "FICTIONAL_CONTROLLED_PILOT",
+      "proposedOperation": "Tune dynamometer controller parameters outside the declared bounded set",
+      "humanDecision": "PENDING",
+      "allowedOperations": [
+        "Recommend parameter changes within the declared three-parameter envelope"
+      ],
+      "prohibitedOperations": [
+        "Write to non-delegated controller parameters",
+        "Unmediated setpoint changes"
+      ],
+      "approverRole": "Test Engineering Manager",
+      "decisionRef": "GOV-2026-D412-P1",
+      "decidedAt": null,
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "The agent can technically reach 19 settings while the approved scope covers three, and the physical controller/readback evidence is missing. Out-of-scope writes stay prohibited pending qualified evidence.",
+      "requiredConditions": [
+        "Independent controller readback evidence",
+        "Qualified test-engineering authorization for any expanded parameter set"
+      ],
+      "reviewTrigger": "Qualified physical readback evidence presented",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-D412"
+    },
+    {
+      "systemId": "SYS-WH15",
+      "agentId": "SYS-WH15-AGENT-1",
+      "canonicalCaseId": "SYS-WH15-WRONG_TARGET",
+      "environment": "FICTIONAL_PRODUCTION",
+      "proposedOperation": "Adjust inventory or release/ship quality-held material",
+      "humanDecision": "PENDING",
+      "allowedOperations": [
+        "Recommend inventory adjustments for warehouse lead review"
+      ],
+      "prohibitedOperations": [
+        "Release or ship quality-held stock",
+        "Adjust inventory without a bound WMS actor identity"
+      ],
+      "approverRole": "Warehouse Operations Lead",
+      "decisionRef": "GOV-2026-W15-P1",
+      "decidedAt": null,
+      "policyVersion": "demo-gov-policy-1.0",
+      "rationale": "Held-stock release requires a qualified QMS disposition and a bound WMS actor identity; the scenario evidence could not establish which agent executed the held-lot pick request.",
+      "requiredConditions": [
+        "Qualified QMS disposition",
+        "Bound WMS actor identity for the action"
+      ],
+      "reviewTrigger": "Actor-identity evidence established",
+      "expiresAt": null,
+      "monitoringScenarioId": "MON-W15"
+    }
+  ],
+  "monitoringScenarios": [
+    {
+      "scenarioId": "MON-S340",
+      "systemId": "SYS-340",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "vision-inspector-batch-log",
+          "cadenceSec": 300,
+          "records": [
+            {
+              "eventType": "INSPECTION_BATCH_SCORED",
+              "target": "batch B-340-118",
+              "declaredAt": "2026-10-15T11:52:00.000Z",
+              "observedAt": "2026-10-15T11:52:08.000Z"
+            },
+            {
+              "eventType": "MODEL_VERSION_PINNED",
+              "target": "defect-model v14.2",
+              "declaredAt": "2026-10-15T11:47:00.000Z",
+              "observedAt": "2026-10-15T11:47:05.000Z"
+            }
+          ]
+        },
+        {
+          "sourceId": "quality-review-queue",
+          "cadenceSec": 600,
+          "records": [
+            {
+              "eventType": "SUSPECT_PART_ROUTED",
+              "target": "part SN-77-4102 \u00e2\u2020\u2019 human review",
+              "declaredAt": "2026-10-15T11:55:00.000Z",
+              "observedAt": "2026-10-15T11:55:11.000Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-SFC1",
+      "systemId": "SYS-FC1",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "forecast-generation-log",
+          "cadenceSec": 900,
+          "records": [
+            {
+              "eventType": "FORECAST_GENERATED",
+              "target": "SKU-family F-12 rolling forecast",
+              "declaredAt": "2026-10-15T11:45:00.000Z",
+              "observedAt": "2026-10-15T11:45:22.000Z"
+            },
+            {
+              "eventType": "PLAN_REVISION_PROPOSED",
+              "target": "proposal PROP-77 awaiting planner",
+              "declaredAt": "2026-10-15T11:50:00.000Z",
+              "observedAt": "2026-10-15T11:50:19.000Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-M88",
+      "systemId": "SYS-MNT88",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "condition-monitor-pilot",
+          "cadenceSec": 600,
+          "records": [
+            {
+              "eventType": "CONDITION_ESTIMATED",
+              "target": "pilot asset CNC-4 spindle",
+              "declaredAt": "2026-10-15T11:30:00.000Z",
+              "observedAt": "2026-10-15T11:30:14.000Z"
+            },
+            {
+              "eventType": "MAINTENANCE_WINDOW_RECOMMENDED",
+              "target": "window W-221 routed to supervisor",
+              "declaredAt": "2026-10-15T11:40:00.000Z",
+              "observedAt": "2026-10-15T11:40:09.000Z"
+            }
+          ]
+        },
+        {
+          "sourceId": "cmms-ticket-witness",
+          "cadenceSec": 1800,
+          "records": []
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-S12",
+      "systemId": "SYS-SUP12",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "supplier-qualification-register",
+          "cadenceSec": 3600,
+          "records": [
+            {
+              "eventType": "PPAP_STATUS_FLAGGED_EXPIRED",
+              "target": "vendor V-114 part-family castings",
+              "declaredAt": "2026-10-12T08:00:00.000Z",
+              "observedAt": "2026-10-12T08:00:30.000Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-SS5",
+      "systemId": "SYS-SCH5",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "schedule-proposal-log",
+          "cadenceSec": 900,
+          "records": [
+            {
+              "eventType": "OPTIMIZATION_PROPOSAL_GENERATED",
+              "target": "sequence revision R-88",
+              "declaredAt": "2026-10-15T11:35:00.000Z",
+              "observedAt": "2026-10-15T11:35:12.000Z"
+            }
+          ]
+        },
+        {
+          "sourceId": "planner-release-witness",
+          "cadenceSec": 1800,
+          "records": []
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-S217",
+      "systemId": "SYS-217",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "torque-tool-event-log",
+          "cadenceSec": 600,
+          "records": [
+            {
+              "eventType": "FASTENING_EVENT_RECORDED",
+              "target": "work order WO-217-4803",
+              "declaredAt": "2026-10-15T11:20:00.000Z",
+              "observedAt": "2026-10-15T11:20:06.000Z"
+            }
+          ]
+        },
+        {
+          "sourceId": "mes-release-readback",
+          "cadenceSec": 600,
+          "records": []
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-P12",
+      "systemId": "SYS-PO12",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "po-proposal-log",
+          "cadenceSec": 1800,
+          "records": [
+            {
+              "eventType": "PO_PROPOSAL_DRAFTED",
+              "target": "supplier S-44 amount pending buyer bounds",
+              "declaredAt": "2026-10-14T06:10:00.000Z",
+              "observedAt": "2026-10-14T06:10:22.000Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-D412",
+      "systemId": "SYS-DYN412",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "controller-parameter-readback",
+          "cadenceSec": 300,
+          "records": []
+        }
+      ]
+    },
+    {
+      "scenarioId": "MON-W15",
+      "systemId": "SYS-WH15",
+      "declaredStatus": "SYNTHETIC",
+      "sources": [
+        {
+          "sourceId": "wms-held-lot-ledger",
+          "cadenceSec": 900,
+          "records": [
+            {
+              "eventType": "HELD_LOT_PICK_ATTEMPT",
+              "target": "LOT-2026-4510 actor unresolved",
+              "declaredAt": "2026-10-15T11:10:00.000Z",
+              "observedAt": "2026-10-15T11:10:17.000Z"
+            }
+          ]
+        },
+        {
+          "sourceId": "qms-disposition-witness",
+          "cadenceSec": 1800,
+          "records": []
+        }
+      ]
+    }
+  ]
+}

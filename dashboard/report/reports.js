@@ -28,7 +28,7 @@ function rptReadUrl(){
     if(!p)return false;
     if(p.startsWith('case:')){
       const id=p.slice(5);
-      if(!/^[A-Za-z0-9_-]{3,64}$/.test(id)||!rptArtifact(id)){RPT.view='hub';RPT.notice=id;return true;}
+      if(!/^[A-Za-z0-9_-]{3,64}(@[A-Za-z0-9_-]{1,64})?$/.test(id)||!rptArtifact(id)){RPT.view='hub';RPT.notice=id;return true;}
       RPT.view='case';RPT.caseId=id;return true;
     }
     const v=RPT_VIEWS[p];
@@ -79,7 +79,13 @@ function x(v){return esc(v==null?'—':String(v));}
 function sysMeta(id){return (typeof SYSTEMS!=='undefined'?SYSTEMS:[]).find(s=>s.id===id)||null;}
 function stateOf(a){return a.sourceCase.scenarioState;}
 function verifiedOf(a){return HX.digestsDone?HX.verified[hxKey(a)]:null;}
-function rptArtifact(caseId){return hxExports().find(a=>a.sourceCase.caseId===caseId)||null;}
+function rptArtifact(caseId){
+  const s=String(caseId||'');
+  const at=s.indexOf('@');
+  if(at===-1)return hxExports().find(a=>a.sourceCase.caseId===s)||null;
+  const cid=s.slice(0,at),world=s.slice(at+1);
+  return hxExports().concat(hxHistorical()).find(a=>a.sourceCase.caseId===cid&&(a.provenance&&a.provenance.sourceWorldId)===world)||null;
+}
 
 /* Requested → authorized → observed plane summary, verbatim from the
    evaluation's Four Assurance Questions authority section. */
@@ -215,7 +221,7 @@ function rpCaseReport(a){
     auditor:['lineage','conclusion','findings','witness','owner','limits','subject','consequence','appendix']};
   return crumb+header({eyebrow:'REPORT / '+a.sourceCase.aiSystemId+' / '+(HX_STATE_LABEL[stateOf(a)]||stateOf(a)),
     title:'Case Assurance Report — '+a.sourceCase.caseId,
-    sub:statusPill(e.disposition)+' '+pill(e.evaluationBasis,'info')+' '+pill(a.provenance.dataClass,'warn')+' '+pill('export digest verified','go'),
+    sub:statusPill(e.disposition)+' '+pill(e.evaluationBasis,'info')+' '+pill(a.provenance.dataClass,'warn')+' '+pill('export digest verified','go')+' '+pill('world '+a.provenance.sourceWorldId,'info')+(a.provenance.sourceWorldId!=='manufacturing-source-native-v3'?' '+pill('HISTORICAL REGISTER — v1, superseded by v3','warn'):''),
     actions:'<button class="btn" type="button" data-rp="case-findings" data-id="'+x(a.sourceCase.aiSystemId)+'|'+x(a.sourceCase.caseId)+'">← Findings</button><button class="btn" type="button" data-act="hx-system" data-id="'+x(a.sourceCase.aiSystemId)+'">'+x(a.sourceCase.aiSystemId)+' system view</button>'+(a.sourceCase.aiSystemId==='SYS-217'?'<button class="btn" type="button" data-act="page" data-id="journey">Operator Journey</button>':'')+'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
     signatureBlock('SKIPPED')+printRow()+
     '<div class="rp-print-head">HAIEC Case Assurance Report · '+x(a.sourceCase.caseId)+' · '+x(e.evaluationId)+' · presentation derivative — digital signature SKIPPED · verified export digest '+x(a.exportDigest).slice(0,32)+'…</div>'+
@@ -393,6 +399,9 @@ function rpJudge(){
     step(8,'Try it yourself (~2 min)',
       'Reproduce the finding hands-on: compare the four persisted evidence states for SYS-217, enter a new simulated input into the same deterministic fixture, then inspect the local event and the canonical report. Canonical evaluations, historical replay and local simulation are labeled separately throughout.',
       b('Open Try it yourself →','data-act="try-open"'))+
+    step(9,'Deployment governance — human layer (~1 min)',
+      'See the contrast that makes assurance legible: three fictional scoped approvals, two explicit rejections, four pending reviews — including SYS-217, still pending because of the wrong-target finding. Simulated monitoring exists inside the fictional scenario; every HAIEC disposition stays REVIEW. A fictional approval is a human operating decision, never a HAIEC verdict.',
+      b('Open Deployment Governance →','data-act="page" data-id="governance"'))+
     '<div class="notice top14"><div><b>Reproducibility</b><p>Every step above is a shareable URL (<code>?report=…</code>) or a stable page — a judge can refresh, bookmark or open any step directly. The demo runs fully on the static deployed site; digest verification of all 45 exports runs in the browser before any finding is shown.</p></div></div>';
 }
 
@@ -474,6 +483,7 @@ window.addEventListener('popstate',()=>{
   if(rptReadUrl()){STATE.page='reports';render();}
   else if(STATE.page==='reports'){RPT.view='hub';RPT.caseId=null;render();}
 });
+window.rptArtifact=rptArtifact; // world-qualified artifact resolver — inspectable like RPT
 PAGE_RENDERERS.reports=pageReports;
 // Deep-link init: ?report=… opens the exact report view on load.
 if(rptReadUrl())STATE.page='reports';

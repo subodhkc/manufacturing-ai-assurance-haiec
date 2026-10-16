@@ -112,4 +112,16 @@ persisted artifacts and marks never-issued types `NOT ISSUED`.
 - [ ] Participant talent registration — talent.fwtx.city, human-owned, unconfirmed.
 - [ ] In-person Demo Day — October 30, 2026, 9:30 a.m.–3:00 p.m. CDT (separate event; RSVP luma.com/ygyxb4yy).
 
+## Why does HAIEC show REVIEW when a fictional human approved deployment?
+
+U5 expresses **evidence-qualified assurance** — what the persisted, digest-verified
+evidence actually establishes, including explicit unknowns. The Deployment
+Governance page shows a **separate, explicitly simulated record** of fictional
+human decisions (3 scoped approvals, 2 rejections, 4 pending — including
+SYS-217 pending because of the wrong-target finding). Neither substitutes for
+the other: a fictional approval is a human's scoped operating decision, not a
+HAIEC verdict; a REVIEW disposition is not a deployment ban, it is what the
+evidence supports. Monitoring badges there are derived from synthetic fixture
+records inside the fictional scenario — real connectors stay NOT CONNECTED.
+
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.
