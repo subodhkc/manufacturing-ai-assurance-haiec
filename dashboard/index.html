@@ -1030,6 +1030,7 @@ const PAGES = [
   { id:'evaluations',group:'Prove',  label:'HAIEC Evaluations',icon:'09' },
   { id:'station217', group:'Prove',  label:'Station 217 Replay',icon:'10' },
   { id:'replay',    group:'Prove',   label:'Evidence Replay',  icon:'11' },
+  { id:'tryit',     group:'Prove',   label:'Try It Yourself',  icon:'▶' },
   { id:'provenance',group:'Prove',   label:'HF Provenance',    icon:'12' },
   { id:'setup',     group:'Connect', label:'Connections & Setup',      icon:'13' }
 ];
@@ -1525,26 +1526,44 @@ function renderSystemMonitoring(s){
 }
 
 function renderSystemReports(s){
+  /* Persisted canonical artifacts for this system (v3). Wrong-target is the
+     flagship comparison; all five states have frozen exports and case reports. */
+  const states = HX_STATE_ORDER.map(st=>({st,a:hxFor(s.id,st)}));
+  const wt = (states.find(x=>x.st==='WRONG_TARGET')||{}).a || states.find(x=>x.a)?.a || null;
+  const caseLink = wt ? `data-act="hx-case" data-id="${s.id}|${esc(wt.sourceCase.caseId)}"` : '';
+  const kinds = [
+    {label:'Canonical evaluation export', desc:'Digest-verified persisted artifact — rules, DAI, control witness, provenance', ok:!!wt, act:caseLink, cta:'Open export →'},
+    {label:'Case report (persisted)', desc:'Rendered from the frozen evaluation — findings, evidence boundary, verification', ok:!!wt, rp:wt?wt.sourceCase.caseId:null, cta:'Open report →'},
+    {label:'Production Passport', desc:'Not issued for this synthetic fixture — no real deployment, owner attestation or release gate exists', ok:false},
+    {label:'AI audit / approval certificate', desc:'Not issued — HAIEC issues evidence-bound evaluations, never approvals or certificates', ok:false},
+    {label:'OWASP / compliance mapping', desc:'Not issued for this fixture — framework mapping is not certification and none was produced', ok:false}
+  ];
   return `
     <div class="card">
-      <div class="cardhead"><div><h2>Reports for ${esc(s.name)}</h2><p>Select a report type. These are synthetic reports that follow the structure HAIEC produces for real customer systems.</p></div></div>
+      <div class="cardhead"><div><h2>Reports for ${esc(s.name)}</h2><p>Persisted artifacts open directly; types never issued for this fixture are marked unavailable rather than presented as inert controls.</p></div></div>
       <div class="grid g3">
-        ${[
-          ['audit','Agent Audit','Source-bound findings and questions'],
-          ['dai','DAI & Action Proof','Delegated action integrity'],
-          ['passport','Production Passport','Release evidence summary'],
-          ['capability','Capability & constellation','What the agent can do'],
-          ['controls','Control proof maturity','Which controls are cataloged, configured, tested'],
-          ['owasp','OWASP relevance','Security finding context']
-        ].map(([id,label,desc]) => `
-          <button class="listitem" style="text-align:left;cursor:pointer" data-act="report-kind" data-id="${id}">
-            <strong>${esc(label)}</strong>
-            <div class="small" style="margin-top:4px">${esc(desc)}</div>
-          </button>
-        `).join('')}
+        ${kinds.map(k => k.ok ? `
+          <button class="listitem" style="text-align:left;cursor:pointer" ${k.act?k.act:`data-rp="case" data-id="${esc(k.rp)}"`}>
+            <strong>${esc(k.label)}</strong>
+            <div class="small" style="margin-top:4px">${esc(k.desc)}</div>
+            <div class="tiny" style="margin-top:6px"><b>${esc(k.cta)}</b></div>
+          </button>` : `
+          <div class="listitem" style="opacity:.7;cursor:default">
+            <div class="row"><strong>${esc(k.label)}</strong>${pill('NOT ISSUED','warn')}</div>
+            <div class="small" style="margin-top:4px">${esc(k.desc)}</div>
+          </div>`).join('')}
       </div>
+    </div>
+    <div class="card">
+      <div class="cardhead"><div><h2>Persisted evaluations — all five evidence states</h2><p>Each opens the digest-verified export or its case report.</p></div>${pill('CANONICAL HAIEC EVALUATION','go')}</div>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Evidence state</th><th>Disposition</th><th></th></tr></thead><tbody>
+        ${states.map(({st,a}) => a ? `<tr><td><b>${esc(HX_STATE_LABEL[st])}</b></td><td>${statusPill(a.evaluation.disposition)}</td>
+          <td><button class="btn xs" data-act="hx-case" data-id="${s.id}|${esc(a.sourceCase.caseId)}">Export</button>
+          <button class="btn xs" data-rp="case" data-id="${esc(a.sourceCase.caseId)}">Report</button></td></tr>`
+        : `<tr><td><b>${esc(HX_STATE_LABEL[st])}</b></td><td colspan="2"><span class="tiny muted">no export</span></td></tr>`).join('')}
+      </tbody></table></div>
       <div class="notice warn top14">
-        <div><b>Synthetic report</b><p>Every report in this workspace is a fixture. To produce a genuine HAIEC report, connect a real customer system from Setup and run an evaluation.</p></div>
+        <div><b>Synthetic corpus</b><p>Every artifact here is a digest-pinned synthetic evaluation export — never a real plant. To produce customer reports, connect a real system from Setup.</p></div>
       </div>
     </div>`;
 }
@@ -1727,7 +1746,7 @@ function runScenario(){
     if(v <= c.autoContainMax){
       decision = 'PASS'; status = 'applied';
       explanation = `Within ${c.autoContainMax}-engine automatic containment path. Quality broker applied. Local simulator readback recorded.`;
-      STATE.mes.contained += v; effect = 'READBACK_VERIFIED';
+      STATE.mes.contained += v; effect = 'SIMULATED_LOCAL_READBACK';
     } else if(v <= c.supervisorCeiling){
       decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
       explanation = `${v} engines exceeds automatic containment ceiling of ${c.autoContainMax}. Expanded containment requires Quality Supervisor authorization. Containment is protective; this is not a denial.`;
@@ -1752,7 +1771,7 @@ function runScenario(){
   } else if(sc.id === 'PO'){
     if(v > c.poMax){ decision = 'REVIEW_REQUIRED'; status = 'pending'; requires = true;
       explanation = `PO $${fmt(v)} exceeds buyer review cap of $${fmt(c.poMax)}. Buyer decision required.`;
-    } else { decision = 'PASS'; status = 'applied'; explanation = `PO $${fmt(v)} inside bounded envelope. Broker applied.`; STATE.mes.poValue += v; effect = 'READBACK_VERIFIED'; }
+    } else { decision = 'PASS'; status = 'applied'; explanation = `PO $${fmt(v)} inside bounded envelope. Broker applied.`; STATE.mes.poValue += v; effect = 'SIMULATED_LOCAL_READBACK'; }
   } else if(sc.id === 'SUPPLIER'){
     if(v === 0){ decision = 'DENY'; status = 'rejected'; explanation = 'Proposed vendor not on approved master (PPAP status expired). Sourcing cannot bypass Supplier Quality Engineering.'; }
     else { decision = 'PASS'; status = 'applied'; explanation = 'Vendor is on approved master with current PPAP. Recommendation recorded.'; }
@@ -1845,7 +1864,7 @@ function pageMonitor(){
   return header({
     eyebrow: 'Operations & reviews',
     title: 'Synthetic operations & recorded events',
-    sub: 'Inspect browser-local simulated reviews, dispatch decisions and local state. Not connected to production equipment or HAIEC live runtime.',
+    sub: 'Inspect browser-local simulated reviews, dispatch decisions and local state. Not connected to production equipment or HAIEC live runtime. Ledger exports are labeled BROWSER_LOCAL_SIMULATION_NOT_HAIEC_EVALUATION; SIMULATED_LOCAL_READBACK effects are fixture state, never independently witnessed production effects.',
     actions: `<button class="btn" data-act="open-lab" data-id="HOLD">Trigger a new action</button>
               <button class="btn" data-act="export-ledger">Export ledger</button>`
   })
@@ -1868,9 +1887,9 @@ function pageMonitor(){
        </div>
        <div class="card">
          <div class="cardhead"><div><h2>Recent actions</h2><p>Every decision, approval and effect on the synthetic estate.</p></div></div>
-         ${events.length ? events.map(e => `
+         ${events.length ? events.map((e,i) => `
            <div class="listitem ${e.status === 'rejected' ? 'red' : e.status === 'applied' ? 'go' : 'amber'}" style="margin-bottom:8px">
-             <div class="row"><strong>${esc(e.title)}</strong>${pill(e.decision || 'recorded', e.status === 'rejected' ? 'hold' : e.status === 'applied' ? 'go' : 'warn')}</div>
+             <div class="row"><strong>${esc(e.title)}</strong>${pill(e.decision || 'recorded', e.status === 'rejected' ? 'hold' : e.status === 'applied' ? 'go' : 'warn')}${i===0?pill('LOCAL INTERACTIVE SIMULATION','info'):''}</div>
              <p class="small" style="margin-top:5px">${esc(e.desc || '')}</p>
              <div class="row" style="margin-top:6px"><span class="small muted" style="font-family:var(--mono);font-size:10.5px">${esc(e.id)} · ${esc(e.at)}</span></div>
            </div>`).join('') : `<div class="notice info"><div><b>No events yet</b><p>Run a scenario to populate the operational ledger.</p></div></div>`}
@@ -1939,12 +1958,12 @@ function decide(id, verdict){
   }
   r.status = 'APPROVED';
   let effect = 'NONE';
-  if(r.scenario === 'HOLD'){ STATE.mes.contained += r.amount; effect = 'READBACK_VERIFIED'; }
-  else if(r.scenario === 'PO'){ STATE.mes.poValue += r.amount; effect = 'READBACK_VERIFIED'; }
-  else if(r.scenario === 'FORECAST'){ STATE.mes.planChanges += 1; effect = 'READBACK_VERIFIED'; }
-  else if(r.scenario === 'VISION'){ STATE.mes.qualityCases += 1; effect = 'READBACK_VERIFIED'; }
+  if(r.scenario === 'HOLD'){ STATE.mes.contained += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
+  else if(r.scenario === 'PO'){ STATE.mes.poValue += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
+  else if(r.scenario === 'FORECAST'){ STATE.mes.planChanges += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
+  else if(r.scenario === 'VISION'){ STATE.mes.qualityCases += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
   addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario });
-  toast('Approved — effect ' + (effect === 'READBACK_VERIFIED' ? 'verified by local simulator readback (not a HAIEC verification).' : 'not established.'));
+  toast('Approved — effect ' + (effect === 'SIMULATED_LOCAL_READBACK' ? 'verified by local simulator readback (not a HAIEC verification).' : 'not established.'));
   closeModal(); render();
 }
 
@@ -2227,7 +2246,12 @@ document.addEventListener('click', e => {
     case 'copy-prompt': copyPrompt(); break;
     case 'report-kind': toast('No separate ' + id + ' report is issued for the browser simulation. Open HAIEC Assurance for actual persisted evaluation artifacts.'); break;
     case 'hx-system': HX.system = id; HX.caseId = null; STATE.page = 'evaluations'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
-    case 'hx-case': HX.system = id.split('|')[0]; HX.caseId = id.split('|')[1]; STATE.page = 'evaluations'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'hx-case': HX.system = id.split('|')[0]; HX.caseId = id.split('|').slice(1).join('|'); STATE.page = 'evaluations'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'try-open': STATE.selectedScenario = 'HOLD'; STATE.page = 'tryit'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'try-state': STATE.tryState = id; render(); break;
+    case 'try-preset': STATE.selectedScenario = 'HOLD'; { const i=$('scenario-value'); if(i){ i.value=id; STATE.simValue=Number(id); } } runScenario(); break;
+    case 'try-run': STATE.selectedScenario = 'HOLD'; runScenario(); break;
+    case 'try-reset': tryReset(); toast('Local simulation state reset — canonical evaluations untouched.'); render(); break;
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-overview': HX.system = null; HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
@@ -2254,6 +2278,8 @@ document.addEventListener('change', e => {
 function exportLedger(){
   const payload = {
     schema:'haiec-manufacturing-demo/1.0', org: ORG.name, exportedAt: new Date().toISOString(),
+    artifactClass:'BROWSER_LOCAL_SIMULATION_NOT_HAIEC_EVALUATION',
+    disclaimer:'Browser-local deterministic fixture output. Not a HAIEC canonical evaluation — carries no canonical evaluation ID, no U6 receipt and no production audit claim. Local SIMULATED_LOCAL_READBACK effects are in-memory fixture state, never independently witnessed production effects.',
     configVersion: STATE.configVersion, config: STATE.config,
     events: STATE.events, requests: STATE.requests, mes: STATE.mes
   };
@@ -3710,7 +3736,7 @@ async function hxVerifyAll(){
     }catch(e){HX.replayVerified=false;}
   }
   HX.digestsDone=true;
-  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='reports'||STATE.page==='journey')render();
+  if(STATE.page==='evaluations'||STATE.page==='station217'||STATE.page==='replay'||STATE.page==='exec'||STATE.page==='reports'||STATE.page==='journey'||STATE.page==='tryit')render();
 }
 /* The v3 set is the current program; the v1 set stays intact as the
    historical register. When v3 is absent the dashboard degrades to the
@@ -3784,7 +3810,7 @@ function pageEvalIntegrityFailure(a){
 function pageEvaluations(){
   if(!HXDATA)return header({eyebrow:'PROOF / HAIEC EVALUATIONS',title:'No frozen export data',sub:'dashboard/data/haiec-exports.js is missing — run scripts/build-dashboard-data.cjs.'});
   const systems=hxSystems();
-  if(HX.caseId){const a=hxExports().find(x=>x.sourceCase.caseId===HX.caseId);if(a)return pageEvalCase(a);HX.caseId=null;}
+  if(HX.caseId){const [cid,world]=String(HX.caseId).split('@');const a=[...hxExports(),...hxHistorical()].find(x=>x.sourceCase.caseId===cid&&(!world||(x.provenance&&x.provenance.sourceWorldId)===world));if(a)return pageEvalCase(a);HX.caseId=null;}
   if(HX.system)return pageEvalSystem(HX.system);
   const cards=systems.map(id=>{
     const cells=HX_STATE_ORDER.map(st=>{
@@ -3814,8 +3840,8 @@ function pageEvaluations(){
     <p class="tiny muted" style="margin-top:8px">The study measured generic ingestion, canonical evaluation and evidence-only reporting without manufacturing qualification — the enhancements added qualified industrial semantics, rule adjudication and governed independent-effect evidence. It did not measure generic static-code scanning, agent discovery or MCP tool discovery.</p></div>
   ${cards}
   ${hist.length?`<div class="card"><div class="cardhead"><div><h2>Historical register — source-world v1</h2><p>${hist.length} preserved evaluations from the earlier corpus. Byte-identical exports, digest-verified, superseded by the v3 assessments above — never overwritten.</p></div>${pill('PRESERVED','info')}</div>
-    <div class="tblwrap"><table class="tbl"><thead><tr><th>Case</th><th>Evaluation</th><th>Disposition</th><th>Integrity</th></tr></thead><tbody>
-    ${hist.map(a=>`<tr><td><code>${esc(a.sourceCase.caseId)}</code></td><td class="tiny"><code>${esc(a.evaluation.evaluationId)}</code></td><td>${statusPill(a.evaluation.disposition)}</td><td class="tiny">${HX.digestsDone?(HX.verified[hxKey(a)]===true?'verified ✓':'INTEGRITY FAILURE'):'verifying…'}</td></tr>`).join('')}
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Case</th><th>Evaluation</th><th>Disposition</th><th>Integrity</th><th></th></tr></thead><tbody>
+    ${hist.map(a=>`<tr><td><code>${esc(a.sourceCase.caseId)}</code></td><td class="tiny"><code>${esc(a.evaluation.evaluationId)}</code></td><td>${statusPill(a.evaluation.disposition)}</td><td class="tiny">${HX.digestsDone?(HX.verified[hxKey(a)]===true?'verified ✓':'INTEGRITY FAILURE'):'verifying…'}</td><td><button class="btn xs" data-act="hx-case" data-id="${esc(a.sourceCase.aiSystemId)}|${esc(a.sourceCase.caseId)}@${esc(a.provenance.sourceWorldId)}">Open v1 export →</button></td></tr>`).join('')}
     </tbody></table></div></div>`:''}`;
 }
 
@@ -3856,7 +3882,7 @@ function pageEvalCase(a){
   const qRows=Object.entries(q).map(([k,v])=>`<tr><td class="tiny">${esc(k)}</td><td class="tiny">${esc(typeof v==='object'?JSON.stringify(v):String(v))}</td></tr>`).join('');
   return header({eyebrow:`PROOF / ${a.sourceCase.aiSystemId} / ${HX_STATE_LABEL[a.sourceCase.scenarioState]||a.sourceCase.scenarioState}`,
     title:`${a.sourceCase.caseId}`,
-    sub:`${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')} ${pill('digest verified','go')}`,
+    sub:`${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')} ${pill(a.provenance.dataClass,'warn')} ${pill('digest verified','go')} ${pill('world '+a.provenance.sourceWorldId,'info')} ${a.provenance.sourceWorldId!=='manufacturing-source-native-v3'?pill('HISTORICAL REGISTER — v1, superseded by v3','warn'):''}`,
     actions:`<button class="btn primary" data-rp="case" data-id="${a.sourceCase.caseId}">Full case report →</button><button class="btn" data-act="hx-system" data-id="${a.sourceCase.aiSystemId}">← ${a.sourceCase.aiSystemId}</button><button class="btn" data-act="hx-overview">All systems</button>`})+
   `<div class="card"><div class="cardhead"><div><h2>Evaluation identity</h2></div></div>
     <table class="tbl"><tbody>
@@ -3945,9 +3971,30 @@ const RP_TOTAL = 60, RP_TICK = 250;
 const RP_CASE = 'SYS-217-WRONG_TARGET';
 
 function rpData(){ return HXDATA && HXDATA.replay || null; }
-function rpEval(){ const m=hxCurrent(); return m[RP_CASE] || null; }
+/* Sprint 21 — the replay bundle is bound to the HISTORICAL v1 export
+   (manufacturing-source-world-v1), never the current v3 world. Resolve
+   explicitly from exportMap and validate every relationship — two
+   individually valid digests do not prove two artifacts belong together. */
+function rpEval(){ const m=(HXDATA&&HXDATA.exportMap)||{}; return m[RP_CASE] || null; }
+function rpBinding(){
+  const rp=rpData(),a=rpEval();
+  const checks=[];const push=(label,ok)=>checks.push({label,ok});
+  push('replay bundle digest', HX.replayVerified===true);
+  push('bound evaluation export present', !!a);
+  push('export digest verified', !!(a&&HX.verified[hxKey(a)]===true));
+  if(rp&&a){
+    const e=a.evaluation||{},p=rp.provenance||{},sc=a.sourceCase||{},pv=a.provenance||{};
+    push('evaluation ID matches bound export', rp.evaluationId===e.evaluationId);
+    push('case ID matches bound export', rp.caseId===sc.caseId);
+    push('source world matches bound export (v1)', !!p.sourceWorldId&&p.sourceWorldId===pv.sourceWorldId);
+    push('scenario run matches bound export', !!p.scenarioRunId&&p.scenarioRunId===sc.scenarioRunId);
+    push('transaction ID found in bound export', !p.transactionId||JSON.stringify(a).indexOf(p.transactionId)!==-1);
+    push('record count matches bundle declaration', (rp.records||[]).length===p.consumedEvidenceCount);
+  }
+  return { checks, ok:checks.length>0&&checks.every(c=>c.ok) };
+}
 function rpRec(phase){ const r=(rpData()&&rpData().records)||[]; return r.find(x=>x.payload&&x.payload.phase===phase)||null; }
-function rpOk(){ const a=rpEval(); return HX.digestsDone && a && HX.verified[hxKey(a)]===true && HX.replayVerified===true; }
+function rpOk(){ return HX.digestsDone && rpBinding().ok; }
 
 /* Step table — windows follow docs/60-SECOND-EVIDENCE-REPLAY.md. A step
    whose underlying record is absent renders MISSING EVIDENCE, never a
@@ -4042,15 +4089,18 @@ function pageReplay(){
   if(!HX.digestsDone)return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'Evidence replay',sub:pill('VERIFYING','info')})+
     `<div class="notice"><div><b>Verifying digests</b><p>Recomputing export and replay-record digests before playback is enabled.</p></div></div>`;
   if(!rpOk()){
-    return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'Evidence replay',sub:pill('INTEGRITY FAILURE','hold')})+
-    `<div class="notice warn"><div><b>Replay blocked</b><p>Export and/or replay-record digest verification failed — recorded evidence is withheld rather than played back untrusted.</p></div></div>`;
+    return header({eyebrow:'PROOF / EVIDENCE REPLAY',title:'Evidence replay',sub:pill('REPLAY_BINDING_MISMATCH','hold')})+
+    `<div class="notice warn"><div><b>Replay withheld — binding not established</b><p>The recorded replay could not be proven to belong to an evaluation export, or a digest failed. Findings are never attached to unrelated replay records.</p></div></div>
+     <div class="card"><div class="cardhead"><div><h2>Binding checks</h2><p>Every relationship between the replay bundle and its bound export must hold — two individually valid digests are not proof they belong together.</p></div></div>
+     <table class="tbl"><tbody>${rpBinding().checks.map(c=>`<tr><td>${esc(c.label)}</td><td>${c.ok?pill('OK','go'):pill('FAIL','hold')}</td></tr>`).join('')}</tbody></table></div>`;
   }
   const rp=rpData(),e=rpEval().evaluation;
+  const rpWorld=(rp.provenance&&rp.provenance.sourceWorldId)||'';
   return header({eyebrow:'PROOF / EVIDENCE REPLAY / SYS-217',title:esc(rp.title||'Evidence replay'),
-    sub:`${pill('RECORDED EVIDENCE','warn')} ${pill('NO BACKEND SCAN','info')} <code class="tiny">${esc(e.evaluationId)}</code>`,
-    actions:`<button class="btn" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Open the export →</button>`})+
-  `<div class="notice warn"><div><b>Recorded evidence replay</b><p>The sequence below replays <b>recorded</b> synthetic source-world records and a persisted HAIEC evaluation. Nothing is collected, dispatched or re-evaluated. Source timestamps are the record's own <code>declaredAt</code> values; the timer is display pacing only.</p></div></div>
-  <div class="notice"><div><b>Evidence lineage</b><p class="tiny">Synthetic manufacturing source-world replay aligned to the persisted HAIEC evaluation — records are deterministic output of the same source-world producer the evaluation consumed: <code>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</code> · run <code>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</code> · transaction <code>${esc(rp.provenance?rp.provenance.transactionId:'—')}</code>. ${esc(rp.provenance?rp.provenance.limitation:'')}</p></div></div>
+    sub:`${pill('HISTORICAL REPLAY','warn')} ${pill('NO BACKEND SCAN','info')} <code class="tiny">${esc(e.evaluationId)}</code>`,
+    actions:`<button class="btn" data-act="hx-case" data-id="SYS-217|${RP_CASE}@${esc(rpWorld)}">Open the bound v1 export →</button>`})+
+  `<div class="notice warn"><div><b>Historical v1 evidence replay</b><p>The sequence below replays <b>recorded</b> synthetic source-world records and their bound <b>historical v1</b> evaluation — a different evaluation and source world from the current v3 assessment. Nothing is collected, dispatched or re-evaluated. Source timestamps are the record's own <code>declaredAt</code> values; the timer is display pacing only.</p></div></div>
+  <div class="notice"><div><b>Evidence lineage — bound to the v1 evaluation</b><p class="tiny">Synthetic manufacturing source-world replay bound to the persisted historical evaluation — records are deterministic output of the same source-world producer the evaluation consumed: <code>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</code> · run <code>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</code> · transaction <code>${esc(rp.provenance?rp.provenance.transactionId:'—')}</code>. ${esc(rp.provenance?rp.provenance.limitation:'')}</p></div></div>
   <div class="card"><div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center">
       <div class="flex" style="gap:8px;flex-wrap:wrap">${rpControls()}</div>
       <div class="tiny muted" id="rp-time">${RP.manual?'step '+(RP.stepIdx+1)+' / '+RP_STEPS.length:Math.round(RP.elapsed)+'s / '+RP_TOTAL+'s'}</div>
@@ -4063,8 +4113,98 @@ function pageReplay(){
     <p class="small">An effect was <b>witnessed</b> on the wrong target — that is a divergence finding, not proof the operation was authorized or safe. The evaluation is frozen; this replay re-presented recorded records only.</p>
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
       <a class="btn sm primary" href="report/sample-master-report.html" target="_blank" rel="noopener">View Sample Master Report ↗</a>
-      <button class="btn sm" data-act="hx-case" data-id="SYS-217|${RP_CASE}">Full verified export →</button>
+      <button class="btn sm" data-act="hx-case" data-id="SYS-217|${RP_CASE}@${esc(rpWorld)}">Full bound v1 export →</button>
     </div></div>`;
+}
+
+/* ============================================================
+   TRY IT YOURSELF — reproducible judge path over existing surfaces.
+   Three evidence classes are never merged:
+   CANONICAL HAIEC EVALUATION · HISTORICAL REPLAY · LOCAL INTERACTIVE SIMULATION
+   ============================================================ */
+const TRY_STATES = ['EXPECTED_BASELINE','WRONG_TARGET','EVIDENCE_DEGRADED','REMEDIATED'];
+function tryStateExport(){ return hxFor('SYS-217', STATE.tryState || 'WRONG_TARGET'); }
+function pageTryIt(){
+  const st = STATE.tryState || 'WRONG_TARGET';
+  const a = tryStateExport();
+  const verified = a ? (HX.digestsDone ? HX.verified[hxKey(a)] : null) : false;
+  const e = a ? a.evaluation : null;
+  const m = a ? a.manufacturing : null;
+  const eff = m ? (m.ruleOutcomes||[]).find(o=>o.ruleId==='MFG-EFF-001') : null;
+  const tgt = a && a.dai && a.dai.evaluations && a.dai.evaluations[0]
+    ? (a.dai.evaluations[0].comparisons||[]).find(c=>c.dimension==='TARGET') : null;
+  const r01 = m && m.controlMaturity ? (m.controlMaturity.rows||[]).find(r=>r.controlId==='R01') : null;
+  const pub = a && a.publication && a.publication.publicationState==='PUBLIC' ? a.publication : null;
+  const pubUrl = pub ? (pub.publicVerificationUrl || (HX.haiecBase+'/verify/assurance/'+pub.publicVerificationId)) : null;
+  const cfg = STATE.config;
+  const lastLocal = STATE.events.find(ev=>!ev.fixture);
+  const lastReq = lastLocal && lastLocal.requestId ? STATE.requests.find(r=>r.id===lastLocal.requestId) : null;
+
+  const canonicalPanel = !a ? `<div class="notice warn"><div><b>Export unavailable</b><p>No persisted v3 export exists for this state.</p></div></div>`
+    : verified===false ? `<div class="notice warn"><div><b>INTEGRITY FAILURE</b><p>Digest verification failed — content withheld.</p></div></div>`
+    : verified===null ? `<div class="notice"><div><b>Verifying digest…</b></div></div>`
+    : `<div class="card"><div class="cardhead"><div><h2>${esc(HX_STATE_LABEL[st])} — persisted v3 result</h2><p>Original issued export, verbatim. Selecting a state never runs a new assessment.</p></div>${pill('CANONICAL HAIEC EVALUATION','go')}</div>
+      <table class="tbl"><tbody>
+      <tr><td>Case</td><td><code>${esc(a.sourceCase.caseId)}</code></td></tr>
+      <tr><td>Evaluation ID</td><td class="tiny"><code>${esc(e.evaluationId)}</code></td></tr>
+      <tr><td>Source world / run</td><td class="tiny"><code>${esc(a.provenance.sourceWorldId)}</code> · <code>${esc(a.sourceCase.scenarioRunId)}</code></td></tr>
+      <tr><td>U5 disposition</td><td>${statusPill(e.disposition)}</td></tr>
+      ${eff?`<tr><td>MFG-EFF-001</td><td>${hxOutcomeChip(eff.status,eff.reason)}<div class="tiny muted" style="margin-top:4px">${esc(eff.reason)}</div>${(eff.missingClaims&&eff.missingClaims.length)?`<div class="tiny muted">Missing claims: ${eff.missingClaims.map(esc).join(', ')}</div>`:''}${(eff.limitations||[]).length?`<div class="tiny muted">Limitations: ${eff.limitations.map(esc).join(' · ')}</div>`:''}</td></tr>`:''}
+      ${tgt?`<tr><td>DAI · TARGET</td><td>${statusPill(tgt.comparison)}<div class="tiny muted" style="margin-top:4px">delegated <code>${esc(tgt.delegatedValue||'—')}</code> → observed <code>${esc(tgt.observedValue||'—')}</code></div></td></tr>`:''}
+      ${r01?`<tr><td>R01 control witness</td><td>${hxUcpResultChip(r01.ucpResult)} <span class="tiny muted">${esc(r01.ucpReceiptState||'')}</span></td></tr>`:''}
+      <tr><td>Not assessed</td><td class="tiny muted">Reachability and code authority remain NOT_ASSESSED where the evidence does not establish them — unknown is never upgraded.</td></tr>
+      </tbody></table>
+      <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn sm primary" data-act="hx-case" data-id="SYS-217|${esc(a.sourceCase.caseId)}">Full verified export →</button>
+        <button class="btn sm" data-rp="case" data-id="${esc(a.sourceCase.caseId)}">Case report →</button>
+        ${pubUrl?`<a class="btn sm" target="_blank" rel="noopener" href="${esc(pubUrl)}">Public U6 receipt ↗</a>`:''}
+      </div></div>`;
+
+  return header({eyebrow:'PROVE / TRY IT YOURSELF',title:'Try it yourself — reproduce the finding',
+    sub:'Three steps over real surface: compare frozen canonical evaluations, change a simulated input, observe the local result. Each class of evidence stays visibly separate.',
+    actions:`<button class="btn" data-act="try-reset">Reset local state</button><button class="btn" data-act="hx-overview">All evaluations</button>`})+
+  `<div class="notice top14"><div><b>Three classes of evidence — never merged</b>
+    <div class="flex" style="gap:10px;flex-wrap:wrap;margin-top:8px">
+      <span>${pill('CANONICAL HAIEC EVALUATION','go')}<span class="tiny muted"> previously issued, digest-verified synthetic evidence.</span></span>
+      <span>${pill('HISTORICAL REPLAY','warn')}<span class="tiny muted"> recorded evidence bound to its exact historical evaluation.</span></span>
+      <span>${pill('LOCAL INTERACTIVE SIMULATION','info')}<span class="tiny muted"> new browser-generated inputs and illustrative decisions.</span></span>
+    </div></div></div>
+
+  <div class="card top14" id="try-a"><div class="cardhead"><div><h2>Step 1 · Compare canonical evidence states — SYS-217</h2>
+    <p>These are previously issued HAIEC evaluations of separate synthetic evidence snapshots. Selecting a scenario does not run a new HAIEC assessment.</p></div>${pill('CANONICAL HAIEC EVALUATION','go')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap">${TRY_STATES.map(x=>`<button class="btn sm ${x===st?'primary':''}" data-act="try-state" data-id="${x}">${esc(HX_STATE_LABEL[x])}</button>`).join('')}</div>
+  </div>
+  ${canonicalPanel}
+
+  <div class="card top14" id="try-b"><div class="cardhead"><div><h2>Step 2 · Change a simulated input — quality hold on engines</h2>
+    <p>Same deterministic local fixture as the Decision Lab. Policy v${esc(STATE.configVersion)}: automatic containment ≤ ${cfg.autoContainMax} engines · Quality Supervisor review to ${cfg.supervisorCeiling} · above that, Plant Quality Manager. A browser-local approval is not an authenticated enterprise authorization.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap;align-items:center">
+      <button class="btn sm" data-act="try-preset" data-id="3">Try 3 engines</button>
+      <button class="btn sm" data-act="try-preset" data-id="40">Try 40 engines</button>
+      <button class="btn sm" data-act="try-preset" data-id="60">Try 60 engines</button>
+      <input id="scenario-value" type="number" min="1" max="500" value="${STATE.simValue??''}" placeholder="engines" style="width:110px">
+      <button class="btn sm primary" data-act="try-run">Run local policy</button>
+    </div>
+    ${lastLocal?`<div class="listitem ${lastLocal.status==='rejected'?'red':lastLocal.status==='applied'?'go':'amber'} top14">
+      <div class="row"><strong>${esc(lastLocal.title)}</strong>${pill(lastLocal.decision||'recorded', lastLocal.status==='rejected'?'hold':lastLocal.status==='applied'?'go':'warn')}</div>
+      <p class="small" style="margin-top:5px">${esc(lastLocal.desc||'')}</p>
+      <div class="row" style="margin-top:6px"><span class="small muted" style="font-family:var(--mono);font-size:10.5px">${esc(lastLocal.id)} · effect ${esc(lastLocal.effect||'NONE')}${lastReq?' · review '+esc(lastReq.id):''}</span></div>
+      ${lastReq?`<div class="flex" style="gap:8px;margin-top:8px"><button class="btn xs primary" data-act="open-review" data-id="${esc(lastReq.id)}">Open the pending review →</button></div>`:''}
+    </div>`:`<div class="notice info top14"><div><b>No local run yet</b><p>Enter an input above to see the fixture decision.</p></div></div>`}
+  </div>
+
+  <div class="card top14" id="try-c"><div class="cardhead"><div><h2>Step 3 · Observe the local result, then return to the canonical record</h2>
+    <p>The monitor shows the locally generated event; the exported ledger identifies itself as <code>BROWSER_LOCAL_SIMULATION_NOT_HAIEC_EVALUATION</code>.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
+    <div class="flex" style="gap:8px;flex-wrap:wrap">
+      <button class="btn" data-act="open-monitor">Open Monitoring →</button>
+      <button class="btn" data-act="export-ledger">Export local ledger</button>
+      <button class="btn primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Open canonical SYS-217 case report →</button>
+    </div></div>`;
+}
+function tryReset(){
+  STATE.requests=[]; STATE.events=STATE.events.filter(e=>e.fixture);
+  STATE.mes={contained:0,released:0,poValue:0,planChanges:0,qualityCases:0};
+  STATE.paused={}; STATE.simValue=null;
 }
 
 /* Engine — timer only advances UI pacing; content never changes. */
@@ -4302,13 +4442,18 @@ function exModFrontier(){
 function exModReplay(){
   const rp=rpData(),recs=(rp&&rp.records)||[];
   const rows=recs.map(r=>`<div class="ex-tl-row"><span class="sq">#${r.sequence}</span><b class="tiny">${esc(r.payload.phase)}</b><code>${esc(r.evidenceId)} · ${esc(r.declaredAt)}</code></div>`).join('');
+  const cur=(hxFor('SYS-217','WRONG_TARGET')||{}).evaluation||{};
+  const rpWorld=(rp.provenance&&rp.provenance.sourceWorldId)||'';
   const body=`${rows}
-    <div class="ex-meta"><div><span>Source world</span><b>${esc(rp.provenance?rp.provenance.sourceWorldId:'—')}</b></div>
+    <div class="ex-meta"><div><span>Replay source world (v1)</span><b>${esc(rpWorld||'—')}</b></div>
     <div><span>Scenario run</span><b>${esc(rp.provenance?rp.provenance.scenarioRunId:'—')}</b></div>
-    <div><span>Transaction</span><b>${esc(rp.provenance?rp.provenance.transactionId:'—')}</b></div></div>
-    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="exec-replay">Run 60-Second Evidence Replay →</button></div>
-    <div class="ex-note">Synthetic manufacturing source-world replay aligned to the persisted HAIEC evaluation — source-declared timestamps (deterministic, identical by construction); playback pacing 00:00–01:00 is display only. No OTLP collection exists in this demo.</div>`;
-  return exMod('ex-s5','AUDIT & EVIDENCE REPLAY','Recorded Event Timeline','Six source-world records + canonical evaluation stages',body,pill('RECORDED · NOT LIVE','warn'));
+    <div><span>Transaction</span><b>${esc(rp.provenance?rp.provenance.transactionId:'—')}</b></div>
+    <div><span>Bound evaluation (v1)</span><b class="tiny"><code>${esc(rp.evaluationId||'—')}</code></b></div>
+    <div><span>Current assessment (v3)</span><b class="tiny"><code>${esc(cur.evaluationId||'—')}</code></b></div></div>
+    <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="exec-replay">Run 60-Second Evidence Replay →</button>
+    <button class="btn sm" data-act="hx-case" data-id="SYS-217|${RP_CASE}@${esc(rpWorld)}">Open the bound v1 evaluation →</button></div>
+    <div class="ex-note"><b>Historical v1 evidence replay — different evaluation and source world from the current v3 assessment shown above.</b> Source-declared timestamps (deterministic, identical by construction); playback pacing 00:00–01:00 is display only. No OTLP collection exists in this demo.</div>`;
+  return exMod('ex-s5','AUDIT & EVIDENCE REPLAY','Recorded Event Timeline','Historical v1 replay — distinct from the current v3 assessment',body,pill('HISTORICAL V1 · RECORDED','warn'));
 }
 /* OOTB benchmark — separate population, separate proof point */
 function exModStudy(){
@@ -4383,7 +4528,7 @@ function pageExec(){
       <span style="flex:1"></span>
       ${statusPill(e.disposition)} ${pill(e.evaluationBasis,'info')}
       ${HX.replayVerified===true?pill('replay digest verified','go'):pill('replay unverified','hold')}
-      <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
+      <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><button class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" data-act="try-open">Try it yourself →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
     </div>
     <div class="ex-grid">
       ${exModEstate()}
@@ -4405,6 +4550,7 @@ PAGE_RENDERERS.exec = pageExec;
 PAGE_RENDERERS.evaluations = pageEvaluations;
 PAGE_RENDERERS.station217 = pageStation217;
 PAGE_RENDERERS.replay = pageReplay;
+PAGE_RENDERERS.tryit = pageTryIt;
 
 /* Boot — verify all digests, then re-render if an HX page is active. */
 if(HXDATA){hxVerifyAll();}

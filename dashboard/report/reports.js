@@ -390,6 +390,9 @@ function rpJudge(){
     step(7,'Optional — another industry (~10 s)',
       'The same canonical engine boundaries, applied to a historical telecom reference (AL0/AL1/AL2) — clearly marked reference, not a second evaluated system.',
       b('Telecom reference →','data-ind-open="telecom"'))+
+    step(8,'Try it yourself (~2 min)',
+      'Reproduce the finding hands-on: compare the four persisted evidence states for SYS-217, enter a new simulated input into the same deterministic fixture, then inspect the local event and the canonical report. Canonical evaluations, historical replay and local simulation are labeled separately throughout.',
+      b('Open Try it yourself →','data-act="try-open"'))+
     '<div class="notice top14"><div><b>Reproducibility</b><p>Every step above is a shareable URL (<code>?report=…</code>) or a stable page — a judge can refresh, bookmark or open any step directly. The demo runs fully on the static deployed site; digest verification of all 45 exports runs in the browser before any finding is shown.</p></div></div>';
 }
 
@@ -418,6 +421,7 @@ function pageReports(){
     aud+notFound+
     '<div class="rp-grid">'+
     '<button class="rp-tile rp-tile-hero" type="button" data-rp="judge"><div class="ind-overline">START HERE · ~2 MIN</div><h3>Judge demo path</h3><p>A fixed seven-step sequence through the deployed demo — consequence, evidence, response, boundaries, verification and scale. Manufacturing track.</p></button>'+
+    '<button class="rp-tile" type="button" data-act="try-open"><div class="ind-overline">INTERACTIVE</div><h3>Try it yourself — reproduce the finding</h3><p>Compare persisted evidence states, change a simulated input, observe the local result — with canonical, replay and simulation clearly separated.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="exec"><div class="ind-overline">EXECUTIVE</div><h3>Nine-System Executive Assurance Report</h3><p>45 canonical v3 evaluations, plain-language business significance, state comparison, unknowns, owners and provenance.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="s217"><div class="ind-overline">FLAGSHIP</div><h3>Station 217 — Wrong Target</h3><p>AI acted on the wrong work order. HAIEC identified the consequential divergence. Executive + technical versions.</p></button>'+
     '<a class="rp-tile" href="report/sample-master-report.html" target="_blank" rel="noopener"><div class="ind-overline">PUBLIC SAMPLE</div><h3>SYS-217 Sample Master Report ↗</h3><p>Frozen public-safe derivative — no sign-in. HTML + PDF artifacts.</p></a>'+

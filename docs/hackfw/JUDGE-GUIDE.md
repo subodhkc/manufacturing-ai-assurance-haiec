@@ -48,7 +48,7 @@ Full Devpost copy, judging-criteria matrix, FAQ and checklist:
 | R01 `SATISFIED` | Scoped effect-witness test only — not safe-containment proof |
 | Five evidence planes (`NOT_ASSESSED`) | Honest plane states — EVIDENCE_ONLY basis, never promoted |
 | Operator Journey Contain stage | Browser-only simulation — no kill-switch call, no OT actuation |
-| 60-second Evidence Replay | Historical v1 source-world records — not v3 evaluation data |
+| 60-second Evidence Replay | Historical v1 source-world records bound to v1 evaluation `bce94772-…:assurance:1.1` — **not** the v3 assessment `f0647486-…:assurance:1.1` (Sprint 21: binding verified per-field, fails closed as `REPLAY_BINDING_MISMATCH`) |
 | Telecom AL0/AL1/AL2 | Historical TM Forum reference — no new HAIEC finding |
 | Other 4 industries | `SIMULATION_ONLY` fictional source stories |
 | v3.1 pack | Source-native fixture/profile data — not an assessed corpus |
@@ -74,6 +74,25 @@ digest renders INTEGRITY FAILURE, never findings. Sprint 19 truth locks: all
 corrected-state = `NO_MATCH_WITH_ADEQUATE_COVERAGE`/`MATCHES`/`SATISFIED`;
 detector + DAI + R01 are aligned views over shared evidence, not independent
 producers.
+
+**Sprint 21 — replay identity + reproducible judge path:** the Evidence
+Replay now resolves its bound evaluation explicitly from the historical v1
+register (`HXDATA.exportMap`) and validates every relationship — evaluation
+ID, source world, scenario run, transaction ID, record count, and both
+digests — before any finding renders; any divergence shows
+`REPLAY_BINDING_MISMATCH`. The Command Center timeline is labeled historical
+v1 alongside the current v3 assessment identity. A **Try It Yourself** page
+(nav → Prove, Command Center, judge step 8 and the Reports hub) walks three
+steps: (1) compare the four persisted SYS-217 evidence states verbatim —
+baseline / wrong-target (`MATCH`/`BROADER`/`REVIEW`) / evidence-degraded
+(`INSUFFICIENT_SOURCE`, missing `NATIVE_TARGET_READBACK`) / remediated
+(`NO_MATCH`/`MATCHES`/`REVIEW`); (2) run the same Decision Lab fixture with
+3 / 40 / 60 engines (pass · supervisor review · plant-manager review);
+(3) inspect the local event in Monitoring and export a ledger labeled
+`BROWSER_LOCAL_SIMULATION_NOT_HAIEC_EVALUATION`. Local effect labels were
+corrected to `SIMULATED_LOCAL_READBACK` — no local path claims independently
+witnessed production effects. Per-system report navigation now links real
+persisted artifacts and marks never-issued types `NOT ISSUED`.
 
 ## Video outline (<2 min)
 
