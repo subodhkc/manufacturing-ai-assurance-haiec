@@ -249,13 +249,14 @@ test('try-state / try-preset / try-reset wire through the real click handler', a
 
 test('system reports link real artifacts and mark unsupported types', async () => {
   const { T, sandbox } = await ready();
-  const html = vm.runInContext('renderSystemReports(sys("SYS-217"))', sandbox);
-  assert.ok(html.includes('Canonical evaluation export'));
+  // v5SystemReports is the live workspace renderer (PAGE_RENDERERS.system → v5SystemPage)
+  const html = vm.runInContext('v5SystemReports(sys("SYS-217"))', sandbox);
+  assert.ok(html.includes('Persisted canonical evaluations'));
   assert.ok(html.includes('data-act="hx-case"'));
   assert.ok(html.includes('data-rp="case"'));
-  assert.ok((html.match(/NOT ISSUED/g) || []).length >= 3);
-  assert.ok(!html.includes('report-kind'), 'inert report-kind control still rendered');
-  assert.ok(html.includes('all five evidence states'));
+  assert.ok(html.includes('· canonical →'), 'audit/dai must link the persisted case report');
+  assert.ok((html.match(/NOT ISSUED/g) || []).length >= 5, 'never-issued types must be marked');
+  assert.ok(html.includes('WRONG_TARGET'), 'persisted state rows rendered');
 });
 
 test('entry points exist on command center, judge page and hub', async () => {
