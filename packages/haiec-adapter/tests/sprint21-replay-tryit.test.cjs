@@ -72,7 +72,7 @@ function loadDash() {
   const T = vm.runInContext(
     '({STATE,HX,HXDATA,GOVDATA,GOV,hxVerifyAll,hxKey,hxExports,hxFor,hxHistorical,rpEval,rpBinding,rpOk,' +
     'pageReplay,pageExec,pageTryIt,tryReset,runScenario,exportLedger,renderSystemReports,' +
-    'pageGovernance,govDecision,govMonitoringStatus,govApprove,govReject,govReset,' +
+    'pageGovernance,govDecision,govMonitoringStatus,govApprove,govReject,govReset,GOVLOOP,' +
     'PAGE_RENDERERS,scen,sys,RP,RP_CASE})', sandbox);
   T.rptArtifact = win.rptArtifact;
   return { T, sandbox, win, doc, elements, listeners, blobs };
@@ -338,7 +338,7 @@ test('portfolio: exactly 3 approved / 2 rejected / 4 pending, all derived', asyn
   assert.equal(decs.filter(d => d.humanDecision === 'REJECTED').length, 2);
   assert.equal(decs.filter(d => d.humanDecision === 'PENDING').length, 4);
   const html = T.pageGovernance();
-  assert.ok(html.includes('FICTIONAL DEPLOYMENT GOVERNANCE SCENARIOS — NOT ACTUAL HAIEC RELEASE AUTHORIZATIONS'));
+  assert.ok(html.includes('Simulated workflow — fictional governance scenario'));
   assert.ok(html.includes('<div class="num">3</div>'));
   assert.ok(html.includes('<div class="num">2</div>'));
   assert.ok(html.includes('<div class="num">4</div>'));
@@ -438,13 +438,38 @@ test('governance page keeps the four fields separate + Station 217 story', async
   const { T } = await ready();
   T.STATE.govSystem = 'SYS-217';
   const html = T.pageGovernance();
-  for (const f of ['1 · HAIEC assurance', '2 · Human deployment decision', '3 · Operating scope', '4 · Monitoring state'])
+  for (const f of ['1 · HAIEC Assurance Result', '2 · Human Review Decision', '3 · Approved Operating Scope', '4 · Monitoring Coverage'])
     assert.ok(html.includes(f), 'missing field ' + f);
   assert.ok(html.includes('WO-217-4802') && html.includes('WO-217-4803'));
   assert.ok(html.includes('NOT ESTABLISHED'));
-  assert.ok(html.includes('SIMULATED_HUMAN_DECISION'));
-  assert.ok(html.includes('NOT CONNECTED'));
+  assert.ok(html.includes('Demo activity'));
+  assert.ok(/not connected|NOT_CONNECTED/i.test(html));
   assert.ok(!/GO\/NO-GO/.test(html), 'no combined risk score');
+});
+
+test('governance page uses plain-language labels and a loopable demo activity feed', async () => {
+  const { T } = await ready();
+  T.STATE.govSystem = 'SYS-217';
+  const html = T.pageGovernance();
+  // No raw internal jargon surfaced to judges/buyers.
+  for (const jargon of ['U5 disposition', 'U6 receipt', 'source world', 'SIMULATION_ONLY', 'SIMULATED_MONITORING_', 'canonical export'])
+    assert.ok(!html.includes(jargon), 'leaked internal label: ' + jargon);
+  // Preferred plain-language labels present.
+  for (const label of ['Assurance result', 'Human Review Decision', 'Approved Operating Scope', 'Monitoring Coverage',
+    'Approved — scoped', 'Pending review', 'Established — simulated', 'Partial — simulated',
+    'Demo activity stream', 'Simulated runtime control', 'Synthetic monitoring scenario', 'Reviewer workflow — demo activity'])
+    assert.ok(html.includes(label), 'missing plain label: ' + label);
+  // Loopable feed markup: three live regions with seeded staged entries.
+  for (const k of ['a', 'b', 'c']) {
+    assert.ok(html.includes(`id="govloop-${k}"`), 'missing feed ' + k);
+    assert.ok(html.includes('govloop-item'));
+  }
+  // Station 217 plain-language story.
+  for (const phrase of ['target mismatch observed', 'approved for advisory use only', 'write expansion'])
+    assert.ok(html.toLowerCase().includes(phrase), 'missing story phrase: ' + phrase);
+  // Loop engine exists and is timer-driven; ticking appends staged events.
+  assert.equal(typeof T.GOVLOOP, 'object');
+  assert.ok(T.GOVLOOP.feeds.a.events.length >= 5 && T.GOVLOOP.feeds.b.events.length >= 5 && T.GOVLOOP.feeds.c.events.length >= 5);
 });
 
 test('governance fixture is cleanly separated: SIMULATION_ONLY, no canonical identity', () => {
