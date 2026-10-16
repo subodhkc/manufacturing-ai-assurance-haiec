@@ -437,6 +437,20 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .govp-reset{animation:govpReset .5s ease}
 @keyframes govpReset{from{opacity:.55}to{opacity:1}}
 .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;clip:rect(0 0 0 0);overflow:hidden;border:0}
+.s217-eps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 4px}
+.s217-ep{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fbfdfc}
+.s217-ep h3{font-size:13px;margin:4px 0 6px}
+@media(max-width:900px){.s217-eps{grid-template-columns:1fr}}
+/* HAIEC capability overview — exec page */
+.ex-cap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ex-cap-tile{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbfdfc;text-align:left;cursor:pointer;transition:border-color .2s}
+.ex-cap-tile:hover{border-color:#2b7869}
+.ex-cap-tile b{display:block;font-size:13px}
+.ex-cap-tile p{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}
+.ex-cap-tile .ex-cap-pillar{font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#2b7869}
+.ex-cap-tile .ex-cap-go{display:inline-block;margin-top:8px;font:700 10px var(--mono);color:#2b7869}
+@media(max-width:900px){.ex-cap{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ex-cap{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.govp-progress>div,.govloop-item,.govp-stage{transition:none}.govp-reset{animation:none}}
 .ex-note{font-size:10.5px;color:var(--muted);border-left:3px solid #d9c7a4;padding:6px 10px;background:#fdfaf3;border-radius:0 6px 6px 0;margin-top:10px}
 .ex-study{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -4349,6 +4363,18 @@ function govMonBadge(sysId){
   const kind=s==='SIMULATED_MONITORING_ESTABLISHED'?'go':s==='NO_LIVE_CONNECTION'?'hold':'warn';
   return pill(govMonLabel(s),kind);
 }
+/* Seven-facet demonstration readiness view — authored scenario states, each
+   bound to a named source. Honest labels; never a mandatory customer gate. */
+const GOV_READINESS_TONE={EVALUATED:'go',DECLARED_SCOPE:'go',FICTIONAL_ROLE_ASSIGNED:'info',SOURCE_STATE_AT_FIXED_CLOCK:'warn',PENDING_DEMO_GATEWAY:'hold',DEMO_CONTEXT:'info',NOT_ASSESSED:'hold'};
+function govReadinessTable(){
+  const r=SHARED&&SHARED.readiness;
+  if(!r||!Array.isArray(r.facets))return '';
+  return `<div class="top14"><div class="ind-overline tiny muted" style="margin-bottom:6px">How HAIEC would govern Station 217 — demonstration readiness view</div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th style="width:34px">#</th><th>Readiness facet</th><th>Scenario state</th><th>What it means here</th></tr></thead><tbody>
+    ${r.facets.map((f,i)=>`<tr><td class="tiny muted">${String(i+1).padStart(2,'0')}</td><td class="tiny"><b>${esc(f.facet)}</b></td><td>${pill(f.label,GOV_READINESS_TONE[f.state]||'info')}</td><td class="tiny muted">${esc(f.copy)}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="tiny muted" style="margin-top:6px">A per-request readiness checklist for this scenario — not a mandatory lifecycle for every deployment, and not live entitlement, identity or enforcement proof.</p></div>`;
+}
 /* Coordinated scenario playback — one virtual clock drives every lane.
    Deterministic: screen state = f(script, virtual time). Presentation only;
    playback never mutates decisions, sends notifications or touches runtime. */
@@ -4500,13 +4526,27 @@ function pageGovernance(){
     </div>
     <p class="tiny muted top10">Can continue as advisory only: ${d.allowedOperations.map(esc).join('; ')}. Still pending / prohibited: ${d.prohibitedOperations.map(esc).join('; ')}.</p></div>`:'';
 
-  const s217Block=d.systemId==='SYS-217'?`<div class="card" style="border-left:4px solid var(--red)"><div class="cardhead"><div><h2>Station 217 — quality station write expansion, still pending</h2></div></div>
-    <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded effect landed on a different one: <code>WO-217-4803</code> — <b>target mismatch observed</b>. HAIEC's verified report identified the divergence; the assurance result is <b>Review required</b>. The human decision — expanding autonomous production write authority — is <b>pending</b>: the system is <b>approved for advisory use only</b> until an accountable owner reviews the divergence.</p>
-    <p class="small">Required follow-up: scoped owner review plus qualified write-authority evidence before expansion. Independent physical proof after the fact: <b>NOT ESTABLISHED</b>.</p>
-    <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
-      <button class="btn sm primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Verified report →</button>
-      <a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase)}/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public verified receipt ↗</a>
-    </div></div>`:'';
+  const s217Block=d.systemId==='SYS-217'?`<div class="card" style="border-left:4px solid var(--red)"><div class="cardhead"><div><h2>Station 217 — two linked but distinct events</h2><p>Detection of an earlier recorded difference, then a subsequent expansion request held for human review.</p></div>${pill('Episode A: verified evaluation · Episode B: demo governance','info')}</div>
+    <div class="s217-eps">
+      <div class="s217-ep">
+        <div class="ind-overline tiny" style="color:#2b7869">EPISODE A · RECORDED EVIDENCE — OCT 14</div>
+        <h3>What HAIEC detected in the submitted evidence</h3>
+        <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded effect landed on a different one: <code>WO-217-4803</code> — <b>target mismatch observed</b>. HAIEC's deterministic engine identified the divergence — <b>assurance result: Review required</b>.</p>
+        <p class="tiny muted">Saved evaluation <code>SYS-217-WRONG_TARGET</code> · digest-verified · a recorded difference is detected, not claimed prevented. Independent physical proof after the fact: <b>NOT ESTABLISHED</b>.</p>
+        <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button class="btn sm primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Verified report →</button>
+          <a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase)}/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public verified receipt ↗</a>
+        </div>
+      </div>
+      <div class="s217-ep">
+        <div class="ind-overline tiny" style="color:#b45309">EPISODE B · GOVERNANCE SCENARIO — OCT 15</div>
+        <h3>What the operating model shows next</h3>
+        <p class="small">A subsequent write expansion request (<code>DEMO-REQ-SYS-217-06</code>) — autonomous MES write authority — is checked against the operating boundary, routed to the Quality Director role, and remains <b>pending</b>. A later write attempt (<code>DEMO-GW-SYS-217-02</code>) is held at the demonstration gateway. The system stays <b>approved for advisory use only</b>; lower-risk advisory work continues inside the approved scope.</p>
+        <p class="tiny muted">Illustrative governance and execution-control scenario — no live dispatcher, email or SMS is connected.</p>
+      </div>
+    </div>
+    ${govReadinessTable()}
+  </div>`:'';
 
   return header({eyebrow:'DEPLOYMENT GOVERNANCE · DEMONSTRATION',title:'Deployment governance — a fictional manufacturing enterprise',
     sub:'How fictional accountable humans decided to deploy AI — and what HAIEC evidence-bound assurance says about each system. Two separate facts, deliberately kept apart.',
@@ -4909,6 +4949,21 @@ function exModDemonstrated(){
     <div class="ex-note">Validated in a controlled synthetic manufacturing environment representing realistic industrial workflows — not a production deployment, third-party certification, or field event.</div>`;
   return exMod('ex-s12','CORPUS RESULTS','What HAIEC Demonstrated','Verified facts across the nine-system manufacturing program',body,pill('SYNTHETIC LAB — REAL ENGINE OUTPUT','info'));
 }
+/* HAIEC capability overview — three pillars, six independently selectable
+   goals. Each tile deep-links an existing dashboard experience; this is a
+   showcase map of existing surfaces, not a second navigation or engine. */
+const EX_GOALS=[
+  {pillar:'Understand',goal:'Discover',page:'estate',line:'Catalog the nine example systems, their agents and declared capabilities.',cta:'Open the AI estate'},
+  {pillar:'Assure',goal:'Evaluate',page:'evaluations',line:'Digest-verified deterministic results over the synthetic evidence corpus.',cta:'Open saved evaluations'},
+  {pillar:'Govern & Operate',goal:'Authorize',page:'governance',line:'Approved operating scope plus accountable human review decisions.',cta:'Open deployment governance'},
+  {pillar:'Govern & Operate',goal:'Monitor',page:'monitor',line:'Source records, coverage and change context on a fixed scenario clock.',cta:'Open monitoring'},
+  {pillar:'Govern & Operate',goal:'Protect',page:'controls',line:'Control evidence and the scope-check / hold / allow control story.',cta:'Open controls'},
+  {pillar:'Assure',goal:'Verify',page:'reports',line:'Verifiable reports, case evidence and the nine-system operating report.',cta:'Open reports & evidence'},
+];
+function exModCapabilities(){
+  const body=`<div class="ex-cap">${EX_GOALS.map(g2=>`<button class="ex-cap-tile" data-act="page" data-id="${g2.page}"><span class="ex-cap-pillar">${esc(g2.pillar)}</span><b>${esc(g2.goal)}</b><p>${esc(g2.line)}</p><span class="ex-cap-go">${esc(g2.cta)} →</span></button>`).join('')}</div>`;
+  return exMod('ex-s12','HAIEC PLATFORM · UNDERSTAND — ASSURE — GOVERN & OPERATE','Six capabilities, independently selectable','Deploy AI with confidence — stay in control of every consequential action. Manufacturing is the example environment; every tile opens the matching live view.',body,pill('CAPABILITY MAP','info'));
+}
 function pageExec(){
   if(!HXDATA)return header({eyebrow:'EXECUTIVE COMMAND CENTER',title:'No export data',sub:'dashboard/data/haiec-exports.js missing.'});
   const a=exA();
@@ -4929,6 +4984,7 @@ function pageExec(){
       ${rpOk()?pill('replay bound to v1 export','go'):pill('REPLAY_BINDING_MISMATCH','hold')}
       <button class="btn sm" style="background:#2b7973;border-color:#2b7973;color:#fff" data-act="page" data-id="journey">Operator Journey →</button><button class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" data-act="try-open">Try it yourself →</button><a class="btn sm" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#e6f2ee" href="report/sample-master-report.html" target="_blank" rel="noopener">Sample report ↗</a>
     </div>
+    ${exModCapabilities()}
     <div class="ex-grid">
       ${exModEstate()}
       ${exModPlanes()}

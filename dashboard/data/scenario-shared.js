@@ -356,6 +356,93 @@ window.HAIEC_SCENARIO_SHARED = {
       }
     }
   ],
+  "readiness": {
+    "schemaVersion": "scenario-readiness-1.0.0",
+    "artifactClass": "FICTIONAL_SCENARIO_READINESS_VIEW_NOT_HAIEC_ENTITLEMENT_PROOF",
+    "provenance": "SIMULATION_ONLY",
+    "systemId": "SYS-217",
+    "asOf": "2026-10-15T12:00:00.000Z",
+    "note": "Request-specific readiness facets for the fictional Station 217 scenario. Facet states are authored demo states bound to their named sources — never live entitlements, authenticated identities, real connectors or enforcement receipts. This is a per-request readiness checklist, not a mandatory HAIEC lifecycle.",
+    "facets": [
+      {
+        "id": "platform-readiness",
+        "facet": "Platform readiness",
+        "state": "DEMO_CONTEXT",
+        "label": "Demonstration context",
+        "copy": "Fictional system and source bindings exist inside the scenario estate — not an independently evidenced registration audit.",
+        "source": {
+          "kind": "fixture",
+          "ref": "governance-scenarios.json#decisions[SYS-217]"
+        }
+      },
+      {
+        "id": "org-entitlement",
+        "facet": "Organization entitlement",
+        "state": "NOT_ASSESSED",
+        "label": "Not assessed",
+        "copy": "No entitlement proof exists for this fictional organization; this facet is not claimed.",
+        "source": {
+          "kind": "none",
+          "ref": null
+        }
+      },
+      {
+        "id": "reviewer-eligibility",
+        "facet": "Reviewer eligibility",
+        "state": "FICTIONAL_ROLE_ASSIGNED",
+        "label": "Fictional role assigned",
+        "copy": "Quality Director role is assigned as accountable reviewer; requesting role is separate. Persona only — no authenticated person.",
+        "source": {
+          "kind": "fixture",
+          "ref": "governance-scenarios.json#requestRecord.DEMO-REQ-SYS-217-06"
+        }
+      },
+      {
+        "id": "operating-boundary",
+        "facet": "System applicability & operating boundary",
+        "state": "DECLARED_SCOPE",
+        "label": "Declared operating scope",
+        "copy": "Advisory recommendations are permitted; autonomous MES work-order writes are excluded — declared scenario scope, not authenticated customer policy.",
+        "source": {
+          "kind": "fixture",
+          "ref": "governance-scenarios.json#decisions[SYS-217].allowedOperations|prohibitedOperations"
+        }
+      },
+      {
+        "id": "monitoring-connectivity",
+        "facet": "Monitoring & source connectivity",
+        "state": "SOURCE_STATE_AT_FIXED_CLOCK",
+        "label": "Stale / missing at fixed clock",
+        "copy": "torque-tool-event-log is stale and mes-release-readback is missing as of the fixed 2026-10-15 scenario clock — a later monitoring context, separate from the evaluated Oct 14 transaction.",
+        "source": {
+          "kind": "fixture",
+          "ref": "governance-scenarios.json#monitoringScenarios.MON-S217"
+        }
+      },
+      {
+        "id": "qualified-evidence",
+        "facet": "Qualified assurance evidence",
+        "state": "EVALUATED",
+        "label": "Evaluated — divergence detected",
+        "copy": "The saved HAIEC evaluation of submitted synthetic evidence detected the recorded target difference: approved WO-217-4802, recorded WO-217-4803. Overall result: review required.",
+        "source": {
+          "kind": "saved-evaluation",
+          "ref": "data/evaluations-v3/sys-217-wrong-target.json"
+        }
+      },
+      {
+        "id": "approval-and-control",
+        "facet": "Human approval & execution control",
+        "state": "PENDING_DEMO_GATEWAY",
+        "label": "Pending — demo gateway holds",
+        "copy": "The write-expansion request remains pending. A subsequent fictional write attempt is held by the demonstration gateway while advisory work continues — illustrative control, not a verified prevention of the earlier recorded event.",
+        "source": {
+          "kind": "fixture+playback",
+          "ref": "decisions[SYS-217].humanDecision + scenario-shared#journey.SYS-217"
+        }
+      }
+    ]
+  },
   "scripts": {
     "controlRoom": {
       "scenarioId": "mfg-control-room",
@@ -1573,7 +1660,7 @@ window.HAIEC_SCENARIO_SHARED = {
         "scenarioId": "mfg-journey-SYS-217",
         "systemId": "SYS-217",
         "title": "Human review journey — Torque Quality — Station 217",
-        "durationMs": 40000,
+        "durationMs": 47000,
         "events": [
           {
             "eventId": "mfg-journey-SYS-217:01",
@@ -1586,7 +1673,7 @@ window.HAIEC_SCENARIO_SHARED = {
             "eventType": "REVIEW_REQUESTED",
             "origin": "SIMULATED",
             "severity": "info",
-            "headline": "Review requested",
+            "headline": "Write-expansion review requested",
             "copy": "Expand autonomous MES work-order write authority",
             "decisionRequestId": "DEMO-REQ-SYS-217-06",
             "decisionRef": "GOV-2026-S217-P1"
@@ -1597,6 +1684,39 @@ window.HAIEC_SCENARIO_SHARED = {
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
             "offsetMs": 4000,
+            "stage": "SCOPE",
+            "lane": "action",
+            "eventType": "SCOPE_CHECK",
+            "origin": "SIMULATED",
+            "severity": "warn",
+            "headline": "Outside advisory scope",
+            "copy": "Autonomous MES writes sit outside the approved operating scope — an accountable human decision is required.",
+            "decisionRequestId": "DEMO-REQ-SYS-217-06",
+            "decisionRef": "GOV-2026-S217-P1"
+          },
+          {
+            "eventId": "mfg-journey-SYS-217:03",
+            "sequence": 3,
+            "scenarioId": "mfg-journey-SYS-217",
+            "systemId": "SYS-217",
+            "offsetMs": 8000,
+            "stage": "REVIEW",
+            "lane": "action",
+            "eventType": "RECORDED_MISMATCH_DETECTED",
+            "origin": "SIMULATED",
+            "severity": "warn",
+            "headline": "Earlier recorded mismatch detected",
+            "copy": "Saved evaluation: approved target WO-217-4802, recorded target WO-217-4803 — target divergence found in the submitted evidence. Result: review required.",
+            "evaluationRef": "SYS-217-WRONG_TARGET",
+            "decisionRequestId": "DEMO-REQ-SYS-217-06",
+            "decisionRef": "GOV-2026-S217-P1"
+          },
+          {
+            "eventId": "mfg-journey-SYS-217:04",
+            "sequence": 4,
+            "scenarioId": "mfg-journey-SYS-217",
+            "systemId": "SYS-217",
+            "offsetMs": 12000,
             "stage": "REQUEST",
             "lane": "reviewer",
             "eventType": "REVIEWER_ASSIGNED",
@@ -1608,27 +1728,27 @@ window.HAIEC_SCENARIO_SHARED = {
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:03",
-            "sequence": 3,
+            "eventId": "mfg-journey-SYS-217:05",
+            "sequence": 5,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 8000,
+            "offsetMs": 16000,
             "stage": "NOTIFY",
             "lane": "reviewer",
             "eventType": "EMAIL_PREVIEW",
             "origin": "SIMULATED",
             "severity": "info",
             "headline": "Reviewer notified",
-            "copy": "Email preview: \"Torque Quality — Station 217 review — Expand autonomous MES work-order write authority…\"",
+            "copy": "Email preview: \"Torque Quality — Station 217 write expansion awaiting your decision.\"",
             "decisionRequestId": "DEMO-REQ-SYS-217-06",
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:04",
-            "sequence": 4,
+            "eventId": "mfg-journey-SYS-217:06",
+            "sequence": 6,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 12000,
+            "offsetMs": 20000,
             "stage": "NOTIFY",
             "lane": "reviewer",
             "eventType": "SMS_PREVIEW",
@@ -1640,11 +1760,11 @@ window.HAIEC_SCENARIO_SHARED = {
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:05",
-            "sequence": 5,
+            "eventId": "mfg-journey-SYS-217:07",
+            "sequence": 7,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 16000,
+            "offsetMs": 24000,
             "stage": "REVIEW",
             "lane": "reviewer",
             "eventType": "REVIEW_OPENED",
@@ -1656,28 +1776,11 @@ window.HAIEC_SCENARIO_SHARED = {
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:06",
-            "sequence": 6,
+            "eventId": "mfg-journey-SYS-217:08",
+            "sequence": 8,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 20000,
-            "stage": "REVIEW",
-            "lane": "action",
-            "eventType": "ASSURANCE_REVIEWED",
-            "origin": "SIMULATED",
-            "severity": "warn",
-            "headline": "Assurance result: review required",
-            "copy": "Target mismatch observed — recorded target WO-217-4803 differs from approved target WO-217-4802.",
-            "evaluationRef": "SYS-217-WRONG_TARGET",
-            "decisionRequestId": "DEMO-REQ-SYS-217-06",
-            "decisionRef": "GOV-2026-S217-P1"
-          },
-          {
-            "eventId": "mfg-journey-SYS-217:07",
-            "sequence": 7,
-            "scenarioId": "mfg-journey-SYS-217",
-            "systemId": "SYS-217",
-            "offsetMs": 24000,
+            "offsetMs": 28000,
             "stage": "DECISION",
             "lane": "reviewer",
             "eventType": "DECISION_PENDING",
@@ -1689,11 +1792,28 @@ window.HAIEC_SCENARIO_SHARED = {
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:08",
-            "sequence": 8,
+            "eventId": "mfg-journey-SYS-217:09",
+            "sequence": 9,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 28000,
+            "offsetMs": 32000,
+            "stage": "STATUS",
+            "lane": "action",
+            "eventType": "SUBSEQUENT_WRITE_HELD",
+            "origin": "SIMULATED",
+            "severity": "hold",
+            "headline": "Subsequent write attempt held",
+            "copy": "A later autonomous write attempt (DEMO-GW-SYS-217-02) is held at the demonstration gateway while the expansion decision is pending.",
+            "attemptRef": "DEMO-GW-SYS-217-02",
+            "decisionRequestId": "DEMO-REQ-SYS-217-06",
+            "decisionRef": "GOV-2026-S217-P1"
+          },
+          {
+            "eventId": "mfg-journey-SYS-217:10",
+            "sequence": 10,
+            "scenarioId": "mfg-journey-SYS-217",
+            "systemId": "SYS-217",
+            "offsetMs": 36000,
             "stage": "STATUS",
             "lane": "action",
             "eventType": "OPERATING_STATUS",
@@ -1705,27 +1825,27 @@ window.HAIEC_SCENARIO_SHARED = {
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:09",
-            "sequence": 9,
+            "eventId": "mfg-journey-SYS-217:11",
+            "sequence": 11,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 32000,
+            "offsetMs": 40000,
             "stage": "MONITORING",
             "lane": "monitoring",
             "eventType": "MONITORING_EVENT",
             "origin": "SIMULATED",
             "severity": "info",
             "headline": "Monitoring coverage partial",
-            "copy": "Latest recorded event: FASTENING_EVENT_RECORDED — work order WO-217-4803.",
+            "copy": "Latest recorded event: FASTENING_EVENT_RECORDED — work order WO-217-4803. One source missing at the fixed scenario clock.",
             "decisionRequestId": "DEMO-REQ-SYS-217-06",
             "decisionRef": "GOV-2026-S217-P1"
           },
           {
-            "eventId": "mfg-journey-SYS-217:10",
-            "sequence": 10,
+            "eventId": "mfg-journey-SYS-217:12",
+            "sequence": 12,
             "scenarioId": "mfg-journey-SYS-217",
             "systemId": "SYS-217",
-            "offsetMs": 36000,
+            "offsetMs": 44000,
             "stage": "EVIDENCE",
             "lane": "monitoring",
             "eventType": "EVIDENCE_LINK",

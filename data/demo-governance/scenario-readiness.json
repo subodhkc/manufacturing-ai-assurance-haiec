@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "scenario-readiness-1.0.0",
+  "artifactClass": "FICTIONAL_SCENARIO_READINESS_VIEW_NOT_HAIEC_ENTITLEMENT_PROOF",
+  "provenance": "SIMULATION_ONLY",
+  "systemId": "SYS-217",
+  "asOf": "2026-10-15T12:00:00.000Z",
+  "note": "Request-specific readiness facets for the fictional Station 217 scenario. Facet states are authored demo states bound to their named sources — never live entitlements, authenticated identities, real connectors or enforcement receipts. This is a per-request readiness checklist, not a mandatory HAIEC lifecycle.",
+  "facets": [
+    {
+      "id": "platform-readiness",
+      "facet": "Platform readiness",
+      "state": "DEMO_CONTEXT",
+      "label": "Demonstration context",
+      "copy": "Fictional system and source bindings exist inside the scenario estate — not an independently evidenced registration audit.",
+      "source": { "kind": "fixture", "ref": "governance-scenarios.json#decisions[SYS-217]" }
+    },
+    {
+      "id": "org-entitlement",
+      "facet": "Organization entitlement",
+      "state": "NOT_ASSESSED",
+      "label": "Not assessed",
+      "copy": "No entitlement proof exists for this fictional organization; this facet is not claimed.",
+      "source": { "kind": "none", "ref": null }
+    },
+    {
+      "id": "reviewer-eligibility",
+      "facet": "Reviewer eligibility",
+      "state": "FICTIONAL_ROLE_ASSIGNED",
+      "label": "Fictional role assigned",
+      "copy": "Quality Director role is assigned as accountable reviewer; requesting role is separate. Persona only — no authenticated person.",
+      "source": { "kind": "fixture", "ref": "governance-scenarios.json#requestRecord.DEMO-REQ-SYS-217-06" }
+    },
+    {
+      "id": "operating-boundary",
+      "facet": "System applicability & operating boundary",
+      "state": "DECLARED_SCOPE",
+      "label": "Declared operating scope",
+      "copy": "Advisory recommendations are permitted; autonomous MES work-order writes are excluded — declared scenario scope, not authenticated customer policy.",
+      "source": { "kind": "fixture", "ref": "governance-scenarios.json#decisions[SYS-217].allowedOperations|prohibitedOperations" }
+    },
+    {
+      "id": "monitoring-connectivity",
+      "facet": "Monitoring & source connectivity",
+      "state": "SOURCE_STATE_AT_FIXED_CLOCK",
+      "label": "Stale / missing at fixed clock",
+      "copy": "torque-tool-event-log is stale and mes-release-readback is missing as of the fixed 2026-10-15 scenario clock — a later monitoring context, separate from the evaluated Oct 14 transaction.",
+      "source": { "kind": "fixture", "ref": "governance-scenarios.json#monitoringScenarios.MON-S217" }
+    },
+    {
+      "id": "qualified-evidence",
+      "facet": "Qualified assurance evidence",
+      "state": "EVALUATED",
+      "label": "Evaluated — divergence detected",
+      "copy": "The saved HAIEC evaluation of submitted synthetic evidence detected the recorded target difference: approved WO-217-4802, recorded WO-217-4803. Overall result: review required.",
+      "source": { "kind": "saved-evaluation", "ref": "data/evaluations-v3/sys-217-wrong-target.json" }
+    },
+    {
+      "id": "approval-and-control",
+      "facet": "Human approval & execution control",
+      "state": "PENDING_DEMO_GATEWAY",
+      "label": "Pending — demo gateway holds",
+      "copy": "The write-expansion request remains pending. A subsequent fictional write attempt is held by the demonstration gateway while advisory work continues — illustrative control, not a verified prevention of the earlier recorded event.",
+      "source": { "kind": "fixture+playback", "ref": "decisions[SYS-217].humanDecision + scenario-shared#journey.SYS-217" }
+    }
+  ]
+}
