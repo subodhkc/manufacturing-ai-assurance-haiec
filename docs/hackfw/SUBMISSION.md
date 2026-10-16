@@ -19,8 +19,14 @@ Every step is a shareable URL — open the demo, then:
 
 ## B. Video deliverable
 
-- Source recording: **CREATED** — `docs/hackfw/screens/judge-path-recording.webm` (WebM, ~2 min path capture, reproducible via `scripts/capture-judge-path.cjs`, requires playwright).
-- Ordered stills: `docs/hackfw/screens/01-flagship.png` … `06-hub.png`.
+The committed recording follows the cue order in `docs/hackfw/NARRATION.md`
+(flagship → canonical chips → journey interaction → verify → case report →
+executive → hub), not the live-walkthrough ordering in section A — both are
+valid paths over the same deployed screens.
+
+- Source recording: **CREATED** — `docs/hackfw/screens/judge-path-recording.webm` (WebM, ~110 s, 1440×900, real UI interaction incl. browser-only containment pause/attempt; reproducible via `scripts/capture-judge-path.cjs`, requires playwright).
+- Voiceover script: `docs/hackfw/NARRATION.md`; timed subtitles: `docs/hackfw/judge-path-subtitles.vtt`.
+- Ordered stills: `docs/hackfw/screens/01-flagship.png` … `07-hub.png`.
 - Final polished video (edited/voiced MP4 for YouTube/Vimeo): **PENDING** — human step. MP4 conversion needs ffmpeg or an editor; not required to claim the WebM source exists.
 - Publicly hosted video URL (YouTube/Vimeo): **PENDING** — requires human upload; do not claim until the provider confirms.
 - Devpost submission: **UNCONFIRMED** until actually submitted.
@@ -110,7 +116,7 @@ four simulation-only sector narratives — labeled, never claimed as evaluations
 
 - [x] Public GitHub repo + working deployed demo
 - [x] Judge guide + deep-linked reports
-- [x] End-to-end source recording — `docs/hackfw/screens/judge-path-recording.webm` (~95 s, 1440×900, six-step judge path, no audio track)
+- [x] End-to-end source recording — `docs/hackfw/screens/judge-path-recording.webm` (~110 s, 1440×900, real Operator Journey interaction incl. browser-only SIMULATED_DENY, no audio track) + `judge-path-subtitles.vtt` + `NARRATION.md`
 - [ ] Hosted video URL (YouTube/Vimeo) — human step; Devpost needs a public link, the WebM in-repo is not hosted
 - [ ] All participants registered at talent.fwtx.city — unconfirmed
 - [ ] North Texas proximity/eligibility — human attestation
