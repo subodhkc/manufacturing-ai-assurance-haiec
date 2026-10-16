@@ -44,8 +44,12 @@ New v29 package under `docs/hackfw/screens-v29/` (previous cut retained in
 ## Authentic sample record (P1)
 
 `docs/hackfw/demo-record-sample.json` is a genuine browser export from the
-production site (session `SES-0001`, 31 events, 1 review request) captured by
-`scripts/export-demo-record.cjs`. It is `demo-factory-record-1.0.0`,
+production site (session `SES-0001`, 35 events, 2 review requests) captured by
+`scripts/export-demo-record.cjs`. Its session ledger mirrors the video
+scenario exactly: MES write denied, advisory applied, held-stock release
+denied, `REQ-2026-8842` financially approved but `HELD_SUPPLIER_QUALIFICATION`,
+`REQ-2026-8855` committed, torque anomaly + signal interruption observations.
+It is `demo-factory-record-1.0.0`,
 `BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED` — a demonstration
 artifact, not an assurance report.
 

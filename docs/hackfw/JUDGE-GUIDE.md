@@ -3,6 +3,9 @@
 **Submission deadline: October 30, 2026, 11:00 a.m. CDT.**
 Public repo · demo video · participant talent registration · in-person Demo Day — all required.
 
+> **Start here:** the full artifact index (video, record, reports, links,
+> remaining human steps) is in [`FINAL-PACKAGE.md`](FINAL-PACKAGE.md).
+
 ## Two experiences — pick your depth (Sprint 29)
 
 **A. Two-Minute Judge Showcase** — `https://haiec-manufacturing-demo.vercel.app/?report=judge`

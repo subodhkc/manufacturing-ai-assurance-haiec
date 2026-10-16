@@ -63,16 +63,20 @@ const dwell = (p, ms) => p.waitForTimeout(ms);
   await click('[data-act="decide"][data-verdict="APPROVED"]');
   await dwell(page, 4000); await shot('06-po-committed');
 
-  // Scene 6 — 1:14–1:30  Monitoring: torque anomaly + signal loss, then record
+  // Scene 6 — 1:14–1:30  Monitoring: torque anomaly + signal loss, then record.
+  // Navigate in-app (RPT.view + render) — a page.goto reload would drop the
+  // accumulated browser-local session and show an empty record.
   await click('[data-act="df-eq"][data-id="TORQUE_ANOMALY"]');
   await dwell(page, 3500); await shot('07-anomaly');
   await click('[data-act="df-eq"][data-id="SOURCE_GAP"]');
   await dwell(page, 3500);
-  await page.goto(BASE + '/?report=demo', { waitUntil: 'networkidle' });
-  await dwell(page, 6000); await shot('08-demo-record');
+  await page.evaluate(() => { RPT.view = 'demo'; STATE.page = 'reports'; render(); });
+  await dwell(page, 2000);
+  await page.evaluate(() => window.scrollTo(0, 700));
+  await dwell(page, 4000); await shot('08-demo-record');
 
-  // Scene 7 — 1:30–1:40  Close: capability map + entry points
-  await page.goto(BASE + '/?report=judge', { waitUntil: 'networkidle' });
+  // Scene 7 — 1:30–1:40  Close: showcase + entry points (same document).
+  await page.evaluate(() => { RPT.view = 'judge'; render(); });
   await dwell(page, 8000); await shot('09-showcase-close');
 
   await ctx.close();
