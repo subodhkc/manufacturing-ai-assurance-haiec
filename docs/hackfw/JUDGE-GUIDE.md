@@ -114,14 +114,20 @@ persisted artifacts and marks never-issued types `NOT ISSUED`.
 
 ## Why does HAIEC show REVIEW when a fictional human approved deployment?
 
-U5 expresses **evidence-qualified assurance** — what the persisted, digest-verified
-evidence actually establishes, including explicit unknowns. The Deployment
-Governance page shows a **separate, explicitly simulated record** of fictional
-human decisions (3 scoped approvals, 2 rejections, 4 pending — including
-SYS-217 pending because of the wrong-target finding). Neither substitutes for
-the other: a fictional approval is a human's scoped operating decision, not a
-HAIEC verdict; a REVIEW disposition is not a deployment ban, it is what the
-evidence supports. Monitoring badges there are derived from synthetic fixture
-records inside the fictional scenario — real connectors stay NOT CONNECTED.
+The **HAIEC Assurance Result** expresses evidence-qualified assurance — what the
+persisted, digest-verified evidence actually establishes, including explicit
+unknowns. The Deployment Governance page shows a **separate, explicitly
+simulated record** of fictional human decisions (3 scoped approvals, 2
+rejections, 4 pending — including Station 217, whose write expansion stays
+pending after the observed target mismatch). Neither substitutes for the other:
+a fictional approval is a human's scoped operating decision, not a HAIEC
+verdict; a "Review required" result is not a deployment ban, it is what the
+evidence supports.
+
+The page also carries a **demo activity stream** — a rolling, loopable view of
+reviewer notifications, simulated runtime control holding consequential actions
+for review, and synthetic monitoring events. It is illustrative workflow, not a
+live dispatcher or connector. Monitoring coverage there is derived from demo
+records inside the fictional scenario — live connectors stay not connected.
 
 **Problem track:** AI for Manufacturing — one of the three official Devpost submission problem tracks.

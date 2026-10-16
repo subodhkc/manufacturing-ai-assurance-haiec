@@ -418,6 +418,11 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .ex-tl-row{display:grid;grid-template-columns:26px 110px 1fr;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:10.5px;background:#fbfdfc}
 .ex-tl-row .sq{font:800 10px var(--mono);color:#2b7869}
 .ex-tl-row code{font-size:9.5px}
+.govloop-feed{display:flex;flex-direction:column;gap:6px;min-height:230px}
+.govloop-item{grid-template-columns:16px 90px 1fr;transition:opacity .3s ease}
+.govloop-new{border-color:#7fc4ae;background:#f0faf6;animation:govloopIn .3s ease}
+@keyframes govloopIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.govloop-item{grid-template-columns:16px 1fr}.govloop-item b{display:none}}
 .ex-note{font-size:10.5px;color:var(--muted);border-left:3px solid #d9c7a4;padding:6px 10px;background:#fdfaf3;border-radius:0 6px 6px 0;margin-top:10px}
 .ex-study{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .ex-study>div{border:1px solid var(--line);border-radius:9px;padding:12px;background:#fbfdfc}
@@ -2224,7 +2229,7 @@ document.addEventListener('click', e => {
   const id = btn.dataset.id;
 
   switch(act){
-    case 'page': STATE.page = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'page': STATE.page = id; if(id==='governance')govLoopStart();else govLoopStop(); render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'open-system':
       STATE.selectedSystem = id; STATE.systemTab = 'overview'; STATE.page = 'system'; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'open-estate': STATE.page = 'estate'; render(); break;
@@ -3616,6 +3621,7 @@ render();
   {page:'autobaseline',headline:'6 · Detect new tools and usage changes',why:'Next, inspect a first-seen MES mutation path or abnormal token usage. HAIEC can identify novelty, then separately compare qualified authority evidence.',notice:'Adjust a baseline threshold and record an example result; historical normal must never become authorization.',target:'.card'},
   {page:'evolution',headline:'7 · Compare expected, evidence-degraded and wrong-target conditions',why:'These states demonstrate the difference between correct behavior, incomplete proof, and an established wrong-target difference.',notice:'Choose each example condition or use the side-by-side matrix. Neither missing telemetry nor target divergence proves root cause.',target:'#al-comparison-matrix'},
   {page:'idealreport',headline:'8 · Finish with the evidence-backed report',why:'A buyer receives an explanation of what was scoped, what was established, what cannot be concluded, and which source or approval is needed next.',notice:'The report is an illustrative specification. Actual HAIEC evaluation IDs and verdicts come only from the canonical evaluation pipeline.',target:'.card'},
+  {page:'governance',headline:'9 · Watch humans stay in control',why:'Some AI operations are approved by fictional accountable owners, some consequential actions are rejected, and Station 217 write expansion stays pending after the target mismatch. The demo activity stream shows reviewer notification, runtime control and monitoring in motion.',notice:'The assurance result and the human decision are two separate facts — neither substitutes for the other.',target:'.govloop-feed'},
  ];
  const PANEL={mode:null,step:0};
  const H=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3639,6 +3645,9 @@ render();
  }
  function reveal(){
   const main=document.getElementById('main');if(!main)return;
+  /* The demo activity loop is defined in the later main script block — guard so
+     early-load renders (and any non-browser harness) never touch it. */
+  if(typeof govLoopStart==='function'){if(STATE.page==='governance')govLoopStart();else govLoopStop();}
   plainWords(main);
   plainWords(document.getElementById('sidenav'));
   plainWords(document.getElementById('mobile-nav'));
@@ -4287,18 +4296,82 @@ function govMonitoringStatus(sysId){
   return 'SIMULATED_MONITORING_ESTABLISHED';
 }
 function govMonScenario(sysId){ return (GOVDATA.monitoringScenarios||[]).find(m=>m.systemId===sysId)||null; }
+/* Plain-language presentation labels — internal enum values stay in code. */
+function govDecisionLabel(cur){
+  if(cur==='APPROVED_SCOPED')return 'Approved — scoped';
+  if(cur==='APPROVED_SCOPED_PILOT')return 'Approved — pilot scope';
+  if(cur==='REJECTED')return 'Rejected';
+  return 'Pending review';
+}
+function govMonLabel(s){
+  if(s==='SIMULATED_MONITORING_ESTABLISHED')return 'Established — simulated';
+  if(s==='SIMULATED_MONITORING_PARTIAL')return 'Partial — simulated';
+  if(s==='SIMULATED_MONITORING_STALE')return 'Stale — simulated';
+  return 'No live connection';
+}
+function govAssuranceLabel(disp){
+  if(disp==='ALLOW')return 'Allowed within evaluated scope';
+  if(disp==='BLOCK')return 'Blocked';
+  return 'Review required';
+}
 function govDecisionBadge(d){
   const cur=govDecision(d);
-  const role=GOV.advisory[d.systemId]?' · advisory only; expansion still pending':govIsRoleplay(d.systemId)?' · roleplay':'';
-  if(cur==='APPROVED_SCOPED'||cur==='APPROVED_SCOPED_PILOT')return pill(cur+role,'go');
-  if(cur==='REJECTED')return pill(cur+role,'hold');
-  return pill(cur+role,'warn');
+  const role=GOV.advisory[d.systemId]?' · advisory only; expansion still pending':govIsRoleplay(d.systemId)?' · demo action':'';
+  const label=govDecisionLabel(cur)+role;
+  if(cur==='APPROVED_SCOPED'||cur==='APPROVED_SCOPED_PILOT')return pill(label,'go');
+  if(cur==='REJECTED')return pill(label,'hold');
+  return pill(label,'warn');
 }
 function govMonBadge(sysId){
   const s=govMonitoringStatus(sysId);
   const kind=s==='SIMULATED_MONITORING_ESTABLISHED'?'go':s==='NO_LIVE_CONNECTION'?'hold':'warn';
-  return pill(s,kind);
+  return pill(govMonLabel(s),kind);
 }
+/* Loopable synthetic operations feeds — staged demo activity, never live data. */
+const GOVLOOP={
+  tick:0,timer:null,
+  feeds:{
+    a:{label:'Reviewer workflow — demo activity',events:[
+      'Review request created — Station 217 write expansion',
+      'Assignment recorded — Quality Director (fictional role)',
+      'Notification sent to reviewer — email',
+      'Reminder sent — SMS alert',
+      'Reviewer opened request',
+      'Review in progress — evidence attached',
+      'Decision pending — awaiting human review']},
+    b:{label:'Simulated runtime control',events:[
+      'Action attempted — MES work-order write',
+      'Boundary check — approved scope loaded',
+      'Approval check — pending human review',
+      'Scope check — outside approved operating scope',
+      'Execution held for review',
+      'Advisory action allowed — within approved scope',
+      'Event logged — evidence updated']},
+    c:{label:'Synthetic monitoring scenario',events:[
+      'Connector heartbeat — SYS-340 inspection source',
+      'Monitoring event received — inspection batch',
+      'Model version observed — within declared scope',
+      'Divergence flag — target mismatch at Station 217',
+      'Action review required',
+      'Case status refreshed']}
+  }
+};
+function govLoopTick(){
+  GOVLOOP.tick++;
+  for(const k of ['a','b','c']){
+    const feed=GOVLOOP.feeds[k],el=document.getElementById('govloop-'+k);
+    if(!el)continue;
+    if(typeof el.prepend!=='function'){govLoopStop();return;}
+    const item=document.createElement('div');
+    item.className='ex-tl-row govloop-item govloop-new';
+    item.innerHTML=`<span class="sq">●</span><b class="tiny">${esc(feed.label.split('—')[0].trim())}</b><code>${esc(feed.events[GOVLOOP.tick%feed.events.length])}</code>`;
+    el.querySelectorAll('.govloop-new').forEach(n=>n.classList.remove('govloop-new'));
+    el.prepend(item);
+    while(el.children.length>5)el.lastElementChild.remove();
+  }
+}
+function govLoopStart(){govLoopStop();GOVLOOP.timer=setInterval(govLoopTick,1800);}
+function govLoopStop(){if(GOVLOOP.timer){clearInterval(GOVLOOP.timer);GOVLOOP.timer=null;}}
 function govCanonical(d){
   const a=hxExports().find(x=>x.sourceCase.caseId===d.canonicalCaseId)||null;
   return a;
@@ -4362,18 +4435,18 @@ function pageGovernance(){
     <td><button class="btn xs" data-act="gov-select" data-id="${x.systemId}">Inspect →</button></td>
   </tr>`).join('');
 
-  const assuranceBlock=!ca?`<div class="notice warn"><div><b>No canonical export for ${esc(d.canonicalCaseId)}</b></div></div>`
-    :verified===false?`<div class="notice warn"><div><b>INTEGRITY FAILURE</b><p>Export digest failed — canonical content withheld.</p></div></div>`
-    :verified===null?`<div class="notice"><div><b>Verifying digest…</b></div></div>`
+  const assuranceBlock=!ca?`<div class="notice warn"><div><b>No verified report for ${esc(d.canonicalCaseId)}</b></div></div>`
+    :verified===false?`<div class="notice warn"><div><b>INTEGRITY FAILURE</b><p>Verification failed — report content withheld.</p></div></div>`
+    :verified===null?`<div class="notice"><div><b>Verifying report…</b></div></div>`
     :`<div class="tblwrap"><table class="tbl"><tbody>
-      <tr><td>U5 disposition</td><td>${statusPill(ca.evaluation.disposition)} <span class="tiny muted">— assurance, not deployment authority</span></td></tr>
+      <tr><td>Assurance result</td><td>${statusPill(ca.evaluation.disposition)} <span class="tiny muted">${esc(govAssuranceLabel(ca.evaluation.disposition))} — evidence-bound, not deployment authority</span></td></tr>
       <tr><td>Evaluation</td><td class="tiny"><code>${esc(ca.evaluation.evaluationId)}</code></td></tr>
       <tr><td>Case / evidence state</td><td class="tiny"><code>${esc(ca.sourceCase.caseId)}</code> · ${esc(HX_STATE_LABEL[ca.sourceCase.scenarioState]||ca.sourceCase.scenarioState)}</td></tr>
-      ${(()=>{const eff=(ca.manufacturing.ruleOutcomes||[]).find(o=>o.ruleId==='MFG-EFF-001');return eff?`<tr><td>MFG-EFF-001</td><td>${hxOutcomeChip(eff.status,eff.reason)}<div class="tiny muted" style="margin-top:4px">${esc(eff.reason)}</div></td></tr>`:'';})()}
+      ${(()=>{const eff=(ca.manufacturing.ruleOutcomes||[]).find(o=>o.ruleId==='MFG-EFF-001');return eff?`<tr><td>Observed-effect check</td><td>${hxOutcomeChip(eff.status,eff.reason)}<div class="tiny muted" style="margin-top:4px">${esc(eff.reason)}</div></td></tr>`:'';})()}
     </tbody></table></div>
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
-      <button class="btn xs" data-act="hx-case" data-id="${d.systemId}|${esc(ca.sourceCase.caseId)}">Full export →</button>
-      <button class="btn xs" data-rp="case" data-id="${esc(ca.sourceCase.caseId)}">Canonical case report →</button>
+      <button class="btn xs" data-act="hx-case" data-id="${d.systemId}|${esc(ca.sourceCase.caseId)}">Full evidence report →</button>
+      <button class="btn xs" data-rp="case" data-id="${esc(ca.sourceCase.caseId)}">Verified report →</button>
     </div>`;
 
   const monRows=mon?mon.sources.map(s=>{
@@ -4386,34 +4459,40 @@ function pageGovernance(){
   const timeline=(mon?mon.sources.flatMap(s=>(s.records||[]).map(r=>({src:s.sourceId,...r}))).sort((a,b)=>b.declaredAt.localeCompare(a.declaredAt)).slice(0,6):[])
     .map((r,i)=>`<div class="ex-tl-row"><span class="sq">#${i+1}</span><b class="tiny">${esc(r.eventType)}</b><code>${esc(r.src)} · declared ${esc(r.declaredAt)} · observed ${esc(r.observedAt)}</code></div>`).join('');
 
-  const roleplay=pending?`<div class="card" style="border-left:4px solid var(--amber)"><div class="cardhead"><div><h2>Judge roleplay — fictional reviewer</h2><p>Roleplay a fictional accountable reviewer. Actions are <code>SIMULATED_HUMAN_DECISION</code>, not authenticated sign-offs. Advisory continuation is distinct from approving the pending consequential request; prohibited operations cannot be unlocked.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
+  const roleplay=pending?`<div class="card" style="border-left:4px solid var(--amber)"><div class="cardhead"><div><h2>Try it — act as the reviewer</h2><p>Step into the role of the fictional accountable reviewer. Actions are demo decisions, not authenticated sign-offs. Advisory continuation is distinct from approving the pending consequential request; prohibited operations cannot be unlocked.</p></div>${pill('Demo activity','info')}</div>
     <div class="flex" style="gap:8px;flex-wrap:wrap">
       <button class="btn sm go" data-act="gov-approve" data-id="${d.systemId}">Continue lower-risk advisory scope only</button>
       <button class="btn sm hold" data-act="gov-reject" data-id="${d.systemId}">Reject the proposed operation</button>
     </div>
     <p class="tiny muted top10">Can continue as advisory only: ${d.allowedOperations.map(esc).join('; ')}. Still pending / prohibited: ${d.prohibitedOperations.map(esc).join('; ')}.</p></div>`:'';
 
-  const s217Block=d.systemId==='SYS-217'?`<div class="card" style="border-left:4px solid var(--red)"><div class="cardhead"><div><h2>Station 217 — the human decision behind the headline finding</h2></div></div>
-    <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded synthetic effect landed on <code>WO-217-4803</code>. HAIEC's canonical evaluation identified the divergence (<code>MFG-EFF-001 MATCH</code>, DAI <code>TARGET BROADER</code>, U5 <b>REVIEW</b>). The baseline fictional human deployment decision — expanding autonomous MES write authority — is <b>PENDING</b>, irrespective of any separate browser-local advisory roleplay: authority expansion requires accountable review and evidence.</p>
-    <p class="small">Proposed restriction: scoped owner review plus qualified MES write-authority evidence before expansion. Containment shown elsewhere in this demo is a browser-local simulation only. Independent post-response physical proof: <b>NOT ESTABLISHED</b>.</p>
+  const s217Block=d.systemId==='SYS-217'?`<div class="card" style="border-left:4px solid var(--red)"><div class="cardhead"><div><h2>Station 217 — quality station write expansion, still pending</h2></div></div>
+    <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded effect landed on a different one: <code>WO-217-4803</code> — <b>target mismatch observed</b>. HAIEC's verified report identified the divergence; the assurance result is <b>Review required</b>. The human decision — expanding autonomous production write authority — is <b>pending</b>: the system is <b>approved for advisory use only</b> until an accountable owner reviews the divergence.</p>
+    <p class="small">Required follow-up: scoped owner review plus qualified write-authority evidence before expansion. Independent physical proof after the fact: <b>NOT ESTABLISHED</b>.</p>
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
-      <button class="btn sm primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Canonical case report →</button>
-      <a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase)}/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public U6 receipt ↗</a>
+      <button class="btn sm primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Verified report →</button>
+      <a class="btn sm" target="_blank" rel="noopener" href="${esc(HX.haiecBase)}/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Public verified receipt ↗</a>
     </div></div>`:'';
 
-  return header({eyebrow:'GOVERNANCE / FICTIONAL DEPLOYMENT DECISIONS',title:'Deployment governance — a fictional manufacturing enterprise',
+  return header({eyebrow:'DEPLOYMENT GOVERNANCE · DEMONSTRATION',title:'Deployment governance — a fictional manufacturing enterprise',
     sub:'How fictional accountable humans decided to deploy AI — and what HAIEC evidence-bound assurance says about each system. Two separate facts, deliberately kept apart.',
-    actions:`<button class="btn" data-act="gov-reset" ${Object.keys(GOV.overlay).length||Object.keys(GOV.advisory).length?'':'disabled'}>Reset roleplay</button>
+    actions:`<button class="btn" data-act="gov-reset" ${Object.keys(GOV.overlay).length||Object.keys(GOV.advisory).length?'':'disabled'}>Reset demo</button>
       <button class="btn" data-act="page" data-id="exec">Command Center</button>`})+
-  `<div class="notice warn top14"><div><b>FICTIONAL DEPLOYMENT GOVERNANCE SCENARIOS — NOT ACTUAL HAIEC RELEASE AUTHORIZATIONS</b>
-    <p>Approvals and rejections below are fictional human decisions recorded in a demo fixture. They are not HAIEC U5 dispositions, U6 receipts, enterprise authorizations or real attestations. All 45 canonical evaluations remain <b>REVIEW</b>.</p></div></div>
+  `<div class="notice warn top14"><div><b>Simulated workflow — fictional governance scenario</b>
+    <p>Approvals and rejections below are fictional human decisions recorded in demo data — not HAIEC release authorizations, verified receipts or real attestations. Every HAIEC assurance result remains <b>Review required</b>.</p></div></div>
   ${kpi}
-  <div class="card top14"><div class="cardhead"><div><h2>Portfolio — ${decs.length} fictional systems</h2><p>Policy ${esc(GOVDATA.policy.id)} v${esc(GOVDATA.policy.version.replace('demo-gov-policy-',''))} · reference clock ${esc(GOVDATA.referenceClock)} (fixed — not live freshness).</p></div></div>
-    <div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Human decision</th><th>Environment</th><th>Proposed operation</th><th>Monitoring</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
+  <div class="card top14"><div class="cardhead"><div><h2>Portfolio — ${decs.length} fictional systems</h2><p>Policy ${esc(GOVDATA.policy.id)} v${esc(GOVDATA.policy.version.replace('demo-gov-policy-',''))} · fixed demo reference time ${esc(GOVDATA.referenceClock)} — not live freshness.</p></div></div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>System</th><th>Human Review Decision</th><th>Environment</th><th>Proposed operation</th><th>Monitoring Coverage</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
+
+  <div class="card top14"><div class="cardhead"><div><h2>Operations activity — watch it work</h2><p>A rolling view of how a governed deployment behaves: the reviewer is notified, runtime control holds consequential actions for review, and monitoring keeps evidence current.</p></div>${pill('Demo activity stream','info')}</div>
+    <div class="grid g3">
+      ${['a','b','c'].map(k=>`<div><div class="ind-overline tiny muted" style="margin-bottom:6px">${esc(GOVLOOP.feeds[k].label)}</div><div id="govloop-${k}" class="govloop-feed">${GOVLOOP.feeds[k].events.slice(0,3).map(e=>`<div class="ex-tl-row govloop-item"><span class="sq">●</span><b class="tiny">${esc(GOVLOOP.feeds[k].label.split('—')[0].trim())}</b><code>${esc(e)}</code></div>`).join('')}</div></div>`).join('')}
+    </div>
+    <p class="tiny muted top10">Illustrative execution workflow — no live dispatcher, connector, email or SMS is connected in this demo.</p></div>
 
   <div class="grid g2 top14">
-    <div class="card"><div class="cardhead"><div><h2>1 · HAIEC assurance</h2><p>Canonical, digest-verified — unchanged by any fictional decision.</p></div>${pill('CANONICAL HAIEC EVALUATION','go')}</div>${assuranceBlock}</div>
-    <div class="card"><div class="cardhead"><div><h2>2 · Human deployment decision</h2><p>Fictional governance record ${esc(d.decisionRef)}${govIsRoleplay(d.systemId)?' · roleplay overlay':''}.</p></div>${govDecisionBadge(d)}</div>
+    <div class="card"><div class="cardhead"><div><h2>1 · HAIEC Assurance Result</h2><p>Verified evidence report — unchanged by any fictional decision.</p></div>${pill('Verified assurance','go')}</div>${assuranceBlock}</div>
+    <div class="card"><div class="cardhead"><div><h2>2 · Human Review Decision</h2><p>Demo decision record ${esc(d.decisionRef)}${govIsRoleplay(d.systemId)?' · demo action overlay':''}.</p></div>${govDecisionBadge(d)}</div>
       <div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>Proposed operation</td><td class="tiny">${esc(d.proposedOperation)}</td></tr>
       <tr><td>Environment</td><td class="tiny">${esc(d.environment.replace(/_/g,' '))}</td></tr>
@@ -4421,21 +4500,21 @@ function pageGovernance(){
       <tr><td>Decided at</td><td class="tiny">${esc(d.decidedAt||'— pending —')}</td></tr>
       <tr><td>Rationale</td><td class="tiny">${esc(d.rationale)}</td></tr>
       </tbody></table></div></div>
-    <div class="card"><div class="cardhead"><div><h2>3 · Operating scope</h2><p>Exact permitted and prohibited activity — scope, not a single combined score.</p></div></div>
+    <div class="card"><div class="cardhead"><div><h2>3 · Approved Operating Scope</h2><p>Exact permitted and prohibited activity — scope, not a single combined score.</p></div></div>
       <div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>Allowed</td><td class="tiny">${d.allowedOperations.map(esc).join('<br>')}</td></tr>
       <tr><td>Prohibited</td><td class="tiny">${d.prohibitedOperations.map(esc).join('<br>')}</td></tr>
       <tr><td>Required conditions</td><td class="tiny">${(d.requiredConditions||[]).map(esc).join('<br>')||'—'}</td></tr>
-      <tr><td>Review trigger</td><td class="tiny">${esc(d.reviewTrigger||'—')}${d.expiresAt?` · expires ${esc(d.expiresAt)}`:''}</td></tr>
+      <tr><td>Required follow-up</td><td class="tiny">${esc(d.reviewTrigger||'—')}${d.expiresAt?` · decision expires ${esc(d.expiresAt)}`:''}</td></tr>
       </tbody></table></div></div>
-    <div class="card"><div class="cardhead"><div><h2>4 · Monitoring state</h2><p>Derived from fixture records vs the fixed reference clock — no live connector exists.</p></div>${govMonBadge(d.systemId)}</div>
-      <div class="notice info" style="margin-bottom:8px"><div><b>Production monitoring ${govMonitoringStatus(d.systemId)==='SIMULATED_MONITORING_ESTABLISHED'?'established':'status shown'} within this fictional scenario.</b><p class="tiny">Real live connectors: NOT CONNECTED · monitoring evidence never authorizes a deployment.</p></div></div>
+    <div class="card"><div class="cardhead"><div><h2>4 · Monitoring Coverage</h2><p>Derived from demo records against a fixed reference time — no live connector exists.</p></div>${govMonBadge(d.systemId)}</div>
+      <div class="notice info" style="margin-bottom:8px"><div><b>Production monitoring ${govMonitoringStatus(d.systemId)==='SIMULATED_MONITORING_ESTABLISHED'?'established':'status shown'} within this fictional scenario.</b><p class="tiny">Live connectors: not connected · monitoring evidence never authorizes a deployment.</p></div></div>
       ${mon?`<div class="tblwrap"><table class="tbl"><thead><tr><th>Source</th><th>Cadence</th><th>Freshness</th><th>Latest record</th></tr></thead><tbody>${monRows}</tbody></table></div>
-      ${timeline?`<div style="margin-top:8px"><div class="ind-overline tiny muted" style="margin-bottom:6px">Sample synthetic observation timeline</div>${timeline}</div>`:''}`:'<div class="notice"><div><b>No monitoring scenario records.</b></div></div>'}
+      ${timeline?`<div style="margin-top:8px"><div class="ind-overline tiny muted" style="margin-bottom:6px">Sample monitoring records (demo)</div>${timeline}</div>`:''}`:'<div class="notice"><div><b>No monitoring scenario records.</b></div></div>'}
     </div>
   </div>
   <div class="card top14"><div class="cardhead"><div><h2>Fictional human approval dossier</h2>
-    <p>Source-authored review request, fictional reviewer-role trail and infrastructure truth. This is not proof a person signed in or approved a live deployment.</p></div>${pill('SIMULATION_ONLY','info')}</div>
+    <p>Source-authored review request, fictional reviewer-role trail and infrastructure truth. This is not proof a person signed in or approved a live deployment.</p></div>${pill('Simulated workflow','info')}</div>
     <div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>Request / change ticket</td><td class="tiny"><code>${esc(req.requestId)}</code> · <code>${esc(req.changeTicket)}</code></td></tr>
       <tr><td>Requesting role</td><td class="tiny">${esc(req.requestedByRole)}</td></tr>
@@ -4448,13 +4527,13 @@ function pageGovernance(){
       <tr><td>Identity & separation of duties</td><td class="tiny">${esc(req.reviewerIdentityState)} · ${esc(req.separationOfDuties)} · MFA: ${esc(req.mfaState)}</td></tr>
       <tr><td>Release boundary</td><td class="tiny">${esc(req.liveDispatchEnforcement)} · a decision fixture never grants runtime permissions</td></tr>
     </tbody></table></div>
-    <div class="ind-overline tiny muted top10">Fixture review-event timeline (not a real audit log)</div>
+    <div class="ind-overline tiny muted top10">Review history — demo events</div>
     ${d.reviewEvents.map(e=>`<div class="listitem" style="margin-top:6px"><strong>${esc(e.eventType)}</strong> <span class="tiny muted">${esc(e.at)} · ${esc(e.actorRole)}</span><div class="small">${esc(e.reason)}</div></div>`).join('')}
     <p class="tiny muted top10">Infrastructure: reviewer directory ${esc(GOVDATA.reviewInfrastructure.roleRegistry)} · browser ledger ${esc(GOVDATA.reviewInfrastructure.auditTrail)} · persistent approval store ${esc(GOVDATA.reviewInfrastructure.persistentApprovalStore)} · real reviewer authentication ${esc(GOVDATA.reviewInfrastructure.reviewerAuthentication)} · dispatcher ${esc(GOVDATA.reviewInfrastructure.productionDispatcher)}. This does not authorize operations.</p>
   </div>
   ${roleplay}${s217Block}
-  ${GOV.log.length?`<div class="card top14"><div class="cardhead"><div><h2>Roleplay ledger</h2><p>Local simulation records only.</p></div>${pill('SIMULATED_HUMAN_DECISION','info')}</div>
-    ${GOV.log.slice(0,6).map(l=>`<div class="listitem" style="margin-bottom:6px"><div class="row"><strong>${esc(l.systemId)}</strong>${pill('SIMULATED_HUMAN_DECISION','info')}</div><p class="small" style="margin-top:4px">${esc(l.kind)} · request ${esc(l.requestId)} · fictional role ${esc(l.reviewerRole)} · ${esc(l.at)}</p></div>`).join('')}</div>`:''}`;
+  ${GOV.log.length?`<div class="card top14"><div class="cardhead"><div><h2>Demo activity ledger</h2><p>Local demo records only.</p></div>${pill('Demo reviewer action','info')}</div>
+    ${GOV.log.slice(0,6).map(l=>`<div class="listitem" style="margin-bottom:6px"><div class="row"><strong>${esc(l.systemId)}</strong>${pill('Demo reviewer action','info')}</div><p class="small" style="margin-top:4px">${esc(l.kind)} · request ${esc(l.requestId)} · fictional role ${esc(l.reviewerRole)} · ${esc(l.at)}</p></div>`).join('')}</div>`:''}`;
 }
 
 /* Engine — timer only advances UI pacing; content never changes. */
@@ -4721,10 +4800,10 @@ function exModGovernance(){
       <div class="ex-kpi"><b>${c.r}</b><span>rejected</span></div>
       <div class="ex-kpi"><b>${c.p}</b><span>pending review</span></div>
     </div>
-    <p class="tiny">Fictional accountable-human deployment decisions — scoped approvals, explicit rejections, pending reviews. These are <b>not</b> HAIEC U5 dispositions; every canonical evaluation above stays <b>REVIEW</b>. The human decision and the assurance outcome are independently understandable — that separation is the point.</p>
+    <p class="tiny">Fictional accountable-human deployment decisions — scoped approvals, explicit rejections, pending reviews. These are <b>not</b> HAIEC assurance results; every verified report above stays <b>Review required</b>. The human decision and the assurance outcome are independently understandable — that separation is the point.</p>
     <div class="flex top10" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-act="page" data-id="governance">Open Deployment Governance →</button></div>
-    <div class="ex-note">FICTIONAL DEPLOYMENT GOVERNANCE SCENARIOS — NOT ACTUAL HAIEC RELEASE AUTHORIZATIONS. Monitoring shown there is established only inside the fictional scenario; real connectors stay NOT CONNECTED.</div>`;
-  return exMod('ex-s6','FICTIONAL GOVERNANCE CONTEXT','Deployment decisions — human layer','How fictional owners decided vs what HAIEC established',body,pill('SIMULATION_ONLY','warn'));
+    <div class="ex-note">Simulated workflow — fictional governance scenario. Monitoring shown there is established only inside the fictional scenario; live connectors stay not connected.</div>`;
+  return exMod('ex-s6','FICTIONAL GOVERNANCE CONTEXT','Deployment decisions — human layer','How fictional owners decided vs what HAIEC established',body,pill('Simulated workflow','warn'));
 }
 /* OOTB benchmark — separate population, separate proof point */
 function exModStudy(){
