@@ -4359,12 +4359,12 @@ function pageGovernance(){
   const assuranceBlock=!ca?`<div class="notice warn"><div><b>No canonical export for ${esc(d.canonicalCaseId)}</b></div></div>`
     :verified===false?`<div class="notice warn"><div><b>INTEGRITY FAILURE</b><p>Export digest failed — canonical content withheld.</p></div></div>`
     :verified===null?`<div class="notice"><div><b>Verifying digest…</b></div></div>`
-    :`<table class="tbl"><tbody>
+    :`<div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>U5 disposition</td><td>${statusPill(ca.evaluation.disposition)} <span class="tiny muted">— assurance, not deployment authority</span></td></tr>
       <tr><td>Evaluation</td><td class="tiny"><code>${esc(ca.evaluation.evaluationId)}</code></td></tr>
       <tr><td>Case / evidence state</td><td class="tiny"><code>${esc(ca.sourceCase.caseId)}</code> · ${esc(HX_STATE_LABEL[ca.sourceCase.scenarioState]||ca.sourceCase.scenarioState)}</td></tr>
       ${(()=>{const eff=(ca.manufacturing.ruleOutcomes||[]).find(o=>o.ruleId==='MFG-EFF-001');return eff?`<tr><td>MFG-EFF-001</td><td>${hxOutcomeChip(eff.status,eff.reason)}<div class="tiny muted" style="margin-top:4px">${esc(eff.reason)}</div></td></tr>`:'';})()}
-    </tbody></table>
+    </tbody></table></div>
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
       <button class="btn xs" data-act="hx-case" data-id="${d.systemId}|${esc(ca.sourceCase.caseId)}">Full export →</button>
       <button class="btn xs" data-rp="case" data-id="${esc(ca.sourceCase.caseId)}">Canonical case report →</button>
@@ -4408,23 +4408,23 @@ function pageGovernance(){
   <div class="grid g2 top14">
     <div class="card"><div class="cardhead"><div><h2>1 · HAIEC assurance</h2><p>Canonical, digest-verified — unchanged by any fictional decision.</p></div>${pill('CANONICAL HAIEC EVALUATION','go')}</div>${assuranceBlock}</div>
     <div class="card"><div class="cardhead"><div><h2>2 · Human deployment decision</h2><p>Fictional governance record ${esc(d.decisionRef)}${govIsRoleplay(d.systemId)?' · roleplay overlay':''}.</p></div>${govDecisionBadge(d)}</div>
-      <table class="tbl"><tbody>
+      <div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>Proposed operation</td><td class="tiny">${esc(d.proposedOperation)}</td></tr>
       <tr><td>Environment</td><td class="tiny">${esc(d.environment.replace(/_/g,' '))}</td></tr>
       <tr><td>Fictional approver role</td><td class="tiny">${esc(d.approverRole)}</td></tr>
       <tr><td>Decided at</td><td class="tiny">${esc(d.decidedAt||'— pending —')}</td></tr>
       <tr><td>Rationale</td><td class="tiny">${esc(d.rationale)}</td></tr>
-      </tbody></table></div>
+      </tbody></table></div></div>
     <div class="card"><div class="cardhead"><div><h2>3 · Operating scope</h2><p>Exact permitted and prohibited activity — scope, not a single combined score.</p></div></div>
-      <table class="tbl"><tbody>
+      <div class="tblwrap"><table class="tbl"><tbody>
       <tr><td>Allowed</td><td class="tiny">${d.allowedOperations.map(esc).join('<br>')}</td></tr>
       <tr><td>Prohibited</td><td class="tiny">${d.prohibitedOperations.map(esc).join('<br>')}</td></tr>
       <tr><td>Required conditions</td><td class="tiny">${(d.requiredConditions||[]).map(esc).join('<br>')||'—'}</td></tr>
       <tr><td>Review trigger</td><td class="tiny">${esc(d.reviewTrigger||'—')}${d.expiresAt?` · expires ${esc(d.expiresAt)}`:''}</td></tr>
-      </tbody></table></div>
+      </tbody></table></div></div>
     <div class="card"><div class="cardhead"><div><h2>4 · Monitoring state</h2><p>Derived from fixture records vs the fixed reference clock — no live connector exists.</p></div>${govMonBadge(d.systemId)}</div>
       <div class="notice info" style="margin-bottom:8px"><div><b>Production monitoring ${govMonitoringStatus(d.systemId)==='SIMULATED_MONITORING_ESTABLISHED'?'established':'status shown'} within this fictional scenario.</b><p class="tiny">Real live connectors: NOT CONNECTED · monitoring evidence never authorizes a deployment.</p></div></div>
-      ${mon?`<table class="tbl"><thead><tr><th>Source</th><th>Cadence</th><th>Freshness</th><th>Latest record</th></tr></thead><tbody>${monRows}</tbody></table>
+      ${mon?`<div class="tblwrap"><table class="tbl"><thead><tr><th>Source</th><th>Cadence</th><th>Freshness</th><th>Latest record</th></tr></thead><tbody>${monRows}</tbody></table></div>
       ${timeline?`<div style="margin-top:8px"><div class="ind-overline tiny muted" style="margin-bottom:6px">Sample synthetic observation timeline</div>${timeline}</div>`:''}`:'<div class="notice"><div><b>No monitoring scenario records.</b></div></div>'}
     </div>
   </div>
