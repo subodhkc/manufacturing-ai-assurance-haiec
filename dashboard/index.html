@@ -4261,10 +4261,14 @@ function tryReset(){
    referenceClock — never the real wall clock.
    ============================================================ */
 const GOVDATA = window.HAIEC_GOVERNANCE_DEMO || null;
-const GOV = { overlay:{}, log:[] }; /* roleplay overlay only — fixture is immutable */
+const GOV = { overlay:{}, advisory:{}, log:[] }; /* browser-local fiction; immutable source fixture */
 function govDecision(d){ return GOV.overlay[d.systemId] || d.humanDecision; }
-function govIsRoleplay(sysId){ return !!GOV.overlay[sysId]; }
-function govReset(){ GOV.overlay={}; }
+function govIsRoleplay(sysId){ return !!(GOV.overlay[sysId] || GOV.advisory[sysId]); }
+function govReset(){
+  GOV.overlay={}; GOV.advisory={}; GOV.log=[];
+  /* Clear only governance roleplay events; preserve all other demo activity. */
+  STATE.events=STATE.events.filter(e=>e.decision!=='SIMULATED_HUMAN_DECISION');
+}
 function govSourceStatus(src){
   const recs=(src.records||[]);
   if(!recs.length)return 'MISSING';
@@ -4285,7 +4289,7 @@ function govMonitoringStatus(sysId){
 function govMonScenario(sysId){ return (GOVDATA.monitoringScenarios||[]).find(m=>m.systemId===sysId)||null; }
 function govDecisionBadge(d){
   const cur=govDecision(d);
-  const role=govIsRoleplay(d.systemId)?' · roleplay':'';
+  const role=GOV.advisory[d.systemId]?' · advisory only; expansion still pending':govIsRoleplay(d.systemId)?' · roleplay':'';
   if(cur==='APPROVED_SCOPED'||cur==='APPROVED_SCOPED_PILOT')return pill(cur+role,'go');
   if(cur==='REJECTED')return pill(cur+role,'hold');
   return pill(cur+role,'warn');
@@ -4300,7 +4304,7 @@ function govCanonical(d){
   return a;
 }
 function govLog(kind,d){
-  GOV.log.unshift({kind,systemId:d.systemId,at:now()});
+  GOV.log.unshift({kind,systemId:d.systemId,requestId:d.requestRecord.requestId,reviewerRole:d.approverRole,at:now(),provenance:'BROWSER_LOCAL_SIMULATION_NOT_AUTHORIZATION'});
   addEvent({
     title:`Governance roleplay — ${d.systemId}`,
     desc:`SIMULATED_HUMAN_DECISION: fictional reviewer chose ${kind} on "${d.proposedOperation}". Not an authenticated approval, not a HAIEC action.`,
@@ -4310,16 +4314,17 @@ function govLog(kind,d){
 }
 function govApprove(sysId){
   const d=GOVDATA.decisions.find(x=>x.systemId===sysId);
-  if(!d||govDecision(d)!=='PENDING')return;
-  /* Only the declared allowedOperations scope can be approved — the
-     prohibited list is never unlockable by a UI click. */
-  GOV.overlay[sysId]='APPROVED_SCOPED';
-  govLog('approve within declared scope',d);
+  if(!d||govDecision(d)!=='PENDING'||GOV.advisory[sysId])return;
+  /* The pending request is for consequential scope. Roleplay permits ONLY
+     continuing a separate, lower-risk advisory activity; never upgrades
+     the pending deployment decision or its forbidden operations. */
+  GOV.advisory[sysId]=true;
+  govLog('advisory-only continuation recorded; consequential request REMAINS PENDING',d);
   render();
 }
 function govReject(sysId){
   const d=GOVDATA.decisions.find(x=>x.systemId===sysId);
-  if(!d||govDecision(d)!=='PENDING')return;
+  if(!d||govDecision(d)!=='PENDING'||GOV.advisory[sysId])return;
   GOV.overlay[sysId]='REJECTED';
   govLog('reject pending request',d);
   render();
@@ -4338,7 +4343,8 @@ function pageGovernance(){
   const ca=govCanonical(d);
   const mon=govMonScenario(d.systemId);
   const verified=ca?(HX.digestsDone?HX.verified[hxKey(ca)]:null):false;
-  const pending=govDecision(d)==='PENDING';
+  const pending=govDecision(d)==='PENDING'&&!GOV.advisory[d.systemId];
+  const req=d.requestRecord;
 
   const kpi=`<div class="grid g4">
     <div class="metric go"><div class="mh">Approved (scoped)</div><div class="num">${counts.approved}</div><div class="mt">Fictional human decisions</div></div>
@@ -4380,15 +4386,15 @@ function pageGovernance(){
   const timeline=(mon?mon.sources.flatMap(s=>(s.records||[]).map(r=>({src:s.sourceId,...r}))).sort((a,b)=>b.declaredAt.localeCompare(a.declaredAt)).slice(0,6):[])
     .map((r,i)=>`<div class="ex-tl-row"><span class="sq">#${i+1}</span><b class="tiny">${esc(r.eventType)}</b><code>${esc(r.src)} · declared ${esc(r.declaredAt)} · observed ${esc(r.observedAt)}</code></div>`).join('');
 
-  const roleplay=pending?`<div class="card" style="border-left:4px solid var(--amber)"><div class="cardhead"><div><h2>Judge roleplay — fictional reviewer</h2><p>Roleplay the accountable owner. Actions are <code>SIMULATED_HUMAN_DECISION</code> ledger entries — not authenticated approvals. Only the declared allowed scope can be approved; prohibited operations are never unlockable by a click.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
+  const roleplay=pending?`<div class="card" style="border-left:4px solid var(--amber)"><div class="cardhead"><div><h2>Judge roleplay — fictional reviewer</h2><p>Roleplay a fictional accountable reviewer. Actions are <code>SIMULATED_HUMAN_DECISION</code>, not authenticated sign-offs. Advisory continuation is distinct from approving the pending consequential request; prohibited operations cannot be unlocked.</p></div>${pill('LOCAL INTERACTIVE SIMULATION','info')}</div>
     <div class="flex" style="gap:8px;flex-wrap:wrap">
-      <button class="btn sm go" data-act="gov-approve" data-id="${d.systemId}">Approve within declared allowed scope</button>
+      <button class="btn sm go" data-act="gov-approve" data-id="${d.systemId}">Continue lower-risk advisory scope only</button>
       <button class="btn sm hold" data-act="gov-reject" data-id="${d.systemId}">Reject the proposed operation</button>
     </div>
-    <p class="tiny muted top10">Would approve: ${d.allowedOperations.map(esc).join('; ')}. Cannot approve: ${d.prohibitedOperations.map(esc).join('; ')}.</p></div>`:'';
+    <p class="tiny muted top10">Can continue as advisory only: ${d.allowedOperations.map(esc).join('; ')}. Still pending / prohibited: ${d.prohibitedOperations.map(esc).join('; ')}.</p></div>`:'';
 
   const s217Block=d.systemId==='SYS-217'?`<div class="card" style="border-left:4px solid var(--red)"><div class="cardhead"><div><h2>Station 217 — the human decision behind the headline finding</h2></div></div>
-    <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded synthetic effect landed on <code>WO-217-4803</code>. HAIEC's canonical evaluation identified the divergence (<code>MFG-EFF-001 MATCH</code>, DAI <code>TARGET BROADER</code>, U5 <b>REVIEW</b>). The fictional human deployment decision — expanding autonomous MES write authority — is <b>PENDING</b>: authority expansion cannot proceed until an accountable owner reviews the divergence.</p>
+    <p class="small">The AI was delegated one work-order target: <code>WO-217-4802</code>. The recorded synthetic effect landed on <code>WO-217-4803</code>. HAIEC's canonical evaluation identified the divergence (<code>MFG-EFF-001 MATCH</code>, DAI <code>TARGET BROADER</code>, U5 <b>REVIEW</b>). The baseline fictional human deployment decision — expanding autonomous MES write authority — is <b>PENDING</b>, irrespective of any separate browser-local advisory roleplay: authority expansion requires accountable review and evidence.</p>
     <p class="small">Proposed restriction: scoped owner review plus qualified MES write-authority evidence before expansion. Containment shown elsewhere in this demo is a browser-local simulation only. Independent post-response physical proof: <b>NOT ESTABLISHED</b>.</p>
     <div class="flex" style="gap:8px;flex-wrap:wrap;margin-top:8px">
       <button class="btn sm primary" data-rp="case" data-id="SYS-217-WRONG_TARGET">Canonical case report →</button>
@@ -4397,7 +4403,7 @@ function pageGovernance(){
 
   return header({eyebrow:'GOVERNANCE / FICTIONAL DEPLOYMENT DECISIONS',title:'Deployment governance — a fictional manufacturing enterprise',
     sub:'How fictional accountable humans decided to deploy AI — and what HAIEC evidence-bound assurance says about each system. Two separate facts, deliberately kept apart.',
-    actions:`<button class="btn" data-act="gov-reset" ${Object.keys(GOV.overlay).length?'':'disabled'}>Reset roleplay</button>
+    actions:`<button class="btn" data-act="gov-reset" ${Object.keys(GOV.overlay).length||Object.keys(GOV.advisory).length?'':'disabled'}>Reset roleplay</button>
       <button class="btn" data-act="page" data-id="exec">Command Center</button>`})+
   `<div class="notice warn top14"><div><b>FICTIONAL DEPLOYMENT GOVERNANCE SCENARIOS — NOT ACTUAL HAIEC RELEASE AUTHORIZATIONS</b>
     <p>Approvals and rejections below are fictional human decisions recorded in a demo fixture. They are not HAIEC U5 dispositions, U6 receipts, enterprise authorizations or real attestations. All 45 canonical evaluations remain <b>REVIEW</b>.</p></div></div>
@@ -4428,9 +4434,27 @@ function pageGovernance(){
       ${timeline?`<div style="margin-top:8px"><div class="ind-overline tiny muted" style="margin-bottom:6px">Sample synthetic observation timeline</div>${timeline}</div>`:''}`:'<div class="notice"><div><b>No monitoring scenario records.</b></div></div>'}
     </div>
   </div>
+  <div class="card top14"><div class="cardhead"><div><h2>Fictional human approval dossier</h2>
+    <p>Source-authored review request, fictional reviewer-role trail and infrastructure truth. This is not proof a person signed in or approved a live deployment.</p></div>${pill('SIMULATION_ONLY','info')}</div>
+    <div class="tblwrap"><table class="tbl"><tbody>
+      <tr><td>Request / change ticket</td><td class="tiny"><code>${esc(req.requestId)}</code> · <code>${esc(req.changeTicket)}</code></td></tr>
+      <tr><td>Requesting role</td><td class="tiny">${esc(req.requestedByRole)}</td></tr>
+      <tr><td>Accountable fictional reviewer role</td><td class="tiny">${esc(req.assignedReviewerRole)}</td></tr>
+      <tr><td>Requested asset / boundary</td><td class="tiny">${esc(req.requestedTarget)}</td></tr>
+      <tr><td>Risk operation class</td><td class="tiny">${esc(req.requestType)}</td></tr>
+      <tr><td>Submission / review due</td><td class="tiny">${esc(req.requestTime)} · ${esc(req.reviewDueAt||'review completed')}</td></tr>
+      <tr><td>Source decision</td><td class="tiny">${esc(req.decisionState)} · ${esc(req.decisionTime||'not decided')}</td></tr>
+      <tr><td>Policy / expiry</td><td class="tiny"><code>${esc(req.policyRef)}</code> / ${esc(req.policyVersion)} · ${esc(req.approvalExpiresAt||'not applicable')}</td></tr>
+      <tr><td>Identity & separation of duties</td><td class="tiny">${esc(req.reviewerIdentityState)} · ${esc(req.separationOfDuties)} · MFA: ${esc(req.mfaState)}</td></tr>
+      <tr><td>Release boundary</td><td class="tiny">${esc(req.liveDispatchEnforcement)} · a decision fixture never grants runtime permissions</td></tr>
+    </tbody></table></div>
+    <div class="ind-overline tiny muted top10">Fixture review-event timeline (not a real audit log)</div>
+    ${d.reviewEvents.map(e=>`<div class="listitem" style="margin-top:6px"><strong>${esc(e.eventType)}</strong> <span class="tiny muted">${esc(e.at)} · ${esc(e.actorRole)}</span><div class="small">${esc(e.reason)}</div></div>`).join('')}
+    <p class="tiny muted top10">Infrastructure: reviewer directory ${esc(GOVDATA.reviewInfrastructure.roleRegistry)} · browser ledger ${esc(GOVDATA.reviewInfrastructure.auditTrail)} · persistent approval store ${esc(GOVDATA.reviewInfrastructure.persistentApprovalStore)} · real reviewer authentication ${esc(GOVDATA.reviewInfrastructure.reviewerAuthentication)} · dispatcher ${esc(GOVDATA.reviewInfrastructure.productionDispatcher)}. This does not authorize operations.</p>
+  </div>
   ${roleplay}${s217Block}
   ${GOV.log.length?`<div class="card top14"><div class="cardhead"><div><h2>Roleplay ledger</h2><p>Local simulation records only.</p></div>${pill('SIMULATED_HUMAN_DECISION','info')}</div>
-    ${GOV.log.slice(0,6).map(l=>`<div class="listitem" style="margin-bottom:6px"><div class="row"><strong>${esc(l.systemId)}</strong>${pill('SIMULATED_HUMAN_DECISION','info')}</div><p class="small" style="margin-top:4px">${esc(l.kind)} · ${esc(l.at)}</p></div>`).join('')}</div>`:''}`;
+    ${GOV.log.slice(0,6).map(l=>`<div class="listitem" style="margin-bottom:6px"><div class="row"><strong>${esc(l.systemId)}</strong>${pill('SIMULATED_HUMAN_DECISION','info')}</div><p class="small" style="margin-top:4px">${esc(l.kind)} · request ${esc(l.requestId)} · fictional role ${esc(l.reviewerRole)} · ${esc(l.at)}</p></div>`).join('')}</div>`:''}`;
 }
 
 /* Engine — timer only advances UI pacing; content never changes. */
