@@ -27,7 +27,7 @@ function stubEl() {
   };
 }
 
-function loadDash() {
+function loadDash(query = '') {
   const html = fs.readFileSync(path.join(ROOT, 'dashboard/index.html'), 'utf8');
   const blocks = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
   blocks.push(fs.readFileSync(path.join(ROOT, 'dashboard/report/reports.js'), 'utf8'));
@@ -38,7 +38,13 @@ function loadDash() {
     head: { appendChild() {} }, createElement: () => stubEl(),
     createTreeWalker: () => ({ nextNode: () => null }),
   };
-  const win = { scrollTo() {}, location: { href: '' }, addEventListener() {}, print() { win.__printed = true; } };
+  const win = {
+    scrollTo() {},
+    location: { href: 'https://demo.local/' + query, search: query, pathname: '/' },
+    history: { pushState(_s, _t, uri) { win.location.href = 'https://demo.local' + uri; win.location.search = new URL(win.location.href).search; },
+               replaceState(_s, _t, uri) { win.location.href = 'https://demo.local' + uri; win.location.search = new URL(win.location.href).search; } },
+    addEventListener() {}, print() { win.__printed = true; },
+  };
   win.HAIEC_DEMO_DATA = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'dashboard/data/haiec-exports.js'), 'utf8')
       .replace(/^[\s\S]*?window\.HAIEC_DEMO_DATA = /, '').replace(/;\s*$/, ''));
@@ -56,16 +62,16 @@ function loadDash() {
   for (const b of blocks) vm.runInContext(b, sandbox);
   const T = vm.runInContext('({STATE,HX,HXDATA,hxVerifyAll,hxKey,hxExports,hxFor,PAGE_RENDERERS,SYSTEMS})', sandbox);
   T.RPT = win.RPT; // module-scoped navigation state exposed on window
-  return { T, sandbox, win };
+  return { T, sandbox, win, elements };
 }
 
 const curMap = (T) => T.HXDATA.exportMapV3 || T.HXDATA.exportMap;
 const keyOf = (a) => `${a.sourceCase.caseId}@${(a.provenance && a.provenance.sourceWorldId) || 'unknown'}`;
 
-async function ready() {
-  const ctx = loadDash();
+async function ready(query = '') {
+  const ctx = loadDash(query);
   await vm.runInContext('hxVerifyAll()', ctx.sandbox);
-  ctx.T.STATE.page = 'reports';
+  if (!query) ctx.T.STATE.page = 'reports';
   return ctx;
 }
 const render = (T) => T.PAGE_RENDERERS.reports();
@@ -254,6 +260,51 @@ test('print/PDF surface is honest — labeled Print/Save as PDF, appendix and br
   }
   // responsive grids
   assert.ok(/auto-fit|auto-fill/.test(css), 'responsive grid rules');
+});
+
+/* ---- Sprint 20 deep links ---- */
+
+test('deep link ?report=case: opens the exact case report on load', async () => {
+  const { T } = await ready('?report=case:SYS-217-WRONG_TARGET');
+  assert.equal(T.STATE.page, 'reports');
+  const html = render(T);
+  assert.ok(html.includes('SYS-217-WRONG_TARGET'));
+  assert.ok(html.includes('f0647486-ad18-46c8-834b-b4236037acd6'));
+  assert.ok(html.includes('WO-217-4803'));
+});
+
+test('deep links exec / s217 / s217-tech / judge resolve', async () => {
+  for (const [q, frag] of [
+    ['?report=exec', 'EXECUTIVE ASSURANCE REPORT'],
+    ['?report=s217', 'AI acted on the wrong work order'],
+    ['?report=s217-tech', 'nine-dimension'],
+    ['?report=judge', 'Two-minute judge path'],
+    ['?report=hub', 'Reports & Evidence'],
+  ]) {
+    const { T } = await ready(q);
+    assert.ok(render(T).includes(frag), `${q} missing ${frag}`);
+  }
+});
+
+test('invalid or stale report IDs fail safely to the hub — never findings', async () => {
+  for (const q of ['?report=case:FAKE-999', '?report=case:<script>', '?report=bogus', '?report=case:SYS-217-BASELINE']) {
+    const { T, elements } = await ready(q);
+    // the app re-render during digest verification displays the one-shot notice
+    const html = elements.get('main').innerHTML;
+    assert.ok(html.includes('Report not found'), `${q} should show not-found notice`);
+    assert.ok(!html.includes('Executive conclusion'), `${q} leaked a report`);
+    // subsequent render of the hub contains no report content either
+    const again = render(T);
+    assert.ok(!again.includes('Executive conclusion'), `${q} second render leaked`);
+  }
+});
+
+test('deep-link URLs carry only public-safe identifiers', async () => {
+  const { T, win } = await ready('?report=case:SYS-217-WRONG_TARGET');
+  render(T);
+  const url = win.location.href;
+  assert.ok(!/org|principal|tenant|s15-v3-org/i.test(url), 'URL leaks internal identity');
+  assert.ok(url.includes('report=case%3ASYS-217-WRONG_TARGET') || url.includes('report=case:SYS-217-WRONG_TARGET'));
 });
 
 test('industry hub links carry honest labels — no HAIEC-finding upgrade', async () => {

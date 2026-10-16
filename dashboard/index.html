@@ -1101,7 +1101,8 @@ function pageOverview(){
         <p>Trace the operation → verify approved authority → set the operating boundary → route an accountable human decision → reconcile the effect against the business system.</p>
       </div>
       <div class="flex" style="gap:8px;flex-wrap:wrap">
-        <button class="btn primary" data-act="start-demo">Start guided tour →</button>
+        <button class="btn primary" data-rp="judge">Judge demo — 2 minutes →</button>
+        <button class="btn" data-act="start-demo">Start guided tour →</button>
         <button class="btn" data-act="open-lab" data-id="HOLD">Jump to Decision Lab</button>
       </div>
     </div>`;
@@ -4123,8 +4124,8 @@ function exModEstate(){
       <div class="ex-kpi"><b>${es.workflows??'—'}</b><span>Workflows</span></div>
     </div>
     <div class="ex-meta">
-      <div><span>Persisted HAIEC evaluations</span><b>${verified}/27 digest-verified</b></div>
-      <div><span>Corpus shape</span><b>9 systems × 3 states</b></div>
+      <div><span>Persisted HAIEC evaluations</span><b>${verified}/72 digest-verified</b></div>
+      <div><span>Corpus shape</span><b>9 systems × 5 states (v3) + 27 preserved v1</b></div>
       <div><span>Evaluation basis</span><b>${esc(e.evaluationBasis||'—')}</b></div>
       <div><span>Frozen export</span><b>${esc(a&&a.exportedAt?String(a.exportedAt).slice(0,10):'—')}</b></div>
       <div><span>Methodology / report</span><b>${esc(e.methodologyVersion||'—')} · ${esc(e.reportVersion||'—')}</b></div>

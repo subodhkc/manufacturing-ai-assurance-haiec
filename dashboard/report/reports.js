@@ -13,8 +13,43 @@
 (function(){
 'use strict';
 
-const RPT={view:'hub',caseId:null,audience:'executive',s217mode:'exec'};
+const RPT={view:'hub',caseId:null,audience:'executive',s217mode:'exec',notice:null};
 window.RPT=RPT; // report-view navigation state — inspectable like HX/STATE
+
+/* ---------- public-safe deep links ----------
+   ?report=hub | exec | s217 | s217-tech | judge | case:<CASE_ID>
+   Only public case identifiers appear in URLs — never org IDs,
+   principals or internal routing fields. Unknown/invalid values fail
+   back to the hub with an explicit notice, never to findings. */
+const RPT_VIEWS={hub:'hub',exec:'exec',s217:'s217','s217-tech':'s217',judge:'judge'};
+function rptReadUrl(){
+  try{
+    const p=new URLSearchParams(window.location.search).get('report');
+    if(!p)return false;
+    if(p.startsWith('case:')){
+      const id=p.slice(5);
+      if(!/^[A-Za-z0-9_-]{3,64}$/.test(id)||!rptArtifact(id)){RPT.view='hub';RPT.notice=id;return true;}
+      RPT.view='case';RPT.caseId=id;return true;
+    }
+    const v=RPT_VIEWS[p];
+    if(!v){RPT.view='hub';RPT.notice=p;return true;}
+    RPT.view=v;if(p==='s217-tech')RPT.s217mode='tech';if(p==='s217')RPT.s217mode='exec';
+    return true;
+  }catch(e){return false;}
+}
+function rptSyncUrl(push){
+  try{
+    const u=new URL(window.location.href);
+    let v=null;
+    if(RPT.view==='exec')v='exec';
+    else if(RPT.view==='judge')v='judge';
+    else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
+    else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
+    else if(RPT.view==='hub')v='hub';
+    if(v)u.searchParams.set('report',v);else u.searchParams.delete('report');
+    (push===false?window.history.replaceState:window.history.pushState).call(window.history,null,'',u.pathname+'?'+u.searchParams.toString()+u.hash);
+  }catch(e){/* file:// or restricted history — navigation still works in-page */}
+}
 
 const SIGNATURE={
   SIGNED:'A digital signature exists and verifies.',
@@ -63,8 +98,17 @@ function signatureBlock(kind,extra){
   return '<div class="rp-sig rp-sig-'+x(known.toLowerCase())+'"><b>'+x(known)+'</b><p>'+x(SIGNATURE[known])+'</p>'+(extra||'')+'</div>';
 }
 
+function rptDeepLink(){
+  let v=null;
+  if(RPT.view==='exec')v='exec';else if(RPT.view==='judge')v='judge';
+  else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
+  else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
+  return v?'?report='+v:null;
+}
 function printRow(pdfNote){
+  const link=rptDeepLink();
   return '<div class="rp-actions"><button class="btn sm" type="button" data-rp-print="1">Print / Save as PDF</button>'+
+    (link?'<span class="tiny muted">Shareable link: <code>'+x(link)+'</code></span>':'')+
     '<span class="tiny muted">Printing uses your browser\u2019s Print → Save as PDF — no separate PDF generator is claimed. '+(pdfNote||'If printing fails, this HTML remains the readable report and the failure is shown as PDF_UNAVAILABLE.')+'</span></div>';
 }
 
@@ -316,6 +360,39 @@ function rpExecutive(){
     (order[RPT.audience]||order.executive).join('');
 }
 
+/* ---------- judge path (~2 minutes, manufacturing track) ---------- */
+
+function rpJudge(){
+  const step=(n,t,why,btn)=>'<div class="rp-jstep"><div class="rp-jnum">'+n+'</div><div class="rp-jbody"><h3>'+x(t)+'</h3><p>'+why+'</p><div style="margin-top:8px">'+btn+'</div></div></div>';
+  const b=(label,attrs)=>'<button class="btn sm" type="button" '+attrs+'>'+label+'</button>';
+  return header({eyebrow:'JUDGE DEMO · AI FOR MANUFACTURING TRACK',title:'Two-minute judge path',
+    sub:'A fixed, reproducible sequence through the deployed demonstration — what the AI caused, what HAIEC proved from the synthetic evidence, where proof stops, and how a human responds. No HAIEC vocabulary is required to follow it.',
+    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button>'})+
+    signatureBlock('SKIPPED')+
+    step(1,'The consequence — AI acted on the wrong work order (~15 s)',
+      'Read the headline: the delegated target was <code>WO-217-4802</code>; the committed effect landed on <code>WO-217-4803</code>. Nothing failed visibly — that is the business problem.',
+      b('Open the Station 217 story →','data-rp="s217-exec"'))+
+    step(2,'The finding (~20 s)',
+      'The case report shows the canonical result verbatim: <code>MFG-EFF-001 MATCH</code> (qualified target divergence), delegated-action comparison <code>TARGET = BROADER</code>, and overall disposition <b>REVIEW</b>.',
+      b('Open the canonical case report →','data-rp="case" data-id="SYS-217-WRONG_TARGET"'))+
+    step(3,'The human response (~15 s)',
+      'Six stages — Detect → Investigate → Authorize → Contain → Verify → Report. The contain step is labeled browser-only simulation; it is never presented as plant enforcement.',
+      b('Open the Operator Journey →','data-act="page" data-id="journey"'))+
+    step(4,'Where proof stops (~10 s)',
+      'Inside the case report, authority planes marked NOT_ASSESSED and code reachability NOT_ASSESSED are shown explicitly — the evidence boundary is part of the finding, not a footnote.',
+      b('See the evidence planes →','data-rp="case" data-id="SYS-217-WRONG_TARGET"'))+
+    step(5,'Independent verification (~10 s)',
+      'The evaluation is published as a view-only U6 receipt — anyone can verify integrity on haiec.com without an account or this dashboard.',
+      '<a class="btn sm primary" target="_blank" rel="noopener" href="https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX">Verify the public receipt ↗</a>')+
+    step(6,'Scale (~20 s)',
+      'Nine AI systems, five assessment states each, 45 persisted canonical evaluations — every one ending in REVIEW because the evidence does not establish the complete picture. Wrong-target and corrected-state outcomes differ exactly where the evidence differs.',
+      b('Open the executive assurance report →','data-rp="exec"'))+
+    step(7,'Optional — another industry (~10 s)',
+      'The same canonical engine boundaries, applied to a historical telecom reference (AL0/AL1/AL2) — clearly marked reference, not a second evaluated system.',
+      b('Telecom reference →','data-ind-open="telecom"'))+
+    '<div class="notice top14"><div><b>Reproducibility</b><p>Every step above is a shareable URL (<code>?report=…</code>) or a stable page — a judge can refresh, bookmark or open any step directly. The demo runs fully on the static deployed site; digest verification of all 45 exports runs in the browser before any finding is shown.</p></div></div>';
+}
+
 /* ---------- hub ---------- */
 
 function rpDirectory(){
@@ -333,11 +410,14 @@ function pageReports(){
   if(RPT.view==='case'){const a=rptArtifact(RPT.caseId);if(a)return rpCaseReport(a);RPT.view='hub';}
   if(RPT.view==='exec')return rpExecutive();
   if(RPT.view==='s217')return rpS217();
+  if(RPT.view==='judge')return rpJudge();
   const aud='<div class="ind-controls" style="margin:0 0 14px"><div class="ind-field"><label for="rp-aud">Audience</label><select id="rp-aud">'+AUDIENCES.map(t=>'<option value="'+x(t.id)+'" '+(t.id===RPT.audience?'selected':'')+'>'+x(t.label)+'</option>').join('')+'</select><p class="tiny muted" style="margin-top:4px">'+x((AUDIENCES.find(t=>t.id===RPT.audience)||AUDIENCES[0]).hint)+'</p></div><span style="margin-left:auto">'+pill('Presentation layer — findings verbatim from verified exports','info')+'</span></div>';
+  const notFound=RPT.notice?'<div class="notice warn"><div><b>Report not found</b><p><code>'+x(RPT.notice)+'</code> does not match a persisted export in the verified corpus — no report was rendered. Pick a report below.</p></div></div>':'';
   return header({eyebrow:'REPORTS & EVIDENCE',title:'Reports & Evidence',
     sub:'Every report below is generated presentation bound to a digest-verified frozen export — or honestly marked reference/simulation. Signature status is explicit on each report; unsigned is not invalid, and no static page can mint an assurance verdict.'})+
-    aud+
+    aud+notFound+
     '<div class="rp-grid">'+
+    '<button class="rp-tile rp-tile-hero" type="button" data-rp="judge"><div class="ind-overline">START HERE · ~2 MIN</div><h3>Judge demo path</h3><p>A fixed seven-step sequence through the deployed demo — consequence, evidence, response, boundaries, verification and scale. Manufacturing track.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="exec"><div class="ind-overline">EXECUTIVE</div><h3>Nine-System Executive Assurance Report</h3><p>45 canonical v3 evaluations, plain-language business significance, state comparison, unknowns, owners and provenance.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="s217"><div class="ind-overline">FLAGSHIP</div><h3>Station 217 — Wrong Target</h3><p>AI acted on the wrong work order. HAIEC identified the consequential divergence. Executive + technical versions.</p></button>'+
     '<a class="rp-tile" href="report/sample-master-report.html" target="_blank" rel="noopener"><div class="ind-overline">PUBLIC SAMPLE</div><h3>SYS-217 Sample Master Report ↗</h3><p>Frozen public-safe derivative — no sign-in. HTML + PDF artifacts.</p></a>'+
@@ -366,20 +446,32 @@ document.addEventListener('change',event=>{
 document.addEventListener('click',event=>{
   const rp=event.target.closest('[data-rp]');
   if(rp){
+    RPT.notice=null;
     const v=rp.dataset.rp;
     if(v==='hub')RPT.view='hub';
     else if(v==='exec')RPT.view='exec';
+    else if(v==='judge')RPT.view='judge';
     else if(v==='s217'||v==='s217-exec'||v==='s217-tech'){RPT.view='s217';if(v==='s217-exec')RPT.s217mode='exec';if(v==='s217-tech')RPT.s217mode='tech';}
-    else if(v==='case'){RPT.view='case';RPT.caseId=rp.dataset.id;}
+    else if(v==='case'){
+      const id=rp.dataset.id;
+      if(!rptArtifact(id)){RPT.view='hub';RPT.notice=id;}
+      else{RPT.view='case';RPT.caseId=id;}
+    }
     else if(v==='case-findings'){const p=rp.dataset.id.split('|');HX.system=p[0];HX.caseId=p[1];STATE.page='evaluations';}
     STATE.page=STATE.page==='evaluations'?STATE.page:'reports';
-    if(STATE.page==='reports'||v==='case-findings'){render();window.scrollTo({top:0,behavior:'instant'});}
+    if(STATE.page==='reports'||v==='case-findings'){if(STATE.page==='reports')rptSyncUrl(true);render();window.scrollTo({top:0,behavior:'instant'});}
     return;
   }
   const ind=event.target.closest('[data-ind-open]');
   if(ind){const sel=document.getElementById('ind-sector');STATE.page='industry';render();const s2=document.getElementById('ind-sector');if(s2){s2.value=ind.dataset.indOpen;s2.dispatchEvent(new Event('change',{bubbles:true}));}return;}
   if(event.target.closest('[data-rp-print]')){try{window.print();}catch(e){const n=document.querySelector('[data-rp-print]');if(n)n.insertAdjacentHTML('afterend','<span class="tiny" style="color:var(--warn)">PDF_UNAVAILABLE — HTML report remains available</span>');}}
 });
+window.addEventListener('popstate',()=>{
+  if(rptReadUrl()){STATE.page='reports';render();}
+  else if(STATE.page==='reports'){RPT.view='hub';RPT.caseId=null;render();}
+});
 PAGE_RENDERERS.reports=pageReports;
+// Deep-link init: ?report=… opens the exact report view on load.
+if(rptReadUrl())STATE.page='reports';
 render();
 })();
