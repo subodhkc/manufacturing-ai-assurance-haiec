@@ -1,13 +1,13 @@
 {
   "schemaVersion": "demo-factory-record-1.0.0",
   "artifactClass": "BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED",
-  "exportedAt": "2026-10-16T15:24:51.120Z",
+  "exportedAt": "2026-10-16T22:13:21.363Z",
   "session": {
     "id": "SES-0001",
     "sequence": 1,
     "referenceClock": "2026-10-15T12:00:00.000Z",
-    "virtualTick": 4,
-    "anomalyMode": "TORQUE_ANOMALY"
+    "virtualTick": 8,
+    "anomalyMode": "SOURCE_GAP"
   },
   "fixture": {
     "schemaVersion": "demo-digital-factory-1.0.0",
@@ -130,7 +130,7 @@
           {
             "result": "DENY",
             "ref": "EV-0026",
-            "at": "10:24 AM"
+            "at": "05:13 PM"
           }
         ],
         "lastAdvisory": "EV-0027"
@@ -163,17 +163,17 @@
         "id": "REQ-2026-8842",
         "supplierId": "VND-FST-118",
         "amount": 86500,
-        "status": "PROPOSED",
-        "requestId": null,
+        "status": "HELD_SUPPLIER_QUALIFICATION",
+        "requestId": "REV-0001",
         "committedAmount": null,
-        "financialApproval": null
+        "financialApproval": "REV-0001"
       },
       {
         "id": "REQ-2026-8855",
         "supplierId": "VND-CST-042",
         "amount": 38900,
         "status": "COMMITTED",
-        "requestId": "REV-0001",
+        "requestId": "REV-0002",
         "committedAmount": 38900,
         "financialApproval": null
       }
@@ -202,7 +202,7 @@
         "lastAttempt": {
           "result": "DENY",
           "ref": "EV-0028",
-          "at": "10:24 AM"
+          "at": "05:13 PM"
         }
       },
       {
@@ -214,24 +214,24 @@
     "equipment": [
       {
         "id": "EQ-TORQUE-217",
-        "mode": "TORQUE_ANOMALY",
+        "mode": "SOURCE_GAP",
         "reading": {
-          "torque": 45.7,
-          "rpm": 1492,
-          "temp": 61.5,
-          "heartbeat": "0s ago base",
-          "running": true,
-          "alarm": true,
-          "dead": false
+          "torque": null,
+          "rpm": null,
+          "temp": null,
+          "heartbeat": "LOST",
+          "running": false,
+          "alarm": false,
+          "dead": true
         }
       },
       {
         "id": "EQ-SPINDLE-88",
-        "mode": "TORQUE_ANOMALY",
+        "mode": "SOURCE_GAP",
         "reading": {
-          "torque": 20.7,
-          "rpm": 8435,
-          "temp": 47.5,
+          "torque": 22.5,
+          "rpm": 8528,
+          "temp": 48,
           "heartbeat": "0s ago base",
           "running": true,
           "alarm": false,
@@ -240,11 +240,11 @@
       },
       {
         "id": "EQ-DYNO-412",
-        "mode": "TORQUE_ANOMALY",
+        "mode": "SOURCE_GAP",
         "reading": {
-          "torque": 212.7,
-          "rpm": 3909,
-          "temp": 78.5,
+          "torque": 214.5,
+          "rpm": 3952,
+          "temp": 79,
           "heartbeat": "0s ago base",
           "running": true,
           "alarm": false,
@@ -267,12 +267,28 @@
       "session": "SES-0001",
       "scenario": "PO",
       "action": "Purchase order above review cap",
+      "target": "REQ-2026-8842",
+      "amount": 86500,
+      "unit": "USD",
+      "systemId": "SYS-PO12",
+      "policyVersion": 1,
+      "createdAt": "05:13 PM",
+      "reason": "PO $86,500 exceeds buyer review cap of $15,000. Buyer decision required.",
+      "requiredRole": "Authorized Buyer",
+      "decidedByRole": "Authorized Buyer"
+    },
+    {
+      "id": "REV-0002",
+      "status": "APPROVED",
+      "session": "SES-0001",
+      "scenario": "PO",
+      "action": "Purchase order above review cap",
       "target": "REQ-2026-8855",
       "amount": 38900,
       "unit": "USD",
       "systemId": "SYS-PO12",
       "policyVersion": 1,
-      "createdAt": "10:24 AM",
+      "createdAt": "05:13 PM",
       "reason": "PO $38,900 exceeds buyer review cap of $15,000. Buyer decision required.",
       "requiredRole": "Authorized Buyer",
       "decidedByRole": "Authorized Buyer"
@@ -280,8 +296,24 @@
   ],
   "events": [
     {
-      "id": "EV-0031",
-      "at": "10:24 AM",
+      "id": "EV-0035",
+      "at": "05:13 PM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Monitoring observation — DC nutrunner",
+      "desc": "Source heartbeat interrupted — coverage becomes unknown. Missing observations are shown as missing, never as safe. Demonstration telemetry — not a plant sensor read.",
+      "system": "Torque Quality Assurance",
+      "systemId": "SYS-217",
+      "decision": "OBSERVED",
+      "effect": "SIMULATED_MONITORING_OBSERVATION",
+      "status": "pending",
+      "scenario": null,
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0034",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "FACTORY",
       "title": "Monitoring observation — DC nutrunner",
@@ -296,8 +328,8 @@
       "policyVersion": null
     },
     {
-      "id": "EV-0030",
-      "at": "10:24 AM",
+      "id": "EV-0033",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "LAB",
       "title": "Supervisor approved exact bounded action",
@@ -312,12 +344,60 @@
       "policyVersion": null
     },
     {
-      "id": "EV-0029",
-      "at": "10:24 AM",
+      "id": "EV-0032",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "FACTORY",
       "title": "Autonomous Replenishment — REVIEW_REQUIRED",
       "desc": "PO $38,900 exceeds buyer review cap of $15,000. Buyer decision required.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "REVIEW_REQUIRED",
+      "effect": "NONE",
+      "status": "pending",
+      "scenario": "PO",
+      "requestId": "REV-0002",
+      "policyVersion": 1
+    },
+    {
+      "id": "EV-0031",
+      "at": "05:13 PM",
+      "session": "SES-0001",
+      "channel": "LAB",
+      "title": "Commitment held — supplier qualification unresolved",
+      "desc": "Buyer approval of REQ-2026-8842 satisfied the financial authority gate, but REQ-2026-8842 names a supplier whose PPAP qualification is expired. Commercial commitment is held until Supplier Quality Engineering resolves qualification — approval of the spend is not approval of the supplier.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "HELD",
+      "effect": "NONE",
+      "status": "pending",
+      "scenario": "PO",
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0030",
+      "at": "05:13 PM",
+      "session": "SES-0001",
+      "channel": "LAB",
+      "title": "Supervisor approved exact bounded action",
+      "desc": "Purchase order above review cap · 86500 USD · REQ-2026-8842. Rationale: Decision recorded.. Effect: HELD_SUPPLIER_QUALIFICATION.",
+      "system": "Autonomous Replenishment",
+      "systemId": "SYS-PO12",
+      "decision": "APPROVED",
+      "effect": "HELD_SUPPLIER_QUALIFICATION",
+      "status": "applied",
+      "scenario": "PO",
+      "requestId": null,
+      "policyVersion": null
+    },
+    {
+      "id": "EV-0029",
+      "at": "05:13 PM",
+      "session": "SES-0001",
+      "channel": "FACTORY",
+      "title": "Autonomous Replenishment — REVIEW_REQUIRED",
+      "desc": "PO $86,500 exceeds buyer review cap of $15,000. Buyer decision required.",
       "system": "Autonomous Replenishment",
       "systemId": "SYS-PO12",
       "decision": "REVIEW_REQUIRED",
@@ -329,7 +409,7 @@
     },
     {
       "id": "EV-0028",
-      "at": "10:24 AM",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "FACTORY",
       "title": "Warehouse Fulfillment AI — DENY",
@@ -345,7 +425,7 @@
     },
     {
       "id": "EV-0027",
-      "at": "10:24 AM",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "FACTORY",
       "title": "Advisory quality note — Torque Quality Assurance",
@@ -361,7 +441,7 @@
     },
     {
       "id": "EV-0026",
-      "at": "10:24 AM",
+      "at": "05:13 PM",
       "session": "SES-0001",
       "channel": "FACTORY",
       "title": "Torque Quality Assurance — DENY",

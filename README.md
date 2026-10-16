@@ -32,7 +32,7 @@ npm run verify
 
 Open [`dashboard/index.html`](dashboard/index.html) directly for the self-contained judge UI. The **HAIEC Assurance** and **Station 217** pages now consume genuine frozen HAIEC evaluation exports through a read-only adapter — see [Genuine HAIEC evaluation integration](#genuine-haiec-evaluation-integration-frozen-offline-mode). All other pages still render their embedded v7.2 illustrative data.
 
-**Judge path & deep links (Sprint 20):** `?report=judge` opens the two-minute demo path; `?report=exec`, `?report=s217`, `?report=s217-tech` and `?report=case:<CASE_ID>` deep-link any of the 45 canonical case reports; `?report=hub` opens Reports & Evidence. URLs carry public case identifiers only and fail closed to a "Report not found" hub notice. Judge guide: [`docs/hackfw/JUDGE-GUIDE.md`](docs/hackfw/JUDGE-GUIDE.md); submission pack: [`docs/hackfw/SUBMISSION.md`](docs/hackfw/SUBMISSION.md).
+**Judge path & deep links (Sprint 20):** `?report=judge` opens the two-minute demo path; `?report=exec`, `?report=s217`, `?report=s217-tech` and `?report=case:<CASE_ID>` deep-link any of the 45 canonical case reports; `?report=hub` opens Reports & Evidence. URLs carry public case identifiers only and fail closed to a "Report not found" hub notice. Judge guide: [`docs/hackfw/JUDGE-GUIDE.md`](docs/hackfw/JUDGE-GUIDE.md); submission pack: [`docs/hackfw/SUBMISSION.md`](docs/hackfw/SUBMISSION.md); final artifact index: [`docs/hackfw/FINAL-PACKAGE.md`](docs/hackfw/FINAL-PACKAGE.md).
 
 
 ## Manufacturing Semantic Pack v0.1.0 (proposed, not HAIEC-registered)

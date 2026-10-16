@@ -2,6 +2,7 @@
 
 Track: **AI for Manufacturing** · Demo: https://haiec-manufacturing-demo.vercel.app
 Repo: https://github.com/subodhkc/manufacturing-ai-assurance-haiec (public)
+Artifact index: [`FINAL-PACKAGE.md`](FINAL-PACKAGE.md)
 
 ## A. Two-Minute Judge Showcase (< 2 minutes)
 
@@ -88,7 +89,7 @@ dispatcher → monitoring.
 | Physical robustness | Fail-closed digest verification; corrupt exports show INTEGRITY FAILURE only; simulation clearly labeled | No real OT integration — stated everywhere |
 | Edge-to-AI pipeline | synthetic source-world capture → canonical ingestion → qualification → evaluation → report; replay bundle is digest-pinned | Replay is recorded synthetic evidence, not live telemetry |
 | Data sovereignty | Tenant authorization server-side; exports are read-only projections; provenance `SYNTHETIC_LAB` + `AUTHORIZED_DB_READ` | Public receipts are view-only integrity proofs |
-| Measured performance | 9/9 wrong-target cases produce the expected detector pattern; 209/209 repo tests; 24/24 production browser checks (Sprint 28) | Scenario-acceptance coverage — **not** a real-world detection-accuracy claim |
+| Measured performance | 9/9 wrong-target cases produce the expected detector pattern; 214/214 repo tests; 24/24 production browser checks (Sprint 28) + 21/21 judge-path smoke (Sprint 29) | Scenario-acceptance coverage — **not** a real-world detection-accuracy claim |
 | Enterprise readiness | Canonical engine, envelopes, U6 receipts, tenant model exist in production HAIEC | Runtime guard dispatch wiring and real adapters are listed gaps |
 
 ## E. Technical & judge FAQ
