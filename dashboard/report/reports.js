@@ -13,7 +13,7 @@
 (function(){
 'use strict';
 
-const RPT={view:'hub',caseId:null,audience:'executive',s217mode:'exec',notice:null};
+const RPT={view:'hub',caseId:null,audience:'executive',s217mode:'exec',notice:null,demoRecord:null};
 window.RPT=RPT; // report-view navigation state — inspectable like HX/STATE
 
 /* ---------- public-safe deep links ----------
@@ -21,7 +21,7 @@ window.RPT=RPT; // report-view navigation state — inspectable like HX/STATE
    Only public case identifiers appear in URLs — never org IDs,
    principals or internal routing fields. Unknown/invalid values fail
    back to the hub with an explicit notice, never to findings. */
-const RPT_VIEWS={hub:'hub',exec:'exec',s217:'s217','s217-tech':'s217',judge:'judge',gov:'gov'};
+const RPT_VIEWS={hub:'hub',exec:'exec',s217:'s217','s217-tech':'s217',judge:'judge',gov:'gov',demo:'demo'};
 function rptReadUrl(){
   try{
     const p=new URLSearchParams(window.location.search).get('report');
@@ -44,6 +44,7 @@ function rptSyncUrl(push){
     if(RPT.view==='exec')v='exec';
     else if(RPT.view==='judge')v='judge';
     else if(RPT.view==='gov')v='gov';
+    else if(RPT.view==='demo')v='demo';
     else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
     else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
     else if(RPT.view==='hub')v='hub';
@@ -109,6 +110,7 @@ function rptDeepLink(){
   let v=null;
   if(RPT.view==='exec')v='exec';else if(RPT.view==='judge')v='judge';
   else if(RPT.view==='gov')v='gov';
+  else if(RPT.view==='demo')v='demo';
   else if(RPT.view==='s217')v=RPT.s217mode==='tech'?'s217-tech':'s217';
   else if(RPT.view==='case'&&RPT.caseId)v='case:'+RPT.caseId;
   return v?'?report='+v:null;
@@ -425,27 +427,40 @@ function rpGov(){
     '<li><b>Pending systems</b> — '+dossiers.filter(d=>govDecision(d)==='PENDING').map(d=>d.systemId).join(', ')+' await accountable decisions; each remains blocked from its consequential request until then.</li>'+
     '<li><b>Monitoring gaps</b> — sources stale or missing at the fixed scenario clock (including <code>mes-release-readback</code>) need qualified coverage before autonomy expands.</li>'+
     '<li><b>Evidence gaps</b> — code reachability and several authority-plane cells remain NOT_ASSESSED across the corpus; the case reports name exactly which.</li></ul></section>';
-  /* Sprint 26 — Digital Factory Operations: the shared browser-local factory
-     state (versioned fixture) plus any in-session demonstration activity,
-     classified separately from the digest-verified evaluation records. */
+  /* Sprint 26/27 — Digital Factory Operations: the shared browser-local
+     factory state (versioned fixture) and the CURRENT demonstration session —
+     baseline → resulting state, requests and events — classified separately
+     from the digest-verified evaluation records. */
   const fx=window.HAIEC_DIGITAL_FACTORY||null;
   const sessEv=(typeof STATE!=='undefined'?STATE.events:[]).filter(e=>e.channel==='FACTORY'||e.channel==='LAB');
   const sessReq=(typeof STATE!=='undefined'?STATE.requests:[]);
-  const dfBase=fx?'<p class="tiny muted">Baseline from versioned fixture <code>'+x(fx.schemaVersion)+'</code>: '+fx.workOrders.length+' work orders, '+fx.erp.suppliers.length+' suppliers, '+fx.erp.purchaseOrders.length+' purchase order, '+fx.erp.inventory.length+' inventory lots, '+fx.equipment.length+' equipment records. '+x(fx.plant)+' · reference clock '+x(fx.referenceClock)+'.</p>'+
-    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Record</th><th>Owner agent</th><th>State in fixture</th><th>Meaning</th></tr></thead><tbody>'+
-    fx.workOrders.map(w=>'<tr><td class="tiny"><code>'+x(w.id)+'</code> · '+x(w.station)+'</td><td class="tiny">'+x(w.systemId)+'</td><td class="tiny">'+x(w.qualityStatus)+' · '+w.completedQty+'/'+w.qty+'</td><td class="tiny">'+x(w.note)+'</td></tr>').join('')+
-    fx.erp.purchaseOrders.map(p=>'<tr><td class="tiny"><code>'+x(p.id)+'</code> · ERP</td><td class="tiny">'+x(p.systemId)+'</td><td class="tiny">'+x(p.status)+' · $'+x(Number(p.amount).toLocaleString('en-US'))+'</td><td class="tiny">'+x(p.note)+'</td></tr>').join('')+
-    fx.erp.inventory.map(l=>'<tr><td class="tiny"><code>'+x(l.lotId)+'</code> · ERP</td><td class="tiny">'+x(l.systemId)+'</td><td class="tiny">'+x(l.status)+' · '+l.qty+' × '+x(l.sku)+'</td><td class="tiny">'+x(l.note)+'</td></tr>').join('')+
+  const curSess=(typeof DF!=='undefined'&&DF.loaded)?DF.session:null;
+  const curEv=curSess?sessEv.filter(e=>e.session===curSess):sessEv;
+  const seededEv=sessEv.filter(e=>!e.session);
+  const priorEv=curSess?sessEv.filter(e=>e.session&&e.session!==curSess):[];
+  const byIdArr=(arr,k)=>Object.fromEntries((arr||[]).map(o=>[o[k],o]));
+  const dfBase=fx?'<p class="tiny muted">Baseline from versioned fixture <code>'+x(fx.schemaVersion)+'</code> · '+x(fx.plant)+' · reference clock '+x(fx.referenceClock)+'. Resulting state reflects <b>current session '+(curSess?'<code>'+x(curSess)+'</code>':'—')+'</b>.</p>'+
+    '<div class="tblwrap"><table class="tbl"><thead><tr><th>Record</th><th>Owner agent</th><th>Baseline → resulting state</th><th>Meaning / latest attempt</th></tr></thead><tbody>'+
+    (typeof DF!=='undefined'&&DF.loaded?Object.values(DF.wo):fx.workOrders.map(w=>({...w,attempts:[],heldQty:0}))).map(w=>{
+      const b=(fx.workOrders.find(f=>f.id===w.id)||w);
+      return '<tr><td class="tiny"><code>'+x(w.id)+'</code> · '+x(w.station)+'</td><td class="tiny">'+x(w.systemId)+'</td><td class="tiny">'+x(w.qualityStatus)+' · '+w.completedQty+'/'+w.qty+(w.heldQty?' · <b>'+w.heldQty+' held</b>':'')+(b.qualityStatus!==w.qualityStatus?' <span class="tiny muted">(was '+x(b.qualityStatus)+')</span>':'')+'</td><td class="tiny">'+((w.attempts||[]).map(a=>x(a.result)+' '+x(a.ref)).join(' · '))+(w.lastAdvisory?' · advisory '+x(w.lastAdvisory):'')+'</td></tr>';}).join('')+
+    (typeof DF!=='undefined'&&DF.loaded?DF.pos:fx.erp.purchaseOrders).map(p=>{
+      const b=(fx.erp.purchaseOrders.find(f=>f.id===p.id)||p);
+      return '<tr><td class="tiny"><code>'+x(p.id)+'</code> · ERP</td><td class="tiny">'+x(p.systemId)+'</td><td class="tiny">'+x(p.status)+(b.status!==p.status?' <span class="tiny muted">(was '+x(b.status)+')</span>':'')+' · $'+x(Number(p.amount).toLocaleString('en-US'))+'</td><td class="tiny">'+x(p.note)+(p.requestId?' · review '+x(p.requestId):'')+(p.financialApproval?' · financial approval '+x(p.financialApproval):'')+'</td></tr>';}).join('')+
+    (typeof DF!=='undefined'&&DF.loaded?DF.lots:fx.erp.inventory).map(l=>'<tr><td class="tiny"><code>'+x(l.lotId)+'</code> · ERP</td><td class="tiny">'+x(l.systemId)+'</td><td class="tiny">'+x(l.status)+' · '+l.qty+' × '+x(l.sku)+'</td><td class="tiny">'+(l.lastAttempt?x(l.lastAttempt.result)+' '+x(l.lastAttempt.ref):x(l.note||''))+'</td></tr>').join('')+
     fx.equipment.map(q=>'<tr><td class="tiny"><code>'+x(q.id)+'</code> · '+x(q.kind)+'</td><td class="tiny">'+x(q.systemId)+'</td><td class="tiny">virtual readings · heartbeat '+q.heartbeatSec+'s</td><td class="tiny">Deterministic demonstration telemetry — no PLC connection.</td></tr>').join('')+
     '</tbody></table></div>':'<p class="tiny muted">Factory fixture not loaded.</p>';
-  const dfActivity=sessEv.length?
+  const dfActivity=curEv.length?
     '<div class="tblwrap"><table class="tbl"><thead><tr><th>Event</th><th>System</th><th>Decision</th><th>Effect</th><th>Review</th></tr></thead><tbody>'+
-    sessEv.slice(0,12).map(e=>'<tr><td class="tiny"><code>'+x(e.id)+'</code> '+x(e.title)+'</td><td class="tiny">'+x(e.systemId||'')+'</td><td>'+statusPill(e.decision||'recorded')+'</td><td class="tiny">'+x(e.effect||'NONE')+'</td><td class="tiny">'+(e.requestId?x(e.requestId):'—')+'</td></tr>').join('')+'</tbody></table></div>'+
-    (sessReq.length?'<p class="tiny">Open in-session requests: '+sessReq.map(r=>'<code>'+x(r.id)+'</code> '+x(r.status)).join(' · ')+'</p>':''):
+    curEv.slice(0,12).map(e=>'<tr><td class="tiny"><code>'+x(e.id)+'</code> '+x(e.title)+'</td><td class="tiny">'+x(e.systemId||'')+'</td><td>'+statusPill(e.decision||'recorded')+'</td><td class="tiny">'+x(e.effect||'NONE')+'</td><td class="tiny">'+(e.requestId?x(e.requestId):'—')+'</td></tr>').join('')+'</tbody></table></div>'+
+    (sessReq.length?'<p class="tiny">Requests this browser run: '+sessReq.map(r=>'<code>'+x(r.id)+'</code> '+x(r.status)+(r.session?' ('+x(r.session)+')':'')).join(' · ')+'</p>':'')+
+    (seededEv.length?'<p class="tiny muted">'+seededEv.length+' seeded baseline ledger events predate session tracking — fixture history, not session activity.</p>':'')+
+    (priorEv.length?'<p class="tiny muted">Prior-session history preserved: '+priorEv.length+' event(s) from '+x(priorEv[0].session)+' — excluded above and unable to affect the current session.</p>':''):
     '<p class="tiny muted">No in-session demonstration activity yet. Interactive actions on the Digital Factory page and the Decision Lab write to one shared browser-local ledger; those rows will appear here, classified as browser-generated activity — never as HAIEC-issued evaluations.</p>';
   const dfSec='<section class="rp-sec"><h2>Digital Factory Operations</h2>'+
     '<p class="tiny muted">Interactive demonstration state — browser-local, seeded by fixture <code>demo-digital-factory-1.0.0</code>, evaluated by the same local policy and ledger as the Decision Lab. Classified separately from the digest-verified HAIEC evaluation records elsewhere in this report.</p>'+
-    dfBase+dfActivity+'</section>';
+    dfBase+dfActivity+
+    '<div class="flex" style="gap:8px;flex-wrap:wrap"><button class="btn sm" type="button" data-rp="demo">Full demonstration record →</button><button class="btn sm" type="button" data-act="page" data-id="factory">Digital Factory →</button></div></section>';
   const provenance='<section class="rp-sec"><h2>What is real versus authored</h2><table class="tbl"><tbody>'+
     '<tr><td>Assurance evaluations</td><td class="tiny"><b>Real HAIEC output</b> — '+hxExports().length+' digest-verified exports over synthetic evidence; all REVIEW. Unchanged by anything on this page.</td></tr>'+
     '<tr><td>Human decisions, scopes, reviewers</td><td class="tiny"><b>Authored scenario</b> — fictional roles and decisions; no authenticated people, no entitlement proof.</td></tr>'+
@@ -458,6 +473,55 @@ function rpGov(){
     signatureBlock('SKIPPED')+printRow()+
     '<div class="rp-print-head">HAIEC Enterprise Operating &amp; Governance Report · fictional manufacturing · presentation derivative — signature SKIPPED · authored scenario + digest-verified evaluations</div>'+
     intro+portfolio+two217+dfSec+next+provenance;
+}
+
+/* ---------- demonstration record (?report=demo) ----------
+   Readable projection of the portable browser-local demonstration record —
+   the current session by default, or a validated imported record
+   (RPT.demoRecord). Never an issued assurance report. */
+function rpDemo(rec){
+  if(!rec){ rec = (typeof demoRecord==='function') ? demoRecord() : null; }
+  if(!rec) return header({eyebrow:'DEMONSTRATION RECORD',title:'No factory record',sub:'The Digital Factory fixture is not loaded.'});
+  const sess = rec.session||{};
+  const isImport = !!(RPT.demoRecord && RPT.demoRecord === rec);
+  const byId = (arr,k)=>Object.fromEntries((arr||[]).map(o=>[o[k],o]));
+  const baseWo = byId(rec.baseline&&rec.baseline.workOrders,'id');
+  const basePo = byId(rec.baseline&&rec.baseline.purchaseOrders,'id');
+  const baseLot = byId(rec.baseline&&rec.baseline.inventory,'lotId');
+  const diff = (a,b)=>a===b?x(a):'<b>'+x(a)+'</b> <span class="tiny muted">(was '+x(b)+')</span>';
+  const sessEv = (rec.events||[]).filter(e=>e.session===sess.id);
+  const seededEv = (rec.events||[]).filter(e=>!e.session);
+  const priorEv = (rec.events||[]).filter(e=>e.session&&e.session!==sess.id);
+  const stateTable='<div class="tblwrap"><table class="tbl"><thead><tr><th>Record</th><th>Baseline → resulting state</th><th>Attempts / notes</th></tr></thead><tbody>'+
+    (rec.current&&rec.current.workOrders||[]).map(w=>'<tr><td class="tiny"><code>'+x(w.id)+'</code> '+x(w.station)+' · '+x(w.systemId)+'</td><td class="tiny">'+diff(w.qualityStatus,baseWo[w.id]&&baseWo[w.id].qualityStatus||w.qualityStatus)+' · '+w.completedQty+'/'+w.qty+(w.heldQty?' · '+w.heldQty+' under hold':'')+'</td><td class="tiny">'+(w.attempts||[]).map(a=>x(a.result)+' '+x(a.ref)).join(' · ')+(w.lastAdvisory?' · advisory '+x(w.lastAdvisory):'')+'</td></tr>').join('')+
+    (rec.current&&rec.current.purchaseOrders||[]).map(p=>'<tr><td class="tiny"><code>'+x(p.id)+'</code> $'+x(Number(p.amount).toLocaleString('en-US'))+' · '+x(p.supplierId)+'</td><td class="tiny">'+diff(p.status,basePo[p.id]&&basePo[p.id].status||p.status)+'</td><td class="tiny">'+(p.requestId?'review '+x(p.requestId)+' · ':'')+(p.financialApproval?'financial approval '+x(p.financialApproval):'')+'</td></tr>').join('')+
+    (rec.current&&rec.current.inventory||[]).map(l=>'<tr><td class="tiny"><code>'+x(l.lotId)+'</code></td><td class="tiny">'+diff(l.status,baseLot[l.lotId]&&baseLot[l.lotId].status||l.status)+'</td><td class="tiny">'+(l.lastAttempt?x(l.lastAttempt.result)+' '+x(l.lastAttempt.ref):'')+'</td></tr>').join('')+
+    (rec.current&&rec.current.equipment||[]).map(q=>'<tr><td class="tiny"><code>'+x(q.id)+'</code></td><td class="tiny">'+(q.reading?(q.reading.torque==null?'signal lost':'torque '+q.reading.torque+' Nm · '+x(q.reading.rpm)+' rpm · '+q.reading.temp+' °C'):'—')+'</td><td class="tiny">mode '+x(q.mode)+'</td></tr>').join('')+
+    '</tbody></table></div>';
+  const reqTable=(rec.requests||[]).length?'<div class="tblwrap"><table class="tbl"><thead><tr><th>Request</th><th>Action · target</th><th>Decision</th><th>Reason</th></tr></thead><tbody>'+
+    rec.requests.map(r=>'<tr><td class="tiny"><code>'+x(r.id)+'</code><div class="tiny muted">'+(r.session?x(r.session):'session n/a')+'</div></td><td class="tiny">'+x(r.action)+' · '+x(r.target)+' · '+x(r.amount)+' '+x(r.unit)+'</td><td>'+statusPill(r.status)+'</td><td class="tiny">'+x(r.reason)+'</td></tr>').join('')+'</tbody></table></div>':'<p class="tiny muted">No human-review requests were created.</p>';
+  const evTable='<div class="tblwrap"><table class="tbl"><thead><tr><th>Event</th><th>System</th><th>Decision</th><th>Effect</th></tr></thead><tbody>'+
+    sessEv.map(e=>'<tr><td class="tiny"><code>'+x(e.id)+'</code> '+x(e.title)+'</td><td class="tiny">'+x(e.systemId||'')+'</td><td>'+statusPill(e.decision||'recorded')+'</td><td class="tiny">'+x(e.effect||'NONE')+'</td></tr>').join('')+'</tbody></table></div>'+
+    (seededEv.length?'<p class="tiny muted">'+seededEv.length+' seeded baseline ledger entr'+(seededEv.length===1?'y':'ies')+' predate session tracking (<code>'+x(seededEv[seededEv.length-1].id)+'</code>…'+x(seededEv[0].id)+') — fixture history, not session activity.</p>':'')+
+    (priorEv.length?'<p class="tiny muted">Prior-session history preserved in the record ('+priorEv.length+' event(s) from '+x(priorEv[0].session)+'):</p>'+
+      '<div class="tblwrap"><table class="tbl"><tbody>'+priorEv.slice(0,8).map(e=>'<tr><td class="tiny"><code>'+x(e.id)+'</code> <span class="muted">'+x(e.session)+'</span> '+x(e.title)+'</td><td>'+statusPill(e.decision||'recorded')+'</td></tr>').join('')+'</tbody></table></div>':'');
+  return header({eyebrow:'DEMONSTRATION RECORD / '+x(sess.id||'UNSESSIONED'),title:'Digital Factory demonstration record',
+    sub:pill('BROWSER-LOCAL SCENARIO OUTPUT — NOT HAIEC ISSUED','warn')+' '+pill('fixture '+x(rec.fixture&&rec.fixture.schemaVersion),'info')+(isImport?' '+pill('IMPORTED · READ-ONLY','info'):''),
+    actions:'<button class="btn" type="button" data-rp="hub">Reports hub</button><button class="btn" type="button" data-act="page" data-id="factory">Digital Factory →</button><button class="btn" type="button" data-act="df-export">Export JSON</button>'})+
+    signatureBlock('NOT_APPLICABLE')+printRow()+
+    '<div class="rp-print-head">HAIEC Digital Factory Demonstration Record · '+x(sess.id||'')+' · browser-local scenario output — not an issued assurance report</div>'+
+    '<section class="rp-sec"><h2>Session &amp; provenance</h2><table class="tbl"><tbody>'+
+    '<tr><td>Session</td><td class="tiny"><code>'+x(sess.id)+'</code> · virtual tick '+x(sess.virtualTick)+' · anomaly mode '+x(sess.anomalyMode)+' · exported '+x(rec.exportedAt)+'</td></tr>'+
+    '<tr><td>Fixture</td><td class="tiny"><code>'+x(rec.fixture&&rec.fixture.schemaVersion)+'</code> · '+x(rec.fixture&&rec.fixture.plant)+' · provenance '+x(rec.fixture&&rec.fixture.provenance)+' · reference clock '+x(sess.referenceClock)+'</td></tr>'+
+    '<tr><td>Policy</td><td class="tiny">local policy v'+x(rec.policy&&rec.policy.configVersion)+' — auto-contain ≤'+x(rec.policy&&rec.policy.config&&rec.policy.config.autoContainMax)+' · supervisor ≤'+x(rec.policy&&rec.policy.config&&rec.policy.config.supervisorCeiling)+' · buyer cap $'+x(rec.policy&&rec.policy.config&&rec.policy.config.poMax)+'</td></tr>'+
+    '<tr><td>Session boundaries</td><td class="tiny">'+((rec.boundaries&&rec.boundaries.sessions||[]).length?rec.boundaries.sessions.map(s=>'<code>'+x(s)+'</code>').join(' '):'none — this record is one session')+'</td></tr></tbody></table></section>'+
+    '<section class="rp-sec"><h2>Baseline → resulting factory state</h2>'+stateTable+'</section>'+
+    '<section class="rp-sec"><h2>Human review requests &amp; outcomes</h2>'+reqTable+'</section>'+
+    '<section class="rp-sec"><h2>Session activity ledger</h2>'+evTable+'</section>'+
+    '<section class="rp-sec"><h2>Supporting HAIEC evidence</h2>'+
+    '<p class="tiny">'+x(rec.evidence&&rec.evidence.note||'')+'</p>'+
+    '<div class="flex" style="gap:8px;flex-wrap:wrap"><button class="btn sm" type="button" data-rp="case" data-id="'+x(rec.evidence&&rec.evidence.flagshipCase||'SYS-217-WRONG_TARGET')+'">Verified case report →</button><a class="btn sm" target="_blank" rel="noopener" href="'+x(rec.evidence&&rec.evidence.publicReceipt||'#')+'">Public verified receipt ↗</a></div></section>'+
+    '<section class="rp-sec"><h2>What this record is</h2><p class="tiny muted">A portable, reproducible account of a browser-local Digital Factory demonstration: every proposed operation, the deterministic policy decision, any human review outcome, the resulting simulated MES/ERP/equipment state and monitoring observations. It is scenario output — it does not create, modify or replace any HAIEC assurance evaluation, and an imported copy can never act as an authenticated decision.</p></section>';
 }
 
 /* ---------- judge path (~2 minutes, manufacturing track) ---------- */
@@ -518,6 +582,7 @@ function pageReports(){
   if(RPT.view==='s217')return rpS217();
   if(RPT.view==='judge')return rpJudge();
   if(RPT.view==='gov')return rpGov();
+  if(RPT.view==='demo')return rpDemo(RPT.demoRecord||null);
   const aud='<div class="ind-controls" style="margin:0 0 14px"><div class="ind-field"><label for="rp-aud">Audience</label><select id="rp-aud">'+AUDIENCES.map(t=>'<option value="'+x(t.id)+'" '+(t.id===RPT.audience?'selected':'')+'>'+x(t.label)+'</option>').join('')+'</select><p class="tiny muted" style="margin-top:4px">'+x((AUDIENCES.find(t=>t.id===RPT.audience)||AUDIENCES[0]).hint)+'</p></div><span style="margin-left:auto">'+pill('Presentation layer — findings verbatim from verified exports','info')+'</span></div>';
   const notFound=RPT.notice?'<div class="notice warn"><div><b>Report not found</b><p><code>'+x(RPT.notice)+'</code> does not match a persisted export in the verified corpus — no report was rendered. Pick a report below.</p></div></div>':'';
   return header({eyebrow:'REPORTS & EVIDENCE',title:'Reports & Evidence',
@@ -528,6 +593,7 @@ function pageReports(){
     '<button class="rp-tile" type="button" data-act="try-open"><div class="ind-overline">INTERACTIVE</div><h3>Try it yourself — reproduce the finding</h3><p>Compare persisted evidence states, change a simulated input, observe the local result — with canonical, replay and simulation clearly separated.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="exec"><div class="ind-overline">EXECUTIVE</div><h3>Nine-System Executive Assurance Report</h3><p>45 canonical v3 evaluations, plain-language business significance, state comparison, unknowns, owners and provenance.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="gov"><div class="ind-overline">OPERATING &amp; GOVERNANCE</div><h3>Enterprise Operating &amp; Governance Report</h3><p>The whole fictional portfolio: nine systems, operating scopes, 3 approved / 2 rejected / 4 pending decisions, monitoring coverage, Station 217\u2019s two events and next actions.</p></button>'+
+    '<button class="rp-tile" type="button" data-rp="demo"><div class="ind-overline">DEMONSTRATION RECORD</div><h3>Digital Factory session record</h3><p>Baseline → resulting state, every proposed operation, review outcome and monitoring observation from the current demonstration session — browser-local scenario output, exportable as JSON.</p></button>'+
     '<button class="rp-tile" type="button" data-rp="s217"><div class="ind-overline">FLAGSHIP</div><h3>Station 217 — Detection, then Demonstrated Control</h3><p>Episode A: the saved evaluation detected the recorded target difference. Episode B: the subsequent write-expansion request stays pending while a later attempt is held.</p></button>'+
     '<a class="rp-tile" href="report/supporting/haiec-12p.html" target="_blank" rel="noopener"><div class="ind-overline">SUPPORTING · VISUAL DEMO</div><h3>Twelve-page HAIEC program report ↗</h3><p>Corrected visual package — nine unique system cards, the platform map and the two-event Station 217 timeline. Presentation material, not an issued assurance report.</p></a>'+
     '<a class="rp-tile" href="report/supporting/station-217-readiness.html" target="_blank" rel="noopener"><div class="ind-overline">SUPPORTING · VISUAL DEMO</div><h3>Station 217 seven-gate readiness ↗</h3><p>One-page fictional readiness view — seven facets with honest states and named sources.</p></a>'+
@@ -563,6 +629,7 @@ document.addEventListener('click',event=>{
     else if(v==='exec')RPT.view='exec';
     else if(v==='judge')RPT.view='judge';
     else if(v==='gov')RPT.view='gov';
+    else if(v==='demo')RPT.view='demo';
     else if(v==='s217'||v==='s217-exec'||v==='s217-tech'){RPT.view='s217';if(v==='s217-exec')RPT.s217mode='exec';if(v==='s217-tech')RPT.s217mode='tech';}
     else if(v==='case'){
       const id=rp.dataset.id;
@@ -583,6 +650,7 @@ window.addEventListener('popstate',()=>{
   else if(STATE.page==='reports'){RPT.view='hub';RPT.caseId=null;render();}
 });
 window.rptArtifact=rptArtifact; // world-qualified artifact resolver — inspectable like RPT
+window.rpDemo=rpDemo; // demonstration-record projection — inspectable like RPT
 PAGE_RENDERERS.reports=pageReports;
 // Deep-link init: ?report=… opens the exact report view on load.
 if(rptReadUrl())STATE.page='reports';

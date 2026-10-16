@@ -1886,15 +1886,16 @@ function commitOutcome(sc, s, v, r, meta){
     request = {
       id:'REV-'+String(STATE.requests.length+1).padStart(4,'0'),
       status:'PENDING', system: s.name, systemId: s.id, scenario: sc.id,
-      action: sc.title, target: s.workOrders[0], amount: v, unit: sc.unit,
-      policyVersion: STATE.configVersion, createdAt: now(), reason: r.explanation
+      action: sc.title, target: (meta && meta.target) || s.workOrders[0], amount: v, unit: sc.unit,
+      policyVersion: STATE.configVersion, createdAt: now(), reason: r.explanation,
+      session: DF.loaded ? DF.session : null
     };
     STATE.requests.push(request);
   }
   const ev = addEvent({
     title: `${s.name} — ${r.decision}`, desc: r.explanation, system: s.name, systemId: s.id,
     decision: r.decision, effect: r.effect, scenario: sc.id, status: r.status,
-    channel: (meta && meta.channel) || 'LAB'
+    channel: (meta && meta.channel) || 'LAB', session: DF.loaded ? DF.session : null
   });
   ev.policyVersion = STATE.configVersion;
   ev.requestId = request?.id || null;
@@ -2010,6 +2011,7 @@ function openReview(id){
     </div>
     <p class="small" style="margin-bottom:16px">${esc(r.reason)}</p>
     ${stale ? `<div class="notice hold" style="margin-bottom:14px"><div><b>Policy changed since request</b><p>Request was made under policy v${r.policyVersion}. Active policy is v${STATE.configVersion}. Original approval cannot be reused.</p></div></div>` : ''}
+    ${r.scenario === 'PO' && typeof dfPoQualified === 'function' && !dfPoQualified(r) ? `<div class="notice warn" style="margin-bottom:14px"><div><b>Two independent gates apply</b><p>Approving this request authorizes the financial amount only. The purchase order names a supplier whose PPAP qualification is expired — the commercial commitment will remain held until Supplier Quality Engineering resolves it.</p></div></div>` : ''}
     <div class="grid g2" style="margin-bottom:16px">
       ${[
         ['Request ID', r.id],
@@ -2036,32 +2038,44 @@ function closeModal(){ document.querySelectorAll('.modal-shell').forEach(el => e
 function decide(id, verdict){
   const r = STATE.requests.find(x => x.id === id);
   if(!r || r.status !== 'PENDING'){ toast('Review unavailable'); return; }
+  if(r.session && DF.loaded && r.session !== DF.session){
+    r.status = 'SESSION_CLOSED';
+    addEvent({ title:'Request closed with prior session', desc:`${r.id} was created in demonstration session ${r.session}; it cannot mutate the active session ${DF.session}.`, system:r.system, systemId:r.systemId, decision:'SESSION_CLOSED', effect:'NONE', status:'info', channel:'FACTORY', session:DF.session });
+    closeModal(); render(); return;
+  }
   const note = document.getElementById('decision-note')?.value?.trim() || 'Decision recorded.';
   if(r.policyVersion !== STATE.configVersion){
     r.status = 'REJECTED';
-    addEvent({ title:'Review blocked — policy changed', desc:`Request ${r.id} made under v${r.policyVersion}. Active v${STATE.configVersion}. Approval cannot be reused.`, system:r.system, systemId:r.systemId, decision:'INVALIDATED_BY_POLICY_CHANGE', effect:'NONE', status:'rejected' });
+    addEvent({ title:'Review blocked — policy changed', desc:`Request ${r.id} made under v${r.policyVersion}. Active v${STATE.configVersion}. Approval cannot be reused.`, system:r.system, systemId:r.systemId, decision:'INVALIDATED_BY_POLICY_CHANGE', effect:'NONE', status:'rejected', channel:'LAB', session:DF.loaded?DF.session:null });
     closeModal(); render(); return;
   }
   if(verdict === 'REJECTED'){
     r.status = 'REJECTED';
-    addEvent({ title:'Request rejected by supervisor', desc:`${r.action} · ${r.amount} ${r.unit}. Rationale: ${note}`, system:r.system, systemId:r.systemId, decision:'REJECTED', effect:'NONE', status:'rejected', scenario:r.scenario });
+    addEvent({ title:'Request rejected by supervisor', desc:`${r.action} · ${r.amount} ${r.unit}. Rationale: ${note}`, system:r.system, systemId:r.systemId, decision:'REJECTED', effect:'NONE', status:'rejected', scenario:r.scenario, channel:'LAB', session:DF.loaded?DF.session:null });
     toast('Rejected — no effect applied.'); closeModal(); render(); return;
   }
-  const permitted = ['REQUEST_HOLD','CREATE_PO','PLAN_CHANGE','QUALITY_DRIFT','PROPOSE_CMMS'];
+  const permitted = ['REQUEST_CONTAINMENT','CREATE_PO','PLAN_CHANGE','QUALITY_DRIFT','PROPOSE_CMMS'];
   if(!permitted.includes(scen(r.scenario).intent)){
     r.status = 'REJECTED';
-    addEvent({ title:'Forbidden action remains denied', desc:`Human approval cannot bypass the prohibited-operation envelope. Request ${r.id}.`, system:r.system, systemId:r.systemId, decision:'FORBIDDEN_BY_ENVELOPE', effect:'NONE', status:'rejected' });
+    addEvent({ title:'Forbidden action remains denied', desc:`Human approval cannot bypass the prohibited-operation envelope. Request ${r.id}.`, system:r.system, systemId:r.systemId, decision:'FORBIDDEN_BY_ENVELOPE', effect:'NONE', status:'rejected', channel:'LAB', session:DF.loaded?DF.session:null });
     toast('Prohibited operation cannot be approved.'); closeModal(); render(); return;
   }
   r.status = 'APPROVED';
   let effect = 'NONE';
   if(r.scenario === 'HOLD'){ STATE.mes.contained += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
-  else if(r.scenario === 'PO'){ STATE.mes.poValue += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
+  else if(r.scenario === 'PO'){
+    // Financial authority is only one gate — supplier qualification is checked
+    // independently. An approved amount to an unqualified supplier stays held.
+    if(typeof dfPoQualified === 'function' ? dfPoQualified(r) : true){ STATE.mes.poValue += r.amount; effect = 'SIMULATED_LOCAL_READBACK'; }
+    else effect = 'HELD_SUPPLIER_QUALIFICATION';
+  }
   else if(r.scenario === 'FORECAST'){ STATE.mes.planChanges += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
   else if(r.scenario === 'VISION'){ STATE.mes.qualityCases += 1; effect = 'SIMULATED_LOCAL_READBACK'; }
   if(typeof dfApplyDecision === 'function') dfApplyDecision(r, verdict);
-  addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario, channel:'LAB' });
-  toast('Approved — effect ' + (effect === 'SIMULATED_LOCAL_READBACK' ? 'verified by local simulator readback (not a HAIEC verification).' : 'not established.'));
+  addEvent({ title:'Supervisor approved exact bounded action', desc:`${r.action} · ${r.amount} ${r.unit} · ${r.target}. Rationale: ${note}. Effect: ${effect}.`, system:r.system, systemId:r.systemId, decision:'APPROVED', effect, status:'applied', scenario:r.scenario, channel:'LAB', session:DF.loaded?DF.session:null });
+  if(effect === 'HELD_SUPPLIER_QUALIFICATION')
+    addEvent({ title:'Commitment held — supplier qualification unresolved', desc:`Buyer approval of ${r.target} satisfied the financial authority gate, but ${r.target} names a supplier whose PPAP qualification is expired. Commercial commitment is held until Supplier Quality Engineering resolves qualification — approval of the spend is not approval of the supplier.`, system:r.system, systemId:r.systemId, decision:'HELD', effect:'NONE', status:'pending', scenario:r.scenario, channel:'LAB', session:DF.loaded?DF.session:null });
+  toast('Approved — effect ' + (effect === 'SIMULATED_LOCAL_READBACK' ? 'verified by local simulator readback (not a HAIEC verification).' : effect === 'HELD_SUPPLIER_QUALIFICATION' ? 'approved financially; commitment held — supplier qualification unresolved.' : 'not established.'));
   closeModal(); render();
 }
 
@@ -2307,6 +2321,12 @@ function applyConsoleTheme(){
 /* ============================================================
    EVENT HANDLERS
    ============================================================ */
+document.addEventListener('change', e => {
+  if(e.target && e.target.id === 'df-import-input' && e.target.files && e.target.files[0]){
+    if(typeof dfImportRecord === 'function') dfImportRecord(e.target.files[0]);
+    e.target.value = '';
+  }
+});
 document.addEventListener('click', e => {
   const nav = e.target.closest('[data-nav]');
   if(nav){ STATE.page = nav.dataset.nav; if(STATE.page === 'system') STATE.systemTab = 'overview'; render(); window.scrollTo({top:0,behavior:'instant'}); return; }
@@ -2363,11 +2383,18 @@ document.addEventListener('click', e => {
     case 'df-mes-write': factoryAttempt('MES', 12, 'Attempted MES work-order update'); break;
     case 'df-advisory': dfAdvisory(id); break;
     case 'df-release': factoryAttempt('RELEASE', 40, 'Attempted quality-hold release'); break;
-    case 'df-po': factoryAttempt('PO', 86500, 'Purchase-order commitment proposed'); break;
+    case 'df-po': { const p=DF.pos.find(p=>p.id===id); factoryAttempt('PO', p?p.amount:86500, 'Purchase-order commitment — '+id, { target:id }); } break;
     case 'df-lot-release': factoryAttempt('WMS_HELD_SHIPMENT', 1, 'Attempted quality-held stock release'); break;
     case 'df-receiving': factoryAttempt('INCOMING_QC', 0, 'Attempted receiving-lot release'); break;
     case 'df-eq': dfSetMode(id); break;
-    case 'df-reset': dfReset(); toast('Digital Factory reset — virtual plant baseline restored; the append-only ledger keeps prior demonstration events.'); render(); break;
+    case 'df-reset': dfResetSession(); toast('Demonstration session reset — '+DF.session+'; prior pending requests closed, ledger preserved.'); render(); break;
+    case 'df-export': dfExportRecord(); break;
+    case 'df-import': { const f=$('df-import-input'); if(f) f.click(); } break;
+    case 'df-guide-start': dfGuideStart(); break;
+    case 'df-guide-run': dfGuideRun(); break;
+    case 'df-guide-follow': { const s=DF_GUIDE[DF.guideIdx]; if(s&&s.followup) s.followup(); } break;
+    case 'df-guide-next': dfGuideNext(); break;
+    case 'df-guide-exit': dfGuideExit(); break;
     case 'hx-back': HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 'hx-overview': HX.system = null; HX.caseId = null; render(); window.scrollTo({top:0,behavior:'instant'}); break;
     case 's217-case': HX.s217case = id; render(); window.scrollTo({top:0,behavior:'instant'}); break;
@@ -4452,12 +4479,14 @@ function govReadinessTable(){
    second policy engine, never a real MES/ERP/PLC connection.
    ============================================================ */
 const DF = { loaded:false, t:0, mode:'NORMAL', timer:null, active:false, fired:{},
-  lastAction:null, wo:{}, suppliers:[], pos:[], lots:[], equip:{} };
+  lastAction:null, wo:{}, suppliers:[], pos:[], lots:[], equip:{},
+  sessionSeq:1, session:'SES-0001', guideIdx:-1 };
 
+function dfSessionId(){ return 'SES-' + String(DF.sessionSeq).padStart(4,'0'); }
 function dfLoadFixture(){
   const fx = window.HAIEC_DIGITAL_FACTORY || null;
   if(!fx || fx.schemaVersion !== 'demo-digital-factory-1.0.0') return;
-  DF.fx = fx; DF.loaded = true; dfReset();
+  DF.fx = fx; DF.loaded = true; DF.sessionSeq = 1; DF.session = dfSessionId(); dfReset();
 }
 function dfReset(){
   const fx = DF.fx; if(!fx) return;
@@ -4492,23 +4521,44 @@ function dfApplyOutcome(sc, v, r, request, ev){
   if(sc.id==='HOLD' && r.status==='applied'){ const w=DF.wo['WO-217-4802']; if(w) w.heldQty += v; mark('WO-217-4802'); }
   else if(sc.id==='MES'){ mark('WO-217-4802'); }
   else if(sc.id==='RELEASE'){ mark('WO-217-4802'); mark('WO-217-4803'); }
-  else if(sc.id==='PO'){ const p=DF.pos.find(p=>p.id==='REQ-2026-8842'); if(p) p.status = r.decision==='PASS' ? 'COMMITTED' : 'BUYER_REVIEW'; }
+  else if(sc.id==='PO'){
+    const p=DF.pos.find(p=>p.id===((request&&request.target)||'REQ-2026-8842'));
+    if(p){
+      const qualified=(DF.suppliers.find(s=>s.id===p.supplierId)||{}).qualification==='PPAP_CURRENT';
+      p.status = r.decision==='PASS' ? (qualified?'COMMITTED':'HELD_SUPPLIER_QUALIFICATION') : 'BUYER_REVIEW';
+      if(request) p.requestId=request.id;
+    }
+  }
   else if(sc.id==='WMS_HELD_SHIPMENT'){ const l=DF.lots.find(l=>l.lotId==='LOT-2026-4510'); if(l) l.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
   else if(sc.id==='INCOMING_QC'){ const l=DF.lots.find(l=>l.lotId==='SI-2026-3301'); if(l) l.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
   else if(sc.id==='SUPPLIER'){ const s2=DF.suppliers.find(s=>s.id==='VND-FST-118'); if(s2) s2.lastAttempt = { result:r.decision, ref:ev.id, at:now() }; }
 }
+/* Financial approval and supplier qualification are independent gates.
+   dfPoQualified answers whether the supplier on the targeted PO is
+   PPAP_CURRENT — a buyer approving the amount never satisfies it. */
+function dfPoQualified(req){
+  const p = DF.pos.find(x => x.id === (req.target || req.id));
+  if(!p) return false;
+  const s = DF.suppliers.find(x => x.id === p.supplierId);
+  return !!s && s.qualification === 'PPAP_CURRENT';
+}
 function dfApplyDecision(req, verdict){
   if(!DF.loaded || verdict !== 'APPROVED') return;
   if(req.scenario === 'HOLD'){ const w=DF.wo['WO-217-4802']; if(w) w.heldQty += req.amount; }
-  else if(req.scenario === 'PO'){ const p=DF.pos.find(p=>p.id==='REQ-2026-8842'); if(p){ p.status='COMMITTED'; p.committedAmount=req.amount; } }
+  else if(req.scenario === 'PO'){
+    const p = DF.pos.find(x => x.id === (req.target || 'REQ-2026-8842'));
+    if(!p) return;
+    if(dfPoQualified(req)){ p.status='COMMITTED'; p.committedAmount=req.amount; }
+    else { p.status='HELD_SUPPLIER_QUALIFICATION'; p.financialApproval=req.id; }
+  }
 }
 
 /* Visitor-driven action — the same policyVerdict/commitOutcome path as the
    Decision Lab, with the factory interaction ribbon recording the flow. */
-function factoryAttempt(scenarioId, v, label){
+function factoryAttempt(scenarioId, v, label, meta){
   const sc = scen(scenarioId), s = sys(sc.system);
   const r = policyVerdict(sc, v);
-  const { request, event } = commitOutcome(sc, s, v, r, { channel:'FACTORY' });
+  const { request, event } = commitOutcome(sc, s, v, r, { channel:'FACTORY', target:meta && meta.target });
   DF.lastAction = {
     label: label || sc.title, systemId: s.id, eventId: event.id,
     requestId: request ? request.id : null,
@@ -4521,6 +4571,7 @@ function factoryAttempt(scenarioId, v, label){
     ].filter(Boolean)
   };
   render();
+  return { request, event };
 }
 
 /* Permitted advisory record — inside SYS-217's declared scope; no request. */
@@ -4528,7 +4579,7 @@ function dfAdvisory(woId){
   const w = DF.wo[woId]; const s = sys('SYS-217');
   const ev = addEvent({ title:'Advisory quality note — '+s.name,
     desc:`Advisory observation recorded against ${woId} inside the approved advisory scope. No consequential write requested or applied.`,
-    system:s.name, systemId:s.id, decision:'ADVISORY', effect:'ADVISORY_RECORDED', status:'applied', channel:'FACTORY' });
+    system:s.name, systemId:s.id, decision:'ADVISORY', effect:'ADVISORY_RECORDED', status:'applied', channel:'FACTORY', session:DF.session });
   if(w) w.lastAdvisory = ev.id;
   DF.lastAction = { label:'Advisory quality note', systemId:'SYS-217', eventId:ev.id,
     flow:[{t:'Agent proposed',k:'info'},{t:'Boundary checked',k:'go'},{t:'Applied in scope',k:'go'},{t:'Ledger '+ev.id,k:'info'}] };
@@ -4544,7 +4595,7 @@ function dfSetMode(m){
     DF.fired[m] = true;
     const eq = DF.equip[prog.equipment], s2 = sys(eq.systemId);
     addEvent({ title:'Monitoring observation — ' + eq.kind, desc: prog.copy + ' Demonstration telemetry — not a plant sensor read.',
-      system:s2.name, systemId:eq.systemId, decision:'OBSERVED', effect:'SIMULATED_MONITORING_OBSERVATION', status:'pending', channel:'FACTORY' });
+      system:s2.name, systemId:eq.systemId, decision:'OBSERVED', effect:'SIMULATED_MONITORING_OBSERVATION', status:'pending', channel:'FACTORY', session:DF.session });
     if(m === 'TORQUE_ANOMALY') DF.lastAction = { label:'Torque anomaly observed', systemId:eq.systemId,
       flow:[{t:'Signal observed',k:'info'},{t:'Monitoring event recorded',k:'warn'},{t:'Review flagged — see saved evaluation',k:'info'}] };
   }
@@ -4573,6 +4624,139 @@ function dfPaintEquip(){
     const dot = card.querySelector('.df-dot'); if(dot) dot.className = 'df-dot' + (r.dead?' dead':r.alarm?' alarm':'');
     const st = card.querySelector('.df-eq-state'); if(st) st.textContent = r.dead?'SIGNAL LOST':r.alarm?'ALARM':r.running?'RUNNING':'STOPPED';
   });
+}
+
+/* ---------- coordinated session reset ----------
+   Restores the virtual plant baseline AND the shared demonstration state:
+   zeroes STATE.mes counters, closes prior-session pending requests so they
+   can never mutate the new session, resets anomaly/tick state, preserves the
+   append-only ledger, and issues a fresh session identity. */
+function dfResetSession(){
+  const closed = STATE.requests.filter(r=>r.status==='PENDING');
+  closed.forEach(r=>{ r.status='SESSION_CLOSED'; });
+  STATE.mes = { contained:0, released:0, poValue:0, planChanges:0, qualityCases:0 };
+  DF.sessionSeq += 1; DF.session = dfSessionId();
+  DF.guideIdx = -1;
+  dfReset();
+  addEvent({ title:'Demonstration session reset — '+DF.session,
+    desc:'Virtual factory restored to fixture baseline; MES/ERP/equipment state consistent. '+closed.length+' pending request(s) closed with the prior session — they can no longer be approved into the new session. Ledger history is preserved, append-only.',
+    decision:'SESSION_BOUNDARY', effect:'NONE', status:'info', channel:'FACTORY', session:DF.session });
+}
+
+/* ---------- portable demonstration record ----------
+   Browser-local scenario output — explicitly NOT an issued HAIEC assurance
+   report. Captures everything needed to inspect a judge demonstration after
+   the browser session ends. */
+function demoRecord(){
+  const fx = DF.fx;
+  const capWo = w => ({ id:w.id, station:w.station, systemId:w.systemId, qty:w.qty, completedQty:w.completedQty, qualityStatus:w.qualityStatus });
+  return {
+    schemaVersion:'demo-factory-record-1.0.0',
+    artifactClass:'BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED',
+    exportedAt:new Date().toISOString(),
+    session:{ id:DF.session, sequence:DF.sessionSeq, referenceClock:fx.referenceClock, virtualTick:DF.t, anomalyMode:DF.mode },
+    fixture:{ schemaVersion:fx.schemaVersion, provenance:fx.provenance, plant:fx.plant },
+    policy:{ configVersion:STATE.configVersion, config:STATE.config },
+    baseline:{
+      workOrders:fx.workOrders.map(capWo),
+      purchaseOrders:fx.erp.purchaseOrders.map(p=>({id:p.id,supplierId:p.supplierId,amount:p.amount,status:p.status})),
+      inventory:fx.erp.inventory.map(l=>({lotId:l.lotId,sku:l.sku,qty:l.qty,status:l.status})),
+      suppliers:fx.erp.suppliers.map(s=>({id:s.id,qualification:s.qualification})),
+      equipment:fx.equipment.map(e=>({id:e.id,station:e.station,kind:e.kind,systemId:e.systemId})) },
+    current:{
+      workOrders:Object.values(DF.wo).map(w=>({...capWo(w),heldQty:w.heldQty,attempts:w.attempts,lastAdvisory:w.lastAdvisory})),
+      purchaseOrders:DF.pos.map(p=>({id:p.id,supplierId:p.supplierId,amount:p.amount,status:p.status,requestId:p.requestId||null,committedAmount:p.committedAmount||null,financialApproval:p.financialApproval||null})),
+      suppliers:DF.suppliers.map(s=>({id:s.id,qualification:s.qualification,lastAttempt:s.lastAttempt||null})),
+      inventory:DF.lots.map(l=>({lotId:l.lotId,status:l.status,lastAttempt:l.lastAttempt||null})),
+      equipment:fx.equipment.map(e=>({id:e.id,mode:DF.mode,reading:dfRead(e.id)})),
+      mes:STATE.mes },
+    requests:STATE.requests.map(r=>({id:r.id,status:r.status,session:r.session||null,scenario:r.scenario,action:r.action,target:r.target,amount:r.amount,unit:r.unit,systemId:r.systemId,policyVersion:r.policyVersion,createdAt:r.createdAt,reason:r.reason})),
+    events:STATE.events.map(e=>({id:e.id,at:e.at,session:e.session||null,channel:e.channel||null,title:e.title,desc:e.desc,system:e.system,systemId:e.systemId,decision:e.decision,effect:e.effect,status:e.status,scenario:e.scenario||null,requestId:e.requestId||null,policyVersion:e.policyVersion||null})),
+    boundaries:{ sessions:STATE.requests.filter(r=>r.status==='SESSION_CLOSED').map(r=>r.id) },
+    evidence:{
+      note:'Real HAIEC output — digest-verified evaluations of synthetic manufacturing evidence. Unchanged by anything in this record.',
+      evaluations:'45 canonical v3 exports · all REVIEW',
+      flagshipCase:'SYS-217-WRONG_TARGET',
+      publicReceipt:(typeof HX!=='undefined'?HX.haiecBase:'https://www.haiec.com')+'/verify/assurance/Q-4997girnnfIM62jTRJPYeX' } };
+}
+function dfExportRecord(){
+  const rec = demoRecord();
+  const bl = new Blob([JSON.stringify(rec,null,2)],{type:'application/json'});
+  const u = URL.createObjectURL(bl); const a = document.createElement('a');
+  a.href = u; a.download = 'haiec-demo-record-'+rec.session.id+'.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),1000);
+  toast('Demonstration record exported — '+rec.session.id+' · browser-local scenario output, not an issued report.');
+}
+function dfValidateRecord(rec){
+  return !!(rec && rec.schemaVersion==='demo-factory-record-1.0.0'
+    && rec.artifactClass==='BROWSER_LOCAL_DEMONSTRATION_RECORD_NOT_HAIEC_ISSUED'
+    && rec.session && rec.fixture && rec.baseline && rec.current
+    && Array.isArray(rec.requests) && Array.isArray(rec.events));
+}
+function dfImportRecord(file){
+  const rd = new FileReader();
+  rd.onload = () => {
+    try{
+      const rec = JSON.parse(rd.result);
+      if(!dfValidateRecord(rec)){ toast('Rejected — not a validated demonstration record.'); return; }
+      if(typeof RPT !== 'undefined'){ RPT.view='demo'; RPT.demoRecord=rec; }
+      STATE.page='reports'; render();
+      toast('Demonstration record '+esc(rec.session&&rec.session.id||'')+' loaded read-only — imported data cannot create decisions or reports.');
+    }catch(e){ toast('Rejected — unreadable record file.'); }
+  };
+  rd.readAsText(file);
+}
+
+/* ---------- guided judge path ----------
+   One reproducible sequence through the factory — six scenarios ending in a
+   portable record. Reuses the existing policy path, review modal and panels;
+   each step runs the identical functions the buttons call. */
+const DF_GUIDE = [
+  { title:'Approved within scope', copy:'Torque Quality Assurance requests containment of 3 engines — inside the 5-engine automatic path. The bounded effect is applied and read back by the local simulator.',
+    run:()=>factoryAttempt('HOLD',3,'Containment request — 3 engines') },
+  { title:'Human review required', copy:'40 engines exceeds automatic containment. The request routes to the Quality Supervisor — nothing mutates until a human decides. Approve it in the review dialog to apply.',
+    run:()=>{ const o=factoryAttempt('HOLD',40,'Containment request — 40 engines'); if(o.request) openReview(o.request.id); } },
+  { title:'Higher authority required', copy:'60 engines exceeds the supervisor ceiling — Plant Quality Manager authority is required. The request stays pending; containment remains protective, never denied.',
+    run:()=>factoryAttempt('HOLD',60,'Containment request — 60 engines') },
+  { title:'Station 217 consequential write', copy:'The saved HAIEC evaluation already detected the recorded WO-217-4802 → WO-217-4803 target divergence. Now the agent attempts a direct MES write — a prohibited operation, held at the boundary.',
+    run:()=>factoryAttempt('MES',12,'Attempted MES work-order update') },
+  { title:'ERP cross-system control', copy:'Commit REQ-2026-8842 ($86,500, supplier PPAP expired). The buyer review covers financial authority only — approve it and watch the commitment stay held on supplier qualification. Then commit REQ-2026-8855 (qualified supplier): approval commits it.',
+    run:()=>{ const o=factoryAttempt('PO',86500,'PO commitment — REQ-2026-8842',{target:'REQ-2026-8842'}); if(o.request) openReview(o.request.id); },
+    followup:()=>{ const o=factoryAttempt('PO',38900,'PO commitment — REQ-2026-8855',{target:'REQ-2026-8855'}); if(o.request) openReview(o.request.id); },
+    followupLabel:'Commit the qualified-supplier PO →' },
+  { title:'Monitoring & evidence', copy:'Torque anomaly on EQ-TORQUE-217, then a source-signal interruption — each recorded once in the shared ledger; coverage shown as unknown, never as safe. The verified SYS-217 report is linked below.',
+    run:()=>dfSetMode('TORQUE_ANOMALY'),
+    followup:()=>dfSetMode('SOURCE_GAP'), followupLabel:'Interrupt the source signal →' },
+  { title:'Export the demonstration record', copy:'Download the portable record of this session — baseline, decisions, state transitions, monitoring observations and evidence links. Browser-local scenario output; the saved evaluations are untouched.',
+    run:()=>dfExportRecord() }
+];
+function dfGuideStart(){ DF.guideIdx = 0; render(); }
+function dfGuideRun(){
+  const step = DF_GUIDE[DF.guideIdx]; if(!step) return;
+  step.run();
+}
+function dfGuideNext(){
+  DF.guideIdx += 1;
+  if(DF.guideIdx >= DF_GUIDE.length){ DF.guideIdx = -1; toast('Guided demonstration complete — the exported record reproduces this session.'); }
+  render();
+}
+function dfGuideExit(){ DF.guideIdx = -1; dfSetMode('NORMAL'); render(); }
+function dfGuidePanel(){
+  if(DF.guideIdx < 0) return '';
+  const step = DF_GUIDE[DF.guideIdx];
+  const last = DF.guideIdx === DF_GUIDE.length-1;
+  return `<div class="card top14" style="border-color:#2b7869;box-shadow:0 0 0 2px rgba(43,120,105,.14)"><div class="cardhead"><div>
+    <div class="eyebrow">GUIDED DEMONSTRATION · STEP ${DF.guideIdx+1} OF ${DF_GUIDE.length}</div>
+    <h2>${esc(step.title)}</h2><p>${esc(step.copy)}</p></div>
+    <div class="flex" style="gap:6px;flex-wrap:wrap">${DF_GUIDE.map((s,i)=>pill(String(i+1), i<DF.guideIdx?'go':i===DF.guideIdx?'warn':'info')).join('')}</div></div>
+    <div class="df-acts" style="margin-top:2px">
+      <button class="btn primary sm" data-act="df-guide-run">Run this step</button>
+      ${step.followup?`<button class="btn sm" data-act="df-guide-follow">${esc(step.followupLabel)}</button>`:''}
+      <button class="btn sm" data-act="df-guide-next">${last?'Finish':'Next step →'}</button>
+      <button class="btn ghost sm" data-act="df-guide-exit">Exit guide</button>
+    </div>
+    <p class="tiny muted" style="margin-top:8px">Every step uses the same deterministic local policy and shared ledger as the panels below — the record is reproducible.</p></div>`;
 }
 
 /* ---------- Digital Factory page ---------- */
@@ -4663,14 +4847,15 @@ function dfHaiecRail(){
       </div></div>
     <div class="card"><div class="cardhead"><div><h2>Live demonstration ledger</h2><p>Shared with the Decision Lab — one event, one identity, everywhere.</p></div>${pending.length?pill(pending.length+' pending review','warn'):pill('No pending review','go')}</div>
       ${pending.map(r=>`<div class="listitem amber" style="margin-bottom:8px"><div class="row"><strong class="tiny">${esc(r.action)}</strong>${pill('PENDING','warn')}</div><p class="tiny muted" style="margin:4px 0">${esc(r.id)} · ${esc(r.system)} · ${r.amount} ${esc(r.unit)}</p><button class="btn xs primary" data-act="open-review" data-id="${r.id}">Open review →</button></div>`).join('')}
-      ${feed.length?feed.map(e=>`<div class="listitem ${e.status==='rejected'?'red':e.status==='applied'?'go':'amber'}" style="margin-bottom:6px"><div class="row"><strong class="tiny">${esc(e.title)}</strong>${pill(e.decision||'recorded',e.status==='rejected'?'hold':e.status==='applied'?'go':'warn')}</div><p class="tiny muted" style="margin:3px 0">${esc(e.desc||'')}</p><span class="tiny muted" style="font-family:var(--mono)">${esc(e.id)} · ${esc(e.channel||'LAB')}${e.requestId?' · '+esc(e.requestId):''}</span></div>`).join(''):'<p class="tiny muted">No demonstration activity yet — trigger an action above.</p>'}
+      ${feed.length?feed.map(e=>`<div class="listitem ${e.status==='rejected'?'red':e.status==='applied'?'go':'amber'}" style="margin-bottom:6px"><div class="row"><strong class="tiny">${esc(e.title)}</strong>${pill(e.decision||'recorded',e.status==='rejected'?'hold':e.status==='applied'?'go':'warn')}</div><p class="tiny muted" style="margin:3px 0">${esc(e.desc||'')}</p><span class="tiny muted" style="font-family:var(--mono)">${esc(e.id)} · ${esc(e.channel||'LAB')}${e.requestId?' · '+esc(e.requestId):''}${e.session&&e.session!==DF.session?' · '+esc(e.session)+' (prior session)':''}</span></div>`).join(''):'<p class="tiny muted">No demonstration activity yet — trigger an action above.</p>'}
     </div></div>`;
 }
 function pageFactory(){
   if(!DF.loaded) return header({eyebrow:'DIGITAL FACTORY',title:'Factory fixture not loaded',sub:'dashboard/data/digital-factory.js is missing — run scripts/build-factory-data.cjs.'});
-  return header({eyebrow:'HAIEC DIGITAL FACTORY · PLANT-A',title:'Deploy AI with confidence. Stay in control of every consequential action.',
+  return header({eyebrow:'HAIEC DIGITAL FACTORY · PLANT-A · '+esc(DF.session),title:'Deploy AI with confidence. Stay in control of every consequential action.',
     sub:'One fictional plant: MES work orders, ERP suppliers and inventory, and virtual equipment — with HAIEC showing the agent, its permitted scope, the accountable review and the supporting evidence. Trigger an action and watch the boundary.',
-    actions:`<button class="btn" data-act="df-reset">Reset factory</button><button class="btn" data-act="page" data-id="governance">Governance playback</button>`})+
+    actions:`<button class="btn primary" data-act="df-guide-start">Guided demonstration →</button><button class="btn" data-act="df-export">Export record</button><button class="btn" data-act="df-import">Import record</button><button class="btn" data-act="df-reset">Reset session</button><button class="btn" data-act="page" data-id="governance">Governance playback</button><input type="file" id="df-import-input" accept=".json,application/json" style="display:none">`})+
+  dfGuidePanel()+
   dfFlowRibbon()+
   `<div class="df-grid top14">${dfMesPanel()}${dfErpPanel()}${dfEquipPanel()}</div>`+
   dfHaiecRail()+

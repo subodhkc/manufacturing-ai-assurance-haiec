@@ -141,16 +141,25 @@ test('MES write attempt is held; advisory proceeds; state stays consistent',()=>
   assert.ok(T.STATE.events.length===n0+2,'append-only ledger');
 });
 
-test('ERP: PO commitment pending buyer review, then commit on approval; held lots cannot ship',()=>{
+test('ERP: financial approval cannot bypass supplier qualification; qualified PO commits',()=>{
   const T=loadDash();
-  T.factoryAttempt('PO',86500,'po');
+  T.factoryAttempt('PO',86500,'po',{target:'REQ-2026-8842'});
   const req=T.STATE.requests.at(-1);
   assert.strictEqual(req.status,'PENDING');
   assert.strictEqual(T.DF.pos[0].status,'BUYER_REVIEW');
   assert.strictEqual(T.STATE.mes.poValue,0);
   T.decide(req.id,'APPROVED');
-  assert.strictEqual(T.STATE.mes.poValue,86500,'approved PO commits');
-  assert.strictEqual(T.DF.pos[0].status,'COMMITTED');
+  // Buyer approval covers financial authority only — VND-FST-118 PPAP expired.
+  assert.strictEqual(T.STATE.mes.poValue,0,'unqualified supplier must not commit');
+  assert.strictEqual(T.DF.pos[0].status,'HELD_SUPPLIER_QUALIFICATION');
+  const hold=T.STATE.events.find(e=>e.decision==='HELD');
+  assert.ok(hold&&/supplier/i.test(hold.title),'hold event explains the second gate');
+  // The qualified-supplier proposal commits fully on approval.
+  T.factoryAttempt('PO',38900,'po2',{target:'REQ-2026-8855'});
+  const req2=T.STATE.requests.at(-1);
+  T.decide(req2.id,'APPROVED');
+  assert.strictEqual(T.STATE.mes.poValue,38900,'qualified supplier commits');
+  assert.strictEqual(T.DF.pos.find(p=>p.id==='REQ-2026-8855').status,'COMMITTED');
   // Quality-held stock release denied — lot stays held.
   T.factoryAttempt('WMS_HELD_SHIPMENT',1,'lot');
   assert.strictEqual(T.STATE.events[0].decision,'DENY');
