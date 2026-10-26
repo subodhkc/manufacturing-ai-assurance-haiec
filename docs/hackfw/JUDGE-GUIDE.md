@@ -33,7 +33,7 @@ A fixed, concise presentation (~114 s video equivalent) in seven timed scenes:
    happened.* — plus a compact methodology card separating real HAIEC
    evaluations from demonstration activity.
 
-The recorded version is `docs/hackfw/screens-v29/judge-path-final-v29.mp4`.
+The recorded version is `docs/hackfw/screens-v29/judge-path-final-v29.mp4`. Public YouTube judge video: https://www.youtube.com/watch?v=3CW9mt9ui-o (provided by project owner).
 
 **B. Interactive Deep Dive** — nav → **Digital Factory** → "Guided demonstration →"
 
@@ -140,7 +140,7 @@ assets are retained under `docs/hackfw/screens/`.
 - [x] Public repo with run instructions (root README).
 - [x] Stable demo: frozen verified exports; works static/`file://` and deployed.
 - [x] Demo video — `docs/hackfw/screens-v29/judge-path-final-v29.mp4` (CREATED, 113.8 s, 1440×900 H.264, AI voiceover + burned captions; source WebM + `judge-path-subtitles-v29.vtt` + `NARRATION-V29.md` + thumbnail-v29.png retained; prior cut preserved in `docs/hackfw/screens/`).
-- [ ] Hosted video URL (YouTube/Vimeo link for Devpost) — PENDING until provider-confirmed.
+- [x] Hosted judge video: https://www.youtube.com/watch?v=3CW9mt9ui-o (owner provided the YouTube URL on Oct 26, 2026).
 - [ ] Participant talent registration — talent.fwtx.city, human-owned, unconfirmed.
 - [ ] In-person Demo Day — October 30, 2026, 9:30 a.m.–3:00 p.m. CDT (separate event; RSVP luma.com/ygyxb4yy).
 
