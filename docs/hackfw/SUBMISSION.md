@@ -31,8 +31,8 @@ export). No step is mandatory.
 - Stills: `docs/hackfw/screens-v29/01-platform.png` … `09-showcase-close.png`; thumbnail/cover: `docs/hackfw/screens-v29/thumbnail-v29.png`.
 - Render pipeline: `scripts/render-judge-video.cjs` (cards via Playwright, narration via edge-tts, assembly via ffmpeg).
 - Prior video retained unchanged in `docs/hackfw/screens/`.
-- Publicly hosted video URL (YouTube/Vimeo): **PENDING** — requires human upload; do not claim until the provider confirms.
-- Devpost submission: **UNCONFIRMED** until actually submitted.
+- Publicly hosted video: **OWNER-PROVIDED LINK** — https://www.youtube.com/watch?v=3CW9mt9ui-o
+- Devpost submission: **OWNER-REPORTED SUBMITTED** on October 26, 2026 (submission details not independently accessible).
 
 ## C. Devpost submission copy
 
@@ -42,7 +42,7 @@ export). No step is mandatory.
 - **GitHub URL:** https://github.com/subodhkc/manufacturing-ai-assurance-haiec
 - **Demo URL:** https://haiec-manufacturing-demo.vercel.app
   (judge showcase: `/?report=judge`)
-- **Video URL:** *hosted link pending owner upload — see checklist §F*
+- **Video URL:** https://www.youtube.com/watch?v=3CW9mt9ui-o (provided by submitter)
 - **Technology summary:** Static browser-local manufacturing demonstration
   (single-page dashboard, no backend for the demo) served on Vercel; canonical
   HAIEC deterministic assurance engine exports (digest-verified, read-only
@@ -150,8 +150,8 @@ four simulation-only sector narratives — labeled, never claimed as evaluations
 - [x] Public GitHub repo + working deployed demo
 - [x] Judge guide + deep-linked reports
 - [x] End-to-end source recording + final video — `docs/hackfw/screens-v29/` (113.8 s MP4, real production UI, AI narration + burned captions) + `judge-path-subtitles-v29.vtt` + `NARRATION-V29.md` + `demo-record-sample.json` (authentic browser export)
-- [ ] Hosted video URL (YouTube/Vimeo) — human step; upload `judge-path-final-v29.mp4`, Devpost needs the public link
+- [x] Public YouTube video: https://www.youtube.com/watch?v=3CW9mt9ui-o (submitter-provided)
 - [ ] All participants registered at talent.fwtx.city — unconfirmed
 - [ ] North Texas proximity/eligibility — human attestation
 - [ ] Demo Day registration (luma.com/ygyxb4yy) + in-person attendance, Oct 30, 9:30 a.m.–3:00 p.m. CDT — human step
-- [ ] Devpost submission before Oct 30, 2026 11:00 a.m. CDT — human step (deadline and event start are separate)
+- [x] Devpost submission: owner confirmed submitted on Oct 26, 2026; submission URL/acceptance not independently verified (deadline Oct 30, 11:00 a.m. CDT)
