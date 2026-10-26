@@ -10,7 +10,8 @@ the deployed site or this public repository.
 | Deployed dashboard | https://haiec-manufacturing-demo.vercel.app |
 | Two-minute judge showcase | https://haiec-manufacturing-demo.vercel.app/?report=judge |
 | Interactive Digital Factory | https://haiec-manufacturing-demo.vercel.app → nav **Digital Factory** (Guided demonstration →) |
-| Final video | `docs/hackfw/screens-v29/judge-path-final-v29.mp4` — 113.8 s, 1440×900 H.264/AAC, narration + burned captions |
+| Public judge video | https://www.youtube.com/watch?v=3CW9mt9ui-o |
+| Final video source | `docs/hackfw/screens-v29/judge-path-final-v29.mp4` — 113.8 s, 1440×900 H.264/AAC, narration + burned captions |
 | Video thumbnail | `docs/hackfw/screens-v29/thumbnail-v29.png` |
 | Source screen recording | `docs/hackfw/screens-v29/judge-path-recording.webm` — same-session capture, 95 s |
 | Narration script | `docs/hackfw/NARRATION-V29.md` |
@@ -29,16 +30,13 @@ Reproducibility: `scripts/capture-judge-path.cjs` (recording + stills),
 `scripts/render-judge-video.cjs` (cards + narration + composition),
 `scripts/export-demo-record.cjs` (authentic record export).
 
-## Human action required — not done, not claimed
+## Submission status — owner-reported on October 26, 2026
 
-- [ ] Upload `judge-path-final-v29.mp4` to a hosted provider (YouTube/Vimeo)
-      and copy the public URL into the Devpost submission.
-- [ ] Complete the Devpost submission before **October 30, 2026, 11:00 a.m.
-      CDT**.
+- [x] Public video hosted on YouTube: https://www.youtube.com/watch?v=3CW9mt9ui-o (URL supplied by submitter).
+- [x] Devpost submission completed per project owner's statement on October 26, 2026; submission URL and organizer acceptance have not been independently inspected.
 - [ ] Register all participants at talent.fwtx.city.
 - [ ] Attest North Texas proximity/eligibility.
 - [ ] RSVP for Demo Day (luma.com/ygyxb4yy) and attend October 30, 9:30 a.m.–
       3:00 p.m. CDT.
 
-Nothing in this package submits externally or publishes the video — those
-steps require the owner.
+Devpost submission and YouTube hosting are reported complete by the owner. Talent registration, geographic eligibility and Demo Day attendance remain unverified.
