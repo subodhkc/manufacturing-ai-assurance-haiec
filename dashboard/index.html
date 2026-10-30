@@ -541,6 +541,7 @@ body.console .rp-track{background:#172b36}
 @media(max-width:1100px){.v71-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.v71-report-selector{grid-template-columns:repeat(2,minmax(0,1fr))}.v71-proof-grid,.v71-acceptance{grid-template-columns:1fr}.v71-dl>div{grid-template-columns:110px 1fr}.v71-state-feature{padding:18px}}@media(max-width:450px){.v71-report-selector{grid-template-columns:1fr}.v71-state-top{flex-wrap:wrap}.v71-dai>div{grid-template-columns:1fr}.v71-dai small{grid-column:auto}}
 @media print{.sidebar,.topbar,.mobile-nav,.v71-report-selector,.btn,.judge,.toast{display:none!important}.workspace,.app{display:block!important}.page{padding:5px!important;max-width:none!important}.card,.v71-proof{break-inside:avoid;box-shadow:none!important}.v71-state-feature{background:#edf5f1!important;color:#101d18!important}.v71-state-feature h2,.v71-state-feature p{color:#101d18!important}.v71-state-feature .v71-fact,.v71-state-feature .v71-note{background:#fff!important;color:#121c19!important}.v71-state-feature .v71-fact small{color:#345b4d!important}.v71-report-footer{display:block}}
 </style>
+<link rel="stylesheet" href="tour/ux-hackfw-guide.css">
 </head>
 <body>
 <div id="mobile-nav" class="mobile-nav"></div>
@@ -574,8 +575,8 @@ body.console .rp-track{background:#172b36}
         </button>
         <a class="btn sm" href="home.html" title="Pitch homepage — deck, video and concept visuals">Pitch home ↗</a>
         <button class="btn sm" data-act="theme" title="Dark technical-console theme — applies to the Executive Command Center">◐ Console</button>
-        <button class="btn sm" data-act="tour">Guided tour →</button>
-        <button class="btn sm primary" data-act="run-demo">Run guided example</button>
+        <button class="btn sm" data-ux-tour="launch">Start guided experience</button>
+        <button class="btn sm primary" data-ux-tour="deep">Factory deep dive</button>
       </div>
     </header>
     <main id="main" class="page" aria-live="polite"></main>
@@ -1177,7 +1178,7 @@ function pageOverview(){
       </div>
       <div class="flex" style="gap:8px;flex-wrap:wrap">
         <button class="btn primary" data-rp="judge">Judge demo — 2 minutes →</button>
-        <button class="btn" data-act="start-demo">Start guided tour →</button>
+        <button class="btn" data-ux-tour="launch">Start guided experience →</button>
         <button class="btn" data-act="open-lab" data-id="HOLD">Jump to Decision Lab</button>
       </div>
     </div>`;
@@ -5658,5 +5659,6 @@ if(HXDATA){hxVerifyAll();}
 <script src="journey/journey.js"></script>
 <script src="report/reports.js"></script>
 <script src="navigation.js"></script>
+<script src="tour/ux-hackfw-guide.js"></script>
 </body>
 </html>
