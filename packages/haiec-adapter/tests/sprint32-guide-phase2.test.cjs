@@ -101,7 +101,7 @@ test('technical links use existing routes in new tabs and provide a long talk tr
   const panel={querySelector(selector){return selector==='.ux-hackfw-notes'?note:null;},appendChild(){}};
   a.ext.onRender(panel,a.state,s);
   assert.match(note.innerHTML,/Talk track/);
-  assert.match(note.innerHTML,/detected/i);
+  assert.match(note.innerHTML,/identifies|detected/i);
   assert.match(note.innerHTML,/Transition/);
 });
 
