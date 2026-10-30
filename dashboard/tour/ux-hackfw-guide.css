@@ -1,0 +1,42 @@
+/* Presenter-friendly, scoped HackFW guided experience. Light dashboard intact. */
+.ux-hackfw-launcher{position:fixed;inset:0;z-index:1500;display:grid;place-items:center;background:rgba(8,25,27,.65);padding:18px}
+.ux-hackfw-launcher-card{width:min(680px,100%);max-height:calc(100vh - 36px);overflow:auto;background:#fff;color:#162b2b;padding:24px;border-radius:18px;box-shadow:0 24px 70px rgba(2,16,15,.3);font-family:inherit}
+.ux-hackfw-launcher-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ux-hackfw-launcher-top strong{font-size:22px}
+.ux-hackfw-launcher-top button{border:1px solid #d1e2dc;background:#f7faf9;padding:7px 12px;border-radius:8px;cursor:pointer}
+.ux-hackfw-launcher-card p{margin:12px 0 16px;color:#536765;font-size:14px;line-height:1.6}
+.ux-hackfw-launcher-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ux-hackfw-launcher-options>button,.ux-hackfw-launcher-options>a{background:#f6faf8;text-align:left;border:1px solid #d4e5df;border-radius:12px;display:flex;flex-direction:column;gap:5px;padding:18px;text-decoration:none;color:#14382f;cursor:pointer;font-family:inherit}
+.ux-hackfw-launcher-options>button:hover,.ux-hackfw-launcher-options>a:hover{border-color:#258870;background:#eaf6f0}
+.ux-hackfw-launcher-options b{font-size:15px}
+.ux-hackfw-launcher-options span{font-size:12px;color:#5b6e6a;line-height:1.4}
+.ux-hackfw-guide{position:fixed;z-index:730;right:18px;bottom:18px;width:min(400px,calc(100vw - 36px));max-height:calc(100vh - 95px);overflow-y:auto;border:1px solid #b9d5c9;border-radius:15px;background:rgba(255,255,255,.98);color:#17362e;box-shadow:0 14px 50px rgba(12,41,37,.26);font:inherit}
+.ux-hackfw-guide[hidden]{display:none}
+.ux-hackfw-guide-head{padding:11px 15px 9px;background:#173e35;color:#f1fff7;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.08em;font-weight:800}
+.ux-hackfw-guide-head button{background:transparent;color:#fff;border:1px solid #8aab9c;border-radius:6px;padding:5px 9px;cursor:pointer}
+.ux-hackfw-progress{display:flex;gap:3px;padding:13px 15px 5px}
+.ux-hackfw-progress span{height:5px;flex:1;border-radius:4px;background:#dfebe5}
+.ux-hackfw-progress span.active{background:#1d9475}
+.ux-hackfw-count{padding:0 15px;text-align:right;color:#637971;font-size:10px}
+.ux-hackfw-copy{padding:7px 17px 13px}
+.ux-hackfw-location{font-size:10px;color:#276c55;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.ux-hackfw-copy h2{font-size:19px;line-height:1.24;margin:7px 0;color:#183d33;letter-spacing:-.03em}
+.ux-hackfw-kind{display:inline-block;background:#eef6f2;border-radius:5px;padding:4px 7px;color:#4b6d61;font-size:10px;font-weight:700}
+.ux-hackfw-copy ul{padding-left:18px;list-style:disc;margin:11px 0 9px}
+.ux-hackfw-copy li{font-size:12.5px;line-height:1.48;margin:0 0 7px}
+.ux-hackfw-run{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;padding:10px;border:1px solid #e1eae6;border-radius:9px;background:#f8fbfa}
+.ux-hackfw-label{flex-basis:100%;font-size:10px;font-weight:800;color:#587365;text-transform:uppercase;letter-spacing:.05em}
+.ux-hackfw-run button{font:600 11px inherit;line-height:1.3;background:#236d58;border:1px solid #236d58;color:#fff;padding:7px 9px;border-radius:7px;cursor:pointer;flex:1 1 140px}
+.ux-hackfw-run button[disabled]{opacity:.55;cursor:default}
+.ux-hackfw-notes-toggle{background:transparent;border:0;color:#196d55;text-decoration:underline;cursor:pointer;font-size:11px;padding:4px 0}
+.ux-hackfw-notes{font-size:12px;line-height:1.55;background:#f3f8f5;border-left:3px solid #2c9875;padding:10px;margin-top:8px}
+.ux-hackfw-guide-footer{padding:12px 15px;background:#f5faf7;border-top:1px solid #e1ebe6;display:flex;gap:10px}
+.ux-hackfw-guide-footer button{border:1px solid #bcd8c9;padding:9px 11px;background:#fff;border-radius:8px;color:#195a45;font-size:12px;font-weight:800;cursor:pointer;flex:1}
+.ux-hackfw-guide-footer button:last-child{background:#1d7057;border-color:#1d7057;color:#fff}
+.ux-hackfw-guide-footer button:disabled{opacity:.35;cursor:default}
+.ux-hackfw-action-note{padding:10px 15px;color:#99590a;background:#fff9eb;font-size:11px}
+#main .ux-hackfw-lit{outline:3px solid #16a980!important;outline-offset:4px!important;box-shadow:0 0 0 7px rgba(20,153,119,.14)!important;position:relative;z-index:1;scroll-margin:110px;border-radius:8px}
+@media(max-width:820px){.ux-hackfw-guide{max-height:50vh;right:10px;bottom:10px;width:min(420px,calc(100vw - 20px))}.ux-hackfw-launcher-options{grid-template-columns:1fr}}
+@media(max-width:560px){.ux-hackfw-guide{max-height:48vh}.ux-hackfw-copy h2{font-size:17px}.ux-hackfw-copy li{font-size:12px}.ux-hackfw-launcher-card{padding:18px}}
+@media(prefers-reduced-motion:reduce){#main .ux-hackfw-lit{scroll-behavior:auto!important}}
+@media print{.ux-hackfw-guide,.ux-hackfw-launcher{display:none!important}#main .ux-hackfw-lit{outline:none!important;box-shadow:none!important}}
