@@ -63,8 +63,10 @@
       focus:['.grid.g2','.field','.card']}
   ];
   var PRESETS = {quick:['platform','wrong-target','mes','erp','proof'],full:SCENES.map(function (s) { return s.id; })};
-  var state = {mode:null,index:0,done:{},session:null,notes:false};
+  var state = {mode:null,index:0,done:{},session:null,notes:false,minimized:false};
   var overlay=null,launcher=null,lit=null;
+  var drag=null;
+  var draggedPosition=false;
   var lastEventUrl=window.location.href;
 
   function esc(v) {return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -100,7 +102,7 @@
   }
   function spotlight(){
     eraseFocus();
-    if(!state.mode)return;
+    if(!state.mode || state.minimized)return;
     var s=scene();
     if(!s)return;
     for(var i=0;i<s.focus.length;i++){
@@ -126,12 +128,24 @@
   function renderGuide(){
     if(!state.mode){if(overlay)overlay.hidden=true;eraseFocus();return;}
     var s=scene();if(!s)return;
-    if(!overlay){overlay=document.createElement('aside');overlay.className='ux-hackfw-guide';overlay.setAttribute('aria-label','HAIEC guided demonstration');document.body.appendChild(overlay);}
+    if(!overlay){
+      overlay=document.createElement('aside');
+      overlay.className='ux-hackfw-guide';
+      overlay.setAttribute('aria-label','MAA guided demonstration');
+      document.body.appendChild(overlay);
+      installDragging();
+    }
     overlay.hidden=false;
+    overlay.classList.toggle('is-minimized',!!state.minimized);
+    overlay.setAttribute('aria-expanded',String(!state.minimized));
     if(state.session!==String(typeof DF!=='undefined'?DF.session:'none')){state.done={};state.session=String(typeof DF!=='undefined'?DF.session:'none');}
     var actions=s.actions||[];
-    overlay.innerHTML='<div class="ux-hackfw-guide-head"><span>'+esc(state.mode==='quick'?'QUICK JUDGE TOUR':'FULL DASHBOARD TOUR')+'</span>'+
-      button('Exit','exit',false)+'</div>'+progress()+
+    overlay.innerHTML='<div class="ux-hackfw-guide-head" title="Drag this header to move the tour panel">'+
+      '<span class="ux-hackfw-drag-grip" aria-hidden="true">⋮⋮</span>'+
+      '<span class="ux-hackfw-head-label">'+(state.minimized?'TOUR PAUSED · STEP '+(state.index+1)+'/'+steps().length:esc(state.mode==='quick'?'QUICK JUDGE TOUR':'FULL DASHBOARD TOUR'))+'</span>'+
+      '<div class="ux-hackfw-head-actions">'+
+      button(state.minimized?'Resume':'Minimize',state.minimized?'resume':'minimize',false)+
+      button('Exit','exit',false)+'</div></div>'+progress()+
       '<div class="ux-hackfw-copy"><div class="ux-hackfw-location">'+esc(s.section)+'</div>'+
       '<h2>'+esc(s.heading)+'</h2><div class="ux-hackfw-kind">'+esc(s.kind)+'</div><ul>'+s.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>'+
       (actions.length?'<div class="ux-hackfw-run"><div class="ux-hackfw-label">Interactive actions (optional)</div>'+
@@ -143,9 +157,73 @@
     if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onRender==='function') {
       window.HAIEC_GUIDE_EXT.onRender(overlay,state,s);
     }
-    window.requestAnimationFrame(spotlight);
+    window.requestAnimationFrame(function(){clampDraggedPosition();spotlight();});
+  }
+  // Pointer capture is on the stable aside so rerendering the header does not
+  // remove move handlers. Buttons and links never initiate a drag.
+  function installDragging(){
+    overlay.addEventListener('pointerdown',function(e){
+      if(!e.target.closest('.ux-hackfw-guide-head') ||
+         e.target.closest('button,a,input,select,textarea') ||
+         (e.pointerType==='mouse'&&e.button!==0))return;
+      var rect=overlay.getBoundingClientRect();
+      drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:rect.left,top:rect.top};
+      if(overlay.setPointerCapture)overlay.setPointerCapture(e.pointerId);
+      overlay.classList.add('is-dragging');
+      e.preventDefault();
+    });
+    overlay.addEventListener('pointermove',function(e){
+      if(!drag||e.pointerId!==drag.id)return;
+      var width=overlay.getBoundingClientRect().width;
+      var height=overlay.getBoundingClientRect().height;
+      var maxLeft=Math.max(8,window.innerWidth-width-8);
+      var maxTop=Math.max(8,window.innerHeight-height-8);
+      var left=Math.min(maxLeft,Math.max(8,drag.left+e.clientX-drag.x));
+      var top=Math.min(maxTop,Math.max(8,drag.top+e.clientY-drag.y));
+      overlay.style.left=left+'px';overlay.style.top=top+'px';
+      overlay.style.right='auto';overlay.style.bottom='auto';
+      draggedPosition=true;
+      e.preventDefault();
+    });
+    function finish(e){
+      if(!drag||e.pointerId!==drag.id)return;
+      drag=null;
+      overlay.classList.remove('is-dragging');
+      if(overlay.hasPointerCapture&&overlay.hasPointerCapture(e.pointerId))
+        overlay.releasePointerCapture(e.pointerId);
+    }
+    overlay.addEventListener('pointerup',finish);
+    overlay.addEventListener('pointercancel',finish);
+    window.addEventListener('resize',clampDraggedPosition);
+  }
+  function clampDraggedPosition(){
+    if(!overlay||!draggedPosition)return;
+    var rect=overlay.getBoundingClientRect();
+    var maxLeft=Math.max(8,window.innerWidth-rect.width-8);
+    var maxTop=Math.max(8,window.innerHeight-rect.height-8);
+    overlay.style.left=Math.min(maxLeft,Math.max(8,rect.left))+'px';
+    overlay.style.top=Math.min(maxTop,Math.max(8,rect.top))+'px';
+  }
+  function minimize(){
+    if(!state.mode||state.minimized)return;
+    state.minimized=true;
+    if(window.HAIEC_GUIDE_EXT&&typeof window.HAIEC_GUIDE_EXT.onMinimize==='function')
+      window.HAIEC_GUIDE_EXT.onMinimize();
+    renderGuide();
+  }
+  function resume(){
+    if(!state.mode)return;
+    state.minimized=false;
+    var s=scene();
+    var rpt=window.RPT;
+    if(STATE.page!==s.page ||
+       (s.page==='reports'&&rpt&&(rpt.view!==(s.report||'hub')))){
+      navRoute(s);
+    }
+    renderGuide();
   }
   function renderLauncher(){
+    if(state.mode){resume();return;}
     if(launcher)launcher.remove();
     launcher=document.createElement('div');
     launcher.className='ux-hackfw-launcher';
@@ -170,7 +248,7 @@
     if(!PRESETS[mode])return false;
     var index=PRESETS[mode].indexOf(sceneId || PRESETS[mode][0]);
     if(index<0)return false;
-    state.mode=mode;state.index=index;state.done={};state.session=null;
+    state.mode=mode;state.index=index;state.done={};state.session=null;state.minimized=false;
     navRoute(scene());renderGuide();
     if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onSceneChange==='function')
       window.HAIEC_GUIDE_EXT.onSceneChange(state,scene());
@@ -201,7 +279,7 @@
       window.HAIEC_GUIDE_EXT.onSceneChange(state,scene());
   }
   function end(){
-    state.mode=null;
+    state.mode=null;state.minimized=false;
     if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onExit==='function')
       window.HAIEC_GUIDE_EXT.onExit();
     eraseFocus();
@@ -267,10 +345,12 @@
     else if(a==='prev')advance(-1);
     else if(a==='exit')end();
     else if(a==='notes'){state.notes=!state.notes;renderGuide();}
+    else if(a==='minimize')minimize();
+    else if(a==='resume')resume();
     else if(a.indexOf('act:')===0)act(a.substring(4));
   });
   document.addEventListener('keydown',function(event){
-    if(!state.mode||event.altKey||event.ctrlKey||event.metaKey)return;
+    if(!state.mode||state.minimized||event.altKey||event.ctrlKey||event.metaKey)return;
     if(launcher || document.querySelector('.modal-shell'))return;
     var active=document.activeElement;
     if(active && (active.matches('input,textarea,select,[contenteditable="true"]')||active.closest('[role="dialog"]')))return;
@@ -285,5 +365,5 @@
     priorRender();
     if(state.mode)renderGuide();
   };
-  window.HAIEC_GUIDE={open:open,openAt:openAt,syncScene:syncScene,exit:end,advance:advance,scenes:SCENES,quick:PRESETS.quick,full:PRESETS.full,action:act,state:state};
+  window.HAIEC_GUIDE={open:open,openAt:openAt,syncScene:syncScene,exit:end,advance:advance,minimize:minimize,resume:resume,scenes:SCENES,quick:PRESETS.quick,full:PRESETS.full,action:act,state:state};
 })();
