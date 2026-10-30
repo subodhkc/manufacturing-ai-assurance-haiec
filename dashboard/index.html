@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HAIEC Manufacturing Assurance · Synthetic nine-system evaluation demo</title>
-<meta name="description" content="HAIEC manufacturing assurance demonstration: nine fictional AI systems, 27 frozen persisted HAIEC evaluations over a synthetic lab corpus, deterministic replay and a public sample Master Assurance Report.">
+<title>MAA | Manufacturing AI Assurance by HAIEC | HackFW 2026</title>
+<meta name="description" content="MAA, Manufacturing AI Assurance by HAIEC, built for HackFW 2026. Explore nine fictional manufacturing AI systems, qualified HAIEC evaluations, Station 217 consequence analysis, interactive decision controls, and inspectable evidence.">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
-<meta property="og:title" content="HAIEC Manufacturing Assurance — synthetic evaluation demo">
-<meta property="og:description" content="Genuine HAIEC evaluation exports over a synthetic manufacturing corpus. High assurance in every consequence.">
+<meta property="og:title" content="MAA | Manufacturing AI Assurance by HAIEC | HackFW 2026">
+<meta property="og:description" content="HackFW 2026 demonstration of MAA by HAIEC: understand the AI estate, inspect consequential evidence, and explore bounded MES and ERP decisions in a fictional manufacturing environment.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/brand/og-image.png">
 <link rel="stylesheet" href="industry/industry.css">
@@ -56,7 +56,9 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .logo-row{display:flex;gap:11px;align-items:center;padding:4px 10px 22px;border-bottom:1px solid #2c3a44;margin-bottom:16px}
 .logo-mark{width:38px;height:38px;border-radius:9px;display:block;object-fit:contain}
 .brand strong{font-size:16.5px;letter-spacing:2px;color:#fff;font-weight:800}
-.brand small{display:block;font-size:9.5px;color:#8fa4ae;text-transform:uppercase;letter-spacing:.85px;margin-top:2px}
+.brand small{display:block;font-size:9.5px;color:#c1d9d5;text-transform:none;letter-spacing:.15px;margin-top:2px;line-height:1.45}
+.brand .maa-brand-attribution{display:block;font-size:9.5px;color:#87d8ba;font-weight:700}
+.maa-hackfw-label{display:inline-block;border:1px solid #aed7c6;border-radius:5px;background:#eef8f2;color:#27745b;font-weight:800;font-size:10px;padding:3px 7px;white-space:nowrap}
 .navgroup{margin:14px 0 5px;color:#7c95a0;text-transform:uppercase;font-size:9.5px;letter-spacing:1.5px;font-weight:800;padding:0 12px}
 .navbtn{width:100%;display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:8px;color:#b5c5cd;font-weight:650;font-size:12.5px;text-align:left;transition:background .12s,color .12s;margin:1px 0}
 .navbtn:hover{background:#22343e;color:#fff}
@@ -551,8 +553,8 @@ body.console .rp-track{background:#172b36}
     <div class="logo-row">
       <img class="logo-mark" src="assets/brand/haiec-eagle.png" alt="HAIEC eagle mark">
       <div class="brand">
-        <strong>HAIEC</strong>
-        <small>Manufacturing Assurance · synthetic</small>
+        <strong>MAA</strong>
+        <small>Manufacturing AI Assurance<span class="maa-brand-attribution">by HAIEC · HackFW 2026</span></small>
       </div>
     </div>
     <div id="sidenav"></div>
@@ -567,6 +569,7 @@ body.console .rp-track{background:#172b36}
         <strong>Example Manufacturing Company</strong>
         <span class="sep">/</span>
         <span id="crumb">Manufacturing AI Command Center</span>
+        <span class="maa-hackfw-label">HackFW 2026</span>
       </div>
       <div class="topactions">
         <span class="badge info tip" data-tip="All data in this workspace is synthetic. A fictional composite heavy-duty components manufacturer.">Fictional company · synthetic data</span>
@@ -3136,7 +3139,7 @@ render();
   document.addEventListener('click',evt=>{const b=evt.target.closest('[data-hfx-case]');if(b){HFX.case=b.dataset.hfxCase;render();}});
   document.addEventListener('change',evt=>{const x=evt.target;if(x.matches('[data-hfx-toggle]')){HFX[x.dataset.hfxToggle]=x.checked;render();}});
   const nav= PAGES.find(x=>x.id==='provenance');if(nav)nav.label='Agent boundary case study';
-  const originalTitle=document.title;document.title='HAIEC · Example Manufacturing Manufacturing Assurance · Command Center v5.2';
+  const originalTitle=document.title;document.title='MAA | Manufacturing AI Assurance by HAIEC | HackFW 2026';
   const stext= document.querySelector('.sidefoot');if(stext)stext.innerHTML='<b>Deterministic, evidence-bound assurance</b>Qualified evidence → reproducible bounded finding. Source unknown ≠ safe; configured ≠ enforced.';
   render();
 })();
@@ -3404,7 +3407,7 @@ render();
    @media(prefers-reduced-motion:reduce){.v6-overview-tile,.v6-impact,.v6-agent-tile{transition:none}}
   `;
   document.head.appendChild(newStyle);
-  document.title='HAIEC · Example Manufacturing Manufacturing Assurance · Command Center v6';
+  document.title='MAA | Manufacturing AI Assurance by HAIEC | HackFW 2026';
   // Global top-bar status is the synthetic gateway state, not a live plant connection.
   const sourceRender=render;
   render=function(){

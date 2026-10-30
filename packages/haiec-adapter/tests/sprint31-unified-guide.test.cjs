@@ -12,7 +12,7 @@ function setup() {
   const events={}; const calls=[]; const nodes=[];
   const STATE={page:'exec',selectedScenario:'HOLD',simValue:null,requests:[]};
   const RPT={view:'hub',caseId:null,notice:null,s217mode:'exec'};
-  const window={RPT,location:{href:'https://manufacturing.haiec.com/'},scrollY:0,
+  const window={RPT,location:{href:'https://manufacturing.haiec.com/'},scrollY:0,innerWidth:1200,innerHeight:800,addEventListener(){},
     history:{state:{__haiecNavigationV1:true,index:0},pushState(s,unused,url){this.state=s;calls.push(['push',url]);},
       replaceState(s){this.state=s;}},scrollTo(){},requestAnimationFrame(fn){fn();}};
   const document={body:{appendChild(el){nodes.push(el);}},head:{},querySelector(sel){
@@ -21,7 +21,16 @@ function setup() {
     if(sel.indexOf('data-act="df-advisory"')>=0)return {click(){calls.push(['advisory','action']);}};
     if(sel.indexOf('data-act="df-po"')>=0)return {click(){calls.push(['po',sel]);}};
     return null;
-  },createElement(tag){return {tagName:tag,innerHTML:'',hidden:false,classList:{add(){},remove(){}},setAttribute(){},querySelector(){return null;},remove(){},};},
+  },createElement(tag){
+    const handlers={};const classes=new Set();
+    const element={tagName:tag,innerHTML:'',hidden:false,style:{},handlers,classes,
+      classList:{add(name){classes.add(name);},remove(name){classes.delete(name);},toggle(name,on){if(on)classes.add(name);else classes.delete(name);}},
+      setAttribute(){},querySelector(){return null;},remove(){},
+      addEventListener(kind,fn){(handlers[kind] ||= []).push(fn);},
+      getBoundingClientRect(){return {left:Number.parseFloat(element.style.left)||800,top:Number.parseFloat(element.style.top)||450,width:360,height:260};},
+      setPointerCapture(){},hasPointerCapture(){return false;}
+    };return element;
+  },
    addEventListener(type,fn){(events[type] ||= []).push(fn);}};
   let renders=0;
   const nav={snapshot(){return {page:STATE.page,system:'SYS-217',tab:null,
@@ -32,7 +41,7 @@ function setup() {
   window.HAIEC_NAV=nav;
   const context=vm.createContext({window,document,STATE,URL,URLSearchParams,render(){renders++;}});
   vm.runInContext(code,context,{filename:'ux-hackfw-guide.js'});
-  return {guide:window.HAIEC_GUIDE,STATE,RPT,calls,events,renders:()=>renders};
+  return {guide:window.HAIEC_GUIDE,STATE,RPT,calls,events,nodes,renders:()=>renders};
 }
 
 test('entry points use one launcher and the existing judge/factory experiences are retained',()=>{
@@ -84,4 +93,44 @@ test('canonical evidence remains read-only and original seven-step guide is refe
   assert.ok(code.includes("typeof dfGuideStart==='function'"));
   assert.ok(code.includes('data-ux-tour="deep"'));
   assert.ok(code.includes('read-only'));
+});
+
+
+test('minimize preserves scene, explicit action completion and previous/next position',()=>{
+  const x=setup();x.guide.open('quick');
+  x.guide.advance(1);x.guide.advance(1);
+  x.guide.action('mes');
+  const before=x.guide.state.index;
+  const actionCalls=x.calls.filter(c=>c[0]==='mes').length;
+  x.guide.minimize();
+  assert.equal(x.guide.state.minimized,true);
+  assert.equal(x.guide.state.index,before);
+  assert.equal(x.guide.state.done.mes,true);
+  assert.ok(x.nodes[0].classes.has('is-minimized'));
+  assert.match(x.nodes[0].innerHTML,/TOUR PAUSED/);
+  assert.match(x.nodes[0].innerHTML,/Resume/);
+  x.guide.resume();
+  assert.equal(x.guide.state.minimized,false);
+  assert.equal(x.guide.state.index,before);
+  assert.equal(x.guide.state.done.mes,true);
+  assert.equal(x.calls.filter(c=>c[0]==='mes').length,actionCalls);
+  assert.ok(!x.nodes[0].classes.has('is-minimized'));
+  x.guide.advance(1);
+  assert.equal(x.guide.state.index,before+1);
+});
+
+test('pointer dragging moves the tour window within the viewport, but not via a button',()=>{
+  const x=setup();x.guide.open('quick');
+  const panel=x.nodes[0];
+  const headerTarget={closest(selector){return selector==='.ux-hackfw-guide-head'?{}:null;}};
+  for(const fn of panel.handlers.pointerdown || [])fn({target:headerTarget,pointerId:1,pointerType:'mouse',button:0,clientX:850,clientY:520,preventDefault(){}});
+  for(const fn of panel.handlers.pointermove || [])fn({pointerId:1,clientX:550,clientY:280,preventDefault(){}});
+  assert.equal(panel.style.left,'500px');
+  assert.equal(panel.style.top,'210px');
+  for(const fn of panel.handlers.pointerup || [])fn({pointerId:1});
+  const left=panel.style.left;
+  const buttonTarget={closest(selector){if(selector==='.ux-hackfw-guide-head')return {};if(selector==='button,a,input,select,textarea')return {};return null;}};
+  for(const fn of panel.handlers.pointerdown || [])fn({target:buttonTarget,pointerId:2,pointerType:'mouse',button:0,clientX:550,clientY:280,preventDefault(){}});
+  for(const fn of panel.handlers.pointermove || [])fn({pointerId:2,clientX:200,clientY:280,preventDefault(){}});
+  assert.equal(panel.style.left,left);
 });

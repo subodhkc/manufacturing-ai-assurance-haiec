@@ -191,7 +191,12 @@
     lastUnderlay=null;lastMode=null;lastScene=null;
     clearTourQuery();
   }
-  window.HAIEC_GUIDE_EXT={onRender:onRender,onSceneChange:onSceneChange,onExit:onExit};
+  function onMinimize(){
+    // Do not leave an audible narration running while the presenter explores.
+    stopVoice();
+    statusMessage='';
+  }
+  window.HAIEC_GUIDE_EXT={onRender:onRender,onSceneChange:onSceneChange,onExit:onExit,onMinimize:onMinimize};
 
   document.addEventListener('click',function(event){
     var target=event.target.closest('[data-ux-p2]');

@@ -40,3 +40,16 @@
 @media(max-width:560px){.ux-hackfw-guide{max-height:48vh}.ux-hackfw-copy h2{font-size:17px}.ux-hackfw-copy li{font-size:12px}.ux-hackfw-launcher-card{padding:18px}}
 @media(prefers-reduced-motion:reduce){#main .ux-hackfw-lit{scroll-behavior:auto!important}}
 @media print{.ux-hackfw-guide,.ux-hackfw-launcher{display:none!important}#main .ux-hackfw-lit{outline:none!important;box-shadow:none!important}}
+
+/* MAA HackFW guided window controls: draggable header and compact pause state. */
+.ux-hackfw-guide-head{touch-action:none;user-select:none;cursor:grab;gap:8px;min-height:43px}
+.ux-hackfw-guide.is-dragging .ux-hackfw-guide-head{cursor:grabbing}
+.ux-hackfw-guide-head .ux-hackfw-drag-grip{font-size:19px;letter-spacing:-5px;line-height:1;opacity:.65;padding-right:6px}
+.ux-hackfw-guide-head .ux-hackfw-head-label{flex:1;min-width:0}
+.ux-hackfw-head-actions{display:flex;align-items:center;gap:6px}
+.ux-hackfw-head-actions button{font-family:inherit;font-size:11px;letter-spacing:0;white-space:nowrap;touch-action:manipulation;cursor:pointer}
+.ux-hackfw-guide.is-minimized{width:min(340px,calc(100vw - 20px));max-height:65px;overflow:hidden}
+.ux-hackfw-guide.is-minimized>:not(.ux-hackfw-guide-head){display:none!important}
+.ux-hackfw-guide.is-minimized .ux-hackfw-guide-head{padding:10px 12px}
+.ux-hackfw-guide.is-minimized .ux-hackfw-head-label{font-size:10px;letter-spacing:.04em}
+@media(max-width:560px){.ux-hackfw-guide-head .ux-hackfw-drag-grip{display:none}.ux-hackfw-guide.is-minimized{width:min(310px,calc(100vw - 20px))}}
