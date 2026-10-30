@@ -41,6 +41,10 @@ An AI agent was authorized to update **WO-217-4802**. The simulated manufacturin
 
 **See it:** [Station 217 report](https://haiec-manufacturing-demo.vercel.app/?report=s217) · [Exact case evidence](https://haiec-manufacturing-demo.vercel.app/?report=case:SYS-217-WRONG_TARGET) · [Public verification receipt](https://www.haiec.com/verify/assurance/Q-4997girnnfIM62jTRJPYeX)
 
+## Presenter-led guided experience
+
+Launch the dashboard at [manufacturing.haiec.com](https://manufacturing.haiec.com) and choose **Start guided experience**. The Quick Judge Tour (five scenes) and Full Dashboard Tour (ten scenes) include focused captions, Next/Previous, optional extended speaker notes and browser-based narration, and links into existing technical reports. **Copy scene link** creates a directly bookmarkable tour URL, while browser Back restores the underlying dashboard route. Narration is opt-in and availability depends on browser speech support. These features do not modify HAIEC evaluation artifacts.
+
 ## Try the project
 
 | Experience | What to expect |
