@@ -1,0 +1,20 @@
+/* Phase two: presenter tools remain scoped to the current guide panel. */
+.ux-hackfw-phase2{padding:11px 16px 13px;border-top:1px solid #dceae2;background:#f8fbf9;color:#24483a}
+.ux-hackfw-phase2-tools{display:flex;gap:6px;flex-wrap:wrap}
+.ux-hackfw-phase2-tools button{font-family:inherit;font-size:11px;font-weight:700;background:#fff;color:#21624c;border:1px solid #b8d9c9;border-radius:7px;padding:7px 9px;cursor:pointer}
+.ux-hackfw-phase2-tools button:hover{background:#edf7f1;border-color:#63b99b}
+.ux-hackfw-phase2-tools button[aria-pressed="true"]{background:#e5f5ec;border-color:#1e9877}
+.ux-hackfw-voice-unavailable{color:#70837b;font-size:10px}
+.ux-hackfw-branches{border:1px solid #d2e4d9;border-radius:8px;background:#fff;margin-top:9px;padding:8px 10px}
+.ux-hackfw-branches summary{font-size:11px;font-weight:800;color:#205e49;cursor:pointer;list-style-position:inside}
+.ux-hackfw-branches p{font-size:11px;line-height:1.45;color:#61776d;margin:8px 0}
+.ux-hackfw-branches>div{display:grid;gap:6px;margin-top:8px}
+.ux-hackfw-branches a{display:block;border:1px solid #e0ede6;border-radius:7px;padding:8px 10px;text-decoration:none;color:#276d54;font-size:11px;font-weight:650;background:#f7fbf8}
+.ux-hackfw-branches a:hover{background:#edf6f1}
+.ux-hackfw-p2-status{color:#34644e;font-size:11px;min-height:0;margin-top:6px}
+.ux-hackfw-p2-status:empty{display:none}
+.ux-hackfw-notes strong{display:block;color:#1e6953;font-size:11px;margin:9px 0 2px}
+.ux-hackfw-notes p{font-size:12px;line-height:1.58;margin:0 0 7px}
+.ux-hackfw-notes strong:first-child{margin-top:0}
+@media(max-width:680px){.ux-hackfw-phase2{padding:9px 12px}.ux-hackfw-phase2-tools button{flex:1 1 auto}}
+@media print{.ux-hackfw-phase2{display:none!important}}

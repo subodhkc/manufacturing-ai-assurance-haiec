@@ -140,6 +140,9 @@
       (state.notes?'<p class="ux-hackfw-notes">'+esc(s.note)+'</p>':'')+'</div>'+
       '<div class="ux-hackfw-guide-footer">'+button('Previous','prev',state.index===0)+
       button(state.index===steps().length-1?'Finish tour':'Next', 'next',false)+'</div>';
+    if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onRender==='function') {
+      window.HAIEC_GUIDE_EXT.onRender(overlay,state,s);
+    }
     window.requestAnimationFrame(spotlight);
   }
   function renderLauncher(){
@@ -162,11 +165,24 @@
     var first=launcher.querySelector('button[data-ux-tour="quick"]');if(first)first.focus();
   }
   function closeLauncher(){if(launcher){launcher.remove();launcher=null;}}
-  function open(mode){
+  function openAt(mode,sceneId){
     closeLauncher();eraseFocus();
-    if(!PRESETS[mode])return;
-    state.mode=mode;state.index=0;state.done={};state.session=null;
+    if(!PRESETS[mode])return false;
+    var index=PRESETS[mode].indexOf(sceneId || PRESETS[mode][0]);
+    if(index<0)return false;
+    state.mode=mode;state.index=index;state.done={};state.session=null;
     navRoute(scene());renderGuide();
+    if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onSceneChange==='function')
+      window.HAIEC_GUIDE_EXT.onSceneChange(state,scene());
+    return true;
+  }
+  function open(mode){return openAt(mode,PRESETS[mode]&&PRESETS[mode][0]);}
+  // Restore a scene from browser Back/Forward without creating a new route.
+  function syncScene(mode,sceneId){
+    if(!PRESETS[mode])return false;
+    var index=PRESETS[mode].indexOf(sceneId);
+    if(index<0)return false;
+    state.mode=mode;state.index=index;renderGuide();return true;
   }
   function deepDive(){
     closeLauncher();state.mode=null;renderGuide();
@@ -181,9 +197,13 @@
     state.index=next;
     navRoute(scene());
     renderGuide();
+    if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onSceneChange==='function')
+      window.HAIEC_GUIDE_EXT.onSceneChange(state,scene());
   }
   function end(){
     state.mode=null;
+    if(window.HAIEC_GUIDE_EXT && typeof window.HAIEC_GUIDE_EXT.onExit==='function')
+      window.HAIEC_GUIDE_EXT.onExit();
     eraseFocus();
     renderGuide();
     closeLauncher();
@@ -265,5 +285,5 @@
     priorRender();
     if(state.mode)renderGuide();
   };
-  window.HAIEC_GUIDE={open:open,exit:end,advance:advance,scenes:SCENES,quick:PRESETS.quick,full:PRESETS.full,action:act,state:state};
+  window.HAIEC_GUIDE={open:open,openAt:openAt,syncScene:syncScene,exit:end,advance:advance,scenes:SCENES,quick:PRESETS.quick,full:PRESETS.full,action:act,state:state};
 })();

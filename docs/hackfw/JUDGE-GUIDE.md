@@ -19,6 +19,17 @@ Presenter controls: **Next**, **Previous**, **Exit**, optional presenter notes, 
 
 **Evidence distinction:** The Station 217 saved wrong-target finding came from real HAIEC evaluation of synthetic evidence. The subsequent held MES write, buyer reviews, equipment signals, and exported demonstration record are browser-local simulations, not plant operations or new HAIEC assessments. All 45 canonical v3 exports remain unchanged.
 
+## UX-HACKFW-GUIDE-02: Presenter tools and technical branches
+
+The Quick and Full tours now include an optional second presenter layer:
+
+- **Detailed presenter notes**: select **Show presenter notes** to display a full talk track, the specific UI element to point to, and a transition sentence for each scene.
+- **Shareable scene links**: select **Copy scene link** to copy a `?tour=quick|full&scene=<id>` URL together with its underlying `?view=` or `?report=` route. Direct links reopen the correct scene on refresh. Browser Back restores scene identity, including MES and ERP scenes sharing the Digital Factory page.
+- **Browser narration (optional)**: select **Read scene aloud**, or deliberately enable **Auto narration**. Playback uses the browser's local speech-synthesis capability when available, not a network TTS service. Narration stops on Exit, browser Back, or scene change; it does not start automatically for a shared link.
+- **Technical deep dives**: expand the optional list for links to already-implemented technical and case-specific views. Every link opens in a separate tab, preserving the presenter scene, factory session, and main dashboard navigation.
+
+These controls only present the current evidence; they do not issue new evaluations or execute MES/ERP operations. Run the underlying local factory action only with its existing explicit action button.
+
 ## Two experiences — pick your depth (Sprint 29)
 
 **A. Two-Minute Judge Showcase** — `https://haiec-manufacturing-demo.vercel.app/?report=judge`
