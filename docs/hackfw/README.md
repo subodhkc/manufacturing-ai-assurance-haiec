@@ -4,6 +4,14 @@ This directory is the self-contained, versioned **implementation handoff** for t
 
 **Read first:** [Devin implementation instructions](DEVIN_START_HERE.md) and [Enhanced execution plan v2.6](ENHANCED_EXECUTION_PLAN_v2.6.md).
 
+
+## Printable judge handouts
+
+- [HAIEC overview (two-sided PDF)](print/HAIEC_HackFW_2026_Overview_Double_Sided_Print.pdf): what problem HAIEC solves, how independent evidence-bound assurance works, and why it is not AI judging AI.
+- [Manufacturing judge handout (two-sided PDF)](print/HAIEC_HackFW_2026_Judge_Handout_Print.pdf): Station 217 example, rule outcomes, saved synthetic evaluations, and QR links to live showcase, source and video.
+
+Print US Letter, duplex, long-edge flip. The [Judge Guide](JUDGE-GUIDE.md) provides detailed evidence and proof boundaries.
+
 ## Google Drive text snapshots
 
 These are complete copies of the *readable text returned by Google Drive on 15 October 2026*. Source line endings were normalized to LF and initial BOM removed; decisions, language and section ordering were not silently edited. Their original status statements describe the dates on which they were authored and may be superseded by later merged code.

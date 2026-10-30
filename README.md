@@ -8,6 +8,16 @@
 
 ![HAIEC manufacturing assurance showcase](docs/hackfw/screens-v29/thumbnail-v29.png)
 
+
+## HackFW judge print handouts (two-sided PDFs)
+
+These two US Letter handouts are designed to be printed duplex, flipping on the long edge, and used together at HackFW.
+
+- [HAIEC overview: independent assurance, not AI testing AI](docs/hackfw/print/HAIEC_HackFW_2026_Overview_Double_Sided_Print.pdf): the consequential-action problem, HAIEC's five evidence planes, deterministic evaluation and relevance to manufacturers.
+- [Manufacturing judge handout: Station 217 and the evidence](docs/hackfw/print/HAIEC_HackFW_2026_Judge_Handout_Print.pdf): the wrong-target case, 45 saved synthetic evaluations, rule-level findings, digital factory and links to inspect the work.
+
+For the full technical explanation, use the [Judge Guide](docs/hackfw/JUDGE-GUIDE.md). Evaluations use synthetic lab evidence; the digital factory is a separate browser-local simulation, not live OT/PLC enforcement.
+
 ## Why we built this
 
 Manufacturing requires precision. An AI agent can correctly execute an API call while making the wrong business decision. A successful response does not prove that the *right* work order was changed, that the selected supplier was qualified, or that a consequential action fell within approved authority.
