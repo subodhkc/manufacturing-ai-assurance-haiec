@@ -19,6 +19,14 @@ Presenter controls: **Next**, **Previous**, **Exit**, optional presenter notes, 
 
 **Evidence distinction:** The Station 217 saved wrong-target finding came from real HAIEC evaluation of synthetic evidence. The subsequent held MES write, buyer reviews, equipment signals, and exported demonstration record are browser-local simulations, not plant operations or new HAIEC assessments. All 45 canonical v3 exports remain unchanged.
 
+## MAA HackFW dashboard presentation controls
+
+The manufacturing dashboard is branded **MAA, Manufacturing AI Assurance by HAIEC | HackFW 2026**. HAIEC remains the source of the canonical assurance evaluations and their evidence, while MAA identifies this manufacturing demonstration.
+
+The Quick and Full guided-tour window can be moved by dragging its dark header with a mouse or touch pointer. Use **Minimize** to collapse it to a compact **Tour paused / Step N** bar; use **Resume** to return to the same step with captions, optional talk track, and completed simulated actions preserved. **Exit** is separate and ends the presentation. You can also use the top-level **Start guided experience** button to restore an active minimized guide.
+
+Minimizing removes the spotlight and stops current optional browser narration. It never resets the Digital Factory session, reruns a policy action, changes an evaluation, or advances the tour. Resume restores the matching dashboard page if the presenter explored elsewhere. The floating panel stays within viewport bounds when dragged or when the browser is resized.
+
 ## UX-HACKFW-GUIDE-02: Presenter tools and technical branches
 
 The Quick and Full tours now include an optional second presenter layer:
