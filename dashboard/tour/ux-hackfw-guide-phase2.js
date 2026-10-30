@@ -79,6 +79,9 @@
   var speech = window.speechSynthesis || null;
   var voiceSupported = !!(speech && typeof window.SpeechSynthesisUtterance === 'function');
   var statusMessage = '';
+  var lastUnderlay = null;
+  var lastMode = null;
+  var lastScene = null;
   function esc(s) {return String(s==null?'':s).replace(/[&<>"']/g,function(c) {return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function current() {return guide.scenes.find(function(s){var set=guide.state.mode==='quick'?guide.quick:guide.full;return s.id===set[guide.state.index];});}
   function sceneURL() {
@@ -87,10 +90,30 @@
     if(s && guide.state.mode){u.searchParams.set('tour',guide.state.mode);u.searchParams.set('scene',s.id);}
     return u.href;
   }
+  function routeIdentity(u) {
+    var q=new URL(u.href);
+    q.searchParams.delete('tour');q.searchParams.delete('scene');
+    return q.pathname+q.search;
+  }
   function replaceCurrentURL() {
     if(!guide.state.mode || !current())return;
-    var state=window.history.state;
-    window.history.replaceState(state,'',sceneURL());
+    var u=new URL(window.location.href);
+    var underlay=routeIdentity(u);
+    var s=current();
+    var link=sceneURL();
+    var prior=window.history.state;
+    // The previous scene can live on the same underlying dashboard page
+    // (MES -> ERP, for example). Keep it in browser history as a real step.
+    if(lastUnderlay===underlay && lastMode===guide.state.mode &&
+       lastScene && lastScene!==s.id && prior && prior.__haiecNavigationV1){
+      window.history.replaceState(prior,'',window.location.href);
+      var next=Object.assign({},prior,{index:(prior.index||0)+1,
+        backLabel:'Previous guided scene'});
+      window.history.pushState(next,'',link);
+    }else{
+      window.history.replaceState(prior,'',link);
+    }
+    lastUnderlay=underlay;lastMode=guide.state.mode;lastScene=s.id;
   }
   function clearTourQuery(){
     var u=new URL(window.location.href);
@@ -165,6 +188,7 @@
   function onExit() {
     narration.enabled=false;stopVoice();
     statusMessage='';
+    lastUnderlay=null;lastMode=null;lastScene=null;
     clearTourQuery();
   }
   window.HAIEC_GUIDE_EXT={onRender:onRender,onSceneChange:onSceneChange,onExit:onExit};
@@ -199,6 +223,7 @@
     var mode=q.get('tour'),id=q.get('scene');
     if((mode==='quick'||mode==='full') && id){
       guide.syncScene(mode,id);
+      lastMode=mode;lastScene=id;lastUnderlay=routeIdentity(new URL(window.location.href));
     }else if(guide.state.mode){
       guide.exit();
     }
