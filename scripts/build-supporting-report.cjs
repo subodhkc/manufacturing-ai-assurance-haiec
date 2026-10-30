@@ -243,6 +243,8 @@ page('VERIFY · EVIDENCE & LIMITS',`
 <div class="card"><h3>Authored demonstration</h3><p class="small">Fictional reviewer roles and decisions; email/text previews; monitoring states on a fixed clock; the demonstration gateway hold; this document itself.</p></div></div>
 <div class="notice">Not established: live MES/PLC/ERP connectivity, real notification delivery, physical command prevention, universal safety clearance, or complete code/authority evidence in every case.</div>`);
 
+const REPORT_RETURN_NAV="<nav aria-label=\"Report navigation\" style=\"display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px 24px;background:#eef7f3;border-bottom:1px solid #c7dcd3;font:600 13px system-ui, sans-serif\"><a style=\"color:#176c55;text-decoration:none\" href=\"../../index.html?report=hub\">&#8592; Back to Reports Hub</a><a style=\"color:#176c55;text-decoration:none\" href=\"../../index.html?view=exec\">Executive Command Center</a></nav>";
+
 /* ---------- readiness one-pager ---------- */
 const READINESS_HTML=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Station 217 — Demonstration Readiness View</title><style>${BASE_CSS}
@@ -250,6 +252,7 @@ const READINESS_HTML=`<!doctype html><html lang="en"><head><meta charset="utf-8"
 .gnum{font:700 20px 'Consolas',monospace;color:#2b7869}
 .gstate{display:inline-block;font:700 10px 'Consolas',monospace;padding:2px 8px;border-radius:4px;border:1px solid;margin:1mm 0}
 </style></head><body>
+${REPORT_RETURN_NAV}
 <section class="page">
 <div class="band">FICTIONAL SCENARIO READINESS VIEW — STATION 217 · NOT A HAIEC-CUSTOMER GATE</div>
 <h1>How HAIEC would govern Station 217</h1>
@@ -267,6 +270,7 @@ ${readiness.facets.map((f,i)=>{
 
 const REPORT_HTML=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HAIEC Program Report — Fictional Manufacturing (Supporting Visual)</title><style>${BASE_CSS}</style></head><body>
+${REPORT_RETURN_NAV}
 ${PAGES.join('\n')}
 </body></html>`;
 
