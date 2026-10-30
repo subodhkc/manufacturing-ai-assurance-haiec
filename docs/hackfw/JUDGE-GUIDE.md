@@ -6,6 +6,19 @@ Public repo · demo video · participant talent registration · in-person Demo D
 > **Start here:** the full artifact index (video, record, reports, links,
 > remaining human steps) is in [`FINAL-PACKAGE.md`](FINAL-PACKAGE.md).
 
+## UX-HACKFW-GUIDE-01: Unified guided presentation (Sprint 31)
+
+Open [manufacturing dashboard](https://manufacturing.haiec.com/) and select **Start guided experience** from the header or Operations Overview. Two presenter-led options now share the same controls:
+
+- **Quick Judge Tour**: five scenes: platform, verified Station 217 finding, simulated MES control, ERP purchase orders, and inspection of evidence.
+- **Full Guided Tour**: ten scenes: Executive Command Center, AI Estate, Station 217, Workflows & Authority, Decision Lab, Digital Factory MES, Digital Factory ERP, Monitoring, Reports & Evidence, Connections & Setup.
+
+The fixed **Two-Minute Judge Showcase** at `?report=judge`, video, and seven-step **Digital Factory Guided Demonstration** remain available unchanged. Use **Factory deep dive** in the header to enter that existing seven-step sequence directly.
+
+Presenter controls: **Next**, **Previous**, **Exit**, optional presenter notes, and a spotlight around the current section. Arrow Right / Page Down advances, Arrow Left / Page Up moves back, Escape exits. Actions do **not** execute on Next. Use the explicit action buttons to run the existing local 40-engine review, held MES write, permitted advisory note, or ERP purchase-order requests. Complete buyer approvals in the existing review dialog. Returning to a scene never replays an action.
+
+**Evidence distinction:** The Station 217 saved wrong-target finding came from real HAIEC evaluation of synthetic evidence. The subsequent held MES write, buyer reviews, equipment signals, and exported demonstration record are browser-local simulations, not plant operations or new HAIEC assessments. All 45 canonical v3 exports remain unchanged.
+
 ## Two experiences — pick your depth (Sprint 29)
 
 **A. Two-Minute Judge Showcase** — `https://haiec-manufacturing-demo.vercel.app/?report=judge`
