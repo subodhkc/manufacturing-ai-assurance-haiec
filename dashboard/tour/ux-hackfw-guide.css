@@ -10,7 +10,7 @@
 .ux-hackfw-launcher-options>button:hover,.ux-hackfw-launcher-options>a:hover{border-color:#258870;background:#eaf6f0}
 .ux-hackfw-launcher-options b{font-size:15px}
 .ux-hackfw-launcher-options span{font-size:12px;color:#5b6e6a;line-height:1.4}
-.ux-hackfw-guide{position:fixed;z-index:730;right:18px;bottom:18px;width:min(400px,calc(100vw - 36px));max-height:calc(100vh - 95px);overflow-y:auto;border:1px solid #b9d5c9;border-radius:15px;background:rgba(255,255,255,.98);color:#17362e;box-shadow:0 14px 50px rgba(12,41,37,.26);font:inherit}
+.ux-hackfw-guide{position:fixed;z-index:120;right:18px;bottom:18px;width:min(400px,calc(100vw - 36px));max-height:calc(100vh - 95px);overflow-y:auto;border:1px solid #b9d5c9;border-radius:15px;background:rgba(255,255,255,.98);color:#17362e;box-shadow:0 14px 50px rgba(12,41,37,.26);font:inherit}
 .ux-hackfw-guide[hidden]{display:none}
 .ux-hackfw-guide-head{padding:11px 15px 9px;background:#173e35;color:#f1fff7;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.08em;font-weight:800}
 .ux-hackfw-guide-head button{background:transparent;color:#fff;border:1px solid #8aab9c;border-radius:6px;padding:5px 9px;cursor:pointer}
@@ -26,7 +26,7 @@
 .ux-hackfw-copy li{font-size:12.5px;line-height:1.48;margin:0 0 7px}
 .ux-hackfw-run{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;padding:10px;border:1px solid #e1eae6;border-radius:9px;background:#f8fbfa}
 .ux-hackfw-label{flex-basis:100%;font-size:10px;font-weight:800;color:#587365;text-transform:uppercase;letter-spacing:.05em}
-.ux-hackfw-run button{font:600 11px inherit;line-height:1.3;background:#236d58;border:1px solid #236d58;color:#fff;padding:7px 9px;border-radius:7px;cursor:pointer;flex:1 1 140px}
+.ux-hackfw-run button{font-family:inherit;font-size:11px;font-weight:600;line-height:1.3;background:#236d58;border:1px solid #236d58;color:#fff;padding:7px 9px;border-radius:7px;cursor:pointer;flex:1 1 140px}
 .ux-hackfw-run button[disabled]{opacity:.55;cursor:default}
 .ux-hackfw-notes-toggle{background:transparent;border:0;color:#196d55;text-decoration:underline;cursor:pointer;font-size:11px;padding:4px 0}
 .ux-hackfw-notes{font-size:12px;line-height:1.55;background:#f3f8f5;border-left:3px solid #2c9875;padding:10px;margin-top:8px}
